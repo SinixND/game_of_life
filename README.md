@@ -1,1 +1,0 @@
-# SinixND.github.io
