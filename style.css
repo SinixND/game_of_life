@@ -1,0 +1,12 @@
+body {
+    padding: 25px;
+    background-color: black;
+    color: #ffffff;
+    font-size: 25px;
+}
+
+.light-mode {
+    background-color: white;
+    color: black;
+
+}
