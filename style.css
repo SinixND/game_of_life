@@ -1,13 +1,29 @@
+/* general settings */
 body {
-    margin: 5px; /*outer margin */
-    padding: 25px; /*"Füllung"; inner margin */
+    margin: 0px;
+    padding: 0px;
+    /**/
     background-color: black;
-    color: rgba(255, 255, 255, 0.75);
-    font-size: 25px;
+    color: rgba(255, 255, 255, 0.85);
+    /**/
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
 }
 
-.light-mode {
-    background-color: #ffffff;
-    color: black;
+div {
+    border: 2px solid rgba(100, 100, 100, 0.5);
+}
 
+/* (non-unique) identifiers: classes */
+.divMenu {
+    padding: 5px;
+    background-color: rgba(200, 100, 100, 0.25);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.divItems {
+    padding: 5px;
+    background-color: rgba(100, 200, 100, 0.25);
 }
