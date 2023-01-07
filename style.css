@@ -1,6 +1,6 @@
 body {
     margin: 5px; /*outer margin */
-    padding: 25px; /*inner margin */
+    padding: 25px; /*"Füllung"; inner margin */
     background-color: black;
     color: rgba(255, 255, 255, 0.75);
     font-size: 25px;
