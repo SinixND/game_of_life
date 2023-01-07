@@ -2,7 +2,7 @@ body {
     margin: 5px; /*outer margin */
     padding: 25px; /*inner margin */
     background-color: black;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.65);
     font-size: 25px;
 }
 
