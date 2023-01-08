@@ -21,8 +21,8 @@ body {
    content:'';
    display: block;
    position: absolute;
-   border-top:10px solid white;
-   border-bottom:10px solid white;
+   border-top:10px solid rgba(0,0,0,0);
+   border-bottom:10px solid rgba(0,0,0,0);
    height:calc(100% - 20px);
    top:0;
    width: calc(100% - 36px);
