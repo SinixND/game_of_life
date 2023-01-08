@@ -1,39 +1,70 @@
 :root {
+    /* TEMP COLOR FOR DESIGN PHASE, REPLACE BY --alpha0 LATER */
+    --temp: white;
     /* background color*/
-    --bgc: rgba(0,0,0,1);
+    --bgc: rgba(0, 0, 0, 1);
     /* text color */
     --tc: rgba(255, 255, 255, 0.85);
     /* design colors */
+    --alpha0: rgba(0, 0, 0, 0);
     --dc1: rgba(127, 127, 127, 0.5);
-    --dc2: rgba(127, 127, 127, 0.25);
+    --dc2: rgba(127, 127, 127, 25%);
+    /* accent colors */
+    --acr: rgba(200, 100%, 100%, 0.75);
+    --acg: rgba(100%, 200, 100%, 0.75);
+    --acb: rgba(100%, 100%, 200, 0.75);
+    --acy: rgba(200, 200, 100%, 0.75);
+    --act: rgba(100%, 200, 200, 0.75);
+
 }
 
 body {
-    margin: 2px;
-    padding: 5px;
-    /**/
+    margin: 10px;
+    padding: 20px;
     background-color: var(--bgc);
     color: var(--tc);
-    /**/
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 20px;
+    font-size: 50px;
 }
 
-.panel {
-    background-color: var(--dc2);
-}
-
-.element {
-    background-color: var(--dc1);
-}
-
-#divMenu {
-    padding: 5px;
+/* panel to manage layout-element */
+.layout-element {
+    padding: 20px;
+    background-color: var(--temp);
     display: flex;
-    justify-content: space-evenly;
-    align-items: center;
+    justify-content: center;
+    align-content: center;
 }
 
-#divItems {
-    padding: 5px;
+/* panel to place content in */
+.panel {
+    margin: 10px;
+    height: 100%;
+    width: 100%;
+    background-color: var(--dc1);
+    justify-content: center;
+    align-content: center;
+}
+
+.content {
+    padding: 20px;
+    background-color: var(--bgc);
+    clip-path: polygon(
+        0% 40%,
+        5px 40%,
+        5px 5px,
+        40% 5px,
+        40% 0%,
+        100% 0%,
+        100% 60%,
+        calc(100% - 5px) 60%,
+        calc(100% - 5px) calc(100% - 5px),
+        60% calc(100% - 5px),
+        60% 100%,
+        0% 100%,
+        0% 10%
+    );
+    display: flex;
+    justify-content: center;
+    align-content: center;
 }
