@@ -1,56 +1,39 @@
-/* general settings */
+:root {
+    /* background color*/
+    --bgc: rgba(0,0,0,1);
+    /* text color */
+    --tc: rgba(255, 255, 255, 0.85);
+    /* design colors */
+    --dc1: rgba(127, 127, 127, 0.5);
+    --dc2: rgba(127, 127, 127, 0.25);
+}
+
 body {
-    margin: 0px;
-    padding: 0px;
+    margin: 2px;
+    padding: 5px;
     /**/
-    background-color: black;
-    color: rgba(255, 255, 255, 0.85);
+    background-color: var(--bgc);
+    color: var(--tc);
     /**/
     font-family: Arial, Helvetica, sans-serif;
     font-size: 20px;
 }
 
-.box {
-    position: relative;
-    overflow: hidden;
-    box-shadow: inset 0px 0px 0px 10px green;
-    padding: 2em;
+.panel {
+    background-color: var(--dc2);
 }
 
-.box: before {
-    content: '';
-    display: block;
-    position: absolute;
-    border-top: 10px solid rgba(0,0,0,0);
-    border-bottom: 10px solid rgba(0,0,0,0);
-    height: calc(100% - 20px);
-    top: 0;
-    width: calc(100% - 36px);
-    left: 18px;
+.element {
+    background-color: var(--dc1);
 }
 
-.box: after {
-    content: '';
-    display: block;
-    position: absolute;
-    border-right: 10px solid rgba(0,0,0,0);
-    border-left: 10px solid rgba(0,0,0,0);
-    height: calc(100% - 36px);
-    width: calc(100% - 20px);
-    top: 18px;
-    left: 0;
-}
-
-/* (non-unique) identifiers: classes */
-.divMenu {
+#divMenu {
     padding: 5px;
-    background-color: rgba(200, 100, 100, 0.25);
     display: flex;
     justify-content: space-evenly;
     align-items: center;
 }
 
-.divItems {
+#divItems {
     padding: 5px;
-    background-color: rgba(100, 200, 100, 0.25);
 }
