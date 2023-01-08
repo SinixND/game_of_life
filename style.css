@@ -49,18 +49,20 @@ body {
 .content {
     padding: 20px;
     background-color: var(--bgc);
+    --hlength: 40%;
+    --vlength: 40%;
     clip-path: polygon(
-        0% 40%,
-        5px 40%,
+        0% var(--vlength),
+        5px var(--vlength),
         5px 5px,
-        40% 5px,
-        40% 0%,
+        var(--hlength) 5px,
+        var(--hlength) 0%,
         100% 0%,
-        100% 60%,
-        calc(100% - 5px) 60%,
+        100% calc(100% - var(--vlength)),
+        calc(100% - 5px) calc(100% - var(--vlength)),
         calc(100% - 5px) calc(100% - 5px),
-        60% calc(100% - 5px),
-        60% 100%,
+        calc(100% - var(--hlength)) calc(100% - 5px),
+        calc(100% - var(--hlength)) 100%,
         0% 100%,
         0% 10%
     );
