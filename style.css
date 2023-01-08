@@ -10,8 +10,35 @@ body {
     font-size: 20px;
 }
 
-div {
-    border: 2px solid rgba(100, 100, 100, 0.5);
+.box {
+   position: relative;
+   overflow: hidden;
+   box-shadow: inset 0px 0px 0px 10px green;
+   padding: 2em;
+}
+
+.box:before {
+   content:'';
+   display: block;
+   position: absolute;
+   border-top:10px solid white;
+   border-bottom:10px solid white;
+   height:calc(100% - 20px);
+   top:0;
+   width: calc(100% - 36px);
+   left:18px;
+}
+
+.box:after {
+   content:'';
+   display: block;
+   position: absolute;
+   border-right:10px solid white;
+   border-left:10px solid white;
+   height:calc(100% - 36px);
+   width: calc(100% - 20px);
+   top:18px;
+   left: 0;
 }
 
 /* (non-unique) identifiers: classes */
