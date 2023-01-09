@@ -29,7 +29,6 @@ body {
 
 /* panel to manage layout-element */
 .grid-container {
-    padding: 10px;
     background-color: var(--temp);
     display: grid;
     grid-template-columns: 3;
