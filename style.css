@@ -37,12 +37,22 @@ body {
 
 .flex-container {
     margin: 5px;
+    height: max-content;
+    width: max-content;
     background-color: var(--temp);
     display: flex;
     justify-content: space-evenly;
     justify-items: center;
     align-content: space-evenly;
     align-items: center;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+.flex-col {
+    flex-direction: column;
 }
 
 .gi11 {
