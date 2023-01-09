@@ -40,8 +40,7 @@ body {
 
 /* panel to place content in */
 .panel {
-    /* height: 100%;
-    width: 100%; */
+    margin: 5px;
     background-color: var(--dc1);
     display: flex;
     justify-content: space-evenly;
@@ -56,17 +55,17 @@ body {
     --hlength: 40%;
     --vlength: 40%;
     clip-path: polygon(
-        0% var(--vlength),
-        2px var(--vlength),
+        0% 35%,
+        2px 35%,
         2px 2px,
-        var(--hlength) 2px,
-        var(--hlength) 0%,
+        40% 2px,
+        40% 0%,
         100% 0%,
-        100% calc(100% - var(--vlength)),
-        calc(100% - 2px) calc(100% - var(--vlength)),
+        100% calc(100% - 35%),
+        calc(100% - 2px) calc(100% - 35%),
         calc(100% - 2px) calc(100% - 2px),
-        calc(100% - var(--hlength)) calc(100% - 2px),
-        calc(100% - var(--hlength)) 100%,
+        calc(100% - 40%) calc(100% - 2px),
+        calc(100% - 40%) 100%,
         0% 100%
     );
     display: flex;
