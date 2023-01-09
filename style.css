@@ -19,17 +19,17 @@
 }
 
 body {
-    margin: 10px;
-    padding: 20px;
+    margin: 5px;
+    padding: 10px;
     background-color: var(--bgc);
     color: var(--tc);
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 20px;
+    font-size: 12px;
 }
 
 /* panel to manage layout-element */
 .grid-container {
-    padding: 20px;
+    padding: 10px;
     background-color: var(--temp);
     display: grid;
     grid-template-columns: 2;
@@ -39,7 +39,7 @@ body {
 
 /* panel to place content in */
 .panel {
-    margin: 10px;
+    margin: 5px;
     height: 100%;
     width: 100%;
     background-color: var(--dc1);
@@ -48,21 +48,21 @@ body {
 }
 
 .content {
-    padding: 20px;
+    padding: 10px;
     background-color: var(--bgc);
     --hlength: 40%;
     --vlength: 40%;
     clip-path: polygon(
         0% var(--vlength),
-        5px var(--vlength),
-        5px 5px,
-        var(--hlength) 5px,
+        2px var(--vlength),
+        2px 2px,
+        var(--hlength) 2px,
         var(--hlength) 0%,
         100% 0%,
         100% calc(100% - var(--vlength)),
-        calc(100% - 5px) calc(100% - var(--vlength)),
-        calc(100% - 5px) calc(100% - 5px),
-        calc(100% - var(--hlength)) calc(100% - 5px),
+        calc(100% - 2px) calc(100% - var(--vlength)),
+        calc(100% - 2px) calc(100% - 2px),
+        calc(100% - var(--hlength)) calc(100% - 2px),
         calc(100% - var(--hlength)) 100%,
         0% 100%,
         0% 10%
