@@ -32,6 +32,8 @@ body {
     padding: 10px;
     background-color: var(--temp);
     display: grid;
+    grid-auto-rows: min-content;
+    height: min-content;
     justify-content: space-evenly;
     align-content: center;
 }
