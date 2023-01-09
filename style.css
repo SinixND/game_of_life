@@ -43,7 +43,7 @@ body {
     height: 100%;
     width: 100%;
     background-color: var(--dc1);
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
 }
 
@@ -64,12 +64,11 @@ body {
         calc(100% - 2px) calc(100% - 2px),
         calc(100% - var(--hlength)) calc(100% - 2px),
         calc(100% - var(--hlength)) 100%,
-        0% 100%,
-        0% 10%
+        0% 100%
     );
     display: flex;
     justify-content: center;
-    align-items: stretch;
+    align-items: center;
 }
 
 .gi11 { /* grid item col/row */
