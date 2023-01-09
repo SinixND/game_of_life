@@ -52,6 +52,18 @@ body {
     --hlength: 40%;
     --vlength: 40%;
     clip-path: polygon(
+        0% 35%,
+        2px 35%,
+        40% 2px,
+        40% 0%,
+        100% 0%,
+        100% calc(100% - 35%),
+        calc(100% - 2px) calc(100% - 35%),
+        calc(100% - 2px) calc(100% - 2px),
+        calc(100% - 40%) calc(100% - 2px),
+        calc(100% - 40%) 100%,
+        0% 100%
+        /*
         0% 0%,
         45% 0%,
         45% 2px,
@@ -66,6 +78,7 @@ body {
         100% calc(100%-35%),
         100% 100%,
         0% 100%
+        */
     );
     display: flex;
     justify-content: space-evenly;
