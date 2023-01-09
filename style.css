@@ -31,8 +31,7 @@ body {
 .grid-container {
     background-color: var(--temp);
     display: grid;
-    grid-template-columns: 3;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
     /* justify-items: space-around;
     align-items: center; */
 }
