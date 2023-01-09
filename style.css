@@ -31,11 +31,11 @@ body {
 .grid-container {
     background-color: var(--temp);
     display: grid;
-    /* flex-wrap: wrap; */
-    /* justify-content: space-evenly;
+    /* grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); */
+    justify-content: space-evenly;
     justify-items: center;
     align-content: space-evenly;
-    align-items: center; */
+    align-items: center;
 }
 
 /* panel to place content in */
