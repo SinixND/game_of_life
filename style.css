@@ -32,8 +32,9 @@ body {
     padding: 10px;
     background-color: var(--temp);
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    justify-content: space-evenly;
+    grid-template-columns: 3;
+    flex-wrap: wrap;
+    justify-content: space-around;
     align-content: center;
 }
 
@@ -44,7 +45,7 @@ body {
     width: 100%;
     background-color: var(--dc1);
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
 }
 
