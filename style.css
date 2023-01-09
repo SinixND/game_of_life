@@ -32,7 +32,9 @@ body {
     background-color: var(--temp);
     display: grid;
     /* flex-wrap: wrap; */
-    /* justify-items: space-around;
+    /* justify-content: space-evenly;
+    justify-items: center;
+    align-content: space-evenly;
     align-items: center; */
 }
 
