@@ -45,8 +45,10 @@ body {
     width: 100%;
     background-color: var(--dc1);
     display: flex;
-    justify-content: space-around;
-    align-items: center;
+    /* justify-content: space-evenly;
+    justify-items: center;
+    align-content: space-evenly;
+    align-items: center; */
 }
 
 .content {
@@ -69,8 +71,10 @@ body {
         0% 100%
     );
     display: flex;
-    justify-content: center;
-    align-items: center;
+    /* justify-content: space-evenly;
+    justify-items: center;
+    align-content: space-evenly;
+    align-items: center; */
 }
 
 .gi11 { /* grid item col/row */
