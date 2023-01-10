@@ -58,7 +58,7 @@ body {
 .panel {
     margin: 5px;
     width: max-content;
-    background-color: var(--dc1);
+    background-color: transparent /* var(--dc1) */;
     display: flex;
     justify-content: space-evenly;
     justify-items: center;
@@ -70,13 +70,13 @@ body {
     padding: 10px solid transparent;;
     border: 5px solid transparent;
     background:
-        linear-gradient(155deg, 
-        var(--dc1) 10%,
-        transparent 10% 90%,
-        var(--dc1) 90%
-        ) padding-box;
-    /* background-color: var(--bgc);
-    clip-path: polygon(
+        linear-gradient(175deg, 
+        var(--dc1) 20%,
+        transparent 20% 80%,
+        var(--dc1) 80%
+        ) border-box;
+    background-color: var(--bgc);
+    /* clip-path: polygon(
         0% 35%,
         5px 35%,
         5px 5px,
