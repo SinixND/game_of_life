@@ -26,55 +26,30 @@ body {
     font-size: 22px;
 }
 
-/* panel to manage layout-element */
-.grid-container {
+/* manage layout */
+.container {
     margin: 5px;
     background-color: var(--temp);
-    display: grid;
-    justify-items: center;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-}
-
-.flex-container {
-    margin: 5px;
-    height: max-content;
-    width: max-content;
-    background-color: var(--temp);
-    display: flex;
     justify-content: space-evenly;
     justify-items: center;
     align-content: space-evenly;
     align-items: center;
 }
 
-.flex-row {
-    flex-direction: row;
+.flex {
+    display: flex;
 }
 
-.flex-col {
+.fv {
     flex-direction: column;
 }
 
-.gi11 {
-    /* grid item col/row */
-    grid: 1 / 1;
+.fh {
+    flex-direction: row;
 }
 
-.gi12 {
-    grid: 1 / 2;
-}
 
-.gi13 {
-    /* grid item col/row */
-    grid: 1 / 3;
-}
-
-.gi14 {
-    /* grid item col/row */
-    grid: 1 / 4;
-}
-
-/* panel to place content in */
+/* manage content */
 .panel {
     margin: 5px;
     background-color: var(--dc1);
