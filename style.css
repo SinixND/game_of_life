@@ -38,6 +38,7 @@ body {
 
 .flex {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .fv {
