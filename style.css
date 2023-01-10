@@ -69,19 +69,19 @@ body {
 .content {
     padding: 10px;
     background-color: var(--bgc);
-    clip-path: polygon(0% 35%,
-            5px 35%,
-            5px 5px,
-            45% 5px,
-            45% 0%,
-            100% 0%,
-            100% calc(100% - 35%),
-            calc(100% - 5px) calc(100% - 35%),
-            calc(100% - 5px) calc(100% - 5px),
-            calc(100% - 45%) calc(100% - 5px),
-            calc(100% - 45%) 100%,
-            0% 100%
-            /*
+    clip-path: polygon(
+        /* 0% 35%,
+        5px 35%,
+        5px 5px,
+        45% 5px,
+        45% 0%,
+        100% 0%,
+        100% calc(100% - 35%),
+        calc(100% - 5px) calc(100% - 35%),
+        calc(100% - 5px) calc(100% - 5px),
+        calc(100% - 45%) calc(100% - 5px),
+        calc(100% - 45%) 100%,
+        0% 100% */
         0% 0%,
         45% 0%,
         45% 2px,
@@ -96,7 +96,6 @@ body {
         100% calc(100%-35%,
         100% 100%,
         0% 100%
-        */
         );
     display: flex;
     justify-content: space-evenly;
