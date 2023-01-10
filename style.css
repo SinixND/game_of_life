@@ -67,17 +67,25 @@ body {
 }
 
 .content {
-    padding: 10px solid transparent;;
-    border: 5px solid transparent;
-    background:
-        linear-gradient(175deg, 
-        var(--dc1) 20%,
-        transparent 20% 80%,
-        var(--dc1) 80%
-        ) border-box;
+    padding: 10px;   
     background-color: var(--bgc);
-    /* clip-path: polygon(
+    clip-path: polygon(
+        0% 0%,
+        45% 0%,
+        45% 2px,
+        2px 2px,
+        2px 35%,
         0% 35%,
+        0% 100%,
+        calc(100%-45% 100%,
+        calc(100%-45% calc(100%-2px),
+        calc(100%-2px) calc(100%-2px),
+        calc(100%-2px) calc(100%-35%,
+        100% calc(100%-35%,
+        100% 100%,
+        0% 100%,
+        0% 0%
+        /* 0% 35%,
         5px 35%,
         5px 5px,
         45% 5px,
@@ -88,8 +96,9 @@ body {
         calc(100% - 5px) calc(100% - 5px),
         calc(100% - 45%) calc(100% - 5px),
         calc(100% - 45%) 100%,
-        0% 100%
-        ); */
+        0% 100%,
+        0% */
+        );
     display: flex;
     justify-content: space-evenly;
     justify-items: center;
