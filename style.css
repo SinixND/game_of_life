@@ -29,7 +29,7 @@ body {
 /* manage layout */
 .container {
     margin: 5px;
-    background-color: var(--temp);
+    border: 1px dotted var(--temp);
     justify-content: space-evenly;
     justify-items: center;
     align-content: space-evenly;
@@ -55,17 +55,6 @@ body {
 }
 
 /* manage content */
-.panel {
-    margin: 5px;
-    width: max-content;
-    background-color: var(--alpha0); /* var(--dc1) */
-    display: flex;
-    justify-content: space-evenly;
-    justify-items: center;
-    align-content: space-evenly;
-    align-items: center;
-}
-
 .content {
     padding: 10px;
     width: 100%;
