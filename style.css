@@ -51,11 +51,13 @@ body {
 
 .feq {
     flex: 1 1 0px;
+    width: 100%;
 }
 
 /* manage content */
 .panel {
     margin: 5px;
+    width: max-content;
     background-color: var(--dc1);
     display: flex;
     justify-content: space-evenly;
