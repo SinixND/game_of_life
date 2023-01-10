@@ -56,6 +56,7 @@ body {
 
 /* manage content */
 .content {
+    margin: 5px;
     padding: 10px;
     width: 100%;
     height: auto;
@@ -78,14 +79,14 @@ body {
     background-color: var(--dc1);
     clip-path: polygon(
         0% 0%,
-        45% 0%,
-        45% 2px,
+        65% 0%,
+        65% 2px,
         2px 2px,
         2px 35%,
         0% 35%,
         0% 100%,
-        calc(100% - 45%) 100%,
-        calc(100% - 45%) calc(100% - 2px),
+        calc(100% - 65%) 100%,
+        calc(100% - 65%) calc(100% - 2px),
         calc(100% - 2px) calc(100% - 2px),
         calc(100% - 2px) calc(100% - 35%),
         100% calc(100% - 35%),
