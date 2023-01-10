@@ -49,6 +49,9 @@ body {
     flex-direction: row;
 }
 
+.feq {
+    flex: 1 1 0px;
+}
 
 /* manage content */
 .panel {
