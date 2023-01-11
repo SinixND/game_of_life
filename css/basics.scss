@@ -1,0 +1,27 @@
+:root {
+    /* TEMP COLOR FOR DESIGN PHASE, REPLACE BY transparent LATER */
+    $temp: rgba(200, 100, 200, 0.5);
+    /* background color*/
+    $col_bg: rgba(0, 0, 0, 1);
+    /* text color */
+    $col_t: rgba(255, 255, 255, 0.85);
+    /* design colors */
+    $col_tp: transparent;
+    $col_d1: rgba(127, 127, 127, 0.5);
+    $col_d2: rgba(127, 127, 127, 25);
+    /* accent colors */
+    $col_ar: rgba(200, 100, 100, 0.75);
+    $col_ag: rgba(100, 200, 100, 0.75);
+    $col_ab: rgba(100, 100, 200, 0.75);
+    $col_ay: rgba(200, 200, 100, 0.75);
+    $col_at: rgba(100, 200, 200, 0.75);
+
+}
+
+body {
+    margin: 5px;
+    background-color: var($col_bg);
+    color: var($col_t);
+    font-family: Titillium Web, sans-serif;
+    font-size: 22px;
+}
