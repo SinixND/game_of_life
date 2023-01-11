@@ -99,7 +99,8 @@ body {
 }
 
 #mask {
-    background-image:
+    background:
         linear-gradient(var(--cbg75), var(--cbg75)),
-        url("icons/mask.png");
+        url("icons/mask.png") 
+        center/contain no-repeat;
 }
