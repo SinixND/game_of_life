@@ -88,7 +88,6 @@ let parsedCSV = csvParser('data.csv').then( function(prv) {
 console.log("final csv array: "+parsedCSV);
 */
 function csvParser(filename) {// incl. *.filetyp
-    return new Promise((resolve, reject) => {
         // initialize
         let arr = [];
         const fs = require("fs");
@@ -101,13 +100,11 @@ function csvParser(filename) {// incl. *.filetyp
             arr.push(row.split(","));
         });
 
-        reader.on("close", () => {
+        async reader.on("close", () => {
             console.log("reader.onClose: ");
             console.log(arr);
-            resolve(arr);
+            return await arr;
         });
-
-    }).then();
 };
 
 let parsedCSV = csvParser('data.csv');
