@@ -1,7 +1,7 @@
 /*
-//==============
+    //==============
     //
-// Traditional anonymous function
+    // Traditional anonymous function
 (function (a) {
   return a + 100;
 });
@@ -36,7 +36,7 @@ function f_return(arg) {
 };
 
 let myPromise = new Promise(function(myResolve, myReject) {
-    
+
     // "Producing Code" (May take some time)
 
     myResolve(console.log("promise: resolve")); // when successful
@@ -48,34 +48,69 @@ myPromise.then(
     function(value) {console.log(value)},
     function(error) {console.log(error)}
 );
+
+//=============
 */
+/*
+const csvParser = async (filename) => {
+    return new Promise((resolve, reject) => {
+        let arr = [];
+        const fs = require("fs");
+        const readline = require("readline");
 
+        const rfs = fs.createReadStream(`./csv/${filename}`);
+        const reader = readline.createInterface({ input: rfs });
+
+        reader.on("line", row => {
+            // split row string in array and push
+            arr.push(row.split(","));
+            console.log("1: pushed: " + row.split(","));
+        });
+
+        reader.on("close", () => {
+            console.log("2: onClose: ");
+            console.log(arr);
+            if (arr.length != 0) {
+                resolve(arr);
+            } else {
+                reject("Failed: array empty!");
+            }
+        });
+
+    });
+};
+
+//usage
+let parsedCSV = csvParser('data.csv').then( function(prv) {
+    console.log("return promise return value: "+prv);
+    return prv;
+});
+console.log("final csv array: "+parsedCSV);
+*/
 function csvParser(filename) {// incl. *.filetyp
-    //return new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
+        // initialize
+        let arr = [];
+        const fs = require("fs");
+        const readline = require("readline");
 
-    //})
-    // initialize
-    const fs = require("fs");
-    const readline = require("readline");
+        const rfs = fs.createReadStream(`./csv/${filename}`);
+        const reader = readline.createInterface({ input: rfs });
 
-    const rfs = fs.createReadStream(`./csv/${filename}`);
-    const reader = readline.createInterface({ input: rfs });
+        reader.on("line", row => {
+            arr.push(row.split(","));
+        });
 
-    let arr = [];
-    reader.on("line", row => {
-        // split row string in array and push
-        arr.push(row.split(","));
-        console.log("1: pushed: " + row.split(","));
-    });
+        reader.on("close", () => {
+            console.log("reader.onClose: ");
+            console.log(arr);
+            resolve(arr);
+        });
 
-    reader.on("close", () => {
-        console.log("2: onClose: ");
-        console.log(arr);
-    });
-    console.log("return arr: " + arr);
-
-    return arr;
+    }).then();
 };
 
 let parsedCSV = csvParser('data.csv');
-console.log("finalarr: " + parsedCSV);
+console.log("finalarr: ");
+console.log(parsedCSV);
+
