@@ -1,15 +1,15 @@
 {
-  "MMR": {
+  "mmr": {
     "_1886": {
       "damage": 100,
       "rof": 5
     },
-    "SVD": {
+    "svd": {
       "damage": 50,
       "rof": 10
     }
   },
-  "Rifle": {
+  "rifle": {
     "riflename": {
       "damage": 200,
       "rof": 1
