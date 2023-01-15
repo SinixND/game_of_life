@@ -1,4 +1,11 @@
 //import Import from './data/weapons.json';
-const Const = require('./data/weapons.json');
+const weapons = require("./data/weapons.json");
 //const data = JSON.parse(Const);
-//console.log(data.attrib);
+console.log("\nLevel 1: ");
+console.log(weapons);
+
+console.log("\nLevel 2: ");
+console.log(weapons.MMR);
+
+console.log("\nLevel 3: ");
+console.log(weapons.MMR._1886.damage);

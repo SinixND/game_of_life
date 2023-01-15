@@ -1,8 +1,18 @@
-{"weapons": [
-    {"weapon1": [
-        {"damage":100, "rof":5}
-    ]},
-    {"weapon2": [
-        {"damage":200, "rof":1}
-    ]}
-]}
+{
+  "MMR": {
+    "_1886": {
+      "damage": 100,
+      "rof": 5
+    },
+    "SVD": {
+      "damage": 50,
+      "rof": 10
+    }
+  },
+  "Rifle": {
+    "riflename": {
+      "damage": 200,
+      "rof": 1
+    }
+  }
+}
