@@ -1,3 +1,4 @@
-const weapons = require('./data/weapons.js');
-
-console.log(weapons['weapon1']['damage']);
+//import Import from './data/weapons.json';
+const Const = require('./data/weapons.json');
+const data = JSON.parse(Const);
+//console.log(data.attrib);
