@@ -8,4 +8,5 @@ console.log("\nLevel 2: ");
 console.log(weapons.MMR);
 
 console.log("\nLevel 3: ");
+weapons.MMR._1886.damage = 20;
 console.log(weapons.MMR._1886.damage);
