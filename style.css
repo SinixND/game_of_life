@@ -126,6 +126,7 @@ body {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+    width: min-content;
     z-index: 2;
 }
 
