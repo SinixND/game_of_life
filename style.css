@@ -110,7 +110,7 @@ body {
 
 .empty {
     color: var(--ctxthl);
-    align-content: bottom;
+    align-content: flex-end;
 }
 
 #weapon1 {
