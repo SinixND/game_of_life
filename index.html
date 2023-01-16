@@ -22,7 +22,7 @@
   <div id="panel-build" class="container flex fh">
     <div id="panel-equipment" class="container flex fv">
       <div id="panel-specialisation" class="container flex feq">
-        <div id="specialisation" class="content">
+        <div id="specialisation" class="content" onclick="showPopupSpecialisation()">
             Choose specialisation
         </div>
       </div>
@@ -145,6 +145,10 @@
       </div>
     </div>
   </div>
+
+  <form id="popupSpecialisation" class="form-popup content">
+      <button type="button" onclick="closePopupSpecialisation()">Close</button>
+  </form>
 </body>
 
 </html>
