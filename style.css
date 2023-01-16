@@ -109,7 +109,8 @@ body {
     calc(100% - var(--bweight)) calc(100% - var(--bweight)),
     calc(100% - var(--bweight)) calc(100% - var(--vlength)),
     100% calc(100% - var(--vlength)),
-    100% 0%,
+    100% 100%,
+    0% 100%,
     0% 0%
     );
 }
