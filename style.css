@@ -1,14 +1,14 @@
 :root {
-    /* TEMP COLOR FOR DESIGN PHASE, REPLACE BY --cbg0 LATER */
-    --ctemp: rgba(200, 100, 200, 0.5);
+    --ctemp: rgba(255, 215, 000, 0.5);
     /* background color*/
-    --cbg: rgba(0, 0, 0, 1);
+    --cbg: rgba(0, 0, 0, 1); 
     --cbg75: rgba(0, 0, 0, 0.75);
     --cbg50: rgba(0, 0, 0, 0.5);
     --cbg0: rgba(0, 0, 0, 0);
     /* text color */
     --ctxt: rgba(255, 255, 255, 0.85);
-    /* design colors */
+    --ctxthl: rgba(247, 208, 124, 1.0);
+    /* grey colors */
     --cdsn1: rgba(127, 127, 127, 0.5);
     --cdsn2: rgba(127, 127, 127, 0.25);
     /* accent colors */
@@ -18,7 +18,17 @@
     --cay: rgba(200, 200, 100, 0.75);
     --cat: rgba(100, 200, 200, 0.75);
     --cap: rgba(200, 100, 200, 0.75);
-}
+    --cav: rgba(200, 100, 200, 0.75);
+
+    /*.offensive {
+      color: #ce474d;
+    }
+    .defensive {
+      color: #82abd6;
+    }
+    .utility {
+      color: #f7d07c;
+    }*/
 
 body {
     margin: 5px;
