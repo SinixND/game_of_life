@@ -115,12 +115,14 @@ body {
     align-items: flex-end;
 }
 
+.empty:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
 .form-popup {
   display: none;
-  position: fixed;
-  bottom: 0;
-  right: 15px;
-  border: 3px solid #f1f1f1;
+  margin: 25px;
   z-index: 9;
 }
 
