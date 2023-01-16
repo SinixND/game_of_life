@@ -127,6 +127,7 @@ body {
     top: 50%;
     transform: translate(-50%, -50%);
     width: min-content;
+    background-color: var(--cbg);
     z-index: 2;
 }
 
