@@ -110,6 +110,7 @@ body {
 }
 
 .empty {
+    position: fixed;
     color: var(--ctxthl);
     align-content: flex-end;
     align-items: flex-end;
