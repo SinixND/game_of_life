@@ -29,6 +29,7 @@
     .utility {
       color: #f7d07c;
     }*/
+}
 
 body {
     margin: 5px;
@@ -111,6 +112,7 @@ body {
 .empty {
     color: var(--ctxthl);
     align-content: flex-end;
+    align-items: flex-end;
 }
 
 #weapon1 {
