@@ -108,6 +108,11 @@ body {
             0% 0%);
 }
 
+.empty {
+    color: var(--ctxthl);
+    align-content: bottom;
+}
+
 #weapon1 {
     background: linear-gradient(var(--cbg75), var(--cbg75)), url("icons/main-weapon.png") center/contain no-repeat;
 }
