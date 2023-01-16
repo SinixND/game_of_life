@@ -94,9 +94,10 @@ body {
     background-color: var(--cdsn1);
 
     --hlength: 65%;
-    --vwidth: 35%;
+    --vlength: 35%;
     --bweight: 3px;
-    clip-path: polygon(0% 0%,
+    clip-path: polygon(
+    0% 0%,
     var(--hlength) 0%,
     var(--hlength) var(--bweigth),
     var(--bweigth) var(--bweigth),
@@ -108,9 +109,9 @@ body {
     calc(100% - var(--bweigth)) calc(100% - var(--bweigth)),
     calc(100% - var(--bweigth)) calc(100% - var(--vlength)),
     100% calc(100% - var(--vlength)),
-    100% 100%,
-    0% 100%,
-    0% 0%);
+    100% 0%,
+    0% 0%
+    );
 }
 
 .empty {
