@@ -72,6 +72,7 @@ body {
 .content {
     margin: 5px;
     padding: 10px;
+    border: var(--cdsn1) dotted 1px;
     width: 100%;
     height: auto;
     position: relative;
@@ -90,20 +91,23 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-
     background-color: var(--cdsn1);
+
+    --hlength: 65%;
+    --vwidth: 35%;
+    --bweight: 3px;
     clip-path: polygon(0% 0%,
-    65% 0%,
-    65% 2px,
-    2px 2px,
-    2px 35%,
-    0% 35%,
+    var(--hlength) 0%,
+    var(--hlength) var(--bweigth),
+    var(--bweigth) var(--bweigth),
+    var(--bweigth) var(--vlength),
+    0% var(--vlength),
     0% 100%,
-    calc(100% - 65%) 100%,
-    calc(100% - 65%) calc(100% - 2px),
-    calc(100% - 2px) calc(100% - 2px),
-    calc(100% - 2px) calc(100% - 35%),
-    100% calc(100% - 35%),
+    calc(100% - var(--hlength)) 100%,
+    calc(100% - var(--hlength)) calc(100% - var(--bweigth)),
+    calc(100% - var(--bweigth)) calc(100% - var(--bweigth)),
+    calc(100% - var(--bweigth)) calc(100% - var(--vlength)),
+    100% calc(100% - var(--vlength)),
     100% 100%,
     0% 100%,
     0% 0%);
