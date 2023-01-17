@@ -126,7 +126,7 @@ body {
     cursor: pointer;
 }
 
-.form-popup {
+.popup {
     display: none;
     position: fixed;
     left: 50%;
