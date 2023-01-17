@@ -84,6 +84,50 @@ body {
     background-color: var(--cbg75);
 }
 
+/*
+#content {
+  position: relative;
+  width: 400px;
+  height: 300px;
+}
+
+#content:before,
+#content:after,
+#content>:first-child:before,
+#content>:first-child:after {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-color: red;
+  border-style: solid;
+  content: ' ';
+}
+
+#content:before {
+  top: 0;
+  left: 0;
+  border-width: 1px 0 0 1px
+}
+
+#content:after {
+  top: 0;
+  right: 0;
+  border-width: 1px 1px 0 0
+}
+
+#content>:first-child:before {
+  bottom: 0;
+  right: 0;
+  border-width: 0 1px 1px 0
+}
+
+#content>:first-child:after {
+  bottom: 0;
+  left: 0;
+  border-width: 0 0 1px 1px
+}
+*/
+
 .content::before {
     content: '';
     position: absolute;
