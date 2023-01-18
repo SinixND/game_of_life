@@ -145,7 +145,12 @@ body {
     background-color: var(--cbg0);
 }
 
+/*
 .content.main-weapon {
+    background: linear-gradient(var(--cbg75), var(--cbg75)), url("icons/main-weapon.png") center/contain no-repeat;
+}
+*/
+#weapon1 {
     background: linear-gradient(var(--cbg75), var(--cbg75)), url("icons/main-weapon.png") center/contain no-repeat;
 }
 
