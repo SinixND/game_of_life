@@ -2,7 +2,7 @@
     /* colors */
     --ctemp: rgba(255, 215, 000, 0.5);
     /* background color */
-    --cbg: rgba(0, 0, 0, 1); 
+    --cbg: rgba(0, 0, 0, 1);
     --cbg75: rgba(0, 0, 0, 0.75);
     --cbg50: rgba(0, 0, 0, 0.5);
     --cbg0: rgba(0, 0, 0, 0);
@@ -57,6 +57,33 @@ body {
     align-items: center;
 }
 
+.border {
+    border: var(--cdsn1) dotted 1px;
+    position: relative;
+}
+
+.border:before,
+.border:after {
+    position: absolute;
+    width: var(--bwidth);
+    height: var(--bheight);
+    border-color: var(--cdsn1);
+    border-style: solid;
+    content: '';
+}
+
+.border:before {
+    top: 0;
+    left: 0;
+    border-width: var(--bweight) 0 0 var(--bweight);
+}
+
+.border:after {
+    right: 0;
+    bottom: 0;
+    border-width: 0 var(--bweight) var(--bweight) 0;
+}
+
 .flex {
     display: flex;
     flex-wrap: wrap;
@@ -82,38 +109,13 @@ body {
     border: var(--cdsn1) dotted 1px;
     width: 100%;
     height: auto;
-    position: relative;
     display: flex;
     justify-content: space-evenly;
     justify-items: center;
     align-content: space-evenly;
     align-items: center;
-    background-color: var(--cbg75);
+    background: var(--cbg75);
 }
-
-/*
-.content:before, .content:after {
-  position: absolute;
-  width: var(--bwidth);
-  height: var(--bheight);
-  border-color: var(--cdsn1);
-  border-style: solid;
-  border-width: 1px 1px 1px 1px;
-  content: ' ';
-}
-
-.content:before {
-  top: 0;
-  left: 0;
-  border-width: var(--bweight) 0 0 var(--bweight);
-}
-
-.content:after {
-  right: 0;
-  bottom: 0;
-  border-width: 0 var(--bweight) var(--bweight) 0;
-}
-*/
 
 .empty {
     color: var(--ctxthl);
@@ -143,41 +145,4 @@ body {
     border-width: 0 0 1px 0;
     border-color: var(--cdsn1);
     background-color: var(--cbg0);
-}
-
-/*
-.content.main-weapon {
-    background: linear-gradient(var(--cbg75), var(--cbg75)), url("icons/main-weapon.png") center/contain no-repeat;
-}
-*/
-#weapon1 {
-    background: linear-gradient(var(--cbg75), var(--cbg75)), url("icons/main-weapon.png") center/contain no-repeat;
-}
-
-.content.sidearm {
-    background: linear-gradient(var(--cbg75), var(--cbg75)), url("icons/sidearm.png") center/contain no-repeat;
-}
-
-.content.mask {
-    background: linear-gradient(var(--cbg75), var(--cbg75)), url("icons/mask.png") center/contain no-repeat;
-}
-
-.content.backpack {
-    background: linear-gradient(var(--cbg75), var(--cbg75)), url("icons/backpack.png") center/contain no-repeat;
-}
-
-.content.chest {
-    background: linear-gradient(var(--cbg75), var(--cbg75)), url("icons/chest.png") center/contain no-repeat;
-}
-
-.content.gloves {
-    background: linear-gradient(var(--cbg75), var(--cbg75)), url("icons/gloves.png") center/contain no-repeat;
-}
-
-.content.holster {
-    background: linear-gradient(var(--cbg75), var(--cbg75)), url("icons/holster.png") center/contain no-repeat;
-}
-
-.content.kneepads {
-    background: linear-gradient(var(--cbg75), var(--cbg75)), url("icons/kneepads.png") center/contain no-repeat;
 }

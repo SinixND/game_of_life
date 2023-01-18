@@ -5,10 +5,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- .css - files -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./style.css">
 
   <!-- .js - files -->
-  <script src="code.js"></script>
+  <script src="./code.js"></script>
 
   <title>Div2 build calculator</title>
 </head>
@@ -24,12 +24,12 @@
     <div id="panel-equipment" class="panel flex fv">
       <div id="panel-specialisation" class="panel flex feq">
         <div id="specialisation" class="content empty" onclick="showPopupSpecialisation()">
-            Choose specialisation
+          Choose specialisation
         </div>
       </div>
 
       <div id="panel-weapons" class="panel flex fh feq">
-        <div id="panel-weapon1" class="panel flex feq">
+        <div id="panel-weapon1" class="panel flex feq border">
           <div id="weapon1" class="content empty main-weapon">
             Choose weapon
           </div>
@@ -148,10 +148,10 @@
   </div>
 
   <div id="popupSpecialisation" class="popup flex fv content">
-      <input class="popupInput" placeholder="Search..." type="text">
-      <div>Choose Type</div>
-      <div></div>
-      <button type="button" onclick="closePopupSpecialisation()">Close</button>
+    <input class="popupInput" placeholder="Search..." type="text">
+    <div>Choose Type</div>
+    <div></div>
+    <button type="button" onclick="closePopupSpecialisation()">Close</button>
   </div>
 </body>
 
