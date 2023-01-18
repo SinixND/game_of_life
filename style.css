@@ -92,7 +92,7 @@ body {
     background-color: var(--cbg75);
 }
 
-.content:before, .content:after, .content>:first-child:before, .content>:first-child:after {
+.content:before, .content:after/*, .content>:first-child:before, .content>:first-child:after*/ {
   position: absolute;
   width: var(--hlength);
   height: var(--vlength);
@@ -102,20 +102,18 @@ body {
 }
 
 .content:before {
-  border-color: red;
   top: 0;
   left: 0;
   border-width: var(--bweight) 0 0 var(--bweight);
 }
 
 .content:after {
-  border-color: blue;
   bottom: 0;
   right: 0;
   border-width: 0 var(--bweight) var(--bweight) 0;
 }
 
-.content>:first-child:before {
+/*.content>:first-child:before {
   border-color: green;
   top: 0;
   right: 0;
@@ -127,7 +125,7 @@ body {
   bottom: 0;
   left: 0;
   border-width: 0 0 var(--bweight) var(--bweight);
-}
+}*/
 
 .empty {
     color: var(--ctxthl);
