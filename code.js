@@ -12,8 +12,8 @@ document.addEventListener('DOMContentLoaded', function () {
 }, false);
 
 // import Import from './data/weapons.json';
-const weapons = require("./data/weapons.json");
-console.log(weapons.mmr._1886.damage);
+//const weapons = require("./data/weapons.json");
+//console.log(weapons.mmr._1886.damage);
 
 // show specialisation selection popup
 function showPopupSpecialisation() {
