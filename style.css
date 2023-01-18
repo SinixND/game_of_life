@@ -1,7 +1,7 @@
 :root {
     /* colors */
     --ctemp: rgba(255, 215, 000, 0.5);
-    /* background color*/
+    /* background color */
     --cbg: rgba(0, 0, 0, 1); 
     --cbg75: rgba(0, 0, 0, 0.75);
     --cbg50: rgba(0, 0, 0, 0.5);
