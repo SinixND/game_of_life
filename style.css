@@ -34,8 +34,8 @@
      */
 
     /* border properties */
-    --hlength: 65%;
-    --vlength: 35%;
+    --bwidth: 65%;
+    --bheight: 35%;
     --bweight: 3px;
 }
 
@@ -94,9 +94,9 @@ body {
 
 .content:before, .content:after/*, .content>:first-child:before, .content>:first-child:after*/ {
   position: absolute;
-  width: var(--hlength);
-  height: var(--vlength);
-  border-color: var(--dsn1);
+  width: var(--bwidth);
+  height: var(--bheight);
+  border-color: var(--cdsn1);
   border-style: solid;
   content: ' ';
 }
@@ -104,6 +104,7 @@ body {
 .content:before {
   top: 0;
   left: 0;
+  /*l b r t*/
   border-width: var(--bweight) 0 0 var(--bweight);
 }
 
