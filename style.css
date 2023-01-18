@@ -39,7 +39,7 @@
     --bweight: 3px;
 }
 
-body {
+#app, body, html {
     margin: 5px;
     background-color: var(--cbg);
     color: var(--ctxt);
