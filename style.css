@@ -1,4 +1,5 @@
 :root {
+    /* colors */
     --ctemp: rgba(255, 215, 000, 0.5);
     /* background color*/
     --cbg: rgba(0, 0, 0, 1); 
@@ -20,7 +21,8 @@
     --cap: rgba(200, 100, 200, 0.75);
     --cav: rgba(200, 100, 200, 0.75);
 
-    /*.offensive {
+    /*
+     * .offensive {
     color: #ce474d;
     }
     .defensive {
@@ -28,7 +30,13 @@
     }
     .utility {
     color: #f7d07c;
-    }*/
+    }
+     */
+
+    /* border properties */
+    --hlength: 65%;
+    --vlength: 35%;
+    --bweight: 3px;
 }
 
 body {
@@ -39,10 +47,10 @@ body {
     font-size: 22px;
 }
 
-.container {
+.panel {
     margin: 5px;
     border: 1px dotted var(--ctemp);
-    min-width: 200px;
+    /*min-width: 200px;*/
     justify-content: space-evenly;
     justify-items: center;
     align-content: space-evenly;
@@ -84,79 +92,41 @@ body {
     background-color: var(--cbg75);
 }
 
-/*
-#content {
-  position: relative;
-  width: 400px;
-  height: 300px;
-}
-
-#content:before,
-#content:after,
-#content>:first-child:before,
-#content>:first-child:after {
+.content:before, .content:after, .content>:first-child:before, .content>:first-child:after {
   position: absolute;
-  width: 80px;
-  height: 80px;
-  border-color: red;
+  width: var(--hlength);
+  height: var(--vlength);
+  border-color: var(--dsn1);
   border-style: solid;
   content: ' ';
 }
 
-#content:before {
+.content:before {
+  border-color: red;
   top: 0;
   left: 0;
-  border-width: 1px 0 0 1px
+  border-width: var(--bweight) 0 0 var(--bweight);
 }
 
-#content:after {
+.content:after {
+  border-color: blue;
+  bottom: 0;
+  right: 0;
+  border-width: 0 var(--bweight) var(--bweight) 0;
+}
+
+.content>:first-child:before {
+  border-color: green;
   top: 0;
   right: 0;
-  border-width: 1px 1px 0 0
+  border-width: var(--bweight) var(--bweight) 0 0;
 }
 
-#content>:first-child:before {
-  bottom: 0;
-  right: 0;
-  border-width: 0 1px 1px 0
-}
-
-#content>:first-child:after {
+.content>:first-child:after {
+  border-color: yellow;
   bottom: 0;
   left: 0;
-  border-width: 0 0 1px 1px
-}
-*/
-
-.content::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--cdsn1);
-
-    --hlength: 65%;
-    --vlength: 35%;
-    --bweight: 3px;
-    clip-path: polygon(
-    0% 0%,
-    var(--hlength) 0%,
-    var(--hlength) var(--bweight),
-    var(--bweight) var(--bweight),
-    var(--bweight) var(--vlength),
-    0% var(--vlength),
-    0% 100%,
-    calc(100% - var(--hlength)) 100%,
-    calc(100% - var(--hlength)) calc(100% - var(--bweight)),
-    calc(100% - var(--bweight)) calc(100% - var(--bweight)),
-    calc(100% - var(--bweight)) calc(100% - var(--vlength)),
-    100% calc(100% - var(--vlength)),
-    100% 100%,
-    0% 100%,
-    0% 0%
-    );
+  border-width: 0 0 var(--bweight) var(--bweight);
 }
 
 .empty {
