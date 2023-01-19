@@ -130,7 +130,7 @@ body {
 }
 
 .popup {
-    display: none;
+    display: flex; /*change to none after development!!!*/
     position: fixed;
     left: 50%;
     top: 50%;
