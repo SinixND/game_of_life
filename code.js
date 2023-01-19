@@ -21,7 +21,7 @@ function showPopup(Class) {
 }
 
 // hide selection popup
-function closePopup(Class) {
+function closePopup() {
     //populateList(Class);
     document.getElementById(`popupGear`).style.display = "none";
 } 
