@@ -1,158 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- .css - files -->
-  <link rel="stylesheet" href="./style.css">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- .css - files -->
+    <link rel="stylesheet" href="./style.css">
 
-  <!-- .js - files -->
-  <script src="./code.js"></script>
+    <!-- .js - files -->
+    <script src="./code.js"></script>
 
-  <title>Div2 build calculator</title>
-</head>
+    <title>Div2 build calculator</title>
+  </head>
 
-<body>
-  <div id="panel-menubar" class="panel border flex">
-    <div class="content">
-      content menubar
-    </div>
-  </div>
-
-  <div id="panel-build" class="panel flex flexHorizontal">
-    <div id="panel-equipment" class="panel flex flexVertical">
-      <div id="panel-specialisation" class="panel border flex flexEqual" onclick="showPopupSpecialisation()">
-        <div class="content empty">
-          Choose specialisation
-        </div>
-      </div>
-
-      <div id="panel-weapons" class="panel flex flexHorizontal flexEqual">
-        <div id="panel-weapon-1" class="panel border flex flexEqual">
-          <div class="content empty main-weapon">
-            Choose weapon
-          </div>
-        </div>
-        <div id="panel-weapon-2" class="panel border flex flexEqual">
-          <div class="content empty main-weapon">
-            Choose weapon
-          </div>
-        </div>
-        <div id="panel-sidearm" class="panel border flex flexEqual">
-          <div class="content empty sidearm">
-            Choose sidearm
-          </div>
-        </div>
-      </div>
-
-      <div id="panel-armor" class="panel flex flexVertical flexEqual">
-        <div id="panel-gear-slot-1-2" class="panel flex flexHorizontal flexEqual">
-          <div id="panel-mask" class="panel border flex flexEqual">
-            <div class="content empty mask">
-              Choose mask
-            </div>
-          </div>
-          <div id="panel-backpack" class="panel border flex flexEqual">
-            <div class="content empty backpack">
-              Choose backpack
-            </div>
-          </div>
-        </div>
-        <div id="panel-gear-slot-3-4" class="panel flex flexHorizontal flexEqual">
-          <div id="panel-chest" class="panel border flex flexEqual">
-            <div class="content empty chest">
-              Choose chest
-            </div>
-          </div>
-          <div id="panel-gloves" class="panel border flex flexEqual">
-            <div class="content empty gloves">
-              Choose gloves
-            </div>
-          </div>
-        </div>
-        <div id="panel-gear-slot-5-6" class="panel flex flexHorizontal flexEqual">
-          <div id="panel-holster" class="panel border flex flexEqual">
-            <div class="content empty holster">
-              Choose holster
-            </div>
-          </div>
-          <div id="panel-kneepads" class="panel border flex flexEqual">
-            <div class="content empty kneepads">
-              Choose kneepads
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div id="panel-skills" class="panel flex flexHorizontal flexEqual">
-        <div id="panel-skill-1" class="panel border flex flexEqual">
-          <div class="content empty skill">
-            Choose skill
-          </div>
-        </div>
-        <div id="panel-skill-2" class="panel border flex flexEqual">
-          <div class="content empty skill">
-            Choose skill
-          </div>
-        </div>
+  <body>
+    <div id="panel-menubar" class="panel border flex">
+      <div class="content">
+        content menubar
       </div>
     </div>
 
-    <div id="panel-stats" class="panel flex flexVertical flexEqual">
-      <div id="panel-stats-weapons" class="panel flex flexHorizontal flexEqual">
-        <div id="panel-stats-weapon-1" class="panel border flex flexEqual">
-          <div class="content main-weapon">
-            stats weapon 1
+    <div id="panel-build" class="panel flex flexHorizontal">
+      <div id="panel-equipment" class="panel flex flexVertical">
+        <div id="panel-specialisation" class="panel border flex flexEqual" onclick="showPopupSpecialisation()">
+          <div class="content empty">
+            Choose specialisation
           </div>
         </div>
-        <div id="panel-stats-weapon-2" class="panel border flex flexEqual">
-          <div class="content main-weapon">
-            stats weapon 2
+
+        <div id="panel-weapons" class="panel flex flexHorizontal flexEqual">
+          <div id="panel-weapon-1" class="panel border flex flexEqual">
+            <div class="content empty main-weapon">
+              Choose weapon
+            </div>
+          </div>
+          <div id="panel-weapon-2" class="panel border flex flexEqual">
+            <div class="content empty main-weapon">
+              Choose weapon
+            </div>
+          </div>
+          <div id="panel-sidearm" class="panel border flex flexEqual">
+            <div class="content empty sidearm">
+              Choose sidearm
+            </div>
           </div>
         </div>
-        <div id="panel-stats-sidearm" class="panel border flex flexEqual">
-          <div class="content sidearm">
-            stats sidearm
+
+        <div id="panel-armor" class="panel flex flexVertical flexEqual">
+          <div id="panel-gear-slot-1-2" class="panel flex flexHorizontal flexEqual">
+            <div id="panel-mask" class="panel border flex flexEqual">
+              <div class="content empty mask">
+                Choose mask
+              </div>
+            </div>
+            <div id="panel-backpack" class="panel border flex flexEqual">
+              <div class="content empty backpack">
+                Choose backpack
+              </div>
+            </div>
+          </div>
+          <div id="panel-gear-slot-3-4" class="panel flex flexHorizontal flexEqual">
+            <div id="panel-chest" class="panel border flex flexEqual">
+              <div class="content empty chest">
+                Choose chest
+              </div>
+            </div>
+            <div id="panel-gloves" class="panel border flex flexEqual">
+              <div class="content empty gloves">
+                Choose gloves
+              </div>
+            </div>
+          </div>
+          <div id="panel-gear-slot-5-6" class="panel flex flexHorizontal flexEqual">
+            <div id="panel-holster" class="panel border flex flexEqual">
+              <div class="content empty holster">
+                Choose holster
+              </div>
+            </div>
+            <div id="panel-kneepads" class="panel border flex flexEqual">
+              <div class="content empty kneepads">
+                Choose kneepads
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="panel-skills" class="panel flex flexHorizontal flexEqual">
+          <div id="panel-skill-1" class="panel border flex flexEqual">
+            <div class="content empty skill">
+              Choose skill
+            </div>
+          </div>
+          <div id="panel-skill-2" class="panel border flex flexEqual">
+            <div class="content empty skill">
+              Choose skill
+            </div>
           </div>
         </div>
       </div>
-      <div id="panel-stats-skills" class="panel flex flexHorizontal flexEqual">
-        <div id="panel-stats-skill-1" class="panel border flex flexEqual">
-          <div class="content skill">
-            stats skill 1
+
+      <div id="panel-stats" class="panel flex flexVertical flexEqual">
+        <div id="panel-stats-weapons" class="panel flex flexHorizontal flexEqual">
+          <div id="panel-stats-weapon-1" class="panel border flex flexEqual">
+            <div class="content main-weapon">
+              stats weapon 1
+            </div>
+          </div>
+          <div id="panel-stats-weapon-2" class="panel border flex flexEqual">
+            <div class="content main-weapon">
+              stats weapon 2
+            </div>
+          </div>
+          <div id="panel-stats-sidearm" class="panel border flex flexEqual">
+            <div class="content sidearm">
+              stats sidearm
+            </div>
           </div>
         </div>
-        <div id="panel-stats-skill-2" class="panel border flex flexEqual">
-          <div class="content skill">
-            stats skill 2
+        <div id="panel-stats-skills" class="panel flex flexHorizontal flexEqual">
+          <div id="panel-stats-skill-1" class="panel border flex flexEqual">
+            <div class="content skill">
+              stats skill 1
+            </div>
+          </div>
+          <div id="panel-stats-skill-2" class="panel border flex flexEqual">
+            <div class="content skill">
+              stats skill 2
+            </div>
           </div>
         </div>
-      </div>
-      <div id="panel-talent-brand-set-boni" class="panel border flex flexEqual">
-        <div class="content">
-          talent brand set boni
+        <div id="panel-talent-brand-set-boni" class="panel border flex flexEqual">
+          <div class="content">
+            talent brand set boni
+          </div>
         </div>
-      </div>
-      <div id="panel-stats-player" class="panel border flex flexEqual">
-        <div class="content">
-          stats player
+        <div id="panel-stats-player" class="panel border flex flexEqual">
+          <div class="content">
+            stats player
+          </div>
         </div>
-      </div>
-      <div id="panel-SHD" class="panel border flex flexEqual">
-        <div class="content">
-          SHD
+        <div id="panel-SHD" class="panel border flex flexEqual">
+          <div class="content">
+            SHD
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div id="popupSpecialisation" class="popup flex flexVertical content">
-    <input class="popupInput" placeholder="Search..." type="text">
-    <div>Choose Type</div>
-    <div></div>
-    <button type="button" onclick="closePopupSpecialisation()">Close</button>
-  </div>
-</body>
+    <div id="popupSpecialisation" class="popup border flex flexVertical">
+      <div class="content">
+        <input class="popupInput" placeholder="Search..." type="text">
+        <div>Choose Type</div>
+        <button type="button" onclick="closePopupSpecialisation()">Close</button>
+      </div>
+    </div>
+  </body>
 
 </html>

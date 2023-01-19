@@ -103,17 +103,20 @@ body {
 }
 
 .content {
-    margin: 5px;
+    margin: var(--bweight);
     padding: 10px;
     border: var(--cdsn1) dotted 1px;
     width: 100%;
     height: auto;
     display: flex;
+    background: var(--cbg75);
+}
+
+.center {
     justify-content: space-evenly;
     justify-items: center;
     align-content: space-evenly;
     align-items: center;
-    background: var(--cbg75);
 }
 
 .empty {
