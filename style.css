@@ -86,6 +86,7 @@ body {
 
 .flex {
     display: flex;
+    width: -webkit-fill-available;
     flex-wrap: wrap;
 }
 
@@ -99,16 +100,15 @@ body {
 
 .flexEqual {
     flex: 1 1 0px;
-    width: 100%;
 }
 
 .content {
     margin: var(--bweight);
     padding: 10px;
     border: var(--cdsn1) dotted 1px;
-    width: 100%;
-    height: auto;
     display: flex;
+    width: -webkit-fill-available;
+    height: auto;
     background: var(--cbg75);
 }
 
