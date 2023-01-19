@@ -24,3 +24,10 @@ function showPopupMask() {
 function closePopupMask() {
     document.getElementById("popupMask").style.display = "none";
 } 
+
+/*
+let vdiv = document.createElement('div');
+vdiv.id = 'ID';
+vdiv.className = 'flex';
+document.getElementsById('list-weapons')[0].appendChild(vdiv);
+*/
