@@ -86,7 +86,6 @@ body {
 
 .flex {
     display: flex;
-    width: -webkit-fill-available;
     flex-wrap: wrap;
 }
 
@@ -100,6 +99,7 @@ body {
 
 .flexEqual {
     flex: 1 1 0px;
+    width: 100%;
 }
 
 .content {
@@ -107,7 +107,7 @@ body {
     padding: 10px;
     border: var(--cdsn1) dotted 1px;
     display: flex;
-    width: -webkit-fill-available;
+    width: 100%;
     height: auto;
     background: var(--cbg75);
 }
@@ -143,7 +143,7 @@ body {
 .inputSearch {
     color: inherit;
     font: inherit;
-    border-width: 0 0 1px 0;
+    border-width: 0;
     border-color: var(--cdsn1);
     background-color: var(--cbg0);
 }

@@ -1,6 +1,5 @@
 // set content background icons per class/itemtype
-//document.addEventListener('DOMContentLoaded', 
-                          function () {
+document.addEventListener('DOMContentLoaded', function () {
     let items = ["main-weapon", "sidearm", "mask", "backpack", "chest", "gloves", "holster", "kneepads"];
     for (let i = 0; i < items.length; i++) {
         let file = `./icons/${items[i]}.png`;
@@ -18,7 +17,7 @@ function calculateVh() {
 }
 
 // Initial calculation
-calculateVh();
+document.addEventListener('DOMContentLoaded', calculateVh);
 
 // Re-calculate on resize
 window.addEventListener('resize', calculateVh);
