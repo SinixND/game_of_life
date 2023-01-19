@@ -15,12 +15,12 @@ document.addEventListener('DOMContentLoaded', function () {
 //const weapons = require("./data/weapons.json");
 //console.log(weapons.mmr._1886.damage);
 
-// show specialisation selection popup
-function showPopupSpecialisation() {
-    document.getElementById("popupSpecialisation").style.display = "flex";
+// show selection popup
+function showPopupMask() {
+    document.getElementById("popupMask").style.display = "flex";
 }
 
-// hide specialisation selection popup
-function closePopupSpecialisation() {
-    document.getElementById("popupSpecialisation").style.display = "none";
+// hide selection popup
+function closePopupMask() {
+    document.getElementById("popupMask").style.display = "none";
 } 

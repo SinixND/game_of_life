@@ -22,7 +22,7 @@
 
     <div id="panel-build" class="panel flex flexHorizontal">
       <div id="panel-equipment" class="panel flex flexVertical">
-        <div id="panel-specialisation" class="panel border flex flexEqual" onclick="showPopupSpecialisation()">
+        <div id="panel-specialisation" class="panel border flex flexEqual">
           <div class="content empty">
             Choose specialisation
           </div>
@@ -48,8 +48,8 @@
 
         <div id="panel-armor" class="panel flex flexVertical flexEqual">
           <div id="panel-gear-slot-1-2" class="panel flex flexHorizontal flexEqual">
-            <div id="panel-mask" class="panel border flex flexEqual">
-              <div class="content empty mask">
+            <div id="panel-mask" class="panel border flex flexEqual mask" onclick="showPopupMask()">
+              <div class="content empty">
                 Choose mask
               </div>
             </div>
@@ -147,18 +147,13 @@
       </div>
     </div>
 
-    <div id="popupSpecialisation" class="popup flex">
+    <div id="popupMask" class="popup flex">
       <div id="panel-search" class="panel flex flexEqual">
       <div class="content">
         <input class="inputSearch" placeholder="Search..." type="text">
       </div>
       </div>
-      <div id="panel-chooseListSection" class="panel flex flexEqual">
-      <div class="content">
-        <div>Choose list section</div>
-      </div>
-      </div>
-      <div class="panel flex">
+      <div id="list-mask" class="panel flex">
         <div class="content">
           Fill with items
         </div>
@@ -167,13 +162,8 @@
         </div>
       </div>
       <div class="content">
-        <button type="button" onclick="closePopupSpecialisation()">Close</button>
+        <button type="button" onclick="closePopupMask()">Close</button>
       </div>
     </div>
-    
-    <template id="specialisationItemTemplate">
-      x
-    </template>
   </body>
-
 </html>

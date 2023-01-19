@@ -84,6 +84,11 @@ body {
     border-width: 0 var(--bweight) var(--bweight) 0;
 }
 
+.border:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
 .flex {
     display: flex;
     flex-wrap: wrap;
@@ -123,11 +128,6 @@ body {
     color: var(--ctxthl);
     align-content: flex-end;
     align-items: flex-end;
-}
-
-.empty:hover {
-    opacity: 0.8;
-    cursor: pointer;
 }
 
 .popup {
