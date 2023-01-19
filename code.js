@@ -16,13 +16,14 @@ document.addEventListener('DOMContentLoaded', function () {
 //console.log(weapons.mmr._1886.damage);
 
 // show selection popup
-function showPopupMask() {
-    document.getElementById("popupMask").style.display = "flex";
+function showPopup(Class) {
+    document.getElementById(`popupGear`).style.display = "flex";
 }
 
 // hide selection popup
-function closePopupMask() {
-    document.getElementById("popupMask").style.display = "none";
+function closePopup(Class) {
+    //populateList(Class);
+    document.getElementById(`popupGear`).style.display = "none";
 } 
 
 /*
