@@ -1,5 +1,6 @@
 // set content background icons per class/itemtype
-document.addEventListener('DOMContentLoaded', function () {
+//document.addEventListener('DOMContentLoaded', 
+                          function () {
     let items = ["main-weapon", "sidearm", "mask", "backpack", "chest", "gloves", "holster", "kneepads"];
     for (let i = 0; i < items.length; i++) {
         let file = `./icons/${items[i]}.png`;
@@ -10,6 +11,20 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
 }, false);
+
+function calculateVh() {
+  var vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', vh + 'px');
+}
+
+// Initial calculation
+calculateVh();
+
+// Re-calculate on resize
+window.addEventListener('resize', calculateVh);
+
+// Re-calculate on device orientation change
+window.addEventListener('orientationchange', calculateVh);
 
 // import Import from './data/weapons.json';
 //const weapons = require("./data/weapons.json");
