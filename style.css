@@ -87,6 +87,7 @@ body {
 .flex {
     display: flex;
     flex-wrap: wrap;
+    flex: 1.5;
 }
 
 .flexVertical {
