@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // show specialisation selection popup
 function showPopupSpecialisation() {
-    document.getElementById("popupSpecialisation").style.display = "block";
+    document.getElementById("popupSpecialisation").style.display = "flex";
 }
 
 // hide specialisation selection popup
