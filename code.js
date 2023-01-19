@@ -26,7 +26,7 @@ function closePopup() {
     document.getElementById(`popupGear`).style.display = "none";
 } 
 
-/*
+/**
 let vdiv = document.createElement('div');
 vdiv.id = 'ID';
 vdiv.className = 'flex';
