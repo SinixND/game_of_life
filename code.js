@@ -11,20 +11,6 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 }, false);
 
-function calculateVh() {
-  var vh = window.innerHeight * 0.01;
-  document.documentElement.style.setProperty('--vh', vh + 'px');
-}
-
-// Initial calculation
-document.addEventListener('DOMContentLoaded', calculateVh);
-
-// Re-calculate on resize
-window.addEventListener('resize', calculateVh);
-
-// Re-calculate on device orientation change
-window.addEventListener('orientationchange', calculateVh);
-
 // import Import from './data/weapons.json';
 //const weapons = require("./data/weapons.json");
 //console.log(weapons.mmr._1886.damage);
