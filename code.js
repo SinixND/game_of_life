@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
 }, false);
 
 // import data
-import { masks } from "./data/masks";
+const masks = require("./data/masks.json");
 //console.log(file.name.key);
 console.log(_Vile.rarity);
 //try:
