@@ -1,34 +1,20 @@
 {
-  "Backfire": {
+  "Vile": {
     "rarity": "Exotic",
-    "class": "SMG",
-    "baseModel": "MPX",
-    "baseDamage": 61093,
-    "rpm": 850,
-    "rs": 2.3,
-    "ms": 50,
-    "attb1Name": "SMG-Damage",
-    "attb1Val": 15,
-    "attb2Name": "Critical Hit Chance",
-    "attb2Val": 21,
-    "attb3Name": "Magazine Size",
-    "attb3Val": 12,
-    "talentName": "Payment in Kind",
-    "talentText": "Dealing damage to enemies adds a stack of +1% critical hit damage, up to 200 stacks, lasting 10 seconds. On reload, apply a 10 second bleed to yourself, which deals 0.5% armor damage per stack.",
-    "modSightAttb": "Critical Hit Chance",
-    "modSightValue": 5,
-    "modMag": "Stability",
-    "modMag": 10,
-    "modMuzzle": "Extra Rounds",
-    "modMuzzle": 20,
-    "modUnderBarrel": "Critical Hit Damage",
-    "modUnderBarrel": 5,
-    "tags": [
-      "Critical Hit Damage" 
-    ]
+    "type": "Exotic",
+    "talentName": "Toxic Delivery",
+    "talentText": "Status effects also apply a damage over time debuff for 10s.\n Total damage dealt is equal to 50% of your concussion grenade damage and increased by your status effect attributes.",
   },
-  "ShieldSplinterer": {
+  "Nightwatcher": {
+    "rarity": "Named",
+    "type": "Gila Guard"
   },
-  "1886": {
+  "Aces & Eights": {
+    "rarity": "Set",
+    "type": "Aces & Eights"
+  },
+  "5.11 Tactical": {
+    "rarity": "High-End",
+    "type": "5.11 Tactical"
   }
 }
