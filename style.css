@@ -89,6 +89,12 @@ body {
     cursor: pointer;
 }
 
+.grid {
+  display: grid;
+  grid-template-rows: repeat(auto-fill, minmax(min-content, max-content));
+  gap: 10px;
+}
+
 .flex {
     display: flex;
     flex-wrap: wrap;
@@ -116,7 +122,7 @@ body {
     height: auto;
 }
 
-.center {
+.center { /*NEEDED?*/
     justify-content: space-evenly;
     justify-items: center;
     align-content: space-evenly;

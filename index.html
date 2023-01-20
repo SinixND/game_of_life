@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Div2 build calculator</title>
-<!-- .css - files -->
+    <!-- .css - files -->
     <link rel="stylesheet" href="./style.css">
-<!-- .js - files -->
+    <!-- .js - files -->
     <script src="./code.js"></script>
   </head>
 
-<!-- MENU BAR -->
+  <!-- MENU BAR -->
   <body>
     <div id="panel-menubar" class="panel border flex">
       <div class="content">
@@ -18,7 +18,7 @@
       </div>
     </div>
 
-<!-- BUILD AREA -->
+    <!-- BUILD AREA -->
     <div id="panel-build" class="panel flex flexHorizontal">
       <div id="panel-equipment" class="panel flex flexVertical">
         <div id="panel-specialisation" class="panel border flex flexEqual">
@@ -27,7 +27,7 @@
           </div>
         </div>
 
-<!-- WEAPON SELECTION AREA -->
+        <!-- WEAPON SELECTION AREA -->
         <div id="panel-weapons" class="panel flex flexHorizontal flexEqual">
           <div id="panel-weapon-1" class="panel border flex flexEqual">
             <div class="content empty main-weapon">
@@ -46,7 +46,7 @@
           </div>
         </div>
 
-<!-- ARMOR SELECTION AREA -->
+        <!-- ARMOR SELECTION AREA -->
         <div id="panel-armor" class="panel flex flexVertical flexEqual">
           <div id="panel-gear-slot-1-2" class="panel flex flexHorizontal flexEqual">
             <div id="panel-mask" class="panel border flex flexEqual mask" onclick="showPopup('Mask')">
@@ -86,7 +86,7 @@
           </div>
         </div>
 
-<!-- SKILL SELECTION AREA -->
+        <!-- SKILL SELECTION AREA -->
         <div id="panel-skills" class="panel flex flexHorizontal flexEqual">
           <div id="panel-skill-1" class="panel border flex flexEqual">
             <div class="content empty skill">
@@ -101,8 +101,8 @@
         </div>
       </div>
 
-<!-- STAT AREA -->
-<!-- WEAPON STATS AREA -->
+      <!-- STAT AREA -->
+      <!-- WEAPON STATS AREA -->
       <div id="panel-stats" class="panel flex flexVertical flexEqual">
         <div id="panel-stats-weapons" class="panel flex flexHorizontal flexEqual">
           <div id="panel-stats-weapon-1" class="panel border flex flexEqual">
@@ -121,8 +121,8 @@
             </div>
           </div>
         </div>
-        
-<!-- SKILL STATS AREA -->
+
+        <!-- SKILL STATS AREA -->
         <div id="panel-stats-skills" class="panel flex flexHorizontal flexEqual">
           <div id="panel-stats-skill-1" class="panel border flex flexEqual">
             <div class="content skill">
@@ -135,22 +135,22 @@
             </div>
           </div>
         </div>
-        
-<!-- TALENT BRAND SET SUMMARY AREA -->
+
+        <!-- TALENT BRAND SET SUMMARY AREA -->
         <div id="panel-talent-brand-set-boni" class="panel border flex flexEqual">
           <div class="content">
             talent brand set boni
           </div>
         </div>
-        
-<!-- PLAYER STATS AREA -->
+
+        <!-- PLAYER STATS AREA -->
         <div id="panel-stats-player" class="panel border flex flexEqual">
           <div class="content">
             stats player
           </div>
         </div>
-        
-<!-- SET SHD AREA -->
+
+        <!-- SET SHD AREA -->
         <div id="panel-SHD" class="panel border flex flexEqual">
           <div class="content">
             SHD
@@ -158,17 +158,17 @@
         </div>
       </div>
     </div>
-        
-<!-- POPUP MENUS -->
+
+    <!-- POPUP MENUS -->
     <!-- <div id="popupSpecialisation" class="popup flex"></div> -->
-    
+
     <!-- <div id="popupWeapon" class="popup flex"></div> -->
-      
+
     <div id="popupGear" class="popup flex">
       <div id="panel-search" class="panel flex flexEqual">
-      <div class="content">
-        <input class="inputSearch" placeholder="Search..." type="text">
-      </div>
+        <div class="content">
+          <input class="inputSearch" placeholder="Search..." type="text">
+        </div>
       </div>
       <div id="list-gear" class="panel flex">
         <!-- JS-REPLACE WITH TEMPLATES -->
@@ -180,37 +180,23 @@
         <button type="button" onclick="closePopup()">Close</button>
       </div>
     </div>
-    
+
     <!-- <div id="popupSkill" class="popup flex"></div> -->
-        
-<!-- TEMPLATES -->
+
+    <!-- TEMPLATES -->
     <!-- <template id="list-gear-element"> -->
-      <div class="panel border grid popup">
-          <table>
-              <thead>
-            <tr>
-              <th class="item-name">name</th>
-            </tr>
-              </thead>
-            <tbody>
-            <tr>
-              <th class="item-category">brand</th> <!-- Exotic/'Brand' -->
-            </tr>
-              <tr>
-              <td class="stats-brand">
-                <ol>
-                  <li><div class="stat-brand-first">first attribute</div></li>
-                  <li><div class="stat-brand-second">second attribute</div></li>
-                  <li><div class="stat-brand-third">third attribute</div></li>
-                </ol>
-              </td>
-              </tr>
-              <tr>
-              <td class="item-talent">talent</td>
-              </tr>
-            </tbody>
-          </table>
+    <div class="panel border grid popup">
+      <div class="item-name">name</div>
+      <div class="item-category">brand</div> <!-- Exotic/'Brand' -->
+      <div class="stats-brand">
+        <ol>
+          <li><div class="stat-brand-first">first attribute</div></li>
+          <li><div class="stat-brand-second">second attribute</div></li>
+          <li><div class="stat-brand-third">third attribute</div></li>
+        </ol>
       </div>
+      <div class="item-talent">talent</div>
+    </div>
     <!-- </template> -->
   </body>
 </html>
