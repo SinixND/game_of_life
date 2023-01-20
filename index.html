@@ -160,6 +160,10 @@
     </div>
         
 <!-- POPUP MENUS -->
+    <!-- <div id="popupSpecialisation" class="popup flex"></div> -->
+    
+    <!-- <div id="popupWeapon" class="popup flex"></div> -->
+      
     <div id="popupGear" class="popup flex">
       <div id="panel-search" class="panel flex flexEqual">
       <div class="content">
@@ -167,16 +171,32 @@
       </div>
       </div>
       <div id="list-gear" class="panel flex">
-        <div class="content">
-          Fill with items
-        </div>
-        <div class="content">
-          Fill with more items
+        <!-- JS-REPLACE WITH TEMPLATES -->
+        <div class="content"> 
+          <em>REPLACE WITH ITEMS</em>
         </div>
       </div>
       <div class="content">
         <button type="button" onclick="closePopup()">Close</button>
       </div>
     </div>
+    
+    <!-- <div id="popupSkill" class="popup flex"></div> -->
+        
+<!-- TEMPLATES -->
+    <!-- <template id="list-gear-element"> -->
+      <div class="panel border grid popup">
+        <div class="item-name">name</div>
+        <div class="item-category">brand</div> <!-- Exotic/'Brand' -->
+        <div class="stats-brand">
+          <ul>
+            <li><div class="stat-brand-first">first attribute</div></li>
+            <li><div class="stat-brand-second">second attribute</div></li>
+            <li><div class="stat-brand-third">third attribute</div></li>
+          </ul>
+        </div>
+        <div class="item-talent">talent</div>
+      </div>
+    <!-- </template> -->
   </body>
 </html>
