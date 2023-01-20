@@ -47,14 +47,18 @@ body {
     font-size: 22px;
 }
 
+ol {
+  margin: 0;
+}
+
+li {
+  margin: 0;
+}
+
 .panel {
     margin: 5px;
     border: 1px dotted var(--ctemp);
     /*min-width: 200px;*/
-    justify-content: space-evenly;
-    justify-items: center;
-    align-content: space-evenly;
-    align-items: center;
 }
 
 .border {
@@ -89,10 +93,21 @@ body {
     cursor: pointer;
 }
 
+.hlineTop {
+  display: flex;
+  flex: 1 1 0px;
+  width: 100%;
+  border-top: var(--ctxt) solid 1px;
+  justify-self: center;
+  margin: var(--bweight);
+}
+
 .grid {
+  padding: calc(4 * var(--bweight));
   display: grid;
   grid-template-rows: repeat(auto-fill, minmax(min-content, max-content));
-  gap: 10px;
+  white-space: nowrap;
+  justify-items: left;
 }
 
 .flex {
@@ -136,7 +151,7 @@ body {
 }
 
 .popup {
-    display: flex; /*change to none after development!!!*/
+    /*display: none; /*uncomment after development!!!*/
     position: fixed;
     left: 50%;
     top: 50%;

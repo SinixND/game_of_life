@@ -170,11 +170,25 @@
           <input class="inputSearch" placeholder="Search..." type="text">
         </div>
       </div>
-      <div id="list-gear" class="panel flex">
-        <!-- JS-REPLACE WITH TEMPLATES -->
-        <div class="content"> 
-          <em>REPLACE WITH ITEMS</em>
+      <div id="list-gear" class="panel flex flexEqual">
+        <!-- JS-REPLACE WITH TEMPLATES START -->
+        <div class="panel border grid flexEqual">
+          <div class="item-name flexEqual">name</div>
+          <div class="item-category flexEqual">brand</div> <!-- Exotic/'Brand' -->
+          <div class="stats-brand flexEqual">
+            <div class="hlineTop"></div>
+            <ol>
+              <li><div class="stat-brand-first">first attribute</div></li>
+              <li><div class="stat-brand-second">second attribute</div></li>
+              <li><div class="stat-brand-third">third attribute</div></li>
+            </ol>
+          </div>
+          <div class="item-talent flexEqual">
+            <div class="hlineTop"></div>
+            talent
+          </div>
         </div>
+        <!-- JS-REPLACE WITH TEMPLATES END -->
       </div>
       <div class="content">
         <button type="button" onclick="closePopup()">Close</button>
@@ -184,19 +198,23 @@
     <!-- <div id="popupSkill" class="popup flex"></div> -->
 
     <!-- TEMPLATES -->
-    <!-- <template id="list-gear-element"> -->
-    <div class="panel border grid popup">
-      <div class="item-name">name</div>
-      <div class="item-category">brand</div> <!-- Exotic/'Brand' -->
-      <div class="stats-brand">
-        <ol>
-          <li><div class="stat-brand-first">first attribute</div></li>
-          <li><div class="stat-brand-second">second attribute</div></li>
-          <li><div class="stat-brand-third">third attribute</div></li>
-        </ol>
+    <template id="list-gear-element">
+      <div class="panel border grid flexEqual">
+        <div class="item-name panel flexEqual">name</div>
+        <div class="item-category panel flexEqual">brand</div> <!-- Exotic/'Brand' -->
+        <div class="stats-brand panel flexEqual">
+          <div class="hlineTop"></div>
+          <ol>
+            <li><div class="stat-brand-first">first attribute</div></li>
+            <li><div class="stat-brand-second">second attribute</div></li>
+            <li><div class="stat-brand-third">third attribute</div></li>
+          </ol>
+        </div>
+        <div class="item-talent panel flexEqual">
+          <div class="hlineTop"></div>
+          talent
+        </div>
       </div>
-      <div class="item-talent">talent</div>
-    </div>
-    <!-- </template> -->
+    </template>
   </body>
 </html>
