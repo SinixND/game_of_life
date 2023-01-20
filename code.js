@@ -14,6 +14,10 @@ document.addEventListener('DOMContentLoaded', function () {
 // import Import from './data/weapons.json';
 //const weapons = require("./data/weapons.json");
 //console.log(weapons.mmr._1886.damage);
+//try:
+//console.log(weapons.mmr[1886].damage);
+//and:
+//console.log(weapons[mmr][1886][damage]);
 
 // show selection popup
 function showPopup(Class) {
