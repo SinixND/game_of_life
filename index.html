@@ -14,6 +14,13 @@
   </head>
 
   <body>
+    <script>
+if (document.createElement("template").content) {
+  document.write("Your browser supports template!");
+} else {
+  document.write("Your browser does not supports template!");
+}
+</script>
     <div id="panel-menubar" class="panel border flex">
       <div class="content">
         content menubar
