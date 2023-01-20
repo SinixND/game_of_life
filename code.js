@@ -26,9 +26,17 @@ function closePopup() {
     document.getElementById(`popupGear`).style.display = "none";
 } 
 
-/**
+/*
 let vdiv = document.createElement('div');
 vdiv.id = 'ID';
 vdiv.className = 'flex';
 document.getElementsById('list-mask')[0].appendChild(vdiv);
+
+function useTemplate() {
+      var myTemplate = document.getElementById('myTemplate');
+          normalContent = document.getElementById('normalContent');
+          clonedTemplate = myTemplate.content.cloneNode(true);
+          clonedTemplate.id = 'ID';
+          normalContent.appendChild(clonedTemplate);
+          }
 */
