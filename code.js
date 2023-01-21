@@ -9,15 +9,15 @@ document.addEventListener('DOMContentLoaded', function () {
             element[j].style.background = value;
         }
     };
-    console.log("debug");
 }, false);
 
 // import data
-const masks = require("./data/masks.json");
-//let element = document.getElementsByClassName(`item-name`).innerHTML;
-//console.log(element);
-//console.log(file.name.key);
-//document.getElementsByClassName(`item-name`).innerHTML+=`${masks.Vile.rarity}`;
+//const masks = require("./data/masks.json");
+//import masks from "./data/masks.json";
+//let masks = JSON.parse(masks);
+//document.getElementsByClassName(`item-name`)[0].innerHTML += " black";
+console.log(masks.Vile.rarity);
+//document.getElementsByClassName(`item-name`)[0].innerHTML+=`${masks.Vile.rarity}`;
 //try:
 //console.log(file['name'].key);
 //document.getElementsByClassName(`item-name`).innerHTML+=`${masks[Vile].rarity}`;
@@ -34,7 +34,7 @@ function showPopup(Class) {
 function closePopup() {
     //populateList(Class);
     document.getElementById(`popupGear`).style.display = "none";
-} 
+}
 
 /*
 let vdiv = document.createElement('div');
