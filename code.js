@@ -11,16 +11,21 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 }, false);
 
-// import data
-const masks = require("./data/masks.json");
-//console.log(file.name.key);
-console.log(_Vile.rarity);
-//try:
-//console.log(file[name].key);
-console.log(masks[Vile].rarity);
-//and:
-//console.log(file[name][key]);
-console.log(masks[Vile][rarity]);
+document.addEventListener('DOMContentLoaded', function () {
+    // import data
+    //const masks = require("./data/masks.json");
+    let element = document.getElementsByClassName("item-name");
+  console.log(element);
+    element.innerHTML += "test";
+    //console.log(file.name.key);
+    //document.getElementsByClassName(`item-name`).innerHTML+=`${masks.Vile.rarity}`;
+    //try:
+    //console.log(file[name].key);
+    //document.getElementsByClassName(`item-name`).innerHTML+=`${masks[Vile].rarity}`;
+    //and:
+    //console.log(file[name][key]);
+    //document.getElementsByClassName(`item-name`).innerHTML+=`${masks[Vile][rarity]}`;
+}, false);
 
 // show selection popup
 function showPopup(Class) {
