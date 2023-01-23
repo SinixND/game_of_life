@@ -9,8 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // DEBUG
   //console.log(mask.Vile.talentName);
   //console.log(mask['Vile'].talentName);
-  alert(mask[0].talentName);
-  alert("hi");
+  //alert("hi");
 
   //=========================================================
   // SET BACKGROUND ICONS
@@ -34,20 +33,21 @@ document.addEventListener('DOMContentLoaded', function () {
     if (mask.hasOwnProperty(objName)) objNames.push(objName);
   }
   //Then you can iterate on your properties by index: yourobject[keys[i]] :
+    clonedTpl.querySelector('.item-name').innerText = "";
   for (let i=0; i < objNames.length; i++) { 
     console.log(objNames[i], mask[objNames[i]]);
-    clonedTpl.getElementByClassName('item-name').innerText = `${objNames[i]}`;
+    clonedTpl.querySelector('.item-name').innerText += `${objNames[i]}`;
+
+  list.appendChild(clonedTpl);
   }
   /*
   clonedTpl.getElementByClassName('item-name').innerText = `${mask[0]}`;
   clonedTpl.getElementByClassName('item-type').innerText = `(${mask[0].type})`;
   clonedTpl.getElementByClassName('item-talent-name').innerText = `(${mask[0].talentName})`;
   clonedTpl.getElementByClassName('item-talent-text').innerText = `(${mask[0].talentText})`;
-  
+
   list.appendChild(clonedTpl);
   */
-  
-  //alert("Done!");
 }, false);
 
 //===========================================================
