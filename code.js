@@ -21,19 +21,19 @@ import {mask} from "./data/masks.js";
 // Test if objects are working:
 //=============================
 
-//document.getElementsByClassName(`item-name`)[0].innerHTML += " black";
+//document.getElementsByClassName(`item-name`)[0].innerText += " black";
 //console.log(file['name'].key);
 console.log("Test command 1: mask.Vile.rarity");
 console.log(mask.Vile.rarity);
-document.getElementsByClassName(`item-name`)[0].innerHTML += ` ${mask.Vile.rarity}`;
+document.getElementsByClassName(`item-name`)[0].innerText += ` ${mask.Vile.rarity}`;
 //try:
 console.log("Test command 2: mask['Vile'].rarity");
 console.log(mask['Vile'].rarity);
-document.getElementsByClassName(`item-name`).innerHTML += `${mask['Vile'].rarity}`;
+document.getElementsByClassName(`item-name`).innerText += `${mask['Vile'].rarity}`;
 //and:
 console.log("Test command 3: mask[Vile]['rarity']");
 console.log(mask."5.11 Tactical".rarity);
-document.getElementsByClassName(`item-name`).innerHTML += `${mask[Vile]['rarity']}`;
+document.getElementsByClassName(`item-name`).innerText += `${mask."5.11 Tactical".rarity}`;
 
 
 
