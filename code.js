@@ -1,5 +1,17 @@
+//=============
+// import data
+//=============
+import {mask} from "./data/masks.js";
+//console.log(mask.Vile.talentName);
+//console.log(mask['Vile'].talentName);
+
+//==================
+// startup function
+//==================
 document.addEventListener('DOMContentLoaded', function () {
+  //===========================
   // set item background icons
+  //===========================
   let icons = ["main-weapon", "sidearm", "mask", "backpack", "chest", "gloves", "holster", "kneepads"];
   for (let i = 0; i < icons.length; i++) {
     let file = `./icons/${icons[i]}.png`;
@@ -15,13 +27,6 @@ document.addEventListener('DOMContentLoaded', function () {
   //alert("Done!");
 }, false);
 
-//============
-// import data
-//============
-
-import {mask} from "./data/masks.js";
-//console.log(mask.Vile.talentName);
-//console.log(mask['Vile'].talentName);
 
 // show selection popup
 function showPopup(Class) {
