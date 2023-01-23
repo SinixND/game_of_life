@@ -1,4 +1,4 @@
-export "masks": {
+export const masks = {
   "Vile": {
     "rarity": "Exotic",
     "type": "Exotic",
