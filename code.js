@@ -27,18 +27,17 @@ document.addEventListener('DOMContentLoaded', function () {
   // FILL LISTS
   const template = document.getElementById('template-list-gear-item');
   const list = document.getElementById('list-gear');
-  const clonedTpl = template.content.cloneNode(true);
   let objNames = [];
   for (let objName in mask) {      
     if (mask.hasOwnProperty(objName)) objNames.push(objName);
   }
   //Then you can iterate on your properties by index: yourobject[keys[i]] :
-    clonedTpl.querySelector('.item-name').innerText = "";
   for (let i=0; i < objNames.length; i++) { 
+    const clonedTpl = template.content.cloneNode(true);
     console.log(objNames[i], mask[objNames[i]]);
     clonedTpl.querySelector('.item-name').innerText += `${objNames[i]}`;
 
-  list.appendChild(clonedTpl);
+    list.appendChild(clonedTpl);
   }
   /*
   clonedTpl.getElementByClassName('item-name').innerText = `${mask[0]}`;
