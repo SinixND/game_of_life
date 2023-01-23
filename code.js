@@ -27,13 +27,13 @@ console.log("Test command 1: mask.Vile.rarity");
 console.log(mask.Vile.rarity);
 document.getElementsByClassName(`item-name`)[0].innerHTML += ` ${mask.Vile.rarity}`;
 //try:
-console.log("Test command 2: mask.Vile.rarity");
+console.log("Test command 2: mask['Vile'].rarity");
 console.log(mask['Vile'].rarity);
-document.getElementsByClassName(`item-name`).innerHTML += `${mask[Vile].rarity}`;
+document.getElementsByClassName(`item-name`).innerHTML += `${mask['Vile'].rarity}`;
 //and:
-console.log("Test command 3: mask.Vile.rarity");
-console.log(mask[Vile][rarity]);
-document.getElementsByClassName(`item-name`).innerHTML += `${mask[Vile][rarity]}`;
+console.log("Test command 3: mask[Vile]['rarity']");
+console.log(mask[Vile]['rarity']);
+document.getElementsByClassName(`item-name`).innerHTML += `${mask[Vile]['rarity']}`;
 
 
 
