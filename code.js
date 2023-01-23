@@ -15,49 +15,25 @@ document.addEventListener('DOMContentLoaded', function () {
 // import data
 //============
 
-//const masks = require("./data/masks.json");
-import {masks} from "./data/masks.js";
-//(async () => { 
-//    const masks = await import('./data/masks.js');
-//    console.log(masks);
-//console.log(masks.default.Vile.rarity);
-//})() 
-//let masks = JSON.parse(masks);
-
-/* MOST PROMISING METHOD
-//values/value.js
-
-let a = 1;
-let b = 2;
-let c = 3;
-
-export {a, b, c};
-//values/index.js
-
-import * as values from './value';
-
-export default values;
-export * from './value';
-//index.js
-
-import values, {a} from './values';
-
-console.log(values, a); // {a: 1, b: 2, c: 3} 1
-*/
+import {mask} from "./data/masks.js";
 
 //=============================
 // Test if objects are working:
 //=============================
 
 //document.getElementsByClassName(`item-name`)[0].innerHTML += " black";
-console.log(masks.Vile.rarity);
-//document.getElementsByClassName(`item-name`)[0].innerHTML+=`${masks.Vile.rarity}`;
-//try:
 //console.log(file['name'].key);
-//document.getElementsByClassName(`item-name`).innerHTML+=`${masks[Vile].rarity}`;
+console.log("Test command 1: mask.Vile.rarity");
+console.log(mask.Vile.rarity);
+document.getElementsByClassName(`item-name`)[0].innerHTML += ` ${mask.Vile.rarity}`;
+//try:
+console.log("Test command 2: mask.Vile.rarity");
+console.log(mask['Vile'].rarity);
+document.getElementsByClassName(`item-name`).innerHTML += `${mask[Vile].rarity}`;
 //and:
-//console.log(file[name][key]);
-//document.getElementsByClassName(`item-name`).innerHTML+=`${masks[Vile][rarity]}`;
+console.log("Test command 3: mask.Vile.rarity");
+console.log(mask[Vile][rarity]);
+document.getElementsByClassName(`item-name`).innerHTML += `${mask[Vile][rarity]}`;
 
 
 
