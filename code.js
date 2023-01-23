@@ -11,7 +11,10 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 }, false);
 
+//============
 // import data
+//============
+
 //const masks = require("./data/masks.json");
 import {masks} from "./data/masks.js";
 //(async () => { 
@@ -20,6 +23,32 @@ import {masks} from "./data/masks.js";
 //console.log(masks.default.Vile.rarity);
 //})() 
 //let masks = JSON.parse(masks);
+
+/* MOST PROMISING METHOD
+//values/value.js
+
+let a = 1;
+let b = 2;
+let c = 3;
+
+export {a, b, c};
+//values/index.js
+
+import * as values from './value';
+
+export default values;
+export * from './value';
+//index.js
+
+import values, {a} from './values';
+
+console.log(values, a); // {a: 1, b: 2, c: 3} 1
+*/
+
+//=============================
+// Test if objects are working:
+//=============================
+
 //document.getElementsByClassName(`item-name`)[0].innerHTML += " black";
 console.log(masks.Vile.rarity);
 //document.getElementsByClassName(`item-name`)[0].innerHTML+=`${masks.Vile.rarity}`;
@@ -29,6 +58,8 @@ console.log(masks.Vile.rarity);
 //and:
 //console.log(file[name][key]);
 //document.getElementsByClassName(`item-name`).innerHTML+=`${masks[Vile][rarity]}`;
+
+
 
 // show selection popup
 function showPopup(Class) {
