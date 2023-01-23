@@ -1,4 +1,4 @@
-export default{
+export "masks": {
   "Vile": {
     "rarity": "Exotic",
     "type": "Exotic",
