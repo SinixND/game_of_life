@@ -185,8 +185,8 @@
               <li><div class="stat-brand-third">third attribute</div></li>
             </ol>
           </div>
+          <div class="hlineTop"></div>
           <div class="item-talent flexEqual">
-            <div class="hlineTop"></div>
             talent
           </div>
         </div>
@@ -200,23 +200,25 @@
     <!-- <div id="popupSkill" class="popup flex"></div> -->
 
     <!-- TEMPLATES -->
-    <template id="list-gear-element">
+    <!-- LIST GEAR ITEM -->
+    <template id="template-list-gear-item">
       <div class="panel border grid flexEqual">
-        <div class="item-name panel flexEqual">name</div>
-        <div class="item-category panel flexEqual">brand</div> <!-- Exotic/'Brand' -->
-        <div class="stats-brand panel flexEqual">
+        <div class="item-name flexEqual"><!-- NAME --></div>
+        <div class="item-type flexEqual"><!-- EXOTIC/BRANDNAME/SETNAME --></div> 
+        <!-- 
+        <div class="stats-brand flexEqual">
           <div class="hlineTop"></div>
           <ol>
             <li><div class="stat-brand-first">first attribute</div></li>
             <li><div class="stat-brand-second">second attribute</div></li>
             <li><div class="stat-brand-third">third attribute</div></li>
           </ol>
-        </div>
-        <div class="item-talent panel flexEqual">
-          <div class="hlineTop"></div>
-          talent
-        </div>
+        </div> 
+        -->
+        <div class="item-talent-name flexEqual"><div class="hlineTop"></div><!-- TALENT NAME --></div>
+        <div class="item-talent-text flexEqual"><!-- TALENT TEXT --></div>
       </div>
     </template>
+    
   </body>
 </html>
