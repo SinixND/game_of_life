@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
 //const masks = require("./data/masks.json");
 //import masks from "./data/masks.json";
 (async () => { 
-    const masks = await import('./data//masks.js');
+    const masks = await import('./data/masks.js');
     console.log(masks);
 console.log(masks.default.Vile.rarity);
 })() 
