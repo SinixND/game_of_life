@@ -14,9 +14,14 @@ document.addEventListener('DOMContentLoaded', function () {
 // import data
 //const masks = require("./data/masks.json");
 //import masks from "./data/masks.json";
+(async () => { 
+    const masks = await import('./data//masks.js');
+    console.log(masks);
+console.log(masks.default.Vile.rarity);
+})() 
 //let masks = JSON.parse(masks);
 //document.getElementsByClassName(`item-name`)[0].innerHTML += " black";
-console.log(masks.Vile.rarity);
+//console.log(masks.Vile.rarity);
 //document.getElementsByClassName(`item-name`)[0].innerHTML+=`${masks.Vile.rarity}`;
 //try:
 //console.log(file['name'].key);
