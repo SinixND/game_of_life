@@ -29,11 +29,11 @@ document.getElementsByClassName(`item-name`)[0].innerText += ` ${mask.Vile.talen
 //try:
 console.log("Test command 2: mask['Vile'].type");
 console.log(mask['Vile'].type);
-document.getElementsByClassName(`item-name`).innerText += `${mask['Vile'].type}`;
+document.getElementsByClassName(`item-name`)[0].innerText += `${mask['Vile'].type}`;
 //and:
 console.log('Test command 3: mask["5.11 Tactical"].rarity');
 console.log(mask["5.11 Tactical"].rarity);
-document.getElementsByClassName(`item-name`).innerText += `${mask["5.11 Tactical"].rarity}`;
+document.getElementsByClassName(`item-name`)[0].innerText += `${mask["5.11 Tactical"].rarity}`;
 
 
 
