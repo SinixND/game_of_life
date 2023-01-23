@@ -1,17 +1,14 @@
 //===========================================================
-// import data
-//=============
+// IMPORT DATA
 import {mask} from "./data/masks.js";
 //console.log(mask.Vile.talentName);
 //console.log(mask['Vile'].talentName);
 
-//==================
-// startup function
-//==================
+//===========================================================
+// STARTUP FUNCTION
 document.addEventListener('DOMContentLoaded', function () {
-  //===========================
-  // set item background icons
-  //===========================
+  //=========================================================
+  // SET BACKGROUND ICONS
   let icons = ["main-weapon", "sidearm", "mask", "backpack", "chest", "gloves", "holster", "kneepads"];
   for (let i = 0; i < icons.length; i++) {
     let file = `./icons/${icons[i]}.png`;
@@ -21,21 +18,30 @@ document.addEventListener('DOMContentLoaded', function () {
       element[j].style.background = value;
     }
   };
-
-  // fill lists to choose items
-
+  
+  //=========================================================
+  // FILL LISTS
+  const template = document.getElementById('template-list-gear-item');
+  const list = document.getElementById('list-gear');
+  const clonedTpl = template.content.cloneNode(true);
+  clonedTpl.getElementByClassName('item-name').innerText = `${mask[0]}`;
+  clonedTpl.getElementByClassName('item-type').innerText = `(${mask[0].type})`;
+  clonedTpl.getElementByClassName('item-talent-name').innerText = `(${mask[0].talentName})`;
+  clonedTpl.getElementByClassName('item-talent-text').innerText = `(${mask[0].talentText})`;
+  
+  list.appendChild(clonedTpl);
+  
+  
   //alert("Done!");
 }, false);
 
-
-// show selection popup
+//===========================================================
+// POPUP FUNCTIONS
 function showPopup(Class) {
   document.getElementById(`popupGear`).style.display = "flex";
 }
 
-// hide selection popup
 function closePopup() {
-  //populateList(Class);
   document.getElementById(`popupGear`).style.display = "none";
 }
 
@@ -43,7 +49,7 @@ function closePopup() {
 let vdiv = document.createElement('div');
 vdiv.id = 'ID';
 vdiv.className = 'flex';
-document.getElementsById('list-mask')[0].appendChild(vdiv);
+document.getElementsById('list-mask').appendChild(vdiv);
 
 function useTemplate() {
       var myTemplate = document.getElementById('myTemplate');
