@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // import data
 //const masks = require("./data/masks.json");
-import * as masks from "./data/masks.js";
+import {masks} from "./data/masks.js";
 //(async () => { 
 //    const masks = await import('./data/masks.js');
 //    console.log(masks);
