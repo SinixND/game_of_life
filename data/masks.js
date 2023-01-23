@@ -1,4 +1,4 @@
-export const masks = {
+export const mask = {
   "Vile": {
     rarity: "Exotic",
     type: "Exotic",
@@ -15,6 +15,6 @@ export const masks = {
   },
   "5.11 Tactical": {
     rarity: "High-End",
-    type": "5.11 Tactical"
+    type: "5.11 Tactical"
   }
 }
