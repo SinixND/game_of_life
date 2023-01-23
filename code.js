@@ -1,13 +1,17 @@
 //===========================================================
 // IMPORT DATA
 import {mask} from "./data/masks.js";
-//console.log(mask.Vile.talentName);
-//console.log(mask['Vile'].talentName);
-console.log(mask[0].talentName);
 
 //===========================================================
 // STARTUP FUNCTION
 document.addEventListener('DOMContentLoaded', function () {
+  //=========================================================
+  // DEBUG
+  //console.log(mask.Vile.talentName);
+  //console.log(mask['Vile'].talentName);
+  alert(mask[0].talentName);
+  alert("hi");
+
   //=========================================================
   // SET BACKGROUND ICONS
   let icons = ["main-weapon", "sidearm", "mask", "backpack", "chest", "gloves", "holster", "kneepads"];
