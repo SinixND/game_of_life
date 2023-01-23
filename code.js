@@ -3,6 +3,7 @@
 import {mask} from "./data/masks.js";
 //console.log(mask.Vile.talentName);
 //console.log(mask['Vile'].talentName);
+//console.log(mask[0].talentName);
 
 //===========================================================
 // STARTUP FUNCTION
