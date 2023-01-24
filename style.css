@@ -80,7 +80,7 @@ li {
   border: var(--cdsn1) dotted 1px;
   border-color: inherit;
   width: 100%;
-  height: auto;
+  min-height: 140px;
   display: grid;
   justify-items: left;
 }
@@ -113,7 +113,7 @@ li {
 }
 
 .border:hover {
-  opacity: 0.8;
+  /* opacity: 0.8; */
   cursor: pointer;
 }
 
@@ -151,8 +151,8 @@ li {
 
 .empty {
   color: var(--ctxthl);
-  align-content: flex-end;
-  align-items: flex-end;
+  align-content: center;
+  justify-content: center;
 }
 
 .popup {
