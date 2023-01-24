@@ -37,6 +37,10 @@
   --bwidth: 65%;
   --bheight: 35%;
   --bweight: 3px;
+  
+  /* text sizes */
+  --tsmall: 15px;
+  --tbig: 25px;
 }
 
 body {
@@ -44,7 +48,7 @@ body {
   background-color: var(--cbg);
   color: var(--ctxt);
   font-family: Titillium Web, sans-serif;
-  font-size: 22px;
+  font-size: 20px;
 }
 
 ol {
@@ -93,19 +97,15 @@ li {
   cursor: pointer;
 }
 
-.hlineTop {
-  display: flex;
-  flex: 1 1 0px;
+.hLineTop {
   width: 100%;
   border-top: var(--ctxt) solid 1px;
-  justify-self: center;
-  margin: var(--bweight);
+  margin-top: var(--bweight);
 }
 
 .grid {
   padding: calc(4 * var(--bweight));
   display: grid;
-  white-space: nowrap;
   justify-items: left;
 }
 
@@ -124,7 +124,7 @@ li {
 
 .flexEqual {
   flex: 1 1 0px;
-  width: 100%;
+  max-width: 100%;
 }
 
 .content {

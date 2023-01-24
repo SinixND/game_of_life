@@ -22,40 +22,68 @@ document.addEventListener('DOMContentLoaded', function () {
       element[j].style.background = value;
     }
   };
-  
+
   //=========================================================
   // FILL LISTS
-  const template = document.getElementById('template-list-gear-item');
+  const tplLGI = document.getElementById('template-list-gear-item');
   const list = document.getElementById('list-gear');
   let objNames = [];
   for (let objName in mask) {      
-    if (mask.hasOwnProperty(objName)) objNames.push(objName);
-  }
-  //Then you can iterate on your properties by index: yourobject[keys[i]] :
+    if (mask.hasOwnProperty(objName)) {
+      objNames.push(objName);
+    };
+  };
   for (let i=0; i < objNames.length; i++) { 
-    const clonedTpl = template.content.cloneNode(true);
-    console.log(objNames[i], mask[objNames[i]]);
-    clonedTpl.querySelector('.item-name').innerText += `${objNames[i]}`;
+    let name = `${objNames[i]}`;
+    const clonedListGearItem = tplLGI.content.cloneNode(true);
 
-    list.appendChild(clonedTpl);
+    // item name
+    clonedListGearItem.querySelector('.item-name').innerText = `${name}`;
+
+    // item color
+    if (mask[`${name}`].rarity == "Exotic") {
+      //clonedListGearItem.style.background = 'var(--car)';
+    }
+    else if (mask[`${name}`].rarity == "Named") {
+      //clonedListGearItem.style.background = 'var(--cay)';
+    }
+    else if (mask[`${name}`].rarity == "Set") {
+      //clonedListGearItem.style.background = 'var(--cag)';
+    }
+    else if (mask[`${name}`].rarity == "High-End") {
+      //clonedListGearItem.style.background = 'var(--cdsn2)';
+    };
+
+
+    // item type
+    if (mask[`${name}`].hasOwnProperty('type') && mask[`${name}`].type !== `${name}`) {
+      let gearType = clonedListGearItem.querySelector('.item-type')
+      gearType.innerText = "(";
+      gearType.innerText += mask[`${name}`].type;
+      gearType.innerText += ")";
+    };
+
+    // item talent
+    if (mask[`${name}`].hasOwnProperty('talentName')) {
+      let gearTalentName = clonedListGearItem.querySelector('.item-talent-name')
+      gearTalentName.classList.add('hLineTop');
+      gearTalentName.innerText = mask[`${name}`].talentName;
+    };
+    if (mask[`${name}`].hasOwnProperty('talentText')) {
+      clonedListGearItem.querySelector('.item-talent-text').innerText = mask[`${name}`].talentText;
+    };
+
+    list.appendChild(clonedListGearItem);
   }
-  /*
-  clonedTpl.getElementByClassName('item-name').innerText = `${mask[0]}`;
-  clonedTpl.getElementByClassName('item-type').innerText = `(${mask[0].type})`;
-  clonedTpl.getElementByClassName('item-talent-name').innerText = `(${mask[0].talentName})`;
-  clonedTpl.getElementByClassName('item-talent-text').innerText = `(${mask[0].talentText})`;
-
-  list.appendChild(clonedTpl);
-  */
 }, false);
 
 //===========================================================
 // POPUP FUNCTIONS
-function showPopup(Class) {
+window.showPopup = function showPopup(Class) {
   document.getElementById(`popupGear`).style.display = "flex";
 }
 
-function closePopup() {
+window.closePopup = function closePopup() {
   document.getElementById(`popupGear`).style.display = "none";
 }
 
