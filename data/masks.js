@@ -13,6 +13,18 @@ export const mask = {
     rarity: "Set",
     type: "Aces & Eights"
   },
+  "le": {
+    rarity: "Exotic",
+    type: "Exotic",
+    talentName: "Toxic Delivery",
+    talentText: "Status effects also apply a damage over time debuff for 10s.\n Total damage dealt is equal to 50% of your concussion grenade damage and increased by your status effect attributes.",
+  },
+  "ile": {
+    rarity: "Exotic",
+    type: "Exotic",
+    talentName: "Toxic Delivery",
+    talentText: "Status effects also apply a damage over time debuff for 10s.\n Total damage dealt is equal to 50% of your concussion grenade damage and increased by your status effect attributes.",
+  },
   "5.11 Tactical": {
     rarity: "High-End",
     type: "5.11 Tactical"

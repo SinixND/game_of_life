@@ -27,6 +27,9 @@
   --cap: rgba(200, 100, 200, 0.75);
   --cav: rgba(200, 100, 200, 0.75);
 
+  /* min panel width */
+  --mpwidth: 280px;
+
   /*
   .offensive {
   color: #ce474d;
@@ -68,7 +71,7 @@ li {
 .panel {
   margin: 5px;
   border: 1px dotted var(--ctemp);
-  /*min-width: 200px;*/
+  min-width: var(--mpwidth);
 }
 
 .content {
@@ -146,13 +149,6 @@ li {
   max-width: 100%;
 }
 
-.center { /*NEEDED?*/
-  justify-content: space-evenly;
-  justify-items: center;
-  align-content: space-evenly;
-  align-items: center;
-}
-
 .empty {
   color: var(--ctxthl);
   align-content: flex-end;
@@ -166,7 +162,6 @@ li {
   top: 50%;
   transform: translate(-50%, -50%);
   width: min-content;
-  /* max-height: 50%; */
   background-color: var(--cbg);
 }
 
@@ -197,6 +192,9 @@ li {
   font-size: var(--tsmall);
 }
 
-.vscroll{
-  
+.vscroll {
+  max-height: 200px;
+  min-width: min-content;
+  overflow: hidden;
+  overflow-y: scroll;
 }
