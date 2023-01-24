@@ -166,3 +166,22 @@ li {
   border-color: var(--cdsn1);
   background-color: var(--cbg0);
 }
+
+.item-name {
+  font-size: var(--tbig); 
+  font-weight: bold; 
+  white-space: nowrap;
+}
+
+.item-type {
+  font-size: var(--tsmall); 
+  font-style: italic;
+}
+
+.item-talent-name {
+  font-weight: bold;
+}
+
+.item-talent-text {
+  font-size: var(--tsmall);
+}
