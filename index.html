@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- DEBUG CONSOLE ->
-    <script src="./mobileConsole/hnl.mobileconsole.js"></script> -->
+    <!-- DEBUG CONSOLE -><script src="./mobileConsole/hnl.mobileconsole.js"></script> -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="#"><!-- for favicon error -->
@@ -168,44 +167,45 @@
 
     <!-- <div id="popupWeapon" class="popup flex"></div> -->
 
-    <div id="popupGear" class="popup flex">
+    <div id="popupGear" class="popup border flex">
       <div id="panel-search" class="panel flex flexEqual">
         <div class="content">
           <input class="inputSearch" placeholder="Search..." type="text">
         </div>
       </div>
-      <div id="list-gear" class="panel flex flexEqual">
-        <!-- JS-FILL WITH TEMPLATES --> 
+      <div id="list-gear" class="panel grid flexEqual">
+
+        <template id="template-list-gear-item">
+          <div class="panel border flex flexEqual">
+            <div class="content">
+            <div class="item-name flex flexEqual"></div>
+
+            <div class="item-type flex flexEqual"></div> 
+            <!-- 
+              <div class="stats-brand flexEqual">
+              <div class="hlineTop"></div>
+              <ol>
+              <li><div class="stat-brand-first">first attribute</div></li>
+              <li><div class="stat-brand-second">second attribute</div></li>
+              <li><div class="stat-brand-third">third attribute</div></li>
+              </ol>
+              </div> 
+            -->
+            <div class="item-talent-name flex flexEqual"></div>
+            <div class="item-talent-text flex flexEqual"></div>
+          </div>
+          </div>
+        </template>
+        
       </div>
-      <div class="content">
-        <button type="button" onclick="window.closePopup()">Close</button>
+      <div id="panel-button" class="panel flex flexEqual">
+        <div class="content">
+          <button type="button" onclick="window.closePopup()">Close</button>
+        </div>
       </div>
     </div>
 
     <!-- <div id="popupSkill" class="popup flex"></div> -->
 
-    <!-- TEMPLATES -->
-    <!-- LIST GEAR ITEM -->
-    <template id="template-list-gear-item">
-      <div class="panel border flexEqual">
-        <div class="content grid">
-        <div class="item-name flex flexEqual"></div>
-      
-        <div class="item-type flex flexEqual"></div> 
-        <!-- 
-        <div class="stats-brand flexEqual">
-          <div class="hlineTop"></div>
-          <ol>
-            <li><div class="stat-brand-first">first attribute</div></li>
-            <li><div class="stat-brand-second">second attribute</div></li>
-            <li><div class="stat-brand-third">third attribute</div></li>
-          </ol>
-        </div> 
-        -->
-        <div class="item-talent-name flex flexEqual"></div>
-        <div class="item-talent-text flex flexEqual"></div>
-        </div>
-      </div>
-    </template>
   </body>
 </html>

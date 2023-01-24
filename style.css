@@ -71,6 +71,17 @@ li {
   /*min-width: 200px;*/
 }
 
+.content {
+  margin: var(--bweight);
+  padding: calc(4 * var(--bweight));
+  border: var(--cdsn1) dotted 1px;
+  border-color: inherit;
+  width: 100%;
+  height: auto;
+  display: grid;
+  justify-items: left;
+}
+
 .border {
   border: var(--cdsn1) dotted 1px;
   position: relative;
@@ -111,8 +122,8 @@ li {
 }
 
 .grid {
-  padding: calc(4 * var(--bweight));
   display: grid;
+  grid-template-columns: 1fr;
   justify-items: left;
 }
 
@@ -132,15 +143,6 @@ li {
 .flexEqual {
   flex: 1 1 0px;
   max-width: 100%;
-}
-
-.content {
-  margin: var(--bweight);
-  padding: 10px;
-  border: var(--cdsn1) dotted 1px;
-  display: flex;
-  width: 100%;
-  height: auto;
 }
 
 .center { /*NEEDED?*/
@@ -163,6 +165,7 @@ li {
   top: 50%;
   transform: translate(-50%, -50%);
   width: min-content;
+  /* max-height: 50%; */
   background-color: var(--cbg);
 }
 
