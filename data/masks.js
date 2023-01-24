@@ -25,6 +25,72 @@ export const mask = {
     talentName: "Toxic Delivery",
     talentText: "Status effects also apply a damage over time debuff for 10s.\n Total damage dealt is equal to 50% of your concussion grenade damage and increased by your status effect attributes.",
   },
+  "le": {
+    rarity: "Exotic",
+    type: "Exotic",
+    talentName: "Toxic Delivery",
+    talentText: "Status effects also apply a damage over time debuff for 10s.\n Total damage dealt is equal to 50% of your concussion grenade damage and increased by your status effect attributes.",
+  },
+  "le1": {
+    rarity: "Exotic",
+    type: "Exotic",
+    talentName: "Toxic Delivery",
+    talentText: "Status effects also apply a damage over time debuff for 10s.\n Total damage dealt is equal to 50% of your concussion grenade damage and increased by your status effect attributes.",
+  },
+  "le2": {
+    rarity: "Exotic",
+    type: "Exotic",
+    talentName: "Toxic Delivery",
+    talentText: "Status effects also apply a damage over time debuff for 10s.\n Total damage dealt is equal to 50% of your concussion grenade damage and increased by your status effect attributes.",
+  },
+  "le3": {
+    rarity: "Exotic",
+    type: "Exotic",
+    talentName: "Toxic Delivery",
+    talentText: "Status effects also apply a damage over time debuff for 10s.\n Total damage dealt is equal to 50% of your concussion grenade damage and increased by your status effect attributes.",
+  },
+  "le4": {
+    rarity: "Exotic",
+    type: "Exotic",
+    talentName: "Toxic Delivery",
+    talentText: "Status effects also apply a damage over time debuff for 10s.\n Total damage dealt is equal to 50% of your concussion grenade damage and increased by your status effect attributes.",
+  },
+  "le5": {
+    rarity: "Exotic",
+    type: "Exotic",
+    talentName: "Toxic Delivery",
+    talentText: "Status effects also apply a damage over time debuff for 10s.\n Total damage dealt is equal to 50% of your concussion grenade damage and increased by your status effect attributes.",
+  },
+  "le6": {
+    rarity: "Exotic",
+    type: "Exotic",
+    talentName: "Toxic Delivery",
+    talentText: "Status effects also apply a damage over time debuff for 10s.\n Total damage dealt is equal to 50% of your concussion grenade damage and increased by your status effect attributes.",
+  },
+  "le7": {
+    rarity: "Exotic",
+    type: "Exotic",
+    talentName: "Toxic Delivery",
+    talentText: "Status effects also apply a damage over time debuff for 10s.\n Total damage dealt is equal to 50% of your concussion grenade damage and increased by your status effect attributes.",
+  },
+  "le8": {
+    rarity: "Exotic",
+    type: "Exotic",
+    talentName: "Toxic Delivery",
+    talentText: "Status effects also apply a damage over time debuff for 10s.\n Total damage dealt is equal to 50% of your concussion grenade damage and increased by your status effect attributes.",
+  },
+  "le9": {
+    rarity: "Exotic",
+    type: "Exotic",
+    talentName: "Toxic Delivery",
+    talentText: "Status effects also apply a damage over time debuff for 10s.\n Total damage dealt is equal to 50% of your concussion grenade damage and increased by your status effect attributes.",
+  },
+  "le10": {
+    rarity: "Exotic",
+    type: "Exotic",
+    talentName: "Toxic Delivery",
+    talentText: "Status effects also apply a damage over time debuff for 10s.\n Total damage dealt is equal to 50% of your concussion grenade damage and increased by your status effect attributes.",
+  },
   "5.11 Tactical": {
     rarity: "High-End",
     type: "5.11 Tactical"

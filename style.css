@@ -5,20 +5,20 @@
   /* colors */
   --ctemp: rgba(255, 215, 000, 0.5);
   /* background color */
-  --cbg: rgba(0, 0, 0, 1);
+  --cbg: rgba(0, 0, 0, 1.0);
   --cbg75: rgba(0, 0, 0, 0.75);
   --cbg50: rgba(0, 0, 0, 0.5);
-  --cbg0: rgba(0, 0, 0, 0);
+  --cbg0: rgba(0, 0, 0, 0.0);
   /* text color */
-  --ctxt: rgba(255, 255, 255, 0.85);
+  --ctxt: rgba(200, 200, 200, 1.0);
   --ctxthl: rgba(247, 208, 124, 1.0);
   /* grey colors */
-  --cdsn1: rgba(127, 127, 127, 0.75);
+  --cdsn1: rgba(127, 127, 127, 1);
   --cdsn2: rgba(127, 127, 127, 0.25);
   /* rarity colors */
-  --cexotic: rgba(225, 76, 50, 0.7);
-  --cnamed: rgba(255, 174, 0, 0.7);
-  --cgearset: rgba(75, 175, 100, 0.7);
+  --cexotic: rgba(225, 76, 50, 1);
+  --cnamed: rgba(255, 174, 0, 1);
+  --cgearset: rgba(75, 175, 100, 1);
 
 
   /* accent colors */
@@ -80,7 +80,6 @@ li {
   border: var(--cdsn1) dotted 1px;
   border-color: inherit;
   width: 100%;
-  min-height: 140px;
   display: grid;
   justify-items: left;
 }
@@ -145,11 +144,12 @@ li {
 }
 
 .flexEqual {
-  flex: 1 1 0px;
+  flex: 1 1;
   max-width: 100%;
 }
 
 .empty {
+  padding: 50px;
   color: var(--ctxthl);
   align-content: center;
   justify-content: center;
@@ -161,6 +161,7 @@ li {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  height: 90vh;
   width: min-content;
   background-color: var(--cbg);
 }
@@ -168,8 +169,8 @@ li {
 .inputSearch {
   color: inherit;
   font: inherit;
+  height: min-content;
   border-width: 0;
-  border-color: var(--cdsn1);
   background-color: var(--cbg0);
 }
 
@@ -193,7 +194,7 @@ li {
 }
 
 .vscroll {
-  max-height: 280px;
+  max-height: 70%;
   min-width: min-content;
   overflow: hidden;
   overflow-y: scroll;
