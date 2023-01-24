@@ -41,8 +41,9 @@ document.addEventListener('DOMContentLoaded', function () {
     clonedListGearItem.querySelector('.item-name').innerText = `${name}`;
 
     // item color
+    let panel = clonedListGearItem.querySelector('.panel');
     if (mask[`${name}`].rarity == "Exotic") {
-      //clonedListGearItem.style.background = 'var(--car)';
+      panel.style.background = 'var(--car)';
     }
     else if (mask[`${name}`].rarity == "Named") {
       //clonedListGearItem.style.background = 'var(--cay)';
@@ -57,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // item type
     if (mask[`${name}`].hasOwnProperty('type') && mask[`${name}`].type !== `${name}`) {
-      let gearType = clonedListGearItem.querySelector('.item-type')
+      let gearType = clonedListGearItem.querySelector('.item-type');
       gearType.innerText = "(";
       gearType.innerText += mask[`${name}`].type;
       gearType.innerText += ")";
@@ -86,18 +87,3 @@ window.showPopup = function showPopup(Class) {
 window.closePopup = function closePopup() {
   document.getElementById(`popupGear`).style.display = "none";
 }
-
-/*
-let vdiv = document.createElement('div');
-vdiv.id = 'ID';
-vdiv.className = 'flex';
-document.getElementsById('list-mask').appendChild(vdiv);
-
-function useTemplate() {
-      var myTemplate = document.getElementById('myTemplate');
-          normalContent = document.getElementById('normalContent');
-          clonedTemplate = myTemplate.content.cloneNode(true);
-          clonedTemplate.id = 'ID';
-          normalContent.appendChild(clonedTemplate);
-          }
-          */
