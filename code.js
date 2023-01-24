@@ -36,6 +36,8 @@ document.addEventListener('DOMContentLoaded', function () {
   for (let i=0; i < objNames.length; i++) { 
     let name = `${objNames[i]}`;
     const clonedListGearItem = tplLGI.content.cloneNode(true);
+    // onclick
+    clonedListGearItem.querySelector('.panel').onclick = closePopup;
 
     // item name
     let gearName = clonedListGearItem.querySelector('.item-name')

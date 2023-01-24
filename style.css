@@ -1,4 +1,7 @@
 :root {
+  /* min panel size */
+  --mpwidth: 280px;
+
   /* colors */
   --ctemp: rgba(255, 215, 000, 0.5);
   /* background color */
@@ -27,9 +30,6 @@
   --cap: rgba(200, 100, 200, 0.75);
   --cav: rgba(200, 100, 200, 0.75);
 
-  /* min panel width */
-  --mpwidth: 280px;
-
   /*
   .offensive {
   color: #ce474d;
@@ -46,7 +46,7 @@
   --bwidth: 65%;
   --bheight: 35%;
   --bweight: 3px;
-  
+
   /* text sizes */
   --tsmall: 15px;
   --tbig: 25px;
@@ -193,7 +193,7 @@ li {
 }
 
 .vscroll {
-  max-height: 200px;
+  max-height: 280px;
   min-width: min-content;
   overflow: hidden;
   overflow-y: scroll;
