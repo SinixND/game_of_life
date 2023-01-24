@@ -38,23 +38,23 @@ document.addEventListener('DOMContentLoaded', function () {
     const clonedListGearItem = tplLGI.content.cloneNode(true);
 
     // item name
-    clonedListGearItem.querySelector('.item-name').innerText = `${name}`;
+    let gearName = clonedListGearItem.querySelector('.item-name')
+    gearName.innerText = `${name}`;
 
     // item color
-    let panel = clonedListGearItem.querySelector('.panel');
+    let border = clonedListGearItem.querySelector('.border');
     if (mask[`${name}`].rarity == "Exotic") {
-      panel.style.background = 'var(--car)';
+      border.style.borderColor = 'var(--cexotic)';
+      gearName.style.color = 'var(--cexotic)';
     }
     else if (mask[`${name}`].rarity == "Named") {
-      //clonedListGearItem.style.background = 'var(--cay)';
+      border.style.borderColor = 'var(--cnamed)';
+      gearName.style.color = 'var(--cnamed)';
     }
     else if (mask[`${name}`].rarity == "Set") {
-      //clonedListGearItem.style.background = 'var(--cag)';
-    }
-    else if (mask[`${name}`].rarity == "High-End") {
-      //clonedListGearItem.style.background = 'var(--cdsn2)';
+      border.style.borderColor = 'var(--cgearset)';
+      gearName.style.color = 'var(--cgearset)';
     };
-
 
     // item type
     if (mask[`${name}`].hasOwnProperty('type') && mask[`${name}`].type !== `${name}`) {

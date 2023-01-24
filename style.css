@@ -10,8 +10,14 @@
   --ctxt: rgba(255, 255, 255, 0.85);
   --ctxthl: rgba(247, 208, 124, 1.0);
   /* grey colors */
-  --cdsn1: rgba(127, 127, 127, 0.5);
+  --cdsn1: rgba(127, 127, 127, 0.75);
   --cdsn2: rgba(127, 127, 127, 0.25);
+  /* rarity colors */
+  --cexotic: rgba(225, 76, 50, 0.7);
+  --cnamed: rgba(255, 174, 0, 0.7);
+  --cgearset: rgba(75, 175, 100, 0.7);
+
+
   /* accent colors */
   --car: rgba(200, 100, 100, 0.75);
   --cag: rgba(100, 200, 100, 0.75);
@@ -75,7 +81,7 @@ li {
   position: absolute;
   width: var(--bwidth);
   height: var(--bheight);
-  border-color: var(--cdsn1);
+  border-color: inherit;
   border-style: solid;
   content: '';
 }
@@ -100,6 +106,7 @@ li {
 .hLineTop {
   width: 100%;
   border-top: var(--ctxt) solid 1px;
+  border-color: inherit;
   margin-top: var(--bweight);
 }
 
