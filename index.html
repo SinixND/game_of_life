@@ -3,7 +3,7 @@
   <head>
     <!-- DEBUG CONSOLE -><script src="./mobileConsole/hnl.mobileconsole.js"></script> -->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" container="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="#"><!-- for favicon error -->
     <title>Div2 build calculator</title>
     <!-- .css - files -->
@@ -16,8 +16,8 @@
   <!-- MENU BAR -->
   <body>
     <div id="panel-menubar" class="panel border flex">
-      <div class="content">
-        content menubar
+      <div class="container">
+        container menubar
       </div>
     </div>
 
@@ -25,7 +25,7 @@
     <div id="panel-build" class="panel flex flexHorizontal">
       <div id="panel-equipment" class="panel flex flexVertical">
         <div id="panel-specialisation" class="panel border flex flexEqual">
-          <div class="content empty">
+          <div class="container empty">
             Choose specialisation
           </div>
         </div>
@@ -33,17 +33,17 @@
         <!-- WEAPON SELECTION AREA -->
         <div id="panel-weapons" class="panel flex flexHorizontal flexEqual">
           <div id="panel-weapon-1" class="panel border flex flexEqual">
-            <div class="content empty main-weapon">
+            <div class="container empty main-weapon">
               Choose weapon
             </div>
           </div>
           <div id="panel-weapon-2" class="panel border flex flexEqual">
-            <div class="content empty main-weapon">
+            <div class="container empty main-weapon">
               Choose weapon
             </div>
           </div>
           <div id="panel-sidearm" class="panel border flex flexEqual">
-            <div class="content empty sidearm">
+            <div class="container empty sidearm">
               Choose sidearm
             </div>
           </div>
@@ -53,36 +53,36 @@
         <div id="panel-armor" class="panel flex flexVertical flexEqual">
           <div id="panel-gear-slot-1-2" class="panel flex flexHorizontal flexEqual">
             <div id="panel-mask" class="panel border flex flexEqual mask" onclick="window.showPopup('Mask')">
-              <div class="content empty">
+              <div class="container empty">
                 Choose mask
               </div>
             </div>
             <div id="panel-backpack" class="panel border flex flexEqual">
-              <div class="content empty backpack">
+              <div class="container empty backpack">
                 Choose backpack
               </div>
             </div>
           </div>
           <div id="panel-gear-slot-3-4" class="panel flex flexHorizontal flexEqual">
             <div id="panel-chest" class="panel border flex flexEqual">
-              <div class="content empty chest">
+              <div class="container empty chest">
                 Choose chest
               </div>
             </div>
             <div id="panel-gloves" class="panel border flex flexEqual">
-              <div class="content empty gloves">
+              <div class="container empty gloves">
                 Choose gloves
               </div>
             </div>
           </div>
           <div id="panel-gear-slot-5-6" class="panel flex flexHorizontal flexEqual">
             <div id="panel-holster" class="panel border flex flexEqual">
-              <div class="content empty holster">
+              <div class="container empty holster">
                 Choose holster
               </div>
             </div>
             <div id="panel-kneepads" class="panel border flex flexEqual">
-              <div class="content empty kneepads">
+              <div class="container empty kneepads">
                 Choose kneepads
               </div>
             </div>
@@ -92,12 +92,12 @@
         <!-- SKILL SELECTION AREA -->
         <div id="panel-skills" class="panel flex flexHorizontal flexEqual">
           <div id="panel-skill-1" class="panel border flex flexEqual">
-            <div class="content empty skill">
+            <div class="container empty skill">
               Choose skill
             </div>
           </div>
           <div id="panel-skill-2" class="panel border flex flexEqual">
-            <div class="content empty skill">
+            <div class="container empty skill">
               Choose skill
             </div>
           </div>
@@ -109,17 +109,17 @@
       <div id="panel-stats" class="panel flex flexVertical flexEqual">
         <div id="panel-stats-weapons" class="panel flex flexHorizontal flexEqual">
           <div id="panel-stats-weapon-1" class="panel border flex flexEqual">
-            <div class="content main-weapon">
+            <div class="container main-weapon">
               stats weapon 1
             </div>
           </div>
           <div id="panel-stats-weapon-2" class="panel border flex flexEqual">
-            <div class="content main-weapon">
+            <div class="container main-weapon">
               stats weapon 2
             </div>
           </div>
           <div id="panel-stats-sidearm" class="panel border flex flexEqual">
-            <div class="content sidearm">
+            <div class="container sidearm">
               stats sidearm
             </div>
           </div>
@@ -128,12 +128,12 @@
         <!-- SKILL STATS AREA -->
         <div id="panel-stats-skills" class="panel flex flexHorizontal flexEqual">
           <div id="panel-stats-skill-1" class="panel border flex flexEqual">
-            <div class="content skill">
+            <div class="container skill">
               stats skill 1
             </div>
           </div>
           <div id="panel-stats-skill-2" class="panel border flex flexEqual">
-            <div class="content skill">
+            <div class="container skill">
               stats skill 2
             </div>
           </div>
@@ -141,21 +141,21 @@
 
         <!-- TALENT BRAND SET SUMMARY AREA -->
         <div id="panel-talent-brand-set-boni" class="panel border flex flexEqual">
-          <div class="content">
+          <div class="container">
             talent brand set boni
           </div>
         </div>
 
         <!-- PLAYER STATS AREA -->
         <div id="panel-stats-player" class="panel border flex flexEqual">
-          <div class="content">
+          <div class="container">
             stats player
           </div>
         </div>
 
         <!-- SET SHD AREA -->
         <div id="panel-SHD" class="panel border flex flexEqual">
-          <div class="content">
+          <div class="container">
             SHD
           </div>
         </div>
@@ -169,7 +169,7 @@
 
     <div id="popupGear" class="popup flex">
       <div id="panel-search" class="panel flex flexEqual">
-        <div class="content">
+        <div class="container">
           <input class="inputSearch" placeholder="Search..." type="text">
         </div>
       </div>
@@ -177,7 +177,7 @@
 
         <template id="template-list-gear-item">
           <div class="panel border flex flexEqual">
-            <div class="content">
+            <div class="container">
             <div class="item-name flex flexEqual"></div>
 
             <div class="item-type flex flexEqual"></div> 

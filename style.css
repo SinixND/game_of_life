@@ -74,7 +74,7 @@ li {
   min-width: var(--mpwidth);
 }
 
-.content {
+.container {
   margin: var(--bweight);
   padding: calc(4 * var(--bweight));
   border: var(--cdsn1) dotted 1px;
@@ -86,6 +86,7 @@ li {
 
 .border {
   border: var(--cdsn1) dotted 1px;
+  padding: 0;
   position: relative;
 }
 
