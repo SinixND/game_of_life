@@ -36,8 +36,9 @@ document.addEventListener('DOMContentLoaded', function () {
   for (let i=0; i < objNames.length; i++) { 
     let name = `${objNames[i]}`;
     const clonedListGearItem = tplLGI.content.cloneNode(true);
+
     // onclick
-    clonedListGearItem.querySelector('.panel').onclick = closePopup;
+    clonedListGearItem.querySelector('#panelItem').onclick = closePopup;
 
     // item name
     let gearName = clonedListGearItem.querySelector('.item-name')
@@ -83,9 +84,9 @@ document.addEventListener('DOMContentLoaded', function () {
 //===========================================================
 // POPUP FUNCTIONS
 window.showPopup = function showPopup(Class) {
-  document.getElementById(`popupGear`).style.display = "flex";
+  document.getElementById(`popupFrameMain`).style.display = "inherit";
 }
 
 window.closePopup = function closePopup() {
-  document.getElementById(`popupGear`).style.display = "none";
+  document.getElementById(`popupFrameMain`).style.display = "none";
 }
