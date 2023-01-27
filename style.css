@@ -121,14 +121,21 @@ li {
   display: flex;
   flex: 1 1 auto;
   flex-wrap: wrap;
+
   justify-content: space-evenly;
   justify-items: space-evenly;
   align-content: space-evenly;
   align-items: space-evenly;
+
+  flex-direction: column;
+  -ms-flex-direction: column;
+  -webkit-flex-direction: column;
 }
 
 .flexV {
   flex-direction: column;
+  -ms-flex-direction: column;
+  -webkit-flex-direction: column;
 }
 
 .gridH, gridV, grid2xX {
