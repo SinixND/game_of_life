@@ -52,6 +52,9 @@
   --tbig: 25px;
 }
 
+* {
+  box-sizing: border-box;
+}
 body {
   margin: 5px;
   background-color: var(--cbg);
@@ -69,7 +72,6 @@ li {
 }
 
 .panel, .panelContainer {
-  box-sizing: border-box;
   margin: 5px;
   border: 1px dotted var(--ctemp); /* develop */
   min-width: var(--minwidth); /* develop */
@@ -120,7 +122,9 @@ li {
   flex: 1 1 auto;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  justify-items: space-evenly;
   align-content: space-evenly;
+  align-items: space-evenly;
 }
 
 .flexV {
@@ -145,11 +149,11 @@ li {
 }
 
 .container {
-  box-sizing: border-box;
   display: block;
   padding: calc(4 * var(--bweight));
   border: var(--cdsn1) dotted 1px;
   border-color: inherit;
+  min-width: var(--minwidth);
   width: 100%;
 }
 
