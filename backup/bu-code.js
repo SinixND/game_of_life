@@ -1,17 +1,17 @@
-//============================
+//===========================================================
 // IMPORT DATA
 import {mask} from "./data/masks.js";
 
-//============================
+//===========================================================
 // STARTUP FUNCTION
 document.addEventListener('DOMContentLoaded', function () {
-  //============================
+  //=========================================================
   // DEBUG
   //console.log(mask.Vile.talentName);
   //console.log(mask['Vile'].talentName);
-  //alert( 'Res: (W)' + screen.width + 'x(H)' + screen.height ); /* Lap: 1280x720; Mob: 432x896 */
+  //alert("hi");
 
-  //============================
+  //=========================================================
   // SET BACKGROUND ICONS
   let icons = ["main-weapon", "sidearm", "mask", "backpack", "chest", "gloves", "holster", "kneepads"];
   for (let i = 0; i < icons.length; i++) {
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   };
 
-  //============================
+  //=========================================================
   // FILL LISTS
   const tplLGI = document.getElementById('template-list-gear-item');
   const list = document.getElementById('list-gear');
@@ -81,14 +81,12 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 }, false);
 
-//==============================
+//===========================================================
 // POPUP FUNCTIONS
 window.showPopup = function showPopup(Class) {
-  document.getElementById('popupFrameMain').style.display = "inherit";
-  document.body.style.overflow = "hidden";
+  document.getElementById(`popupFrameMain`).style.display = "inherit";
 }
 
 window.closePopup = function closePopup() {
   document.getElementById(`popupFrameMain`).style.display = "none";
-  document.body.style.overflow = "";
 }
