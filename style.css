@@ -1,6 +1,6 @@
 :root {
   /* min panel size */
-  --minwidth: 580px; /*develop */
+  --minwidth: 280px; /*develop */
 
   /* colors */
   --ctemp: rgba(255, 255, 255, 0.2);
@@ -74,6 +74,7 @@ li {
 .panel {
   border: 5px dotted var(--ctemp); /* develop */
   min-width: var(--minwidth); /* develop */
+  min-height: 2em;
   background-color: var(--cbg);
 }
 
