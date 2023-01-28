@@ -81,7 +81,9 @@ li {
 .panel, .panelContainer {
   border: var(--bweighttemp) dotted var(--ctemp); /* develop */
   min-width: var(--minwidth); /* develop */
-  height: calc(100vh - 2 * var(--bweighttemp));
+
+  height: 100%;
+
   background-color: var(--cbg);
 }
 
