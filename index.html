@@ -16,43 +16,175 @@
 
 
 <body>
-  <div id="frameMain" class="panel">
+  <div id="frameMain" class="hide panel">
     <!-- MENU BAR -->
-    <div id="panel-menubar" class="panel border">
+    <div id="panel-menubar" class="hide panel border">
+      <div class="hide container">
+        container menubar
+      </div>
     </div>
 
-    <div id="panel-build" class="panel flexH">
+    <div id="panel-build" class="hide panel flexH">
+      <div id="panel-equipment" class="hide panel flexV">
+        <div id="panel-specialisation" class="hide panel border">
+          <div class="hide container empty">
+            Choose specialisation
+          </div>
+        </div>
+
+        <!-- WEAPON SELECTION AREA -->
+        <div id="panel-weapons" class="hide panel flexH">
+          <div id="panel-weapon-1" class="hide panel border flexH">
+            <div class="hide container empty main-weapon">
+              Choose weapon
+            </div>
+          </div>
+          <div id="panel-weapon-2" class="hide panel border flexH">
+            <div class="hide container empty main-weapon">
+              Choose weapon
+            </div>
+          </div>
+          <div id="panel-sidearm" class="hide panel border flexH">
+            <div class="hide container empty sidearm">
+              Choose sidearm
+            </div>
+          </div>
+        </div>
+
+        <!-- ARMOR SELECTION AREA -->
+        <div id="panel-armor" class="hide panel grid2xX">
+            <div id="panel-mask" class="hide panel border flexH mask" onclick="window.showPopup('Mask')">
+              <div class="hide container empty">
+                Choose mask
+              </div>
+            </div>
+            <div id="panel-backpack" class="hide panel border flexH">
+              <div class="hide container empty backpack">
+                Choose backpack
+              </div>
+            </div>
+            <div id="panel-chest" class="hide panel border flexH">
+              <div class="hide container empty chest">
+                Choose chest
+              </div>
+            </div>
+            <div id="panel-gloves" class="hide panel border flexH">
+              <div class="hide container empty gloves">
+                Choose gloves
+              </div>
+            </div>
+            <div id="panel-holster" class="hide panel border flexH">
+              <div class="hide container empty holster">
+                Choose holster
+              </div>
+            </div>
+            <div id="panel-kneepads" class="hide panel border flexH">
+              <div class="hide container empty kneepads">
+                Choose kneepads
+              </div>
+            </div>
+        </div>
+
+        <!-- SKILL SELECTION AREA -->
+        <div id="panel-skills" class="hide panel flexH">
+          <div id="panel-skill-1" class="hide panel border flexH">
+            <div class="hide container empty skill">
+              Choose skill
+            </div>
+          </div>
+          <div id="panel-skill-2" class="hide panel border flexH">
+            <div class="hide container empty skill">
+              Choose skill
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="panel-stats" class="hide panel flexV">
+        <div id="panel-stats-weapons" class="hide panel flexH">
+          <div id="panel-stats-weapon-1" class="hide panel border flexH">
+            <div class="hide container main-weapon">
+              stats weapon 1
+            </div>
+          </div>
+          <div id="panel-stats-weapon-2" class="hide panel border flexH">
+            <div class="hide container main-weapon">
+              stats weapon 2
+            </div>
+          </div>
+          <div id="panel-stats-sidearm" class="hide panel border flexH">
+            <div class="hide container sidearm">
+              stats sidearm
+            </div>
+          </div>
+        </div>
+
+        <!-- SKILL STATS AREA -->
+        <div id="panel-stats-skills" class="hide panel flexH">
+          <div id="panel-stats-skill-1" class="hide panel border flexH">
+            <div class="hide container skill">
+              stats skill 1
+            </div>
+          </div>
+          <div id="panel-stats-skill-2" class="hide panel border flexH">
+            <div class="hide container skill">
+              stats skill 2
+            </div>
+          </div>
+        </div>
+
+        <!-- TALENT BRAND SET AREA -->
+        <div id="panel-talent-brand-set-boni" class="hide panel border">
+          <div class="hide container">
+            talent brand set boni
+          </div>
+        </div>
+
+        <!-- PLAYER STATS AREA -->
+        <div id="panel-stats-player" class="hide panel border">
+          <div class="hide container">
+            stats player
+          </div>
+        </div>
+
+        <!-- SET SHD AREA -->
+        <div id="panel-SHD" class="hide panel border">
+          <div class="hide container">
+            SHD
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
   <!-- POPUP MENUS -->
-  <div id="popupFrameMain" class="popup panel" onclick="window.closePopup()">
-    <div id="popupGear" class="panel flexV">
-      <div id="panel-search" class="panel border">
-        <div class="container">
-          <input class="inputSearch" placeholder="Search..." type="text">
+  <div id="popupFrameMain" class="hide popup panel" onclick="window.closePopup()">
+    <div id="popupGear" class="hide panel flexV">
+      <div id="panel-search" class="hide panel border">
+        <div class="hide container">
+          <input class="hide inputSearch" placeholder="Search..." type="text">
         </div>
       </div>
-      <div id="list-gear" class="panel flexV vscroll">
+      <div id="list-gear" class="hide panel flexV vscroll">
 
         <template id="template-list-gear-item">
-          <div id="panelItem" class="panel border flexH">
-            <div class="container">
-              <div class="item-name flexH"></div>
+          <div id="panelItem" class="hide panel border flexH">
+            <div class="hide container">
+              <div class="hide item-name flexH"></div>
 
-              <div class="item-type flexH"></div>
+              <div class="hide item-type flexH"></div>
               <!-- 
-              <div class="stats-brand">
-              <div class="hlineTop"></div>
+              <div class="hide stats-brand">
+              <div class="hide hlineTop"></div>
               <ol>
-              <li><div class="stat-brand-first">first attribute</div></li>
-              <li><div class="stat-brand-second">second attribute</div></li>
-              <li><div class="stat-brand-third">third attribute</div></li>
+              <li><div class="hide stat-brand-first">first attribute</div></li>
+              <li><div class="hide stat-brand-second">second attribute</div></li>
+              <li><div class="hide stat-brand-third">third attribute</div></li>
               </ol>
               </div> 
             -->
-              <div class="item-talent-name flexH"></div>
-              <div class="item-talent-text flexH"></div>
+              <div class="hide item-talent-name flexH"></div>
+              <div class="hide item-talent-text flexH"></div>
             </div>
           </div>
         </template>
@@ -61,7 +193,7 @@
     </div>
   </div>
 
-  <!-- <div id="popupSkill" class="popup flexH"></div> -->
+  <!-- <div id="popupSkill" class="hide popup flexH"></div> -->
   <!-- 
     <div id="ref100px"
     style="position: fixed; background-color: white; top: 10px; left: 10px; height: 100px; width: 100px"></div>

@@ -55,6 +55,11 @@
 * {
   box-sizing: border-box;
 }
+
+.hide {
+  display: none;
+}
+
 body {
   margin: 5px;
   background-color: var(--cbg);
@@ -174,7 +179,7 @@ li {
 }
 
 .popup {
-  /*display: none; /*uncomment after development!!!*/
+  display: none; /*uncomment after development!!!*/
   position: fixed;
   top: 0%;
   left: 0%;
