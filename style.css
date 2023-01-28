@@ -133,6 +133,7 @@ li {
 .flexH,
 .flexV {
   display: flex;
+  flex: 1 1 auto;
 }
 
 .flexH {
@@ -147,10 +148,6 @@ li {
 .gridH, 
 .gridV {
   display: grid;
-  justify-content: stretch;
-  justify-items: stretch;
-  align-content: stretch;
-  align-items: stretch;
 }
 
 .gridH {
