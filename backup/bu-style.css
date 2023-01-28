@@ -55,6 +55,7 @@
 * {
   box-sizing: border-box;
 }
+
 body {
   margin: 5px;
   background-color: var(--cbg);
