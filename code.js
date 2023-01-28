@@ -47,16 +47,16 @@ document.addEventListener('DOMContentLoaded', function () {
     // item color
     let border = clonedListGearItem.querySelector('.border');
     if (mask[`${name}`].rarity == "Exotic") {
-      border.style.borderColor = 'var(--cexotic)';
-      gearName.style.color = 'var(--cexotic)';
+      border.style.borderColor = 'var(--cExotic)';
+      gearName.style.color = 'var(--cExotic)';
     }
     else if (mask[`${name}`].rarity == "Named") {
-      border.style.borderColor = 'var(--cnamed)';
-      gearName.style.color = 'var(--cnamed)';
+      border.style.borderColor = 'var(--cNamed)';
+      gearName.style.color = 'var(--cNamed)';
     }
     else if (mask[`${name}`].rarity == "Set") {
-      border.style.borderColor = 'var(--cgearset)';
-      gearName.style.color = 'var(--cgearset)';
+      border.style.borderColor = 'var(--cGearSet)';
+      gearName.style.color = 'var(--cGearSet)';
     };
 
     // item type

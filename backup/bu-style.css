@@ -16,9 +16,9 @@
   --cdsn1: rgba(127, 127, 127, 1);
   --cdsn2: rgba(127, 127, 127, 0.25);
   /* rarity colors */
-  --cexotic: rgba(225, 76, 50, 1);
-  --cnamed: rgba(255, 174, 0, 1);
-  --cgearset: rgba(75, 175, 100, 1);
+  --cExotic: rgba(225, 76, 50, 1);
+  --cNamed: rgba(255, 174, 0, 1);
+  --cGearSet: rgba(75, 175, 100, 1);
 
 
   /* accent colors */
