@@ -84,9 +84,11 @@ document.addEventListener('DOMContentLoaded', function () {
 //===========================================================
 // POPUP FUNCTIONS
 window.showPopup = function showPopup(Class) {
-  document.getElementById(`popupFrameMain`).style.display = "inherit";
+  document.getElementById('popupFrameMain').style.display = "inherit";
+  document.getElementsByTagName('body').style.overflow = "hidden";
 }
 
 window.closePopup = function closePopup() {
   document.getElementById(`popupFrameMain`).style.display = "none";
+  document.getElementsByTagName('body').style.overflow = "auto";
 }
