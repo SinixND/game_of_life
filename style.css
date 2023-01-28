@@ -1,229 +1,148 @@
 :root {
-  /* temp variables for development */
-  --cTemp: rgba(255, 255, 255, 0.5);
-  --widthTemp: 1em;
-  --heightTemp: 1em;
+    /* colors */
+    --ctemp: rgba(255, 215, 000, 0.5);
+    /* background color */
+    --cbg: rgba(0, 0, 0, 1);
+    --cbg75: rgba(0, 0, 0, 0.75);
+    --cbg50: rgba(0, 0, 0, 0.5);
+    --cbg0: rgba(0, 0, 0, 0);
+    /* text color */
+    --ctxt: rgba(255, 255, 255, 0.85);
+    --ctxthl: rgba(247, 208, 124, 1.0);
+    /* grey colors */
+    --cdsn1: rgba(127, 127, 127, 0.5);
+    --cdsn2: rgba(127, 127, 127, 0.25);
+    /* accent colors */
+    --car: rgba(200, 100, 100, 0.75);
+    --cag: rgba(100, 200, 100, 0.75);
+    --cab: rgba(100, 100, 200, 0.75);
+    --cay: rgba(200, 200, 100, 0.75);
+    --cat: rgba(100, 200, 200, 0.75);
+    --cap: rgba(200, 100, 200, 0.75);
+    --cav: rgba(200, 100, 200, 0.75);
 
-  /* min panel size */
-  --widthMin: 280px; /*develop */
-  --heightMin: 0px;
+    /*
+    .offensive {
+    color: #ce474d;
+    }
+    .defensive {
+    color: #82abd6;
+    }
+    .utility {
+    color: #f7d07c;
+    }
+     */
 
-  /* background color */
-  --cbgr: rgba(0, 0, 0, 1.0);
-  --cbgr75: rgba(0, 0, 0, 0.75);
-  --cbgr50: rgba(0, 0, 0, 0.5);
-  --cbgr0: rgba(0, 0, 0, 0.0);
-
-  /* text color */
-  --ctxt: rgba(200, 200, 200, 1.0);
-  --ctxthl: rgba(247, 208, 124, 1.0);
-
-  /* border colors */
-  --cbrd: rgba(255, 255, 255, 1.0);
-  --cbrd50: rgba(255, 255, 255, 0.5);
-
-  /* rarity colors */
-  --cExotic: rgba(225, 76, 50, 1);
-  --cNamed: rgba(255, 174, 0, 1);
-  --cGearSet: rgba(75, 175, 100, 1);
-
-  /* accent colors */
-  --car: rgba(200, 100, 100, 0.75);
-  --cag: rgba(100, 200, 100, 0.75);
-  --cab: rgba(100, 100, 200, 0.75);
-  --cay: rgba(200, 200, 100, 0.75);
-  --cat: rgba(100, 200, 200, 0.75);
-  --cap: rgba(200, 100, 200, 0.75);
-  --cav: rgba(200, 100, 200, 0.75);
-
-  /*
-  .offensive {
-  color: #ce474d;
-  }
-  .defensive {
-  color: #82abd6;
-  }
-  .utility {
-  color: #f7d07c;
-  }
-   */
-
-  /* border properties */
-  --bWeightTemp: 5px;
-  --bWidth: 65%;
-  --bHeight: 35%;
-  --bWeight: 3px;
-
-  /* text sizes */
-  --txtSmall: 15px;
-  --txtBig: 25px;
-}
-
-* {
-  box-sizing: border-box;
-  min-width: var(--widthTemp);
-  min-height: var(--heightTemp);
-}
-
-.hide {
-  display: none;
+    /* border properties */
+    --bwidth: 65%;
+    --bheight: 35%;
+    --bweight: 3px;
 }
 
 body {
-  margin: 5px;
-  background-color: var(--cbgr);
-  color: var(--ctxt);
-  font-family: Titillium Web, sans-serif;
-  font-size: 20px;
+    margin: 5px;
+    background-color: var(--cbg);
+    color: var(--ctxt);
+    font-family: Titillium Web, sans-serif;
+    font-size: 22px;
 }
 
-ol {
-  margin: 0;
+.panel {
+    margin: 5px;
+    border: 1px dotted var(--ctemp);
+    /*min-width: 200px;*/
+    justify-content: space-evenly;
+    justify-items: center;
+    align-content: space-evenly;
+    align-items: center;
 }
 
-li {
-  margin: 0;
+.border {
+    border: var(--cdsn1) dotted 1px;
+    position: relative;
 }
 
-.panel,
-.panelBorder {
-  border: var(--bWeightTemp) dotted var(--cTemp); /* develop */
-  background-color: var(--cbgr);
+.border:before,
+.border:after {
+    position: absolute;
+    width: var(--bwidth);
+    height: var(--bheight);
+    border-color: var(--cdsn1);
+    border-style: solid;
+    content: '';
 }
 
-#frameMain.panel {
-  height: 100%;
+.border:before {
+    top: 0;
+    left: 0;
+    border-width: var(--bweight) 0 0 var(--bweight);
 }
 
-.panelBorder {
-  min-width: var(--widthMin); /* develop */
-  padding: var(--bWeight);
-  border: var(--cbrd) dotted 1px;
-  position: relative;
+.border:after {
+    right: 0;
+    bottom: 0;
+    border-width: 0 var(--bweight) var(--bweight) 0;
 }
 
-.panelBorder:before,
-.panelBorder:after {
-  position: absolute;
-  width: var(--bWidth);
-  height: var(--bHeight);
-  border-color: inherit;
-  border-style: solid;
-  content: '';
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1.5;
 }
 
-.panelBorder:before {
-  top: 0;
-  left: 0;
-  border-width: var(--bWeight) 0 0 var(--bWeight);
+.fv {
+    flex-direction: column;
 }
 
-.panelBorder:after {
-  right: 0;
-  bottom: 0;
-  border-width: 0 var(--bWeight) var(--bWeight) 0;
+.fh {
+    flex-direction: row;
 }
 
-.panelBorder:hover {
-  /* opacity: 0.8; */
-  cursor: pointer;
+.feq {
+    flex: 1 1 0px;
+    width: 100%;
 }
 
-.flex,
-.flexH,
-.flexV {
-  display: flex;
-  flex: 1 1 auto;
-}
-
-.flexH {
-  flex-flow: row wrap; /* -flow -wrap */
-}
-
-.flexV {
-  flex-flow: column wrap;
-}
-
-.grid,
-.gridH, 
-.gridV {
-  display: grid;
-}
-
-.gridH {
-  grid-template-columns: repeat(auto-fit, minmax(var(--widthMin), 1fr));
-}
-
-.gridV {
-  grid-template-rows: repeat(auto-fit, minmax(var(--widthMin), 1fr));
-}
-
-.container {
-  display: block;
-  padding: calc(4 * var(--bWeight));
-  border: 1px dotted var(--cbrd);
-  border-color: inherit;
-  min-width: var(--widthMin);
-  width: 100%;
+.content {
+    margin: 5px;
+    padding: 10px;
+    border: var(--cdsn1) dotted 1px;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-evenly;
+    justify-items: center;
+    align-content: space-evenly;
+    align-items: center;
+    background: var(--cbg75);
 }
 
 .empty {
-  padding: 50px;
-  color: var(--ctxthl);
-  align-content: center;
-  justify-content: center;
+    color: var(--ctxthl);
+    align-content: flex-end;
+    align-items: flex-end;
 }
 
-.hLineTop {
-  width: 100%;
-  border-top: var(--ctxt) solid 1px;
-  border-color: inherit;
-  margin-top: var(--bWeight);
-  padding-top: var(--bWeight);
+.empty:hover {
+    opacity: 0.8;
+    cursor: pointer;
 }
 
 .popup {
-  /*display: none; /*uncomment after development!!!*/
-  position: fixed;
-  top: 0%;
-  left: 0%;
-  width: 100%;
-  height: 100%;
-  background-color: var(--cbgr50);
-  padding: 50px;
-  z-index: 100;
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: min-content;
+    background-color: var(--cbg);
+    z-index: 2;
 }
 
-.inputSearch {
-  color: inherit;
-  font: inherit;
-  height: min-content;
-  border-width: 0;
-  background-color: var(--cbgr);
-}
-
-.item-name {
-  font-size: var(--txtBig); 
-  font-weight: bold; 
-  white-space: nowrap;
-}
-
-.item-type {
-  font-size: var(--txtSmall); 
-  font-style: italic;
-}
-
-.item-talent-name {
-  font-weight: bold;
-}
-
-.item-talent-text {
-  font-size: var(--txtSmall);
-}
-
-.vscroll {
-  max-height: 70%;
-  min-width: min-content;
-  overflow: hidden;
-  overflow-y: scroll;
+.popupInput {
+    color: inherit;
+    font: inherit;
+    border-width: 0 0 1px 0;
+    border-color: var(--cdsn1);
+    background-color: var(--cbg0);
 }
