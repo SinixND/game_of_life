@@ -44,6 +44,7 @@
    */
 
   /* border properties */
+  --bweighttemp: 5px;
   --bwidth: 65%;
   --bheight: 35%;
   --bweight: 3px;
@@ -78,10 +79,9 @@ li {
 }
 
 .panel, .panelContainer {
-  margin: 5px;
-  border: 5px dotted var(--ctemp); /* develop */
+  border: var(--bweighttemp) dotted var(--ctemp); /* develop */
   min-width: var(--minwidth); /* develop */
-  height: 100%;
+  height: calc(100vh - 2 * var(--bweighttemp));
   background-color: var(--cbg);
 }
 
