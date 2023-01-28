@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- DEBUG CONSOLE -><script src="./mobileConsole/hnl.mobileconsole.js"></script> -->
+  <meta charset="UTF-8">
+  <meta name="viewport" container="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="#"><!-- for favicon error -->
+  <title>Div2 build calculator</title>
+  <!-- .css - files -->
+  <link rel="stylesheet" href="./style.css">
+  <!-- .js - files -->
+  <script src="./data/require.js"></script>
+  <script src="./code.js" type="module"></script>
+</head>
+
+
+<body>
+  <div id="frameMain" class="panel">
+    <!-- MENU BAR -->
+    <div id="panel-menubar" class="panelContainer border">
+      <div class="container">
+        container menubar
+      </div>
+    </div>
+
+    <div id="panel-build" class="panel flexH">
+      <div id="panel-equipment" class="panelContainer flexV">
+        <div id="panel-specialisation" class="panel border">
+          <div class="container empty">
+            Choose specialisation
+          </div>
+        </div>
+
+        <!-- WEAPON SELECTION AREA -->
+        <div id="panel-weapons" class="panelContainer flexH">
+          <div id="panel-weapon-1" class="panel border flexH">
+            <div class="container empty main-weapon">
+              Choose weapon
+            </div>
+          </div>
+          <div id="panel-weapon-2" class="panel border flexH">
+            <div class="container empty main-weapon">
+              Choose weapon
+            </div>
+          </div>
+          <div id="panel-sidearm" class="panel border flexH">
+            <div class="container empty sidearm">
+              Choose sidearm
+            </div>
+          </div>
+        </div>
+
+        <!-- ARMOR SELECTION AREA -->
+        <div id="panel-armor" class="panel grid2xX">
+            <div id="panel-mask" class="panel border flexH mask" onclick="window.showPopup('Mask')">
+              <div class="container empty">
+                Choose mask
+              </div>
+            </div>
+            <div id="panel-backpack" class="panel border flexH">
+              <div class="container empty backpack">
+                Choose backpack
+              </div>
+            </div>
+            <div id="panel-chest" class="panel border flexH">
+              <div class="container empty chest">
+                Choose chest
+              </div>
+            </div>
+            <div id="panel-gloves" class="panel border flexH">
+              <div class="container empty gloves">
+                Choose gloves
+              </div>
+            </div>
+            <div id="panel-holster" class="panel border flexH">
+              <div class="container empty holster">
+                Choose holster
+              </div>
+            </div>
+            <div id="panel-kneepads" class="panel border flexH">
+              <div class="container empty kneepads">
+                Choose kneepads
+              </div>
+            </div>
+        </div>
+
+        <!-- SKILL SELECTION AREA -->
+        <div id="panel-skills" class="panelContainer flexH">
+          <div id="panel-skill-1" class="panel border flexH">
+            <div class="container empty skill">
+              Choose skill
+            </div>
+          </div>
+          <div id="panel-skill-2" class="panel border flexH">
+            <div class="container empty skill">
+              Choose skill
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="panel-stats" class="panel flexV">
+        <div id="panel-stats-weapons" class="panelContainer flexH">
+          <div id="panel-stats-weapon-1" class="panel border flexH">
+            <div class="container main-weapon">
+              stats weapon 1
+            </div>
+          </div>
+          <div id="panel-stats-weapon-2" class="panel border flexH">
+            <div class="container main-weapon">
+              stats weapon 2
+            </div>
+          </div>
+          <div id="panel-stats-sidearm" class="panel border flexH">
+            <div class="container sidearm">
+              stats sidearm
+            </div>
+          </div>
+        </div>
+
+        <!-- SKILL STATS AREA -->
+        <div id="panel-stats-skills" class="panelContainer flexH">
+          <div id="panel-stats-skill-1" class="panel border flexH">
+            <div class="container skill">
+              stats skill 1
+            </div>
+          </div>
+          <div id="panel-stats-skill-2" class="panel border flexH">
+            <div class="container skill">
+              stats skill 2
+            </div>
+          </div>
+        </div>
+
+        <!-- TALENT BRAND SET AREA -->
+        <div id="panel-talent-brand-set-boni" class="panel border">
+          <div class="container">
+            talent brand set boni
+          </div>
+        </div>
+
+        <!-- PLAYER STATS AREA -->
+        <div id="panel-stats-player" class="panel border">
+          <div class="container">
+            stats player
+          </div>
+        </div>
+
+        <!-- SET SHD AREA -->
+        <div id="panel-SHD" class="panel border">
+          <div class="container">
+            SHD
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- POPUP MENUS -->
+  <div id="popupFrameMain" class="popup panel" onclick="window.closePopup()">
+    <div id="popupGear" class="panel flexV">
+      <div id="panel-search" class="panel border">
+        <div class="container">
+          <input class="inputSearch" placeholder="Search..." type="text">
+        </div>
+      </div>
+      <div id="list-gear" class="panel flexV vscroll">
+
+        <template id="template-list-gear-item">
+          <div id="panelItem" class="panel border flexH">
+            <div class="container">
+              <div class="item-name flexH"></div>
+
+              <div class="item-type flexH"></div>
+              <!-- 
+              <div class="stats-brand">
+              <div class="hlineTop"></div>
+              <ol>
+              <li><div class="stat-brand-first">first attribute</div></li>
+              <li><div class="stat-brand-second">second attribute</div></li>
+              <li><div class="stat-brand-third">third attribute</div></li>
+              </ol>
+              </div> 
+            -->
+              <div class="item-talent-name flexH"></div>
+              <div class="item-talent-text flexH"></div>
+            </div>
+          </div>
+        </template>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- <div id="popupSkill" class="popup flexH"></div> -->
+  <!-- -->
+    <div id="ref100px"
+    style="position: fixed; background-color: white; top: 10px; left: 10px; height: 100px; width: 100px"></div>
+    <!-- >-->
+</body>
+
+</html>

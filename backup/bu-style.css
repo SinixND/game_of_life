@@ -1,0 +1,226 @@
+:root {
+  /* min panel size */
+  --minwidth: 580px; /*develop */
+
+  /* colors */
+  --ctemp: rgba(255, 215, 000, 0.5);
+  /* background color */
+  --cbg: rgba(0, 0, 0, 1.0);
+  --cbg75: rgba(0, 0, 0, 0.75);
+  --cbg50: rgba(0, 0, 0, 0.5);
+  --cbg0: rgba(0, 0, 0, 0.0);
+  /* text color */
+  --ctxt: rgba(200, 200, 200, 1.0);
+  --ctxthl: rgba(247, 208, 124, 1.0);
+  /* grey colors */
+  --cdsn1: rgba(127, 127, 127, 1);
+  --cdsn2: rgba(127, 127, 127, 0.25);
+  /* rarity colors */
+  --cexotic: rgba(225, 76, 50, 1);
+  --cnamed: rgba(255, 174, 0, 1);
+  --cgearset: rgba(75, 175, 100, 1);
+
+
+  /* accent colors */
+  --car: rgba(200, 100, 100, 0.75);
+  --cag: rgba(100, 200, 100, 0.75);
+  --cab: rgba(100, 100, 200, 0.75);
+  --cay: rgba(200, 200, 100, 0.75);
+  --cat: rgba(100, 200, 200, 0.75);
+  --cap: rgba(200, 100, 200, 0.75);
+  --cav: rgba(200, 100, 200, 0.75);
+
+  /*
+  .offensive {
+  color: #ce474d;
+  }
+  .defensive {
+  color: #82abd6;
+  }
+  .utility {
+  color: #f7d07c;
+  }
+   */
+
+  /* border properties */
+  --bwidth: 65%;
+  --bheight: 35%;
+  --bweight: 3px;
+
+  /* text sizes */
+  --tsmall: 15px;
+  --tbig: 25px;
+}
+
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 5px;
+  background-color: var(--cbg);
+  color: var(--ctxt);
+  font-family: Titillium Web, sans-serif;
+  font-size: 20px;
+}
+
+ol {
+  margin: 0;
+}
+
+li {
+  margin: 0;
+}
+
+.panel, .panelContainer {
+  margin: 5px;
+  border: 1px dotted var(--ctemp); /* develop */
+  min-width: var(--minwidth); /* develop */
+  height: 100%;
+  background-color: var(--cbg);
+}
+
+.panelContainer {
+  justify-content: space-evenly;
+  align-content: space-evenly;
+}
+
+.border {
+  border: var(--cdsn1) dotted 1px;
+  padding: var(--bweight);
+  position: relative;
+}
+
+.border:before,
+.border:after {
+  position: absolute;
+  width: var(--bwidth);
+  height: var(--bheight);
+  border-color: inherit;
+  border-style: solid;
+  content: '';
+}
+
+.border:before {
+  top: 0;
+  left: 0;
+  border-width: var(--bweight) 0 0 var(--bweight);
+}
+
+.border:after {
+  right: 0;
+  bottom: 0;
+  border-width: 0 var(--bweight) var(--bweight) 0;
+}
+
+.border:hover {
+  /* opacity: 0.8; */
+  cursor: pointer;
+}
+
+.flexH, flexV {
+  display: flex;
+  flex: 1 1 auto;
+  flex-wrap: wrap;
+
+  justify-content: space-evenly;
+  justify-items: space-evenly;
+  align-content: space-evenly;
+  align-items: space-evenly;
+
+  flex-direction: column;
+  -ms-flex-direction: column;
+  -webkit-flex-direction: column;
+}
+
+.flexV {
+  flex-direction: column;
+  -ms-flex-direction: column;
+  -webkit-flex-direction: column;
+}
+
+.gridH, gridV, grid2xX {
+  display: grid;
+}
+
+.gridH {
+  grid-template-columns: repeat(auto-fit, minmax(var(--minwidth), 1fr));
+}
+
+.gridV {
+  grid-auto-flow: column;
+  grid-template-rows: repeat(auto-fit, minmax(var(--minwidth), 1fr));
+}
+
+.grid2xX {
+  grid-template-columns: repeat(2, minmax(var(--minwidth), 1fr))
+}
+
+.container {
+  display: block;
+  padding: calc(4 * var(--bweight));
+  border: var(--cdsn1) dotted 1px;
+  border-color: inherit;
+  min-width: var(--minwidth);
+  width: 100%;
+}
+
+.empty {
+  padding: 50px;
+  color: var(--ctxthl);
+  align-content: center;
+  justify-content: center;
+}
+
+.hLineTop {
+  width: 100%;
+  border-top: var(--ctxt) solid 1px;
+  border-color: inherit;
+  margin-top: var(--bweight);
+  padding-top: var(--bweight);
+}
+
+.popup {
+  /*display: none; /*uncomment after development!!!*/
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  background-color: var(--cbg50);
+  padding: 50px;
+  z-index: 100;
+}
+
+.inputSearch {
+  color: inherit;
+  font: inherit;
+  height: min-content;
+  border-width: 0;
+  background-color: var(--cbg);
+}
+
+.item-name {
+  font-size: var(--tbig); 
+  font-weight: bold; 
+  white-space: nowrap;
+}
+
+.item-type {
+  font-size: var(--tsmall); 
+  font-style: italic;
+}
+
+.item-talent-name {
+  font-weight: bold;
+}
+
+.item-talent-text {
+  font-size: var(--tsmall);
+}
+
+.vscroll {
+  max-height: 70%;
+  min-width: min-content;
+  overflow: hidden;
+  overflow-y: scroll;
+}
