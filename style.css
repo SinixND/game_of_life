@@ -3,10 +3,25 @@
   --cTemp: rgba(255, 255, 255, 0.5);
   --widthTemp: 1em;
   --heightTemp: 1em;
+  --bWeightTemp: 5px;
 
   /* min panel size */
   --widthMin: 280px; /*develop */
   --heightMin: 0px;
+
+  /* border properties */
+  --bWidth: 65%;
+  --bHeight: 35%;
+  --bWeight: 3px;
+
+  /* text sizes */
+  --txtSmall: 1em;
+  --txtBig: 3em;
+
+  /* rarity colors */
+  --cExotic: rgba(225, 76, 50, 1);
+  --cNamed: rgba(255, 174, 0, 1);
+  --cGearSet: rgba(75, 175, 100, 1);
 
   /* background color */
   --cbgr: rgba(0, 0, 0, 1.0);
@@ -21,11 +36,6 @@
   /* border colors */
   --cbrd: rgba(255, 255, 255, 1.0);
   --cbrd50: rgba(255, 255, 255, 0.5);
-
-  /* rarity colors */
-  --cExotic: rgba(225, 76, 50, 1);
-  --cNamed: rgba(255, 174, 0, 1);
-  --cGearSet: rgba(75, 175, 100, 1);
 
   /* accent colors */
   --car: rgba(200, 100, 100, 0.75);
@@ -48,15 +58,6 @@
   }
    */
 
-  /* border properties */
-  --bWeightTemp: 5px;
-  --bWidth: 65%;
-  --bHeight: 35%;
-  --bWeight: 3px;
-
-  /* text sizes */
-  --txtSmall: 15px;
-  --txtBig: 25px;
 }
 
 * {
@@ -74,7 +75,7 @@ body {
   background-color: var(--cbgr);
   color: var(--ctxt);
   font-family: Titillium Web, sans-serif;
-  font-size: 20px;
+  font-size: 2em;
 }
 
 .panel,
@@ -84,7 +85,11 @@ body {
 }
 
 #frameMain.panel {
-  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
 
 .panelBorder {
