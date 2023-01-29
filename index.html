@@ -1,49 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- DEBUG CONSOLE -><script src="./mobileConsole/hnl.mobileconsole.js"></script> -->
-    <meta charset="UTF-8">
-    <meta name="viewport" container="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="#"><!-- for favicon error -->
-    <title>Div2 build calculator</title>
-    <!-- .css - files -->
-    <link rel="stylesheet" href="./style.css">
-    <!-- .js - files 
-    -->
-    <script src="./data/require.js"></script>
-    <script src="./code.js" type="module"></script>
-  </head>
 
-  <body>
-    <div id="frameMain" class="panel flexV">
-      <p>frameMain</p>
-      <!-- MENU BAR -->
-      <div id="panel-menubar" class="panel border">
-        <p>panel-menubar</p>
+<head>
+  <!-- DEBUG CONSOLE -><script src="./mobileConsole/hnl.mobileconsole.js"></script> -->
+  <meta charset="UTF-8">
+  <meta name="viewport" container="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="#"><!-- for favicon error -->
+  <title>Div2 build calculator</title>
+  <!-- .css - files -->
+  <link rel="stylesheet" href="./style.css">
+  <!-- .js - files 
+    -->
+  <script src="./data/require.js"></script>
+  <script src="./code.js" type="module"></script>
+</head>
+
+<body>
+  <div id="frameMain" class="panel flexV">
+    <p>frameMain</p>
+    <!-- MENU BAR -->
+    <div id="panel-menubar" class="panel border">
+      <p>panel-menubar</p>
+      <div class="container">
+        container menubar
+      </div>
+    </div>
+    <div id="panel-build" class="panel flexH">
+      <p>panel-build</p>
+      <div id="panel-equipment" class="panel border">
+        <p>panel-equipment</p>
         <div class="container">
-          container menubar
+          container equipment
         </div>
       </div>
-      <div id="panel-build" class="panel flexH">
-        <p>panel-build</p>
-              <div id="panel-equipment" class="panel border">
-          <p>panel-equipment</p>
-          <div class="container">
-            container equipment
-          </div>
-        </div>
-              <div id="panel-stats" class="panel border">
-          <p>panel-stats</p>
-          <div class="container">
-            container stats
-          </div>
+      <div id="panel-stats" class="panel border">
+        <p>panel-stats</p>
+        <div class="container">
+          container stats
         </div>
       </div>
     </div>
-    <!-- <div id="popupSkill" class="hide"></div> -->
-    <!--
+  </div>
+  <!-- <div id="popupSkill" class="hide"></div> -->
+  <!--
       <div id="ref100px"
       style="position: fixed; background-color: white; top: 10px; left: 10px; height: 100px; width: 100px"></div>
     -->
-  </body>
+</body>
+
 </html>
