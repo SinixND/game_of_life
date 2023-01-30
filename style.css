@@ -8,7 +8,7 @@
   /* min panel size */
   --widthMin: 280px;
   --heightMin: var(--txtBase);
-  --widthMax: 560px;
+  --widthMax: 480px;
 
   /* border properties */
   --bWidth: 65%;
