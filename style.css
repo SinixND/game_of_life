@@ -82,7 +82,7 @@ body {
 .panel {
   border: var(--bWeightTemp) dotted var(--cTemp); /* develop */
   background-color: var(--cbgr);
-  min-width: var(--widthTemp);
+  min-width: var(--widthMin);
   min-height: var(--heightTemp);
   padding: var(--bWeightTemp);
 }
