@@ -45,7 +45,6 @@
   --cab: rgba(100, 100, 200, 0.75);
   --cay: rgba(200, 200, 100, 0.75);
   --cat: rgba(100, 200, 200, 0.75);
-  --cap: rgba(200, 100, 200, 0.75);
   --cav: rgba(200, 100, 200, 0.75);
 
   /*
@@ -103,8 +102,8 @@ body {
   position: relative;
 }
 
-.border:before,
-.border:after {
+.panelBorder:before,
+.panelBorder:after {
   position: absolute;
   width: var(--bWidth);
   height: var(--bHeight);
@@ -113,19 +112,19 @@ body {
   content: '';
 }
 
-.border:before {
+.panelBorder:before {
   top: 0;
   left: 0;
   border-width: var(--bWeight) 0 0 var(--bWeight);
 }
 
-.border:after {
+.panelBorder:after {
   right: 0;
   bottom: 0;
   border-width: 0 var(--bWeight) var(--bWeight) 0;
 }
 
-.border:hover {
+.panelBorder:hover {
   /* opacity: 0.8; */
   cursor: pointer;
 }
