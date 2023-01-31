@@ -168,5 +168,5 @@ body {
   min-height: var(--heightMin);
   width: 100%;
   font-size: var(--txtBase);
-  /* develop */ background-color: var(--cag);
+  /* develop */ background-color: var(--cbgr50);
 }

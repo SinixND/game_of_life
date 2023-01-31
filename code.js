@@ -14,12 +14,11 @@ document.addEventListener('DOMContentLoaded', function () {
   document.documentElement.style.setProperty('--tpx', `calc(1px * ${window.devicePixelRatio}`);
   // COLORIZE PANELS
   let panels = document.getElementsByClassName("panel");
-  let colors = ['car', 'cag', 'cab', 'cay', 'cat', 'cap', 'cav'];
+  let colors = ['--car', '--cag', '--cab', '--cay', '--cat', '--cap', '--cav'];
   let ccnt = 0;
 
   for (let i = 0; i < panels.length; i++) {
-    let color = colors[ccnt];
-    panels[i].style.borderColor = `var(--${color})`;
+    panel[i].style.borderColor = colors[ccnt];
     ccnt++;
     if (ccnt > colors.length) {
       ccnt = 0;
