@@ -29,7 +29,7 @@
   --cbgr: rgba(0, 0, 0, 1.0);
   --cbgr75: rgba(0, 0, 0, 0.75);
   --cbgr50: rgba(0, 0, 0, 0.5);
-  --cbgr0: rgba(0, 0, 0, 0.0);
+  --c0: rgba(0, 0, 0, 0.0);
 
   /* text color */
   --ctxt: rgba(200, 200, 200, 1.0);
