@@ -18,8 +18,8 @@ document.addEventListener('DOMContentLoaded', function () {
   let ccnt = 0;
 
   for (let i = 0; i < panels.length; i++) {
-    let clr = colors[ccnt];
-    panel[i].style.borderColor = `var(--${clr})`;
+    let color = colors[ccnt];
+    panels[i].style.borderColor = `var(--${color})`;
     ccnt++;
     if (ccnt > colors.length) {
       ccnt = 0;
