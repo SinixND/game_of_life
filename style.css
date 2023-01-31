@@ -18,7 +18,7 @@
   /* text sizes */
   --txtLabel: calc(.5 * var(--txtSmall));
   --txtSmall: calc(.5 * var(--txtBase));
-  --txtBase: 5vmin;
+  --txtBase: calc(1em + .5vmin);
   --txtBig: calc(2 * var(--txtBase));
 
   /* rarity colors */
