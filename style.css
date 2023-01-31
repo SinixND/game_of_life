@@ -130,43 +130,67 @@ body {
   cursor: pointer;
 }
 
-/* flex container */
+/* flex container:
+ *
+ * display: flex
+ * flex-direction
+ * flex-wrap
+ * flex-flow
+ * justify-content
+ * align-items
+ * gap
+ * row-gap
+ * column-gap
+*/
 .flexC,
-.flexC-H,
-.flexC-V {
+.flexCH,
+.flexCV {
   display: flex;
   min-width: var(--widthMin);
 }
 
-.flexC-H {
+.flexCH {
   flex-flow: row wrap; /* -flow -wrap */
 }
 
-.flexC-V {
+.flexCV {
   flex-flow: column wrap;
 }
 
-/* flex item */
+/* flex item:
+ *
+ * order
+ * flex-grow
+ * flex-shrink
+ * flex-basis
+ * justify-self
+ * align-self
+*/
 .flexI {
   flex: 1 1 auto;
 }
 
-/* flex container */
+/* grid container:
+ *
+ * grid-template-columns
+ * grid-template-rows
+ * grid-template-areas
+*/
 .gridC,
-.gridC-H, 
-.gridC-V {
+.gridCH, 
+.gridCV {
   display: grid;
 }
 
-.gridC-H {
+.gridCH {
   grid-template-columns: repeat(auto-fit, minmax(var(--widthMin), 1fr));
 }
 
-.gridC-V {
+.gridCV {
   grid-template-rows: repeat(auto-fit, minmax(var(--widthMin), 1fr));
 }
 
-/* flex item */
+/* grid item */
 .gridI {
   /*tbd*/
 }
