@@ -3,7 +3,7 @@
   --cTemp: rgba(255, 255, 255, 0.5);
   --widthTemp: 1em;
   --heightTemp: 1em;
-  --bWeightTemp: 5px;
+  --bWeightTemp: 2px;
 
   /* min panel size */
   --widthMin: calc(280 * var(--tpx));
