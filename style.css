@@ -131,16 +131,16 @@ body {
 }
 
 /* flex container:
- *
- * display: flex
- * flex-direction
- * flex-wrap
- * flex-flow
- * justify-content
- * align-items
- * gap
- * row-gap
- * column-gap
+display
+flex-direction
+flex-wrap
+flex-flow :: (direction wrap)
+justify-content
+align-items
+align-content (lines / "rows")
+gap
+row-gap
+column-gap
 */
 .flexC,
 .flexCH,
@@ -158,23 +158,29 @@ body {
 }
 
 /* flex item:
- *
- * order
- * flex-grow
- * flex-shrink
- * flex-basis
- * justify-self
- * align-self
+order
+flex-grow
+flex-shrink
+flex-basis
+flex :: (grow shrink basis)
+align-self
 */
 .flexI {
   flex: 1 1 auto;
 }
 
 /* grid container:
- *
- * grid-template-columns
- * grid-template-rows
- * grid-template-areas
+display
+grid-template-(columns|rows|areas)
+grid-template :: (rows / columns)
+(column|row)-gap
+grid-(column|row)-gap
+gap (=grid-gap) :: (row-gap column-gap)
+(justify|align)-(items|content)
+place-(items|content) :: (align justify)
+grid-auto-(columns|rows)
+grid-auto-flow
+grid :: (template-rows template-columns template-areas auto-rows auto-columns auto-flow)
 */
 .gridC,
 .gridCH, 
@@ -190,9 +196,16 @@ body {
   grid-template-rows: repeat(auto-fit, minmax(var(--widthMin), 1fr));
 }
 
-/* grid item */
+/* grid item 
+grid-(column|row)-(start|end)
+grid-(column|row)
+grid-area
+justify-self
+align-self
+place-self :: (align justify)
+*/
 .gridI {
-  /*tbd*/
+  place-self: stretch;
 }
 
 .container {
