@@ -79,7 +79,8 @@ body {
   font-size: var(--txtLabel);
 }
 
-.panel {
+.panel,
+.panelBorder {
   border: var(--bWeightTemp) dotted var(--cTemp); /* develop */
   background-color: var(--cbgr);
   min-width: var(--widthMin);
@@ -96,14 +97,14 @@ body {
   overflow: auto;
 }
 
-.border {
+.panelBorder {
   padding: var(--bWeight);
   border: 1px dotted var(--cbrd);
   position: relative;
 }
 
-.border:before,
-.border:after {
+.panelBorder:before,
+.panelBorder:after {
   position: absolute;
   width: var(--bWidth);
   height: var(--bHeight);
@@ -112,51 +113,62 @@ body {
   content: '';
 }
 
-.border:before {
+.panelBorder:before {
   top: 0;
   left: 0;
   border-width: var(--bWeight) 0 0 var(--bWeight);
 }
 
-.border:after {
+.panelBorder:after {
   right: 0;
   bottom: 0;
   border-width: 0 var(--bWeight) var(--bWeight) 0;
 }
 
-.border:hover {
+.panelBorder:hover {
   /* opacity: 0.8; */
   cursor: pointer;
 }
 
-.flex,
-.flexH,
-.flexV {
+/* flex container */
+.flexC,
+.flexC-H,
+.flexC-V {
   display: flex;
   min-width: var(--widthMin);
-  flex: 1 1 auto;
 }
 
-.flexH {
+.flexC-H {
   flex-flow: row wrap; /* -flow -wrap */
 }
 
-.flexV {
+.flexC-V {
   flex-flow: column wrap;
 }
 
-.grid,
-.gridH, 
-.gridV {
+/* flex item */
+.flexI {
+  flex: 1 1 auto;
+}
+
+/* flex container */
+.gridC,
+.gridC-H, 
+.gridC-V {
   display: grid;
 }
 
-.gridH {
+.gridC-H {
   grid-template-columns: repeat(auto-fit, minmax(var(--widthMin), 1fr));
 }
 
-.gridV {
+.gridC-V {
   grid-template-rows: repeat(auto-fit, minmax(var(--widthMin), 1fr));
+}
+
+/* flex item */
+.gridI {
+  /*tbd*/
 }
 
 .container {
