@@ -134,6 +134,7 @@ body {
 .flexH,
 .flexV {
   display: flex;
+  min-width: var(--widthMin);
   flex: 1 1 auto;
 }
 
@@ -166,7 +167,7 @@ body {
   border-color: inherit;
   min-width: var(--widthMin);
   min-height: var(--heightMin);
-  max-width: var(--widthMax);
   width: 100%;
   font-size: var(--txtBase);
+  /* develop */ background-color: var(--cag);
 }
