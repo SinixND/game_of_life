@@ -6,7 +6,7 @@
   --bWeightTemp: 5px;
 
   /* min panel size */
-  --widthMin: 100em;
+  --widthMin: calc(100 * var(--tpx));
   --heightMin: var(--txtBase);
 
   /* border properties */

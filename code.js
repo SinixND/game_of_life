@@ -8,7 +8,10 @@ document.addEventListener('DOMContentLoaded', function () {
   //============================
   // DEBUG
   //console.log(mask.Vile.talentName);
-  alert( 'Res: (W)' + screen.width + 'x(H)' + screen.height + '  ratio: ' + window.devicePixelRatio); /* Lap: 1280x720; Mob: 432x896 */
+  alert( 'Res: (W)' + screen.width + 'x(H)' + screen.height + '  ratio: ' + window.devicePixelRatio) + '\n true pixel: var(--tpx)'; /* Lap: 1280x720; Mob: 432x896 */
+
+  // ADD ROOT VARIABLE
+  document.documentElement.style.setProperty('--tpx', `calc(1px * ${window.devicePixelRatio}`);
 
   //============================
   // SET BACKGROUND ICONS
