@@ -103,8 +103,8 @@ body {
   position: relative;
 }
 
-.panelBorder:before,
-.panelBorder:after {
+.border:before,
+.border:after {
   position: absolute;
   width: var(--bWidth);
   height: var(--bHeight);
@@ -113,19 +113,19 @@ body {
   content: '';
 }
 
-.panelBorder:before {
+.border:before {
   top: 0;
   left: 0;
   border-width: var(--bWeight) 0 0 var(--bWeight);
 }
 
-.panelBorder:after {
+.border:after {
   right: 0;
   bottom: 0;
   border-width: 0 var(--bWeight) var(--bWeight) 0;
 }
 
-.panelBorder:hover {
+.border:hover {
   /* opacity: 0.8; */
   cursor: pointer;
 }
