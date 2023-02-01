@@ -87,23 +87,14 @@ body {
   padding: var(--bWeightTemp);
 }
 
-#frameMain {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  overflow: auto;
-}
-
 .panelBorder {
   padding: var(--bWeight);
   border: 1px dotted var(--cbrd);
   position: relative;
 }
 
-.panelBorder:before,
-.panelBorder:after {
+.panelBorder::before,
+.panelBorder::after {
   position: absolute;
   width: var(--bWidth);
   height: var(--bHeight);
@@ -112,19 +103,19 @@ body {
   content: '';
 }
 
-.panelBorder:before {
+.panelBorder::before {
   top: 0;
   left: 0;
   border-width: var(--bWeight) 0 0 var(--bWeight);
 }
 
-.panelBorder:after {
+.panelBorder::after {
   right: 0;
   bottom: 0;
   border-width: 0 var(--bWeight) var(--bWeight) 0;
 }
 
-.panelBorder:hover {
+.panelBorder::hover {
   /* opacity: 0.8; */
   cursor: pointer;
 }
@@ -182,16 +173,16 @@ grid-auto-flow
 grid :: (template-rows template-columns template-areas auto-rows auto-columns auto-flow)
 */
 .gridC,
-.gridCH, 
-.gridCV {
+.gridCC, 
+.gridCR {
   display: grid;
 }
 
-.gridCH {
+.gridCC {
   grid-template-columns: repeat(auto-fit, minmax(var(--widthMin), 1fr));
 }
 
-.gridCV {
+.gridCR {
   grid-template-rows: repeat(auto-fit, minmax(var(--widthMin), 1fr));
 }
 
@@ -217,4 +208,13 @@ place-self :: (align justify)
   width: 100%;
   font-size: var(--txtBase);
   /* develop */ background-color: var(--cbgr50);
+}
+
+#frameMain {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: auto;
 }
