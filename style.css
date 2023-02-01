@@ -173,17 +173,12 @@ grid-auto-flow
 grid :: (template-rows template-columns template-areas auto-rows auto-columns auto-flow)
 */
 .gridC,
-.gridCC, 
-.gridCR {
+.gridC2CxR {
   display: grid;
 }
 
-.gridCC {
+.gridC2CXxR {
   grid-template-columns: repeat(auto-fit, minmax(var(--widthMin), 1fr));
-}
-
-.gridCR {
-  grid-template-rows: repeat(auto-fit, minmax(var(--widthMin), 1fr));
 }
 
 /* grid item 
