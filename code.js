@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
   let ccnt = 0;
 
   for (let i = 0; i < panels.length; i++) {
-    panels[i].style.borderColor = `var(--${colors[ccnt]}`;
+    panels[i].style.borderColor = `var(--${colors[ccnt]})`;
     console.log(colors[ccnt])
     ccnt++;
     if (ccnt >= colors.length) {
