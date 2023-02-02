@@ -141,7 +141,7 @@ column-gap
 
 .flexCH,
 .flexCV {
-  justify-content: stretch;
+  justify-content: space-between;
 }
 .flexCH {
   flex-flow: row wrap;
@@ -177,12 +177,12 @@ grid-auto-flow
 grid :: (template-rows template-columns template-areas auto-rows auto-columns auto-flow)
 */
 .gridC,
-.gridC2CxR {
+.gridCC {
   display: grid;
 }
 
-.gridC2CxR {
-  grid-template-columns: repeat(2, minmax(var(--widthMin), 1fr));
+.gridCC {
+  grid-template-columns: repeat(auto-fit, minmax(var(--widthMin), 1fr));
 }
 
 /* grid item 
