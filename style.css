@@ -139,8 +139,12 @@ column-gap
   min-width: var(--widthMin);
 }
 
+.flexCH,
+.flexCV {
+  justify-content: stretch;
+}
 .flexCH {
-  flex-flow: row wrap; /* -flow -wrap */
+  flex-flow: row wrap;
 }
 
 .flexCV {
@@ -177,8 +181,8 @@ grid :: (template-rows template-columns template-areas auto-rows auto-columns au
   display: grid;
 }
 
-.gridC2CXxR {
-  grid-template-columns: repeat(auto-fit, minmax(var(--widthMin), 1fr));
+.gridC2CxR {
+  grid-template-columns: repeat(2, minmax(var(--widthMin), 1fr));
 }
 
 /* grid item 
