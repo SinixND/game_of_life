@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
   alert( 'Res: (W)' + screen.width + 'x(H)' + screen.height + '  ratio: ' + window.devicePixelRatio); /* Lap: 1280x720; Mob: 432x896 */
 
   // ADD ROOT VARIABLE
-  document.documentElement.style.setProperty('--tpx', `calc(1px * ${window.devicePixelRatio}`);
+  document.documentElement.style.setProperty('--tpx', `calc(1px * ${window.devicePixelRatio})`);
   // COLORIZE PANELS
   let panels = document.getElementsByClassName("panel");
   let colors = ['car', 'cag', 'cab', 'cay', 'cat', 'cav'];
