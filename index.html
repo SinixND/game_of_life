@@ -4,9 +4,7 @@
 <head>
   <!-- DEBUG CONSOLE -><script src="./mobileConsole/hnl.mobileconsole.js"></script> -->
   <meta charset="UTF-8">
-  <!--
   <meta name="viewport" container="width=device-width, initial-scale=1.0">
-  -->
   <link rel="shortcut icon" href="#"><!-- for favicon error -->
   <title>Div2 build calculator</title>
   <!-- .css - files -->
@@ -36,17 +34,17 @@
 
         <!-- WEAPON SELECTION AREA -->
         <div id="panel-weapons" class="panel flexI flexCH">
-          <div id="panel-weapon-1" class="panelBorder flexI">
+          <div id="panel-weapon-1" class="panelBorder flexI main-weapon">
             <div class="container">
               Choose weapon
             </div>
           </div>
-          <div id="panel-weapon-2" class="panelBorder flexI">
+          <div id="panel-weapon-2" class="panelBorder flexI main-weapon">
             <div class="container">
               Choose weapon
             </div>
           </div>
-          <div id="panel-sidearm" class="panelBorder flexI">
+          <div id="panel-sidearm" class="panelBorder flexI sidearm">
             <div class="container">
               Choose sidearm
             </div>
@@ -54,47 +52,53 @@
         </div>
 
         <!-- ARMOR SELECTION AREA -->
-        <div id="panel-armor" class="panel flexI gridCC">
-            <div id="panel-mask" class="panelBorder gridI" onclick="window.showPopup('Mask')">
+        <div id="panel-armor" class="panel flexI">
+          <div class="panel flexCH">
+            <div id="panel-mask" class="panelBorder flexI mask" onclick="window.showPopup('Mask')">
               <div class="container">
                 Choose mask
               </div>
             </div>
-            <div id="panel-backpack" class="panelBorder gridI">
+            <div id="panel-backpack" class="panelBorder flexI backpack">
               <div class="container">
                 Choose backpack
               </div>
             </div>
-            <div id="panel-chest" class="panelBorder gridI">
+          </div>
+          <div class="panel flexCH">
+            <div id="panel-chest" class="panelBorder flexI chest">
               <div class="container">
                 Choose chest
               </div>
             </div>
-            <div id="panel-gloves" class="panelBorder gridI">
+            <div id="panel-gloves" class="panelBorder flexI gloves">
               <div class="container">
                 Choose gloves
               </div>
             </div>
-            <div id="panel-holster" class="panelBorder gridI">
+          </div>
+          <div class="panel flexCH">
+            <div id="panel-holster" class="panelBorder flexI holster">
               <div class="container">
                 Choose holster
               </div>
             </div>
-            <div id="panel-kneepads" class="panelBorder gridI">
+            <div id="panel-kneepads" class="panelBorder flexI kneepads">
               <div class="container">
                 Choose kneepads
               </div>
             </div>
+          </div>
         </div>
 
         <!-- SKILL SELECTION AREA -->
         <div id="panel-skills" class="panel flexI flexCH">
-          <div id="panel-skill-1" class="panelBorder flexI">
+          <div id="panel-skill-1" class="panelBorder flexI skill">
             <div class="container">
               Choose skill
             </div>
           </div>
-          <div id="panel-skill-2" class="panelBorder flexI">
+          <div id="panel-skill-2" class="panelBorder flexI skill">
             <div class="container">
               Choose skill
             </div>
@@ -104,17 +108,17 @@
 
       <div id="panel-stats" class="panel flexI flexCV">
         <div id="panel-stats-weapons" class="panel flexI flexCH">
-          <div id="panel-stats-weapon-1" class="panelBorder flexI">
+          <div id="panel-stats-weapon-1" class="panelBorder flexI main-weapon">
             <div class="container">
               stats weapon 1
             </div>
           </div>
-          <div id="panel-stats-weapon-2" class="panelBorder flexI">
+          <div id="panel-stats-weapon-2" class="panelBorder flexI main-weapon">
             <div class="container">
               stats weapon 2
             </div>
           </div>
-          <div id="panel-stats-sidearm" class="panelBorder flexI">
+          <div id="panel-stats-sidearm" class="panelBorder flexI sidearm">
             <div class="container">
               stats sidearm
             </div>
@@ -123,12 +127,12 @@
 
         <!-- SKILL STATS AREA -->
         <div id="panel-stats-skills" class="panel flexI flexCH">
-          <div id="panel-stats-skill-1" class="panelBorder flexI">
+          <div id="panel-stats-skill-1" class="panelBorder flexI skill">
             <div class="container">
               stats skill 1
             </div>
           </div>
-          <div id="panel-stats-skill-2" class="panelBorder flexI">
+          <div id="panel-stats-skill-2" class="panelBorder flexI skill">
             <div class="container">
               stats skill 2
             </div>
@@ -160,33 +164,33 @@
   </div>
 
   <!-- POPUP MENUS -->
-  <div id="popupFrameMain" class="hide" onclick="window.closePopup()">
-    <div id="popupGear" class="hide">
-      <div id="panel-search" class="hide">
-        <div class="hide">
-          <input class="hide" placeholder="Search..." type="text">
+  <div id="popupFrameMain" class="panel" onclick="window.closePopup()">
+    <div id="popupGear" class="panel">
+      <div id="panel-search" class="panelBorder">
+        <div class="container">
+          <input class="inputSearch" placeholder="Search..." type="text">
         </div>
       </div>
-      <div id="list-gear" class="hide">
+      <div id="list-gear" class="panel flexCV vscroll">
 
         <template id="template-list-gear-item">
-          <div id="panelItem" class="hide">
-            <div class="hide">
-              <div class="hide"></div>
+          <div id="panelItem" class="panel border flexI flexCV">
+            <div class="container">
+              <div class="item-name flexI"></div>
 
-              <div class="hide"></div>
+              <div class="item-type flexI"></div>
               <!-- 
-              <div class="hide">
-              <div class="hide"></div>
+              <div class="stats-brand">
+              <div class="hlineTop"></div>
               <ol>
-              <li><div class="hide">first attribute</div></li>
-              <li><div class="hide">second attribute</div></li>
-              <li><div class="hide">third attribute</div></li>
+              <li><div class="stat-brand-first">first attribute</div></li>
+              <li><div class="stat-brand-second">second attribute</div></li>
+              <li><div class="stat-brand-third">third attribute</div></li>
               </ol>
               </div> 
             -->
-              <div class="hide"></div>
-              <div class="hide"></div>
+              <div class="item-talent-name flexH"></div>
+              <div class="item-talent-text flexH"></div>
             </div>
           </div>
         </template>
@@ -198,8 +202,9 @@
   <!-- <div id="popupSkill" class="hide"></div> -->
   <!-- 
     -->
-    <div id="refWidthMin"
-    style="position: fixed; background-color: var(--c0); border: var(--bWeightTemp) solid red; top: 10px; left: 10px; height: 10px; width: var(--widthMin)"></div>
+  <div id="refWidthMin"
+    style="position: fixed; background-color: var(--c0); border: var(--bWeightTemp) solid red; top: 10px; left: 10px; height: 10px; width: var(--widthMin)">
+  </div>
   <!-- 
     -->
 </body>

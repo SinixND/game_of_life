@@ -31,10 +31,11 @@ document.addEventListener('DOMContentLoaded', function () {
   let icons = ["main-weapon", "sidearm", "mask", "backpack", "chest", "gloves", "holster", "kneepads"];
   for (let i = 0; i < icons.length; i++) {
     let file = `./icons/${icons[i]}.png`;
-    let value = `linear-gradient(var(--cbg75), var(--cbg75)), url(${file}) center/contain no-repeat`;
+    let value = `linear-gradient(var(--cbgr75), var(--cbgr75)), url(${file}) center/contain no-repeat`;
     let element = document.getElementsByClassName(`${icons[i]}`);
     for (let j = 0; j < element.length; j++) {
       element[j].style.background = value;
+      console.log(element[j]);
     }
   };
 
@@ -100,7 +101,6 @@ document.addEventListener('DOMContentLoaded', function () {
 // POPUP FUNCTIONS
 window.showPopup = function showPopup(Class) {
   document.getElementById('popupFrameMain').style.display = "inherit";
-  document.body.style.overflow = "hidden";
 }
 
 window.closePopup = function closePopup() {
