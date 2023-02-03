@@ -160,7 +160,7 @@ flex :: (grow shrink basis)
 align-self
 */
 .flexI {
-  flex: 1 1 auto;
+  flex: auto;
 }
 
 /* grid container:
