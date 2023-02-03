@@ -220,8 +220,16 @@ place-self :: (align justify)
   right: 0;
   bottom: 0;
   left: 0;
+  justify-content: center;
 }
 
+.popup {
+  min-width: var(--widthMin);
+  max-width: 66%;
+  height: 100%;
+}
+
+/*
 .inputSearch {
   color: inherit;
   font: inherit;

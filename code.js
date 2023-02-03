@@ -19,7 +19,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   for (let i = 0; i < panels.length; i++) {
     panels[i].style.borderColor = `var(--${colors[ccnt]})`;
-    console.log(colors[ccnt])
     ccnt++;
     if (ccnt >= colors.length) {
       ccnt = 0;
@@ -32,10 +31,9 @@ document.addEventListener('DOMContentLoaded', function () {
   for (let i = 0; i < icons.length; i++) {
     let file = `./icons/${icons[i]}.png`;
     let value = `linear-gradient(var(--cbgr75), var(--cbgr75)), url(${file}) center/contain no-repeat`;
-    let element = document.getElementsByClassName(`${icons[i]}`);
+    let element = document.getElementsByClassName(`js_${icons[i]}`);
     for (let j = 0; j < element.length; j++) {
       element[j].style.background = value;
-      console.log(element[j]);
     }
   };
 
@@ -100,10 +98,9 @@ document.addEventListener('DOMContentLoaded', function () {
 //==============================
 // POPUP FUNCTIONS
 window.showPopup = function showPopup(Class) {
-  document.getElementById('popupFrameMain').style.display = "inherit";
+  document.getElementById('popupFrameMain').style.display = "flex";
 }
 
 window.closePopup = function closePopup() {
   document.getElementById(`popupFrameMain`).style.display = "none";
-  document.body.style.overflow = "";
 }
