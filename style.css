@@ -7,12 +7,12 @@
 
   /* min panel size */
   --widthMin: calc(280 * var(--tpx));
-  --heightMin: calc(5 * var(--txtBase));
+  --heightMin: var(--txtBase);
 
   /* border properties */
   --bWidth: 65%;
   --bHeight: 35%;
-  --bWeight: 3px;
+  --bWeight: calc(3 * var(--tpx));
 
   /* text sizes */
   --txtLabel: calc(.75 * var(--txtSmall));
@@ -94,6 +94,7 @@ body {
   margin: calc(2 * var(--bWeight));
   border: 1px dotted var(--cbrd);
   position: relative;
+  min-height: 15em;
 }
 
 .panelBorder::before,
