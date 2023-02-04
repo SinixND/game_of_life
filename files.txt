@@ -1,0 +1,132 @@
+5.11_Tactical.png
+Aces_&_Eights.png
+Airaldi_Holdings.png
+Alps_Summit_Armaments.png
+backpack.png
+Badger_Tuff.png
+Belstone_Armory.png
+Brazos_de_Arcabuz.png
+Ceska_Vyroba_s.r.o..png
+chest.png
+China_Light_Industries_Corporation.png
+defense1.png
+defense2.png
+defense3_1.png
+defense3_2.png
+Douglas_&_Harding.png
+Eclipse_Protocol.png
+Empress_International.png
+Exotic.png
+Fenris_Group_AB.png
+Foundry_Bulwark.png
+Future_Initiative.png
+Gila_Guard.png
+gloves.png
+Golan_Gear_Ltd.png
+Grupo_Sombra_S.A..png
+Hana-U_Corporation,.png
+Hard_Wired.png
+Heartbreaker.png
+holster.png
+Hunters_Fury.png
+Improvised.png
+kneepads.png
+main-weapon.png
+mask.png
+Murakami_Industries.png
+named.png
+Negotiators_Dilemma.png
+offense1.png
+offense2.png
+offense3_1.png
+offense3_2.png
+Ongoing_Directive.png
+Overlord_Armaments.png
+Petrov_Defense_Group.png
+Providence_Defense.png
+Richter_&_Kaiser_GmbH.png
+Rigger.png
+shd_big.png
+sidearm.png
+Sokolov_Concern.png
+Strikers_Battlegear.png
+System_Corruption.png
+tech1.png
+tech2.png
+tech3_1.png
+tech3_2.png
+Tip_of_the_Spear.png
+True_Patriot.png
+Umbra_Initiative.png
+Uzina_Getica.png
+Walker_Harris_&_Co.png
+Wyvern_Wear.png
+Yaahl_Gear.png
+
+  let icons = [
+    "5.11_Tactical",
+    "Aces_&_Eights",
+    "Airaldi_Holdings",
+    "Alps_Summit_Armaments",
+    "backpack",
+    "Badger_Tuff",
+    "Belstone_Armory",
+    "Brazos_de_Arcabuz",
+    "Ceska_Vyroba_s.r.o.",
+    "chest",
+    "China_Light_Industries_Corporation",
+    "defense1",
+    "defense2",
+    "defense3_1",
+    "defense3_2",
+    "Douglas_&_Harding",
+    "Eclipse_Protocol",
+    "Empress_International",
+    "Exotic",
+    "Fenris_Group_AB",
+    "Foundry_Bulwark",
+    "Future_Initiative",
+    "Gila_Guard",
+    "gloves",
+    "Golan_Gear_Ltd",
+    "Grupo_Sombra_S.A.",
+    "Hana-U_Corporation,",
+    "Hard_Wired",
+    "Heartbreaker",
+    "holster",
+    "Hunters_Fury",
+    "Improvised",
+    "kneepads",
+    "main-weapon",
+    "mask",
+    "Murakami_Industries",
+    "named",
+    "Negotiators_Dilemma",
+    "offense1",
+    "offense2",
+    "offense3_1",
+    "offense3_2",
+    "Ongoing_Directive",
+    "Overlord_Armaments",
+    "Petrov_Defense_Group",
+    "Providence_Defense",
+    "Richter_&_Kaiser_GmbH",
+    "Rigger",
+    "shd_big",
+    "sidearm",
+    "Sokolov_Concern",
+    "Strikers_Battlegear",
+    "System_Corruption",
+    "tech1",
+    "tech2",
+    "tech3_1",
+    "tech3_2",
+    "Tip_of_the_Spear",
+    "True_Patriot",
+    "Umbra_Initiative",
+    "Uzina_Getica",
+    "Walker_Harris_&_Co",
+    "Wyvern_Wear",
+    "Yaahl_Gear",
+  ];
+  */

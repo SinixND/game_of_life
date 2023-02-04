@@ -12,6 +12,7 @@
   <!-- .js - files -->
   <script src="./data/require.js"></script>
   <script src="./code.js" type="module"></script>
+  <script src="./src/swipe_refresh.js" type="module"></script>
 </head>
 
 
@@ -34,18 +35,18 @@
 
         <!-- WEAPON SELECTION AREA -->
         <div id="panel-weapons" class="panel flexI flexCH">
-          <div id="panel-weapon-1" class="panelBorder flexI js_main-weapon">
-            <div class="container">
+          <div id="panel-main-weapon-1" class="panelBorder flexI">
+            <div class="container empty">
               Choose weapon
             </div>
           </div>
-          <div id="panel-weapon-2" class="panelBorder flexI js_main-weapon">
-            <div class="container">
+          <div id="panel-main-weapon-2" class="panelBorder flexI">
+            <div class="container empty">
               Choose weapon
             </div>
           </div>
-          <div id="panel-sidearm" class="panelBorder flexI js_sidearm">
-            <div class="container">
+          <div id="panel-sidearm" class="panelBorder flexI">
+            <div class="container empty">
               Choose sidearm
             </div>
           </div>
@@ -54,37 +55,37 @@
         <!-- ARMOR SELECTION AREA -->
         <div id="panel-armor" class="panel flexI">
           <div class="panel flexCH">
-            <div id="panel-mask" class="panelBorder flexI js_mask" onclick="window.showPopup('Mask')">
-              <div class="container">
+            <div id="panel-mask" class="panelBorder flexI" onclick="window.showPopup('Mask')">
+              <div class="container empty">
                 Choose mask
               </div>
             </div>
-            <div id="panel-backpack" class="panelBorder flexI js_backpack">
-              <div class="container">
+            <div id="panel-backpack" class="panelBorder flexI">
+              <div class="container empty">
                 Choose backpack
               </div>
             </div>
           </div>
           <div class="panel flexCH">
-            <div id="panel-chest" class="panelBorder flexI js_chest">
-              <div class="container">
+            <div id="panel-chest" class="panelBorder flexI">
+              <div class="container empty">
                 Choose chest
               </div>
             </div>
-            <div id="panel-gloves" class="panelBorder flexI js_gloves">
-              <div class="container">
+            <div id="panel-gloves" class="panelBorder flexI">
+              <div class="container empty">
                 Choose gloves
               </div>
             </div>
           </div>
           <div class="panel flexCH">
-            <div id="panel-holster" class="panelBorder flexI js_holster">
-              <div class="container">
+            <div id="panel-holster" class="panelBorder flexI">
+              <div class="container empty">
                 Choose holster
               </div>
             </div>
-            <div id="panel-kneepads" class="panelBorder flexI js_kneepads">
-              <div class="container">
+            <div id="panel-kneepads" class="panelBorder flexI">
+              <div class="container empty">
                 Choose kneepads
               </div>
             </div>
@@ -93,13 +94,13 @@
 
         <!-- SKILL SELECTION AREA -->
         <div id="panel-skills" class="panel flexI flexCH">
-          <div id="panel-skill-1" class="panelBorder flexI js_skill">
-            <div class="container">
+          <div id="panel-skill-1" class="panelBorder flexI">
+            <div class="container empty">
               Choose skill
             </div>
           </div>
-          <div id="panel-skill-2" class="panelBorder flexI js_skill">
-            <div class="container">
+          <div id="panel-skill-2" class="panelBorder flexI">
+            <div class="container empty">
               Choose skill
             </div>
           </div>
@@ -108,12 +109,12 @@
 
       <div id="panel-stats" class="panel flexI flexCV">
         <div id="panel-stats-weapons" class="panel flexI flexCH">
-          <div id="panel-stats-weapon-1" class="panelBorder flexI js_main-weapon">
+          <div id="panel-stats-main-weapon-1" class="panelBorder flexI">
             <div class="container">
               stats weapon 1
             </div>
           </div>
-          <div id="panel-stats-weapon-2" class="panelBorder flexI js_main-weapon">
+          <div id="panel-stats-main-weapon-2" class="panelBorder flexI">
             <div class="container">
               stats weapon 2
             </div>
@@ -139,10 +140,10 @@
           </div>
         </div>
 
-        <!-- TALENT BRAND SET AREA -->
-        <div id="panel-talent-brand-set-boni" class="panel flexI">
+        <!-- TALENT / SET AREA -->
+        <div id="panel-talent-set-boni" class="panel flexI">
           <div class="container">
-            talent brand set boni
+            talent / set boni
           </div>
         </div>
 
@@ -165,32 +166,37 @@
 
   <!-- POPUP MENU -->
   <div id="popupFrameMain" class="panel flexC" onclick="window.closePopup()">
-    <div id="popupGear" class="panel popup" onclick="window.event.stopPropagation()">
+    <div id="popupGear" class="panel popup flexCV" onclick="window.event.stopPropagation()">
       <div id="panel-search" class="panelBorder">
         <div class="container">
           <input class="inputSearch" placeholder="Search..." type="text">
         </div>
       </div>
-      <div id="list-gear" class="panelBorder gridCR">
+      <div id="list-gear" class="panel gridCC">
 
         <template id="template-list-gear-item">
           <div id="panelItem" class="panelBorder gridI">
-            <div class="container flexCV">
-              <div class="item-name flexI"></div>
+            <div class="container">
+              <div class="item-name"></div>
 
-              <div class="item-type flexI"></div>
-              <!-- 
-              <div class="stats-brand">
-              <div class="hlineTop"></div>
-              <ol>
-              <li><div class="stat-brand-first">first attribute</div></li>
-              <li><div class="stat-brand-second">second attribute</div></li>
-              <li><div class="stat-brand-third">third attribute</div></li>
-              </ol>
-              </div> 
-            -->
-              <div class="item-talent-name flexI"></div>
-              <div class="item-talent-text flexI"></div>
+              <div class="item-type"></div>
+
+              <div class="stats-set">
+                <ol>
+                  <li>
+                    <div class="set-attribute1">first attribute</div>
+                  </li>
+                  <li>
+                    <div class="set-attribute2">second attribute</div>
+                  </li>
+                  <li>
+                    <div class="set-attribute3">third attribute</div>
+                  </li>
+                </ol>
+              </div>
+
+              <div class="item-talent-name"></div>
+              <div class="item-talent-text"></div>
             </div>
           </div>
         </template>
