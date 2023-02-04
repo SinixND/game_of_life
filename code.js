@@ -99,8 +99,10 @@ document.addEventListener('DOMContentLoaded', function () {
 // POPUP FUNCTIONS
 window.showPopup = function showPopup(Class) {
   document.getElementById('popupFrameMain').style.display = "flex";
+  //document.body.style.overflow = "hidden";
 }
 
 window.closePopup = function closePopup() {
   document.getElementById(`popupFrameMain`).style.display = "none";
+  //document.body.style.overflow = "";
 }

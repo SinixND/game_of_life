@@ -182,6 +182,10 @@ grid :: (template-rows template-columns template-areas auto-rows auto-columns au
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.gridCR {
+  grid-template-rows: repeat(auto-fit, minmax(var(--widthMin), 1fr))
+}
+
 /* grid item 
 grid-(column|row)-(start|end)
 grid-(column|row)
@@ -231,7 +235,6 @@ place-self :: (align justify)
   height: 90%;
 }
 
-/*
 .inputSearch {
   color: inherit;
   font: inherit;
@@ -240,6 +243,7 @@ place-self :: (align justify)
   background-color: var(--cbg);
 }
 
+/*
 .item-name {
   font-size: var(--tbig); 
   font-weight: bold; 

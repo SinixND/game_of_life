@@ -163,22 +163,22 @@
     </div>
   </div>
 
-  <!-- POPUP MENU S-->
+  <!-- POPUP MENU -->
   <div id="popupFrameMain" class="panel flexC" onclick="window.closePopup()">
     <div id="popupGear" class="panel popup" onclick="window.event.stopPropagation()">
-      <div id="panel-search" class="hide">
+      <div id="panel-search" class="panelBorder">
         <div class="container">
-          <input class="hide" placeholder="Search..." type="text">
+          <input class="inputSearch" placeholder="Search..." type="text">
         </div>
       </div>
-      <div id="list-gear" class="hide">
+      <div id="list-gear" class="panelBorder gridCR">
 
         <template id="template-list-gear-item">
-          <div id="panelItem" class="hide">
-            <div class="hide">
-              <div class="hide"></div>
+          <div id="panelItem" class="panelBorder gridI">
+            <div class="container flexCV">
+              <div class="item-name flexI"></div>
 
-              <div class="hide"></div>
+              <div class="item-type flexI"></div>
               <!-- 
               <div class="stats-brand">
               <div class="hlineTop"></div>
@@ -189,8 +189,8 @@
               </ol>
               </div> 
             -->
-              <div class="hide"></div>
-              <div class="hide"></div>
+              <div class="item-talent-name flexI"></div>
+              <div class="item-talent-text flexI"></div>
             </div>
           </div>
         </template>
