@@ -7,7 +7,7 @@
 
   /* min panel size */
   --widthMin: calc(280 * var(--tpx));
-  --heightMin: var(--txtBase);
+  --heightMin: calc(5 * var(--txtBase));
 
   /* border properties */
   --bWidth: 65%;
