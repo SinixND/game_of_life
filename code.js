@@ -3,17 +3,107 @@
 import {set} from "./data/sets.js";
 import {mask} from "./data/masks.js";
 
+// ARRAYS
+let colors = [
+  'car', 
+  'cag', 
+  'cab', 
+  'cay', 
+  'cat', 
+  'cav',
+];
+
+let icons = [
+  "5.11_Tactical",
+  "Aces_&_Eights",
+  "Airaldi_Holdings",
+  "Alps_Summit_Armaments",
+  "backpack",
+  "Badger_Tuff",
+  "Belstone_Armory",
+  "Brazos_de_Arcabuz",
+  "Ceska_Vyroba_s.r.o.",
+  "chest",
+  "China_Light_Industries_Corporation",
+  "defense1",
+  "defense2",
+  "defense3_1",
+  "defense3_2",
+  "Douglas_&_Harding",
+  "Eclipse_Protocol",
+  "Empress_International",
+  "Exotic",
+  "Fenris_Group_AB",
+  "Foundry_Bulwark",
+  "Future_Initiative",
+  "Gila_Guard",
+  "gloves",
+  "Golan_Gear_Ltd",
+  "Grupo_Sombra_S.A.",
+  "Hana-U_Corporation,",
+  "Hard_Wired",
+  "Heartbreaker",
+  "holster",
+  "Hunters_Fury",
+  "Improvised",
+  "kneepads",
+  "main-weapon",
+  "mask",
+  "Murakami_Industries",
+  "named",
+  "Negotiators_Dilemma",
+  "offense1",
+  "offense2",
+  "offense3_1",
+  "offense3_2",
+  "Ongoing_Directive",
+  "Overlord_Armaments",
+  "Petrov_Defense_Group",
+  "Providence_Defense",
+  "Richter_&_Kaiser_GmbH",
+  "Rigger",
+  "shd_big",
+  "sidearm",
+  "Sokolov_Concern",
+  "Strikers_Battlegear",
+  "System_Corruption",
+  "tech1",
+  "tech2",
+  "tech3_1",
+  "tech3_2",
+  "Tip_of_the_Spear",
+  "True_Patriot",
+  "Umbra_Initiative",
+  "Uzina_Getica",
+  "Walker_Harris_&_Co",
+  "Wyvern_Wear",
+  "Yaahl_Gear",
+];
+
+let items = [
+  "specialisation", 
+  "weapon-1", 
+  "weapon-2", 
+  "sidearm", 
+  "mask", 
+  "backpack", 
+  "chest", 
+  "gloves", 
+  "holster", 
+  "kneepads", 
+  "skill-1", 
+  "skill-2",
+];
+
 //============================
 // STARTUP FUNCTION
 document.addEventListener('DOMContentLoaded', function () {
   //============================
   // DEBUG
-  //console.log(mask.Vile.talentName);
   //alert( 'Res: (W)' + screen.width + 'x(H)' + screen.height + '  ratio: ' + window.devicePixelRatio); /* Lap: 1280x720; Mob: 432x896 */
 
   // COLORIZE PANELS
   let panels = document.getElementsByClassName("panel");
-  let colors = ['car', 'cag', 'cab', 'cay', 'cat', 'cav'];
   let ccnt = 0;
 
   for (let i = 0; i < panels.length; i++) {
@@ -29,83 +119,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
   //============================
   // SET BACKGROUND ICONS
-  let icons = [
-    "5.11_Tactical",
-    "Aces_&_Eights",
-    "Airaldi_Holdings",
-    "Alps_Summit_Armaments",
-    "backpack",
-    "Badger_Tuff",
-    "Belstone_Armory",
-    "Brazos_de_Arcabuz",
-    "Ceska_Vyroba_s.r.o.",
-    "chest",
-    "China_Light_Industries_Corporation",
-    "defense1",
-    "defense2",
-    "defense3_1",
-    "defense3_2",
-    "Douglas_&_Harding",
-    "Eclipse_Protocol",
-    "Empress_International",
-    "Exotic",
-    "Fenris_Group_AB",
-    "Foundry_Bulwark",
-    "Future_Initiative",
-    "Gila_Guard",
-    "gloves",
-    "Golan_Gear_Ltd",
-    "Grupo_Sombra_S.A.",
-    "Hana-U_Corporation,",
-    "Hard_Wired",
-    "Heartbreaker",
-    "holster",
-    "Hunters_Fury",
-    "Improvised",
-    "kneepads",
-    "main-weapon",
-    "mask",
-    "Murakami_Industries",
-    "named",
-    "Negotiators_Dilemma",
-    "offense1",
-    "offense2",
-    "offense3_1",
-    "offense3_2",
-    "Ongoing_Directive",
-    "Overlord_Armaments",
-    "Petrov_Defense_Group",
-    "Providence_Defense",
-    "Richter_&_Kaiser_GmbH",
-    "Rigger",
-    "shd_big",
-    "sidearm",
-    "Sokolov_Concern",
-    "Strikers_Battlegear",
-    "System_Corruption",
-    "tech1",
-    "tech2",
-    "tech3_1",
-    "tech3_2",
-    "Tip_of_the_Spear",
-    "True_Patriot",
-    "Umbra_Initiative",
-    "Uzina_Getica",
-    "Walker_Harris_&_Co",
-    "Wyvern_Wear",
-    "Yaahl_Gear",
-];
   for (let i = 0; i < icons.length; i++) {
     var img = new Image();
     img.src = `./icons/${icons[i]}.png`;
     let value = `linear-gradient(var(--cbgr75), var(--cbgr75)), url(${img.src}) center no-repeat`;
-    //let element = document.getElementsByClassName(`js_${icons[i]}`);
     let element = document.querySelectorAll(`[id*="${icons[i]}"]`);
     if (element.length !== 0) {
       for (let j = 0; j < element.length; j++) {
         element[j].style.background = value;
+        /*
         let scale = 0.75 * Math.min(element[j].offsetWidth/img.width, element[j].offsetHeight/img.height)
         element[j].style.backgroundSize = `${img.width * scale}px ${img.height * scale}px`;
+        */
       }
     }
   };
@@ -164,7 +189,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     else if (mask[`${name}`].rarity !== "Improvised") {
       let setName = mask[`${name}`].type;
-      console.log(setName);
       setAttribute1.innerHTML = set[`${setName}`].attribute1Name + ': ';
       setAttribute1.innerHTML += set[`${setName}`].attribute1Value;
       setAttribute2.innerHTML = set[`${setName}`].attribute2Name + ': ';
@@ -203,13 +227,37 @@ document.addEventListener('DOMContentLoaded', function () {
 }, false);
 
 //==============================
-// POPUP FUNCTIONS
-window.showPopup = function showPopup(Class) {
+// EVENT LISTENERS
+//let eventTarget = document.querySelectorAll(`[id*="${icons[i]}"]`);
+let popupFrameMain = document.getElementById("popupFrameMain");
+popupFrameMain.addEventListener("click", closePopup);
+
+for (let i = 0; i < items.length; i++) {
+  let panelItem = document.getElementById(`panel-${items[i]}`);
+  if (panelItem.length !== 0){
+    panelItem.addEventListener('click', showPopup(items[i]));
+  }
+}
+
+//==============================
+// FUNCTIONS
+//window.showPopup = function showPopup(arg) {
+  //document.getElementById('popupFrameMain').style.display = "flex";
+  ////document.body.style.overflow = "hidden";
+//}
+
+function showPopup(arg) {
   document.getElementById('popupFrameMain').style.display = "flex";
+  document.getElementById(`popup-${arg}`).style.display = "flex";
   //document.body.style.overflow = "hidden";
 }
 
-window.closePopup = function closePopup() {
+//window.closePopup = function closePopup() {
+  //document.getElementById(`popupFrameMain`).style.display = "none";
+  ////document.body.style.overflow = "";
+//}
+
+function closePopup() {
   document.getElementById(`popupFrameMain`).style.display = "none";
   //document.body.style.overflow = "";
 }
