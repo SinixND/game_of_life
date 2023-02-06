@@ -63,7 +63,6 @@
 * {
   box-sizing: border-box;
   min-width: var(--widthTemp);
-  min-height: var(--heightTemp);
   margin: 0;
   padding: 0;
 }
