@@ -235,10 +235,8 @@ popupFrameMain.addEventListener("click", closePopup);
 for (let i = 0; i < items.length; i++) {
   console.log(`getElementById(panel-${items[i]})`);
   let panelItem = document.getElementById(`panel-${items[i]}`);
-  console.log(`if (panelItem.length::${panelItem.length} !== 0)`)
-  if (panelItem.length !== 0){
-    panelItem.addEventListener('click', showPopup(items[i]));
-  }
+  console.log(`panelItem: ${panelItem}`)
+  panelItem.addEventListener('click', showPopup(items[i]));
 }
 
 //==============================
