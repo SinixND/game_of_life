@@ -81,18 +81,18 @@ let icons = [
 ];
 
 let items = [
-  "specialisation", 
-  "weapon-1", 
-  "weapon-2", 
-  "sidearm", 
+  //"specialisation", 
+  //"weapon-1", 
+  //"weapon-2", 
+  //"sidearm", 
   "mask", 
-  "backpack", 
-  "chest", 
-  "gloves", 
-  "holster", 
-  "kneepads", 
-  "skill-1", 
-  "skill-2",
+  //"backpack", 
+  //"chest", 
+  //"gloves", 
+  //"holster", 
+  //"kneepads", 
+  //"skill-1", 
+  //"skill-2",
 ];
 
 //============================
@@ -233,9 +233,7 @@ let popupFrameMain = document.getElementById("popupFrameMain");
 popupFrameMain.addEventListener("click", closePopup);
 
 for (let i = 0; i < items.length; i++) {
-  console.log(`getElementById(panel-${items[i]})`);
   let panelItem = document.getElementById(`panel-${items[i]}`);
-  console.log(`panelItem: ${panelItem}`)
   panelItem.addEventListener('click', showPopup(items[i]));
 }
 
@@ -247,7 +245,6 @@ for (let i = 0; i < items.length; i++) {
 //}
 
 function showPopup(arg) {
-  console.log(`showPopup argument is: ${arg}`)
   document.getElementById('popupFrameMain').style.display = "flex";
   document.getElementById(`popup-${arg}`).style.display = "flex";
   document.body.style.overflow = "hidden";

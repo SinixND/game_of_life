@@ -117,7 +117,7 @@ body {
   border-width: 0 var(--bWeight) var(--bWeight) 0;
 }
 
-.panelBorder::hover {
+.panelBorder:hover {
   /* opacity: 0.8; */
   cursor: pointer;
 }
