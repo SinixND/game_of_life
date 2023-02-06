@@ -97,7 +97,7 @@ let items = [
 
 //============================
 // STARTUP FUNCTION
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', () => {
   //============================
   // DEBUG
   //alert( 'Res: (W)' + screen.width + 'x(H)' + screen.height + '  ratio: ' + window.devicePixelRatio); /* Lap: 1280x720; Mob: 432x896 */
@@ -230,30 +230,20 @@ document.addEventListener('DOMContentLoaded', function () {
 // EVENT LISTENERS
 //let eventTarget = document.querySelectorAll(`[id*="${icons[i]}"]`);
 let popupFrameMain = document.getElementById("popupFrameMain");
-popupFrameMain.addEventListener("click", closePopup);
+popupFrameMain.addEventListener("click", closePopup, false);
 
 for (let i = 0; i < items.length; i++) {
   let panelItem = document.getElementById(`panel-${items[i]}`);
-  panelItem.addEventListener('click', showPopup(items[i]));
+  panelItem.addEventListener('click', () => {showPopup(items[i])}, false);
 }
 
 //==============================
 // FUNCTIONS
-//window.showPopup = function showPopup(arg) {
-  //document.getElementById('popupFrameMain').style.display = "flex";
-  ////document.body.style.overflow = "hidden";
-//}
-
 function showPopup(arg) {
   document.getElementById('popupFrameMain').style.display = "flex";
   document.getElementById(`popup-${arg}`).style.display = "flex";
   document.body.style.overflow = "hidden";
 }
-
-//window.closePopup = function closePopup() {
-  //document.getElementById(`popupFrameMain`).style.display = "none";
-  ////document.body.style.overflow = "";
-//}
 
 function closePopup() {
   document.getElementById(`popupFrameMain`).style.display = "none";
