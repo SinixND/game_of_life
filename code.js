@@ -247,9 +247,10 @@ for (let i = 0; i < items.length; i++) {
 //}
 
 function showPopup(arg) {
+  console.log(`showPopup argument is: ${arg}`)
   document.getElementById('popupFrameMain').style.display = "flex";
   document.getElementById(`popup-${arg}`).style.display = "flex";
-  //document.body.style.overflow = "hidden";
+  document.body.style.overflow = "hidden";
 }
 
 //window.closePopup = function closePopup() {
@@ -259,5 +260,5 @@ function showPopup(arg) {
 
 function closePopup() {
   document.getElementById(`popupFrameMain`).style.display = "none";
-  //document.body.style.overflow = "";
+  document.body.style.overflow = "";
 }
