@@ -94,7 +94,6 @@ body {
   margin: calc(2 * var(--bWeight));
   border: 1px dotted var(--cbrd);
   position: relative;
-  min-height: 15em;
 }
 
 .panelBorder::before,
@@ -202,7 +201,7 @@ align-self
 place-self :: (align justify)
 */
 .gridI {
-  min-height: fit-content;
+  /* nothing to set */
 }
 
 .container {
