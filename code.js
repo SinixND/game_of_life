@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function () {
   for (let i = 0; i < icons.length; i++) {
     var img = new Image();
     img.src = `./icons/${icons[i]}.png`;
-    let value = `linear-gradient(var(--cbgr75), var(--cbgr75)), url(${img.src}) center no-repeat`;
+    let value = `linear-gradient(var(--cbgr75), var(--cbgr75)), url(${img.src}) center/contain no-repeat`;
     let element = document.querySelectorAll(`[id*="${icons[i]}"]`);
     if (element.length !== 0) {
       for (let j = 0; j < element.length; j++) {
