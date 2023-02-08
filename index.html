@@ -6,9 +6,14 @@
   <meta name="viewport" container="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="#"><!-- for favicon error -->
   <title>Div2 build calculator</title>
-  <!-- .css - files -->
+  <!-- 
+    .css - files 
+  -->
   <link rel="stylesheet" href="./style.css">
-  <!-- .js - files -->
+  <!-- 
+    .js - files 
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  -->
   <script src="./data/require.js"></script>
   <script src="./code.js" type="module"></script>
 </head>
@@ -16,7 +21,9 @@
 
 <body>
   <div id="frame-main" class="panel">
-    <!-- MENU BAR -->
+    <!-- 
+      MENU BAR 
+    -->
     <div id="panel-menubar" class="panelBorder">
       <div class="container">
         container menubar
@@ -31,7 +38,9 @@
           </div>
         </div>
 
-        <!-- WEAPON SELECTION AREA -->
+        <!-- 
+          WEAPON SELECTION AREA 
+        -->
         <div id="panel-weapons" class="panel flexI flexCH">
           <div id="panel-main-weapon-1" class="panelBorder flexI">
             <div class="container empty">
@@ -50,11 +59,15 @@
           </div>
         </div>
 
-        <!-- ARMOR SELECTION AREA -->
+        <!-- 
+          ARMOR SELECTION AREA 
+        -->
         <div id="panel-armor" class="panel flexI">
           <div class="panel flexCH">
             <div id="panel-mask" class="panelBorder flexI">
-<!-- onclick="window.showPopup('Mask')" -->
+<!-- 
+  onclick="window.showPopup('Mask')" 
+-->
               <div class="container empty">
                 Choose mask
               </div>
@@ -91,7 +104,9 @@
           </div>
         </div>
 
-        <!-- SKILL SELECTION AREA -->
+        <!-- 
+          SKILL SELECTION AREA 
+        -->
         <div id="panel-skills" class="panel flexI flexCH">
           <div id="panel-skill-1" class="panelBorder flexI">
             <div class="container empty">
@@ -125,7 +140,9 @@
           </div>
         </div>
 
-        <!-- SKILL STATS AREA -->
+        <!-- 
+          SKILL STATS AREA 
+        -->
         <div id="panel-stats-skills" class="panel flexI flexCH">
           <div id="panel-stats-skill-1" class="panelBorder flexI skill">
             <div class="container">
@@ -139,21 +156,27 @@
           </div>
         </div>
 
-        <!-- TALENT / SET AREA -->
+        <!-- 
+          TALENT / SET AREA 
+        -->
         <div id="panel-talent-set-boni" class="panel flexI">
           <div class="container">
             talent / set boni
           </div>
         </div>
 
-        <!-- PLAYER STATS AREA -->
+        <!-- 
+          PLAYER STATS AREA 
+        -->
         <div id="panel-stats-player" class="panel flexI">
           <div class="container">
             stats player
           </div>
         </div>
 
-        <!-- SET SHD AREA -->
+        <!-- 
+          SET SHD AREA 
+        -->
         <div id="panel-SHD" class="panel flexI">
           <div class="container">
             SHD
@@ -163,7 +186,9 @@
     </div>
   </div>
 
-  <!-- POPUP MENU -->
+  <!-- 
+    POPUP MENU 
+  -->
   <div id="popup-frame-main" class="panel flexC">
     <div id="popup-mask" class="panel popup flexCV" onclick="window.event.stopPropagation()">
       <div id="panel-search" class="panelBorder">
