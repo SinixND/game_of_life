@@ -29,7 +29,8 @@ function swipeCheck() {
   var changeY = pStart.y - pStop.y;
   var changeX = pStart.x - pStop.x;
   if (isPullDown(changeY, changeX)) {
-    alert("Swipe Down!");
+    //alert("Swipe Down!");
+    window.location.reload();
   }
 }
 
