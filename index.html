@@ -17,7 +17,7 @@
 
 
 <body>
-  <div id="frameMain" class="panel">
+  <div id="frame-main" class="panel">
     <!-- MENU BAR -->
     <div id="panel-menubar" class="panelBorder">
       <div class="container">
@@ -166,7 +166,7 @@
   </div>
 
   <!-- POPUP MENU -->
-  <div id="popupFrameMain" class="panel flexC">
+  <div id="popupframe-main" class="panel flexC">
     <div id="popup-mask" class="panel popup flexCV" onclick="window.event.stopPropagation()">
       <div id="panel-search" class="panelBorder">
         <div class="container">
@@ -176,28 +176,28 @@
       <div id="list-gear" class="panel gridCC">
 
         <template id="template-list-gear-item">
-          <div id="panelItem" class="panelBorder gridI">
+          <div id="panel-item" class="panelBorder gridI">
             <div class="container">
-              <div class="item-name"></div>
+              <div id="item-name"></div>
 
-              <div class="item-type"></div>
+              <div id="item-type"></div>
 
-              <div class="stats-set">
+              <div id="item-set-attributes">
                 <ol>
                   <li>
-                    <div class="set-attribute1">first attribute</div>
+                    <div id="set-attribute-1">first attribute</div>
                   </li>
                   <li>
-                    <div class="set-attribute2">second attribute</div>
+                    <div id="set-attribute-2">second attribute</div>
                   </li>
                   <li>
-                    <div class="set-attribute3">third attribute</div>
+                    <div id="set-attribute-3">third attribute</div>
                   </li>
                 </ol>
               </div>
 
-              <div class="item-talent-name"></div>
-              <div class="item-talent-text"></div>
+              <div id="item-talent-name"></div>
+              <div id="item-talent-text"></div>
             </div>
           </div>
         </template>
@@ -206,10 +206,9 @@
     </div>
   </div>
 
-  <!-- <div id="popupSkill" class="hide"></div> -->
   <!-- 
     -->
-  <div id="refWidthMin"
+  <div id="ref-width-min"
     style="position: fixed; background-color: var(--c0); border: var(--bWeightTemp) solid red; top: 10px; left: 10px; height: 10px; width: var(--widthMin)">
   </div>
   <!-- 

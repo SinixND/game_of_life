@@ -150,26 +150,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const clonedListGearItem = tplLGI.content.cloneNode(true);
 
     // onclick
-    clonedListGearItem.querySelector('#panelItem').onclick = closePopup;
+    clonedListGearItem.getElementById('panel-item').onclick = closePopup;
 
     // item name
-    let gearName = clonedListGearItem.querySelector('.item-name')
+    let gearName = clonedListGearItem.getElementById('item-name')
     gearName.innerHTML = `${name}`;
 
     // item type
     if (mask[`${name}`].hasOwnProperty('type') && mask[`${name}`].type !== `${name}`) {
-      let gearType = clonedListGearItem.querySelector('.item-type');
+      let gearType = clonedListGearItem.getElementById('item-type');
       gearType.innerHTML = "(";
       gearType.innerHTML += mask[`${name}`].type;
       gearType.innerHTML += ")";
     };
 
     // item set boni
-    let statsSet = clonedListGearItem.querySelector('.stats-set');
+    let statsSet = clonedListGearItem.getElementById('item-set-attributes');
     statsSet.classList.add('hLineTop');
-    let setAttribute1 = clonedListGearItem.querySelector('.set-attribute1');
-    let setAttribute2 = clonedListGearItem.querySelector('.set-attribute2');
-    let setAttribute3 = clonedListGearItem.querySelector('.set-attribute3');
+    let setAttribute1 = clonedListGearItem.getElementById('set-attribute-1');
+    let setAttribute2 = clonedListGearItem.getElementById('set-attribute-2');
+    let setAttribute3 = clonedListGearItem.getElementById('set-attribute-3');
     if (mask[`${name}`].rarity == "Exotic") {
       setAttribute1.innerHTML = mask[`${name}`].attribute1Name + ': ';
       setAttribute1.innerHTML += mask[`${name}`].attribute1Value;
@@ -198,13 +198,13 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // item talent
-    let gearTalentName = clonedListGearItem.querySelector('.item-talent-name')
+    let gearTalentName = clonedListGearItem.getElementById('item-talent-name')
     if (mask[`${name}`].hasOwnProperty('talentName')) {
       gearTalentName.classList.add('hLineTop');
       gearTalentName.innerHTML = mask[`${name}`].talentName;
     };
     if (mask[`${name}`].hasOwnProperty('talentText')) {
-      clonedListGearItem.querySelector('.item-talent-text').innerHTML = mask[`${name}`].talentText;
+      clonedListGearItem.getElementById('item-talent-text').innerHTML = mask[`${name}`].talentText;
     };
 
     // item color
@@ -229,23 +229,23 @@ document.addEventListener('DOMContentLoaded', () => {
 //==============================
 // EVENT LISTENERS
 //let eventTarget = document.querySelectorAll(`[id*="${icons[i]}"]`);
-let popupFrameMain = document.getElementById("popupFrameMain");
-popupFrameMain.addEventListener("click", closePopup, false);
+let popupframe-main = document.getElementById("popupframe-main");
+popupframe-main.addEventListener("click", closePopup, false);
 
 for (let i = 0; i < items.length; i++) {
-  let panelItem = document.getElementById(`panel-${items[i]}`);
-  panelItem.addEventListener('click', () => {showPopup(items[i])}, false);
+  let panel-item = document.getElementById(`panel-${items[i]}`);
+  panel-item.addEventListener('click', () => {showPopup(items[i])}, false);
 }
 
 //==============================
 // FUNCTIONS
 function showPopup(arg) {
-  document.getElementById('popupFrameMain').style.display = "flex";
+  document.getElementById('popupframe-main').style.display = "flex";
   document.getElementById(`popup-${arg}`).style.display = "flex";
   document.body.style.overflow = "hidden";
 }
 
 function closePopup() {
-  document.getElementById(`popupFrameMain`).style.display = "none";
+  document.getElementById(`popupframe-main`).style.display = "none";
   document.body.style.overflow = "";
 }

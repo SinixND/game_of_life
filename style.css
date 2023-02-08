@@ -235,32 +235,6 @@ place-self :: (align justify)
   background-color: var(--cbg);
 }
 
-.item-name {
-  font-size: var(--txtBig); 
-  font-weight: bold; 
-  white-space: nowrap;
-  color: inherit;
-}
-
-.item-type {
-  font-size: var(--txtSmall); 
-  font-style: italic;
-  color: var(--ctxt);
-}
-
-.stats-set {
-  color: var(--ctxt);
-}
-
-.item-talent-name {
-  font-weight: bold;
-  color: inherit;
-}
-
-.item-talent-text {
-  color: var(--ctxt);
-}
-
 .hLineTop {
   width: 100%;
   border-top: var(--ctxt) solid var(--bWeight);
@@ -270,7 +244,7 @@ place-self :: (align justify)
 }
 
 /* ID SETTINGS */
-#frameMain {
+#frame-main {
   position: absolute;
   top: 0;
   right: 0;
@@ -279,7 +253,7 @@ place-self :: (align justify)
   overflow: auto;
 }
 
-#popupFrameMain {
+#popupframe-main {
   position: fixed;
   top: 0;
   right: 0;
@@ -294,6 +268,32 @@ place-self :: (align justify)
 #list-gear {
   height: 100%;
   overflow: auto;
+}
+
+#item-name {
+  font-size: var(--txtBig); 
+  font-weight: bold; 
+  white-space: nowrap;
+  color: inherit;
+}
+
+#item-type {
+  font-size: var(--txtSmall); 
+  font-style: italic;
+  color: var(--ctxt);
+}
+
+#item-set-attributes {
+  color: var(--ctxt);
+}
+
+#item-talent-name {
+  font-weight: bold;
+  color: inherit;
+}
+
+#item-talent-text {
+  color: var(--ctxt);
 }
 
 /* TAG SETTINGS */
