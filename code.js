@@ -80,7 +80,7 @@ let icons = [
   "Yaahl_Gear",
 ];
 
-let items = [
+let gear = [
   //"specialisation", 
   //"weapon-1", 
   //"weapon-2", 
@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
     img.src = `./icons/${icons[i]}.png`;
     let value = `linear-gradient(var(--cbgr75), var(--cbgr75)), url(${img.src}) center/contain no-repeat`;
     let element = document.querySelectorAll(`[id *= "${icons[i]}"]`);
-    if (element.length !== 0) {
+    if (element.length) {
       for (let j = 0; j < element.length; j++) {
         element[j].style.background = value;
         /*
@@ -136,50 +136,71 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   //============================
-  // FILL LISTS
-  const tplLGI = document.getElementById('template-list-gear-item');
-  const list = document.getElementById('list-gear');
-  let objNames = [];
-  for (let objName in mask) {      
-    if (mask.hasOwnProperty(objName)) {
-      objNames.push(objName);
-    };
-  };
-  for (let i=0; i < objNames.length; i++) { 
-    let name = `${objNames[i]}`;
-    const clonedListGearItem = tplLGI.content.cloneNode(true);
+  // MAKE SELECTION POPUP
+  /* 
+  const tplPopupParent = document.getElementById('popup-frame-main');
+  const tplPopupBase = document.getElementById('template-popup');
+  for (let popupName in gear) //does this work?
+    let clonedPopupNode = tplListBase.content.cloneNode(true);
 
+    let popupGear = document.getElementById('popup-gear');
+    popupGear.id += `-${popupName}`;
+  //*/
+  // POPULATE SELECTION LIST
+  const tplListParent = document.getElementById('list-gear');
+  ////tplListParent += `-${popupGear}`;
+  const tplListBase = document.getElementById('template-list-gear-item');
+
+  for (let gearName in mask) {      
+    let clonedListNode = tplListBase.content.cloneNode(true);
+
+    // panel settings
+    let panelItem = clonedListNode.getElementById('panel-item')
     // onclick
-    clonedListGearItem.querySelector('#panel-item').onclick = closePopup;
+    panelItem.addEventListener("click", closePopup);
+    // panel color
+    if (mask[`${gearName}`].rarity == "Exotic") {
+      panelItem.style.borderColor = 'var(--cExotic)';
+      panelItem.style.color = 'var(--cExotic)';
+    }
+    else if (mask[`${gearName}`].rarity == "Named") {
+      panelItem.style.borderColor = 'var(--cNamed)';
+      panelItem.style.color = 'var(--cNamed)';
+    }
+    else if (mask[`${gearName}`].rarity == "GearSet") {
+      panelItem.style.borderColor = 'var(--cGearSet)';
+      panelItem.style.color = 'var(--cGearSet)';
+    };
 
     // item name
-    let gearName = clonedListGearItem.querySelector('#item-name')
-    gearName.innerHTML = `${name}`;
+    let itemName = clonedListNode.getElementById('item-name')
+    itemName.innerHTML = `${gearName}`;
 
     // item type
-    if (mask[`${name}`].hasOwnProperty('type') && mask[`${name}`].type !== `${name}`) {
-      let gearType = clonedListGearItem.querySelector('#item-type');
-      gearType.innerHTML = "(";
-      gearType.innerHTML += mask[`${name}`].type;
-      gearType.innerHTML += ")";
+    if (mask[`${gearName}`].hasOwnProperty('type') && mask[`${gearName}`].type !== `${gearName}`) {
+      let itemType = clonedListNode.getElementById('item-type');
+      itemType.innerHTML = "(";
+      itemType.innerHTML += mask[`${gearName}`].type;
+      itemType.innerHTML += ")";
     };
 
     // item set boni
-    let statsSet = clonedListGearItem.querySelector('#item-set-attributes');
-    statsSet.classList.add('hLineTop');
-    let setAttribute1 = clonedListGearItem.querySelector('#set-attribute-1');
-    let setAttribute2 = clonedListGearItem.querySelector('#set-attribute-2');
-    let setAttribute3 = clonedListGearItem.querySelector('#set-attribute-3');
-    if (mask[`${name}`].rarity == "Exotic") {
-      setAttribute1.innerHTML = mask[`${name}`].attribute1Name + ': ';
-      setAttribute1.innerHTML += mask[`${name}`].attribute1Value;
-      setAttribute2.innerHTML = mask[`${name}`].attribute2Name + ': ';
-      setAttribute2.innerHTML += mask[`${name}`].attribute2Value;
-      setAttribute3.innerHTML = mask[`${name}`].attribute3Name + ': ';
-      setAttribute3.innerHTML += mask[`${name}`].attribute3Value;
+    let itemSetAttributes = clonedListNode.getElementById('item-set-attributes');
+    itemSetAttributes.classList.add('hLineTop');
+    let setAttribute1 = clonedListNode.getElementById('set-attribute-1');
+    let setAttribute2 = clonedListNode.getElementById('set-attribute-2');
+    let setAttribute3 = clonedListNode.getElementById('set-attribute-3');
+    let setName = mask[`${gearName}`].type;
+
+    if (mask[`${gearName}`].rarity == "Exotic") {
+      setAttribute1.innerHTML = mask[`${gearName}`].attribute1Name + ': ';
+      setAttribute1.innerHTML += mask[`${gearName}`].attribute1Value;
+      setAttribute2.innerHTML = mask[`${gearName}`].attribute2Name + ': ';
+      setAttribute2.innerHTML += mask[`${gearName}`].attribute2Value;
+      setAttribute3.innerHTML = mask[`${gearName}`].attribute3Name + ': ';
+      setAttribute3.innerHTML += mask[`${gearName}`].attribute3Value;
     }
-    else if (mask[`${name}`].rarity == "GearSet") {
-      let setName = mask[`${name}`].type;
+    else if (mask[`${gearName}`].rarity == "GearSet") {
       setAttribute1.innerHTML = set[`${setName}`].attribute1Name + ': ';
       setAttribute1.innerHTML += set[`${setName}`].attribute1Value;
       setAttribute2.innerHTML = set[`${setName}`].attribute2Name + ': ';
@@ -187,8 +208,7 @@ document.addEventListener('DOMContentLoaded', () => {
       setAttribute3.innerHTML = set[`${setName}`].gearSetTalentName + '<br><br>';
       setAttribute3.innerHTML += set[`${setName}`].gearSetTalentText;
     }
-    else if (mask[`${name}`].rarity !== "Improvised") {
-      let setName = mask[`${name}`].type;
+    else if (mask[`${gearName}`].rarity !== "Improvised") { //aka. is a normal high-end-item
       setAttribute1.innerHTML = set[`${setName}`].attribute1Name + ': ';
       setAttribute1.innerHTML += set[`${setName}`].attribute1Value;
       setAttribute2.innerHTML = set[`${setName}`].attribute2Name + ': ';
@@ -198,50 +218,40 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // item talent
-    let gearTalentName = clonedListGearItem.querySelector('#item-talent-name')
-    if (mask[`${name}`].hasOwnProperty('talentName')) {
-      gearTalentName.classList.add('hLineTop');
-      gearTalentName.innerHTML = mask[`${name}`].talentName;
+    let itemTalentName = clonedListNode.getElementById('item-talent-name')
+    if (mask[`${gearName}`].hasOwnProperty('talentName')) {
+      itemTalentName.classList.add('hLineTop');
+      itemTalentName.innerHTML = mask[`${gearName}`].talentName;
     };
-    if (mask[`${name}`].hasOwnProperty('talentText')) {
-      clonedListGearItem.querySelector('#item-talent-text').innerHTML = mask[`${name}`].talentText;
-    };
-
-    // item color
-    let panelItem = clonedListGearItem.getElementById('panel-item');
-    if (mask[`${name}`].rarity == "Exotic") {
-      panelItem.style.borderColor = 'var(--cExotic)';
-      panelItem.style.color = 'var(--cExotic)';
-    }
-    else if (mask[`${name}`].rarity == "Named") {
-      panelItem.style.borderColor = 'var(--cNamed)';
-      panelItem.style.color = 'var(--cNamed)';
-    }
-    else if (mask[`${name}`].rarity == "GearSet") {
-      panelItem.style.borderColor = 'var(--cGearSet)';
-      panelItem.style.color = 'var(--cGearSet)';
+    if (mask[`${gearName}`].hasOwnProperty('talentText')) {
+      clonedListNode.getElementById('item-talent-text').innerHTML = mask[`${gearName}`].talentText;
     };
 
-    list.appendChild(clonedListGearItem);
+    tplListParent.appendChild(clonedListNode);
   }
+  ////tplPopupParent.appendChild(clonedPopupNode);
 }, false);
 
 //==============================
 // EVENT LISTENERS
+// close popup when background is clicked
 //let eventTarget = document.querySelectorAll(`[id*="${icons[i]}"]`);
 let popupFrameMain = document.getElementById("popup-frame-main");
 popupFrameMain.addEventListener("click", closePopup, false);
 
-for (let i = 0; i < items.length; i++) {
-  let panelItem = document.getElementById(`panel-${items[i]}`);
-  panelItem.addEventListener('click', () => {showPopup(items[i])}, false);
+// open selection popup
+for (let i = 0; i < gear.length; i++) {
+  let panelItem = document.getElementById(`panel-${gear[i]}`);
+  panelItem.addEventListener('click', () => {showPopup(gear[i])}, false);
 }
 
 //==============================
 // FUNCTIONS
 function showPopup(arg) {
   document.getElementById('popup-frame-main').style.display = "flex";
-  document.getElementById(`popup-${arg}`).style.display = "flex";
+  document.getElementById(`popup-gear-${arg}`).style.display = "flex";
+  // reset scroll state to top
+  ////document.getElementById(`list-gear-${arg}`).scrollTop = 0;
   document.body.style.overflow = "hidden";
 }
 

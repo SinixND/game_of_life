@@ -227,14 +227,6 @@ place-self :: (align justify)
   height: 90%;
 }
 
-.inputSearch {
-  color: inherit;
-  font: inherit;
-  height: min-content;
-  border-width: 0;
-  background-color: var(--cbg);
-}
-
 .hLineTop {
   width: 100%;
   border-top: var(--ctxt) solid var(--bWeight);
@@ -263,6 +255,14 @@ place-self :: (align justify)
   align-items: center;
   background-color: var(--cbgr75);
   overflow: auto;
+}
+
+#input-search {
+  color: inherit;
+  font: inherit;
+  height: min-content;
+  border-width: 0;
+  background-color: var(--cbg);
 }
 
 #list-gear {
