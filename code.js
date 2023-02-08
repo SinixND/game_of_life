@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
     var img = new Image();
     img.src = `./icons/${icons[i]}.png`;
     let value = `linear-gradient(var(--cbgr75), var(--cbgr75)), url(${img.src}) center/contain no-repeat`;
-    let element = document.querySelectorAll(`[id*="${icons[i]}"]`);
+    let element = document.querySelectorAll(`[id *= "${icons[i]}"]`);
     if (element.length !== 0) {
       for (let j = 0; j < element.length; j++) {
         element[j].style.background = value;
@@ -150,26 +150,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const clonedListGearItem = tplLGI.content.cloneNode(true);
 
     // onclick
-    clonedListGearItem.getElementById('panel-item').onclick = closePopup;
+    clonedListGearItem.querySelector('#panel-item').onclick = closePopup;
 
     // item name
-    let gearName = clonedListGearItem.getElementById('item-name')
+    let gearName = clonedListGearItem.querySelector('#item-name')
     gearName.innerHTML = `${name}`;
 
     // item type
     if (mask[`${name}`].hasOwnProperty('type') && mask[`${name}`].type !== `${name}`) {
-      let gearType = clonedListGearItem.getElementById('item-type');
+      let gearType = clonedListGearItem.querySelector('#item-type');
       gearType.innerHTML = "(";
       gearType.innerHTML += mask[`${name}`].type;
       gearType.innerHTML += ")";
     };
 
     // item set boni
-    let statsSet = clonedListGearItem.getElementById('item-set-attributes');
+    let statsSet = clonedListGearItem.querySelector('#item-set-attributes');
     statsSet.classList.add('hLineTop');
-    let setAttribute1 = clonedListGearItem.getElementById('set-attribute-1');
-    let setAttribute2 = clonedListGearItem.getElementById('set-attribute-2');
-    let setAttribute3 = clonedListGearItem.getElementById('set-attribute-3');
+    let setAttribute1 = clonedListGearItem.querySelector('#set-attribute-1');
+    let setAttribute2 = clonedListGearItem.querySelector('#set-attribute-2');
+    let setAttribute3 = clonedListGearItem.querySelector('#set-attribute-3');
     if (mask[`${name}`].rarity == "Exotic") {
       setAttribute1.innerHTML = mask[`${name}`].attribute1Name + ': ';
       setAttribute1.innerHTML += mask[`${name}`].attribute1Value;
@@ -198,28 +198,28 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // item talent
-    let gearTalentName = clonedListGearItem.getElementById('item-talent-name')
+    let gearTalentName = clonedListGearItem.querySelector('#item-talent-name')
     if (mask[`${name}`].hasOwnProperty('talentName')) {
       gearTalentName.classList.add('hLineTop');
       gearTalentName.innerHTML = mask[`${name}`].talentName;
     };
     if (mask[`${name}`].hasOwnProperty('talentText')) {
-      clonedListGearItem.getElementById('item-talent-text').innerHTML = mask[`${name}`].talentText;
+      clonedListGearItem.querySelector('#item-talent-text').innerHTML = mask[`${name}`].talentText;
     };
 
     // item color
-    let panelBorder = clonedListGearItem.querySelector('.panelBorder');
+    let panelBorder = clonedListGearItem.querySelector('#panelBorder');
     if (mask[`${name}`].rarity == "Exotic") {
-      panelBorder.style.borderColor = 'var(--cExotic)';
-      panelBorder.style.color = 'var(--cExotic)';
+      panelBorder[0].style.borderColor = 'var(--cExotic)';
+      panelBorder[0].style.color = 'var(--cExotic)';
     }
     else if (mask[`${name}`].rarity == "Named") {
-      panelBorder.style.borderColor = 'var(--cNamed)';
-      panelBorder.style.color = 'var(--cNamed)';
+      panelBorder[0].style.borderColor = 'var(--cNamed)';
+      panelBorder[0].style.color = 'var(--cNamed)';
     }
     else if (mask[`${name}`].rarity == "GearSet") {
-      panelBorder.style.borderColor = 'var(--cGearSet)';
-      panelBorder.style.color = 'var(--cGearSet)';
+      panelBorder[0].style.borderColor = 'var(--cGearSet)';
+      panelBorder[0].style.color = 'var(--cGearSet)';
     };
 
     list.appendChild(clonedListGearItem);
@@ -229,23 +229,23 @@ document.addEventListener('DOMContentLoaded', () => {
 //==============================
 // EVENT LISTENERS
 //let eventTarget = document.querySelectorAll(`[id*="${icons[i]}"]`);
-let popupframe-main = document.getElementById("popupframe-main");
-popupframe-main.addEventListener("click", closePopup, false);
+let popupFrameMain = document.getElementById("popup-frame-main");
+popupFrameMain.addEventListener("click", closePopup, false);
 
 for (let i = 0; i < items.length; i++) {
-  let panel-item = document.getElementById(`panel-${items[i]}`);
-  panel-item.addEventListener('click', () => {showPopup(items[i])}, false);
+  let panelItem = document.getElementById(`panel-${items[i]}`);
+  panelItem.addEventListener('click', () => {showPopup(items[i])}, false);
 }
 
 //==============================
 // FUNCTIONS
 function showPopup(arg) {
-  document.getElementById('popupframe-main').style.display = "flex";
+  document.getElementById('popup-frame-main').style.display = "flex";
   document.getElementById(`popup-${arg}`).style.display = "flex";
   document.body.style.overflow = "hidden";
 }
 
 function closePopup() {
-  document.getElementById(`popupframe-main`).style.display = "none";
+  document.getElementById(`popup-frame-main`).style.display = "none";
   document.body.style.overflow = "";
 }
