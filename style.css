@@ -7,7 +7,7 @@
 
   /* min panel size */
   --widthMin: calc(280 * var(--tpx));
-  --heightMin: var(--txtBase);
+  --heightMin: calc(var(--widthMin * .618)); /*golden ratio*/
 
   /* border properties */
   --bWidth: 65%;
