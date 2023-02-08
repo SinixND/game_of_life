@@ -210,16 +210,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // item color
     let panelBorder = clonedListGearItem.querySelector('#panelBorder');
     if (mask[`${name}`].rarity == "Exotic") {
-      panelBorder[0].style.borderColor = 'var(--cExotic)';
-      panelBorder[0].style.color = 'var(--cExotic)';
+      panelBorder.style.borderColor = 'var(--cExotic)';
+      panelBorder.style.color = 'var(--cExotic)';
     }
     else if (mask[`${name}`].rarity == "Named") {
-      panelBorder[0].style.borderColor = 'var(--cNamed)';
-      panelBorder[0].style.color = 'var(--cNamed)';
+      panelBorder.style.borderColor = 'var(--cNamed)';
+      panelBorder.style.color = 'var(--cNamed)';
     }
     else if (mask[`${name}`].rarity == "GearSet") {
-      panelBorder[0].style.borderColor = 'var(--cGearSet)';
-      panelBorder[0].style.color = 'var(--cGearSet)';
+      panelBorder.style.borderColor = 'var(--cGearSet)';
+      panelBorder.style.color = 'var(--cGearSet)';
     };
 
     list.appendChild(clonedListGearItem);
