@@ -208,18 +208,18 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // item color
-    let panelBorder = clonedListGearItem.querySelector('#panelBorder');
+    let panelItem = clonedListGearItem.getElementById('panel-item');
     if (mask[`${name}`].rarity == "Exotic") {
-      panelBorder.style.borderColor = 'var(--cExotic)';
-      panelBorder.style.color = 'var(--cExotic)';
+      panelItem.style.borderColor = 'var(--cExotic)';
+      panelItem.style.color = 'var(--cExotic)';
     }
     else if (mask[`${name}`].rarity == "Named") {
-      panelBorder.style.borderColor = 'var(--cNamed)';
-      panelBorder.style.color = 'var(--cNamed)';
+      panelItem.style.borderColor = 'var(--cNamed)';
+      panelItem.style.color = 'var(--cNamed)';
     }
     else if (mask[`${name}`].rarity == "GearSet") {
-      panelBorder.style.borderColor = 'var(--cGearSet)';
-      panelBorder.style.color = 'var(--cGearSet)';
+      panelItem.style.borderColor = 'var(--cGearSet)';
+      panelItem.style.color = 'var(--cGearSet)';
     };
 
     list.appendChild(clonedListGearItem);
