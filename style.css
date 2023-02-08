@@ -208,7 +208,6 @@ place-self :: (align justify)
   border: 1px dotted var(--cbrd);
   border-color: inherit;
   min-width: var(--widthMin);
-  min-height: var(--heightMin);
   width: 100%;
   height: 100%;
   font-size: var(--txtBase);
@@ -219,6 +218,7 @@ place-self :: (align justify)
   color: var(--ctxthl);
   align-self: center;
   justify-self: center;
+  min-height: var(--heightMin);
 }
 
 .popup {
