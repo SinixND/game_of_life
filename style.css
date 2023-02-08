@@ -253,7 +253,7 @@ place-self :: (align justify)
   overflow: auto;
 }
 
-#popupframe-main {
+#popup-frame-main {
   position: fixed;
   top: 0;
   right: 0;
