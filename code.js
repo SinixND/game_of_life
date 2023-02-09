@@ -270,7 +270,7 @@ function applySelection(arg) {
     let clonedItemSelectedNode = tplItemSelectedBase.content.cloneNode(true);
 
     let itemSelected = clonedItemSelectedNode.getElementById('item-selected');
-    itemSelected.id += `-${gearClass}`;
+    itemSelected.id += `-${arg}`;
 
     /*
     let itemSelectedName = clonedListNode.getElementById('item-selected-name');
