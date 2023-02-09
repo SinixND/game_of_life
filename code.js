@@ -137,100 +137,102 @@ document.addEventListener('DOMContentLoaded', () => {
 
   //============================
   // MAKE SELECTION POPUP
-  /* 
   const tplPopupParent = document.getElementById('popup-frame-main');
   const tplPopupBase = document.getElementById('template-popup');
-  for (let gearClass in gear) //does this work?
+  for (let gearClass of gear) {//does this work?
+    alert(`forloop: gearClass is ${gearClass}`)
+    /* 
     let clonedPopupNode = tplListBase.content.cloneNode(true);
 
     let popupGear = document.getElementById('popup-gear');
     popupGear.id += `-${gearClass}`;
-  //*/
-  // POPULATE SELECTION LIST
-  const tplListParent = document.getElementById('list-gear');
-  ////tplListParent += `-${popupGear}`;
-  const tplListBase = document.getElementById('template-list-gear-item');
+    //*/
+    // POPULATE SELECTION LIST
+    const tplListParent = document.getElementById('list-gear');
+    ////tplListParent += `-${popupGear}`;
+    const tplListBase = document.getElementById('template-list-gear-item');
 
-  for (let gearName in mask) {      
-    let clonedListNode = tplListBase.content.cloneNode(true);
+    for (let gearName in mask) {      
+      let clonedListNode = tplListBase.content.cloneNode(true);
 
-    // panel settings
-    let panelItem = clonedListNode.getElementById('panel-item')
-    // onclick
-    panelItem.addEventListener("click", closePopup);
-    ////panelItem.addEventListener('click', applySelection(`${gearClass}`));
-    // panel color
-    if (mask[`${gearName}`].rarity == "Exotic") {
-      panelItem.style.borderColor = 'var(--cExotic)';
-      panelItem.style.color = 'var(--cExotic)';
+      // panel settings
+      let panelItem = clonedListNode.getElementById('panel-item')
+      // onclick
+      panelItem.addEventListener("click", closePopup);
+      ////panelItem.addEventListener('click', applySelection(`${gearClass}`));
+      // panel color
+      if (mask[`${gearName}`].rarity == "Exotic") {
+        panelItem.style.borderColor = 'var(--cExotic)';
+        panelItem.style.color = 'var(--cExotic)';
+      }
+      else if (mask[`${gearName}`].rarity == "Named") {
+        panelItem.style.borderColor = 'var(--cNamed)';
+        panelItem.style.color = 'var(--cNamed)';
+      }
+      else if (mask[`${gearName}`].rarity == "GearSet") {
+        panelItem.style.borderColor = 'var(--cGearSet)';
+        panelItem.style.color = 'var(--cGearSet)';
+      };
+
+      // item name
+      let itemName = clonedListNode.getElementById('item-name')
+      itemName.innerHTML = `${gearName}`;
+
+      // item type
+      if (mask[`${gearName}`].hasOwnProperty('type') && mask[`${gearName}`].type !== `${gearName}`) {
+        let itemType = clonedListNode.getElementById('item-type');
+        itemType.innerHTML = "(";
+        itemType.innerHTML += mask[`${gearName}`].type;
+        itemType.innerHTML += ")";
+      };
+
+      // item set boni
+      let itemSetAttributes = clonedListNode.getElementById('item-set-attributes');
+      itemSetAttributes.classList.add('hLineTop');
+      let setAttribute1 = clonedListNode.getElementById('set-attribute-1');
+      let setAttribute2 = clonedListNode.getElementById('set-attribute-2');
+      let setAttribute3 = clonedListNode.getElementById('set-attribute-3');
+      let setName = mask[`${gearName}`].type;
+
+      if (mask[`${gearName}`].rarity == "Exotic") {
+        setAttribute1.innerHTML = mask[`${gearName}`].attribute1Name + ': ';
+        setAttribute1.innerHTML += mask[`${gearName}`].attribute1Value;
+        setAttribute2.innerHTML = mask[`${gearName}`].attribute2Name + ': ';
+        setAttribute2.innerHTML += mask[`${gearName}`].attribute2Value;
+        setAttribute3.innerHTML = mask[`${gearName}`].attribute3Name + ': ';
+        setAttribute3.innerHTML += mask[`${gearName}`].attribute3Value;
+      }
+      else if (mask[`${gearName}`].rarity == "GearSet") {
+        setAttribute1.innerHTML = set[`${setName}`].attribute1Name + ': ';
+        setAttribute1.innerHTML += set[`${setName}`].attribute1Value;
+        setAttribute2.innerHTML = set[`${setName}`].attribute2Name + ': ';
+        setAttribute2.innerHTML += set[`${setName}`].attribute2Value;
+        setAttribute3.innerHTML = set[`${setName}`].gearSetTalentName + '<br><br>';
+        setAttribute3.innerHTML += set[`${setName}`].gearSetTalentText;
+      }
+      else if (mask[`${gearName}`].rarity !== "Improvised") { //aka. is a normal high-end-item
+        setAttribute1.innerHTML = set[`${setName}`].attribute1Name + ': ';
+        setAttribute1.innerHTML += set[`${setName}`].attribute1Value;
+        setAttribute2.innerHTML = set[`${setName}`].attribute2Name + ': ';
+        setAttribute2.innerHTML += set[`${setName}`].attribute2Value;
+        setAttribute3.innerHTML = set[`${setName}`].attribute3Name + ': ';
+        setAttribute3.innerHTML += set[`${setName}`].attribute3Value;
+      };
+
+      // item talent
+      let itemTalentName = clonedListNode.getElementById('item-talent-name')
+      if (mask[`${gearName}`].hasOwnProperty('talentName')) {
+        itemTalentName.classList.add('hLineTop');
+        itemTalentName.innerHTML = mask[`${gearName}`].talentName;
+      };
+      if (mask[`${gearName}`].hasOwnProperty('talentText')) {
+        clonedListNode.getElementById('item-talent-text').innerHTML = mask[`${gearName}`].talentText;
+      };
+
+      tplListParent.appendChild(clonedListNode);
     }
-    else if (mask[`${gearName}`].rarity == "Named") {
-      panelItem.style.borderColor = 'var(--cNamed)';
-      panelItem.style.color = 'var(--cNamed)';
-    }
-    else if (mask[`${gearName}`].rarity == "GearSet") {
-      panelItem.style.borderColor = 'var(--cGearSet)';
-      panelItem.style.color = 'var(--cGearSet)';
-    };
-
-    // item name
-    let itemName = clonedListNode.getElementById('item-name')
-    itemName.innerHTML = `${gearName}`;
-
-    // item type
-    if (mask[`${gearName}`].hasOwnProperty('type') && mask[`${gearName}`].type !== `${gearName}`) {
-      let itemType = clonedListNode.getElementById('item-type');
-      itemType.innerHTML = "(";
-      itemType.innerHTML += mask[`${gearName}`].type;
-      itemType.innerHTML += ")";
-    };
-
-    // item set boni
-    let itemSetAttributes = clonedListNode.getElementById('item-set-attributes');
-    itemSetAttributes.classList.add('hLineTop');
-    let setAttribute1 = clonedListNode.getElementById('set-attribute-1');
-    let setAttribute2 = clonedListNode.getElementById('set-attribute-2');
-    let setAttribute3 = clonedListNode.getElementById('set-attribute-3');
-    let setName = mask[`${gearName}`].type;
-
-    if (mask[`${gearName}`].rarity == "Exotic") {
-      setAttribute1.innerHTML = mask[`${gearName}`].attribute1Name + ': ';
-      setAttribute1.innerHTML += mask[`${gearName}`].attribute1Value;
-      setAttribute2.innerHTML = mask[`${gearName}`].attribute2Name + ': ';
-      setAttribute2.innerHTML += mask[`${gearName}`].attribute2Value;
-      setAttribute3.innerHTML = mask[`${gearName}`].attribute3Name + ': ';
-      setAttribute3.innerHTML += mask[`${gearName}`].attribute3Value;
-    }
-    else if (mask[`${gearName}`].rarity == "GearSet") {
-      setAttribute1.innerHTML = set[`${setName}`].attribute1Name + ': ';
-      setAttribute1.innerHTML += set[`${setName}`].attribute1Value;
-      setAttribute2.innerHTML = set[`${setName}`].attribute2Name + ': ';
-      setAttribute2.innerHTML += set[`${setName}`].attribute2Value;
-      setAttribute3.innerHTML = set[`${setName}`].gearSetTalentName + '<br><br>';
-      setAttribute3.innerHTML += set[`${setName}`].gearSetTalentText;
-    }
-    else if (mask[`${gearName}`].rarity !== "Improvised") { //aka. is a normal high-end-item
-      setAttribute1.innerHTML = set[`${setName}`].attribute1Name + ': ';
-      setAttribute1.innerHTML += set[`${setName}`].attribute1Value;
-      setAttribute2.innerHTML = set[`${setName}`].attribute2Name + ': ';
-      setAttribute2.innerHTML += set[`${setName}`].attribute2Value;
-      setAttribute3.innerHTML = set[`${setName}`].attribute3Name + ': ';
-      setAttribute3.innerHTML += set[`${setName}`].attribute3Value;
-    };
-
-    // item talent
-    let itemTalentName = clonedListNode.getElementById('item-talent-name')
-    if (mask[`${gearName}`].hasOwnProperty('talentName')) {
-      itemTalentName.classList.add('hLineTop');
-      itemTalentName.innerHTML = mask[`${gearName}`].talentName;
-    };
-    if (mask[`${gearName}`].hasOwnProperty('talentText')) {
-      clonedListNode.getElementById('item-talent-text').innerHTML = mask[`${gearName}`].talentText;
-    };
-
-    tplListParent.appendChild(clonedListNode);
+    ////tplPopupParent.appendChild(clonedPopupNode);
   }
-  ////tplPopupParent.appendChild(clonedPopupNode);
 }, false);
 
 //==============================
