@@ -109,7 +109,7 @@ let gear = [
 document.addEventListener('DOMContentLoaded', () => {
   //============================
   // DEBUG
-  //alert( 'Res: (W)' + screen.width + 'x(H)' + screen.height + '  ratio: ' + window.devicePixelRatio); /* Lap: 1280x720; Mob: 432x896 */
+  alert( 'Res: (W)' + screen.width + 'x(H)' + screen.height + '  ratio: ' + window.devicePixelRatio); // LapHD: 1920x1080 Lap: 1280x720; Mob: 432x896
 
   // COLORIZE PANELS
   let panels = document.getElementsByClassName("panel");
