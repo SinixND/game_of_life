@@ -137,8 +137,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   //============================
   // MAKE SELECTION POPUP
-  const tplPopupParent = document.getElementById('popup-frame-main');
-  const tplPopupBase = document.getElementById('template-popup');
+  let tplPopupParent = document.getElementById('popup-frame-main');
+  let tplPopupBase = document.getElementById('template-popup');
   for (let gearClass of gear) {//does this work?
     alert(`forloop: gearClass is ${gearClass}`)
     let clonedPopupNode = tplPopupBase.content.cloneNode(true);
@@ -148,9 +148,9 @@ document.addEventListener('DOMContentLoaded', () => {
     alert(`popup-gear renamed to ${popupGear.id}`)
 
     // POPULATE SELECTION LIST
-    const tplListParent = document.getElementById('list-gear');
+    let tplListParent = document.getElementById('list-gear');
     //tplListParent += `-${gearClass}`;
-    const tplListBase = document.getElementById('template-list-gear-item');
+    let tplListBase = document.getElementById('template-list-gear-item');
 
     for (let gearName in mask) {
       let clonedListNode = tplListBase.content.cloneNode(true);
