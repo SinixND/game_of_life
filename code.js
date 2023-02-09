@@ -140,12 +140,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const tplPopupParent = document.getElementById('popup-frame-main');
   const tplPopupBase = document.getElementById('template-popup');
   for (let gearClass of gear) {//does this work?
-    alert(`forloop: gearClass is ${gearClass}`)
     let clonedPopupNode = tplPopupBase.content.cloneNode(true);
 
     let popupGear = clonedPopupNode.getElementById('popup-gear');
     popupGear.id += `-${gearClass}`;
-    alert(`popup-gear renamed to ${popupGear.id}`)
 
     // POPULATE SELECTION LIST
     const tplListParent = clonedPopupNode.getElementById('list-gear');
@@ -160,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // onclick
       panelItem.addEventListener('click', () => { closePopup() });
-      panelItem.addEventListener('click', (gearClass) => { applySelection(`${gearClass}`) });
+      panelItem.addEventListener('click', () => { applySelection(gearClass) });
 
       // panel color
       if (mask[`${gearName}`].rarity == "Exotic") {
@@ -253,7 +251,6 @@ for (let i = 0; i < gear.length; i++) {
 //==============================
 // FUNCTIONS
 function showPopup(arg) {
-  alert(`enter showPopup(${arg})`);
   document.getElementById('popup-frame-main').style.display = "flex";
   document.getElementById(`popup-gear-${arg}`).style.display = "flex";
   // reset scroll state to top
@@ -262,13 +259,11 @@ function showPopup(arg) {
 }
 
 function closePopup() {
-  alert(`enter closePopup()`);
   document.getElementById('popup-frame-main').style.display = "none";
   document.body.style.overflow = "";
 }
 
 function applySelection(arg) {
-  alert(`enter applySection(${arg})`)
   let panelItem = document.getElementById(`panel-${arg}`);
   panelItem.innerHTML = "";
   //use itemSlotted
