@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
     alert(`popup-gear renamed to ${popupGear.id}`)
 
     // POPULATE SELECTION LIST
-    const tplListParent = document.getElementById('list-gear');
+    const tplListParent = clonedPopupNode.getElementById('list-gear');
     tplListParent.id += `-${gearClass}`;
     const tplListBase = document.getElementById('template-list-gear-item');
 
