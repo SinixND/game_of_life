@@ -1,4 +1,13 @@
 //============================
+// TOGGLE DEBUG MODES
+/* 
+console.log = function() {};
+//*/
+/* 
+alert = function() {};
+//*/
+
+//============================
 // IMPORT DATA
 import { set } from "./data/sets.js";
 import { mask } from "./data/masks.js";
