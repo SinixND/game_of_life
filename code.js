@@ -1,15 +1,15 @@
 //============================
 // IMPORT DATA
-import {set} from "./data/sets.js";
-import {mask} from "./data/masks.js";
+import { set } from "./data/sets.js";
+import { mask } from "./data/masks.js";
 
 // ARRAYS
 let colors = [
-  'car', 
-  'cag', 
-  'cab', 
-  'cay', 
-  'cat', 
+  'car',
+  'cag',
+  'cab',
+  'cay',
+  'cat',
   'cav',
 ];
 
@@ -85,7 +85,7 @@ let gear = [
   //"weapon-1", 
   //"weapon-2", 
   //"sidearm", 
-  "mask", 
+  "mask",
   //"backpack", 
   //"chest", 
   //"gloves", 
@@ -146,15 +146,13 @@ document.addEventListener('DOMContentLoaded', () => {
     let popupGear = clonedPopupNode.getElementById('popup-gear');
     popupGear.id += `-${gearClass}`;
     alert(`popup-gear renamed to ${popupGear.id}`)
-    
-    tplPopupParent.appendChild(clonedPopupNode);
-  }
+
     // POPULATE SELECTION LIST
     const tplListParent = document.getElementById('list-gear');
-    tplListParent += `-${popupGear}`;
+    tplListParent += `-${gearClass}`;
     const tplListBase = document.getElementById('template-list-gear-item');
 
-    for (let gearName in mask) {      
+    for (let gearName in mask) {
       let clonedListNode = tplListBase.content.cloneNode(true);
 
       // panel settings
@@ -233,6 +231,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
       tplListParent.appendChild(clonedListNode);
     }
+    tplPopupParent.appendChild(clonedPopupNode);
+  }
 }, false);
 
 //==============================
@@ -245,7 +245,7 @@ popupFrameMain.addEventListener("click", closePopup, false);
 // open selection popup
 for (let i = 0; i < gear.length; i++) {
   let panelItem = document.getElementById(`panel-${gear[i]}`);
-  panelItem.addEventListener('click', () => {showPopup(gear[i])}, false);
+  panelItem.addEventListener('click', () => { showPopup(gear[i]) }, false);
 }
 
 //==============================
