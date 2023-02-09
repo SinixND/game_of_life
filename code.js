@@ -141,15 +141,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const tplPopupBase = document.getElementById('template-popup');
   for (let gearClass of gear) {//does this work?
     alert(`forloop: gearClass is ${gearClass}`)
-    /* 
     let clonedPopupNode = tplListBase.content.cloneNode(true);
 
-    let popupGear = document.getElementById('popup-gear');
+    let popupGear = clonedPopupNode.getElementById('popup-gear');
     popupGear.id += `-${gearClass}`;
     //*/
     // POPULATE SELECTION LIST
     const tplListParent = document.getElementById('list-gear');
-    ////tplListParent += `-${popupGear}`;
+    tplListParent += `-${popupGear}`;
     const tplListBase = document.getElementById('template-list-gear-item');
 
     for (let gearName in mask) {      
@@ -159,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
       let panelItem = clonedListNode.getElementById('panel-item')
       // onclick
       panelItem.addEventListener("click", closePopup);
-      ////panelItem.addEventListener('click', applySelection(`${gearClass}`));
+      panelItem.addEventListener('click', applySelection(`${gearClass}`));
       // panel color
       if (mask[`${gearName}`].rarity == "Exotic") {
         panelItem.style.borderColor = 'var(--cExotic)';
@@ -231,7 +230,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       tplListParent.appendChild(clonedListNode);
     }
-    ////tplPopupParent.appendChild(clonedPopupNode);
+    tplPopupParent.appendChild(clonedPopupNode);
   }
 }, false);
 
