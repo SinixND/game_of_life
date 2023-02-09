@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // POPULATE SELECTION LIST
     const tplListParent = document.getElementById('list-gear');
-    tplListParent += `-${gearClass}`;
+    //tplListParent += `-${gearClass}`;
     const tplListBase = document.getElementById('template-list-gear-item');
 
     for (let gearName in mask) {
