@@ -141,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const tplPopupBase = document.getElementById('template-popup');
   for (let gearClass of gear) {//does this work?
     alert(`forloop: gearClass is ${gearClass}`)
-    let clonedPopupNode = tplListBase.content.cloneNode(true);
+    let clonedPopupNode = tplPopupBase.content.cloneNode(true);
 
     let popupGear = clonedPopupNode.getElementById('popup-gear');
     popupGear.id += `-${gearClass}`;
