@@ -227,6 +227,11 @@ place-self :: (align justify)
   height: 90%;
 }
 
+.list-gear {
+  height: 100%;
+  overflow: auto;
+}
+
 .hLineTop {
   width: 100%;
   border-top: var(--ctxt) solid var(--bWeight);
@@ -263,11 +268,6 @@ place-self :: (align justify)
   height: min-content;
   border-width: 0;
   background-color: var(--cbg);
-}
-
-#list-gear {
-  height: 100%;
-  overflow: auto;
 }
 
 #item-name {
