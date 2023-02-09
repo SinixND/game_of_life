@@ -185,40 +185,51 @@
   <!-- 
     POPUP MENU 
   -->
-  <div id="popup-frame-main" class="panel flexC">
+  <div id="popup-frame-main" class="panel flexC"></div>
 
-    <template id="template-popup">
-      <div id="popup-gear" class="panel popup flexCV" onclick="window.event.stopPropagation()">
-        <div id="panel-search" class="panelBorder">
-          <div class="container">
-            <input id="input-search" placeholder="Search..." type="text">
-          </div>
-        </div>
-        <div id="list-gear" class="panel gridCC listGear">
-          <!-- PLACEHOLDER LIST ITEMS -->
-        </div>
-      </div>
-    </template>
-
-    <template id="template-list-gear-item">
-      <div id="panel-item" class="panelBorder gridI">
+  <template id="template-popup">
+    <div id="popup-gear" class="panel popup flexCV" onclick="window.event.stopPropagation()">
+      <div id="panel-search" class="panelBorder">
         <div class="container">
-          <div id="item-name"></div>
-          <div id="item-type"></div>
-          <div id="item-set-attributes">
-            <ol>
-              <li id="set-attribute-1">first attribute</li>
-              <li id="set-attribute-2">second attribute</li>
-              <li id="set-attribute-3">third attribute</li>
-            </ol>
-          </div>
-          <div id="item-talent-name"></div>
-          <div id="item-talent-text"></div>
+          <input id="input-search" placeholder="Search..." type="text">
         </div>
       </div>
-    </template>
+      <div id="list-gear" class="panel gridCC listGear">
+        <!-- PLACEHOLDER LIST ITEMS -->
+      </div>
+    </div>
+  </template>
 
-  </div>
+  <template id="template-list-gear-item">
+    <div id="panel-item" class="panelBorder gridI">
+      <div class="container">
+        <div id="item-name"></div>
+        <div id="item-type"></div>
+        <div id="item-set-attributes">
+          <ol>
+            <li id="set-attribute-1">first attribute</li>
+            <li id="set-attribute-2">second attribute</li>
+            <li id="set-attribute-3">third attribute</li>
+          </ol>
+        </div>
+        <div id="item-talent-name"></div>
+        <div id="item-talent-text"></div>
+      </div>
+    </div>
+  </template>
+
+  <template id="template-item-selected">
+      <div class="container">
+        <div id="item-selected-name"></div>
+        <div id="item-selected-type"></div>
+        <div id="item-selected-core-attribute"></div>
+        <div id="item-selected-minor-attribute-1"></div>
+        <div id="item-selected-minor-attribute-2"></div>
+        <div id="item-selected-mod"></div>
+        <div id="item-selected-talent-name"></div>
+        <div id="item-selected-talent-text"></div>
+      </div>
+  </template>
 
   <!-- 
   <div id="ref-width-min"
