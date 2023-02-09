@@ -157,9 +157,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // panel settings
       let panelItem = clonedListNode.getElementById('panel-item')
+
       // onclick
       panelItem.addEventListener('click', () => { closePopup() });
-      panelItem.addEventListener('click', (/*gearClass*/) => {applySelection(`${gearClass}`)});
+      panelItem.addEventListener('click', (gearClass) => { applySelection(`${gearClass}`) });
+
       // panel color
       if (mask[`${gearName}`].rarity == "Exotic") {
         panelItem.style.borderColor = 'var(--cExotic)';
@@ -251,6 +253,7 @@ for (let i = 0; i < gear.length; i++) {
 //==============================
 // FUNCTIONS
 function showPopup(arg) {
+  alert(`enter showPopup(${arg})`);
   document.getElementById('popup-frame-main').style.display = "flex";
   document.getElementById(`popup-gear-${arg}`).style.display = "flex";
   // reset scroll state to top
@@ -259,11 +262,13 @@ function showPopup(arg) {
 }
 
 function closePopup() {
+  alert(`enter closePopup()`);
   document.getElementById('popup-frame-main').style.display = "none";
   document.body.style.overflow = "";
 }
 
 function applySelection(arg) {
+  alert(`enter applySection(${arg})`)
   let panelItem = document.getElementById(`panel-${arg}`);
   panelItem.innerHTML = "";
   //use itemSlotted
