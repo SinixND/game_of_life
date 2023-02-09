@@ -158,8 +158,8 @@ document.addEventListener('DOMContentLoaded', () => {
       // panel settings
       let panelItem = clonedListNode.getElementById('panel-item')
       // onclick
-      panelItem.addEventListener("click", closePopup);
-      panelItem.addEventListener('click', applySelection(`${gearClass}`));
+      panelItem.addEventListener('click', () => { closePopup() });
+      panelItem.addEventListener('click', (/*gearClass*/) => {applySelection(`${gearClass}`)});
       // panel color
       if (mask[`${gearName}`].rarity == "Exotic") {
         panelItem.style.borderColor = 'var(--cExotic)';
@@ -240,7 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // close popup when background is clicked
 //let eventTarget = document.querySelectorAll(`[id*="${icons[i]}"]`);
 let popupFrameMain = document.getElementById("popup-frame-main");
-popupFrameMain.addEventListener("click", closePopup, false);
+popupFrameMain.addEventListener("click", () => {closePopup() });
 
 // open selection popup
 for (let i = 0; i < gear.length; i++) {

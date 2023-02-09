@@ -222,6 +222,7 @@ place-self :: (align justify)
 }
 
 .popup {
+  display: none;
   min-width: var(--widthMin);
   max-width: 80%;
   height: 90%;
@@ -251,6 +252,7 @@ place-self :: (align justify)
 }
 
 #popup-frame-main {
+  display: none;
   position: fixed;
   top: 0;
   right: 0;
