@@ -188,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // item set boni
       let itemSetAttributes = clonedListNode.getElementById('item-set-attributes');
-      itemSetAttributes.classList.add('hLineTop');
+      itemSetAttributes.classList.add('h-line-top');
       let setAttribute1 = clonedListNode.getElementById('set-attribute-1');
       let setAttribute2 = clonedListNode.getElementById('set-attribute-2');
       let setAttribute3 = clonedListNode.getElementById('set-attribute-3');
@@ -222,7 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // item talent
       let itemTalentName = clonedListNode.getElementById('item-talent-name')
       if (mask[`${gearName}`].hasOwnProperty('talentName')) {
-        itemTalentName.classList.add('hLineTop');
+        itemTalentName.classList.add('h-line-top');
         itemTalentName.innerHTML = mask[`${gearName}`].talentName;
       };
       if (mask[`${gearName}`].hasOwnProperty('talentText')) {

@@ -82,21 +82,21 @@ body {
 /* CLASS SETTINGS */
 
 .panel,
-.panelBorder {
+.panel--border {
   /* border: var(--bWeightTemp) dotted var(--cTemp); /* develop */
   background-color: var(--cbgr);
   /* padding: var(--bWeightTemp); /* develop */
 }
 
-.panelBorder {
+.panel--border {
   padding: var(--bWeight);
   margin: calc(2 * var(--bWeight));
   border: 1px dotted var(--cbrd);
   position: relative;
 }
 
-.panelBorder::before,
-.panelBorder::after {
+.panel--border::before,
+.panel--border::after {
   position: absolute;
   width: var(--bWidth);
   height: var(--bHeight);
@@ -105,19 +105,19 @@ body {
   content: '';
 }
 
-.panelBorder::before {
+.panel--border::before {
   top: 0;
   left: 0;
   border-width: var(--bWeight) 0 0 var(--bWeight);
 }
 
-.panelBorder::after {
+.panel--border::after {
   right: 0;
   bottom: 0;
   border-width: 0 var(--bWeight) var(--bWeight) 0;
 }
 
-.panelBorder:hover {
+.panel--border:hover {
   /* opacity: 0.8; */
   cursor: pointer;
 }
@@ -134,21 +134,21 @@ gap
 row-gap
 column-gap
 */
-.flexC,
-.flexCH,
-.flexCV {
+.flex-c,
+.flex-c--h,
+.flex-c--v {
   display: flex;
 }
 
-.flexCH,
-.flexCV {
+.flex-c--h,
+.flex-c--v {
   justify-content: space-between;
 }
-.flexCH {
+.flex-c--h {
   flex-flow: row wrap;
 }
 
-.flexCV {
+.flex-c--v {
   flex-flow: column nowrap;
 }
 
@@ -160,7 +160,7 @@ flex-basis
 flex :: (grow shrink basis)
 align-self
 */
-.flexI {
+.flex-i {
   flex: auto;
 }
 
@@ -177,17 +177,17 @@ grid-auto-(columns|rows)
 grid-auto-flow
 grid :: (template-rows template-columns template-areas auto-rows auto-columns auto-flow)
 */
-.gridC,
-.gridCC,
-.gridCR {
+.grid-c,
+.grid-c--c,
+.grid-c--r {
   display: grid;
 }
 
-.gridCC {
+.grid-c--c {
   grid-template-columns: repeat(auto-fit, minmax(var(--widthMin), 1fr));
 }
 
-.gridCR {
+.grid-c--r {
   grid-template-rows: repeat(auto-fit, minmax(var(--widthMin), 1fr));
 }
 
@@ -199,7 +199,7 @@ justify-self
 align-self
 place-self :: (align justify)
 */
-.gridI {
+.grid-i {
   /* nothing to set */
 }
 
@@ -232,7 +232,7 @@ place-self :: (align justify)
   overflow: auto;
 }
 
-.hLineTop {
+.h-line-top {
   width: 100%;
   border-top: var(--ctxt) solid var(--bWeight);
   border-color: inherit;
