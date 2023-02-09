@@ -3,7 +3,7 @@
 /* 
 console.log = function() {};
 //*/
-/* 
+/* */
 alert = function() {};
 //*/
 
