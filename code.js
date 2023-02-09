@@ -146,6 +146,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let popupGear = clonedPopupNode.getElementById('popup-gear');
     popupGear.id += `-${gearClass}`;
     alert(`popup-gear renamed to ${popupGear.id}`)
+    
+    tplPopupParent.appendChild(clonedPopupNode);
+  }
     // POPULATE SELECTION LIST
     const tplListParent = document.getElementById('list-gear');
     tplListParent += `-${popupGear}`;
@@ -230,8 +233,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       tplListParent.appendChild(clonedListNode);
     }
-    tplPopupParent.appendChild(clonedPopupNode);
-  }
 }, false);
 
 //==============================
