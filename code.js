@@ -264,7 +264,13 @@ function closePopup() {
 }
 
 function applySelection(arg) {
-  let panelItem = document.getElementById(`panel-${arg}`);
-  panelItem.innerHTML = "";
-  //use itemSlotted
+  const tplItemSelectedParent = document.getElementById(`panel-${arg}`);
+  tplItemSelectedParent.innerHTML = "";
+  const tplItemSelectedBase = document.getElementById('template-item-selected');
+    let clonedItemSelectedNode = tplItemSelectedBase.content.cloneNode(true);
+
+    let itemSelected = clonedItemSelectedNode.getElementById('item-selected');
+    itemSelected.id += `-${gearClass}`;
+
+    tplItemSelectedParent.appendChild(clonedItemSelectedNode);
 }
