@@ -188,7 +188,7 @@
   <div id="popup--frame-main" class="panel flex-c"></div>
 
   <template id="template--popup">
-    <div id="popup--gear" class="panel popup flex-c--v">
+    <div id="popup--gear" class="panel popup flex-c--v" onclick="window.event.stopPropagation()">
       <div id="panel--search" class="panel--border">
         <div class="container">
           <input id="input--search" placeholder="Search..." type="text">
