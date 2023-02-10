@@ -187,6 +187,9 @@
   -->
   <div id="popup--frame-main" class="panel flex-c"></div>
 
+  <!-- 
+    TEMPLATE SELECTION POPUP
+  -->
   <template id="template--popup">
     <div id="popup--gear" class="panel popup flex-c--v">
       <div id="panel--search" class="panel--border">
@@ -200,6 +203,9 @@
     </div>
   </template>
 
+  <!-- 
+    TEMPLATE SELECTION LIST
+  -->
   <template id="template--list-gear-item">
     <div id="panel--item" class="panel--border grid-i">
       <div class="container">
@@ -218,21 +224,24 @@
     </div>
   </template>
 
-  <template id="template--item-selected">
-      <div id="item-selected" class="container">
-        <div id="item-selected--name"></div>
-        <div id="item-selected--type"></div>
-        <select id="item-selected--core-attribute">
+  <!-- 
+    TEMPLATE GEAR SLOT
+  -->
+  <template id="template--gearslot">
+      <div id="gearslot" class="container">
+        <div id="gearslot--name"></div>
+        <div id="gearslot--type"></div>
+        <select id="gearslot--core-attribute">
           <option value="" disabled="disabled" selected="selected"></option>
           <option value="core-attribute--damage">Damage Core</option>
           <option value="core-attribue--armor">Armor Core</option>
           <option value="core-attribute--skill-tier">Skill Tier</option>
       </select>
-        <div id="item-selected--minor-attribute-1"></div>
-        <div id="item-selected--minor-attribute-2"></div>
-        <div id="item-selected--mod"></div>
-        <div id="item-selected--talent-name"></div>
-        <div id="item-selected--talent-text"></div>
+        <div id="gearslot--minor-attribute-1"></div>
+        <div id="gearslot--minor-attribute-2"></div>
+        <div id="gearslot--mod"></div>
+        <div id="gearslot--talent-name"></div>
+        <div id="gearslot--talent-text"></div>
       </div>
   </template>
 

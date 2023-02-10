@@ -136,10 +136,40 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   //============================
-  // MAKE SELECTION POPUP
+  // FILL GEAR SLOTS
+
+  for (let gearClass of gear) {
+    const tplGearslotParent = document.getElementById(`panel--${gearClass}`);
+    tplGearslotParent.innerHTML = "";
+    const tplGearslotBase = document.getElementById('template--gearslot');
+    let clonedGearslotNode = tplGearslotBase.content.cloneNode(true);
+
+    let Gearslot = clonedGearslotNode.getElementById('gearslot');
+    Gearslot.id += `--${gearClass}`;
+
+    let GearslotName = clonedGearslotNode.getElementById('gearslot--name');
+      GearslotName.innerHTML = `Choose ${gearClass}`;
+      //add new showPopup Listener
+
+    /*
+    gearslot--name
+    gearslot--type
+    gearslot--core-attribute
+    gearslot--minor-attribute-1
+    gearslot--minor-attribute-2
+    gearslot--mod
+    gearslot--talent-name
+    gearslot--talent-text
+    */
+
+    tplGearslotParent.appendChild(clonedGearslotNode);
+  }
+  
+  //============================
+  // BUILD SELECTION POPUP
   const tplPopupParent = document.getElementById('popup--frame-main');
   const tplPopupBase = document.getElementById('template--popup');
-  for (let gearClass of gear) {//does this work?
+  for (let gearClass of gear) {
     let clonedPopupNode = tplPopupBase.content.cloneNode(true);
 
     let popupGear = clonedPopupNode.getElementById('popup--gear');
@@ -148,7 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
       evt.stopPropagation()
     });
 
-    // POPULATE SELECTION LIST
+    // FILL SELECTION LIST
     const tplListParent = clonedPopupNode.getElementById('list--gear');
     tplListParent.id += `--${gearClass}`;
     const tplListBase = document.getElementById('template--list-gear-item');
@@ -242,8 +272,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //==============================
 // EVENT LISTENERS
-// close popup when background is clicked
-//let eventTarget = document.querySelectorAll(`[id*="${icons[i]}"]`);
 let popupFrameMain = document.getElementById("popup--frame-main");
 popupFrameMain.addEventListener('click', () => {
   hidePopup()
@@ -275,28 +303,6 @@ function hidePopup() {
 
 function applySelection(gearClass, gearName) {
   hidePopup();
-  const tplItemSelectedParent = document.getElementById(`panel--${gearClass}`);
-  tplItemSelectedParent.innerHTML = "";
-  const tplItemSelectedBase = document.getElementById('template--item-selected');
-    let clonedItemSelectedNode = tplItemSelectedBase.content.cloneNode(true);
-
-    let itemSelected = clonedItemSelectedNode.getElementById('item-selected');
-    itemSelected.id += `--${gearClass}`;
-
-    let itemSelectedName = clonedItemSelectedNode.getElementById('item-selected--name');
-      itemSelectedName.innerHTML = mask[`${gearName}`].name;
-      //add new showPopup Listener
-
-    /*
-    item-selected--name
-    item-selected--type
-    item-selected--core-attribute
-    item-selected--minor-attribute-1
-    item-selected--minor-attribute-2
-    item-selected--mod
-    item-selected--talent-name
-    item-selected--talent-text
-    */
-
-    tplItemSelectedParent.appendChild(clonedItemSelectedNode);
 }
+
+//let eventTarget = document.querySelectorAll(`[id*="${icons[i]}"]`);
