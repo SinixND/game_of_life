@@ -268,6 +268,7 @@ function applySelection(gearClass, gearName) {
   hidePopup();
   const tplItemSelectedParent = document.getElementById(`panel--${gearClass}`);
   tplItemSelectedParent.innerHTML = "";
+  /*
   const tplItemSelectedBase = document.getElementById('template--item-selected');
     let clonedItemSelectedNode = tplItemSelectedBase.content.cloneNode(true);
 
