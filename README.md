@@ -1,5 +1,5 @@
 # sinixnd.github.io
---
+-------------------
 
 ## First public web app project
 
@@ -9,4 +9,4 @@
 
 ### Credits
 
-heavily inspired by github.com/mxswat
+heavily inspired by https://mxswat.github.io/mx-division-builds/#/github.com/mxswat
