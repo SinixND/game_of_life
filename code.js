@@ -157,9 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
       let panelItem = clonedListNode.getElementById('panel--item')
 
       // onclick
-      panelItem.addEventListener('click', (evt) => { evt.stopPropagation();
-        applySelection(gearClass, gearName) 
-      }, false);
+      panelItem.addEventListener('click', (evt) => { applySelection(gearClass, gearName) }, false);
 
       // panel color
       if (mask[`${gearName}`].rarity == "Exotic") {
@@ -242,16 +240,13 @@ const abtCtrl = new AbortController(); // to make parametric event listeners rem
 // close popup when background is clicked
 //let eventTarget = document.querySelectorAll(`[id*="${icons[i]}"]`);
 let popupFrameMain = document.getElementById("popup--frame-main");
-popupFrameMain.addEventListener("click", (evt) => { evt.stopPropagation();
-  hidePopup() 
-}, false);
+popupFrameMain.addEventListener("click", (evt) => { hidePopup() }, false);
+popupFrameMain.firstChild.addEventListener('click', (evt) => { evt.stopPropagation() });
 
 // open selection popup
 for (let i = 0; i < gear.length; i++) {
   let panelItem = document.getElementById(`panel--${gear[i]}`);
-  panelItem.addEventListener('click', (evt) => { evt.stopPropagation();
-    showPopup(gear[i]) 
-  }, false, {signal: abtCtrl.signal});
+  panelItem.addEventListener('click', (evt) => { showPopup(gear[i]) }, false, {signal: abtCtrl.signal});
 }
 
 //==============================
