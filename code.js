@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // onclick
       panelItem.addEventListener('click', () => { closePopup() });
-      panelItem.addEventListener('click', () => { applySelection(gearClass) });
+      panelItem.addEventListener('click', () => { applySelection(gearClass, gearName) });
 
       // panel color
       if (mask[`${gearName}`].rarity == "Exotic") {
@@ -272,14 +272,14 @@ function closePopup() {
   document.body.style.overflow = "";
 }
 
-function applySelection(arg) {
-  const tplItemSelectedParent = document.getElementById(`panel--${arg}`);
+function applySelection(gearClass, gearName) {
+  const tplItemSelectedParent = document.getElementById(`panel--${gearClass}`);
   tplItemSelectedParent.innerHTML = "";
   const tplItemSelectedBase = document.getElementById('template--item-selected');
     let clonedItemSelectedNode = tplItemSelectedBase.content.cloneNode(true);
 
     let itemSelected = clonedItemSelectedNode.getElementById('item-selected');
-    itemSelected.id += `--${arg}`;
+    itemSelected.id += `--${gearClass}`;
 
     let itemSelectedName = clonedListNode.getElementById('item-selected--name');
       itemSelectedName.innerHTML = 'mask[`${gearName}`].name';
