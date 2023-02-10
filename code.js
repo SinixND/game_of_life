@@ -157,8 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
       let panelItem = clonedListNode.getElementById('panel--item')
 
       // onclick
-      panelItem.addEventListener('click', (evt) => { evt.stopPropagation();
- applySelection(gearClass, gearName) }, false);
+      panelItem.addEventListener('click', () => { applySelection(gearClass, gearName) }, false);
 
       // panel color
       if (mask[`${gearName}`].rarity == "Exotic") {
@@ -240,13 +239,12 @@ document.addEventListener('DOMContentLoaded', () => {
 // close popup when background is clicked
 //let eventTarget = document.querySelectorAll(`[id*="${icons[i]}"]`);
 let popupFrameMain = document.getElementById("popup--frame-main");
-popupFrameMain.addEventListener("click", () => {hidePopup() }, false);
+popupFrameMain.addEventListener("click", () => { hidePopup() }, false);
 
 // open selection popup
 for (let i = 0; i < gear.length; i++) {
   let panelItem = document.getElementById(`panel--${gear[i]}`);
-  panelItem.firstChild.addEventListener('click', (evt) => { evt.stopPropagation();
- showPopup(gear[i]) }, false);
+  panelItem.addEventListener('click', () => { showPopup(gear[i]) }, false);
 }
 
 //==============================
