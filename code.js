@@ -1,13 +1,4 @@
 //============================
-// TOGGLE DEBUG MODES
-/* 
-console.log = function() {};
-//*/
-/* */
-alert = function() {};
-//*/
-
-//============================
 // IMPORT DATA
 import { set } from "./data/sets.js";
 import { mask } from "./data/masks.js";
@@ -109,7 +100,7 @@ let gear = [
 document.addEventListener('DOMContentLoaded', () => {
   //============================
   // DEBUG
-  alert( 'Res: (W)' + screen.width + 'x(H)' + screen.height + '  ratio: ' + window.devicePixelRatio); // LapHD: 1920x1080 Lap: 1280x720; Mob: 432x896
+  //alert( 'Res: (W)' + screen.width + 'x(H)' + screen.height + '  ratio: ' + window.devicePixelRatio); // LapHD: 1920x1080 Lap: 1280x720; Mob: 432x896
 
   // COLORIZE PANELS
   let panels = document.getElementsByClassName("panel");
@@ -284,8 +275,9 @@ function applySelection(gearClass, gearName) {
     let itemSelected = clonedItemSelectedNode.getElementById('item-selected');
     itemSelected.id += `--${gearClass}`;
     
-    //let panelItem = document.getElementById(`panel--${gearClass}`);
-    //panelItem.removeEventListener('click', this, false);
+    let panelItem = document.getElementById(`panel--${gearClass}`);
+    alert(getEventListeners(panelItem));
+    panelItem.removeEventListener('click', this, false);
 
     let itemSelectedName = clonedItemSelectedNode.getElementById('item-selected--name');
       itemSelectedName.innerHTML = mask[`${gearName}`].name;
