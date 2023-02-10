@@ -276,7 +276,7 @@ function applySelection(gearClass, gearName) {
     itemSelected.id += `--${gearClass}`;
     
     let panelItem = document.getElementById(`panel--${gearClass}`);
-    alert(`getEventListeners: ${getEventListeners(panelItem)}`);
+    alert(getEventListeners(`${panelItem}`));
     //panelItem.removeEventListener('click', this, false);
 
     let itemSelectedName = clonedItemSelectedNode.getElementById('item-selected--name');
