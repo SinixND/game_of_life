@@ -144,6 +144,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let popupGear = clonedPopupNode.getElementById('popup--gear');
     popupGear.id += `--${gearClass}`;
+    popupGear.addEventListener('click', (evt) => {
+      evt.stopPropagation()
+    });
 
     // POPULATE SELECTION LIST
     const tplListParent = clonedPopupNode.getElementById('list--gear');
@@ -157,7 +160,10 @@ document.addEventListener('DOMContentLoaded', () => {
       let panelItem = clonedListNode.getElementById('panel--item')
 
       // onclick
-      panelItem.addEventListener('click', (evt) => { applySelection(gearClass, gearName) }, false);
+      panelItem.classList.add('cursor-pointer');
+      panelItem.addEventListener('click', () => {
+        applySelection(gearClass, gearName)
+      }, false);
 
       // panel color
       if (mask[`${gearName}`].rarity == "Exotic") {
@@ -236,17 +242,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //==============================
 // EVENT LISTENERS
-const abtCtrl = new AbortController(); // to make parametric event listeners removeable
 // close popup when background is clicked
 //let eventTarget = document.querySelectorAll(`[id*="${icons[i]}"]`);
 let popupFrameMain = document.getElementById("popup--frame-main");
-popupFrameMain.addEventListener("click", (evt) => { hidePopup() }, false);
-popupFrameMain.firstChild.addEventListener('click', (evt) => { evt.stopPropagation() });
+popupFrameMain.addEventListener('click', () => {
+  hidePopup()
+}, false);
 
 // open selection popup
 for (let i = 0; i < gear.length; i++) {
   let panelItem = document.getElementById(`panel--${gear[i]}`);
-  panelItem.addEventListener('click', (evt) => { showPopup(gear[i]) }, false, {signal: abtCtrl.signal});
+  panelItem.classList.add('cursor-pointer');
+  panelItem.addEventListener('click', (evt) => {
+    showPopup(gear[i])
+  }, false);
 }
 
 //==============================
@@ -268,7 +277,6 @@ function applySelection(gearClass, gearName) {
   hidePopup();
   const tplItemSelectedParent = document.getElementById(`panel--${gearClass}`);
   tplItemSelectedParent.innerHTML = "";
-  abtCtrl.abort();
   const tplItemSelectedBase = document.getElementById('template--item-selected');
     let clonedItemSelectedNode = tplItemSelectedBase.content.cloneNode(true);
 
