@@ -157,7 +157,9 @@ document.addEventListener('DOMContentLoaded', () => {
       let panelItem = clonedListNode.getElementById('panel--item')
 
       // onclick
-      panelItem.addEventListener('click', () => { applySelection(gearClass, gearName) }, false);
+      panelItem.addEventListener('click', (evt) => { evt.stopPropagation();
+        applySelection(gearClass, gearName) 
+      }, false);
 
       // panel color
       if (mask[`${gearName}`].rarity == "Exotic") {
@@ -239,21 +241,27 @@ document.addEventListener('DOMContentLoaded', () => {
 // close popup when background is clicked
 //let eventTarget = document.querySelectorAll(`[id*="${icons[i]}"]`);
 let popupFrameMain = document.getElementById("popup--frame-main");
-popupFrameMain.addEventListener("click", () => { hidePopup() }, false);
+popupFrameMain.addEventListener("click", (evt) => { evt.stopPropagation();
+  hidePopup() 
+}, false);
 
 // open selection popup
 for (let i = 0; i < gear.length; i++) {
   let panelItem = document.getElementById(`panel--${gear[i]}`);
-  panelItem.addEventListener('click', () => { showPopup(gear[i]) }, false);
+  panelItem.addEventListener('click', (evt) => { evt.stopPropagation();
+    showPopup(gear[i]) 
+  }, false, {signal: abtCtrl.signal});
 }
 
 //==============================
 // FUNCTIONS
-function showPopup(arg) {
+const abtCtrl = new AbortController();
+
+function showPopup(gearClass) {
   document.getElementById('popup--frame-main').style.display = "flex";
-  document.getElementById(`popup--gear--${arg}`).style.display = "flex";
+  document.getElementById(`popup--gear--${gearClass}`).style.display = "flex";
   // reset scroll state to top
-  ////document.getElementById(`list--gear--${arg}`).scrollTop = 0;
+  document.getElementById(`list--gear--${gearClass}`).scrollTop = 0;
   document.body.style.overflow = "hidden";
 }
 
@@ -266,6 +274,7 @@ function applySelection(gearClass, gearName) {
   hidePopup();
   const tplItemSelectedParent = document.getElementById(`panel--${gearClass}`);
   tplItemSelectedParent.innerHTML = "";
+  abtCtrl.abort();
   const tplItemSelectedBase = document.getElementById('template--item-selected');
     let clonedItemSelectedNode = tplItemSelectedBase.content.cloneNode(true);
 
