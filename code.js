@@ -166,8 +166,8 @@ document.addEventListener('DOMContentLoaded', () => {
       let panelItem = clonedListNode.getElementById('panel--item')
 
       // onclick
-      panelItem.addEventListener('click', () => { hidePopup() }, false);
-      panelItem.addEventListener('click', () => { applySelection(gearClass, gearName) }, false);
+      panelItem.addEventListener('click', () => { hidePopup() }, true);
+      panelItem.addEventListener('click', () => { applySelection(gearClass, gearName) }, true);
 
       // panel color
       if (mask[`${gearName}`].rarity == "Exotic") {
@@ -242,19 +242,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     tplPopupParent.appendChild(clonedPopupNode);
   }
-}, false);
+}, true);
 
 //==============================
 // EVENT LISTENERS
 // close popup when background is clicked
 //let eventTarget = document.querySelectorAll(`[id*="${icons[i]}"]`);
 let popupFrameMain = document.getElementById("popup--frame-main");
-popupFrameMain.addEventListener("click", () => {hidePopup() }, false);
+popupFrameMain.addEventListener("click", () => {hidePopup() }, true);
 
 // open selection popup
 for (let i = 0; i < gear.length; i++) {
   let panelItem = document.getElementById(`panel--${gear[i]}`);
-  panelItem.addEventListener('click', () => { showPopup(gear[i]) }, false);
+  panelItem.addEventListener('click', () => { showPopup(gear[i]) }, true);
 }
 
 //==============================
@@ -281,8 +281,8 @@ function applySelection(gearClass, gearName) {
     let itemSelected = clonedItemSelectedNode.getElementById('item-selected');
     itemSelected.id += `--${gearClass}`;
     
-    let panelItem = document.getElementById(`panel--${gearClass}`);
-    panelItem.removeEventListener('click', this, false);
+    //let panelItem = document.getElementById(`panel--${gearClass}`);
+    //panelItem.removeEventListener('click', this, true);
 
     let itemSelectedName = clonedItemSelectedNode.getElementById('item-selected--name');
       itemSelectedName.innerHTML = mask[`${gearName}`].name;
