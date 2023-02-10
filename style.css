@@ -166,7 +166,7 @@ align-self
 
 /* grid container:
 display
-grid-template-(columns|rows|areas)
+grid-template--(columns|rows|areas)
 grid-template :: (rows / columns)
 (column|row)-gap
 grid-(column|row)-gap
@@ -175,7 +175,7 @@ gap (=grid-gap) :: (row-gap column-gap)
 place-(items|content) :: (align justify)
 grid-auto-(columns|rows)
 grid-auto-flow
-grid :: (template-rows template-columns template-areas auto-rows auto-columns auto-flow)
+grid :: (template--rows template--columns template--areas auto-rows auto-columns auto-flow)
 */
 .grid-c,
 .grid-c--c,
@@ -184,11 +184,11 @@ grid :: (template-rows template-columns template-areas auto-rows auto-columns au
 }
 
 .grid-c--c {
-  grid-template-columns: repeat(auto-fit, minmax(var(--widthMin), 1fr));
+  grid-template--columns: repeat(auto-fit, minmax(var(--widthMin), 1fr));
 }
 
 .grid-c--r {
-  grid-template-rows: repeat(auto-fit, minmax(var(--widthMin), 1fr));
+  grid-template--rows: repeat(auto-fit, minmax(var(--widthMin), 1fr));
 }
 
 /* grid item 
@@ -228,7 +228,7 @@ place-self :: (align justify)
   height: 90%;
 }
 
-.list-gear {
+.list--gear {
   height: 100%;
   overflow: auto;
 }
@@ -251,7 +251,7 @@ place-self :: (align justify)
   overflow: auto;
 }
 
-#popup-frame-main {
+#popup--frame-main {
   display: none;
   position: fixed;
   top: 0;
@@ -264,7 +264,7 @@ place-self :: (align justify)
   overflow: auto;
 }
 
-#input-search {
+#input--search {
   color: inherit;
   font: inherit;
   height: min-content;
@@ -272,29 +272,29 @@ place-self :: (align justify)
   background-color: var(--cbg);
 }
 
-#item-name {
+#item--name {
   font-size: var(--txtBig); 
   font-weight: bold; 
   white-space: nowrap;
   color: inherit;
 }
 
-#item-type {
+#item--type {
   font-size: var(--txtSmall); 
   font-style: italic;
   color: var(--ctxt);
 }
 
-#item-set-attributes {
+#item--set-attributes {
   color: var(--ctxt);
 }
 
-#item-talent-name {
+#item--talent-name {
   font-weight: bold;
   color: inherit;
 }
 
-#item-talent-text {
+#item--talent-text {
   color: var(--ctxt);
 }
 

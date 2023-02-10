@@ -146,24 +146,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
   //============================
   // MAKE SELECTION POPUP
-  const tplPopupParent = document.getElementById('popup-frame-main');
-  const tplPopupBase = document.getElementById('template-popup');
+  const tplPopupParent = document.getElementById('popup--frame-main');
+  const tplPopupBase = document.getElementById('template--popup');
   for (let gearClass of gear) {//does this work?
     let clonedPopupNode = tplPopupBase.content.cloneNode(true);
 
-    let popupGear = clonedPopupNode.getElementById('popup-gear');
+    let popupGear = clonedPopupNode.getElementById('popup--gear');
     popupGear.id += `-${gearClass}`;
 
     // POPULATE SELECTION LIST
-    const tplListParent = clonedPopupNode.getElementById('list-gear');
+    const tplListParent = clonedPopupNode.getElementById('list--gear');
     tplListParent.id += `-${gearClass}`;
-    const tplListBase = document.getElementById('template-list-gear-item');
+    const tplListBase = document.getElementById('template--list-gear-item');
 
     for (let gearName in mask) {
       let clonedListNode = tplListBase.content.cloneNode(true);
 
       // panel settings
-      let panelItem = clonedListNode.getElementById('panel-item')
+      let panelItem = clonedListNode.getElementById('panel--item')
 
       // onclick
       panelItem.addEventListener('click', () => { closePopup() });
@@ -184,19 +184,19 @@ document.addEventListener('DOMContentLoaded', () => {
       };
 
       // item name
-      let itemName = clonedListNode.getElementById('item-name')
+      let itemName = clonedListNode.getElementById('item--name')
       itemName.innerHTML = `${gearName}`;
 
       // item type
       if (mask[`${gearName}`].hasOwnProperty('type') && mask[`${gearName}`].type !== `${gearName}`) {
-        let itemType = clonedListNode.getElementById('item-type');
+        let itemType = clonedListNode.getElementById('item--type');
         itemType.innerHTML = "(";
         itemType.innerHTML += mask[`${gearName}`].type;
         itemType.innerHTML += ")";
       };
 
       // item set boni
-      let itemSetAttributes = clonedListNode.getElementById('item-set-attributes');
+      let itemSetAttributes = clonedListNode.getElementById('item--set-attributes');
       itemSetAttributes.classList.add('h-line-top');
       let setAttribute1 = clonedListNode.getElementById('set-attribute-1');
       let setAttribute2 = clonedListNode.getElementById('set-attribute-2');
@@ -229,13 +229,13 @@ document.addEventListener('DOMContentLoaded', () => {
       };
 
       // item talent
-      let itemTalentName = clonedListNode.getElementById('item-talent-name')
+      let itemTalentName = clonedListNode.getElementById('item--talent-name')
       if (mask[`${gearName}`].hasOwnProperty('talentName')) {
         itemTalentName.classList.add('h-line-top');
         itemTalentName.innerHTML = mask[`${gearName}`].talentName;
       };
       if (mask[`${gearName}`].hasOwnProperty('talentText')) {
-        clonedListNode.getElementById('item-talent-text').innerHTML = mask[`${gearName}`].talentText;
+        clonedListNode.getElementById('item--talent-text').innerHTML = mask[`${gearName}`].talentText;
       };
 
       tplListParent.appendChild(clonedListNode);
@@ -248,53 +248,53 @@ document.addEventListener('DOMContentLoaded', () => {
 // EVENT LISTENERS
 // close popup when background is clicked
 //let eventTarget = document.querySelectorAll(`[id*="${icons[i]}"]`);
-let popupFrameMain = document.getElementById("popup-frame-main");
+let popupFrameMain = document.getElementById("popup--frame-main");
 popupFrameMain.addEventListener("click", () => {closePopup() });
 
 // open selection popup
 for (let i = 0; i < gear.length; i++) {
-  let panelItem = document.getElementById(`panel-${gear[i]}`);
+  let panelItem = document.getElementById(`panel--${gear[i]}`);
   panelItem.addEventListener('click', () => { showPopup(gear[i]) }, false);
 }
 
 //==============================
 // FUNCTIONS
 function showPopup(arg) {
-  document.getElementById('popup-frame-main').style.display = "flex";
-  document.getElementById(`popup-gear-${arg}`).style.display = "flex";
+  document.getElementById('popup--frame-main').style.display = "flex";
+  document.getElementById(`popup--gear-${arg}`).style.display = "flex";
   // reset scroll state to top
-  ////document.getElementById(`list-gear-${arg}`).scrollTop = 0;
+  ////document.getElementById(`list--gear-${arg}`).scrollTop = 0;
   document.body.style.overflow = "hidden";
 }
 
 function closePopup() {
-  document.getElementById('popup-frame-main').style.display = "none";
+  document.getElementById('popup--frame-main').style.display = "none";
   document.body.style.overflow = "";
 }
 
 function applySelection(arg) {
-  const tplItemSelectedParent = document.getElementById(`panel-${arg}`);
+  const tplItemSelectedParent = document.getElementById(`panel--${arg}`);
   tplItemSelectedParent.innerHTML = "";
-  const tplItemSelectedBase = document.getElementById('template-item-selected');
+  const tplItemSelectedBase = document.getElementById('template--item-selected');
     let clonedItemSelectedNode = tplItemSelectedBase.content.cloneNode(true);
 
     let itemSelected = clonedItemSelectedNode.getElementById('item-selected');
     itemSelected.id += `-${arg}`;
 
     /*
-    let itemSelectedName = clonedListNode.getElementById('item-selected-name');
+    let itemSelectedName = clonedListNode.getElementById('item-selected---name');
     if (mask[`${gearName}`].hasOwnProperty('name')) {
       itemSelectedName.innerHTML = 'mask[`${gearName}`]';
     };
 
-    item-selected-name
-    item-selected-type
-    item-selected-core-attribute
-    item-selected-minor-attribute-1
-    item-selected-minor-attribute-2
-    item-selected-mod
-    item-selected-talent-name
-    item-selected-talent-text
+    item-selected---name
+    item-selected---type
+    item-selected---core-attribute
+    item-selected---minor-attribute-1
+    item-selected---minor-attribute-2
+    item-selected---mod
+    item-selected---talent-name
+    item-selected---talent-text
     */
 
     tplItemSelectedParent.appendChild(clonedItemSelectedNode);
