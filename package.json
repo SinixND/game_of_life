@@ -2,7 +2,7 @@
   "name": "sinixnd.github.io",
   "type": "module",
   "version": "1.0.0",
-  "description": "---",
+  "description": "--",
   "main": "code.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

@@ -282,19 +282,19 @@ function applySelection(arg) {
     itemSelected.id += `-${arg}`;
 
     /*
-    let itemSelectedName = clonedListNode.getElementById('item-selected---name');
+    let itemSelectedName = clonedListNode.getElementById('item-selected--name');
     if (mask[`${gearName}`].hasOwnProperty('name')) {
       itemSelectedName.innerHTML = 'mask[`${gearName}`]';
     };
 
-    item-selected---name
-    item-selected---type
-    item-selected---core-attribute
-    item-selected---minor-attribute-1
-    item-selected---minor-attribute-2
-    item-selected---mod
-    item-selected---talent-name
-    item-selected---talent-text
+    item-selected--name
+    item-selected--type
+    item-selected--core-attribute
+    item-selected--minor-attribute-1
+    item-selected--minor-attribute-2
+    item-selected--mod
+    item-selected--talent-name
+    item-selected--talent-text
     */
 
     tplItemSelectedParent.appendChild(clonedItemSelectedNode);
