@@ -233,7 +233,7 @@ place-self :: (align justify)
   overflow: auto;
 }
 
-.h-line-top {
+.h-line--top {
   width: 100%;
   border-top: var(--ctxt) solid var(--bWeight);
   border-color: inherit;

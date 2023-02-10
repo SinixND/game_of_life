@@ -152,11 +152,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let clonedPopupNode = tplPopupBase.content.cloneNode(true);
 
     let popupGear = clonedPopupNode.getElementById('popup--gear');
-    popupGear.id += `-${gearClass}`;
+    popupGear.id += `--${gearClass}`;
 
     // POPULATE SELECTION LIST
     const tplListParent = clonedPopupNode.getElementById('list--gear');
-    tplListParent.id += `-${gearClass}`;
+    tplListParent.id += `--${gearClass}`;
     const tplListBase = document.getElementById('template--list-gear-item');
 
     for (let gearName in mask) {
@@ -197,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // item set boni
       let itemSetAttributes = clonedListNode.getElementById('item--set-attributes');
-      itemSetAttributes.classList.add('h-line-top');
+      itemSetAttributes.classList.add('h-line--top');
       let setAttribute1 = clonedListNode.getElementById('set-attribute-1');
       let setAttribute2 = clonedListNode.getElementById('set-attribute-2');
       let setAttribute3 = clonedListNode.getElementById('set-attribute-3');
@@ -231,7 +231,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // item talent
       let itemTalentName = clonedListNode.getElementById('item--talent-name')
       if (mask[`${gearName}`].hasOwnProperty('talentName')) {
-        itemTalentName.classList.add('h-line-top');
+        itemTalentName.classList.add('h-line--top');
         itemTalentName.innerHTML = mask[`${gearName}`].talentName;
       };
       if (mask[`${gearName}`].hasOwnProperty('talentText')) {
@@ -261,9 +261,9 @@ for (let i = 0; i < gear.length; i++) {
 // FUNCTIONS
 function showPopup(arg) {
   document.getElementById('popup--frame-main').style.display = "flex";
-  document.getElementById(`popup--gear-${arg}`).style.display = "flex";
+  document.getElementById(`popup--gear--${arg}`).style.display = "flex";
   // reset scroll state to top
-  ////document.getElementById(`list--gear-${arg}`).scrollTop = 0;
+  ////document.getElementById(`list--gear--${arg}`).scrollTop = 0;
   document.body.style.overflow = "hidden";
 }
 
@@ -279,7 +279,7 @@ function applySelection(arg) {
     let clonedItemSelectedNode = tplItemSelectedBase.content.cloneNode(true);
 
     let itemSelected = clonedItemSelectedNode.getElementById('item-selected');
-    itemSelected.id += `-${arg}`;
+    itemSelected.id += `--${arg}`;
 
     /*
     let itemSelectedName = clonedListNode.getElementById('item-selected--name');
