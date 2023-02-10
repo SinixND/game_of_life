@@ -238,6 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //==============================
 // EVENT LISTENERS
+const abtCtrl = new AbortController(); // to make parametric event listeners removeable
 // close popup when background is clicked
 //let eventTarget = document.querySelectorAll(`[id*="${icons[i]}"]`);
 let popupFrameMain = document.getElementById("popup--frame-main");
@@ -255,8 +256,6 @@ for (let i = 0; i < gear.length; i++) {
 
 //==============================
 // FUNCTIONS
-const abtCtrl = new AbortController();
-
 function showPopup(gearClass) {
   document.getElementById('popup--frame-main').style.display = "flex";
   document.getElementById(`popup--gear--${gearClass}`).style.display = "flex";
