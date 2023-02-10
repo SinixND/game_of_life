@@ -245,7 +245,7 @@ popupFrameMain.addEventListener("click", () => {hidePopup() }, false);
 // open selection popup
 for (let i = 0; i < gear.length; i++) {
   let panelItem = document.getElementById(`panel--${gear[i]}`);
-  panelItem.addEventListener('click', function clicked(evt) { evt.stopPropagation();
+  panelItem.firstChild.addEventListener('click', (evt) => { evt.stopPropagation();
  showPopup(gear[i]) }, false);
 }
 
@@ -273,13 +273,10 @@ function applySelection(gearClass, gearName) {
 
     let itemSelected = clonedItemSelectedNode.getElementById('item-selected');
     itemSelected.id += `--${gearClass}`;
-    
-    let panelItem = document.getElementById(`panel--${gearClass}`);
-    console.log(panelItem);
-    panelItem.removeEventListener('click', clicked);
 
     let itemSelectedName = clonedItemSelectedNode.getElementById('item-selected--name');
       itemSelectedName.innerHTML = mask[`${gearName}`].name;
+      //add new showPopup Listener
 
     /*
     item-selected--name
