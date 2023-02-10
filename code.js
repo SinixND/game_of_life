@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
       let panelItem = clonedListNode.getElementById('panel--item')
 
       // onclick
-      panelItem.addEventListener('click', function clicked(evt) { evt.stopPropagation();
+      panelItem.addEventListener('click', (evt) => { evt.stopPropagation();
  applySelection(gearClass, gearName) }, false);
 
       // panel color
@@ -268,7 +268,6 @@ function applySelection(gearClass, gearName) {
   hidePopup();
   const tplItemSelectedParent = document.getElementById(`panel--${gearClass}`);
   tplItemSelectedParent.innerHTML = "";
-  /*
   const tplItemSelectedBase = document.getElementById('template--item-selected');
     let clonedItemSelectedNode = tplItemSelectedBase.content.cloneNode(true);
 
