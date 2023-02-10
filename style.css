@@ -228,7 +228,7 @@ place-self :: (align justify)
   height: 90%;
 }
 
-.list--gear {
+.listGear {
   height: 100%;
   overflow: auto;
 }

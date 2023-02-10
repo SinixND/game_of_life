@@ -135,35 +135,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  //============================
-  // FILL GEAR SLOTS
-
-  for (let gearClass of gear) {
-    const tplGearslotParent = document.getElementById(`panel--${gearClass}`);
-    tplGearslotParent.innerHTML = "";
-    const tplGearslotBase = document.getElementById('template--gearslot');
-    let clonedGearslotNode = tplGearslotBase.content.cloneNode(true);
-
-    let Gearslot = clonedGearslotNode.getElementById('gearslot');
-    Gearslot.id += `--${gearClass}`;
-
-    let GearslotName = clonedGearslotNode.getElementById('gearslot--name');
-      GearslotName.innerHTML = `Choose ${gearClass}`;
-      //add new showPopup Listener
-
-    /*
-    gearslot--name
-    gearslot--type
-    gearslot--core-attribute
-    gearslot--minor-attribute-1
-    gearslot--minor-attribute-2
-    gearslot--mod
-    gearslot--talent-name
-    gearslot--talent-text
-    */
-
-    tplGearslotParent.appendChild(clonedGearslotNode);
-  }
   
   //============================
   // BUILD SELECTION POPUP
@@ -303,6 +274,35 @@ function hidePopup() {
 
 function applySelection(gearClass, gearName) {
   hidePopup();
+  //============================
+  // FILL GEAR SLOTS
+
+  for (let gearClass of gear) {
+    const tplGearslotParent = document.getElementById(`panel--${gearClass}`);
+    tplGearslotParent.innerHTML = "";
+    const tplGearslotBase = document.getElementById('template--gearslot');
+    let clonedGearslotNode = tplGearslotBase.content.cloneNode(true);
+
+    let Gearslot = clonedGearslotNode.getElementById('gearslot');
+    Gearslot.id += `--${gearClass}`;
+
+    let GearslotName = clonedGearslotNode.getElementById('gearslot--name');
+      GearslotName.innerHTML = `Choose ${gearClass}`;
+      //add new showPopup Listener
+
+    /*
+    gearslot--name
+    gearslot--type
+    gearslot--core-attribute
+    gearslot--minor-attribute-1
+    gearslot--minor-attribute-2
+    gearslot--mod
+    gearslot--talent-name
+    gearslot--talent-text
+    */
+
+    tplGearslotParent.appendChild(clonedGearslotNode);
+  }
 }
 
 //let eventTarget = document.querySelectorAll(`[id*="${icons[i]}"]`);
