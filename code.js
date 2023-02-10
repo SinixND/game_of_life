@@ -281,12 +281,10 @@ function applySelection(arg) {
     let itemSelected = clonedItemSelectedNode.getElementById('item-selected');
     itemSelected.id += `--${arg}`;
 
-    /*
     let itemSelectedName = clonedListNode.getElementById('item-selected--name');
-    if (mask[`${gearName}`].hasOwnProperty('name')) {
-      itemSelectedName.innerHTML = 'mask[`${gearName}`]';
-    };
+      itemSelectedName.innerHTML = 'mask[`${gearName}`].name';
 
+    /*
     item-selected--name
     item-selected--type
     item-selected--core-attribute
