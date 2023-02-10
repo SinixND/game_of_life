@@ -184,11 +184,11 @@ grid :: (template--rows template--columns template--areas auto-rows auto-columns
 }
 
 .grid-c--c {
-  grid-template--columns: repeat(auto-fit, minmax(var(--widthMin), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(var(--widthMin), 1fr));
 }
 
 .grid-c--r {
-  grid-template--rows: repeat(auto-fit, minmax(var(--widthMin), 1fr));
+  grid-template-rows: repeat(auto-fit, minmax(var(--widthMin), 1fr));
 }
 
 /* grid item 
