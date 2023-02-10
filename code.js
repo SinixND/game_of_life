@@ -166,8 +166,8 @@ document.addEventListener('DOMContentLoaded', () => {
       let panelItem = clonedListNode.getElementById('panel--item')
 
       // onclick
-      panelItem.addEventListener('click', () => { closePopup() });
-      panelItem.addEventListener('click', () => { applySelection(gearClass, gearName) });
+      panelItem.addEventListener('click', () => { hidePopup() }, false);
+      panelItem.addEventListener('click', () => { applySelection(gearClass, gearName) }, false);
 
       // panel color
       if (mask[`${gearName}`].rarity == "Exotic") {
@@ -249,7 +249,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // close popup when background is clicked
 //let eventTarget = document.querySelectorAll(`[id*="${icons[i]}"]`);
 let popupFrameMain = document.getElementById("popup--frame-main");
-popupFrameMain.addEventListener("click", () => {closePopup() });
+popupFrameMain.addEventListener("click", () => {hidePopup() }, false);
 
 // open selection popup
 for (let i = 0; i < gear.length; i++) {
@@ -267,7 +267,7 @@ function showPopup(arg) {
   document.body.style.overflow = "hidden";
 }
 
-function closePopup() {
+function hidePopup() {
   document.getElementById('popup--frame-main').style.display = "none";
   document.body.style.overflow = "";
 }
@@ -280,6 +280,9 @@ function applySelection(gearClass, gearName) {
 
     let itemSelected = clonedItemSelectedNode.getElementById('item-selected');
     itemSelected.id += `--${gearClass}`;
+    
+    let panelItem = document.getElementById(`panel--${gearClass}`);
+    panelItem.removeEventListener('click', this, false);
 
     let itemSelectedName = clonedItemSelectedNode.getElementById('item-selected--name');
       itemSelectedName.innerHTML = mask[`${gearName}`].name;
