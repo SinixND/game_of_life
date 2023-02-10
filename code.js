@@ -157,9 +157,9 @@ document.addEventListener('DOMContentLoaded', () => {
       let panelItem = clonedListNode.getElementById('panel--item')
 
       // onclick
-      panelItem.addEventListener('click', (evt) => { evt.stopPropagation();
+      panelItem.addEventListener('click', function clicked(evt) { evt.stopPropagation();
  hidePopup() }, false);
-      panelItem.addEventListener('click', (evt) => { evt.stopPropagation();
+      panelItem.addEventListener('click', function clicked(evt) { evt.stopPropagation();
  applySelection(gearClass, gearName) }, false);
 
       // panel color
@@ -247,7 +247,7 @@ popupFrameMain.addEventListener("click", () => {hidePopup() }, false);
 // open selection popup
 for (let i = 0; i < gear.length; i++) {
   let panelItem = document.getElementById(`panel--${gear[i]}`);
-  panelItem.addEventListener('click', (evt) => { evt.stopPropagation();
+  panelItem.addEventListener('click', function clicked(evt) { evt.stopPropagation();
  showPopup(gear[i]) }, false);
 }
 
@@ -277,7 +277,7 @@ function applySelection(gearClass, gearName) {
     
     let panelItem = document.getElementById(`panel--${gearClass}`);
     alert(getEventListeners(`${panelItem}`));
-    //panelItem.removeEventListener('click', this, false);
+    panelItem.removeEventListener('click', clicked, false);
 
     let itemSelectedName = clonedItemSelectedNode.getElementById('item-selected--name');
       itemSelectedName.innerHTML = mask[`${gearName}`].name;
