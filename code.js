@@ -281,7 +281,7 @@ function applySelection(gearClass, gearName) {
     let itemSelected = clonedItemSelectedNode.getElementById('item-selected');
     itemSelected.id += `--${gearClass}`;
 
-    let itemSelectedName = clonedListNode.getElementById('item-selected--name');
+    let itemSelectedName = clonedItemSelectedNode.getElementById('item-selected--name');
       itemSelectedName.innerHTML = 'mask[`${gearName}`].name';
 
     /*
