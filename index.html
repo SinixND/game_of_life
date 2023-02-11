@@ -6,12 +6,12 @@
   <meta name="viewport" container="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="#"><!-- for favicon error -->
   <title>Div2 build calculator</title>
-  <!-- 
-    .css - files 
+  <!--
+    .css - files
   -->
   <link rel="stylesheet" href="./style.css">
-  <!-- 
-    .js - files 
+  <!--
+    .js - files
   -->
   <script src="./data/require.js"></script>
   <script src="./code.js" type="module"></script>
@@ -20,8 +20,8 @@
 
 <body>
   <div id="frame-main" class="panel">
-    <!-- 
-      MENU BAR 
+    <!--
+      MENU BAR
     -->
     <div id="panel--menubar" class="panel--border">
       <div class="container">
@@ -31,14 +31,18 @@
 
     <div id="panel--build" class="panel flex-c--h">
       <div id="panel--equipment" class="panel flex-i flex-c--v">
+
+        <!--
+          SPECIALISATION SELECTION AREA
+        -->
         <div id="panel--specialisation" class="panel--border flex-i">
           <div class="container">
             Choose specialisation
           </div>
         </div>
 
-        <!-- 
-          WEAPON SELECTION AREA 
+        <!--
+          WEAPON SELECTION AREA
         -->
         <div id="panel--weapons" class="panel flex-i flex-c--h">
           <div id="panel--main-weapon-1" class="panel--border flex-i">
@@ -58,8 +62,8 @@
           </div>
         </div>
 
-        <!-- 
-          ARMOR SELECTION AREA 
+        <!--
+          ARMOR SELECTION AREA
         -->
         <div id="panel--armor" class="panel flex-i">
           <div class="panel flex-c--h">
@@ -100,8 +104,8 @@
           </div>
         </div>
 
-        <!-- 
-          SKILL SELECTION AREA 
+        <!--
+          SKILL SELECTION AREA
         -->
         <div id="panel--skills" class="panel flex-i flex-c--h">
           <div id="panel--skill-1" class="panel--border flex-i">
@@ -117,7 +121,13 @@
         </div>
       </div>
 
+      <!--
+        STATS AREA
+      -->
       <div id="panel--stats" class="panel flex-i flex-c--v">
+      <!--
+        WEAPON STATS AREA
+      -->
         <div id="panel--stats--weapons" class="panel flex-i flex-c--h">
           <div id="panel--stats--main-weapon-1" class="panel--border flex-i">
             <div class="container">
@@ -136,8 +146,8 @@
           </div>
         </div>
 
-        <!-- 
-          SKILL STATS AREA 
+        <!--
+          SKILL STATS AREA
         -->
         <div id="panel--stats--skills" class="panel flex-i flex-c--h">
           <div id="panel--stats--skill-1" class="panel--border flex-i skill">
@@ -152,17 +162,17 @@
           </div>
         </div>
 
-        <!-- 
-          TALENT / SET AREA 
+        <!--
+          TALENT / MLTPC AREA
         -->
-        <div id="panel--talent-set-boni" class="panel flex-i">
+        <div id="panel--talent-mltpc-boni" class="panel flex-i">
           <div class="container">
-            talent / set boni
+            talent / mltpc boni
           </div>
         </div>
 
-        <!-- 
-          PLAYER STATS AREA 
+        <!--
+          PLAYER STATS AREA
         -->
         <div id="panel--stats--player" class="panel flex-i">
           <div class="container">
@@ -170,8 +180,8 @@
           </div>
         </div>
 
-        <!-- 
-          SET SHD AREA 
+        <!--
+          SET SHD AREA
         -->
         <div id="panel--SHD" class="panel flex-i">
           <div class="container">
@@ -182,28 +192,28 @@
     </div>
   </div>
 
-  <!-- 
-    POPUP MENU 
+  <!--
+    POPUP MENU
   -->
   <div id="popup--frame-main" class="panel flex-c"></div>
 
-  <!-- 
+  <!--
     TEMPLATE SELECTION POPUP
   -->
   <template id="template--popup">
-    <div id="popup--gear" class="panel popup flex-c--v">
+    <div id="popup--select-gear" class="panel popup flex-c--v">
       <div id="panel--search" class="panel--border">
         <div class="container">
           <input id="input--search" placeholder="Search..." type="text">
         </div>
       </div>
-      <div id="list--gear" class="panel grid-c--c listGear">
+      <div id="list--select-gear" class="panel grid-c--c listGear">
         <!-- PLACEHOLDER LIST ITEMS -->
       </div>
     </div>
   </template>
 
-  <!-- 
+  <!--
     TEMPLATE SELECTION LIST
   -->
   <template id="template--list-gear-item">
@@ -211,11 +221,11 @@
       <div class="container">
         <div id="item--name"></div>
         <div id="item--type"></div>
-        <div id="item--set-attributes">
+        <div id="item--mltpc-attributes">
           <ol>
-            <li id="set-attribute-1">first attribute</li>
-            <li id="set-attribute-2">second attribute</li>
-            <li id="set-attribute-3">third attribute</li>
+            <li id="mltpc-attribute-1">first attribute</li>
+            <li id="mltpc-attribute-2">second attribute</li>
+            <li id="mltpc-attribute-3">third attribute</li>
           </ol>
         </div>
         <div id="item--talent-name"></div>
@@ -224,7 +234,7 @@
     </div>
   </template>
 
-  <!-- 
+  <!--
     TEMPLATE GEAR SLOT
   -->
   <template id="template--gearslot">
@@ -245,11 +255,11 @@
       </div>
   </template>
 
-  <!-- 
+  <!--
   <div id="ref-width-min"
     style="position: fixed; background-color: var(--c0); border: var(--bWeightTemp) solid red; top: 10px; left: 10px; height: 10px; width: var(--widthMin)">
   </div>
-  <!-- 
+  <!--
     -->
 </body>
 
