@@ -87,7 +87,7 @@ let gearTypes = [
   //"weapon-2",
   //"sidearm",
   "mask",
-  //"backpack",
+  "backpack",
   //"chest",
   //"gloves",
   //"holster",
@@ -107,6 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let panels = document.getElementsByClassName("panel");
   let ccnt = 0;
 
+  // iterate over all panels
   for (let i = 0; i < panels.length; i++) {
     panels[i].style.borderColor = `var(--${colors[ccnt]})`;
     ccnt++;
@@ -120,12 +121,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   //============================
   // SET BACKGROUND ICONS
+  // iterate over icons.png-array
   for (let i = 0; i < icons.length; i++) {
     var img = new Image();
     img.src = `./icons/${icons[i]}.png`;
     let value = `linear-gradient(var(--cbgr75), var(--cbgr75)), url(${img.src}) center/contain no-repeat`;
     let element = document.querySelectorAll(`[id *= "${icons[i]}"]`);
     if (element.length) {
+      // iterate over all IDs with an icon name
       for (let j = 0; j < element.length; j++) {
         element[j].style.background = value;
         /*
@@ -142,21 +145,25 @@ document.addEventListener('DOMContentLoaded', () => {
   const tplPopupBase = document.getElementById('template--popup');
 
   // iterate over gear types array
-  for (let gearType of gearTypes) {
+  console.log(`iterate over [${gearTypes}], arr-length: ${gearTypes.length}`)
+  for (let i = 0; i < gearTypes.length; i++) {
     let clonedPopupNode = tplPopupBase.content.cloneNode(true);
 
     let popupSelectGear = clonedPopupNode.getElementById('popup--select-gear');
-    popupSelectGear.id += `--${gearType}`;
+    popupSelectGear.id += `--${gearTypes[i]}`;
     popupSelectGear.addEventListener('click', (evt) => {
       evt.stopPropagation()
     });
 
     // FILL SELECTION LIST
     const tplListParent = clonedPopupNode.getElementById('list--select-gear');
-    tplListParent.id += `--${gearType}`;
+    tplListParent.id += `--${gearTypes[i]}`;
     const tplListBase = document.getElementById('template--list-gear-item');
 
-    for (let gearName in mask) {
+    // iterate over all items in $gear object
+    let gearType = gearTypes[i];
+    console.log(gearType);
+    for (let gearName in gearType) {
       let clonedListNode = tplListBase.content.cloneNode(true);
 
       // panel settings
@@ -165,19 +172,19 @@ document.addEventListener('DOMContentLoaded', () => {
       // onclick
       panelItem.classList.add('cursor-pointer');
       panelItem.addEventListener('click', () => {
-        applySelection(gearType, gearName)
+        applySelection(gearTypes[i], gearName)
       }, false);
 
       // panel color
-      if (mask[`${gearName}`].rarity == "Exotic") {
+      if (gearType[`${gearName}`].rarity == "Exotic") {
         panelItem.style.borderColor = 'var(--cExotic)';
         panelItem.style.color = 'var(--cExotic)';
       }
-      else if (mask[`${gearName}`].rarity == "Named") {
+      else if (gearType[`${gearName}`].rarity == "Named") {
         panelItem.style.borderColor = 'var(--cNamed)';
         panelItem.style.color = 'var(--cNamed)';
       }
-      else if (mask[`${gearName}`].rarity == "GearSet") {
+      else if (gearType[`${gearName}`].rarity == "GearSet") {
         panelItem.style.borderColor = 'var(--cGearSet)';
         panelItem.style.color = 'var(--cGearSet)';
       };
@@ -187,10 +194,10 @@ document.addEventListener('DOMContentLoaded', () => {
       itemName.innerHTML = `${gearName}`;
 
       // item type
-      if (mask[`${gearName}`].hasOwnProperty('type') && mask[`${gearName}`].type !== `${gearName}`) {
+      if (gearType[`${gearName}`].hasOwnProperty('type') && gearType[`${gearName}`].type !== `${gearName}`) {
         let itemType = clonedListNode.getElementById('item--type');
         itemType.innerHTML = "(";
-        itemType.innerHTML += mask[`${gearName}`].type;
+        itemType.innerHTML += gearType[`${gearName}`].type;
         itemType.innerHTML += ")";
       };
 
@@ -200,18 +207,18 @@ document.addEventListener('DOMContentLoaded', () => {
       let mltpcAttribute1 = clonedListNode.getElementById('mltpc-attribute-1');
       let mltpcAttribute2 = clonedListNode.getElementById('mltpc-attribute-2');
       let mltpcAttribute3 = clonedListNode.getElementById('mltpc-attribute-3');
-      let mltpcName = mask[`${gearName}`].type;
-      console.log(`'${gearType}'['${gearName}']`);
+      let mltpcName = gearType[`${gearName}`].type;
+      console.log(gearType)
 
-      if (mask[`${gearName}`].rarity == "Exotic") {
-        mltpcAttribute1.innerHTML = mask[`${gearName}`].attribute1Name + ': ';
-        mltpcAttribute1.innerHTML += mask[`${gearName}`].attribute1Value;
-        mltpcAttribute2.innerHTML = mask[`${gearName}`].attribute2Name + ': ';
-        mltpcAttribute2.innerHTML += mask[`${gearName}`].attribute2Value;
-        mltpcAttribute3.innerHTML = mask[`${gearName}`].attribute3Name + ': ';
-        mltpcAttribute3.innerHTML += mask[`${gearName}`].attribute3Value;
+      if (gearType[`${gearName}`].rarity == "Exotic") {
+        mltpcAttribute1.innerHTML = gearType[`${gearName}`].attribute1Name + ': ';
+        mltpcAttribute1.innerHTML += gearType[`${gearName}`].attribute1Value;
+        mltpcAttribute2.innerHTML = gearType[`${gearName}`].attribute2Name + ': ';
+        mltpcAttribute2.innerHTML += gearType[`${gearName}`].attribute2Value;
+        mltpcAttribute3.innerHTML = gearType[`${gearName}`].attribute3Name + ': ';
+        mltpcAttribute3.innerHTML += gearType[`${gearName}`].attribute3Value;
       }
-      else if (mask[`${gearName}`].rarity == "GearSet") {
+      else if (gearType[`${gearName}`].rarity == "GearSet") {
         mltpcAttribute1.innerHTML = mltpc[`${mltpcName}`].attribute1Name + ': ';
         mltpcAttribute1.innerHTML += mltpc[`${mltpcName}`].attribute1Value;
         mltpcAttribute2.innerHTML = mltpc[`${mltpcName}`].attribute2Name + ': ';
@@ -219,7 +226,7 @@ document.addEventListener('DOMContentLoaded', () => {
         mltpcAttribute3.innerHTML = mltpc[`${mltpcName}`].gearMltpcTalentName + '<br><br>';
         mltpcAttribute3.innerHTML += mltpc[`${mltpcName}`].gearMltpcTalentText;
       }
-      else if (mask[`${gearName}`].rarity !== "Improvised") { //aka. is a normal high-end-item
+      else if (gearType[`${gearName}`].rarity !== "Improvised") { //aka. is a normal high-end-item
         mltpcAttribute1.innerHTML = mltpc[`${mltpcName}`].attribute1Name + ': ';
         mltpcAttribute1.innerHTML += mltpc[`${mltpcName}`].attribute1Value;
         mltpcAttribute2.innerHTML = mltpc[`${mltpcName}`].attribute2Name + ': ';
@@ -230,12 +237,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // item talent
       let itemTalentName = clonedListNode.getElementById('item--talent-name')
-      if (mask[`${gearName}`].hasOwnProperty('talentName')) {
+      if (gearType[`${gearName}`].hasOwnProperty('talentName')) {
         itemTalentName.classList.add('h-line--top');
-        itemTalentName.innerHTML = mask[`${gearName}`].talentName;
+        itemTalentName.innerHTML = gearType[`${gearName}`].talentName;
       };
-      if (mask[`${gearName}`].hasOwnProperty('talentText')) {
-        clonedListNode.getElementById('item--talent-text').innerHTML = mask[`${gearName}`].talentText;
+      if (gearType[`${gearName}`].hasOwnProperty('talentText')) {
+        clonedListNode.getElementById('item--talent-text').innerHTML = gearType[`${gearName}`].talentText;
       };
 
       tplListParent.appendChild(clonedListNode);
@@ -279,8 +286,7 @@ function applySelection(gearType, gearName) {
   hidePopup();
   //============================
   // FILL GEAR SLOTS
-
-  for (let gearType of gear) {
+  for (let gearType of gearTypes) {
     const tplGearslotParent = document.getElementById(`panel--${gearType}`);
     tplGearslotParent.innerHTML = "";
     const tplGearslotBase = document.getElementById('template--gearslot');
@@ -309,3 +315,4 @@ function applySelection(gearType, gearName) {
 }
 
 //let eventTarget = document.querySelectorAll(`[id*="${icons[i]}"]`);
+//for (let i = 0; i < array.length; i++) {
