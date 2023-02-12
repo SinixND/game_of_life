@@ -84,7 +84,6 @@ let icons = [
 //============================
 // STARTUP FUNCTION
 document.addEventListener('DOMContentLoaded', () => {
-  console.log(`on DOM loaded`)
   //============================
   // DEBUG
   //alert( 'Res: (W)' + screen.width + 'x(H)' + screen.height + '  ratio: ' + window.devicePixelRatio); // LapHD: 1920x1080 Lap: 1280x720; Mob: 432x896
@@ -132,8 +131,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // iterate over equipmentTypes
   for (let equipmentTypeName in equipment) {
     let equipmentType = equipment[equipmentTypeName];
-
-    console.log(`template--popup--select-${equipmentTypeName}`)
 
     const tplPopupSelectEquipmentTypeBase = document.getElementById(`template--popup--select-${equipmentTypeName}`);
     // iterate over gearTypes
