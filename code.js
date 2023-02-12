@@ -243,10 +243,11 @@ document.addEventListener('DOMContentLoaded', () => {
 //==============================
 // EVENT LISTENERS
 // create event listener aborts
+let abortControlls = {};
 for (let equipmentTypeName in equipment) {
   let equipmentType = equipment[equipmentTypeName];
   for (let gearTypeName in equipmentType) {
-    window[`controller-${gearTypeName}`] = new AbortController();
+    abortControlls[`controller-${gearTypeName}`] = new AbortController();
   }
 }
 
@@ -264,7 +265,7 @@ for (let equipmentTypeName in equipment) {
     panelGearType.classList.add('cursor-pointer');
     panelGearType.addEventListener('click', () => {
       showPopup(equipmentTypeName, gearTypeName);
-    }, {signal: window[`controller-${gearTypeName}`].signal}, false);
+    }, {signal: abortControlls[`controller-${gearTypeName}`].signal}, false);
   }
 }
 
@@ -291,7 +292,7 @@ function applySelection(gearTypeName) {
     for (let gearTypeName in equipmentType) {
       let panelGearType = document.getElementById(`panel--${gearTypeName}`);
       panelGearType.classList.remove('cursor-pointer');
-      window[`controller-${gearTypeName}`].abort();
+      abortControlls[`controller-${gearTypeName}`].abort();
     }
   }
   hidePopup();
