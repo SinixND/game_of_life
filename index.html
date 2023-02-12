@@ -195,19 +195,19 @@
   <!--
     POPUP MENU
   -->
-  <div id="popup--frame-main" class="panel flex-c"></div>
+  <div id="popup--frame-main" class="panel flex-c hide"></div>
 
   <!--
-    TEMPLATE SELECTION POPUP
+    TEMPLATE ARMOR SELECTION POPUP
   -->
-  <template id="template--popup">
-    <div id="popup--select-gear" class="panel popup flex-c--v">
+  <template id="template--popup--select-armor">
+    <div id="popup--select-armor" class="panel popup flex-c--v hide">
       <div id="panel--search" class="panel--border">
         <div class="container">
           <input id="input--search" placeholder="Search..." type="text">
         </div>
       </div>
-      <div id="list--select-gear" class="panel grid-c--c listGear">
+      <div id="list--select-armor" class="panel grid-c--c listGear">
         <!-- PLACEHOLDER LIST ITEMS -->
       </div>
     </div>
@@ -216,20 +216,20 @@
   <!--
     TEMPLATE SELECTION LIST
   -->
-  <template id="template--list-gear-item">
-    <div id="panel--item" class="panel--border grid-i">
+  <template id="template--selection-list-entry">
+    <div id="panel--list-entry" class="panel--border grid-i">
       <div class="container">
-        <div id="item--name"></div>
-        <div id="item--type"></div>
-        <div id="item--mltpc-attributes">
+        <div id="entry--name"></div>
+        <div id="entry--type"></div>
+        <div id="entry--mltpc-attributes">
           <ol>
             <li id="mltpc-attribute-1">first attribute</li>
             <li id="mltpc-attribute-2">second attribute</li>
             <li id="mltpc-attribute-3">third attribute</li>
           </ol>
         </div>
-        <div id="item--talent-name"></div>
-        <div id="item--talent-text"></div>
+        <div id="entry--talent-name"></div>
+        <div id="entry--talent-text"></div>
       </div>
     </div>
   </template>

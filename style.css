@@ -67,10 +67,6 @@
   padding: 0;
 }
 
-.hide {
-  display: none; /* develop */
-}
-
 body {
   margin: 5px;
   background-color: var(--cbgr);
@@ -191,7 +187,7 @@ grid :: (template--rows template--columns template--areas auto-rows auto-columns
   grid-template-rows: repeat(auto-fit, minmax(var(--widthMin), 1fr));
 }
 
-/* grid item 
+/* grid item
 grid-(column|row)-(start|end)
 grid-(column|row)
 grid-area
@@ -226,6 +222,10 @@ place-self :: (align justify)
   min-width: var(--widthMin);
   max-width: 80%;
   height: 90%;
+}
+
+.hide {
+  display: none;
 }
 
 .listGear {
@@ -272,29 +272,29 @@ place-self :: (align justify)
   background-color: var(--cbg);
 }
 
-#item--name {
-  font-size: var(--txtBig); 
-  font-weight: bold; 
+#entry--name {
+  font-size: var(--txtBig);
+  font-weight: bold;
   white-space: nowrap;
   color: inherit;
 }
 
-#item--type {
-  font-size: var(--txtSmall); 
+#entry--type {
+  font-size: var(--txtSmall);
   font-style: italic;
   color: var(--ctxt);
 }
 
-#item--set-attributes {
+#entry--set-attributes {
   color: var(--ctxt);
 }
 
-#item--talent-name {
+#entry--talent-name {
   font-weight: bold;
   color: inherit;
 }
 
-#item--talent-text {
+#entry--talent-text {
   color: var(--ctxt);
 }
 
