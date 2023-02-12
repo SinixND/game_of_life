@@ -99,6 +99,7 @@ body {
   border-color: inherit;
   border-style: solid;
   content: '';
+  pointer-events: none;
 }
 
 .panel--border::before {
