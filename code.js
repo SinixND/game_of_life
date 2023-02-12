@@ -96,6 +96,11 @@ let gearTypes = [
   //"skill-2",
 ];
 
+let filesGearTypes = [
+  mask,
+];
+alert(mask.keys())
+
 //============================
 // STARTUP FUNCTION
 document.addEventListener('DOMContentLoaded', () => {
