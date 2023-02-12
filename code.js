@@ -251,7 +251,6 @@ popupFrameMain.addEventListener('click', () => {
 for (let equipmentTypeName in equipment) {
   let equipmentType = equipment[equipmentTypeName];
   for (let gearTypeName in equipmentType) {
-    console.log(`getElementById: panel--${gearTypeName}`);
     let panelGearType = document.getElementById(`panel--${gearTypeName}`);
     panelGearType.classList.add('cursor-pointer');
     panelGearType.addEventListener('click', (evt) => {
