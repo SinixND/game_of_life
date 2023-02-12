@@ -242,20 +242,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //==============================
 // EVENT LISTENERS
+// create event listener aborts
+for (let equipmentTypeName in equipment) {
+  let equipmentType = equipment[equipmentTypeName];
+  for (let gearTypeName in equipmentType) {
+    window[`controller-${gearTypeName}`] = new AbortController();
+  }
+}
+
+// listener: close popup on background click
 let popupFrameMain = document.getElementById("popup--frame-main");
 popupFrameMain.addEventListener('click', () => {
   hidePopup();
 }, false);
 
-// show selection popup
+// listener: show selection popup
 for (let equipmentTypeName in equipment) {
   let equipmentType = equipment[equipmentTypeName];
   for (let gearTypeName in equipmentType) {
     let panelGearType = document.getElementById(`panel--${gearTypeName}`);
     panelGearType.classList.add('cursor-pointer');
-    panelGearType.addEventListener('click', (evt) => {
+    panelGearType.addEventListener('click', () => {
       showPopup(equipmentTypeName, gearTypeName);
-    }, false);
+    }, {signal: window[`controller-${gearTypeName}`].signal}, false);
   }
 }
 
@@ -277,6 +286,14 @@ function hidePopup() {
 }
 
 function applySelection(gearTypeName) {
+  for (let equipmentTypeName in equipment) {
+    let equipmentType = equipment[equipmentTypeName];
+    for (let gearTypeName in equipmentType) {
+      let panelGearType = document.getElementById(`panel--${gearTypeName}`);
+      panelGearType.classList.remove('cursor-pointer');
+      window[`controller-${gearTypeName}`].abort();
+    }
+  }
   hidePopup();
   //============================
   // FILL GEAR SLOT
