@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const tplListBase = document.getElementById('template--list-gear-item');
 
     // iterate over all items in $gearTypeObject
-    for (let gearItemName in gearTypeObject) { if (gearItemName !== "name") {
+    for (let gearItemName in gearTypeObject) {
       let gearItem = gearTypeObject[gearItemName]
       let clonedListNode = tplListBase.content.cloneNode(true);
 
@@ -230,7 +230,7 @@ document.addEventListener('DOMContentLoaded', () => {
       };
 
       tplListParent.appendChild(clonedListNode);
-    }}
+    }
     tplPopupParent.appendChild(clonedPopupNode);
   }
 }, false);
