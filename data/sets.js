@@ -1,4 +1,4 @@
-export const set = {
+export const sets = {
   "Aces & Eights": {
     attribute1Name: "Marksman Rifle Damage",
     attribute1Value: 15,

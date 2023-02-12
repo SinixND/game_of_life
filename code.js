@@ -1,8 +1,8 @@
 //============================
 // IMPORT DATA
-import { set } from "./data/sets.js"; //mltpc because sets noun verb confusion
-let mltpc = set;
-import { mask } from "./data/masks.js";
+import { sets } from "./data/sets.js"; //mltpc because sets noun verb confusion
+let mltpc = sets;
+import { equipment } from "./data/equipment.js";
 
 // ARRAYS
 let colors = [
@@ -14,6 +14,7 @@ let colors = [
   'cav',
 ];
 
+// TODO: MAKE ICONS WITH FOR LOOP OVER EQUIPMENT.ENTRIES AND EQUIPMENT.X.X.TYPES (AND LATER ATTRIBUTES)
 let icons = [
   "5.11_Tactical",
   "Aces_&_Eights",
@@ -80,41 +81,6 @@ let icons = [
   "Wyvern_Wear",
   "Yaahl_Gear",
 ];
-
-let equipment = [
-  //"specialisation",
-  //"weapon-1",
-  //"weapon-2",
-  //"sidearm",
-  mask,
-  //"backpack",
-  //"chest",
-  //"gloves",
-  //"holster",
-  //"kneepads",
-  //"skill-1",
-  //"skill-2",
-];
-
-/*
-//masks.js -> equipment.js
-export const equipment = {
-  "mask": {
-    "Vile": {
-      rarity: "Exotic",
-      type: "Exotic",
-      attribute1Name: "Skill Tier",
-      attribute1Value: 1,
-      attribute2Name: "Status Effects",
-      attribute2Value: 10,
-      attribute3Name: "Hazard Protection",
-      attribute3Value: 10,
-      talentName: "Toxic Delivery",
-      talentText: "Status effects also apply a damage over time debuff for 10s.\r\n Total damage dealt is equal to 50% of your concussion grenade damage and increased by your status effect attributes.",
-    }
-  }
-}
-*/
 
 //============================
 // STARTUP FUNCTION
