@@ -132,6 +132,8 @@ document.addEventListener('DOMContentLoaded', () => {
   for (let equipmentTypeName in equipment) {
     let equipmentType = equipment[equipmentTypeName];
 
+    console.log(`template--popup--select-${equipmentTypeName}`)
+    /*
     const tplPopupSelectEquipmentTypeBase = document.getElementById(`template--popup--select-${equipmentTypeName}`);
     // iterate over gearTypes
     for (let gearTypeName in equipmentType) {
@@ -237,6 +239,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       tplPopupParent.appendChild(clonedPopupSelectEquipmentTypeNode);
     }
+    */
   }
 }, false);
 
@@ -251,6 +254,7 @@ popupFrameMain.addEventListener('click', () => {
 for (let equipmentTypeName in equipment) {
   let equipmentType = equipment[equipmentTypeName];
   for (let gearTypeName in equipmentType) {
+    console.log(`getElementById: panel--${gearTypeName}`);
     let panelGearType = document.getElementById(`panel--${gearTypeName}`);
     panelGearType.classList.add('cursor-pointer');
     panelGearType.addEventListener('click', (evt) => {
