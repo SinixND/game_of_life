@@ -81,13 +81,13 @@ let icons = [
   "Yaahl_Gear",
 ];
 
-let gearTypes = [
+let equipment = [
   //"specialisation",
   //"weapon-1",
   //"weapon-2",
   //"sidearm",
-  "mask",
-  "backpack",
+  mask,
+  //"backpack",
   //"chest",
   //"gloves",
   //"holster",
@@ -96,10 +96,25 @@ let gearTypes = [
   //"skill-2",
 ];
 
-let filesGearTypes = [
-  mask,
-];
-alert(mask.keys())
+/*
+//masks.js -> equipment.js
+export const equipment = {
+  "mask": {
+    "Vile": {
+      rarity: "Exotic",
+      type: "Exotic",
+      attribute1Name: "Skill Tier",
+      attribute1Value: 1,
+      attribute2Name: "Status Effects",
+      attribute2Value: 10,
+      attribute3Name: "Hazard Protection",
+      attribute3Value: 10,
+      talentName: "Toxic Delivery",
+      talentText: "Status effects also apply a damage over time debuff for 10s.\r\n Total damage dealt is equal to 50% of your concussion grenade damage and increased by your status effect attributes.",
+    }
+  }
+}
+*/
 
 //============================
 // STARTUP FUNCTION
@@ -149,26 +164,25 @@ document.addEventListener('DOMContentLoaded', () => {
   const tplPopupParent = document.getElementById('popup--frame-main');
   const tplPopupBase = document.getElementById('template--popup');
 
-  // iterate over gear types array
-  console.log(`iterate over [${gearTypes}], arr-length: ${gearTypes.length}`)
-  for (let i = 0; i < gearTypes.length; i++) {
+  // iterate over geartypes array
+  for (let i = 0; i < equipment.length; i++) {
+    let gearTypeObject = equipment[i];
     let clonedPopupNode = tplPopupBase.content.cloneNode(true);
 
     let popupSelectGear = clonedPopupNode.getElementById('popup--select-gear');
-    popupSelectGear.id += `--${gearTypes[i]}`;
+    popupSelectGear.id += `--${gearTypeObject.name}`;
     popupSelectGear.addEventListener('click', (evt) => {
       evt.stopPropagation()
     });
 
     // FILL SELECTION LIST
     const tplListParent = clonedPopupNode.getElementById('list--select-gear');
-    tplListParent.id += `--${gearTypes[i]}`;
+    tplListParent.id += `--${gearTypeObject.name}`;
     const tplListBase = document.getElementById('template--list-gear-item');
 
-    // iterate over all items in $gear object
-    let gearType = gearTypes[i];
-    console.log(gearType);
-    for (let gearName in gearType) {
+    // iterate over all items in $gearTypeObject
+    for (let gearItemName in gearTypeObject) { if (gearItemName !== "name") {
+      let gearItem = gearTypeObject[gearItemName]
       let clonedListNode = tplListBase.content.cloneNode(true);
 
       // panel settings
@@ -177,32 +191,32 @@ document.addEventListener('DOMContentLoaded', () => {
       // onclick
       panelItem.classList.add('cursor-pointer');
       panelItem.addEventListener('click', () => {
-        applySelection(gearTypes[i], gearName)
+        applySelection(gearTypeObject, gearItemName)
       }, false);
 
       // panel color
-      if (gearType[`${gearName}`].rarity == "Exotic") {
+      if (gearItem.rarity == "Exotic") {
         panelItem.style.borderColor = 'var(--cExotic)';
         panelItem.style.color = 'var(--cExotic)';
       }
-      else if (gearType[`${gearName}`].rarity == "Named") {
+      else if (gearItem.rarity == "Named") {
         panelItem.style.borderColor = 'var(--cNamed)';
         panelItem.style.color = 'var(--cNamed)';
       }
-      else if (gearType[`${gearName}`].rarity == "GearSet") {
+      else if (gearItem.rarity == "GearSet") {
         panelItem.style.borderColor = 'var(--cGearSet)';
         panelItem.style.color = 'var(--cGearSet)';
       };
 
       // item name
       let itemName = clonedListNode.getElementById('item--name')
-      itemName.innerHTML = `${gearName}`;
+      itemName.innerHTML = `${gearItemName}`;
 
       // item type
-      if (gearType[`${gearName}`].hasOwnProperty('type') && gearType[`${gearName}`].type !== `${gearName}`) {
+      if (gearItem.hasOwnProperty('type') && gearItem.type !== `${gearItemName}`) {
         let itemType = clonedListNode.getElementById('item--type');
         itemType.innerHTML = "(";
-        itemType.innerHTML += gearType[`${gearName}`].type;
+        itemType.innerHTML += gearItem.type;
         itemType.innerHTML += ")";
       };
 
@@ -212,46 +226,45 @@ document.addEventListener('DOMContentLoaded', () => {
       let mltpcAttribute1 = clonedListNode.getElementById('mltpc-attribute-1');
       let mltpcAttribute2 = clonedListNode.getElementById('mltpc-attribute-2');
       let mltpcAttribute3 = clonedListNode.getElementById('mltpc-attribute-3');
-      let mltpcName = gearType[`${gearName}`].type;
-      console.log(gearType)
+      let mltpcName = gearItem.type;
 
-      if (gearType[`${gearName}`].rarity == "Exotic") {
-        mltpcAttribute1.innerHTML = gearType[`${gearName}`].attribute1Name + ': ';
-        mltpcAttribute1.innerHTML += gearType[`${gearName}`].attribute1Value;
-        mltpcAttribute2.innerHTML = gearType[`${gearName}`].attribute2Name + ': ';
-        mltpcAttribute2.innerHTML += gearType[`${gearName}`].attribute2Value;
-        mltpcAttribute3.innerHTML = gearType[`${gearName}`].attribute3Name + ': ';
-        mltpcAttribute3.innerHTML += gearType[`${gearName}`].attribute3Value;
+      if (gearItem.rarity == "Exotic") {
+        mltpcAttribute1.innerHTML = gearItem.attribute1Name + ': ';
+        mltpcAttribute1.innerHTML += gearItem.attribute1Value;
+        mltpcAttribute2.innerHTML = gearItem.attribute2Name + ': ';
+        mltpcAttribute2.innerHTML += gearItem.attribute2Value;
+        mltpcAttribute3.innerHTML = gearItem.attribute3Name + ': ';
+        mltpcAttribute3.innerHTML += gearItem.attribute3Value;
       }
-      else if (gearType[`${gearName}`].rarity == "GearSet") {
-        mltpcAttribute1.innerHTML = mltpc[`${mltpcName}`].attribute1Name + ': ';
-        mltpcAttribute1.innerHTML += mltpc[`${mltpcName}`].attribute1Value;
-        mltpcAttribute2.innerHTML = mltpc[`${mltpcName}`].attribute2Name + ': ';
-        mltpcAttribute2.innerHTML += mltpc[`${mltpcName}`].attribute2Value;
-        mltpcAttribute3.innerHTML = mltpc[`${mltpcName}`].gearMltpcTalentName + '<br><br>';
-        mltpcAttribute3.innerHTML += mltpc[`${mltpcName}`].gearMltpcTalentText;
+      else if (gearItem.rarity == "GearSet") {
+        mltpcAttribute1.innerHTML = mltpc[mltpcName].attribute1Name + ': ';
+        mltpcAttribute1.innerHTML += mltpc[mltpcName].attribute1Value;
+        mltpcAttribute2.innerHTML = mltpc[mltpcName].attribute2Name + ': ';
+        mltpcAttribute2.innerHTML += mltpc[mltpcName].attribute2Value;
+        mltpcAttribute3.innerHTML = mltpc[mltpcName].gearMltpcTalentName + '<br><br>';
+        mltpcAttribute3.innerHTML += mltpc[mltpcName].gearMltpcTalentText;
       }
-      else if (gearType[`${gearName}`].rarity !== "Improvised") { //aka. is a normal high-end-item
-        mltpcAttribute1.innerHTML = mltpc[`${mltpcName}`].attribute1Name + ': ';
-        mltpcAttribute1.innerHTML += mltpc[`${mltpcName}`].attribute1Value;
-        mltpcAttribute2.innerHTML = mltpc[`${mltpcName}`].attribute2Name + ': ';
-        mltpcAttribute2.innerHTML += mltpc[`${mltpcName}`].attribute2Value;
-        mltpcAttribute3.innerHTML = mltpc[`${mltpcName}`].attribute3Name + ': ';
-        mltpcAttribute3.innerHTML += mltpc[`${mltpcName}`].attribute3Value;
+      else if (gearItem.rarity !== "Improvised") { //aka. is a normal high-end-item
+        mltpcAttribute1.innerHTML = mltpc[mltpcName].attribute1Name + ': ';
+        mltpcAttribute1.innerHTML += mltpc[mltpcName].attribute1Value;
+        mltpcAttribute2.innerHTML = mltpc[mltpcName].attribute2Name + ': ';
+        mltpcAttribute2.innerHTML += mltpc[mltpcName].attribute2Value;
+        mltpcAttribute3.innerHTML = mltpc[mltpcName].attribute3Name + ': ';
+        mltpcAttribute3.innerHTML += mltpc[mltpcName].attribute3Value;
       };
 
       // item talent
       let itemTalentName = clonedListNode.getElementById('item--talent-name')
-      if (gearType[`${gearName}`].hasOwnProperty('talentName')) {
+      if (gearItem.hasOwnProperty('talentName')) {
         itemTalentName.classList.add('h-line--top');
-        itemTalentName.innerHTML = gearType[`${gearName}`].talentName;
+        itemTalentName.innerHTML = gearItem.talentName;
       };
-      if (gearType[`${gearName}`].hasOwnProperty('talentText')) {
-        clonedListNode.getElementById('item--talent-text').innerHTML = gearType[`${gearName}`].talentText;
+      if (gearItem.hasOwnProperty('talentText')) {
+        clonedListNode.getElementById('item--talent-text').innerHTML = gearItem.talentText;
       };
 
       tplListParent.appendChild(clonedListNode);
-    }
+    }}
     tplPopupParent.appendChild(clonedPopupNode);
   }
 }, false);
@@ -264,21 +277,22 @@ popupFrameMain.addEventListener('click', () => {
 }, false);
 
 // open selection popup
-for (let i = 0; i < gearTypes.length; i++) {
-  let panelItem = document.getElementById(`panel--${gearTypes[i]}`);
+for (let i = 0; i < equipment.length; i++) {
+  let gearTypeObject = equipment[i];
+  let panelItem = document.getElementById(`panel--${gearTypeObject.name}`);
   panelItem.classList.add('cursor-pointer');
   panelItem.addEventListener('click', (evt) => {
-    showPopup(gearTypes[i])
+    showPopup(gearTypeObject)
   }, false);
 }
 
 //==============================
 // FUNCTIONS
-function showPopup(gearType) {
+function showPopup(gearTypeObject) {
   document.getElementById('popup--frame-main').style.display = "flex";
-  document.getElementById(`popup--select-gear--${gearType}`).style.display = "flex";
+  document.getElementById(`popup--select-gear--${gearTypeObject.name}`).style.display = "flex";
   // reset scroll state to top
-  document.getElementById(`list--select-gear--${gearType}`).scrollTop = 0;
+  document.getElementById(`list--select-gear--${gearTypeObject.name}`).scrollTop = 0;
   document.body.style.overflow = "hidden";
 }
 
@@ -287,22 +301,21 @@ function hidePopup() {
   document.body.style.overflow = "";
 }
 
-function applySelection(gearType, gearName) {
+function applySelection(gearTypeObject, gearItemName) {
   hidePopup();
   //============================
-  // FILL GEAR SLOTS
-  for (let gearType of gearTypes) {
-    const tplGearslotParent = document.getElementById(`panel--${gearType}`);
+  // FILL GEAR SLOT
+    const tplGearslotParent = document.getElementById(`panel--${gearTypeObject.name}`);
     tplGearslotParent.innerHTML = "";
     const tplGearslotBase = document.getElementById('template--gearslot');
     let clonedGearslotNode = tplGearslotBase.content.cloneNode(true);
 
-    let Gearslot = clonedGearslotNode.getElementById('gearslot');
-    Gearslot.id += `--${gearType}`;
+    //let Gearslot = clonedGearslotNode.getElementById('gearslot');
+    //Gearslot.id += `--${gearTypeObject}`;
 
-    let GearslotName = clonedGearslotNode.getElementById('gearslot--name');
-      GearslotName.innerHTML = `Choose ${gearType}`;
-      //add new showPopup Listener
+    //let GearslotName = clonedGearslotNode.getElementById('gearslot--name');
+      //GearslotName.innerHTML = `Choose ${gearTypeObject}`;
+      ////add new showPopup Listener
 
     /*
     gearslot--name
@@ -316,7 +329,6 @@ function applySelection(gearType, gearName) {
     */
 
     tplGearslotParent.appendChild(clonedGearslotNode);
-  }
 }
 
 //let eventTarget = document.querySelectorAll(`[id*="${icons[i]}"]`);
