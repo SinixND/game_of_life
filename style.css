@@ -210,15 +210,17 @@ place-self :: (align justify)
 }
 
 .empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 25px;
   color: var(--ctxthl);
-  align-self: center;
-  justify-self: center;
+  font-size: var(--txtBig);
+  font-weight: bolder;
   min-height: var(--heightMin);
 }
 
 .popup {
-  display: none;
   min-width: var(--widthMin);
   max-width: 80%;
   height: 90%;
@@ -252,7 +254,6 @@ place-self :: (align justify)
 }
 
 #popup--frame-main {
-  display: none;
   position: fixed;
   top: 0;
   right: 0;

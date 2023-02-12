@@ -264,16 +264,16 @@ for (let equipmentTypeName in equipment) {
 // FUNCTIONS
 function showPopup(equipmentTypeName, gearTypeName) {
   //document.getElementById('popup--frame-main').style.display = "flex";
-  document.getElementById('popup--frame-main').classList.toggle("hide");
+  document.getElementById('popup--frame-main').classList.remove("hide");
   //document.getElementById(`popup--select-armor--${equipmentTypeName}`).style.display = "flex";
-  document.getElementById(`popup--select-${equipmentTypeName}--${gearTypeName}`).classList.toggle("hide");
+  document.getElementById(`popup--select-${equipmentTypeName}--${gearTypeName}`).classList.remove("hide");
   // reset scroll state to top
   document.getElementById(`list--select-${equipmentTypeName}--${gearTypeName}`).scrollTop = 0;
   document.body.style.overflow = "hidden";
 }
 
 function hidePopup() {
-  document.getElementById('popup--frame-main').classList.toggle("hide");
+  document.getElementById('popup--frame-main').classList.add("hide");
   document.body.style.overflow = "";
 }
 
@@ -286,12 +286,12 @@ function applySelection(gearTypeName) {
     const tplGearslotBase = document.getElementById('template--gearslot');
     let clonedGearslotNode = tplGearslotBase.content.cloneNode(true);
 
-    //let Gearslot = clonedGearslotNode.getElementById('gearslot');
-    //Gearslot.id += `--${equipmentType}`;
+    let Gearslot = clonedGearslotNode.getElementById('gearslot');
+    Gearslot.id += `--${gearTypeName}`;
 
-    //let GearslotName = clonedGearslotNode.getElementById('gearslot--name');
-      //GearslotName.innerHTML = `Choose ${equipmentType}`;
-      ////add new showPopup Listener
+    let GearslotName = clonedGearslotNode.getElementById('gearslot--name');
+      GearslotName.innerHTML = `Choose ${gearTypeName}`;
+      //add new showPopup Listener
 
     /*
     gearslot--name
