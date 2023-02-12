@@ -15,6 +15,15 @@ let colors = [
 ];
 
 // TODO: MAKE ICONS WITH FOR LOOP OVER EQUIPMENT.ENTRIES AND EQUIPMENT.X.X.TYPES (AND LATER ATTRIBUTES)
+let icon = () => {
+  let s = new Set();
+  for (let equipmentName in equipment) {
+    s.add(equipmentName);
+  }
+  return Array.from(s);
+}
+console.log(icon);
+
 let icons = [
   "5.11_Tactical",
   "Aces_&_Eights",
