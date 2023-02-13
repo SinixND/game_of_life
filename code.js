@@ -328,7 +328,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   else {
     tplGearslotParent.style.borderColor = 'var(--cNamed)';
     tplGearslotParent.style.color = 'var(--cNamed)';
-    GearslotName.background = 'linear-gradient(28deg, var(--c0), var(--cNamed))';
+    GearslotName.style.background = 'linear-gradient(28deg, var(--c0), var(--cNamed))';
   };
 
   /*
