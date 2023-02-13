@@ -1,5 +1,6 @@
 //============================
 // IMPORT DATA
+import { attributes } from "./data/attributes.js";
 import { sets } from "./data/sets.js"; //mltpc because sets noun verb confusion
 let mltpc = sets;
 import { equipment } from "./data/equipment.js";
