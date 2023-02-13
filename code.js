@@ -287,6 +287,8 @@ function hidePopup() {
 
 function applySelection(gearTypeName, gearItem) {
   let panelGearType = document.getElementById(`panel--${gearTypeName}`);
+
+  // remove previous showPopup listener, bc slot content has to be clickable
   panelGearType.classList.remove('cursor-pointer');
   abortControlls[`controller-${gearTypeName}`].abort();
 
@@ -306,7 +308,7 @@ function applySelection(gearTypeName, gearItem) {
     GearslotName.innerHTML = `Choose ${gearTypeName}`;
 
     // panel settings
-    // add new showPopup Listener
+    // add new showPopup listener
     GearslotName.classList.add('cursor-pointer');
     GearslotName.addEventListener('click', () => {
       showPopup(equipmentTypeName, gearTypeName);
@@ -344,4 +346,3 @@ function applySelection(gearTypeName, gearItem) {
 }
 
 //let eventTarget = document.querySelectorAll(`[id*="${icons[i]}"]`);
-//for (let i = 0; i < array.length; i++) {
