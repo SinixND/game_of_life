@@ -162,26 +162,26 @@ document.addEventListener('DOMContentLoaded', () => {
         // onclick
         panelListEntry.classList.add('cursor-pointer');
         panelListEntry.addEventListener('click', () => {
-          applyselection(geartypename, gearItem)
+          applySelection(gearTypeName, gearItem)
         }, false);
 
         // panel color
         if (gearItem.rarity == "exotic") {
-          panellistentry.style.bordercolor = 'var(--cexotic)';
-          panellistentry.style.color = 'var(--cexotic)';
+          panelListEntry.style.borderColor = 'var(--cExotic)';
+          panelListEntry.style.color = 'var(--cExotic)';
         }
         else if (gearItem.rarity == "named") {
-          panellistentry.style.bordercolor = 'var(--cnamed)';
-          panellistentry.style.color = 'var(--cnamed)';
+          panelListEntry.style.borderColor = 'var(--cNamed)';
+          panelListEntry.style.color = 'var(--cNamed)';
         }
         else if (gearItem.rarity == "gearset") {
-          panellistentry.style.bordercolor = 'var(--cgearset)';
-          panellistentry.style.color = 'var(--cgearset)';
+          panelListEntry.style.borderColor = 'var(--cGearSet)';
+          panelListEntry.style.color = 'var(--cGearSet)';
         };
 
         // entry name
-        let entryName = clonedListEntryNode.getelementbyid('entry--name')
-        entryName.innerhtml = `${gearItemName}`;
+        let entryName = clonedListEntryNode.getElementById('entry--name')
+        entryName.innerHtml = `${gearItemName}`;
 
         // entry type
         if (gearItem.hasOwnProperty('type') && gearItem.type !== `${gearItemName}`) {
@@ -314,18 +314,18 @@ function applySelection(gearTypeName, gearItem) {
 
     // panel and container color
     if (gearItem.rarity == "exotic") {
-      tplGearslotParent.style.bordercolor = 'var(--cexotic)';
-      tplGearslotParent.style.color = 'var(--cexotic)';
+      tplGearslotParent.style.borderColor = 'var(--cExotic)';
+      tplGearslotParent.style.color = 'var(--cExotic)';
       GearslotName.background = 'linear-gradient(28deg, var(--c0), var(--cExotic))';
     } 
     else if (gearItem.rarity == "gearset") {
-      tplGearslotParent.style.bordercolor = 'var(--cgearset)';
-      tplGearslotParent.style.color = 'var(--cgearset)';
+      tplGearslotParent.style.borderColor = 'var(--cGearSet)';
+      tplGearslotParent.style.color = 'var(--cGearSet)';
       GearslotName.background = 'linear-gradient(28deg, var(--c0), var(--cGearSet))';
     } 
     else {
-      tplGearslotParent.style.bordercolor = 'var(--cnamed)';
-      tplGearslotParent.style.color = 'var(--cnamed)';
+      tplGearslotParent.style.borderColor = 'var(--cNamed)';
+      tplGearslotParent.style.color = 'var(--cNamed)';
       GearslotName.background = 'linear-gradient(28deg, var(--c0), var(--cNamed))';
     };
 
