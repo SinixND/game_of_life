@@ -318,12 +318,12 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   if (gearItem.rarity == "Exotic") {
     tplGearslotParent.style.borderColor = 'var(--cExotic)';
     tplGearslotParent.style.color = 'var(--cExotic)';
-    GearslotName.background = 'linear-gradient(28deg, var(--c0), var(--cExotic))';
+    GearslotName.style.background = 'linear-gradient(28deg, var(--c0), var(--cExotic))';
   } 
   else if (gearItem.rarity == "GearSet") {
     tplGearslotParent.style.borderColor = 'var(--cGearSet)';
     tplGearslotParent.style.color = 'var(--cGearSet)';
-    GearslotName.background = 'linear-gradient(28deg, var(--c0), var(--cGearSet))';
+    GearslotName.style.background = 'linear-gradient(28deg, var(--c0), var(--cGearSet))';
   } 
   else {
     tplGearslotParent.style.borderColor = 'var(--cNamed)';

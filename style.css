@@ -303,6 +303,10 @@ place-self :: (align justify)
   color: var(--ctxt);
 }
 
+#gearslot--name {
+  min-height: calc(2 * var(--txtBase));
+}
+
 #gearslot--core-attribute {
   width: 100%;
   background-color: var(--c0);
