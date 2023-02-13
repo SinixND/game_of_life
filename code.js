@@ -242,6 +242,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //==============================
 // EVENT LISTENERS
+// create event listener aborts
+let abortControlls = {};
+
 // listener: close popup on background click
 let popupFrameMain = document.getElementById("popup--frame-main");
 popupFrameMain.addEventListener('click', () => {
