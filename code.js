@@ -308,11 +308,8 @@ function applySelection(gearTypeName) {
     let GearslotName = clonedGearslotNode.getElementById('gearslot--name');
     GearslotName.innerHTML = `Choose ${gearTypeName}`;
 
-    //add new showPopup Listener
-    GearslotName.addEventListener;
-
     // panel settings
-    // onclick
+    // add new showPopup Listener
     GearslotName.classList.add('cursor-pointer');
     GearslotName.addEventListener('click', () => {
       showPopup(equipmentTypeName, gearTypeName);
