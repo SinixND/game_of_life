@@ -166,15 +166,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }, false);
 
         // panel color
-        if (gearItem.rarity == "exotic") {
+        if (gearItem.rarity == "Exotic") {
           panelListEntry.style.borderColor = 'var(--cExotic)';
           panelListEntry.style.color = 'var(--cExotic)';
         }
-        else if (gearItem.rarity == "named") {
+        else if (gearItem.rarity == "Named") {
           panelListEntry.style.borderColor = 'var(--cNamed)';
           panelListEntry.style.color = 'var(--cNamed)';
         }
-        else if (gearItem.rarity == "gearset") {
+        else if (gearItem.rarity == "GearSet") {
           panelListEntry.style.borderColor = 'var(--cGearSet)';
           panelListEntry.style.color = 'var(--cGearSet)';
         };
@@ -315,12 +315,12 @@ function applySelection(gearTypeName, gearItem) {
     }, false);
 
     // panel and container color
-    if (gearItem.rarity == "exotic") {
+    if (gearItem.rarity == "Exotic") {
       tplGearslotParent.style.borderColor = 'var(--cExotic)';
       tplGearslotParent.style.color = 'var(--cExotic)';
       GearslotName.background = 'linear-gradient(28deg, var(--c0), var(--cExotic))';
     } 
-    else if (gearItem.rarity == "gearset") {
+    else if (gearItem.rarity == "GearSet") {
       tplGearslotParent.style.borderColor = 'var(--cGearSet)';
       tplGearslotParent.style.color = 'var(--cGearSet)';
       GearslotName.background = 'linear-gradient(28deg, var(--c0), var(--cGearSet))';
