@@ -306,6 +306,7 @@ place-self :: (align justify)
   width: 100%;
   background-color: var(--c0);
   color: var(--ctxt);
+  font-size: var(--txtBase);
 }
 
 /* TAG SETTINGS */
