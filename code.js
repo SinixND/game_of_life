@@ -331,9 +331,9 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
     GearslotName.style.background = 'linear-gradient(28deg, var(--c0), var(--cNamed))';
   }
   else {
-    tplGearslotParent.style.borderColor = 'var(--cHighEnd)';
-    tplGearslotParent.style.color = 'var(--cHighEnd)';
-    GearslotName.style.background = 'linear-gradient(28deg, var(--c0), var(--cHighEnd))';
+    tplGearslotParent.style.borderColor = 'var(--cStandard)';
+    tplGearslotParent.style.color = 'var(--cStandard)';
+    GearslotName.style.background = 'linear-gradient(28deg, var(--c0), var(--cStandard))';
   };
 
   /*
