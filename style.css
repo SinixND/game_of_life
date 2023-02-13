@@ -21,10 +21,10 @@
   --txtBig: calc(1.5 * var(--txtBase));
 
   /* rarity colors */
-  --cExotic: rgba(225, 75, 50, 1);
-  --cNamed: rgba(255, 175, 0, 1);
-  --cGearSet: rgba(75, 175, 100, 1);
-  --cNormal: rgba(200, 200, 200, 1);
+  --cExotic: rgba(225, 75, 50, 1.0);
+  --cNamed: rgba(255, 175, 0, 1.0);
+  --cGearSet: rgba(75, 175, 100, 1.0);
+  --cHighEnd: rgb(255, 245, 200, 1.0);
 
   /* background color */
   --cbgr: rgba(0, 0, 0, 1.0);

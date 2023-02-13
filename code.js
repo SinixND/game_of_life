@@ -177,7 +177,11 @@ document.addEventListener('DOMContentLoaded', () => {
         else if (gearItem.rarity == "GearSet") {
           panelListEntry.style.borderColor = 'var(--cGearSet)';
           panelListEntry.style.color = 'var(--cGearSet)';
-        };
+        }
+        else if (gearItem.rarity == "HighEnd") {
+          panelListEntry.style.borderColor = 'var(--cHighEnd)';
+          panelListEntry.style.color = 'var(--cHighEnd)';
+        }
 
         // entry name
         let entryName = clonedListEntryNode.getElementById('entry--name')
@@ -330,10 +334,10 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
     tplGearslotParent.style.color = 'var(--cNamed)';
     GearslotName.style.background = 'linear-gradient(28deg, var(--c0), var(--cNamed))';
   }
-  else {
-    tplGearslotParent.style.borderColor = 'var(--cStandard)';
-    tplGearslotParent.style.color = 'var(--cStandard)';
-    GearslotName.style.background = 'linear-gradient(28deg, var(--c0), var(--cStandard))';
+  else if (gearItem.rarity == "HighEnd") {
+    tplGearslotParent.style.borderColor = 'var(--cHighEnd)';
+    tplGearslotParent.style.color = 'var(--cHighEnd)';
+    GearslotName.style.background = 'linear-gradient(28deg, var(--c0), var(--cHighEnd))';
   };
 
   /*

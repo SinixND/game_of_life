@@ -178,7 +178,7 @@ export const equipment = {
         talentText: "Status effects also apply a damage over time debuff for 10s.\r\n \r\n Total damage dealt is equal to 50% of your concussion grenade damage and increased by your status effect attributes.",
       },
       "5.11 Tactical": {
-        rarity: "High-End",
+        rarity: "HighEnd",
         type: "5.11 Tactical"
       }
     }
