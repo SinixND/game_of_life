@@ -214,7 +214,7 @@
   </template>
 
   <!--
-    TEMPLATE SELECTION LIST
+    TEMPLATE SELECTION LIST ENTRY
   -->
   <template id="template--selection-list-entry">
     <div id="panel--list-entry" class="panel--border grid-i">
@@ -240,13 +240,12 @@
   <template id="template--gearslot">
       <div id="gearslot" class="container flex-c--v">
         <div id="gearslot--name"></div>
-        <div id="gearslot--type"></div>
-        <select id="gearslot--core-attribute">
-          <option value="" disabled="disabled" selected="selected"></option>
-          <option value="core-attribute--damage">Damage Core</option>
-          <option value="core-attribue--armor">Armor Core</option>
-          <option value="core-attribute--skill-tier">Skill Tier</option>
-      </select>
+        <div id="gearslot--core-attribute">
+          <div value="" disabled="disabled" selected="selected"></div>
+          <div value="core-attribute--damage">Damage Core</div>
+          <div value="core-attribue--armor">Armor Core</div>
+          <div value="core-attribute--skill-tier">Skill Tier</div>
+        </div>
         <div id="gearslot--minor-attribute-1"></div>
         <div id="gearslot--minor-attribute-2"></div>
         <div id="gearslot--mod"></div>
@@ -254,13 +253,6 @@
         <div id="gearslot--talent-text"></div>
       </div>
   </template>
-
-  <!--
-  <div id="ref-width-min"
-    style="position: fixed; background-color: var(--c0); border: var(--bWeightTemp) solid red; top: 10px; left: 10px; height: 10px; width: var(--widthMin)">
-  </div>
-  <!--
-    -->
 </body>
 
 </html>

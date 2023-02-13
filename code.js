@@ -119,7 +119,6 @@ document.addEventListener('DOMContentLoaded', () => {
         element[j].style.background = value;
         element[j].style.backgroundOrigin = 'content-box';
         element[j].style.backgroundSize = 'contain';
-        alert(element[j].style.backgroundSize);
         element[j].style.backgroundPosition = 'center';
         element[j].style.backgroundRepeat = 'no-repeat';
       }
@@ -326,15 +325,19 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
     tplGearslotParent.style.color = 'var(--cGearSet)';
     GearslotName.style.background = 'linear-gradient(28deg, var(--c0), var(--cGearSet))';
   } 
-  else {
+  else if (gearItem.rarity == "Named") {
     tplGearslotParent.style.borderColor = 'var(--cNamed)';
     tplGearslotParent.style.color = 'var(--cNamed)';
     GearslotName.style.background = 'linear-gradient(28deg, var(--c0), var(--cNamed))';
+  }
+  else {
+    tplGearslotParent.style.borderColor = 'var(--cHighEnd)';
+    tplGearslotParent.style.color = 'var(--cHighEnd)';
+    GearslotName.style.background = 'linear-gradient(28deg, var(--c0), var(--cHighEnd))';
   };
 
   /*
   gearslot--name
-  gearslot--type
   gearslot--core-attribute
   gearslot--minor-attribute-1
   gearslot--minor-attribute-2
