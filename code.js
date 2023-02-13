@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // onclick
         panelListEntry.classList.add('cursor-pointer');
         panelListEntry.addEventListener('click', () => {
-          applySelection(gearTypeName, gearItem)
+          applySelection(equipmentTypeName, gearTypeName, gearItem)
         }, false);
 
         // panel color
@@ -181,7 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // entry name
         let entryName = clonedListEntryNode.getElementById('entry--name')
-        entryName.innerHtml = `${gearItemName}`;
+        entryName.innerHTML = `${gearItemName}`;
 
         // entry type
         if (gearItem.hasOwnProperty('type') && gearItem.type !== `${gearItemName}`) {
@@ -285,7 +285,7 @@ function hidePopup() {
   document.body.style.overflow = "";
 }
 
-function applySelection(gearTypeName, gearItem) {
+function applySelection(equipmentTypeName, gearTypeName, gearItem) {
   let panelGearType = document.getElementById(`panel--${gearTypeName}`);
 
   // remove previous showPopup listener, bc slot content has to be clickable
