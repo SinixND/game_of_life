@@ -161,26 +161,26 @@ document.addEventListener('DOMContentLoaded', () => {
         // onclick
         panelListEntry.classList.add('cursor-pointer');
         panelListEntry.addEventListener('click', () => {
-          applyselection(geartypename)
+          applyselection(geartypename, gearItem)
         }, false);
 
         // panel color
-        if (gearitem.rarity == "exotic") {
+        if (gearItem.rarity == "exotic") {
           panellistentry.style.bordercolor = 'var(--cexotic)';
           panellistentry.style.color = 'var(--cexotic)';
         }
-        else if (gearitem.rarity == "named") {
+        else if (gearItem.rarity == "named") {
           panellistentry.style.bordercolor = 'var(--cnamed)';
           panellistentry.style.color = 'var(--cnamed)';
         }
-        else if (gearitem.rarity == "gearset") {
+        else if (gearItem.rarity == "gearset") {
           panellistentry.style.bordercolor = 'var(--cgearset)';
           panellistentry.style.color = 'var(--cgearset)';
         };
 
         // entry name
-        let entryname = clonedlistentrynode.getelementbyid('entry--name')
-        entryname.innerhtml = `${gearitemname}`;
+        let entryName = clonedlistentrynode.getelementbyid('entry--name')
+        entryName.innerhtml = `${gearitemname}`;
 
         // entry type
         if (gearItem.hasOwnProperty('type') && gearItem.type !== `${gearItemName}`) {
@@ -284,15 +284,11 @@ function hidePopup() {
   document.body.style.overflow = "";
 }
 
-function applySelection(gearTypeName) {
-  for (let equipmentTypeName in equipment) {
-    let equipmentType = equipment[equipmentTypeName];
-    for (let gearTypeName in equipmentType) {
-      let panelGearType = document.getElementById(`panel--${gearTypeName}`);
-      panelGearType.classList.remove('cursor-pointer');
-      abortControlls[`controller-${gearTypeName}`].abort();
-    }
-  }
+function applySelection(gearTypeName, gearItem) {
+  let panelGearType = document.getElementById(`panel--${gearTypeName}`);
+  panelGearType.classList.remove('cursor-pointer');
+  abortControlls[`controller-${gearTypeName}`].abort();
+
   hidePopup();
 
   //============================
@@ -316,12 +312,12 @@ function applySelection(gearTypeName) {
     }, false);
 
     // panel and container color
-    if (gearitem.rarity == "exotic") {
+    if (gearItem.rarity == "exotic") {
       tplGearslotParent.style.bordercolor = 'var(--cexotic)';
       tplGearslotParent.style.color = 'var(--cexotic)';
       GearslotName.background = 'linear-gradient(28deg, var(--c0), var(--cExotic))';
     } 
-    else if (gearitem.rarity == "gearset") {
+    else if (gearItem.rarity == "gearset") {
       tplGearslotParent.style.bordercolor = 'var(--cgearset)';
       tplGearslotParent.style.color = 'var(--cgearset)';
       GearslotName.background = 'linear-gradient(28deg, var(--c0), var(--cGearSet))';
