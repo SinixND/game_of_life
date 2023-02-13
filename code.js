@@ -7,12 +7,12 @@ import { equipment } from "./data/equipment.js";
 
 // ARRAYS
 let colors = [
-  'car',
-  'cag',
-  'cab',
-  'cay',
-  'cat',
-  'cav',
+  '--car',
+  '--cag',
+  '--cab',
+  '--cay',
+  '--cac',
+  '--cam',
 ];
 
 let icons = [
@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // iterate over all panels
   for (let i = 0; i < panels.length; i++) {
-    panels[i].style.borderColor = `var(--${colors[ccnt]})`;
+    panels[i].style.borderColor = `var(${colors[ccnt]})`;
     ccnt++;
     if (ccnt >= colors.length) {
       ccnt = 0;
