@@ -108,20 +108,6 @@ document.addEventListener('DOMContentLoaded', () => {
   //============================
   // SET BACKGROUND ICONS
   // iterate over icons.png-array
-  function setIcon(panelIcon, icon) {
-    var img = new Image();
-    img.src = `./icons/${icon}.png`;
-    let value = `linear-gradient(var(--cbgr75), var(--cbgr75)), url(${img.src})`;
-    let parent = document.getElementById(`${panelIcon}`);
-    if (parent.getElementById(`${icon}`)) {
-      element.style.background = value;
-      element.style.backgroundOrigin = 'content-box';
-      element.style.backgroundSize = 'contain';
-      element.style.backgroundPosition = 'center';
-      element.style.backgroundRepeat = 'no-repeat';
-    }
-  }
-
   for (let i = 0; i < icons.length; i++) {
     var img = new Image();
     img.src = `./icons/${icons[i]}.png`;
