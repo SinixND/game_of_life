@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // onclick
         panelListEntry.classList.add('cursor-pointer');
         panelListEntry.addEventListener('click', () => {
-          applySelection(equipmentTypeName, gearTypeName, gearItem)
+          applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
         }, false);
 
         // panel color
@@ -285,7 +285,7 @@ function hidePopup() {
   document.body.style.overflow = "";
 }
 
-function applySelection(equipmentTypeName, gearTypeName, gearItem) {
+function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName) {
   let panelGearType = document.getElementById(`panel--${gearTypeName}`);
 
   // remove previous showPopup listener, bc slot content has to be clickable
@@ -296,53 +296,53 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem) {
 
   //============================
   // FILL GEAR SLOT
-    const tplGearslotParent = document.getElementById(`panel--${gearTypeName}`);
-    tplGearslotParent.innerHTML = "";
-    const tplGearslotBase = document.getElementById('template--gearslot');
-    let clonedGearslotNode = tplGearslotBase.content.cloneNode(true);
+  const tplGearslotParent = document.getElementById(`panel--${gearTypeName}`);
+  tplGearslotParent.innerHTML = "";
+  const tplGearslotBase = document.getElementById('template--gearslot');
+  let clonedGearslotNode = tplGearslotBase.content.cloneNode(true);
 
-    let Gearslot = clonedGearslotNode.getElementById('gearslot');
-    Gearslot.id += `--${gearTypeName}`;
+  let Gearslot = clonedGearslotNode.getElementById('gearslot');
+  Gearslot.id += `--${gearTypeName}`;
 
-    let GearslotName = clonedGearslotNode.getElementById('gearslot--name');
-    GearslotName.innerHTML = `Choose ${gearTypeName}`;
+  let GearslotName = clonedGearslotNode.getElementById('gearslot--name');
+  GearslotName.innerHTML = `${gearItemName}`;
 
-    // panel settings
-    // add new showPopup listener
-    GearslotName.classList.add('cursor-pointer');
-    GearslotName.addEventListener('click', () => {
-      showPopup(equipmentTypeName, gearTypeName);
-    }, false);
+  // panel settings
+  // add new showPopup listener
+  GearslotName.classList.add('cursor-pointer');
+  GearslotName.addEventListener('click', () => {
+    showPopup(equipmentTypeName, gearTypeName);
+  }, false);
 
-    // panel and container color
-    if (gearItem.rarity == "Exotic") {
-      tplGearslotParent.style.borderColor = 'var(--cExotic)';
-      tplGearslotParent.style.color = 'var(--cExotic)';
-      GearslotName.background = 'linear-gradient(28deg, var(--c0), var(--cExotic))';
-    } 
-    else if (gearItem.rarity == "GearSet") {
-      tplGearslotParent.style.borderColor = 'var(--cGearSet)';
-      tplGearslotParent.style.color = 'var(--cGearSet)';
-      GearslotName.background = 'linear-gradient(28deg, var(--c0), var(--cGearSet))';
-    } 
-    else {
-      tplGearslotParent.style.borderColor = 'var(--cNamed)';
-      tplGearslotParent.style.color = 'var(--cNamed)';
-      GearslotName.background = 'linear-gradient(28deg, var(--c0), var(--cNamed))';
-    };
+  // panel and container color
+  if (gearItem.rarity == "Exotic") {
+    tplGearslotParent.style.borderColor = 'var(--cExotic)';
+    tplGearslotParent.style.color = 'var(--cExotic)';
+    GearslotName.background = 'linear-gradient(28deg, var(--c0), var(--cExotic))';
+  } 
+  else if (gearItem.rarity == "GearSet") {
+    tplGearslotParent.style.borderColor = 'var(--cGearSet)';
+    tplGearslotParent.style.color = 'var(--cGearSet)';
+    GearslotName.background = 'linear-gradient(28deg, var(--c0), var(--cGearSet))';
+  } 
+  else {
+    tplGearslotParent.style.borderColor = 'var(--cNamed)';
+    tplGearslotParent.style.color = 'var(--cNamed)';
+    GearslotName.background = 'linear-gradient(28deg, var(--c0), var(--cNamed))';
+  };
 
-    /*
-    gearslot--name
-    gearslot--type
-    gearslot--core-attribute
-    gearslot--minor-attribute-1
-    gearslot--minor-attribute-2
-    gearslot--mod
-    gearslot--talent-name
-    gearslot--talent-text
-    */
+  /*
+  gearslot--name
+  gearslot--type
+  gearslot--core-attribute
+  gearslot--minor-attribute-1
+  gearslot--minor-attribute-2
+  gearslot--mod
+  gearslot--talent-name
+  gearslot--talent-text
+  */
 
-    tplGearslotParent.appendChild(clonedGearslotNode);
+  tplGearslotParent.appendChild(clonedGearslotNode);
 }
 
 //let eventTarget = document.querySelectorAll(`[id*="${icons[i]}"]`);
