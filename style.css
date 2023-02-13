@@ -210,7 +210,7 @@ place-self :: (align justify)
   height: 100%;
   font-size: var(--txtBase);
   gap: var(--bWeight);
-  gap: 5px 10px;
+  justify-content: flex-start;
 }
 
 .empty {

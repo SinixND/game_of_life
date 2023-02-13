@@ -111,16 +111,16 @@ document.addEventListener('DOMContentLoaded', () => {
   for (let i = 0; i < icons.length; i++) {
     var img = new Image();
     img.src = `./icons/${icons[i]}.png`;
-    let value = `linear-gradient(var(--cbgr75), var(--cbgr75)), url(${img.src}) center/contain no-repeat`;
+    let value = `linear-gradient(var(--cbgr75), var(--cbgr75)), url(${img.src})`;
     let element = document.querySelectorAll(`[id *= "${icons[i]}"]`);
     if (element.length) {
       // iterate over all IDs with an icon name
       for (let j = 0; j < element.length; j++) {
         element[j].style.background = value;
-        /*
-        let scale = 0.75 * Math.min(element[j].offsetWidth/img.width, element[j].offsetHeight/img.height)
-        element[j].style.backgroundSize = `${img.width * scale}px ${img.height * scale}px`;
-        //*/
+        element[j].style.backgroundOrigin = 'content-box';
+        element[j].style.backgroundSize = 'contain';
+        element[j].style.backgroundPosition = 'center';
+        element[j].style.backgroundRepeat = 'no-repeat';
       }
     }
   };
