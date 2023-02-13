@@ -119,6 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
         element[j].style.background = value;
         element[j].style.backgroundOrigin = 'content-box';
         element[j].style.backgroundSize = 'contain';
+        alert(element[j].style.backgroundSize);
         element[j].style.backgroundPosition = 'center';
         element[j].style.backgroundRepeat = 'no-repeat';
       }
