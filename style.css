@@ -71,7 +71,7 @@ body {
   margin: 5px;
   background-color: var(--cbgr);
   color: var(--ctxt);
-  font-family: Titillium Web, sans-serif;
+  font-family: Arial, Titillium Web, sans-serif;
   font-size: var(--txtLabel);
 }
 
@@ -310,13 +310,6 @@ place-self :: (align justify)
   font-weight: bold;
 }
 
-#gearslot--core-attribute {
-  width: 100%;
-  background-color: var(--c0);
-  color: var(--ctxt);
-  font-size: var(--txtBase);
-}
-
 /* TAG SETTINGS */
 ol {
   padding-left: 2em;
@@ -329,4 +322,11 @@ li {
   border-color: inherit;
   margin: calc(4 * var(--bWeight)) 0;
   padding-left: calc(2 * var(--bWeight));
+}
+
+select {
+  width: 100%;
+  background-color: var(--c0);
+  color: var(--ctxt);
+  font-size: var(--txtBase);
 }
