@@ -242,15 +242,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //==============================
 // EVENT LISTENERS
-// create event listener aborts
-let abortControlls = {};
-for (let equipmentTypeName in equipment) {
-  let equipmentType = equipment[equipmentTypeName];
-  for (let gearTypeName in equipmentType) {
-    abortControlls[`controller-${gearTypeName}`] = new AbortController();
-  }
-}
-
 // listener: close popup on background click
 let popupFrameMain = document.getElementById("popup--frame-main");
 popupFrameMain.addEventListener('click', () => {
@@ -263,6 +254,10 @@ for (let equipmentTypeName in equipment) {
   for (let gearTypeName in equipmentType) {
     let panelGearType = document.getElementById(`panel--${gearTypeName}`);
     panelGearType.classList.add('cursor-pointer');
+    
+    // create event listener aborts
+    abortControlls[`controller-${gearTypeName}`] = new AbortController();
+
     panelGearType.addEventListener('click', () => {
       showPopup(equipmentTypeName, gearTypeName);
     }, {signal: abortControlls[`controller-${gearTypeName}`].signal}, false);
