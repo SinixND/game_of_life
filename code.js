@@ -180,8 +180,8 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         // entry name
-        let entryName = clonedlistentrynode.getelementbyid('entry--name')
-        entryName.innerhtml = `${gearitemname}`;
+        let entryName = clonedListEntryNode.getelementbyid('entry--name')
+        entryName.innerhtml = `${gearItemName}`;
 
         // entry type
         if (gearItem.hasOwnProperty('type') && gearItem.type !== `${gearItemName}`) {
