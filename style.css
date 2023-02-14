@@ -18,7 +18,7 @@
   --txtLabel: calc(.75 * var(--txtSmall));
   --txtSmall: calc(.75 * var(--txtBase));
   --txtBase: calc(16 * var(--tpx));;
-  --txtBig: calc(1.5 * var(--txtBase));
+  --txtBig: calc(1.25 * var(--txtBase));
 
   /* rarity colors */
   --cExotic: rgba(225, 75, 50, 1.0);
@@ -66,6 +66,7 @@
   min-width: var(--widthTemp);
   margin: 0;
   padding: 0;
+  font-size: var(--txtBase);
 }
 
 body {

@@ -337,7 +337,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   else if (gearItem.rarity == "HighEnd") {
     tplGearslotParent.style.borderColor = 'var(--cHighEnd)';
     tplGearslotParent.style.color = 'var(--cHighEnd)';
-    GearslotName.style.background = 'linear-gradient(28deg, var(--c0), var(--cHighEnd))';
+    GearslotName.style.background = 'linear-gradient(28deg, var(--c0), var(--cNamed))';
   };
 
   /*
