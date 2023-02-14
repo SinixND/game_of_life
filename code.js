@@ -82,7 +82,8 @@ let icons = [
   "Yaahl_Gear",
 ];
 
-document.addEventListener('DOMContentLoaded', () => {
+<!-- document.addEventListener('DOMContentLoaded', () => { -->
+
   //============================
   // DEBUG
   //alert( 'Res: (W)' + screen.width + 'x(H)' + screen.height + '  ratio: ' + window.devicePixelRatio); // LapHD: 1920x1080 Lap: 1280x720; Mob: 432x896
@@ -381,4 +382,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
   //let eventTarget = document.querySelectorAll(`[id*="${icons[i]}"]`);
 
-}, false);
+<!-- }, false); -->
