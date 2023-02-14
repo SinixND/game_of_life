@@ -194,11 +194,10 @@ for (let equipmentTypeName in equipment) {
       }
 
       // list entry name
+      console.log(`getElementsByClassName: ${clonedListEntryNode.getElementsByClassName('entry--name')}`)
+      console.log(`getElementsByClassName()[0]: ${clonedListEntryNode.getElementsByClassName('entry--name')[0]}`)
       let entryName = clonedListEntryNode.getElementsByClassName('entry--name')[0];
       entryName.innerHTML = `${gearItemName}`;
-      alert(`getElementsByClassName: ${clonedListEntryNode.getElementsByClassName('entry--name')}`)
-      alert(`getElementsByClassName()[0]: ${clonedListEntryNode.getElementsByClassName('entry--name')[0]}`)
-      alert(`entryname: ${entryName}`)
 
       // list entry type
       if (gearItem.hasOwnProperty('type') && gearItem.type !== `${gearItemName}`) {
