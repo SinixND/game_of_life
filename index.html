@@ -203,12 +203,12 @@
   -->
   <template id="template--popup--select-armor">
     <div id="popup--select-armor" class="panel popup flex-c--v hide">
-      <div id="panel--search" class="panel--border">
+      <div class="panel--search" class="panel--border">
         <div class="container">
-          <input id="input--search" placeholder="(not working) Search..." type="text">
+          <input class="input--search" placeholder="(not working) Search..." type="text">
         </div>
       </div>
-      <div id="list--select-armor" class="panel grid-c--c listGear">
+      <div class="list--select-armor" class="panel grid-c--c listGear">
         <!-- PLACEHOLDER LIST ENTRIES -->
       </div>
     </div>
@@ -220,17 +220,17 @@
   <template id="template--selection-list-entry">
     <div id="panel--list-entry" class="panel--border grid-i">
       <div class="container">
-        <div id="entry--name"></div>
-        <div id="entry--type"></div>
-        <div id="entry--mltpc-attributes">
+        <div class="entry--name"></div>
+        <div class="entry--type"></div>
+        <div class="entry--mltpc-attributes">
           <ol>
-            <li id="mltpc-attribute-1">first attribute</li>
-            <li id="mltpc-attribute-2">second attribute</li>
-            <li id="mltpc-attribute-3">third attribute</li>
+            <li class="mltpc-attribute-1">first attribute</li>
+            <li class="mltpc-attribute-2">second attribute</li>
+            <li class="mltpc-attribute-3">third attribute</li>
           </ol>
         </div>
-        <div id="entry--talent-name"></div>
-        <div id="entry--talent-text"></div>
+        <div class="entry--talent-name"></div>
+        <div class="entry--talent-text"></div>
       </div>
     </div>
   </template>
@@ -241,12 +241,13 @@
   <template id="template--gearslot">
       <div id="gearslot" class="container flex-c--v">
         <div id="gearslot--name"></div>
-          <!-- PLACEHOLDER DROPDOWN SELECTOR -->
-        <div id="gearslot--minor-attribute-1"></div>
-        <div id="gearslot--minor-attribute-2"></div>
-        <div id="gearslot--mod"></div>
-        <div id="gearslot--talent-name"></div>
-        <div id="gearslot--talent-text"></div>
+        <!-- PLACEHOLDER DROPDOWN SELECTOR 
+        <div class="gearslot--minor-attribute-1"></div>
+        <div class="gearslot--minor-attribute-2"></div>
+        <div class="gearslot--mod"></div>
+        <div class="gearslot--talent-name"></div>
+        <div class="gearslot--talent-text"></div>
+          -->
       </div>
   </template>
 
@@ -269,7 +270,7 @@
     TEMPLATE DROPDOWN OPTION
   -->
   <template id="template--dropdown-option">
-    <div class="dropdown-option">
+    <div id="dropdown-option">
       <div class="dropdown-option--key">
         dropdown option key
       </div>

@@ -167,6 +167,7 @@ for (let equipmentTypeName in equipment) {
 
       // get list entry panel
       let panelListEntry = clonedListEntryNode.getElementById('panel--list-entry')
+      panelListEntry.id += `--${gearItemName}`;
 
       // entry panel onclick
       panelListEntry.classList.add('cursor-pointer');
@@ -193,58 +194,58 @@ for (let equipmentTypeName in equipment) {
       }
 
       // list entry name
-      let entryName = clonedListEntryNode.getElementById('entry--name')
-      entryName.innerHTML = `${gearItemName}`;
+      let entryName = clonedListEntryNode.getElementsByClassName('entry--name')
+      entryName[0].innerHTML = `${gearItemName}`;
 
       // list entry type
       if (gearItem.hasOwnProperty('type') && gearItem.type !== `${gearItemName}`) {
-        let entryType = clonedListEntryNode.getElementById('entry--type');
-        entryType.innerHTML = "(";
-        entryType.innerHTML += gearItem.type;
-        entryType.innerHTML += ")";
+        let entryType = clonedListEntryNode.getElementsByClassName('entry--type');
+        entryType[0].innerHTML = "(";
+        entryType[0].innerHTML += gearItem.type;
+        entryType[0].innerHTML += ")";
       };
 
       // list entry set (mltpc) boni
-      let entryMltpcAttributes = clonedListEntryNode.getElementById('entry--mltpc-attributes');
-      entryMltpcAttributes.classList.add('h-line--top');
-      let mltpcAttribute1 = clonedListEntryNode.getElementById('mltpc-attribute-1');
-      let mltpcAttribute2 = clonedListEntryNode.getElementById('mltpc-attribute-2');
-      let mltpcAttribute3 = clonedListEntryNode.getElementById('mltpc-attribute-3');
+      let entryMltpcAttributes = clonedListEntryNode.getElementsByClassName('entry--mltpc-attributes');
+      entryMltpcAttributes[0].classList.add('h-line--top');
+      let mltpcAttribute1 = clonedListEntryNode.getElementsByClassName('mltpc-attribute-1');
+      let mltpcAttribute2 = clonedListEntryNode.getElementsByClassName('mltpc-attribute-2');
+      let mltpcAttribute3 = clonedListEntryNode.getElementsByClassName('mltpc-attribute-3');
       let mltpcName = gearItem.type;
 
       if (gearItem.rarity == "Exotic") {
-        mltpcAttribute1.innerHTML = gearItem.attribute1Name + ': ';
-        mltpcAttribute1.innerHTML += gearItem.attribute1Value;
-        mltpcAttribute2.innerHTML = gearItem.attribute2Name + ': ';
-        mltpcAttribute2.innerHTML += gearItem.attribute2Value;
-        mltpcAttribute3.innerHTML = gearItem.attribute3Name + ': ';
-        mltpcAttribute3.innerHTML += gearItem.attribute3Value;
+        mltpcAttribute1[0].innerHTML = gearItem.attribute1Name + ': ';
+        mltpcAttribute1[0].innerHTML += gearItem.attribute1Value;
+        mltpcAttribute2[0].innerHTML = gearItem.attribute2Name + ': ';
+        mltpcAttribute2[0].innerHTML += gearItem.attribute2Value;
+        mltpcAttribute3[0].innerHTML = gearItem.attribute3Name + ': ';
+        mltpcAttribute3[0].innerHTML += gearItem.attribute3Value;
       }
       else if (gearItem.rarity == "GearSet") {
-        mltpcAttribute1.innerHTML = mltpc[mltpcName].attribute1Name + ': ';
-        mltpcAttribute1.innerHTML += mltpc[mltpcName].attribute1Value;
-        mltpcAttribute2.innerHTML = mltpc[mltpcName].attribute2Name + ': ';
-        mltpcAttribute2.innerHTML += mltpc[mltpcName].attribute2Value;
-        mltpcAttribute3.innerHTML = mltpc[mltpcName].gearMltpcTalentName + '<br><br>';
-        mltpcAttribute3.innerHTML += mltpc[mltpcName].gearMltpcTalentText;
+        mltpcAttribute1[0].innerHTML = mltpc[mltpcName].attribute1Name + ': ';
+        mltpcAttribute1[0].innerHTML += mltpc[mltpcName].attribute1Value;
+        mltpcAttribute2[0].innerHTML = mltpc[mltpcName].attribute2Name + ': ';
+        mltpcAttribute2[0].innerHTML += mltpc[mltpcName].attribute2Value;
+        mltpcAttribute3[0].innerHTML = mltpc[mltpcName].gearMltpcTalentName + '<br><br>';
+        mltpcAttribute3[0].innerHTML += mltpc[mltpcName].gearMltpcTalentText;
       }
       else if (gearItem.rarity !== "Improvised") { //aka. is a normal brand-item
-        mltpcAttribute1.innerHTML = mltpc[mltpcName].attribute1Name + ': ';
-        mltpcAttribute1.innerHTML += mltpc[mltpcName].attribute1Value;
-        mltpcAttribute2.innerHTML = mltpc[mltpcName].attribute2Name + ': ';
-        mltpcAttribute2.innerHTML += mltpc[mltpcName].attribute2Value;
-        mltpcAttribute3.innerHTML = mltpc[mltpcName].attribute3Name + ': ';
-        mltpcAttribute3.innerHTML += mltpc[mltpcName].attribute3Value;
+        mltpcAttribute1[0].innerHTML = mltpc[mltpcName].attribute1Name + ': ';
+        mltpcAttribute1[0].innerHTML += mltpc[mltpcName].attribute1Value;
+        mltpcAttribute2[0].innerHTML = mltpc[mltpcName].attribute2Name + ': ';
+        mltpcAttribute2[0].innerHTML += mltpc[mltpcName].attribute2Value;
+        mltpcAttribute3[0].innerHTML = mltpc[mltpcName].attribute3Name + ': ';
+        mltpcAttribute3[0].innerHTML += mltpc[mltpcName].attribute3Value;
       };
 
       // list entry talent
-      let entryTalentName = clonedListEntryNode.getElementById('entry--talent-name')
+      let entryTalentName = clonedListEntryNode.getElementsByClassName('entry--talent-name')
       if (gearItem.hasOwnProperty('talentName')) {
-        entryTalentName.classList.add('h-line--top');
-        entryTalentName.innerHTML = gearItem.talentName;
+        entryTalentName[0].classList.add('h-line--top');
+        entryTalentName[0].innerHTML = gearItem.talentName;
       };
       if (gearItem.hasOwnProperty('talentText')) {
-        clonedListEntryNode.getElementById('entry--talent-text').innerHTML = gearItem.talentText;
+        clonedListEntryNode.getElementsByClassName('entry--talent-text')[0].innerHTML = gearItem.talentText;
       };
 
       tplListEntryParent.appendChild(clonedListEntryNode);
@@ -326,12 +327,12 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   let Gearslot = clonedGearslotNode.getElementById('gearslot');
   Gearslot.id += `--${gearTypeName}`;
 
-  let GearslotName = clonedGearslotNode.getElementById('gearslot--name');
-  GearslotName.innerHTML = `${gearItemName}`;
+  let GearslotName = clonedGearslotNode.getElementsByClassName('gearslot--name');
+  GearslotName[0].innerHTML = `${gearItemName}`;
 
   // add new showPopup listener to "Name" div
-  GearslotName.classList.add('cursor-pointer');
-  GearslotName.addEventListener('click', () => {
+  GearslotName[0].classList.add('cursor-pointer');
+  GearslotName[0].addEventListener('click', () => {
     showPopup(equipmentTypeName, gearTypeName);
   }, false);
 
@@ -339,22 +340,22 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   if (gearItem.rarity == "Exotic") {
     tplGearslotParent.style.borderColor = 'var(--cExotic)';
     tplGearslotParent.style.color = 'var(--cExotic)';
-    GearslotName.style.background = 'linear-gradient(28deg, var(--c0), var(--cExotic))';
+    GearslotName[0].style.background = 'linear-gradient(28deg, var(--c0), var(--cExotic))';
   }
   else if (gearItem.rarity == "GearSet") {
     tplGearslotParent.style.borderColor = 'var(--cGearSet)';
     tplGearslotParent.style.color = 'var(--cGearSet)';
-    GearslotName.style.background = 'linear-gradient(28deg, var(--c0), var(--cGearSet))';
+    GearslotName[0].style.background = 'linear-gradient(28deg, var(--c0), var(--cGearSet))';
   }
   else if (gearItem.rarity == "Named") {
     tplGearslotParent.style.borderColor = 'var(--cNamed)';
     tplGearslotParent.style.color = 'var(--cNamed)';
-    GearslotName.style.background = 'linear-gradient(28deg, var(--c0), var(--cNamed))';
+    GearslotName[0].style.background = 'linear-gradient(28deg, var(--c0), var(--cNamed))';
   }
   else if (gearItem.rarity == "HighEnd") {
     tplGearslotParent.style.borderColor = 'var(--cHighEnd)';
     tplGearslotParent.style.color = 'var(--cHighEnd)';
-    GearslotName.style.background = 'linear-gradient(28deg, var(--c0), var(--cNamed))';
+    GearslotName[0].style.background = 'linear-gradient(28deg, var(--c0), var(--cNamed))';
   };
 
   /*
