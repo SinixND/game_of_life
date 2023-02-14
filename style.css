@@ -271,7 +271,7 @@ place-self :: (align justify)
   overflow: auto;
 }
 
-#input--search {
+.input--search {
   color: inherit;
   font: inherit;
   height: min-content;
@@ -279,29 +279,29 @@ place-self :: (align justify)
   background-color: var(--cbg);
 }
 
-#entry--name {
+.entry--name {
   font-size: var(--txtBig);
   font-weight: bold;
   white-space: nowrap;
   color: inherit;
 }
 
-#entry--type {
+.entry--type {
   font-size: var(--txtSmall);
   font-style: italic;
   color: var(--ctxt);
 }
 
-#entry--mltpc-attributes {
+.entry--mltpc-attributes {
   color: var(--ctxt);
 }
 
-#entry--talent-name {
+.entry--talent-name {
   font-weight: bold;
   color: inherit;
 }
 
-#entry--talent-text {
+.entry--talent-text {
   color: var(--ctxt);
 }
 
@@ -335,7 +335,7 @@ li {
   flex-direction: column;
 }
 
-.dropdown-selector {
+#dropdown-selector {
   display: flex;
   padding-left: 20px;
   padding-right: 20px;
@@ -354,7 +354,7 @@ li {
   cursor: pointer;
 }
 
-.dropdown-option {
+#dropdown-option {
   display: flex;
   padding: 15px;
   background-color: rgb(100,100,100,0.5);

@@ -194,7 +194,7 @@ for (let equipmentTypeName in equipment) {
       }
 
       // list entry name
-      let entryName = clonedListEntryNode.getElementsByClassName('entry--name')
+      let entryName = clonedListEntryNode.getElementsByClassName('entry--name');
       entryName[0].innerHTML = `${gearItemName}`;
 
       // list entry type
