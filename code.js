@@ -82,13 +82,12 @@ let icons = [
   "Yaahl_Gear",
 ];
 
-//============================
-// STARTUP FUNCTION
 document.addEventListener('DOMContentLoaded', () => {
   //============================
   // DEBUG
   //alert( 'Res: (W)' + screen.width + 'x(H)' + screen.height + '  ratio: ' + window.devicePixelRatio); // LapHD: 1920x1080 Lap: 1280x720; Mob: 432x896
 
+  //============================
   // COLORIZE PANELS
   let panels = document.getElementsByClassName("panel");
   let ccnt = 0;
@@ -102,12 +101,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // ADD ROOT VARIABLE
+  //============================
+  // CONSISTANT PIXEL VARIABLE
   document.documentElement.style.setProperty('--tpx', `calc(1px * ${window.devicePixelRatio})`);
+
+  // CONSISTANT PIXEL VARIABLE
+  //============================
 
   //============================
   // SET BACKGROUND ICONS
-  // iterate over icons.png-array
+  // iterate over icons-array
   for (let i = 0; i < icons.length; i++) {
     var img = new Image();
     img.src = `./icons/${icons[i]}.png`;
@@ -125,8 +128,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  // SET BACKGROUND ICONS
   //============================
-  // INITIALIZE EQUIPMENT SELECTION POPUPS
+
+  //============================
+  // BUILD EQUIPMENT SELECTION POPUPS
   const tplPopupParent = document.getElementById('popup--frame-main');
 
   // iterate over equipmentTypes
@@ -134,6 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let equipmentType = equipment[equipmentTypeName];
 
     const tplPopupSelectEquipmentTypeBase = document.getElementById(`template--popup--select-${equipmentTypeName}`);
+
     // iterate over gearTypes
     for (let gearTypeName in equipmentType) {
       let gearType = equipmentType[gearTypeName];
@@ -146,6 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
         evt.stopPropagation()
       });
 
+      //============================
       // FILL SELECTION LIST
       const tplListEntryParent = clonedPopupSelectEquipmentTypeNode.getElementById(`list--select-${equipmentTypeName}`);
       tplListEntryParent.id += `--${gearTypeName}`;
@@ -156,16 +164,16 @@ document.addEventListener('DOMContentLoaded', () => {
         let gearItem = gearType[gearItemName];
         let clonedListEntryNode = tplListEntryBase.content.cloneNode(true);
 
-        // panel settings
+        // get list entry panel
         let panelListEntry = clonedListEntryNode.getElementById('panel--list-entry')
 
-        // onclick
+        // entry panel onclick
         panelListEntry.classList.add('cursor-pointer');
         panelListEntry.addEventListener('click', () => {
           applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
         }, false);
 
-        // panel color
+        // list entry panel color
         if (gearItem.rarity == "Exotic") {
           panelListEntry.style.borderColor = 'var(--cExotic)';
           panelListEntry.style.color = 'var(--cExotic)';
@@ -183,11 +191,11 @@ document.addEventListener('DOMContentLoaded', () => {
           panelListEntry.style.color = 'var(--cHighEnd)';
         }
 
-        // entry name
+        // list entry name
         let entryName = clonedListEntryNode.getElementById('entry--name')
         entryName.innerHTML = `${gearItemName}`;
 
-        // entry type
+        // list entry type
         if (gearItem.hasOwnProperty('type') && gearItem.type !== `${gearItemName}`) {
           let entryType = clonedListEntryNode.getElementById('entry--type');
           entryType.innerHTML = "(";
@@ -195,7 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
           entryType.innerHTML += ")";
         };
 
-        // entry set (mltpc) boni
+        // list entry set (mltpc) boni
         let entryMltpcAttributes = clonedListEntryNode.getElementById('entry--mltpc-attributes');
         entryMltpcAttributes.classList.add('h-line--top');
         let mltpcAttribute1 = clonedListEntryNode.getElementById('mltpc-attribute-1');
@@ -228,7 +236,7 @@ document.addEventListener('DOMContentLoaded', () => {
           mltpcAttribute3.innerHTML += mltpc[mltpcName].attribute3Value;
         };
 
-        // entry talent
+        // list entry talent
         let entryTalentName = clonedListEntryNode.getElementById('entry--talent-name')
         if (gearItem.hasOwnProperty('talentName')) {
           entryTalentName.classList.add('h-line--top');
@@ -240,118 +248,133 @@ document.addEventListener('DOMContentLoaded', () => {
 
         tplListEntryParent.appendChild(clonedListEntryNode);
       }
+
+      // FILL SELECTION LIST
+      //============================
+
       tplPopupParent.appendChild(clonedPopupSelectEquipmentTypeNode);
     }
   }
 
-//==============================
-// EVENT LISTENERS
-// create event listener aborts
-let abortControlls = {};
-
-// listener: close popup on background click
-let popupFrameMain = document.getElementById("popup--frame-main");
-popupFrameMain.addEventListener('click', () => {
-  hidePopup();
-}, false);
-
-// listener: show selection popup
-for (let equipmentTypeName in equipment) {
-  let equipmentType = equipment[equipmentTypeName];
-  for (let gearTypeName in equipmentType) {
-    let panelGearType = document.getElementById(`panel--${gearTypeName}`);
-    panelGearType.classList.add('cursor-pointer');
-    
-    // create event listener aborts
-    abortControlls[`controller-${gearTypeName}`] = new AbortController();
-
-    panelGearType.addEventListener('click', () => {
-      showPopup(equipmentTypeName, gearTypeName);
-    }, {signal: abortControlls[`controller-${gearTypeName}`].signal}, false);
-  }
-}
-
-//==============================
-// FUNCTIONS
-function showPopup(equipmentTypeName, gearTypeName) {
-  //document.getElementById('popup--frame-main').style.display = "flex";
-  document.getElementById('popup--frame-main').classList.remove("hide");
-  //document.getElementById(`popup--select-armor--${equipmentTypeName}`).style.display = "flex";
-  document.getElementById(`popup--select-${equipmentTypeName}--${gearTypeName}`).classList.remove("hide");
-  // reset scroll state to top
-  document.getElementById(`list--select-${equipmentTypeName}--${gearTypeName}`).scrollTop = 0;
-  document.body.style.overflow = "hidden";
-}
-
-function hidePopup() {
-  document.getElementById('popup--frame-main').classList.add("hide");
-  document.body.style.overflow = "";
-}
-
-function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName) {
-  let panelGearType = document.getElementById(`panel--${gearTypeName}`);
-
-  // remove previous showPopup listener, bc slot content has to be clickable
-  panelGearType.classList.remove('cursor-pointer');
-  abortControlls[`controller-${gearTypeName}`].abort();
-
-  hidePopup();
-
+  // BUILD EQUIPMENT SELECTION POPUPS
   //============================
-  // FILL GEAR SLOT
-  const tplGearslotParent = document.getElementById(`panel--${gearTypeName}`);
-  tplGearslotParent.innerHTML = "";
-  const tplGearslotBase = document.getElementById('template--gearslot');
-  let clonedGearslotNode = tplGearslotBase.content.cloneNode(true);
 
-  let Gearslot = clonedGearslotNode.getElementById('gearslot');
-  Gearslot.id += `--${gearTypeName}`;
+  //==============================
+  // EVENT LISTENERS
+  // create event listener aborts
+  let abortControlls = {};
 
-  let GearslotName = clonedGearslotNode.getElementById('gearslot--name');
-  GearslotName.innerHTML = `${gearItemName}`;
-
-  // gearslot settings
-  // add new showPopup listener
-  GearslotName.classList.add('cursor-pointer');
-  GearslotName.addEventListener('click', () => {
-    showPopup(equipmentTypeName, gearTypeName);
+  // add listener: close popup on background click
+  let popupFrameMain = document.getElementById("popup--frame-main");
+  popupFrameMain.addEventListener('click', () => {
+    hidePopup();
   }, false);
 
-  // gearslot color
-  if (gearItem.rarity == "Exotic") {
-    tplGearslotParent.style.borderColor = 'var(--cExotic)';
-    tplGearslotParent.style.color = 'var(--cExotic)';
-    GearslotName.style.background = 'linear-gradient(28deg, var(--c0), var(--cExotic))';
-  } 
-  else if (gearItem.rarity == "GearSet") {
-    tplGearslotParent.style.borderColor = 'var(--cGearSet)';
-    tplGearslotParent.style.color = 'var(--cGearSet)';
-    GearslotName.style.background = 'linear-gradient(28deg, var(--c0), var(--cGearSet))';
-  } 
-  else if (gearItem.rarity == "Named") {
-    tplGearslotParent.style.borderColor = 'var(--cNamed)';
-    tplGearslotParent.style.color = 'var(--cNamed)';
-    GearslotName.style.background = 'linear-gradient(28deg, var(--c0), var(--cNamed))';
+  // add removable listener: show selection popup
+  for (let equipmentTypeName in equipment) {
+    let equipmentType = equipment[equipmentTypeName];
+    for (let gearTypeName in equipmentType) {
+      let panelGearType = document.getElementById(`panel--${gearTypeName}`);
+      panelGearType.classList.add('cursor-pointer');
+
+      // create event listener aborts
+      abortControlls[`controller-${gearTypeName}`] = new AbortController();
+
+      panelGearType.addEventListener('click', () => {
+        showPopup(equipmentTypeName, gearTypeName);
+      }, { signal: abortControlls[`controller-${gearTypeName}`].signal }, false);
+    }
   }
-  else if (gearItem.rarity == "HighEnd") {
-    tplGearslotParent.style.borderColor = 'var(--cHighEnd)';
-    tplGearslotParent.style.color = 'var(--cHighEnd)';
-    GearslotName.style.background = 'linear-gradient(28deg, var(--c0), var(--cNamed))';
-  };
 
-  /*
-  gearslot--name
-  gearslot--core-attribute
-  gearslot--minor-attribute-1
-  gearslot--minor-attribute-2
-  gearslot--mod
-  gearslot--talent-name
-  gearslot--talent-text
-  */
+  // EVENT LISTENERS
+  //==============================
 
-  tplGearslotParent.appendChild(clonedGearslotNode);
-}
+  //==============================
+  // FUNCTIONS
+  function showPopup(equipmentTypeName, gearTypeName) {
+    //document.getElementById('popup--frame-main').style.display = "flex";
+    document.getElementById('popup--frame-main').classList.remove("hide");
+    //document.getElementById(`popup--select-armor--${equipmentTypeName}`).style.display = "flex";
+    document.getElementById(`popup--select-${equipmentTypeName}--${gearTypeName}`).classList.remove("hide");
+    // reset scroll state to top
+    document.getElementById(`list--select-${equipmentTypeName}--${gearTypeName}`).scrollTop = 0;
+    document.body.style.overflow = "hidden";
+  }
 
-//let eventTarget = document.querySelectorAll(`[id*="${icons[i]}"]`);
+  function hidePopup() {
+    document.getElementById('popup--frame-main').classList.add("hide");
+    document.body.style.overflow = "";
+  }
+
+  function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName) {
+    let panelGearType = document.getElementById(`panel--${gearTypeName}`);
+
+    // remove previous showPopup listener, bc slot content has to be clickable
+    panelGearType.classList.remove('cursor-pointer');
+    abortControlls[`controller-${gearTypeName}`].abort();
+
+    hidePopup();
+
+    //============================
+    // FILL GEAR SLOT
+    const tplGearslotParent = document.getElementById(`panel--${gearTypeName}`);
+    tplGearslotParent.innerHTML = "";
+    const tplGearslotBase = document.getElementById('template--gearslot');
+    let clonedGearslotNode = tplGearslotBase.content.cloneNode(true);
+
+    let Gearslot = clonedGearslotNode.getElementById('gearslot');
+    Gearslot.id += `--${gearTypeName}`;
+
+    let GearslotName = clonedGearslotNode.getElementById('gearslot--name');
+    GearslotName.innerHTML = `${gearItemName}`;
+
+    // add new showPopup listener to "Name" div
+    GearslotName.classList.add('cursor-pointer');
+    GearslotName.addEventListener('click', () => {
+      showPopup(equipmentTypeName, gearTypeName);
+    }, false);
+
+    // gearslot color
+    if (gearItem.rarity == "Exotic") {
+      tplGearslotParent.style.borderColor = 'var(--cExotic)';
+      tplGearslotParent.style.color = 'var(--cExotic)';
+      GearslotName.style.background = 'linear-gradient(28deg, var(--c0), var(--cExotic))';
+    }
+    else if (gearItem.rarity == "GearSet") {
+      tplGearslotParent.style.borderColor = 'var(--cGearSet)';
+      tplGearslotParent.style.color = 'var(--cGearSet)';
+      GearslotName.style.background = 'linear-gradient(28deg, var(--c0), var(--cGearSet))';
+    }
+    else if (gearItem.rarity == "Named") {
+      tplGearslotParent.style.borderColor = 'var(--cNamed)';
+      tplGearslotParent.style.color = 'var(--cNamed)';
+      GearslotName.style.background = 'linear-gradient(28deg, var(--c0), var(--cNamed))';
+    }
+    else if (gearItem.rarity == "HighEnd") {
+      tplGearslotParent.style.borderColor = 'var(--cHighEnd)';
+      tplGearslotParent.style.color = 'var(--cHighEnd)';
+      GearslotName.style.background = 'linear-gradient(28deg, var(--c0), var(--cNamed))';
+    };
+
+    /*
+    gearslot--name
+    gearslot--core-attribute
+    gearslot--minor-attribute-1
+    gearslot--minor-attribute-2
+    gearslot--mod
+    gearslot--talent-name
+    gearslot--talent-text
+    */
+
+    tplGearslotParent.appendChild(clonedGearslotNode);
+
+    // FILL GEAR SLOT
+    //============================
+  }
+
+  // FUNCTIONS
+  //==============================
+
+  //let eventTarget = document.querySelectorAll(`[id*="${icons[i]}"]`);
 
 }, false);
