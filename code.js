@@ -272,14 +272,14 @@ popupFrameMain.addEventListener('click', () => {
   hidePopup();
 }, false);
 
-// add removable listener: show selection popup
+// add removable listener to gearslot-panel: show selection popup
 for (let equipmentTypeName in equipment) {
   let equipmentType = equipment[equipmentTypeName];
   for (let gearTypeName in equipmentType) {
     let panelGearType = document.getElementById(`panel--${gearTypeName}`);
     panelGearType.classList.add('cursor-pointer');
 
-    // create event listener aborts
+    // create event listener abort
     abortControlls[`controller-${gearTypeName}`] = new AbortController();
 
     panelGearType.addEventListener('click', () => {
