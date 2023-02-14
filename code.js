@@ -196,7 +196,7 @@ for (let equipmentTypeName in equipment) {
       // list entry name
       console.log(`getElementsByClassName: ${clonedListEntryNode.getElementsByClassName('entry--name')}`)
       console.log(`getElementsByClassName()[0]: ${clonedListEntryNode.getElementsByClassName('entry--name')[0]}`)
-      let entryName = clonedListEntryNode.getElementsByClassName('entry--name')[0];
+      let entryName = clonedListEntryNode.getElementById('entry--name')[0];
       entryName.innerHTML = `${gearItemName}`;
 
       // list entry type
