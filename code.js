@@ -196,6 +196,9 @@ for (let equipmentTypeName in equipment) {
       // list entry name
       let entryName = clonedListEntryNode.getElementsByClassName('entry--name')[0];
       entryName.innerHTML = `${gearItemName}`;
+      alert(`getElementsByClassName: ${clonedListEntryNode.getElementsByClassName('entry--name')}`)
+      alert(`getElementsByClassName()[0]: ${clonedListEntryNode.getElementsByClassName('entry--name')[0]}`)
+      alert(`entryname: ${entryName}`)
 
       // list entry type
       if (gearItem.hasOwnProperty('type') && gearItem.type !== `${gearItemName}`) {
