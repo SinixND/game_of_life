@@ -357,6 +357,10 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     /*
+    document.getElementById('dropdown-selector').addEventListener('click', () => {
+      document.getElementById('dropdown-options').classList.toggle('hide');
+    })
+
     gearslot--name
     gearslot--core-attribute
     gearslot--minor-attribute-1
