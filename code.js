@@ -243,7 +243,6 @@ document.addEventListener('DOMContentLoaded', () => {
       tplPopupParent.appendChild(clonedPopupSelectEquipmentTypeNode);
     }
   }
-}, false);
 
 //==============================
 // EVENT LISTENERS
@@ -311,14 +310,14 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   let GearslotName = clonedGearslotNode.getElementById('gearslot--name');
   GearslotName.innerHTML = `${gearItemName}`;
 
-  // panel settings
+  // gearslot settings
   // add new showPopup listener
   GearslotName.classList.add('cursor-pointer');
   GearslotName.addEventListener('click', () => {
     showPopup(equipmentTypeName, gearTypeName);
   }, false);
 
-  // panel and container color
+  // gearslot color
   if (gearItem.rarity == "Exotic") {
     tplGearslotParent.style.borderColor = 'var(--cExotic)';
     tplGearslotParent.style.color = 'var(--cExotic)';
@@ -354,3 +353,5 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
 }
 
 //let eventTarget = document.querySelectorAll(`[id*="${icons[i]}"]`);
+
+}, false);

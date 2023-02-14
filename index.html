@@ -204,7 +204,7 @@
     <div id="popup--select-armor" class="panel popup flex-c--v hide">
       <div id="panel--search" class="panel--border">
         <div class="container">
-          <input id="input--search" placeholder="Search..." type="text">
+          <input id="input--search" placeholder="(not working) Search..." type="text">
         </div>
       </div>
       <div id="list--select-armor" class="panel grid-c--c listGear">
@@ -240,18 +240,42 @@
   <template id="template--gearslot">
       <div id="gearslot" class="container flex-c--v">
         <div id="gearslot--name"></div>
-        <div id="gearslot--core-attribute">
-          <div value="" disabled="disabled" selected="selected"></div>
-          <div value="core-attribute--damage">Damage Core</div>
-          <div value="core-attribue--armor">Armor Core</div>
-          <div value="core-attribute--skill-tier">Skill Tier</div>
-        </div>
+          <!-- PLACEHOLDER DROPDOWN SELECTOR -->
         <div id="gearslot--minor-attribute-1"></div>
         <div id="gearslot--minor-attribute-2"></div>
         <div id="gearslot--mod"></div>
         <div id="gearslot--talent-name"></div>
         <div id="gearslot--talent-text"></div>
       </div>
+  </template>
+
+  <!--
+    TEMPLATE DROPDOWN SELECTOR
+  -->
+  <template id="template--dropdown">
+     <div id="dropdown-selector" class="dropdown-selector">
+        <div class="dropdown-selector--text">
+          text
+        </div>
+        <div class="dropdown-selector--icon">&#8801</div>
+      </div>
+      <div id="dropdown-options" class="hide">
+        <!-- PLACEHOLDER DROPDOWN OPTION-->
+      </div>
+  </template>
+
+  <!--
+    TEMPLATE DROPDOWN OPTION
+  -->
+  <template id="template--dropdown-option">
+    <div class="dropdown-option">
+      <div class="dropdown-option--key">
+        dropdown option key
+      </div>
+      <div class="dropdown-option--value">
+        val
+      </div>
+    </div>
   </template>
 </body>
 
