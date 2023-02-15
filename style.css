@@ -10,7 +10,7 @@
   --heightMin: calc(var(--widthMin) * .618); /*golden ratio*/
 
   /* border properties */
-  /* border: width | style | color */
+  /* border: width | style | color - ANY ORDER */
   --bWidth: 65%;
   --bHeight: 35%;
   --bWeight: calc(3 * var(--tpx));
@@ -207,7 +207,8 @@ place-self :: (align justify)
 
 .container {
   padding: calc(4 * var(--bWeight));
-  border: 1px dotted inherit;
+  border: 1px dotted;
+  border-color: inherit;
   min-width: var(--widthMin);
   width: 100%;
   height: 100%;
@@ -239,13 +240,15 @@ place-self :: (align justify)
 
 .h-line--top {
   /*width: 100%;*/
-  border-top: var(--bWeight) solid inherit;
+  border-top: var(--bWeight) solid;
+  border-color: inherit;
   margin-top: var(--bWeight);
   padding-top: var(--bWeight);
 }
 
 .h-line--bottom {
-  border-bottom: var(--bWeight) solid inherit;
+  border-bottom: var(--bWeight) solid;
+  border-color: inherit;
   margin-top: var(--bWeight);
   padding-top: var(--bWeight);
 }
@@ -331,7 +334,7 @@ ol {
 
 li {
   width: 100%;
-  border-left: var(--ctxt) solid var(--bWeight);
+  border-left: var(--bWeight) solid;
   border-color: inherit;
   margin: calc(4 * var(--bWeight)) 0;
   padding-left: calc(2 * var(--bWeight));
