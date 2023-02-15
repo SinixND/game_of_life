@@ -239,18 +239,18 @@ place-self :: (align justify)
 
 .h-line--top,
 .h-line--bottom {
-  width: 100%;
-  border-color: inherit;
+  /*width: 100%;*/
+  border: inherit solid var(--bWeight);
   margin-top: var(--bWeight);
   padding-top: var(--bWeight);
 }
 
 .h-line--top {
-  border-top: solid var(--bWeight);
+  border: inherit 0 0 0;
 }
 
 .h-line--bottom {
-  border-bottom: solid var(--bWeight);
+  border: 0 0 inherit 0;
 }
 
 /* ID SETTINGS */
