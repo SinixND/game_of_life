@@ -233,7 +233,7 @@ for (let equipmentTypeName in equipment) {
         mltpcAttribute1.innerHTML += mltpc[mltpcName].attributeCoreValue;
         mltpcAttribute2.innerHTML = mltpc[mltpcName].attributeMinor1 + ': ';
         mltpcAttribute2.innerHTML += mltpc[mltpcName].attributeMinor1Value;
-        mltpcAttribute3.innerHTML = mltpc[mltpcName].gearSetTalentName + '<br><br>';
+        mltpcAttribute3.innerHTML = '<div style="color: inherit;">' + mltpc[mltpcName].gearSetTalentName + '</div><br><br>';
         mltpcAttribute3.innerHTML += mltpc[mltpcName].gearSetTalentText;
       }
       else if (gearItem.rarity !== "Improvised") { //aka. is a normal brand-item
