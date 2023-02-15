@@ -147,19 +147,22 @@ for (let equipmentTypeName in equipment) {
     let gearType = equipmentType[gearTypeName];
 
     let clonedPopupSelectEquipmentTypeNode = tplPopupSelectEquipmentTypeBase.content.cloneNode(true);
-    let popupSelectEquipmentType = clonedPopupSelectEquipmentTypeNode.getElementById(`popup--select-${equipmentTypeName}`);
-    popupSelectEquipmentType.id += `--${gearTypeName}`;
-
+    let popupSelectEquipmentType = clonedPopupSelectEquipmentTypeNode.getElementById(`popup--select-${equipmentTypeName}-`);
+    popupSelectEquipmentType.id += `-${gearTypeName}`;
+    let listSelectEquipmentType = clonedPopupSelectEquipmentTypeNode.getElementById(`list--select-${equipmentTypeName}-`);
+    listSelectEquipmentType.id += `-${gearTypeName}`;
     tplPopupParent.appendChild(clonedPopupSelectEquipmentTypeNode);
 
-    popupSelectEquipmentType.addEventListener('click', (evt) => {
-      evt.stopPropagation()
-    });
+    PopupSelectEquipmentType = document.getElementById(`${popupSelectEquipmentType.id}`)
+    // TODO: update popupSelectEquipmentType before adding EventListener
+    //popupSelectEquipmentType.addEventListener('click', (evt) => {
+      //evt.stopPropagation()
+    //});
 
     //============================
     // CLONE SELECTION LIST
-    const tplListEntryParent = document.getElementById(`list--select-${equipmentTypeName}`);
-    tplListEntryParent.id += `--${gearTypeName}`;
+    const tplListEntryParent = document.getElementById(`list--select-${equipmentTypeName}-`);
+    tplListEntryParent.id += `-${gearTypeName}`;
 
     const tplListEntryBase = document.getElementById('template--selection-list-entry');
 
@@ -169,11 +172,11 @@ for (let equipmentTypeName in equipment) {
 
       // get list entry panel
       let clonedListEntryNode = tplListEntryBase.content.cloneNode(true);
-      let panelListEntry = clonedListEntryNode.getElementById('panel--list-entry');
-      panelListEntry.id += `--${gearItemName}`;
+      let panelListEntry = clonedListEntryNode.getElementById('panel--list-entry-');
+      panelListEntry.id += `-${gearItemName}`;
 
       tplListEntryParent.appendChild(clonedListEntryNode);
-      panelListEntry = document.getElementById(`panel--list-entry--${gearItemName}`);
+      panelListEntry = document.getElementById(`${panelListEntry.id}`);
 
       // entry panel onclick
       panelListEntry.classList.add('cursor-pointer');
@@ -326,14 +329,15 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   const tplGearslotBase = document.getElementById('template--gearslot');
   let clonedGearslotNode = tplGearslotBase.content.cloneNode(true);
 
-  let gearslot = clonedGearslotNode.getElementById('gearslot');
-  gearslot.id += `--${gearTypeName}`;
+  let gearslot = clonedGearslotNode.getElementById('gearslot-');
+  gearslot.id += `-${gearTypeName}`;
 
   tplGearslotParent.appendChild(clonedGearslotNode);
-  gearslot = document.getElementById(`gearslot--${gearTypeName}`);
+  gearslot = document.getElementById(`${gearslot.id}`);
 
+  // gearslot-name
   let gearslotName = gearslot.getElementsByClassName('gearslot--name')[0];
-  gearslotName.innerHTML = `${gearItemName}`;
+  gearslotName.innerHTML = `&#8801 | ${gearItemName}`;
 
   // add new showPopup listener to "Name" div
   gearslotName.classList.add('cursor-pointer');
@@ -363,11 +367,35 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
     gearslotName.style.background = 'linear-gradient(28deg, var(--c0), var(--cNamed))';
   };
 
-  /*
-  document.getElementById('dropdown-selector').addEventListener('click', () => {
-    document.getElementById('dropdown-options').classList.toggle('hide');
+  // gearslot core attribute
+  const tplDropdownParent = gearslot;
+  const tplDropdownBase = document.getElementById('template--dropdown');
+  let clonedDropdownNode = tplDropdownBase.content.cloneNode(true);
+  let dropdownSelector = clonedDropdownNode.getElementById('dropdown-selector-');
+  dropdownSelector.id += "-core-attribute";
+  let dropdownOptions = clonedDropdownNode.getElementById('dropdown-options-');
+  dropdownOptions.id += "-core-attribute";
+  tplDropdownParent.appendChild(clonedDropdownNode);
+  dropdownSelector = document.getElementById(`${dropdownSelector.id}`);
+  dropdownOptions = document.getElementById(`${dropdownOptions.id}`);
+
+
+  dropdownSelector.addEventListener('click', () => {
+    dropdownOptions.classList.toggle('hide');
   })
 
+  dropdownSelector.getElementsByClassName('dropdown-selector--text')[0].innerHTML = "Select Core Attribute";
+  if (gearItem.hasOwnProperty('attributeCore')) {
+    dropdownSelector.getElementsByClassName('dropdown-selector--text')[0].innerHTML = attributes['attributesArmor']['attributeCore'][`${gearItem.attributeCore}`]
+    dropdownSelector.getElementsByClassName('dropdown-selector--value')[0].innerHTML = attributes['attributesArmor']['attributeCore'][`${gearItem.attributeCore} Value`]
+  }
+
+  if (gearItem.hasOwnProperty('attributeCoreValue')) {
+    dropdownSelector.getElementsByClassName('dropdown-selector--value')[0].innerHTML = gearItem.attributeCoreValue;
+  }
+  
+
+  /*
   gearslot--name
   gearslot--core-attribute
   gearslot--minor-attribute-1
