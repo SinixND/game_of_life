@@ -233,16 +233,16 @@ for (let equipmentTypeName in equipment) {
         mltpcAttribute1.innerHTML += mltpc[mltpcName].attributeCoreValue;
         mltpcAttribute2.innerHTML = mltpc[mltpcName].attributeMinor1 + ': ';
         mltpcAttribute2.innerHTML += mltpc[mltpcName].attributeMinor1Value;
-        mltpcAttribute3.innerHTML = mltpc[mltpcName].gearMltpcTalentName + '<br><br>';
-        mltpcAttribute3.innerHTML += mltpc[mltpcName].gearMltpcTalentText;
+        mltpcAttribute3.innerHTML = mltpc[mltpcName].gearSetTalentName + '<br><br>';
+        mltpcAttribute3.innerHTML += mltpc[mltpcName].gearSetTalentText;
       }
       else if (gearItem.rarity !== "Improvised") { //aka. is a normal brand-item
-        mltpcAttribute1.innerHTML = mltpc[mltpcName].attributeCore + ': ';
-        mltpcAttribute1.innerHTML += mltpc[mltpcName].attributeCoreValue;
-        mltpcAttribute2.innerHTML = mltpc[mltpcName].attributeMinor1 + ': ';
-        mltpcAttribute2.innerHTML += mltpc[mltpcName].attributeMinor1Value;
-        mltpcAttribute3.innerHTML = mltpc[mltpcName].attributeMinor2 + ': ';
-        mltpcAttribute3.innerHTML += mltpc[mltpcName].attributeMinor2Value;
+        mltpcAttribute1.innerHTML = mltpc[mltpcName].attribute1 + ': ';
+        mltpcAttribute1.innerHTML += mltpc[mltpcName].attribute1Value;
+        mltpcAttribute2.innerHTML = mltpc[mltpcName].attribute2 + ': ';
+        mltpcAttribute2.innerHTML += mltpc[mltpcName].attribute2Value;
+        mltpcAttribute3.innerHTML = mltpc[mltpcName].attribute3 + ': ';
+        mltpcAttribute3.innerHTML += mltpc[mltpcName].attribute3Value;
       };
 
       // list entry talent
