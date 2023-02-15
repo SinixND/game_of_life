@@ -425,3 +425,4 @@ let TemplateNameChild = clonedTemplateNameNode.getElementById('TemplateName--sel
 TemplateNameChild.id += "-core-attribute";
 tplTemplateNameParent.appendChild(clonedTemplateNameNode);
 TemplateNameChild = document.getElementById(`${TemplateNameChild.id}`);
+*/
