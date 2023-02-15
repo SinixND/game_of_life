@@ -153,7 +153,7 @@ for (let equipmentTypeName in equipment) {
     listSelectEquipmentType.id += `-${gearTypeName}`;
     tplPopupParent.appendChild(clonedPopupSelectEquipmentTypeNode);
 
-    PopupSelectEquipmentType = document.getElementById(`${popupSelectEquipmentType.id}`)
+    popupSelectEquipmentType = document.getElementById(`${popupSelectEquipmentType.id}`)
     // TODO: update popupSelectEquipmentType before adding EventListener
     //popupSelectEquipmentType.addEventListener('click', (evt) => {
       //evt.stopPropagation()
