@@ -352,12 +352,12 @@ li {
   cursor: pointer;
 }
 
-#dropdown--option {
+#dropdown--options {
   display: flex;
   padding: 15px;
   background-color: rgb(100,100,100,0.5);
 }
 
-.dropdown--option--key {
+.dropdown--options--key {
   flex: 1 1 auto;
 }

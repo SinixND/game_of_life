@@ -366,15 +366,15 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   };
 
   // gearslot core attribute
-  // core attribute dropdown
-  const tplDropdownParent = gearslot;
-  const tplDropdownBase = document.getElementById('template--dropdown');
-  let clonedDropdownNode = tplDropdownBase.content.cloneNode(true);
-  let dropdownSelector = clonedDropdownNode.getElementById('dropdown--selector-');
+  // core attribute dropdown selector
+  const tplDropdownSelectorParent = gearslot;
+  const tplDropdownSelectorBase = document.getElementById('template--dropdown');
+  let clonedDropdownSelectorNode = tplDropdownSelectorBase.content.cloneNode(true);
+  let dropdownSelector = clonedDropdownSelectorNode.getElementById('dropdown--selector-');
   dropdownSelector.id += "-core-attribute";
-  let dropdownOptions = clonedDropdownNode.getElementById('dropdown--options-');
+  let dropdownOptions = clonedDropdownSelectorNode.getElementById('dropdown--options-');
   dropdownOptions.id += "-core-attribute";
-  tplDropdownParent.appendChild(clonedDropdownNode);
+  tplDropdownSelectorParent.appendChild(clonedDropdownSelectorNode);
   dropdownSelector = document.getElementById(`${dropdownSelector.id}`);
   dropdownOptions = document.getElementById(`${dropdownOptions.id}`);
 
@@ -394,27 +394,32 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   }
 
   if (gearItem.hasOwnProperty('attributeCoreValue')) {
-    dropdownSelector.getElementsByClassName('dropdown--selector--value')[0].innerHTML = gearItem.attributeCoreValue;
+    dropdownSelector.getElementsByClassName('Template--selector--value')[0].innerHTML = gearItem.attributeCoreValue;
   }
   
-
-  /*
-  gearslot--name
-  gearslot--core-attribute
-  gearslot--minor-attribute-1
-  gearslot--minor-attribute-2
-  gearslot--mod
-  gearslot--talent-name
-  gearslot--talent-text
-  */
-
+  // core attribute dropdown options
+  const tplDropdownOptionsParent = gearslot;
+  const tplDropdownOptionsBase = document.getElementById('template--dropdown--options');
+  let clonedTemplateNameNode = tplTemplateNameBase.content.cloneNode(true);
+  let TemplateNameChild = clonedTemplateNameNode.getElementById('TemplateName--selector-');
+  TemplateNameChild.id += "-core-attribute";
+  tplTemplateNameParent.appendChild(clonedTemplateNameNode);
+  TemplateNameChild = document.getElementById(`${TemplateNameChild.id}`);
   // CLONE GEAR SLOT
   //============================
 }
 
   // FUNCTIONS
   //==============================
-
-  //let eventTarget = document.querySelectorAll(`[id*="${icons[i]}"]`);
-
 // }, false);
+
+/*
+let eventTarget = document.querySelectorAll(`[id*="${icons[i]}"]`);
+
+const tplTemplateNameParent = gearslot;
+const tplTemplateNameBase = document.getElementById('template--TemplateName');
+let clonedTemplateNameNode = tplTemplateNameBase.content.cloneNode(true);
+let TemplateNameChild = clonedTemplateNameNode.getElementById('TemplateName--selector-');
+TemplateNameChild.id += "-core-attribute";
+tplTemplateNameParent.appendChild(clonedTemplateNameNode);
+TemplateNameChild = document.getElementById(`${TemplateNameChild.id}`);
