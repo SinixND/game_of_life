@@ -233,7 +233,7 @@ for (let equipmentTypeName in equipment) {
         mltpcAttribute1.innerHTML += mltpc[mltpcName].attributeCoreValue;
         mltpcAttribute2.innerHTML = mltpc[mltpcName].attributeMinor1 + ': ';
         mltpcAttribute2.innerHTML += mltpc[mltpcName].attributeMinor1Value;
-        mltpcAttribute3.innerHTML = '<div style="color: inherit;">' + mltpc[mltpcName].gearSetTalentName + '</div><br><br>';
+        mltpcAttribute3.innerHTML = mltpc[mltpcName].gearSetTalentName + '<br><br>';
         mltpcAttribute3.innerHTML += mltpc[mltpcName].gearSetTalentText;
       }
       else if (gearItem.rarity !== "Improvised") { //aka. is a normal brand-item
@@ -366,7 +366,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   };
 
   // gearslot core attribute
-  // dropdown
+  // core attribute dropdown
   const tplDropdownParent = gearslot;
   const tplDropdownBase = document.getElementById('template--dropdown');
   let clonedDropdownNode = tplDropdownBase.content.cloneNode(true);
@@ -378,15 +378,18 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   dropdownSelector = document.getElementById(`${dropdownSelector.id}`);
   dropdownOptions = document.getElementById(`${dropdownOptions.id}`);
 
-  // dropdown selector onclick
+  // core attribute dropdown selector onclick
   dropdownSelector.addEventListener('click', () => {
     dropdownOptions.classList.toggle('hide');
   })
   dropdownSelector.classList.add('h-line--bottom');
 
+  // core attribute dropdown selector initialize
   dropdownSelector.getElementsByClassName('dropdown-selector--text')[0].innerHTML = "Select Core Attribute";
+
   if (gearItem.hasOwnProperty('attributeCore')) {
     dropdownSelector.getElementsByClassName('dropdown-selector--text')[0].innerHTML = attributes['attributesArmor']['attributeCore'][`${gearItem.attributeCore}`]
+
     dropdownSelector.getElementsByClassName('dropdown-selector--value')[0].innerHTML = attributes['attributesArmor']['attributeCore'][`${gearItem.attributeCore} Value`]
   }
 
