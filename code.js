@@ -161,9 +161,7 @@ for (let equipmentTypeName in equipment) {
 
     //============================
     // CLONE SELECTION LIST
-    const tplListEntryParent = document.getElementById(`list--select-${equipmentTypeName}-`);
-    tplListEntryParent.id += `-${gearTypeName}`;
-
+    const tplListEntryParent = document.getElementById(`${listSelectEquipmentType.id}`);
     const tplListEntryBase = document.getElementById('template--selection-list-entry');
 
     // iterate over all items in $gearType
