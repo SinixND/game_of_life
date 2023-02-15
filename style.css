@@ -183,6 +183,8 @@ grid :: (template--rows template--columns template--areas auto-rows auto-columns
 
 .grid-c--c {
   grid-template-columns: repeat(auto-fit, minmax(var(--widthMin), 1fr));
+  height: 100%;
+  overflow: auto;
 }
 
 .grid-c--r {
@@ -233,11 +235,6 @@ place-self :: (align justify)
 
 .hide {
   display: none;
-}
-
-.listGear {
-  height: 100%;
-  overflow: auto;
 }
 
 .h-line--top {
