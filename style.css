@@ -342,11 +342,11 @@ li {
 
 /* NEW IMPLEMENTATION, TEMP */
 .dropdown-selector {
-  display: inline-flex;
   align-items: center;
 }
 
 .dropdown-selector--text {
+  display: flex;
   flex: 1 1 auto;
 }
 
