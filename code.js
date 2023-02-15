@@ -160,7 +160,7 @@ for (let equipmentTypeName in equipment) {
     //});
 
     //============================
-    // CLONE SELECTION LIST
+    // CLONE SELECTION LIST ENTRY
     const tplListEntryParent = document.getElementById(`${listSelectEquipmentType.id}`);
     const tplListEntryBase = document.getElementById('template--selection-list-entry');
 
@@ -176,7 +176,7 @@ for (let equipmentTypeName in equipment) {
       tplListEntryParent.appendChild(clonedListEntryNode);
       panelListEntry = document.getElementById(`${panelListEntry.id}`);
 
-      // entry panel onclick
+      // list entry panel onclick
       panelListEntry.classList.add('cursor-pointer');
       panelListEntry.addEventListener('click', () => {
         applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
@@ -221,28 +221,28 @@ for (let equipmentTypeName in equipment) {
       let mltpcName = gearItem.type;
 
       if (gearItem.rarity == "Exotic") {
-        mltpcAttribute1.innerHTML = gearItem.attribute1Name + ': ';
-        mltpcAttribute1.innerHTML += gearItem.attribute1Value;
-        mltpcAttribute2.innerHTML = gearItem.attribute2Name + ': ';
-        mltpcAttribute2.innerHTML += gearItem.attribute2Value;
-        mltpcAttribute3.innerHTML = gearItem.attribute3Name + ': ';
-        mltpcAttribute3.innerHTML += gearItem.attribute3Value;
+        mltpcAttribute1.innerHTML = gearItem.attributeCore + ': ';
+        mltpcAttribute1.innerHTML += gearItem.attributeCoreValue;
+        mltpcAttribute2.innerHTML = gearItem.attributeMinor1 + ': ';
+        mltpcAttribute2.innerHTML += gearItem.attributeMinor1Value;
+        mltpcAttribute3.innerHTML = gearItem.attributeMinor2 + ': ';
+        mltpcAttribute3.innerHTML += gearItem.attributeMinor2Value;
       }
       else if (gearItem.rarity == "GearSet") {
-        mltpcAttribute1.innerHTML = mltpc[mltpcName].attribute1Name + ': ';
-        mltpcAttribute1.innerHTML += mltpc[mltpcName].attribute1Value;
-        mltpcAttribute2.innerHTML = mltpc[mltpcName].attribute2Name + ': ';
-        mltpcAttribute2.innerHTML += mltpc[mltpcName].attribute2Value;
+        mltpcAttribute1.innerHTML = mltpc[mltpcName].attributeCore + ': ';
+        mltpcAttribute1.innerHTML += mltpc[mltpcName].attributeCoreValue;
+        mltpcAttribute2.innerHTML = mltpc[mltpcName].attributeMinor1 + ': ';
+        mltpcAttribute2.innerHTML += mltpc[mltpcName].attributeMinor1Value;
         mltpcAttribute3.innerHTML = mltpc[mltpcName].gearMltpcTalentName + '<br><br>';
         mltpcAttribute3.innerHTML += mltpc[mltpcName].gearMltpcTalentText;
       }
       else if (gearItem.rarity !== "Improvised") { //aka. is a normal brand-item
-        mltpcAttribute1.innerHTML = mltpc[mltpcName].attribute1Name + ': ';
-        mltpcAttribute1.innerHTML += mltpc[mltpcName].attribute1Value;
-        mltpcAttribute2.innerHTML = mltpc[mltpcName].attribute2Name + ': ';
-        mltpcAttribute2.innerHTML += mltpc[mltpcName].attribute2Value;
-        mltpcAttribute3.innerHTML = mltpc[mltpcName].attribute3Name + ': ';
-        mltpcAttribute3.innerHTML += mltpc[mltpcName].attribute3Value;
+        mltpcAttribute1.innerHTML = mltpc[mltpcName].attributeCore + ': ';
+        mltpcAttribute1.innerHTML += mltpc[mltpcName].attributeCoreValue;
+        mltpcAttribute2.innerHTML = mltpc[mltpcName].attributeMinor1 + ': ';
+        mltpcAttribute2.innerHTML += mltpc[mltpcName].attributeMinor1Value;
+        mltpcAttribute3.innerHTML = mltpc[mltpcName].attributeMinor2 + ': ';
+        mltpcAttribute3.innerHTML += mltpc[mltpcName].attributeMinor2Value;
       };
 
       // list entry talent
@@ -256,7 +256,7 @@ for (let equipmentTypeName in equipment) {
       };
     }
 
-    // CLONE SELECTION LIST
+    // CLONE SELECTION LIST ENTRY
     //============================
   }
 }
@@ -335,7 +335,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
 
   // gearslot-name
   let gearslotName = gearslot.getElementsByClassName('gearslot--name')[0];
-  gearslotName.innerHTML = `&#8801 | ${gearItemName}`;
+  gearslotName.childNodes[0].nodeValue = `${gearItemName}`;
 
   // add new showPopup listener to "Name" div
   gearslotName.classList.add('cursor-pointer');
