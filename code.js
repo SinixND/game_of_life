@@ -370,9 +370,9 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   const tplDropdownParent = gearslot;
   const tplDropdownBase = document.getElementById('template--dropdown');
   let clonedDropdownNode = tplDropdownBase.content.cloneNode(true);
-  let dropdownSelector = clonedDropdownNode.getElementById('dropdown-selector-');
+  let dropdownSelector = clonedDropdownNode.getElementById('dropdown--selector-');
   dropdownSelector.id += "-core-attribute";
-  let dropdownOptions = clonedDropdownNode.getElementById('dropdown-options-');
+  let dropdownOptions = clonedDropdownNode.getElementById('dropdown--options-');
   dropdownOptions.id += "-core-attribute";
   tplDropdownParent.appendChild(clonedDropdownNode);
   dropdownSelector = document.getElementById(`${dropdownSelector.id}`);
@@ -385,16 +385,16 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   dropdownSelector.classList.add('h-line--bottom');
 
   // core attribute dropdown selector initialize
-  dropdownSelector.getElementsByClassName('dropdown-selector--text')[0].innerHTML = "Select Core Attribute";
+  dropdownSelector.getElementsByClassName('dropdown--selector--text')[0].innerHTML = "Select Core Attribute";
 
   if (gearItem.hasOwnProperty('attributeCore')) {
-    dropdownSelector.getElementsByClassName('dropdown-selector--text')[0].innerHTML = attributes['attributesArmor']['attributeCore'][`${gearItem.attributeCore}`]
+    dropdownSelector.getElementsByClassName('dropdown--selector--text')[0].innerHTML = attributes['attributesArmor']['attributeCore'][`${gearItem.attributeCore}`]
 
-    dropdownSelector.getElementsByClassName('dropdown-selector--value')[0].innerHTML = attributes['attributesArmor']['attributeCore'][`${gearItem.attributeCore} Value`]
+    dropdownSelector.getElementsByClassName('dropdown--selector--value')[0].innerHTML = attributes['attributesArmor']['attributeCore'][`${gearItem.attributeCore} Value`]
   }
 
   if (gearItem.hasOwnProperty('attributeCoreValue')) {
-    dropdownSelector.getElementsByClassName('dropdown-selector--value')[0].innerHTML = gearItem.attributeCoreValue;
+    dropdownSelector.getElementsByClassName('dropdown--selector--value')[0].innerHTML = gearItem.attributeCoreValue;
   }
   
 

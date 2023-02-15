@@ -341,25 +341,25 @@ li {
 }
 
 /* NEW IMPLEMENTATION, TEMP */
-.dropdown-selector {
+.dropdown--selector {
+  display: flex;
   align-items: center;
 }
 
-.dropdown-selector--text {
-  display: flex;
+.dropdown--selector--text {
   flex: 1 1 auto;
 }
 
-.dropdown-selector:hover {
+.dropdown--selector:hover {
   cursor: pointer;
 }
 
-#dropdown-option {
+#dropdown--option {
   display: flex;
   padding: 15px;
   background-color: rgb(100,100,100,0.5);
 }
 
-.dropdown-option--key {
+.dropdown--option--key {
   flex: 1 1 auto;
 }
