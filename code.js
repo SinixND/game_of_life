@@ -398,13 +398,15 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   }
   
   // core attribute dropdown options
-  const tplDropdownOptionsParent = gearslot;
-  const tplDropdownOptionsBase = document.getElementById('template--dropdown--options');
-  let clonedTemplateNameNode = tplTemplateNameBase.content.cloneNode(true);
-  let TemplateNameChild = clonedTemplateNameNode.getElementById('TemplateName--selector-');
-  TemplateNameChild.id += "-core-attribute";
-  tplTemplateNameParent.appendChild(clonedTemplateNameNode);
-  TemplateNameChild = document.getElementById(`${TemplateNameChild.id}`);
+  const tplDropdownOptionParent = dropdownOptions;
+  const tplDropdownOptionBase = document.getElementById('template--dropdown--option');
+  for (let attributeCoreName in attributes['attributesArmor']['attributeCore']) {
+    let clonedDropdownOptionNode = tplDropdownOptionBase.content.cloneNode(true);
+    let dropdownOption = clonedDropdownOptionNode.getElementById('TemplateName--option-');
+    dropdownOption.id += `-${attributeCoreName}`;
+    tplTemplateNameParent.appendChild(clonedDropdownOptionNode);
+    dropdownOption = document.getElementById(`${dropdownOption.id}`);
+  }
   // CLONE GEAR SLOT
   //============================
 }
