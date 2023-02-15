@@ -237,20 +237,17 @@ place-self :: (align justify)
   display: none;
 }
 
-.h-line--top,
-.h-line--bottom {
+.h-line--top {
   /*width: 100%;*/
-  border: inherit solid var(--bWeight);
+  border-top: inherit solid var(--bWeight);
   margin-top: var(--bWeight);
   padding-top: var(--bWeight);
 }
 
-.h-line--top {
-  border: inherit 0 0 0;
-}
-
 .h-line--bottom {
-  border: 0 0 inherit 0;
+  border-bottom: inherit solid var(--bWeight);
+  margin-top: var(--bWeight);
+  padding-top: var(--bWeight);
 }
 
 /* ID SETTINGS */
