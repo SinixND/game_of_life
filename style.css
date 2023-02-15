@@ -309,13 +309,10 @@ place-self :: (align justify)
   color: var(--ctxt);
 }
 
-.symbol-left,
-.symbol-right {
+.symbol {
   color: var(--ctxt);
-}
-
-.symbol-right {
   margin-left: auto;
+  margin-right: calc(5 * var(--tpx));
 }
 
 .gearslot--name {
@@ -348,6 +345,7 @@ li {
 
 .dropdown--selector--text {
   flex: 1 1 auto;
+  margin-left: calc(5 * var(--tpx));
 }
 
 .dropdown--selector:hover {
