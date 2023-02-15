@@ -10,7 +10,7 @@ export const equipment = {
         attributeMinor1Value: 10,
         attributeMinor2: "Hazard Protection",
         attributeMinor2Value: 10,
-        talent: "Toxic Delivery",
+        talentName: "Toxic Delivery",
         talentText: "Status effects also apply a damage over time debuff for 10s.\r\n Total damage dealt is equal to 50% of your concussion grenade damage and increased by your status effect attributes.",
       },
       "Nightwatcher": {
@@ -30,7 +30,7 @@ export const equipment = {
         attributeMinor1Value: 10,
         attributeMinor2: "Hazard Protection",
         attributeMinor2Value: 10,
-        talent: "Toxic Delivery",
+        talentName: "Toxic Delivery",
         talentText: "Status effects also apply a damage over time debuff for 10s.\r\n Total damage dealt is equal to 50% of your concussion grenade damage and increased by your status effect attributes.",
       },
       "ile": {
@@ -42,7 +42,7 @@ export const equipment = {
         attributeMinor1Value: 10,
         attributeMinor2: "Hazard Protection",
         attributeMinor2Value: 10,
-        talent: "Toxic Delivery",
+        talentName: "Toxic Delivery",
         talentText: "Status effects also apply a damage over time debuff for 10s.\r\n Total damage dealt is equal to 50% of your concussion grenade damage and increased by your status effect attributes.",
       },
       "le": {
@@ -54,7 +54,7 @@ export const equipment = {
         attributeMinor1Value: 10,
         attributeMinor2: "Hazard Protection",
         attributeMinor2Value: 10,
-        talent: "Toxic Delivery",
+        talentName: "Toxic Delivery",
         talentText: "Status effects also apply a damage over time debuff for 10s.\r\n Total damage dealt is equal to 50% of your concussion grenade damage and increased by your status effect attributes.",
       },
       "le1": {
@@ -66,7 +66,7 @@ export const equipment = {
         attributeMinor1Value: 10,
         attributeMinor2: "Hazard Protection",
         attributeMinor2Value: 10,
-        talent: "Toxic Delivery",
+        talentName: "Toxic Delivery",
         talentText: "Status effects also apply a damage over time debuff for 10s.\r\n Total damage dealt is equal to 50% of your concussion grenade damage and increased by your status effect attributes.",
       },
       "le2": {
@@ -78,7 +78,7 @@ export const equipment = {
         attributeMinor1Value: 10,
         attributeMinor2: "Hazard Protection",
         attributeMinor2Value: 10,
-        talent: "Toxic Delivery",
+        talentName: "Toxic Delivery",
         talentText: "Status effects also apply a damage over time debuff for 10s.\r\n Total damage dealt is equal to 50% of your concussion grenade damage and increased by your status effect attributes.",
       },
       "le3": {
@@ -90,7 +90,7 @@ export const equipment = {
         attributeMinor1Value: 10,
         attributeMinor2: "Hazard Protection",
         attributeMinor2Value: 10,
-        talent: "Toxic Delivery",
+        talentName: "Toxic Delivery",
         talentText: "Status effects also apply a damage over time debuff for 10s.\r\n Total damage dealt is equal to 50% of your concussion grenade damage and increased by your status effect attributes.",
       },
       "le4": {
@@ -102,7 +102,7 @@ export const equipment = {
         attributeMinor1Value: 10,
         attributeMinor2: "Hazard Protection",
         attributeMinor2Value: 10,
-        talent: "Toxic Delivery",
+        talentName: "Toxic Delivery",
         talentText: "Status effects also apply a damage over time debuff for 10s.\r\n Total damage dealt is equal to 50% of your concussion grenade damage and increased by your status effect attributes.",
       },
       "le5": {
@@ -114,7 +114,7 @@ export const equipment = {
         attributeMinor1Value: 10,
         attributeMinor2: "Hazard Protection",
         attributeMinor2Value: 10,
-        talent: "Toxic Delivery",
+        talentName: "Toxic Delivery",
         talentText: "Status effects also apply a damage over time debuff for 10s.\r\n Total damage dealt is equal to 50% of your concussion grenade damage and increased by your status effect attributes.",
       },
       "le6": {
@@ -126,7 +126,7 @@ export const equipment = {
         attributeMinor1Value: 10,
         attributeMinor2: "Hazard Protection",
         attributeMinor2Value: 10,
-        talent: "Toxic Delivery",
+        talentName: "Toxic Delivery",
         talentText: "Status effects also apply a damage over time debuff for 10s.\r\n Total damage dealt is equal to 50% of your concussion grenade damage and increased by your status effect attributes.",
       },
       "le7": {
@@ -138,7 +138,7 @@ export const equipment = {
         attributeMinor1Value: 10,
         attributeMinor2: "Hazard Protection",
         attributeMinor2Value: 10,
-        talent: "Toxic Delivery",
+        talentName: "Toxic Delivery",
         talentText: "Status effects also apply a damage over time debuff for 10s.\r\n Total damage dealt is equal to 50% of your concussion grenade damage and increased by your status effect attributes.",
       },
       "le8": {
@@ -150,7 +150,7 @@ export const equipment = {
         attributeMinor1Value: 10,
         attributeMinor2: "Hazard Protection",
         attributeMinor2Value: 10,
-        talent: "Toxic Delivery",
+        talentName: "Toxic Delivery",
         talentText: "Status effects also apply a damage over time debuff for 10s.\r\n Total damage dealt is equal to 50% of your concussion grenade damage and increased by your status effect attributes.",
       },
       "le9": {
@@ -162,7 +162,7 @@ export const equipment = {
         attributeMinor1Value: 10,
         attributeMinor2: "Hazard Protection",
         attributeMinor2Value: 10,
-        talent: "Toxic Delivery",
+        talentName: "Toxic Delivery",
         talentText: "Status effects also apply a damage over time debuff for 10s.\r\n Total damage dealt is equal to 50% of your concussion grenade damage and increased by your status effect attributes.",
       },
       "le10": {
@@ -174,7 +174,7 @@ export const equipment = {
         attributeMinor1Value: 10,
         attributeMinor2: "Hazard Protection",
         attributeMinor2Value: 10,
-        talent: "Toxic Delivery",
+        talentName: "Toxic Delivery",
         talentText: "Status effects also apply a damage over time debuff for 10s.\r\n \r\n Total damage dealt is equal to 50% of your concussion grenade damage and increased by your status effect attributes.",
       },
       "5.11 Tactical": {

@@ -246,10 +246,10 @@ for (let equipmentTypeName in equipment) {
       };
 
       // list entry talent
-      let entryTalentName = panelListEntry.getElementsByClassName('entry--talent-name')[0];
+      let entryTalent = panelListEntry.getElementsByClassName('entry--talent-name')[0];
       if (gearItem.hasOwnProperty('talentName')) {
-        entryTalentName.classList.add('h-line--top');
-        entryTalentName.innerHTML = gearItem.talentName;
+        entryTalent.classList.add('h-line--top');
+        entryTalent.innerHTML = gearItem.talentName;
       };
       if (gearItem.hasOwnProperty('talentText')) {
         panelListEntry.getElementsByClassName('entry--talent-text')[0].innerHTML = gearItem.talentText;
@@ -346,26 +346,27 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   // gearslot color
   if (gearItem.rarity == "Exotic") {
     tplGearslotParent.style.borderColor = 'var(--cExotic)';
-    tplGearslotParent.style.color = 'var(--cExotic)';
+    gearslotName.style.color = 'var(--cExotic)';
     gearslotName.style.background = 'linear-gradient(28deg, var(--c0), var(--cExotic))';
   }
   else if (gearItem.rarity == "GearSet") {
     tplGearslotParent.style.borderColor = 'var(--cGearSet)';
-    tplGearslotParent.style.color = 'var(--cGearSet)';
+    gearslotName.style.color = 'var(--cGearSet)';
     gearslotName.style.background = 'linear-gradient(28deg, var(--c0), var(--cGearSet))';
   }
   else if (gearItem.rarity == "Named") {
     tplGearslotParent.style.borderColor = 'var(--cNamed)';
-    tplGearslotParent.style.color = 'var(--cNamed)';
+    gearslotName.style.color = 'var(--cNamed)';
     gearslotName.style.background = 'linear-gradient(28deg, var(--c0), var(--cNamed))';
   }
   else if (gearItem.rarity == "HighEnd") {
     tplGearslotParent.style.borderColor = 'var(--cHighEnd)';
-    tplGearslotParent.style.color = 'var(--cHighEnd)';
+    gearslotName.style.color = 'var(--cHighEnd)';
     gearslotName.style.background = 'linear-gradient(28deg, var(--c0), var(--cNamed))';
   };
 
   // gearslot core attribute
+  // dropdown
   const tplDropdownParent = gearslot;
   const tplDropdownBase = document.getElementById('template--dropdown');
   let clonedDropdownNode = tplDropdownBase.content.cloneNode(true);
@@ -377,10 +378,11 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   dropdownSelector = document.getElementById(`${dropdownSelector.id}`);
   dropdownOptions = document.getElementById(`${dropdownOptions.id}`);
 
-
+  // dropdown selector onclick
   dropdownSelector.addEventListener('click', () => {
     dropdownOptions.classList.toggle('hide');
   })
+  dropdownSelector.classList.add('h-line--bottom');
 
   dropdownSelector.getElementsByClassName('dropdown-selector--text')[0].innerHTML = "Select Core Attribute";
   if (gearItem.hasOwnProperty('attributeCore')) {
