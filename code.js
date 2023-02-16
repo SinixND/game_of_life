@@ -401,7 +401,6 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   const tplDropdownOptionParent = dropdownOptions;
   const tplDropdownOptionBase = document.getElementById('template--dropdown--option');
   for (let attributeCoreName of Object.keys(attributes['attributesArmor']['attributeCore'])) {
-    console.log("attributeCoreName: " + attributeCoreName);
     let clonedDropdownOptionNode = tplDropdownOptionBase.content.cloneNode(true);
     let dropdownOption = clonedDropdownOptionNode.getElementById('dropdown--option-');
     dropdownOption.id += `-${attributeCoreName}`;
