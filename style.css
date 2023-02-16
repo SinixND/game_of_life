@@ -354,13 +354,16 @@ li {
 
 .dropdown--options {
   padding: 15px;
-  border: 2px solid var(--cbgr75);
-  border-top: 0;
+  border: 0 1px 1px 1px;
+  border-style: solid;
+  border-color: var(--ctxt);
 }
 
 .dropdown--option {
   display: flex;
-  border-bottom: 1px solid var(--cbgr75);
+  border: 1px 0 1px 0;
+  border-style: solid;
+  border-color: var(--ctxt);
 }
 
 .dropdown--option--key {
