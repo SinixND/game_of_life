@@ -362,6 +362,7 @@ li {
 .dropdown--options {
   position: absolute;
   width: 100%;
+  align-items: center;
   border-width: 0 var(--bWeightSmall) var(--bWeightSmall) var(--bWeightSmall);
   border-style: solid;
   border-color: var(--ctxt);
