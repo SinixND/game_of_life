@@ -6,12 +6,12 @@ export const attributes = {
         "value": 15,
       },
       "blueCore": {
-        "Armor": "Armor",
-        "Armor Value": 170001,
+        "name": "Armor",
+        "value": 170001,
       },
       "yellowCore": {
-        "Skill Tier": "Skill Tier",
-        "Skill Tier Value": 1,
+        "name": "Skill Tier",
+        "value": 1,
       }
       },
       "attributeMinor": {
