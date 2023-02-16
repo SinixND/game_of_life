@@ -392,12 +392,11 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
     let dropdownSelectorText = dropdownSelector.getElementsByClassName('dropdown--selector--text')[0];
 
     let pngName = attributes['attributesArmor']['attributeCore'][`${gearItem.attributeCore}`].png;
-    console.log(`selector pngName: ${pngName}`)
     let img = new Image();
     img.src = `./icons/${pngName}.png`;
     dropdownSelectorText.innerHTML = "";
     dropdownSelectorText.appendChild(img);
-    dropdownSelectorText.innerHTML += gearItem.attributeCore;
+    dropdownSelectorText.innerHTML += " " + gearItem.attributeCore;
 
     dropdownSelector.getElementsByClassName('dropdown--selector--value')[0].innerHTML = attributes['attributesArmor']['attributeCore'][`${gearItem.attributeCore}`].value;
   }
@@ -423,12 +422,19 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
     let pngName = attributes['attributesArmor']['attributeCore'][`${attributeCoreName}`].png;
     let img = new Image();
     img.src = `./icons/${pngName}.png`;
+    img.height = 'var(--txtBase)';
     dropdownOptionKey.appendChild(img);
     dropdownOptionKey.innerHTML += ` ${attributeCoreName}`;
 
     let dropdownOptionValue = dropdownOption.getElementsByClassName('dropdown--option--value')[0];
     let optionValue = attributes['attributesArmor']['attributeCore'][`${attributeCoreName}`].value;
     dropdownOptionValue.innerHTML = `${optionValue}`;
+
+    // core attribute dropdown option onclick
+    dropdownOption.addEventListener('click', () => {
+      dropdownOptions.classList.toggle('hide');
+    })
+
   }
   // CLONE GEAR SLOT
   //============================
