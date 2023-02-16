@@ -352,12 +352,21 @@ li {
   cursor: pointer;
 }
 
-#dropdown--options {
-  display: flex;
+.dropdown--options {
   padding: 15px;
   background-color: rgb(100,100,100,0.5);
+  border: 1px solid var(--cbgr75);
+  border-top: 0;
 }
 
-.dropdown--options--key {
+.dropdown--option {
+  border-bottom: 1px solid var(--cbgr75);
+}
+
+.dropdown--option--key {
   flex: 1 1 auto;
+}
+
+.dropdown--option--value {
+  margin-left: auto;
 }
