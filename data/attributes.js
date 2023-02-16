@@ -1,15 +1,15 @@
 export const attributes = {
   "attributesArmor": {
     "attributeCore": {
-      "redCore": {
+      "Weapon Damage": {
         "name": "Weapon Damage",
         "value": 15,
       },
-      "blueCore": {
+      "Armor": {
         "name": "Armor",
         "value": 170001,
       },
-      "yellowCore": {
+      "Skill Tier": {
         "name": "Skill Tier",
         "value": 1,
       }
