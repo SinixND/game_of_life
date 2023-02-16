@@ -340,6 +340,7 @@ li {
 
 /* NEW IMPLEMENTATION, TEMP */
 .dropdown--selector {
+  position: relaitve;
   align-items: center;
 }
 
@@ -353,6 +354,7 @@ li {
 }
 
 .dropdown--options {
+  position: absolute;
   padding: 15px;
   border-width: 0 var(--bWeightSmall) var(--bWeightSmall) var(--bWeightSmall);
   border-style: solid;
