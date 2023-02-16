@@ -361,6 +361,7 @@ li {
 
 .dropdown--option {
   background-color: var(--cbgr75);
+  padding: calc(2 * var(--tpx)) 0 calc(2 * var(--tpx)) 0;
   margin: var(--bWeightSmall) 0 var(--bWeightSmall) 0;
 }
 
