@@ -407,7 +407,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
     tplDropdownOptionParent.appendChild(clonedDropdownOptionNode);
     dropdownOption = document.getElementById(`${dropdownOption.id}`);
 
-    let dropdownOptionKey = dropdownOption.getElementsByClassName('dropdown--option-key')[0];
+    let dropdownOptionKey = dropdownOption.getElementsByClassName('dropdown--option--key')[0];
     dropdownOptionKey.innerHTML = `${attributeCoreName}`;
 
     let dropdownOptionValue = dropdownOption.getElementsByClassName('dropdown--option--value')[0];
@@ -424,11 +424,11 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
 /*
 let eventTarget = document.querySelectorAll(`[id*="${icons[i]}"]`);
 
-const tplTemplateNameParent = gearslot;
-const tplTemplateNameBase = document.getElementById('template--TemplateName');
-let clonedTemplateNameNode = tplTemplateNameBase.content.cloneNode(true);
-let TemplateNameChild = clonedTemplateNameNode.getElementById('TemplateName--selector-');
-TemplateNameChild.id += "-core-attribute";
-tplTemplateNameParent.appendChild(clonedTemplateNameNode);
-TemplateNameChild = document.getElementById(`${TemplateNameChild.id}`);
+const tplXXXtemplatenameXXXParent = XXXparentnameXXX;
+const tplXXXtemplatenameXXXBase = document.getElementById('template--XXXtemplatenameXXX');
+let clonedXXXtemplatenameXXXNode = tplXXXtemplatenameXXXBase.content.cloneNode(true);
+let XXXtemplatefirstchildXXX = clonedXXXtemplatenameXXXNode.getElementById('XXXtemplatenameXXX--XXXtemplatefirstchildXXX-');
+XXXtemplatefirstchildXXX.id += "-XXXfirstchildidXXX";
+tplXXXtemplatenameXXXParent.appendChild(clonedXXXtemplatenameXXXNode);
+XXXtemplatefirstchildXXX = document.getElementById(`${XXXtemplatefirstchildXXX.id}`);
 */
