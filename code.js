@@ -431,7 +431,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
 
     // core attribute dropdown option onclick
     dropdownOption.addEventListener('click', () => {
-      dropdownOptions.classList.toggle('hide');
+      dropdownSelector.innerHTML = dropdownOptionKey.innerHTML;
     })
 
   }
