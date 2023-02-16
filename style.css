@@ -353,22 +353,23 @@ li {
   cursor: pointer;
 }
 
-.overlay {
+.overlay-anchor {
   position: relative;
+  height: 0;
+  z-index: 10;
 }
 
 .dropdown--options {
   position: absolute;
-  padding: 15px;
+  width: 100%;
   border-width: 0 var(--bWeightSmall) var(--bWeightSmall) var(--bWeightSmall);
   border-style: solid;
   border-color: var(--ctxt);
-  background-color: var(--cbgr75);
+  background-color: var(--cbgr);
 }
 
 .dropdown--option {
-  background-color: var(--cbrd25);
-  padding: calc(2 * var(--tpx)) 0 calc(2 * var(--tpx)) 0;
+  padding: calc(5 * var(--tpx));
   margin: var(--bWeightSmall) 0 var(--bWeightSmall) 0;
 }
 
