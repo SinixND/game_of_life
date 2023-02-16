@@ -339,7 +339,6 @@ li {
 
 /* NEW IMPLEMENTATION, TEMP */
 .dropdown--selector {
-  display: flex;
   align-items: center;
 }
 
@@ -360,8 +359,12 @@ li {
 }
 
 .dropdown--option {
-  display: flex;
   background-color: var(--cbgr75);
+  margin: 2px 0 2px 0;
+}
+
+.dropdown--option:hover {
+  cursor: pointer;
 }
 
 .dropdown--option--key {
