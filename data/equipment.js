@@ -18,7 +18,6 @@ export const equipment = {
         type: "Gila Guard",
         attributeMinor1: {
           name: "Scanner Pulse Haste",
-          changeable: "no",
           value: 100,
         },
       },

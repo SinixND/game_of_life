@@ -403,7 +403,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   }
 
   // core attribute dropdown selector onclick
-  if (!((gearItem.rarity == 'Exotic') || (gearItem['attributeCore'].changeable == 'no'))) {
+  if (!((gearItem.rarity == 'Exotic') || (gearItem.hasOwnProperty('attributeCore')))) {
     dropdownSelector.addEventListener('click', () => {
       dropdownOptions.classList.toggle('hide');
     })
