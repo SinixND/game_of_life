@@ -385,12 +385,13 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   })
   dropdownSelector.classList.add('h-line--bottom');
 
+  let dropdownSelectorText = dropdownSelector.getElementsByClassName('dropdown--selector--text')[0];
+  let dropdownSelectorValue = dropdownSelector.getElementsByClassName('dropdown--selector--value')[0];
+
   // core attribute dropdown selector default
-  dropdownSelector.getElementsByClassName('dropdown--selector--text')[0].innerHTML = "Select Core Attribute";
+  dropdownSelectorText.innerHTML = "Select Core Attribute";
 
   if (gearItem.hasOwnProperty('attributeCore')) {
-    let dropdownSelectorText = dropdownSelector.getElementsByClassName('dropdown--selector--text')[0];
-
     let pngName = attributes['attributesArmor']['attributeCore'][`${gearItem.attributeCore}`].png;
     let img = new Image();
     img.src = `./icons/${pngName}.png`;
@@ -398,11 +399,11 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
     dropdownSelectorText.appendChild(img);
     dropdownSelectorText.innerHTML += " " + gearItem.attributeCore;
 
-    dropdownSelector.getElementsByClassName('dropdown--selector--value')[0].innerHTML = attributes['attributesArmor']['attributeCore'][`${gearItem.attributeCore}`].value;
+    dropdownSelectorValue.innerHTML = attributes['attributesArmor']['attributeCore'][`${gearItem.attributeCore}`].value;
   }
 
   if (gearItem.hasOwnProperty('attributeCoreValue')) {
-    dropdownSelector.getElementsByClassName('dropdown--selector--value')[0].innerHTML = gearItem.attributeCoreValue;
+    dropdownSelectorValue.innerHTML = gearItem.attributeCoreValue;
   }
 
   // core attribute dropdown options
@@ -431,7 +432,9 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
 
     // core attribute dropdown option onclick
     dropdownOption.addEventListener('click', () => {
-      dropdownSelector.innerHTML = dropdownOptionKey.innerHTML;
+      dropdownSelectorText.innerHTML = dropdownOptionKey.innerHTML;
+      dropdownSelectorValue.innerHTML = dropdownOptionValue.innerHTML;
+      dropdownOptions.classList.add('hide');
     })
 
   }
