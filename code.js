@@ -394,7 +394,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   }
 
   if (gearItem.hasOwnProperty('attributeCoreValue')) {
-    dropdownSelector.getElementsByClassName('Template--selector--value')[0].innerHTML = gearItem.attributeCoreValue;
+    dropdownSelector.getElementsByClassName('dropdown--selector--value')[0].innerHTML = gearItem.attributeCoreValue;
   }
   
   // core attribute dropdown options
