@@ -402,9 +402,9 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   const tplDropdownOptionBase = document.getElementById('template--dropdown--option');
   for (let attributeCoreName in attributes['attributesArmor']['attributeCore']) {
     let clonedDropdownOptionNode = tplDropdownOptionBase.content.cloneNode(true);
-    let dropdownOption = clonedDropdownOptionNode.getElementById('TemplateName--option-');
+    let dropdownOption = clonedDropdownOptionNode.getElementById('dropdown--option-');
     dropdownOption.id += `-${attributeCoreName}`;
-    tplTemplateNameParent.appendChild(clonedDropdownOptionNode);
+    tplDropdownOptionParent.appendChild(clonedDropdownOptionNode);
     dropdownOption = document.getElementById(`${dropdownOption.id}`);
 
     let dropdownOptionKey = dropdownOption.getElementsByClassName('dropdown--option-key')[0];
