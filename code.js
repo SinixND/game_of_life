@@ -388,7 +388,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   dropdownSelector.getElementsByClassName('dropdown--selector--text')[0].innerHTML = "Select Core Attribute";
 
   if (gearItem.hasOwnProperty('attributeCore')) {
-    dropdownSelector.getElementsByClassName('dropdown--selector--text')[0].innerHTML = attributes['attributesArmor']['attributeCore'][`${gearItem.attributeCore}`].name
+    dropdownSelector.getElementsByClassName('dropdown--selector--text')[0].innerHTML = gearItem.attributeCore;
 
     dropdownSelector.getElementsByClassName('dropdown--selector--value')[0].innerHTML = attributes['attributesArmor']['attributeCore'][`${gearItem.attributeCore}`].value;
   }
