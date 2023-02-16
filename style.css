@@ -340,7 +340,7 @@ li {
 
 /* NEW IMPLEMENTATION, TEMP */
 .dropdown--selector {
-  position: relaitve;
+  position: relative;
   align-items: center;
 }
 
@@ -359,10 +359,11 @@ li {
   border-width: 0 var(--bWeightSmall) var(--bWeightSmall) var(--bWeightSmall);
   border-style: solid;
   border-color: var(--ctxt);
+  background-color: var(--cbgr50);
 }
 
 .dropdown--option {
-  background-color: var(--cbgr75);
+  background-color: var(--cbgr50);
   padding: calc(2 * var(--tpx)) 0 calc(2 * var(--tpx)) 0;
   margin: var(--bWeightSmall) 0 var(--bWeightSmall) 0;
 }
