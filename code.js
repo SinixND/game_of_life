@@ -411,7 +411,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
     dropdownOptionKey.innerHTML = `${attributeCoreName}`;
 
     let dropdownOptionValue = dropdownOption.getElementsByClassName('dropdown--option--value')[0];
-    dropdownOptionValue.innerHTML = `${attributes['attributesArmor']['attributeCore'][`${attributeCoreName}`]}`;
+    dropdownOptionValue.innerHTML = attributes['attributesArmor']['attributeCore'][`${attributeCoreName}`];
   }
   // CLONE GEAR SLOT
   //============================
