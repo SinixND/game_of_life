@@ -366,7 +366,8 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
     gearslotName.style.background = 'linear-gradient(28deg, var(--c0), var(--cNamed))';
   };
 
-  // gearslot core attribute
+  //============================
+  // GEARSLOT CORE ATTRIBUTE
   // core attribute dropdown selector
   const tplDropdownSelectorParent = gearslot;
   const tplDropdownSelectorBase = document.getElementById('template--dropdown');
@@ -448,8 +449,10 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
       dropdownSelectorSymbol.innerHTML = "&#9660";
       dropdownOptions.classList.add('hide');
     })
-
   }
+  // GEARSLOT CORE ATTRIBUTE
+  //============================
+
   // CLONE GEAR SLOT
   //============================
 }
