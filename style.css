@@ -353,17 +353,17 @@ li {
   cursor: pointer;
 }
 
-.dropdown--options {
+.overlay {
   position: relative;
+}
+
+.dropdown--options {
+  position: absolute;
   padding: 15px;
   border-width: 0 var(--bWeightSmall) var(--bWeightSmall) var(--bWeightSmall);
   border-style: solid;
   border-color: var(--ctxt);
   background-color: var(--cbgr75);
-}
-
-.overlay {
-  position: absolute;
 }
 
 .dropdown--option {
