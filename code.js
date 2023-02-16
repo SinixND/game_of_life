@@ -400,7 +400,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   // core attribute dropdown options
   const tplDropdownOptionParent = dropdownOptions;
   const tplDropdownOptionBase = document.getElementById('template--dropdown--option');
-  for (let attributeCoreName in Object.keys(attributes['attributesArmor']['attributeCore'])) {
+  for (let attributeCoreName of Object.keys(attributes['attributesArmor']['attributeCore'])) {
     console.log("attributeCoreName: " + attributeCoreName);
     let clonedDropdownOptionNode = tplDropdownOptionBase.content.cloneNode(true);
     let dropdownOption = clonedDropdownOptionNode.getElementById('dropdown--option-');
@@ -409,8 +409,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
     dropdownOption = document.getElementById(`${dropdownOption.id}`);
 
     let dropdownOptionKey = dropdownOption.getElementsByClassName('dropdown--option--key')[0];
-    let optionName = `attributes['attributesArmor']['attributeCore']['${attributeCoreName}']`;
-    dropdownOptionKey.innerHTML = `${optionName}`;
+    dropdownOptionKey.innerHTML = `${attributeCoreName}`;
 
     let dropdownOptionValue = dropdownOption.getElementsByClassName('dropdown--option--value')[0];
     let optionValue = attributes['attributesArmor']['attributeCore'][`${attributeCoreName}`].value;
