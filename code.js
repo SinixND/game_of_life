@@ -405,7 +405,6 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
 
   // core attribute dropdown selector onclick
   if (!((gearItem.rarity == 'Exotic') || (gearItem.hasOwnProperty('attributeCore')))) {
-    alert('item selected')
     dropdownSelectorSymbol.innerHTML = "&#9660";
     dropdownSelector.addEventListener('click', () => {
       dropdownOptions.classList.toggle('hide');
