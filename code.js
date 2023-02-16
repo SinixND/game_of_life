@@ -413,9 +413,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
       else {
         dropdownSelectorSymbol.innerHTML = "&#9661";
       }
-      
     })
-    dropdownSelectorSymbol.innerHTML = "";
   }
 
   // core attribute dropdown options
