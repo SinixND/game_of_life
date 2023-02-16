@@ -27,10 +27,10 @@ let icons = [
   "Ceska_Vyroba_s.r.o.",
   "chest",
   "China_Light_Industries_Corporation",
-  "defense1",
-  "defense2",
-  "defense3_1",
-  "defense3_2",
+  "coreBlue",
+  "minorBlue",
+  "modBlue2",
+  "modBlue",
   "Douglas_&_Harding",
   "Eclipse_Protocol",
   "Empress_International",
@@ -54,10 +54,10 @@ let icons = [
   "Murakami_Industries",
   "named",
   "Negotiators_Dilemma",
-  "offense1",
-  "offense2",
-  "offense3_1",
-  "offense3_2",
+  "coreRed",
+  "minorRed",
+  "modRed2",
+  "modRed",
   "Ongoing_Directive",
   "Overlord_Armaments",
   "Petrov_Defense_Group",
@@ -69,10 +69,10 @@ let icons = [
   "Sokolov_Concern",
   "Strikers_Battlegear",
   "System_Corruption",
-  "tech1",
-  "tech2",
-  "tech3_1",
-  "tech3_2",
+  "coreYellow",
+  "minorYellow",
+  "modYellow2",
+  "modYellow",
   "Tip_of_the_Spear",
   "True_Patriot",
   "Umbra_Initiative",
@@ -400,6 +400,8 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   // core attribute dropdown options
   const tplDropdownOptionParent = dropdownOptions;
   const tplDropdownOptionBase = document.getElementById('template--dropdown--option');
+
+  // iterate over attributes armor core
   for (let attributeCoreName of Object.keys(attributes['attributesArmor']['attributeCore'])) {
     let clonedDropdownOptionNode = tplDropdownOptionBase.content.cloneNode(true);
     let dropdownOption = clonedDropdownOptionNode.getElementById('dropdown--option-');
@@ -408,7 +410,9 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
     dropdownOption = document.getElementById(`${dropdownOption.id}`);
 
     let dropdownOptionKey = dropdownOption.getElementsByClassName('dropdown--option--key')[0];
-    dropdownOptionKey.innerHTML = `${attributeCoreName}`;
+
+    let pngName = attributes['attributesArmor']['attributeCore'][`${attributeCoreName}`].png;
+    dropdownOptionKey.innerHTML = url(`./icons/${pngName}.png`) + ` ${attributeCoreName}`;
 
     let dropdownOptionValue = dropdownOption.getElementsByClassName('dropdown--option--value')[0];
     let optionValue = attributes['attributesArmor']['attributeCore'][`${attributeCoreName}`].value;
