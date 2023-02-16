@@ -15,11 +15,16 @@ export const equipment = {
       },
       "Nightwatcher": {
         rarity: "Named",
-        type: "Gila Guard"
+        type: "Gila Guard",
+        attributeMinor1: {
+          name: "Scanner Pulse Haste",
+          changeable: "no",
+          value: 100,
+        },
       },
       "Aces & Eights": {
         rarity: "GearSet",
-        type: "Aces & Eights"
+        type: "Aces & Eights",
       },
       "le": {
         rarity: "Exotic",

@@ -379,10 +379,6 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   dropdownSelector = document.getElementById(`${dropdownSelector.id}`);
   dropdownOptions = document.getElementById(`${dropdownOptions.id}`);
 
-  // core attribute dropdown selector onclick
-  dropdownSelector.addEventListener('click', () => {
-    dropdownOptions.classList.toggle('hide');
-  })
   dropdownSelector.classList.add('h-line--bottom');
 
   let dropdownSelectorText = dropdownSelector.getElementsByClassName('dropdown--selector--text')[0];
@@ -392,6 +388,13 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   dropdownSelectorText.innerHTML = "Select Core Attribute";
 
   if (gearItem.hasOwnProperty('attributeCore')) {
+    // core attribute dropdown selector onclick
+    if (gearItem.rarity !== 'Exotic' || gearItem['attributeCore'].changeable !== 'no') {
+      dropdownSelector.addEventListener('click', () => {
+        dropdownOptions.classList.toggle('hide');
+      })
+    }
+
     let pngName = attributes['attributesArmor']['attributeCore'][`${gearItem.attributeCore}`].png;
     let img = new Image();
     img.src = `./icons/${pngName}.png`;
