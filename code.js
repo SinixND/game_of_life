@@ -407,7 +407,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   if (!((gearItem.rarity == 'Exotic') || (gearItem.hasOwnProperty('attributeCore')))) {
     dropdownSelector.addEventListener('click', () => {
       dropdownOptions.classList.toggle('hide');
-      if (dropdownOptions.classList.contains(hide)) {
+      if (dropdownOptions.classList.contains('hide')) {
         dropdownSelectorSymbol.innerHTML = "&#9660";
       }
       else {
