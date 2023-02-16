@@ -383,6 +383,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
 
   let dropdownSelectorText = dropdownSelector.getElementsByClassName('dropdown--selector--text')[0];
   let dropdownSelectorValue = dropdownSelector.getElementsByClassName('dropdown--selector--value')[0];
+  let dropdownSelectorSymbol = dropdownSelector.getElementsByClassName('symbol')[0];
 
   // core attribute dropdown selector default
   dropdownSelectorText.innerHTML = "Select Core Attribute";
@@ -406,7 +407,15 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   if (!((gearItem.rarity == 'Exotic') || (gearItem.hasOwnProperty('attributeCore')))) {
     dropdownSelector.addEventListener('click', () => {
       dropdownOptions.classList.toggle('hide');
+      if (dropdownOptions.classList.contains('hide')) {
+        dropdownSelectorSymbol.innerHTML = "&#9660";
+      }
+      else {
+        dropdownSelectorSymbol.innerHTML = "&#9661";
+      }
+      
     })
+    dropdownSelectorSymbol.innerHTML = "";
   }
 
   // core attribute dropdown options
