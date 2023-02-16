@@ -395,6 +395,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
     console.log(`selector pngName: ${pngName}`)
     let img = new Image();
     img.src = `./icons/${pngName}.png`;
+    dropdownSelectorText.innerHTML = "";
     dropdownSelectorText.appendChild(img);
     dropdownSelectorText.innerHTML += gearItem.attributeCore;
 
