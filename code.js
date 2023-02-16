@@ -390,12 +390,13 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
 
   if (gearItem.hasOwnProperty('attributeCore')) {
     let dropdownSelectorText = dropdownSelector.getElementsByClassName('dropdown--selector--text')[0];
+
     let pngName = attributes['attributesArmor']['attributeCore'][`${gearItem.attributeCore}`].png;
     console.log(`selector pngName: ${pngName}`)
     let img = new Image();
     img.src = `./icons/${pngName}.png`;
     dropdownSelectorText.appendChild(img);
-    dropdownSelectorText.innerHTML = gearItem.attributeCore;
+    dropdownSelectorText.innerHTML += gearItem.attributeCore;
 
     dropdownSelector.getElementsByClassName('dropdown--selector--value')[0].innerHTML = attributes['attributesArmor']['attributeCore'][`${gearItem.attributeCore}`].value;
   }
