@@ -388,13 +388,6 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   dropdownSelectorText.innerHTML = "Select Core Attribute";
 
   if (gearItem.hasOwnProperty('attributeCore')) {
-    // core attribute dropdown selector onclick
-    if (gearItem.rarity !== 'Exotic' || gearItem['attributeCore'].changeable !== 'no') {
-      dropdownSelector.addEventListener('click', () => {
-        dropdownOptions.classList.toggle('hide');
-      })
-    }
-
     let pngName = attributes['attributesArmor']['attributeCore'][`${gearItem.attributeCore}`].png;
     let img = new Image();
     img.src = `./icons/${pngName}.png`;
@@ -407,6 +400,13 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
 
   if (gearItem.hasOwnProperty('attributeCoreValue')) {
     dropdownSelectorValue.innerHTML = gearItem.attributeCoreValue;
+  }
+
+  // core attribute dropdown selector onclick
+  if (!((gearItem.rarity == 'Exotic') || (gearItem['attributeCore'].changeable == 'no'))) {
+    dropdownSelector.addEventListener('click', () => {
+      dropdownOptions.classList.toggle('hide');
+    })
   }
 
   // core attribute dropdown options
