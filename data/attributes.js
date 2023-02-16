@@ -1,21 +1,29 @@
 export const attributes = {
-  "attributesArmor": {
-    "attributeCore": {
+  attributesArmor: {
+    attributeCore: {
       "Weapon Damage": {
-        "name": "Weapon Damage",
-        "value": 15,
+        value: 15,
       },
       "Armor": {
-        "name": "Armor",
-        "value": 170001,
+        value: 170001,
       },
       "Skill Tier": {
-        "name": "Skill Tier",
-        "value": 1,
-      }
-      },
-      "attributeMinor": {
-
+        value: 1,
       },
     },
-  }
+    attributeMinor: {
+      "Weapon Handling": {
+        value: 8,
+      },
+      "Critical Hit Chance": {
+        value: 6,
+      },
+      "Critical Hit Damage": {
+        value: 12,
+      },
+      "Headshot Damage": {
+        value: 10,
+      },
+    },
+  },
+}
