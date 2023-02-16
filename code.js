@@ -385,11 +385,20 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   })
   dropdownSelector.classList.add('h-line--bottom');
 
+  // core attribute dropdown options
+  const tplDropdownOptionParent = dropdownOptions;
+  const tplDropdownOptionBase = document.getElementById('template--dropdown--option');
+
   // core attribute dropdown selector initialize
   dropdownSelector.getElementsByClassName('dropdown--selector--text')[0].innerHTML = "Select Core Attribute";
 
   if (gearItem.hasOwnProperty('attributeCore')) {
-    dropdownSelector.getElementsByClassName('dropdown--selector--text')[0].innerHTML = gearItem.attributeCore;
+    let dropdownSelectorText = dropdownSelector.getElementsByClassName('dropdown--selector--text')[0];
+    let pngName = attributes['attributesArmor']['attributeCore'][`${gearItem.attributeCore}`].png;
+    let img = new Image();
+    img.src = `./icons/${pngName}.png`;
+    dropdownSelectorText.appendChild(img);
+    dropdownSelectorText.innerHTML = gearItem.attributeCore;
 
     dropdownSelector.getElementsByClassName('dropdown--selector--value')[0].innerHTML = attributes['attributesArmor']['attributeCore'][`${gearItem.attributeCore}`].value;
   }
@@ -398,10 +407,6 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
     dropdownSelector.getElementsByClassName('dropdown--selector--value')[0].innerHTML = gearItem.attributeCoreValue;
   }
   
-  // core attribute dropdown options
-  const tplDropdownOptionParent = dropdownOptions;
-  const tplDropdownOptionBase = document.getElementById('template--dropdown--option');
-
   // iterate over attributes armor core
   for (let attributeCoreName of Object.keys(attributes['attributesArmor']['attributeCore'])) {
     let clonedDropdownOptionNode = tplDropdownOptionBase.content.cloneNode(true);
@@ -415,7 +420,6 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
     let pngName = attributes['attributesArmor']['attributeCore'][`${attributeCoreName}`].png;
     let img = new Image();
     img.src = `./icons/${pngName}.png`;
-    dropdownOptionKey.innerHTML = "";
     dropdownOptionKey.appendChild(img);
     dropdownOptionKey.innerHTML += ` ${attributeCoreName}`;
 
