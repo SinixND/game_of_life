@@ -415,6 +415,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
     let pngName = attributes['attributesArmor']['attributeCore'][`${attributeCoreName}`].png;
     let img = new Image();
     img.src = `./icons/${pngName}.png`;
+    dropdownOptionKey.innerHTML = "";
     dropdownOptionKey.appendChild(img);
     dropdownOptionKey.innerHTML += ` ${attributeCoreName}`;
 
