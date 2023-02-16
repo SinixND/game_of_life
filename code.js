@@ -121,6 +121,7 @@ for (let i = 0; i < icons.length; i++) {
     // iterate over all IDs with an icon name
     for (let j = 0; j < element.length; j++) {
       element[j].style.background = value;
+
       element[j].style.backgroundOrigin = 'content-box';
       element[j].style.backgroundSize = 'contain';
       element[j].style.backgroundPosition = 'center';
@@ -412,7 +413,10 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
     let dropdownOptionKey = dropdownOption.getElementsByClassName('dropdown--option--key')[0];
 
     let pngName = attributes['attributesArmor']['attributeCore'][`${attributeCoreName}`].png;
-    dropdownOptionKey.innerHTML = url(`./icons/${pngName}.png`) + ` ${attributeCoreName}`;
+    let img = new Image();
+    img.src = `./icons/${pngName}.png`;
+    dropdownOptionKey.appendChild(img);
+    dropdownOptionKey.innerHTML += ` ${attributeCoreName}`;
 
     let dropdownOptionValue = dropdownOption.getElementsByClassName('dropdown--option--value')[0];
     let optionValue = attributes['attributesArmor']['attributeCore'][`${attributeCoreName}`].value;
