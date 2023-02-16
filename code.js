@@ -406,6 +406,12 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
     dropdownOption.id += `-${attributeCoreName}`;
     tplTemplateNameParent.appendChild(clonedDropdownOptionNode);
     dropdownOption = document.getElementById(`${dropdownOption.id}`);
+
+    let dropdownOptionKey = dropdownOption.getElementsByClassName('dropdown--option-key')[0];
+    dropdownOptionKey.innerHTML = `${attributeCoreName}`;
+
+    let dropdownOptionValue = dropdownOption.getElementsByClassName('dropdown--option--value')[0];
+    dropdownOptionValue.innerHTML = `${attributes['attributesArmor']['attributeCore'][`${attributeCoreName}`]}`;
   }
   // CLONE GEAR SLOT
   //============================
