@@ -385,16 +385,13 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   })
   dropdownSelector.classList.add('h-line--bottom');
 
-  // core attribute dropdown options
-  const tplDropdownOptionParent = dropdownOptions;
-  const tplDropdownOptionBase = document.getElementById('template--dropdown--option');
-
-  // core attribute dropdown selector initialize
+  // core attribute dropdown selector default
   dropdownSelector.getElementsByClassName('dropdown--selector--text')[0].innerHTML = "Select Core Attribute";
 
   if (gearItem.hasOwnProperty('attributeCore')) {
     let dropdownSelectorText = dropdownSelector.getElementsByClassName('dropdown--selector--text')[0];
     let pngName = attributes['attributesArmor']['attributeCore'][`${gearItem.attributeCore}`].png;
+    console.log(`selector pngName: ${pngName}`)
     let img = new Image();
     img.src = `./icons/${pngName}.png`;
     dropdownSelectorText.appendChild(img);
@@ -406,6 +403,10 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   if (gearItem.hasOwnProperty('attributeCoreValue')) {
     dropdownSelector.getElementsByClassName('dropdown--selector--value')[0].innerHTML = gearItem.attributeCoreValue;
   }
+
+  // core attribute dropdown options
+  const tplDropdownOptionParent = dropdownOptions;
+  const tplDropdownOptionBase = document.getElementById('template--dropdown--option');
   
   // iterate over attributes armor core
   for (let attributeCoreName of Object.keys(attributes['attributesArmor']['attributeCore'])) {
