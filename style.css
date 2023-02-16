@@ -354,12 +354,12 @@ li {
 
 .dropdown--options {
   padding: 15px;
-  background-color: rgb(100,100,100,0.5);
-  border: 1px solid var(--cbgr75);
+  border: 2px solid var(--cbgr75);
   border-top: 0;
 }
 
 .dropdown--option {
+  display: flex;
   border-bottom: 1px solid var(--cbgr75);
 }
 
