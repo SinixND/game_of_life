@@ -409,8 +409,6 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
     dropdownSelectorSymbol.innerHTML = "&#9660";
     dropdownSelector.addEventListener('click', () => {
       dropdownOptions.classList.toggle('hide');
-      alert('toggled visibility')
-      alert(`status hidden: ${dropdownOptions.classList.contains('hide')}`)
       if (dropdownOptions.classList.contains('hide')) {
         dropdownSelectorSymbol.innerHTML = "&#9660";
       }
