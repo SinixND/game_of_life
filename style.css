@@ -14,6 +14,7 @@
   --bWidth: 65%;
   --bHeight: 35%;
   --bWeight: calc(3 * var(--tpx));
+  --bWeightSmall: calc(1 * var(--tpx));
 
   /* text sizes */
   --txtLabel: calc(.75 * var(--txtSmall));
@@ -89,7 +90,7 @@ body {
 .panel--border {
   padding: var(--bWeight);
   margin: calc(2 * var(--bWeight));
-  border: 1px dotted var(--cbrd);
+  border: var(--bWeightSmall) dotted var(--cbrd);
   position: relative;
 }
 
@@ -207,7 +208,7 @@ place-self :: (align justify)
 
 .container {
   padding: calc(4 * var(--bWeight));
-  border: 1px dotted;
+  border: var(--bWeightSmall) dotted;
   border-color: inherit;
   min-width: var(--widthMin);
   width: 100%;
@@ -353,14 +354,14 @@ li {
 
 .dropdown--options {
   padding: 15px;
-  border-width: 0 1px 1px 1px;
+  border-width: 0 var(--bWeightSmall) var(--bWeightSmall) var(--bWeightSmall);
   border-style: solid;
   border-color: var(--ctxt);
 }
 
 .dropdown--option {
   background-color: var(--cbgr75);
-  margin: 2px 0 2px 0;
+  margin: var(--bWeightSmall) 0 var(--bWeightSmall) 0;
 }
 
 .dropdown--option:hover {
