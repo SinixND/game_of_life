@@ -388,9 +388,9 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
     const tplDropdownSelectorBase = document.getElementById('template--dropdown');
     let clonedDropdownSelectorNode = tplDropdownSelectorBase.content.cloneNode(true);
     let dropdownSelector = clonedDropdownSelectorNode.getElementById('dropdown--selector-');
-    dropdownSelector.id += `-${gearTypeName}--${attributeTypeName}`;
+    dropdownSelector.id += `-${gearTypeName}--${attributeTypeNameData}`;
     let dropdownOptions = clonedDropdownSelectorNode.getElementById('dropdown--options-');
-    dropdownOptions.id += `-${gearTypeName}--${attributeTypeName}`;
+    dropdownOptions.id += `-${gearTypeName}--${attributeTypeNameData}`;
     tplDropdownSelectorParent.appendChild(clonedDropdownSelectorNode);
     dropdownSelector = document.getElementById(`${dropdownSelector.id}`);
     dropdownOptions = dropdownOptions.getElementsByClassName('dropdown--options')[0];
