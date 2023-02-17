@@ -376,8 +376,9 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   if (gearItem.rarity == 'Exotic' || gearTypeName == 'backpack' || gearItemName == 'chest') {attributeTypeNames.push('talent')}
 
   for (let attributeTypeName of attributeTypeNames) {
-    if (attributeTypeName == 'minor' && document.getElementById(`dropdown--selector--${gearTypeName}--minor1`) == null) {let attributeTypeNameData = attributeTypeName; attributeTypeName = "minor1"}
-    else if (attributeTypeName == 'minor' && document.getElementById(`dropdown--selector--${gearTypeName}--minor1`) !== null) {let attributeTypeNameData = attributeTypeName; attributeTypeName = "minor2"}
+    let attributeTypeNameData; //to choose from attributes-object
+    if (attributeTypeName == 'minor' && document.getElementById(`dropdown--selector--${gearTypeName}--minor1`) == null) {attributeTypeNameData = attributeTypeName; attributeTypeName = "minor1"}
+    else if (attributeTypeName == 'minor' && document.getElementById(`dropdown--selector--${gearTypeName}--minor1`) !== null) {attributeTypeNameData = attributeTypeName; attributeTypeName = "minor2"}
     console.log(`attributeTypeName: ${attributeTypeName}; attributeTypeNameData: ${attributeTypeNameData}`)
     // core attribute dropdown selector
     const tplDropdownSelectorParent = gearslot;
