@@ -462,7 +462,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
         dropdownOptions.classList.add('hide');
       })
     }
-  //}
+  }
   // GEARSLOT ATTRIBUTES
   //============================
 
