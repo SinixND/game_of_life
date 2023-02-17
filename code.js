@@ -405,23 +405,18 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
     dropdownSelectorText.innerHTML = `Select ${attributeTypeNameData}`;
 
     if (gearItem.hasOwnProperty(attributeTypeName)) {
-      if (gearItem.rarity == 'Named') {
+      let gearItemAttributeTypeName = gearItem[attributeTypeName].name;
+      let pngName = attributes[equipmentTypeName][attributeTypeNameData][gearItemAttributeTypeName].png;
+      let img = new Image();
+      img.src = `./icons/${pngName}.png`;
+      dropdownSelectorText.innerHTML = "";
+      dropdownSelectorText.appendChild(img);
+      dropdownSelectorText.innerHTML += " " + gearItemAttributeTypeName;
 
-      }
-      else {
-        let gearItemAttributeTypeName = gearItem[attributeTypeName].name;
-        let pngName = attributes[equipmentTypeName][attributeTypeNameData][gearItemAttributeTypeName].png;
-        let img = new Image();
-        img.src = `./icons/${pngName}.png`;
-        dropdownSelectorText.innerHTML = "";
-        dropdownSelectorText.appendChild(img);
-        dropdownSelectorText.innerHTML += " " + gearItemAttributeTypeName;
+      dropdownSelectorValue.innerHTML = `${attributes[equipmentTypeName][attributeTypeNameData][gearItemAttributeTypeName].value}`;
 
-        dropdownSelectorValue.innerHTML = `${attributes[equipmentTypeName][attributeTypeNameData][gearItemAttributeTypeName].value}`;
-
-        if (gearItem[attributeTypeName].hasOwnProperty('value')) {
-          dropdownSelectorValue.innerHTML = gearItem[attributeTypeName].value;
-        }
+      if (gearItem[attributeTypeName].hasOwnProperty('value')) {
+        dropdownSelectorValue.innerHTML = gearItem[attributeTypeName].value;
       }
     }
 
