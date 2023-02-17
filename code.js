@@ -267,6 +267,9 @@ for (let equipmentTypeName in equipment) {
 
 //==============================
 // EVENT LISTENERS
+document.getElementById('button--mobile-console').addEventListener('click', () => {
+  document.write('<script id="script--mobile-console" defer src="./include/hnl.mobileconsole.js"></script>');
+})
 // create event listener aborts
 let abortControlls = {};
 
