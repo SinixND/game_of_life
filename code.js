@@ -221,7 +221,7 @@ for (let equipmentTypeName in equipment) {
       let mltpcAttribute3 = panelListEntry.getElementsByClassName('mltpc-attribute-3')[0];
       let mltpcName = gearItem.type;
 
-      if (gearItem.rarity == "Exotic") {
+      /*if (gearItem.rarity == "Exotic") {
         mltpcAttribute1.innerHTML = gearItem.attributeCore + ': ';
         mltpcAttribute1.innerHTML += gearItem.attributeCoreValue;
         mltpcAttribute2.innerHTML = gearItem.attributeMinor1 + ': ';
@@ -229,7 +229,7 @@ for (let equipmentTypeName in equipment) {
         mltpcAttribute3.innerHTML = gearItem.attributeMinor2 + ': ';
         mltpcAttribute3.innerHTML += gearItem.attributeMinor2Value;
       }
-      else if (gearItem.rarity == "GearSet") {
+      else */if (gearItem.rarity == "GearSet") {
         mltpcAttribute1.innerHTML = mltpc[mltpcName].attributeCore + ': ';
         mltpcAttribute1.innerHTML += mltpc[mltpcName].attributeCoreValue;
         mltpcAttribute2.innerHTML = mltpc[mltpcName].attributeMinor1 + ': ';
