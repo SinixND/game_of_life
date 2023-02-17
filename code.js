@@ -382,7 +382,8 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
 
     console.log(`attributeTypeName: ${attributeTypeName}; attributeTypeNameData: ${attributeTypeNameData}`)
 
-    // core attribute dropdown selector
+    //============================
+    // CORE ATTRIBUTE DROPDOWN SELECTOR
     const tplDropdownSelectorParent = gearslot;
     const tplDropdownSelectorBase = document.getElementById('template--dropdown');
     let clonedDropdownSelectorNode = tplDropdownSelectorBase.content.cloneNode(true);
@@ -432,13 +433,15 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
         }
       })
     }
+    // CORE ATTRIBUTE DROPDOWN SELECTOR
+    //============================
 
-    // core attribute dropdown options
+    //============================
+    // CORE ATTRIBUTE DROPDOWN OPTIONS
     const tplDropdownOptionParent = dropdownOptions;
     const tplDropdownOptionBase = document.getElementById('template--dropdown--option');
     
     // iterate over attributes armor core
-    console.log(`attributeName = ${Object.keys(attributes[equipmentTypeName][attributeTypeNameData])[0]}`)
     for (let attributeName of Object.keys(attributes[equipmentTypeName][attributeTypeNameData])) {
       let clonedDropdownOptionNode = tplDropdownOptionBase.content.cloneNode(true);
       let dropdownOption = clonedDropdownOptionNode.getElementById('dropdown--option-');
@@ -466,6 +469,9 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
         dropdownOptions.classList.add('hide');
       })
     }
+    // CORE ATTRIBUTE DROPDOWN OPTIONS
+    //============================
+
   }
   // GEARSLOT ATTRIBUTES
   //============================
