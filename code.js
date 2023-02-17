@@ -376,9 +376,9 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   if (gearItem.rarity == 'Exotic' || gearTypeName == 'backpack' || gearItemName == 'chest') {attributeTypeNames.push('talent')}
 
   for (let attributeTypeName of attributeTypeNames) {
-    if (attributeTypeName == 'minor' && document.getElementById(`dropdown--selector--${gearTypeName}--minor1`) == null) {attributeTypeName = "minor1"}
-    else if (attributeTypeName == 'minor' && document.getElementById(`dropdown--selector--${gearTypeName}--minor1`) !== null) {attributeTypeName = "minor2"}
-    console.log(`attributeTypeName: ${attributeTypeName}`)
+    if (attributeTypeName == 'minor' && document.getElementById(`dropdown--selector--${gearTypeName}--minor1`) == null) {let attributTypeNameData = attributeTypeName; attributeTypeName = "minor1"}
+    else if (attributeTypeName == 'minor' && document.getElementById(`dropdown--selector--${gearTypeName}--minor1`) !== null) {let attributTypeNameData = attributeTypeName; attributeTypeName = "minor2"}
+    console.log(`attributeTypeName: ${attributeTypeName}; attributeTypeNameData: ${attributTypeNameData}`)
     // core attribute dropdown selector
     const tplDropdownSelectorParent = gearslot;
     const tplDropdownSelectorBase = document.getElementById('template--dropdown');
@@ -401,19 +401,19 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
     dropdownSelectorText.innerHTML = `Select ${attributeTypeName} attribute`;
 
     if (gearItem.hasOwnProperty(attributeTypeName)) {
-      let gearItemAttributeTypeName = gearItem[attributeTypeName].name;
-      let pngName = attributes[equipmentTypeName][attributeTypeName][gearItemAttributeTypeName].png;
+      let gearItemAttributeTypeName = gearItem[attributeTypeNameData].name;
+      let pngName = attributes[equipmentTypeName][attributeTypeNameData][gearItemAttributeTypeName].png;
       let img = new Image();
       img.src = `./icons/${pngName}.png`;
       dropdownSelectorText.innerHTML = "";
       dropdownSelectorText.appendChild(img);
       dropdownSelectorText.innerHTML += " " + gearItemAttributeTypeName;
 
-      dropdownSelectorValue.innerHTML = `${attributes[equipmentTypeName][attributeTypeName][gearItemAttributeTypeName].value}`;
+      dropdownSelectorValue.innerHTML = `${attributes[equipmentTypeName][attributeTypeNameData][gearItemAttributeTypeName].value}`;
     }
 
-    if (gearItem[attributeTypeName].hasOwnProperty('value')) {
-      dropdownSelectorValue.innerHTML = gearItem[attributeTypeName].value;
+    if (gearItem[attributeTypeNameData].hasOwnProperty('value')) {
+      dropdownSelectorValue.innerHTML = gearItem[attributeTypeNameData].value;
     }
 
     // core attribute dropdown selector onclick
@@ -435,7 +435,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
     const tplDropdownOptionBase = document.getElementById('template--dropdown--option');
     
     // iterate over attributes armor core
-    for (let attributeName of Object.keys(attributes[equipmentTypeName][attributeTypeName])) {
+    for (let attributeName of Object.keys(attributes[equipmentTypeName][attributeTypeNameData])) {
       let clonedDropdownOptionNode = tplDropdownOptionBase.content.cloneNode(true);
       let dropdownOption = clonedDropdownOptionNode.getElementById('dropdown--option-');
       dropdownOption.id += `-${gearTypeName}--${attributeTypeName}`;
@@ -444,14 +444,14 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
 
       let dropdownOptionKey = dropdownOption.getElementsByClassName('dropdown--option--key')[0];
 
-      let pngName = attributes[equipmentTypeName][attributeTypeName][attributeName].png;
+      let pngName = attributes[equipmentTypeName][attributeTypeNameData][attributeName].png;
       let img = new Image();
       img.src = `./icons/${pngName}.png`;
       dropdownOptionKey.appendChild(img);
       dropdownOptionKey.innerHTML += ` ${attributeName}`;
 
       let dropdownOptionValue = dropdownOption.getElementsByClassName('dropdown--option--value')[0];
-      let optionValue = attributes[equipmentTypeName][attributeTypeName][attributeName].value;
+      let optionValue = attributes[equipmentTypeName][attributeTypeNameData][attributeName].value;
       dropdownOptionValue.innerHTML = `${optionValue}`;
 
       // core attribute dropdown option onclick
