@@ -203,10 +203,10 @@ for (let equipmentTypeName in equipment) {
 
       // list entry name
       let entryName = panelListEntry.getElementsByClassName('entry--name')[0];
-      entryName.innerHTML = `${gearItemName}`;
+      entryName.innerHTML = gearItemName;
 
       // list entry type
-      if (gearItem.hasOwnProperty('type') && gearItem.type !== `${gearItemName}`) {
+      if (gearItem.hasOwnProperty('type') && gearItem.type !== gearItemName) {
         let entryType = panelListEntry.getElementsByClassName('entry--type')[0];
         entryType.innerHTML = "(";
         entryType.innerHTML += gearItem.type;
@@ -336,7 +336,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
 
   // gearslot-name
   let gearslotName = gearslot.getElementsByClassName('gearslot--name')[0];
-  gearslotName.childNodes[0].nodeValue = `${gearItemName}`;
+  gearslotName.childNodes[0].nodeValue = gearItemName;
 
   // add new showPopup listener to "Name" div
   gearslotName.classList.add('cursor-pointer');
@@ -399,9 +399,8 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
     // core attribute dropdown selector default
     dropdownSelectorText.innerHTML = `Select ${attributeTypeName} attribute`;
 
-    console.log('gearItem.hasOwnProperty():' + gearItem.hasOwnProperty(attributeTypeName)) 
-    if (gearItem.hasOwnProperty(`${attributeTypeName}`)) {
-      let gearItemAttributeTypeName = gearItem[`${attributeTypeName}`].name;
+    if (gearItem.hasOwnProperty(attributeTypeName)) {
+      let gearItemAttributeTypeName = gearItem[attributeTypeName].name;
       pngName = attributes[equipmentTypeName][attributeTypeName][gearItemAttributeTypeName].png;
       let img = new Image();
       img.src = `./icons/${pngName}.png`;
@@ -414,7 +413,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
     dropdownSelectorValue.innerHTML = `${attributes[equipmentTypeName][attributeTypeName][gearItemAttributeTypeName].value}`;
 
     if (gearItem.hasOwnProperty('`${attributeTypeName')) {
-      dropdownSelectorValue.innerHTML = gearItem[`${attributeTypeName}`].value;
+      dropdownSelectorValue.innerHTML = gearItem[attributeTypeName].value;
     }
 
     // core attribute dropdown selector onclick
@@ -445,14 +444,14 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
 
       let dropdownOptionKey = dropdownOption.getElementsByClassName('dropdown--option--key')[0];
 
-      let pngName = attributes['attributesArmor']['attributeCore'][`${attributeCoreName}`].png;
+      let pngName = attributes['attributesArmor']['attributeCore'][attributeCoreName].png;
       let img = new Image();
       img.src = `./icons/${pngName}.png`;
       dropdownOptionKey.appendChild(img);
       dropdownOptionKey.innerHTML += ` ${attributeCoreName}`;
 
       let dropdownOptionValue = dropdownOption.getElementsByClassName('dropdown--option--value')[0];
-      let optionValue = attributes['attributesArmor']['attributeCore'][`${attributeCoreName}`].value;
+      let optionValue = attributes['attributesArmor']['attributeCore'][attributeCoreName].value;
       dropdownOptionValue.innerHTML = `${optionValue}`;
 
       // core attribute dropdown option onclick
