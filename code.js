@@ -401,18 +401,17 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
 
     if (gearItem.hasOwnProperty(attributeTypeName)) {
       let gearItemAttributeTypeName = gearItem[attributeTypeName].name;
-      pngName = attributes[equipmentTypeName][attributeTypeName][gearItemAttributeTypeName].png;
+      let pngName = attributes[equipmentTypeName][attributeTypeName][gearItemAttributeTypeName].png;
       let img = new Image();
       img.src = `./icons/${pngName}.png`;
       dropdownSelectorText.innerHTML = "";
       dropdownSelectorText.appendChild(img);
       dropdownSelectorText.innerHTML += " " + gearItemAttributeTypeName;
 
+      dropdownSelectorValue.innerHTML = `${attributes[equipmentTypeName][attributeTypeName][gearItemAttributeTypeName].value}`;
     }
-      
-    dropdownSelectorValue.innerHTML = `${attributes[equipmentTypeName][attributeTypeName][gearItemAttributeTypeName].value}`;
 
-    if (gearItem.hasOwnProperty('`${attributeTypeName')) {
+    if (gearItem[attributeTypeName].hasOwnProperty('value')) {
       dropdownSelectorValue.innerHTML = gearItem[attributeTypeName].value;
     }
 
