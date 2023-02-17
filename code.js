@@ -370,7 +370,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   // GEARSLOT ATTRIBUTES
   let attributeTypeNames = []
   attributeTypeNames.push('core attribute');
-  attributeTypeNames.push('minor attribute');
+  if (gearItem.hasOwnProperty('minor attribute named')) {attributeTypeNames.push('minor attribute named')} else {attributeTypeNames.push('minor attribute')};
   if (gearItem.rarity !== 'GearSet') {attributeTypeNames.push('minor attribute')};
   if (gearTypeName == 'mask' || gearTypeName == 'backpack' || gearTypeName == 'chest' || gearItem.type == 'Improvised') {attributeTypeNames.push('mod')};
   if (gearItem.rarity == 'Exotic' || gearTypeName == 'backpack' || gearItemName == 'chest') {attributeTypeNames.push('talent')}
@@ -405,18 +405,23 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
     dropdownSelectorText.innerHTML = `Select ${attributeTypeNameData}`;
 
     if (gearItem.hasOwnProperty(attributeTypeName)) {
-      let gearItemAttributeTypeName = gearItem[attributeTypeName].name;
-      let pngName = attributes[equipmentTypeName][attributeTypeNameData][gearItemAttributeTypeName].png;
-      let img = new Image();
-      img.src = `./icons/${pngName}.png`;
-      dropdownSelectorText.innerHTML = "";
-      dropdownSelectorText.appendChild(img);
-      dropdownSelectorText.innerHTML += " " + gearItemAttributeTypeName;
+      if (gearItem.rarity == 'Named') {
 
-      dropdownSelectorValue.innerHTML = `${attributes[equipmentTypeName][attributeTypeNameData][gearItemAttributeTypeName].value}`;
+      }
+      else {
+        let gearItemAttributeTypeName = gearItem[attributeTypeName].name;
+        let pngName = attributes[equipmentTypeName][attributeTypeNameData][gearItemAttributeTypeName].png;
+        let img = new Image();
+        img.src = `./icons/${pngName}.png`;
+        dropdownSelectorText.innerHTML = "";
+        dropdownSelectorText.appendChild(img);
+        dropdownSelectorText.innerHTML += " " + gearItemAttributeTypeName;
 
-      if (gearItem[attributeTypeName].hasOwnProperty('value')) {
-        dropdownSelectorValue.innerHTML = gearItem[attributeTypeName].value;
+        dropdownSelectorValue.innerHTML = `${attributes[equipmentTypeName][attributeTypeNameData][gearItemAttributeTypeName].value}`;
+
+        if (gearItem[attributeTypeName].hasOwnProperty('value')) {
+          dropdownSelectorValue.innerHTML = gearItem[attributeTypeName].value;
+        }
       }
     }
 

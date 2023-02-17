@@ -21,7 +21,7 @@ export const equipment = {
       'Nightwatcher': {
         rarity: "Named",
         type: "Gila Guard",
-        'minor attribute 1': {
+        'minor attribute named': {
           name: "Scanner Pulse Haste",
           value: 100,
         },
