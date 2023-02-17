@@ -412,6 +412,9 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
       dropdownSelectorText.innerHTML = "";
       dropdownSelectorText.appendChild(img);
       dropdownSelectorText.innerHTML += " " + gearItemAttributeTypeName;
+      if (attributeTypeName == 'minor attribute named') {
+        dropdownSelectorText.classList.add('named');
+      }
 
       dropdownSelectorValue.innerHTML = `${attributes[equipmentTypeName][attributeTypeNameData][gearItemAttributeTypeName].value}`;
 

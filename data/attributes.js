@@ -66,7 +66,7 @@ export const attributes = {
     },
     'minor attribute named': {
       'Scanner Pulse Haste': {
-        png: "minorYellow2",
+        png: "minorYellow",
         value: 100,
       }
     },

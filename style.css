@@ -295,6 +295,10 @@ place-self :: (align justify)
   margin-right: calc(5 * var(--tpx));
 }
 
+.named {
+  color: var(--cNamed);
+}
+
 .gearslot--name {
   display: inline-flex;
   padding: calc(5 * var(--tpx));
