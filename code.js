@@ -416,7 +416,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
     }
 
     // core attribute dropdown selector onclick
-    if (!((gearItem.rarity == 'Exotic') || (gearItem.hasOwnProperty('attributeCore')))) {
+    if (!(gearItem.hasOwnProperty(attributeTypeName))) {
       dropdownSelectorSymbol.innerHTML = "&#9660";
       dropdownSelector.addEventListener('click', () => {
         dropdownOptions.classList.toggle('hide');
@@ -434,23 +434,23 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
     const tplDropdownOptionBase = document.getElementById('template--dropdown--option');
     
     // iterate over attributes armor core
-    for (let attributeCoreName of Object.keys(attributes['attributesArmor']['attributeCore'])) {
+    for (let attributeName of Object.keys(attributes[equipmentTypeName][attributeTypeName])) {
       let clonedDropdownOptionNode = tplDropdownOptionBase.content.cloneNode(true);
       let dropdownOption = clonedDropdownOptionNode.getElementById('dropdown--option-');
-      dropdownOption.id += `-${attributeCoreName}`;
+      dropdownOption.id += `-${gearTypeName}--${attributeTypeName}`;
       tplDropdownOptionParent.appendChild(clonedDropdownOptionNode);
       dropdownOption = document.getElementById(`${dropdownOption.id}`);
 
       let dropdownOptionKey = dropdownOption.getElementsByClassName('dropdown--option--key')[0];
 
-      let pngName = attributes['attributesArmor']['attributeCore'][attributeCoreName].png;
+      let pngName = attributes[equipmentTypeName][attributeTypeName][attributeName].png;
       let img = new Image();
       img.src = `./icons/${pngName}.png`;
       dropdownOptionKey.appendChild(img);
-      dropdownOptionKey.innerHTML += ` ${attributeCoreName}`;
+      dropdownOptionKey.innerHTML += ` ${attributeName}`;
 
       let dropdownOptionValue = dropdownOption.getElementsByClassName('dropdown--option--value')[0];
-      let optionValue = attributes['attributesArmor']['attributeCore'][attributeCoreName].value;
+      let optionValue = attributes[equipmentTypeName][attributeTypeName][attributeName].value;
       dropdownOptionValue.innerHTML = `${optionValue}`;
 
       // core attribute dropdown option onclick
