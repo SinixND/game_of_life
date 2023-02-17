@@ -93,6 +93,7 @@ body {
   margin: calc(2 * var(--bWeight));
   border: var(--bWeightSmall) dotted var(--cbrd);
   position: relative;
+  min-height: var(--heightMin);
 }
 
 .panel--border::before,
@@ -365,6 +366,8 @@ li {
 .dropdown--options {
   position: absolute;
   width: 100%;
+  min-height: var(--heightMin);
+  overflow: auto;
   border-width: 0 var(--bWeightSmall) var(--bWeightSmall) var(--bWeightSmall);
   border-style: solid;
   border-color: var(--ctxt);
