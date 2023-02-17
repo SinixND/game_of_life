@@ -214,40 +214,44 @@ for (let equipmentTypeName in equipment) {
       };
 
       // list entry set (mltpc) boni
-      let entryMltpcAttributes = panelListEntry.getElementsByClassName('entry--mltpc-attributes')[0];
-      entryMltpcAttributes.classList.add('h-line--top');
-      entryMltpcAttributes = entryMltpcAttributes.getElementsByClassName('ol')[0];
-      //let mltpcAttribute1 = panelListEntry.getElementsByClassName('mltpc-attribute-1')[0];
-      //let mltpcAttribute2 = panelListEntry.getElementsByClassName('mltpc-attribute-2')[0];
-      //let mltpcAttribute3 = panelListEntry.getElementsByClassName('mltpc-attribute-3')[0];
-      let mltpcName = gearItem.type;
+      if (gearItem.rarity !== 'Exotic' && gearItem.rarity !== 'Improvised') {
+        let entryMltpcAttributes = panelListEntry.getElementsByClassName('entry--mltpc-attributes')[0];
+        entryMltpcAttributes.classList.add('h-line--top');
+        entryMltpcAttributes = entryMltpcAttributes.getElementsByClassName('ol')[0];
+        //let mltpcAttribute1 = panelListEntry.getElementsByClassName('mltpc-attribute-1')[0];
+        //let mltpcAttribute2 = panelListEntry.getElementsByClassName('mltpc-attribute-2')[0];
+        //let mltpcAttribute3 = panelListEntry.getElementsByClassName('mltpc-attribute-3')[0];
+        let mltpcName = gearItem.type;
 
-      if (gearItem.rarity == "Exotic") {
-      }
-      else if (gearItem.rarity == "GearSet") {
-        //mltpcAttribute1.innerHTML = mltpc.GearSet[mltpcName].attribute1.name + ': ';
-        //mltpcAttribute1.innerHTML += mltpc[mltpcName].attributeCoreValue;
-        //mltpcAttribute2.innerHTML = mltpc[mltpcName].attributeMinor1 + ': ';
-        //mltpcAttribute2.innerHTML += mltpc[mltpcName].attributeMinor1Value;
-        //mltpcAttribute3.innerHTML = mltpc[mltpcName].gearSetTalentName + '<br><br>';
-        //mltpcAttribute3.innerHTML += mltpc[mltpcName].gearSetTalentText;
-      }
-      else if (gearItem.rarity !== "Improvised") { //aka. is a normal brand-item
-        for (let attribute in mltpc.BrandSet[mltpcName]) {
-          entryMltpcAttributes.innerHTML += "<li>" + mltpc.BrandSet[mltpcName][attribute].name + ': ' + mltpc.BrandSet[mltpcName][attribute].value + "</li>";
+        if (gearItem.rarity == "GearSet") {
+          //mltpcAttribute1.innerHTML = mltpc.GearSet[mltpcName].attribute1.name + ': ';
+          //mltpcAttribute1.innerHTML += mltpc[mltpcName].attributeCoreValue;
+          //mltpcAttribute2.innerHTML = mltpc[mltpcName].attributeMinor1 + ': ';
+          //mltpcAttribute2.innerHTML += mltpc[mltpcName].attributeMinor1Value;
+          //mltpcAttribute3.innerHTML = mltpc[mltpcName].gearSetTalentName + '<br><br>';
+          //mltpcAttribute3.innerHTML += mltpc[mltpcName].gearSetTalentText;
         }
-      };
+        else if (gearItem.rarity == 'Improvised' || gearItem.rarity == 'HighEnd') {
+          for (let attribute in mltpc.BrandSet[mltpcName]) {
+            entryMltpcAttributes.innerHTML += "<li>" + mltpc.BrandSet[mltpcName][attribute].name + ': ' + mltpc.BrandSet[mltpcName][attribute].value + "</li>";
+          }
+        };
+      }
 
       // list entry talent
       let entryTalent = panelListEntry.getElementsByClassName('entry--talent-name')[0];
-      if (gearItem.hasOwnProperty('talentName')) {
+      if (gearItem.rarity == "Exotic") {
         entryTalent.classList.add('h-line--top');
-        entryTalent.innerHTML = gearItem.talentName;
+        entryTalent.innerHTML = gearItem['talent'].name;
+        entryTalent.innerHTML = gearItem['talent'].value;
+      }
+      else if (gearItem.hasOwnProperty('talent')) {
+        entryTalent.classList.add('h-line--top');
+        entryTalent.innerHTML = gearItem['talent'].name;
+        panelListEntry.getElementsByClassName('entry--talent-text')[0].innerHTML = attributes[equipmentTypeName]['talent'][gearTypeName][gearItem['talent'].name];
+;
       };
-      if (gearItem.hasOwnProperty('talentText')) {
-        panelListEntry.getElementsByClassName('entry--talent-text')[0].innerHTML = gearItem.talentText;
-      };
-    }
+          }
 
     // CLONE SELECTION LIST ENTRY
     //============================

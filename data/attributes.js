@@ -141,30 +141,20 @@ export const attributes = {
       },
     },
     talent: {
-      normal: {
-        'weapon': {
-        },
-        'backpack': {
-        },
-        'chest': {
-        },
+      'weapon': {
       },
-      named: {
-        'weapon': {
-        },
-        'backpack': {
-        },
-        'chest': {
-        },
+      'backpack': {
+      },
+      'chest': {
       },
     },
-    sets: {
-      GearSet: {
-        "Marksman Rifle Damage": 15,
-      },
-      BrandSet: {
+  },
+  sets: {
+    GearSet: {
+      "Marksman Rifle Damage": 15,
+    },
+    BrandSet: {
 
-      },
     },
   },
 }
