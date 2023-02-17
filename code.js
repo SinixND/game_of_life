@@ -367,90 +367,100 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   };
 
   //============================
-  // GEARSLOT CORE ATTRIBUTE
-  // core attribute dropdown selector
-  const tplDropdownSelectorParent = gearslot;
-  const tplDropdownSelectorBase = document.getElementById('template--dropdown');
-  let clonedDropdownSelectorNode = tplDropdownSelectorBase.content.cloneNode(true);
-  let dropdownSelector = clonedDropdownSelectorNode.getElementById('dropdown--selector-');
-  dropdownSelector.id += "-core-attribute";
-  let dropdownOptions = clonedDropdownSelectorNode.getElementById('dropdown--options-');
-  dropdownOptions.id += "-core-attribute";
-  tplDropdownSelectorParent.appendChild(clonedDropdownSelectorNode);
-  dropdownSelector = document.getElementById(`${dropdownSelector.id}`);
-  dropdownOptions = document.getElementsByClassName('dropdown--options')[0];
+  // GEARSLOT ATTRIBUTES
+  let attributeTypes = []
+  attributeTypes.push('core');
+  attributeTypes.push('minor1');
+  if (gearItem.rarity !== 'GearSet') {attributeTypes.push('minor2')};
+  if (gearTypeName == 'mask' || gearTypeName == 'backpack' || gearTypeName == 'chest' || gearItem.type == 'Improvised') {attributeTypes.push('mod')};
+  if (gearItem.rarity == 'Exotic' || gearTypeName == 'backpack' || gearItemName == 'chest') {attributeTypes.push('talent')}
+  console.log(attributeTypes)
+  //for (let attributeType in attributeTypes) {
+    //for (let i = 0; i < 2; i++)
+    // core attribute dropdown selector
+    const tplDropdownSelectorParent = gearslot;
+    const tplDropdownSelectorBase = document.getElementById('template--dropdown');
+    let clonedDropdownSelectorNode = tplDropdownSelectorBase.content.cloneNode(true);
+    let dropdownSelector = clonedDropdownSelectorNode.getElementById('dropdown--selector-');
+    dropdownSelector.id += '-core--attribute';//`-${attributeType}`;
+    let dropdownOptions = clonedDropdownSelectorNode.getElementById('dropdown--options-');
+    dropdownOptions.id += "-core-attribute";
+    tplDropdownSelectorParent.appendChild(clonedDropdownSelectorNode);
+    dropdownSelector = document.getElementById(`${dropdownSelector.id}`);
+    dropdownOptions = document.getElementsByClassName('dropdown--options')[0];
 
-  dropdownSelector.classList.add('h-line--bottom');
+    dropdownSelector.classList.add('h-line--bottom');
 
-  let dropdownSelectorText = dropdownSelector.getElementsByClassName('dropdown--selector--text')[0];
-  let dropdownSelectorValue = dropdownSelector.getElementsByClassName('dropdown--selector--value')[0];
-  let dropdownSelectorSymbol = dropdownSelector.getElementsByClassName('symbol')[0];
+    let dropdownSelectorText = dropdownSelector.getElementsByClassName('dropdown--selector--text')[0];
+    let dropdownSelectorValue = dropdownSelector.getElementsByClassName('dropdown--selector--value')[0];
+    let dropdownSelectorSymbol = dropdownSelector.getElementsByClassName('symbol')[0];
 
-  // core attribute dropdown selector default
-  dropdownSelectorText.innerHTML = "Select Core Attribute";
+    // core attribute dropdown selector default
+    dropdownSelectorText.innerHTML = "Select Core Attribute";
 
-  if (gearItem.hasOwnProperty('attributeCore')) {
-    let pngName = attributes['attributesArmor']['attributeCore'][`${gearItem.attributeCore}`].png;
-    let img = new Image();
-    img.src = `./icons/${pngName}.png`;
-    dropdownSelectorText.innerHTML = "";
-    dropdownSelectorText.appendChild(img);
-    dropdownSelectorText.innerHTML += " " + gearItem.attributeCore;
+    if (gearItem.hasOwnProperty('attributeCore')) {
+      let pngName = attributes['attributesArmor']['attributeCore'][`${gearItem.attributeCore}`].png;
+      let img = new Image();
+      img.src = `./icons/${pngName}.png`;
+      dropdownSelectorText.innerHTML = "";
+      dropdownSelectorText.appendChild(img);
+      dropdownSelectorText.innerHTML += " " + gearItem.attributeCore;
 
-    dropdownSelectorValue.innerHTML = attributes['attributesArmor']['attributeCore'][`${gearItem.attributeCore}`].value;
-  }
+      dropdownSelectorValue.innerHTML = attributes['attributesArmor']['attributeCore'][`${gearItem.attributeCore}`].value;
+    }
 
-  if (gearItem.hasOwnProperty('attributeCoreValue')) {
-    dropdownSelectorValue.innerHTML = gearItem.attributeCoreValue;
-  }
+    if (gearItem.hasOwnProperty('attributeCoreValue')) {
+      dropdownSelectorValue.innerHTML = gearItem.attributeCoreValue;
+    }
 
-  // core attribute dropdown selector onclick
-  if (!((gearItem.rarity == 'Exotic') || (gearItem.hasOwnProperty('attributeCore')))) {
-    dropdownSelectorSymbol.innerHTML = "&#9660";
-    dropdownSelector.addEventListener('click', () => {
-      dropdownOptions.classList.toggle('hide');
-      if (dropdownOptions.classList.contains('hide')) {
-        dropdownSelectorSymbol.innerHTML = "&#9660";
-      }
-      else {
-        dropdownSelectorSymbol.innerHTML = "&#9661";
-      }
-    })
-  }
-
-  // core attribute dropdown options
-  const tplDropdownOptionParent = dropdownOptions;
-  const tplDropdownOptionBase = document.getElementById('template--dropdown--option');
-  
-  // iterate over attributes armor core
-  for (let attributeCoreName of Object.keys(attributes['attributesArmor']['attributeCore'])) {
-    let clonedDropdownOptionNode = tplDropdownOptionBase.content.cloneNode(true);
-    let dropdownOption = clonedDropdownOptionNode.getElementById('dropdown--option-');
-    dropdownOption.id += `-${attributeCoreName}`;
-    tplDropdownOptionParent.appendChild(clonedDropdownOptionNode);
-    dropdownOption = document.getElementById(`${dropdownOption.id}`);
-
-    let dropdownOptionKey = dropdownOption.getElementsByClassName('dropdown--option--key')[0];
-
-    let pngName = attributes['attributesArmor']['attributeCore'][`${attributeCoreName}`].png;
-    let img = new Image();
-    img.src = `./icons/${pngName}.png`;
-    dropdownOptionKey.appendChild(img);
-    dropdownOptionKey.innerHTML += ` ${attributeCoreName}`;
-
-    let dropdownOptionValue = dropdownOption.getElementsByClassName('dropdown--option--value')[0];
-    let optionValue = attributes['attributesArmor']['attributeCore'][`${attributeCoreName}`].value;
-    dropdownOptionValue.innerHTML = `${optionValue}`;
-
-    // core attribute dropdown option onclick
-    dropdownOption.addEventListener('click', () => {
-      dropdownSelectorText.innerHTML = dropdownOptionKey.innerHTML;
-      dropdownSelectorValue.innerHTML = dropdownOptionValue.innerHTML;
+    // core attribute dropdown selector onclick
+    if (!((gearItem.rarity == 'Exotic') || (gearItem.hasOwnProperty('attributeCore')))) {
       dropdownSelectorSymbol.innerHTML = "&#9660";
-      dropdownOptions.classList.add('hide');
-    })
-  }
-  // GEARSLOT CORE ATTRIBUTE
+      dropdownSelector.addEventListener('click', () => {
+        dropdownOptions.classList.toggle('hide');
+        if (dropdownOptions.classList.contains('hide')) {
+          dropdownSelectorSymbol.innerHTML = "&#9660";
+        }
+        else {
+          dropdownSelectorSymbol.innerHTML = "&#9661";
+        }
+      })
+    }
+
+    // core attribute dropdown options
+    const tplDropdownOptionParent = dropdownOptions;
+    const tplDropdownOptionBase = document.getElementById('template--dropdown--option');
+    
+    // iterate over attributes armor core
+    for (let attributeCoreName of Object.keys(attributes['attributesArmor']['attributeCore'])) {
+      let clonedDropdownOptionNode = tplDropdownOptionBase.content.cloneNode(true);
+      let dropdownOption = clonedDropdownOptionNode.getElementById('dropdown--option-');
+      dropdownOption.id += `-${attributeCoreName}`;
+      tplDropdownOptionParent.appendChild(clonedDropdownOptionNode);
+      dropdownOption = document.getElementById(`${dropdownOption.id}`);
+
+      let dropdownOptionKey = dropdownOption.getElementsByClassName('dropdown--option--key')[0];
+
+      let pngName = attributes['attributesArmor']['attributeCore'][`${attributeCoreName}`].png;
+      let img = new Image();
+      img.src = `./icons/${pngName}.png`;
+      dropdownOptionKey.appendChild(img);
+      dropdownOptionKey.innerHTML += ` ${attributeCoreName}`;
+
+      let dropdownOptionValue = dropdownOption.getElementsByClassName('dropdown--option--value')[0];
+      let optionValue = attributes['attributesArmor']['attributeCore'][`${attributeCoreName}`].value;
+      dropdownOptionValue.innerHTML = `${optionValue}`;
+
+      // core attribute dropdown option onclick
+      dropdownOption.addEventListener('click', () => {
+        dropdownSelectorText.innerHTML = dropdownOptionKey.innerHTML;
+        dropdownSelectorValue.innerHTML = dropdownOptionValue.innerHTML;
+        dropdownSelectorSymbol.innerHTML = "&#9660";
+        dropdownOptions.classList.add('hide');
+      })
+    }
+  //}
+  // GEARSLOT ATTRIBUTES
   //============================
 
   // CLONE GEAR SLOT

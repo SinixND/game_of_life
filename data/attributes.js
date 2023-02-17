@@ -1,6 +1,6 @@
 export const attributes = {
-  attributesArmor: {
-    attributeCore: {
+  armor: {
+    core: {
       "Weapon Damage": {
         png: "coreRed",
         value: 15,
@@ -14,7 +14,7 @@ export const attributes = {
         value: 1,
       },
     },
-    attributeMinor: {
+    minor: {
       "Critical Hit Chance": {
         png: "minorRed",
         value: 6,
@@ -65,7 +65,7 @@ export const attributes = {
       },
     },
   },
-  "modsArmor": {
+  mods: {
     "Critical Hit Chance": {
       png: "modRed",
       value: 6,
@@ -135,7 +135,7 @@ export const attributes = {
       value: 12,
     },
   },
-  "talentsArmor": {
+  talents: {
     "backpack": {
     },
     "chest": {
