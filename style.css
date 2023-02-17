@@ -365,7 +365,7 @@ li {
 .dropdown--options {
   position: absolute;
   width: 100%;
-  min-height: var(--heightMin);
+  max-height: var(--heightMin);
   overflow: auto;
   border-width: 0 var(--bWeightSmall) var(--bWeightSmall) var(--bWeightSmall);
   border-style: solid;
