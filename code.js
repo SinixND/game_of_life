@@ -401,7 +401,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
     let dropdownSelectorSymbol = dropdownSelector.getElementsByClassName('symbol')[0];
 
     // core attribute dropdown selector default
-    dropdownSelectorText.innerHTML = `Select ${attributeTypeNameData} attribute`;
+    dropdownSelectorText.innerHTML = `Select ${attributeTypeNameData}`;
 
     if (gearItem.hasOwnProperty(attributeTypeName)) {
       let gearItemAttributeTypeName = gearItem[attributeTypeName].name;
