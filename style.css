@@ -266,6 +266,10 @@ place-self :: (align justify)
   overflow: auto;
 }
 
+#panel--menubar {
+  min-height: auto;
+}
+
 #popup--frame-main {
   position: fixed;
   top: 0;
