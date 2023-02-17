@@ -406,12 +406,18 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
 
     if (gearItem.hasOwnProperty(attributeTypeName)) {
       let gearItemAttributeTypeName = gearItem[attributeTypeName].name;
-      let pngName = attributes[equipmentTypeName][attributeTypeNameData][gearItemAttributeTypeName].png;
-      let img = new Image();
-      img.src = `./icons/${pngName}.png`;
       dropdownSelectorText.innerHTML = "";
-      dropdownSelectorText.appendChild(img);
-      dropdownSelectorText.innerHTML += " " + gearItemAttributeTypeName;
+      if (attributeTypeName !== 'talent') {
+        let pngName = attributes[equipmentTypeName][attributeTypeNameData][gearItemAttributeTypeName].png;
+        let img = new Image();
+        img.src = `./icons/${pngName}.png`;
+        dropdownSelectorText.appendChild(img);
+        dropdownSelectorText.innerHTML += " " + gearItemAttributeTypeName;
+      }
+      else {
+        dropdownSelectorText.innerHTML = gearItemAttributeTypeName;
+      }
+
       if (attributeTypeName == 'minor attribute named') {
         dropdownSelectorText.classList.add('named');
       }
