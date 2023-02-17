@@ -6,19 +6,15 @@ export const equipment = {
         type: "Exotic",
         core: {
           name: "Skill Tier",
-          value: 1,
         },
         minor1: {
           name: "Status Effects",
-          value: 10,
         },
         minor2: {
           name: "Hazard Protection",
-          value: 10,
         },
         talent: {
           name: "Toxic Delivery",
-          value: "Status effects also apply a damage over time debuff for 10s.\r\n Total damage dealt is equal to 50% of your concussion grenade damage and increased by your status effect attributes.",
         },
       },
       "Nightwatcher": {

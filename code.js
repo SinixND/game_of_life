@@ -397,24 +397,25 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
     let dropdownSelectorSymbol = dropdownSelector.getElementsByClassName('symbol')[0];
 
     // core attribute dropdown selector default
-    dropdownSelectorText.innerHTML = "Select Core Attribute";
+    dropdownSelectorText.innerHTML = `Select ${attributeTypeName} attribute`;
 
+    console.log('gearItem.hasOwnProperty():' + gearItem.hasOwnProperty(`${attributeTypeName}`)) 
     if (gearItem.hasOwnProperty(`${attributeTypeName}`)) {
-      let pngName = gearItem[`${attributeTypeName}`].name;
-      console.log(pngName)
-      pngName = attributes[equipmentTypeName][attributeTypeName][pngName].png;
-      console.log(pngName)
+      let gearItemAttributeTypeName = gearItem[`${attributeTypeName}`].name;
+      pngName = attributes[equipmentTypeName][attributeTypeName][gearItemAttributeTypeName].png;
       let img = new Image();
       img.src = `./icons/${pngName}.png`;
       dropdownSelectorText.innerHTML = "";
       dropdownSelectorText.appendChild(img);
-      dropdownSelectorText.innerHTML += " " + gearItem.attributeCore;
+      dropdownSelectorText.innerHTML += " " + gearItemAttributeTypeName;
 
-      dropdownSelectorValue.innerHTML = attributes['attributesArmor']['attributeCore'][`${gearItem.attributeCore}`].value;
+    }
+      
+      dropdownSelectorValue.innerHTML = `${attributes[equipmentTypeName][attributeTypeName][gearItemAttributeTypeName].value}`;
     }
 
-    if (gearItem.hasOwnProperty('attributeCoreValue')) {
-      dropdownSelectorValue.innerHTML = gearItem.attributeCoreValue;
+    if (gearItem.hasOwnProperty('`${attributeTypeName')) {
+      dropdownSelectorValue.innerHTML = gearItem[`${attributeTypeName}`].value;
     }
 
     // core attribute dropdown selector onclick

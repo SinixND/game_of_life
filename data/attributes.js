@@ -136,9 +136,21 @@ export const attributes = {
     },
   },
   talent: {
-    "backpack": {
+    normal: {
+      "weapon": {
+      },
+      "backpack": {
+      },
+      "chest": {
+      },
     },
-    "chest": {
+    named: {
+      "weapon": {
+      },
+      "backpack": {
+      },
+      "chest": {
+      },
     },
   },
 }
