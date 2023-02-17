@@ -400,8 +400,9 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
     dropdownSelectorText.innerHTML = "Select Core Attribute";
 
     if (gearItem.hasOwnProperty(`${attributeTypeName}`)) {
-      let pngName = `gearItem.${attributeTypeName}`
-      pngName = `${attributes[equipmentTypeName][attributeTypeName][`${pngName}`]}.png`;
+      let pngName = gearItem[`${attributeTypeName}`].name;
+      console.log(pngName)
+      pngName = attributes[equipmentTypeName][attributeTypeName][pngName].png;
       console.log(pngName)
       let img = new Image();
       img.src = `./icons/${pngName}.png`;
