@@ -93,7 +93,6 @@ body {
   margin: calc(2 * var(--bWeight));
   border: var(--bWeightSmall) dotted var(--cbrd);
   position: relative;
-  min-height: var(--heightMin);
 }
 
 .panel--border::before,
@@ -264,10 +263,6 @@ place-self :: (align justify)
   bottom: 0;
   left: 0;
   overflow: auto;
-}
-
-#panel--menubar {
-  min-height: auto;
 }
 
 #popup--frame-main {
