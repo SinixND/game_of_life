@@ -64,6 +64,12 @@ export const attributes = {
         value: 10,
       },
     },
+    'minor attribute named': {
+      'Scanner Pulse Haste': {
+        png: "minorYellow2",
+        value: 100,
+      }
+    },
     mod: {
       'Critical Hit Chance': {
         png: "modRed",
