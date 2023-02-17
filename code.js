@@ -393,7 +393,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
     dropdownOptions.id += `-${gearTypeName}--${attributeTypeName}`;
     tplDropdownSelectorParent.appendChild(clonedDropdownSelectorNode);
     dropdownSelector = document.getElementById(`${dropdownSelector.id}`);
-    dropdownOptions = document.getElementsByClassName('dropdown--options')[0];
+    dropdownOptions = dropdownOptions.getElementsByClassName('dropdown--options')[0];
 
     dropdownSelector.classList.add('h-line--bottom');
 
