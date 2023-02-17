@@ -401,7 +401,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
     let dropdownSelectorSymbol = dropdownSelector.getElementsByClassName('symbol')[0];
 
     // core attribute dropdown selector default
-    dropdownSelectorText.innerHTML = `Select ${attributeTypeName} attribute`;
+    dropdownSelectorText.innerHTML = `Select ${attributeTypeNameData} attribute`;
 
     if (gearItem.hasOwnProperty(attributeTypeName)) {
       let gearItemAttributeTypeName = gearItem[attributeTypeName].name;
@@ -415,7 +415,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
       dropdownSelectorValue.innerHTML = `${attributes[equipmentTypeName][attributeTypeNameData][gearItemAttributeTypeName].value}`;
     }
 
-    if (gearItem[attributeTypeNameData].hasOwnProperty('value')) {
+    if (gearItem[attributeTypeName].hasOwnProperty('value')) {
       dropdownSelectorValue.innerHTML = gearItem[attributeTypeNameData].value;
     }
 
