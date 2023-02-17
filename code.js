@@ -401,7 +401,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
 
     if (gearItem.hasOwnProperty(`${attributeTypeName}`)) {
       let pngName = `gearItem.${attributeTypeName}`
-      pngName = attributes[equipmentTypeName][attributeTypeName][`${pngName}`].png;
+      pngName = `${attributes[equipmentTypeName][attributeTypeName][`${pngName}`]}.png`;
       console.log(pngName)
       let img = new Image();
       img.src = `./icons/${pngName}.png`;
