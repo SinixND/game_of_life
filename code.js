@@ -399,7 +399,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
     // core attribute dropdown selector default
     dropdownSelectorText.innerHTML = `Select ${attributeTypeName} attribute`;
 
-    console.log('gearItem.hasOwnProperty():' + gearItem.hasOwnProperty(`${attributeTypeName}`)) 
+    console.log('gearItem.hasOwnProperty():' + gearItem.hasOwnProperty(attributeTypeName)) 
     if (gearItem.hasOwnProperty(`${attributeTypeName}`)) {
       let gearItemAttributeTypeName = gearItem[`${attributeTypeName}`].name;
       pngName = attributes[equipmentTypeName][attributeTypeName][gearItemAttributeTypeName].png;
@@ -411,8 +411,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
 
     }
       
-      dropdownSelectorValue.innerHTML = `${attributes[equipmentTypeName][attributeTypeName][gearItemAttributeTypeName].value}`;
-    }
+    dropdownSelectorValue.innerHTML = `${attributes[equipmentTypeName][attributeTypeName][gearItemAttributeTypeName].value}`;
 
     if (gearItem.hasOwnProperty('`${attributeTypeName')) {
       dropdownSelectorValue.innerHTML = gearItem[`${attributeTypeName}`].value;
