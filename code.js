@@ -378,6 +378,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   for (let attributeTypeName of attributeTypeNames) {
     if (attributeTypeName == 'minor' && document.getElementById(`dropdown--selector--${gearTypeName}--minor1`) == null) {attributeTypeName = "minor1"}
     else if (attributeTypeName == 'minor' && document.getElementById(`dropdown--selector--${gearTypeName}--minor1`) !== null) {attributeTypeName = "minor2"}
+    console.log(`attributeTypeName: ${attributeTypeName}`)
     // core attribute dropdown selector
     const tplDropdownSelectorParent = gearslot;
     const tplDropdownSelectorBase = document.getElementById('template--dropdown');
@@ -401,7 +402,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
 
     if (gearItem.hasOwnProperty(attributeTypeName)) {
       let gearItemAttributeTypeName = gearItem[attributeTypeName].name;
-      let pngName = attributes[`${equipmentTypeName}`][`${attributeTypeName}`][`${gearItemAttributeTypeName}`].png;
+      let pngName = attributes[equipmentTypeName][attributeTypeName][gearItemAttributeTypeName].png;
       let img = new Image();
       img.src = `./icons/${pngName}.png`;
       dropdownSelectorText.innerHTML = "";
