@@ -158,5 +158,13 @@ export const attributes = {
         },
       },
     },
+    sets: {
+      GearSet: {
+        "Marksman Rifle Damage": 15,
+      },
+      BrandSet: {
+
+      },
+    },
   },
 }
