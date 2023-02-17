@@ -404,7 +404,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
     dropdownSelectorText.innerHTML = `Select ${attributeTypeNameData} attribute`;
 
     if (gearItem.hasOwnProperty(attributeTypeName)) {
-      let gearItemAttributeTypeName = gearItem[attributeTypeNameData].name;
+      let gearItemAttributeTypeName = gearItem[attributeTypeName].name;
       let pngName = attributes[equipmentTypeName][attributeTypeNameData][gearItemAttributeTypeName].png;
       let img = new Image();
       img.src = `./icons/${pngName}.png`;
@@ -415,7 +415,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
       dropdownSelectorValue.innerHTML = `${attributes[equipmentTypeName][attributeTypeNameData][gearItemAttributeTypeName].value}`;
 
       if (gearItem[attributeTypeName].hasOwnProperty('value')) {
-        dropdownSelectorValue.innerHTML = gearItem[attributeTypeNameData].value;
+        dropdownSelectorValue.innerHTML = gearItem[attributeTypeName].value;
       }
     }
 
