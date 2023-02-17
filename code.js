@@ -369,9 +369,9 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   //============================
   // GEARSLOT ATTRIBUTES
   let attributeTypeNames = []
-  attributeTypeNames.push('core');
-  attributeTypeNames.push('minor');
-  if (gearItem.rarity !== 'GearSet') {attributeTypeNames.push('minor')};
+  attributeTypeNames.push('core attribute');
+  attributeTypeNames.push('minor attribute');
+  if (gearItem.rarity !== 'GearSet') {attributeTypeNames.push('minor attribute')};
   if (gearTypeName == 'mask' || gearTypeName == 'backpack' || gearTypeName == 'chest' || gearItem.type == 'Improvised') {attributeTypeNames.push('mod')};
   if (gearItem.rarity == 'Exotic' || gearTypeName == 'backpack' || gearItemName == 'chest') {attributeTypeNames.push('talent')}
 
