@@ -370,21 +370,22 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   // GEARSLOT ATTRIBUTES
   let attributeTypes = []
   attributeTypes.push('core');
-  attributeTypes.push('minor1');
-  if (gearItem.rarity !== 'GearSet') {attributeTypes.push('minor2')};
+  attributeTypes.push('minor');
+  if (gearItem.rarity !== 'GearSet') {attributeTypes.push('minor')};
   if (gearTypeName == 'mask' || gearTypeName == 'backpack' || gearTypeName == 'chest' || gearItem.type == 'Improvised') {attributeTypes.push('mod')};
   if (gearItem.rarity == 'Exotic' || gearTypeName == 'backpack' || gearItemName == 'chest') {attributeTypes.push('talent')}
-  console.log(attributeTypes)
-  //for (let attributeType in attributeTypes) {
-    //for (let i = 0; i < 2; i++)
+
+  for (let attributeType of attributeTypes) {
+    if (attributeType == 'minor' && document.getElementById(`dropdown--selector--${gearTypeName}--minor1`) == null) {attributeType = "minor1"}
+    else if (attributeType == 'minor' && document.getElementById(`dropdown--selector--${gearTypeName}--minor1`) !== null) {attributeType = "minor2"}
     // core attribute dropdown selector
     const tplDropdownSelectorParent = gearslot;
     const tplDropdownSelectorBase = document.getElementById('template--dropdown');
     let clonedDropdownSelectorNode = tplDropdownSelectorBase.content.cloneNode(true);
     let dropdownSelector = clonedDropdownSelectorNode.getElementById('dropdown--selector-');
-    dropdownSelector.id += '-core--attribute';//`-${attributeType}`;
+    dropdownSelector.id += `-${gearTypeName}--${attributeType}`;
     let dropdownOptions = clonedDropdownSelectorNode.getElementById('dropdown--options-');
-    dropdownOptions.id += "-core-attribute";
+    dropdownOptions.id += `-${gearTypeName}--${attributeType}`;
     tplDropdownSelectorParent.appendChild(clonedDropdownSelectorNode);
     dropdownSelector = document.getElementById(`${dropdownSelector.id}`);
     dropdownOptions = document.getElementsByClassName('dropdown--options')[0];
@@ -398,8 +399,10 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
     // core attribute dropdown selector default
     dropdownSelectorText.innerHTML = "Select Core Attribute";
 
-    if (gearItem.hasOwnProperty('attributeCore')) {
-      let pngName = attributes['attributesArmor']['attributeCore'][`${gearItem.attributeCore}`].png;
+    if (gearItem.hasOwnProperty(`${attributeType}`)) {
+      let pngName = `gearItem.${attributeType}`
+      pngName = attributes[`${equipmentTypeName}`][`${attributeType}`][`${pngName}`].png;
+      console.log(pngName)
       let img = new Image();
       img.src = `./icons/${pngName}.png`;
       dropdownSelectorText.innerHTML = "";
