@@ -377,8 +377,8 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
 
   for (let attributeTypeName of attributeTypeNames) {
     let attributeTypeNameData = attributeTypeName; //to choose from attributes-object
-    if (attributeTypeName == 'minor' && document.getElementById(`dropdown--selector--${gearTypeName}--minor1`) == null) {attributeTypeNameData = attributeTypeName; attributeTypeName = "minor1"}
-    else if (attributeTypeName == 'minor' && document.getElementById(`dropdown--selector--${gearTypeName}--minor1`) !== null) {attributeTypeNameData = attributeTypeName; attributeTypeName = "minor2"}
+    if (attributeTypeName == 'minor attribute' && document.getElementById(`dropdown--selector--${gearTypeName}--${attributeTypeNameData} 1`) == null) {attributeTypeNameData = attributeTypeName; attributeTypeName = "minor attribute 1"}
+    else if (attributeTypeName == 'minor attribute' && document.getElementById(`dropdown--selector--${gearTypeName}--${attributeTypeName} 1`) !== null) {attributeTypeNameData = attributeTypeName; attributeTypeName = "minor attribute 2"}
 
     console.log(`attributeTypeName: ${attributeTypeName}; attributeTypeNameData: ${attributeTypeNameData}`)
 

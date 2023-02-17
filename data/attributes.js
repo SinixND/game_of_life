@@ -1,155 +1,155 @@
 export const attributes = {
   armor: {
-    core: {
-      "Weapon Damage": {
+    'core attribute': {
+      'Weapon Damage': {
         png: "coreRed",
         value: 15,
       },
-      "Armor": {
+      'Armor': {
         png: "coreBlue",
         value: 170001,
       },
-      "Skill Tier": {
+      'Skill Tier': {
         png: "coreYellow",
         value: 1,
       },
     },
-    minor: {
-      "Critical Hit Chance": {
+    'minor attribute': {
+      'Critical Hit Chance': {
         png: "minorRed",
         value: 6,
       },
-      "Critical Hit Damage": {
+      'Critical Hit Damage': {
         png: "minorRed",
         value: 12,
       },
-      "Headshot Damage": {
+      'Headshot Damage': {
         png: "minorRed",
         value: 10,
       },
-      "Weapon Handling": {
+      'Weapon Handling': {
         png: "minorRed",
         value: 8,
       },
-      "Armor Regeneration": {
+      'Armor Regeneration': {
         png: "minorBlue",
         value: 4925,
       },
-      "Explosive Resistance": {
+      'Explosive Resistance': {
         png: "minorBlue",
         value: 10,
       },
-      "Hazard Protection": {
+      'Hazard Protection': {
         png: "minorBlue",
         value: 10,
       },
-      "Health": {
+      'Health': {
         png: "minorBlue",
         value: 18935,
       },
-      "Repair Skills": {
+      'Repair Skills': {
         png: "minorYellow",
         value: 20,
       },
-      "Skill Damage": {
+      'Skill Damage': {
         png: "minorYellow",
         value: 10,
       },
-      "Skill Haste": {
+      'Skill Haste': {
         png: "minorYellow",
         value: 12,
       },
-      "Status Effects": {
+      'Status Effects': {
         png: "minorYellow",
         value: 10,
       },
     },
   },
   mod: {
-    "Critical Hit Chance": {
+    'Critical Hit Chance': {
       png: "modRed",
       value: 6,
     },
-    "Critical Hit Damage": {
+    'Critical Hit Damage': {
       png: "modRed",
       value: 12,
     },
-    "Headshot Damage": {
+    'Headshot Damage': {
       png: "modRed",
       value: 10,
     },
-    "Armor on kill": {
+    'Armor on kill': {
       png: "modBlue",
       value: 18935,
     },
-    "Bleed Resistance": {
+    'Bleed Resistance': {
       png: "modBlue",
       value: 10,
     },
-    "Blind/Deaf Resistance": {
+    'Blind/Deaf Resistance': {
       png: "modBlue",
       value: 10,
     },
-    "Burn Resistance": {
+    'Burn Resistance': {
       png: "modBlue",
       value: 10,
     },
-    "Disorient Resistance": {
+    'Disorient Resistance': {
       png: "modBlue",
       value: 10,
     },
-    "Disrupt Resistance": {
+    'Disrupt Resistance': {
       png: "modBlue",
       value: 10,
     },
-    "Ensnare Resistance": {
+    'Ensnare Resistance': {
       png: "modBlue",
       value: 10,
     },
-    "Incomming Repairs": {
+    'Incomming Repairs': {
       png: "modBlue",
       value: 20,
     },
-    "Pulse Resistance": {
+    'Pulse Resistance': {
       png: "modBlue",
       value: 10,
     },
-    "Protection from Elites": {
+    'Protection from Elites': {
       png: "modBlue",
       value: 13,
     },
-    "Shock Resistance": {
+    'Shock Resistance': {
       png: "modBlue",
       value: 10,
     },
-    "Repair Skills": {
+    'Repair Skills': {
       png: "modYellow",
       value: 20,
     },
-    "Skill Duration": {
+    'Skill Duration': {
       png: "modYellow",
       value: 10,
     },
-    "Skill Haste": {
+    'Skill Haste': {
       png: "modYellow",
       value: 12,
     },
   },
   talent: {
     normal: {
-      "weapon": {
+      'weapon': {
       },
-      "backpack": {
+      'backpack': {
       },
-      "chest": {
+      'chest': {
       },
     },
     named: {
-      "weapon": {
+      'weapon': {
       },
-      "backpack": {
+      'backpack': {
       },
-      "chest": {
+      'chest': {
       },
     },
   },
