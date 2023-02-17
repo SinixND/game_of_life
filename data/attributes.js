@@ -65,7 +65,7 @@ export const attributes = {
       },
     },
   },
-  mods: {
+  mod: {
     "Critical Hit Chance": {
       png: "modRed",
       value: 6,
@@ -135,7 +135,7 @@ export const attributes = {
       value: 12,
     },
   },
-  talents: {
+  talent: {
     "backpack": {
     },
     "chest": {
