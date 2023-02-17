@@ -388,9 +388,9 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
     const tplDropdownSelectorBase = document.getElementById('template--dropdown');
     let clonedDropdownSelectorNode = tplDropdownSelectorBase.content.cloneNode(true);
     let dropdownSelector = clonedDropdownSelectorNode.getElementById('dropdown--selector-');
-    dropdownSelector.id += `-${gearTypeName}--${attributeTypeNameData}`;
+    dropdownSelector.id += `-${gearTypeName}--${attributeTypeName}`;
     let dropdownOptions = clonedDropdownSelectorNode.getElementById('dropdown--options-');
-    dropdownOptions.id += `-${gearTypeName}--${attributeTypeNameData}`;
+    dropdownOptions.id += `-${gearTypeName}--${attributeTypeName}`;
     tplDropdownSelectorParent.appendChild(clonedDropdownSelectorNode);
     dropdownSelector = document.getElementById(`${dropdownSelector.id}`);
     dropdownOptions = dropdownOptions.getElementsByClassName('dropdown--options')[0];
@@ -446,7 +446,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
       console.log(`attributeName: ${attributeName}`)
       let clonedDropdownOptionNode = tplDropdownOptionBase.content.cloneNode(true);
       let dropdownOption = clonedDropdownOptionNode.getElementById('dropdown--option-');
-      dropdownOption.id += `-${gearTypeName}--${attributeTypeNameData}--${attributeName}`;
+      dropdownOption.id += `-${gearTypeName}--${attributeTypeName}--${attributeName}`;
       tplDropdownOptionParent.appendChild(clonedDropdownOptionNode);
       dropdownOption = document.getElementById(`${dropdownOption.id}`);
 
