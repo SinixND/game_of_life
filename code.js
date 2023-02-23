@@ -224,6 +224,9 @@ for (let equipmentTypeName in equipment) {
         let mltpcName = gearItem.type;
 
         if (gearItem.rarity == "GearSet") {
+          for (let attribute in mltpc.GearSet[mltpcName]) {
+            entryMltpcAttributes.innerHTML += "<li>" + mltpc.GearSet[mltpcName][attribute].name + ': ' + mltpc.GearSet[mltpcName][attribute].value + "</li>";
+          }
           //mltpcAttribute1.innerHTML = mltpc.GearSet[mltpcName].attribute1.name + ': ';
           //mltpcAttribute1.innerHTML += mltpc[mltpcName].attributeCoreValue;
           //mltpcAttribute2.innerHTML = mltpc[mltpcName].attributeMinor1 + ': ';
@@ -231,7 +234,7 @@ for (let equipmentTypeName in equipment) {
           //mltpcAttribute3.innerHTML = mltpc[mltpcName].gearSetTalentName + '<br><br>';
           //mltpcAttribute3.innerHTML += mltpc[mltpcName].gearSetTalentText;
         }
-        else if (gearItem.rarity == 'Improvised' || gearItem.rarity == 'HighEnd') {
+        else if (gearItem.rarity !== 'Improvised' && (gearItem.rarity == 'HighEnd' || gearItem.rarity == 'Named')) {
           for (let attribute in mltpc.BrandSet[mltpcName]) {
             entryMltpcAttributes.innerHTML += "<li>" + mltpc.BrandSet[mltpcName][attribute].name + ': ' + mltpc.BrandSet[mltpcName][attribute].value + "</li>";
           }
@@ -239,15 +242,15 @@ for (let equipmentTypeName in equipment) {
       }
 
       // list entry talent
-      let entryTalent = panelListEntry.getElementsByClassName('entry--talent-name')[0];
+      let entryTalentName = panelListEntry.getElementsByClassName('entry--talent-name')[0];
       if (gearItem.rarity == "Exotic") {
-        entryTalent.classList.add('h-line--top');
-        entryTalent.innerHTML = gearItem['talent'].name;
-        entryTalent.innerHTML = gearItem['talent'].value;
+        entryTalentName.classList.add('h-line--top');
+        entryTalentName.innerHTML = gearItem['talent'].name;
+        panelListEntry.getElementsByClassName('entry--talent-text')[0].innerHTML = gearItem['talent'].value;
       }
       else if (gearItem.hasOwnProperty('talent')) {
-        entryTalent.classList.add('h-line--top');
-        entryTalent.innerHTML = gearItem['talent'].name;
+        entryTalentName.classList.add('h-line--top');
+        entryTalentName.innerHTML = gearItem['talent'].name;
         panelListEntry.getElementsByClassName('entry--talent-text')[0].innerHTML = attributes[equipmentTypeName]['talent'][gearTypeName][gearItem['talent'].name];
 ;
       };
