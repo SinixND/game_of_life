@@ -362,19 +362,31 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   //============================
   // GEARSLOT ATTRIBUTES
   let attributeTypeNames = []
-  attributeTypeNames.push('core attribute');
-  if (gearItem.hasOwnProperty('minor attribute named')) {attributeTypeNames.push('minor attribute named')} else {attributeTypeNames.push('minor attribute')};
-  if (gearItem.rarity !== 'GearSet') {attributeTypeNames.push('minor attribute')};
+  attributeTypeNames.push('core');
+
+  // named attribute
+  // TODO: named has "minor", Exotic has "minor 1" and "minor 2"
+  if (gearItem.hasOwnProperty('minor named')) {attributeTypeNames.push('minor named')} else {attributeTypeNames.push('minor')};
+
+  // 2nd minor if not gearset
+  if (gearItem.rarity !== 'GearSet') {attributeTypeNames.push('minor')};
+
+  // mod when mask, backpack, chest or improvised
   if (gearTypeName == 'mask' || gearTypeName == 'backpack' || gearTypeName == 'chest' || gearItem.type == 'Improvised') {attributeTypeNames.push('mod')};
+
+  // talent when exotic, backpack or chest
   if (gearItem.rarity == 'Exotic' || gearTypeName == 'backpack' || gearItemName == 'chest') {attributeTypeNames.push('talent')}
 
+  console.log(attributeTypeNames)
+
   for (let attributeTypeName of attributeTypeNames) {
+    console.log(attributeTypeNames)
     let attributeTypeNameData = attributeTypeName; //to choose from attributes-object
-    if (attributeTypeName == 'minor attribute' && document.getElementById(`dropdown--selector--${gearTypeName}--${attributeTypeNameData} 1`) == null) {attributeTypeNameData = attributeTypeName; attributeTypeName = "minor attribute 1"}
-    else if (attributeTypeName == 'minor attribute' && document.getElementById(`dropdown--selector--${gearTypeName}--${attributeTypeName} 1`) !== null) {attributeTypeNameData = attributeTypeName; attributeTypeName = "minor attribute 2"}
+    if (attributeTypeName == 'minor' && document.getElementById(`dropdown--selector--${gearTypeName}--${attributeTypeNameData} 1`) == null) {attributeTypeNameData = attributeTypeName; attributeTypeName = "minor 1"}
+    else if (attributeTypeName == 'minor' && document.getElementById(`dropdown--selector--${gearTypeName}--${attributeTypeName} 1`) !== null) {attributeTypeNameData = attributeTypeName; attributeTypeName = "minor 2"}
 
     //============================
-    // CORE ATTRIBUTE DROPDOWN SELECTOR
+    // core DROPDOWN SELECTOR
     const tplDropdownSelectorParent = gearslot;
     const tplDropdownSelectorBase = document.getElementById('template--dropdown');
     let clonedDropdownSelectorNode = tplDropdownSelectorBase.content.cloneNode(true);
@@ -392,7 +404,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
     let dropdownSelectorValue = dropdownSelector.getElementsByClassName('dropdown--selector--value')[0];
     let dropdownSelectorSymbol = dropdownSelector.getElementsByClassName('symbol')[0];
 
-    // core attribute dropdown selector default
+    // core dropdown selector default
     dropdownSelectorText.innerHTML = `Select ${attributeTypeNameData}`;
 
     if (gearItem.hasOwnProperty(attributeTypeName)) {
@@ -409,7 +421,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
         dropdownSelectorText.innerHTML = gearItemAttributeTypeName;
       }
 
-      if (attributeTypeName == 'minor attribute named') {
+      if (attributeTypeName == 'minor named') {
         dropdownSelectorText.classList.add('named');
       }
 
@@ -420,7 +432,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
       }
     }
 
-    // core attribute dropdown selector onclick
+    // core dropdown selector onclick
     if (!(gearItem.hasOwnProperty(attributeTypeName))) {
       dropdownSelector.classList.add('cursor-pointer');
       dropdownSelectorSymbol.innerHTML = "&#9660";
@@ -434,11 +446,11 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
         }
       })
     }
-    // CORE ATTRIBUTE DROPDOWN SELECTOR
+    // core DROPDOWN SELECTOR
     //============================
 
     //============================
-    // CORE ATTRIBUTE DROPDOWN OPTIONS
+    // core DROPDOWN OPTIONS
     if (gearItem.rarity !== 'Exotic'){
       const tplDropdownOptionParent = dropdownOptions;
       const tplDropdownOptionBase = document.getElementById('template--dropdown--option');
@@ -463,7 +475,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
         let optionValue = db['attributes'][equipmentTypeName][attributeTypeNameData][attributeName].value;
         dropdownOptionValue.innerHTML = `${optionValue}`;
 
-        // core attribute dropdown option onclick
+        // core dropdown option onclick
         dropdownOption.addEventListener('click', () => {
           dropdownSelectorText.innerHTML = dropdownOptionKey.innerHTML;
           dropdownSelectorValue.innerHTML = dropdownOptionValue.innerHTML;
@@ -472,7 +484,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
         })
       }
     }
-    // CORE ATTRIBUTE DROPDOWN OPTIONS
+    // core DROPDOWN OPTIONS
     //============================
 
   }

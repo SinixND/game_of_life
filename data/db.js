@@ -5,13 +5,13 @@ export const db = {
         'Vile': {
           rarity: "Exotic",
           type: "Exotic",
-          'core attribute': {
+          'core': {
             name: "Skill Tier",
           },
-          'minor attribute 1': {
+          'minor 1': {
             name: "Status Effects",
           },
-          'minor attribute 2': {
+          'minor 2': {
             name: "Hazard Protection",
           },
           talent: {
@@ -22,7 +22,7 @@ export const db = {
         'Nightwatcher': {
           rarity: "Named",
           type: "Gila Guard",
-          'minor attribute named': {
+          'minor': {
             name: "Scanner Pulse Haste",
             value: 100,
           },
@@ -40,7 +40,7 @@ export const db = {
   },
   'attributes': {
     armor: {
-      'core attribute': {
+      'core': {
         'Weapon Damage': {
           png: "coreRed",
           value: 15,
@@ -54,60 +54,62 @@ export const db = {
           value: 1,
         },
       },
-      'minor attribute': {
-        'Critical Hit Chance': {
-          png: "minorRed",
-          value: 6,
+      'minor': {
+        "HighEnd": {
+          'Critical Hit Chance': {
+            png: "minorRed",
+            value: 6,
+          },
+          'Critical Hit Damage': {
+            png: "minorRed",
+            value: 12,
+          },
+          'Headshot Damage': {
+            png: "minorRed",
+            value: 10,
+          },
+          'Weapon Handling': {
+            png: "minorRed",
+            value: 8,
+          },
+          'Armor Regeneration': {
+            png: "minorBlue",
+            value: 4925,
+          },
+          'Explosive Resistance': {
+            png: "minorBlue",
+            value: 10,
+          },
+          'Hazard Protection': {
+            png: "minorBlue",
+            value: 10,
+          },
+          'Health': {
+            png: "minorBlue",
+            value: 18935,
+          },
+          'Repair Skills': {
+            png: "minorYellow",
+            value: 20,
+          },
+          'Skill Damage': {
+            png: "minorYellow",
+            value: 10,
+          },
+          'Skill Haste': {
+            png: "minorYellow",
+            value: 12,
+          },
+          'Status Effects': {
+            png: "minorYellow",
+            value: 10,
+          },
         },
-        'Critical Hit Damage': {
-          png: "minorRed",
-          value: 12,
-        },
-        'Headshot Damage': {
-          png: "minorRed",
-          value: 10,
-        },
-        'Weapon Handling': {
-          png: "minorRed",
-          value: 8,
-        },
-        'Armor Regeneration': {
-          png: "minorBlue",
-          value: 4925,
-        },
-        'Explosive Resistance': {
-          png: "minorBlue",
-          value: 10,
-        },
-        'Hazard Protection': {
-          png: "minorBlue",
-          value: 10,
-        },
-        'Health': {
-          png: "minorBlue",
-          value: 18935,
-        },
-        'Repair Skills': {
-          png: "minorYellow",
-          value: 20,
-        },
-        'Skill Damage': {
-          png: "minorYellow",
-          value: 10,
-        },
-        'Skill Haste': {
-          png: "minorYellow",
-          value: 12,
-        },
-        'Status Effects': {
-          png: "minorYellow",
-          value: 10,
-        },
-      },
-      'minor attribute named': {
-        'Scanner Pulse Haste': {
-          png: "minorYellow",
-          value: 100,
+        "Named": {
+          'Scanner Pulse Haste': {
+            png: "minorYellow",
+            value: 100,
+          }
         }
       },
       mod: {
