@@ -1,9 +1,7 @@
 //============================
 // IMPORT DATA
-import { attributes } from "./data/attributes.js";
-import { sets } from "./data/sets.js"; //mltpc because sets noun verb confusion
-let mltpc = sets;
-import { equipment } from "./data/equipment.js";
+import { db } from "./data/db.js";
+let mltpc = db['setboni'];
 
 // ARRAYS
 let colors = [
@@ -138,8 +136,8 @@ for (let i = 0; i < icons.length; i++) {
 const tplPopupParent = document.getElementById('popup--frame-main');
 
 // iterate over equipmentTypes
-for (let equipmentTypeName in equipment) {
-  let equipmentType = equipment[equipmentTypeName];
+for (let equipmentTypeName in db['equipment']) {
+  let equipmentType = db['equipment'][equipmentTypeName];
 
   const tplPopupSelectEquipmentTypeBase = document.getElementById(`template--popup--select-${equipmentTypeName}`);
 
@@ -155,10 +153,6 @@ for (let equipmentTypeName in equipment) {
     tplPopupParent.appendChild(clonedPopupSelectEquipmentTypeNode);
 
     popupSelectEquipmentType = document.getElementById(`${popupSelectEquipmentType.id}`)
-    // TODO: update popupSelectEquipmentType before adding EventListener
-    //popupSelectEquipmentType.addEventListener('click', (evt) => {
-      //evt.stopPropagation()
-    //});
 
     //============================
     // CLONE SELECTION LIST ENTRY
@@ -251,7 +245,7 @@ for (let equipmentTypeName in equipment) {
       else if (gearItem.hasOwnProperty('talent')) {
         entryTalentName.classList.add('h-line--top');
         entryTalentName.innerHTML = gearItem['talent'].name;
-        panelListEntry.getElementsByClassName('entry--talent-text')[0].innerHTML = attributes[equipmentTypeName]['talent'][gearTypeName][gearItem['talent'].name];
+        panelListEntry.getElementsByClassName('entry--talent-text')[0].innerHTML = db['attributes'][equipmentTypeName]['talent'][gearTypeName][gearItem['talent'].name];
 ;
       };
           }
@@ -276,8 +270,8 @@ popupFrameMain.addEventListener('click', () => {
 }, false);
 
 // add removable listener to gearslot-panel: show selection popup
-for (let equipmentTypeName in equipment) {
-  let equipmentType = equipment[equipmentTypeName];
+for (let equipmentTypeName in db['equipment']) {
+  let equipmentType = db['equipment'][equipmentTypeName];
   for (let gearTypeName in equipmentType) {
     let panelGearType = document.getElementById(`panel--${gearTypeName}`);
     panelGearType.classList.add('cursor-pointer');
@@ -337,7 +331,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   let gearslotName = gearslot.getElementsByClassName('gearslot--name')[0];
   gearslotName.childNodes[0].nodeValue = gearItemName;
 
-  // add new showPopup listener to "Name" div
+  // add new showPopup listener to gearslot
   gearslotName.classList.add('cursor-pointer');
   gearslotName.addEventListener('click', () => {
     showPopup(equipmentTypeName, gearTypeName);
@@ -379,8 +373,6 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
     if (attributeTypeName == 'minor attribute' && document.getElementById(`dropdown--selector--${gearTypeName}--${attributeTypeNameData} 1`) == null) {attributeTypeNameData = attributeTypeName; attributeTypeName = "minor attribute 1"}
     else if (attributeTypeName == 'minor attribute' && document.getElementById(`dropdown--selector--${gearTypeName}--${attributeTypeName} 1`) !== null) {attributeTypeNameData = attributeTypeName; attributeTypeName = "minor attribute 2"}
 
-    console.log(`attributeTypeName: ${attributeTypeName}; attributeTypeNameData: ${attributeTypeNameData}`)
-
     //============================
     // CORE ATTRIBUTE DROPDOWN SELECTOR
     const tplDropdownSelectorParent = gearslot;
@@ -407,7 +399,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
       let gearItemAttributeTypeName = gearItem[attributeTypeName].name;
       dropdownSelectorText.innerHTML = "";
       if (attributeTypeName !== 'talent') {
-        let pngName = attributes[equipmentTypeName][attributeTypeNameData][gearItemAttributeTypeName].png;
+        let pngName = db['attributes'][equipmentTypeName][attributeTypeNameData][gearItemAttributeTypeName].png;
         let img = new Image();
         img.src = `./icons/${pngName}.png`;
         dropdownSelectorText.appendChild(img);
@@ -421,7 +413,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
         dropdownSelectorText.classList.add('named');
       }
 
-      dropdownSelectorValue.innerHTML = `${attributes[equipmentTypeName][attributeTypeNameData][gearItemAttributeTypeName].value}`;
+      dropdownSelectorValue.innerHTML = `${db['attributes'][equipmentTypeName][attributeTypeNameData][gearItemAttributeTypeName].value}`;
 
       if (gearItem[attributeTypeName].hasOwnProperty('value')) {
         dropdownSelectorValue.innerHTML = gearItem[attributeTypeName].value;
@@ -430,6 +422,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
 
     // core attribute dropdown selector onclick
     if (!(gearItem.hasOwnProperty(attributeTypeName))) {
+      dropdownSelector.classList.add('cursor-pointer');
       dropdownSelectorSymbol.innerHTML = "&#9660";
       dropdownSelector.addEventListener('click', () => {
         dropdownOptions.classList.toggle('hide');
@@ -446,37 +439,38 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
 
     //============================
     // CORE ATTRIBUTE DROPDOWN OPTIONS
-    const tplDropdownOptionParent = dropdownOptions;
-    const tplDropdownOptionBase = document.getElementById('template--dropdown--option');
+    if (gearItem.rarity !== 'Exotic'){
+      const tplDropdownOptionParent = dropdownOptions;
+      const tplDropdownOptionBase = document.getElementById('template--dropdown--option');
 
-    // iterate over attributes armor core
-    for (let attributeName of Object.keys(attributes[equipmentTypeName][attributeTypeNameData])) {
-      console.log(`attributeName: ${attributeName}`)
-      let clonedDropdownOptionNode = tplDropdownOptionBase.content.cloneNode(true);
-      let dropdownOption = clonedDropdownOptionNode.getElementById('dropdown--option-');
-      dropdownOption.id += `-${gearTypeName}--${attributeTypeName}--${attributeName}`;
-      tplDropdownOptionParent.appendChild(clonedDropdownOptionNode);
-      dropdownOption = document.getElementById(`${dropdownOption.id}`);
+      // iterate over attributes armor core
+      for (let attributeName of Object.keys(db['attributes'][equipmentTypeName][attributeTypeNameData])) {
+        let clonedDropdownOptionNode = tplDropdownOptionBase.content.cloneNode(true);
+        let dropdownOption = clonedDropdownOptionNode.getElementById('dropdown--option-');
+        dropdownOption.id += `-${gearTypeName}--${attributeTypeName}--${attributeName}`;
+        tplDropdownOptionParent.appendChild(clonedDropdownOptionNode);
+        dropdownOption = document.getElementById(`${dropdownOption.id}`);
 
-      let dropdownOptionKey = dropdownOption.getElementsByClassName('dropdown--option--key')[0];
+        let dropdownOptionKey = dropdownOption.getElementsByClassName('dropdown--option--key')[0];
 
-      let pngName = attributes[equipmentTypeName][attributeTypeNameData][attributeName].png;
-      let img = new Image();
-      img.src = `./icons/${pngName}.png`;
-      dropdownOptionKey.appendChild(img);
-      dropdownOptionKey.innerHTML += ` ${attributeName}`;
+        let pngName = db['attributes'][equipmentTypeName][attributeTypeNameData][attributeName].png;
+        let img = new Image();
+        img.src = `./icons/${pngName}.png`;
+        dropdownOptionKey.appendChild(img);
+        dropdownOptionKey.innerHTML += ` ${attributeName}`;
 
-      let dropdownOptionValue = dropdownOption.getElementsByClassName('dropdown--option--value')[0];
-      let optionValue = attributes[equipmentTypeName][attributeTypeNameData][attributeName].value;
-      dropdownOptionValue.innerHTML = `${optionValue}`;
+        let dropdownOptionValue = dropdownOption.getElementsByClassName('dropdown--option--value')[0];
+        let optionValue = db['attributes'][equipmentTypeName][attributeTypeNameData][attributeName].value;
+        dropdownOptionValue.innerHTML = `${optionValue}`;
 
-      // core attribute dropdown option onclick
-      dropdownOption.addEventListener('click', () => {
-        dropdownSelectorText.innerHTML = dropdownOptionKey.innerHTML;
-        dropdownSelectorValue.innerHTML = dropdownOptionValue.innerHTML;
-        dropdownSelectorSymbol.innerHTML = "&#9660";
-        dropdownOptions.classList.add('hide');
-      })
+        // core attribute dropdown option onclick
+        dropdownOption.addEventListener('click', () => {
+          dropdownSelectorText.innerHTML = dropdownOptionKey.innerHTML;
+          dropdownSelectorValue.innerHTML = dropdownOptionValue.innerHTML;
+          dropdownSelectorSymbol.innerHTML = "&#9660";
+          dropdownOptions.classList.add('hide');
+        })
+      }
     }
     // CORE ATTRIBUTE DROPDOWN OPTIONS
     //============================

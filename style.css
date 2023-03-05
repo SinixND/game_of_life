@@ -319,10 +319,6 @@ place-self :: (align justify)
   margin-left: calc(5 * var(--tpx));
 }
 
-.dropdown--selector:hover {
-  cursor: pointer;
-}
-
 .overlay-anchor {
   position: relative;
   height: 0;
