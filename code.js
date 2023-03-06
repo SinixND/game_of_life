@@ -418,7 +418,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
             source = db['attribute'][equipmentTypeName][attributeTypeNames[i]];
 
           // add attribute icon (and name)
-          pngName = gearItem[attributeTypeName].png;
+          pngName = source[gearItem[attributeTypeName].name].png;
           img = new Image();
           img.src = `./icons/${pngName}.png`;
           dropdownSelectorText.appendChild(img);
