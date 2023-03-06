@@ -295,8 +295,16 @@ place-self :: (align justify)
   margin-right: calc(5 * var(--tpx));
 }
 
+.exotic {
+  color: var(--cExotic);
+}
+
 .named {
   color: var(--cNamed);
+}
+
+.gearset {
+  color: var(--cGearSet);
 }
 
 .gearslot--name {

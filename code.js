@@ -457,6 +457,15 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
         case 'talent':
           console.log('enter case for ' + attributeTypeName)
           source = db['talent'];
+          if (gearItem.rarity == 'Exotic') {
+            dropdownSelectorText.classList.add('exotic');
+          }
+          else if (gearItem.rarity == 'Named') {
+            dropdownSelectorText.classList.add('named');
+          }
+          else if (gearItem.rarity == 'GearSet') {
+            dropdownSelectorText.classList.add('gearset');
+          }
 
           dropdownSelectorText.innerHTML = gearItem[attributeTypeName].name;
           gearslotTalentText.innerHTML = gearItem[attributeTypeName].value;
