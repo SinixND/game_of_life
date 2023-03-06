@@ -399,3 +399,7 @@ li {
   margin: calc(4 * var(--bWeight)) 0;
   padding-left: calc(2 * var(--bWeight));
 }
+
+img {
+  height: var(--txtBase);
+}
