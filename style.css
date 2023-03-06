@@ -249,7 +249,7 @@ place-self :: (align justify)
 }
 
 .h-line--bottom {
-  border-bottom: var(--bWeight) solid;
+  border-bottom: calc(3 * var(--tpx)) solid;
   border-color: inherit;
   margin-top: var(--bWeight);
   padding-top: var(--bWeight);
