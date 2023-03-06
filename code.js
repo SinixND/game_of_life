@@ -407,20 +407,27 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
     // dropdown selector default
     dropdownSelectorText.innerHTML = `Select ${attributeTypeName}`;
 
+
+
+    // MOVE ITEM SPECIFICS INTO CASES!!!
+
+
+
     // handle item specific attribute
     if (gearItem.hasOwnProperty(attributeTypeName)) {
+      let gearItemAttributeTypeName = gearItem[attributeTypeName].name;
+      dropdownSelectorText.innerHTML = "";
       let source;
+      let pngName;
+      let img;
       switch (attributeTypeNames[i]) {
         case 'core':
           console.log('enter case for ' + attributeTypeName)
           source = db['attribute'][equipmentTypeName][attributeTypeName];
 
-          let gearItemAttributeTypeName = gearItem[attributeTypeName].name;
-          dropdownSelectorText.innerHTML = "";
-
           // add attribute icon (and name)
-          let pngName = source[gearItemAttributeTypeName].png;
-          let img = new Image();
+          pngName = source[gearItemAttributeTypeName].png;
+          img = new Image();
           img.src = `./icons/${pngName}.png`;
           dropdownSelectorText.appendChild(img);
           dropdownSelectorText.innerHTML += " " + gearItemAttributeTypeName;
@@ -430,12 +437,23 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
 
         case 'minor':
           console.log('enter case for ' + attributeTypeName)
-          if (gearItem.rarity == 'Named') {
+          if (gearItem.rarity == 'Named' && gearItem.hasOwnProperty(attributeTypeName)) {
             source = db['attribute'][equipmentTypeName][attributeTypeNames[i]][gearItem.rarity];
+
+            dropdownSelectorText.classList.add('named');
           }
           else {
             source = db['attribute'][equipmentTypeName][attributeTypeNames[i]]['HighEnd'];
           }
+
+          pngName = source[gearItemAttributeTypeName].png;
+          img = new Image();
+          img.src = `./icons/${pngName}.png`;
+          dropdownSelectorText.appendChild(img);
+          dropdownSelectorText.innerHTML += " " + gearItemAttributeTypeName;
+
+          dropdownSelectorValue.innerHTML = `${source[gearItemAttributeTypeName]}`;
+          dropdownSelectorValue.innerHTML = `${source[gearItemAttributeTypeName].value}`;
 
           console.log('leave case ' + attributeTypeNames[i])
           break;
