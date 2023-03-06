@@ -539,6 +539,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
             img.src = `./icons/${pngName}.png`;
             dropdownOptionName.appendChild(img);
             dropdownOptionName.innerHTML += " " + attributeName;
+            console.log(dropdownOption.innerHTML)
 
             let dropdownOptionValue = dropdownOption.getElementsByClassName('dropdown--option--value')[0];
             let optionValue = attributeSource[attributeName].value;
