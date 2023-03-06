@@ -454,7 +454,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
           console.log('enter case for ' + attributeTypeName)
           source = db['talent'];
 
-          gearslotTalentText.innerHTML = source[equipmentTypeName] gearItemAttributeTypeName;
+          gearslotTalentText.innerHTML = gearItem[attributeTypeName].name;
 
           console.log('leave case ' + attributeTypeNames[i])
           break;
