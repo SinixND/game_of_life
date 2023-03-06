@@ -413,6 +413,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
       switch (attributeTypeNames[i]) {
         case 'core':
           console.log('enter case for ' + attributeTypeName)
+            source = db['attribute'][equipmentTypeName][attributeTypeNames[i]];
 
           // add attribute icon (and name)
           pngName = gearItem[attributeTypeName].png;
@@ -420,7 +421,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
           img.src = `./icons/${pngName}.png`;
           dropdownSelectorText.appendChild(img);
           dropdownSelectorText.innerHTML += " " + gearItem[attributeTypeName].name;
-          dropdownSelectorValue.innerHTML = gearItem[attributeTypeName].value;
+          dropdownSelectorValue.innerHTML = source[gearItem[attributeTypeName].name].value;
 
           console.log('leave case ' + attributeTypeNames[i])
           break;
