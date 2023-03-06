@@ -1,6 +1,6 @@
 //============================
 // IMPORT DATA
-import { db } from "./data/db.js";
+import { db } from "./data/database.js";
 let mltpc = db['setboni'];
 
 // ARRAYS
