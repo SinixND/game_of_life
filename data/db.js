@@ -1,17 +1,17 @@
 export const db = {
-  'equipment': {
-    'armor': {
-      'mask': {
-        'Vile': {
+  "equipment": {
+    "armor": {
+      "mask": {
+        "Vile": {
           rarity: "Exotic",
           type: "Exotic",
-          'core': {
+          "core": {
             name: "Skill Tier",
           },
-          'minor 1': {
+          "minor 1": {
             name: "Status Effects",
           },
-          'minor 2': {
+          "minor 2": {
             name: "Hazard Protection",
           },
           talent: {
@@ -19,186 +19,187 @@ export const db = {
             value: "Status effects also apply a damage over time debuff for 10s.\r\n Total damage dealt is equal to 50% of your concussion grenade damage and increased by your status effect attributes.",
           },
         },
-        'Nightwatcher': {
+        "Nightwatcher": {
           rarity: "Named",
           type: "Gila Guard",
-          'minor 1': {
+          "minor 1": {
             name: "Scanner Pulse Haste",
+            png: "minorYellow",
             value: 100,
           },
         },
-        'Aces & Eights': {
+        "Aces & Eights": {
           rarity: "GearSet",
           type: "Aces & Eights",
         },
-        '5.11 Tactical': {
+        "5.11 Tactical": {
           rarity: "HighEnd",
           type: "5.11 Tactical",
         },
       },
     },
   },
-  'attribute': {
+  "attribute": {
     armor: {
-      'core': {
-        'Weapon Damage': {
+      "core": {
+        "Weapon Damage": {
           png: "coreRed",
           value: 15,
         },
-        'Armor': {
+        "Armor": {
           png: "coreBlue",
           value: 170001,
         },
-        'Skill Tier': {
+        "Skill Tier": {
           png: "coreYellow",
           value: 1,
         },
       },
-      'minor': {
+      "minor": {
         "HighEnd": {
-          'Critical Hit Chance': {
+          "Critical Hit Chance": {
             png: "minorRed",
             value: 6,
           },
-          'Critical Hit Damage': {
+          "Critical Hit Damage": {
             png: "minorRed",
             value: 12,
           },
-          'Headshot Damage': {
+          "Headshot Damage": {
             png: "minorRed",
             value: 10,
           },
-          'Weapon Handling': {
+          "Weapon Handling": {
             png: "minorRed",
             value: 8,
           },
-          'Armor Regeneration': {
+          "Armor Regeneration": {
             png: "minorBlue",
             value: 4925,
           },
-          'Explosive Resistance': {
+          "Explosive Resistance": {
             png: "minorBlue",
             value: 10,
           },
-          'Hazard Protection': {
+          "Hazard Protection": {
             png: "minorBlue",
             value: 10,
           },
-          'Health': {
+          "Health": {
             png: "minorBlue",
             value: 18935,
           },
-          'Repair Skills': {
+          "Repair Skills": {
             png: "minorYellow",
             value: 20,
           },
-          'Skill Damage': {
+          "Skill Damage": {
             png: "minorYellow",
             value: 10,
           },
-          'Skill Haste': {
+          "Skill Haste": {
             png: "minorYellow",
             value: 12,
           },
-          'Status Effects': {
+          "Status Effects": {
             png: "minorYellow",
             value: 10,
           },
         },
         "Named": {
-          'Scanner Pulse Haste': {
+          "Scanner Pulse Haste": {
             png: "minorYellow",
             value: 100,
           }
         },
       },
-      "minor named": {
-        'Scanner Pulse Haste': {
-          png: "minorYellow",
-          value: 100,
-        }
-      },
     },
   },
-  'mod': {
-    'Critical Hit Chance': {
+  "mod": {
+    "Critical Hit Chance": {
       png: "modRed",
       value: 6,
     },
-    'Critical Hit Damage': {
+    "Critical Hit Damage": {
       png: "modRed",
       value: 12,
     },
-    'Headshot Damage': {
+    "Headshot Damage": {
       png: "modRed",
       value: 10,
     },
-    'Armor on kill': {
+    "Armor on kill": {
       png: "modBlue",
       value: 18935,
     },
-    'Bleed Resistance': {
+    "Bleed Resistance": {
       png: "modBlue",
       value: 10,
     },
-    'Blind/Deaf Resistance': {
+    "Blind/Deaf Resistance": {
       png: "modBlue",
       value: 10,
     },
-    'Burn Resistance': {
+    "Burn Resistance": {
       png: "modBlue",
       value: 10,
     },
-    'Disorient Resistance': {
+    "Disorient Resistance": {
       png: "modBlue",
       value: 10,
     },
-    'Disrupt Resistance': {
+    "Disrupt Resistance": {
       png: "modBlue",
       value: 10,
     },
-    'Ensnare Resistance': {
+    "Ensnare Resistance": {
       png: "modBlue",
       value: 10,
     },
-    'Incomming Repairs': {
+    "Incomming Repairs": {
       png: "modBlue",
       value: 20,
     },
-    'Pulse Resistance': {
+    "Pulse Resistance": {
       png: "modBlue",
       value: 10,
     },
-    'Protection from Elites': {
+    "Protection from Elites": {
       png: "modBlue",
       value: 13,
     },
-    'Shock Resistance': {
+    "Shock Resistance": {
       png: "modBlue",
       value: 10,
     },
-    'Repair Skills': {
+    "Repair Skills": {
       png: "modYellow",
       value: 20,
     },
-    'Skill Duration': {
+    "Skill Duration": {
       png: "modYellow",
       value: 10,
     },
-    'Skill Haste': {
+    "Skill Haste": {
       png: "modYellow",
       value: 12,
     },
   },
-  'talent': {
-    'weapon': {
+  "talent": {
+    "weapon": {
+      "primary": {
+      },
+      "sidearm": {
+      },
     },
-    'backpack': {
-    },
-    'chest': {
-    },
+    "armor": {
+      "backpack": {
+      },
+      "chest": {
+      },
+    }
   },
-  'set': {
+  "set": {
     GearSet: {
       "Marksman Rifle Damage": 15,
     },
@@ -206,7 +207,7 @@ export const db = {
 
     },
   },
-  'setboni': {
+  "setboni": {
     GearSet: {
       "Aces & Eights": {
         attribute1: {
@@ -220,7 +221,7 @@ export const db = {
           value: 30,
         },
         attribute3: {
-          name: "Dead Man's Hand",
+          name: "Dead Man"s Hand",
           requiredPieces: 4,
           value: "Flip a card when landing shots with a Marksman Rifle.<br> After 5 cards are flipped, the damage of your next shot is amplified by 30%. More shots are enhanced, the better the hand revealed.<br> <br> Four of a Kind: 4 shots.<br> Full House: 3 shots.<br> Aces and Eights: 2 shots.<br> <br> Flip an additional card on headshots."
         },
@@ -264,7 +265,7 @@ export const db = {
     },
   },
   /*
-  'weapons': {
+  "weapons": {
 
   },
   */

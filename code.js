@@ -374,7 +374,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   if (gearTypeName == 'mask' || gearTypeName == 'backpack' || gearTypeName == 'chest' || gearItem.type == 'Improvised') {attributeTypeNames.push('mod')};
 
   // talent when exotic, backpack or chest
-  if (gearItem.rarity == 'Exotic' || gearTypeName == 'backpack' || gearItemName == 'chest') {attributeTypeNames.push('talent')}
+  if (gearItem.rarity == 'Exotic' || gearTypeName == 'backpack' || gearItemName == 'chest' || equipmentTypeName == 'weapon') {attributeTypeNames.push('talent')}
 
   let attributeTypeName;
   for (let i in attributeTypeNames) {
@@ -405,19 +405,14 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
     // dropdown selector default
     dropdownSelectorText.innerHTML = `Select ${attributeTypeName}`;
 
-
-
-    // MOVE ITEM SPECIFICS INTO CASES!!!
-
-
-
     // handle item specific attribute
     if (gearItem.hasOwnProperty(attributeTypeName)) {
       let gearItemAttributeTypeName = gearItem[attributeTypeName].name;
-      dropdownSelectorText.innerHTML = "";
+      dropdownSelectorText.innerHTML = gearItem[attributeTypeName].name;
       let source;
       let pngName;
       let img;
+      let gearslotTalentText = gearslot.getElementsByClassName('gearslot--talent-text')[0];
       switch (attributeTypeNames[i]) {
         case 'core':
           console.log('enter case for ' + attributeTypeName)
@@ -450,15 +445,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
           dropdownSelectorText.appendChild(img);
           dropdownSelectorText.innerHTML += " " + gearItemAttributeTypeName;
 
-          dropdownSelectorValue.innerHTML = `${source[gearItemAttributeTypeName]}`;
           dropdownSelectorValue.innerHTML = `${source[gearItemAttributeTypeName].value}`;
-
-          console.log('leave case ' + attributeTypeNames[i])
-          break;
-
-        case 'mod':
-          console.log('enter case for ' + attributeTypeName)
-          source = db['mod'];
 
           console.log('leave case ' + attributeTypeNames[i])
           break;
@@ -466,6 +453,8 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
         case 'talent':
           console.log('enter case for ' + attributeTypeName)
           source = db['talent'];
+
+          gearslotTalentText.innerHTML = source[equipmentTypeName] gearItemAttributeTypeName;
 
           console.log('leave case ' + attributeTypeNames[i])
           break;
