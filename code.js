@@ -378,12 +378,10 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
 
   let attributeTypeName;
   for (let i in attributeTypeNames) {
-    console.log(attributeTypeNames[i])
     attributeTypeName = attributeTypeNames[i]
     if (attributeTypeName == 'minor') {
       attributeTypeName += " " + i;
     }
-    console.log(attributeTypeName)
 
     //============================
     // CLONE DROPDOWN SELECTOR
