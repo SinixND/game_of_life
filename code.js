@@ -495,13 +495,15 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
 
       //============================
       // CLONE DROPDOWN OPTIONS
-      let optionSource;
+      let dbAttributeList;
+      let attributeSource;
       switch (attributeTypeNames[i]) {
         case 'core':
         case 'minor':
           console.log('enter case for ' + attributeTypeName + ' dropdown options')
 
-          optionSource = Object.keys(db['attribute'][equipmentTypeName][attributeTypeNames[i]])
+          attributeSource = db['attribute'][equipmentTypeName][attributeTypeNames[i]];
+          dbAttributeList = Object.keys(attributeSource);
 
           console.log('leave case ' + attributeTypeNames[i])
           break;
@@ -510,7 +512,8 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
         case 'talent':
           console.log('enter case for ' + attributeTypeName + ' dropdown options')
 
-          optionSource = Object.keys(db[attributeTypeNames[i]])
+          attributeSource = db[attributeTypeNames[i]];
+          dbAttributeList = Object.keys(attributeSource);
 
           console.log('leave case ' + attributeTypeNames[i])
           break;
@@ -521,7 +524,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
 
           // iterate over attributes
 
-          for (let attributeName of optionSource) {
+          for (let attributeName of dbAttributeList) {
             let clonedDropdownOptionNode = tplDropdownOptionBase.content.cloneNode(true);
             let dropdownOption = clonedDropdownOptionNode.getElementById('dropdown--option-');
             dropdownOption.id += `-${gearTypeName}--${attributeTypeName}--${attributeName}`;
@@ -530,15 +533,15 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
 
             let dropdownOptionName = dropdownOption.getElementsByClassName('dropdown--option--name')[0];
 
-            let pngName = db['attribute'][equipmentTypeName][attributeTypeNames[i]][attributeName].png;
+            let pngName = attributeSource[attributeName].png;
 
             let img = new Image();
             img.src = `./icons/${pngName}.png`;
             dropdownOptionName.appendChild(img);
-            dropdownOptionName.innerHTML += ` ${attributeName}`;
+            dropdownOptionName.innerHTML += " " + attributeName;
 
             let dropdownOptionValue = dropdownOption.getElementsByClassName('dropdown--option--value')[0];
-            let optionValue = db['attribute'][equipmentTypeName][attributeTypeNames[i]][attributeName].value;
+            let optionValue = attributeSource[attributeName].value;
             dropdownOptionValue.innerHTML = optionValue;
 
             // core dropdown option onclick
