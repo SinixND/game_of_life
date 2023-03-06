@@ -407,6 +407,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
 
     // handle item specific attribute
     if (gearItem.hasOwnProperty(attributeTypeName)) {
+      let source;
       let pngName;
       let img;
       let gearslotTalentText = gearslot.getElementsByClassName('gearslot--talent-text')[0];
