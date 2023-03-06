@@ -414,7 +414,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
       let gearslotTalentText = gearslot.getElementsByClassName('gearslot--talent-text')[0];
       switch (attributeTypeNames[i]) {
         case 'core':
-          console.log('enter case for ' + attributeTypeName)
+          console.log('enter case for ' + attributeTypeName + ' dropdown selector')
             source = db['attribute'][equipmentTypeName][attributeTypeNames[i]];
 
           // add attribute icon (and name)
@@ -429,7 +429,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
           break;
 
         case 'minor':
-          console.log('enter case for ' + attributeTypeName)
+          console.log('enter case for item specific ' + attributeTypeName + ' dropdown selector')
           if (gearItem.rarity == 'Named') {
             dropdownSelectorText.classList.add('named');
 
@@ -455,7 +455,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
           break;
 
         case 'talent':
-          console.log('enter case for ' + attributeTypeName)
+          console.log('enter case for item specific ' + attributeTypeName + ' dropdown selector')
           source = db['talent'];
           if (gearItem.rarity == 'Exotic') {
             dropdownSelectorText.classList.add('exotic');
@@ -474,118 +474,163 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
           console.log('leave case ' + attributeTypeNames[i])
           break;
       }
-        }
-    // get item specific attribute (named, exotic)
-    //if (gearItem.hasOwnProperty(attributeTypeName)) {
-      //let gearItemAttributeTypeName = gearItem[attributeTypeName].name;
-      //dropdownSelectorText.innerHTML = "";
-      //// add attribute icon (and name) when its not a talent
-      //if (attributeTypeName !== 'talent') {
-        //let pngName;
-        //if (gearItem.rarity == 'Named') {
-          //pngName = db['attribute'][equipmentTypeName][attributeTypeNames[i]][gearItem.rarity][gearItemAttributeTypeName].png;
-        //}
-        //else if (attributeTypeNames[i] == 'minor') {
-          //pngName = db['attribute'][equipmentTypeName][attributeTypeNames[i]]['HighEnd'][gearItemAttributeTypeName].png;
-        //}
-        //else {
-          //pngName = db['attribute'][equipmentTypeName][attributeTypeNames[i]][gearItemAttributeTypeName].png;
-        //}
-        //let img = new Image();
-        //img.src = `./icons/${pngName}.png`;
-        //dropdownSelectorText.appendChild(img);
-        //dropdownSelectorText.innerHTML += " " + gearItemAttributeTypeName;
-      //}
-      //// else (if its a talent) add its name
-      //else {
-        //dropdownSelectorText.innerHTML = gearItemAttributeTypeName;
-      //}
-
-      //if (gearItem.rarity == 'Named' && gearItem.hasOwnProperty(attributeTypeName)) {
-        //dropdownSelectorText.classList.add('named');
-        //dropdownSelectorValue.innerHTML = `${db['attribute'][equipmentTypeName][attributeTypeNames[i]][gearItem.rarity][gearItemAttributeTypeName]}`;
-        //dropdownSelectorValue.innerHTML = `${db['attribute'][equipmentTypeName][attributeTypeNames[i]][gearItem.rarity][gearItemAttributeTypeName].value}`;
-      //}
-    //}
-
-    // dropdown selector onclick
-    if (!(gearItem.hasOwnProperty(attributeTypeName))) {
-      dropdownSelector.classList.add('cursor-pointer');
-      dropdownSelectorSymbol.innerHTML = "&#9660";
-      dropdownSelector.addEventListener('click', () => {
-        dropdownOptions.classList.toggle('hide');
-        if (dropdownOptions.classList.contains('hide')) {
-          dropdownSelectorSymbol.innerHTML = "&#9660";
-        }
-        else {
-          dropdownSelectorSymbol.innerHTML = "&#9661";
-        }
-      })
     }
-    // CLONE DROPDOWN SELECTOR
-    //============================
-
-    //============================
-    // CLONE DROPDOWN OPTIONS
-    if (gearItem.rarity !== 'Exotic' && !(gearItem.rarity == 'Named' || gearItem.hasOwnProperty(attributeTypeName))){
-      const tplDropdownOptionParent = dropdownOptions;
-      const tplDropdownOptionBase = document.getElementById('template--dropdown--option');
-
-      // iterate over attributes
-      let attributes;
-      if (attributeTypeNames[i] == 'minor') {
-        attributes = Object.keys(db['attribute'][equipmentTypeName][attributeTypeNames[i]]['HighEnd'])
-      }
-      else {
-        attributes = Object.keys(db['attribute'][equipmentTypeName][attributeTypeNames[i]])
-      }
-      for (let attributeName of attributes) {
-        let clonedDropdownOptionNode = tplDropdownOptionBase.content.cloneNode(true);
-        let dropdownOption = clonedDropdownOptionNode.getElementById('dropdown--option-');
-        dropdownOption.id += `-${gearTypeName}--${attributeTypeName}--${attributeName}`;
-        tplDropdownOptionParent.appendChild(clonedDropdownOptionNode);
-        dropdownOption = document.getElementById(`${dropdownOption.id}`);
-
-        let dropdownOptionKey = dropdownOption.getElementsByClassName('dropdown--option--key')[0];
-
-        let pngName;
-        if (gearItem.rarity == 'Named') {
-          pngName = db['attribute'][equipmentTypeName][attributeTypeNames[i]][gearItem.rarity][attributeName].png;
-        }
-        else if (attributeTypeNames[i] == 'minor') {
-          pngName = db['attribute'][equipmentTypeName][attributeTypeNames[i]]['HighEnd'][attributeName].png;
-        }
-        else {
-          pngName = db['attribute'][equipmentTypeName][attributeTypeNames[i]][attributeName].png;
-        }
-        let img = new Image();
-        img.src = `./icons/${pngName}.png`;
-        dropdownOptionKey.appendChild(img);
-        dropdownOptionKey.innerHTML += ` ${attributeName}`;
-
-        let dropdownOptionValue = dropdownOption.getElementsByClassName('dropdown--option--value')[0];
-        //let optionValue = db['attribute'][equipmentTypeName][attributeTypeNames[i]][attributeName].value;
-        let optionValue;
-        if (attributeTypeNames[i] == 'minor') {
-          optionValue = db['attribute'][equipmentTypeName][attributeTypeNames[i]]['HighEnd'][attributeName].png;
-        }
-        else {
-          optionValue = db['attribute'][equipmentTypeName][attributeTypeNames[i]][attributeName].png;
-        }
-        dropdownOptionValue.innerHTML = `${optionValue}`;
-
-        // core dropdown option onclick
-        dropdownOption.addEventListener('click', () => {
-          dropdownSelectorText.innerHTML = dropdownOptionKey.innerHTML;
-          dropdownSelectorValue.innerHTML = dropdownOptionValue.innerHTML;
-          dropdownSelectorSymbol.innerHTML = "&#9660";
-          dropdownOptions.classList.add('hide');
+    else {
+      // dropdown selector onclick
+      if (!(gearItem.hasOwnProperty(attributeTypeName))) {
+        dropdownSelector.classList.add('cursor-pointer');
+        dropdownSelectorSymbol.innerHTML = "&#9660";
+        dropdownSelector.addEventListener('click', () => {
+          dropdownOptions.classList.toggle('hide');
+          if (dropdownOptions.classList.contains('hide')) {
+            dropdownSelectorSymbol.innerHTML = "&#9660";
+          }
+          else {
+            dropdownSelectorSymbol.innerHTML = "&#9661";
+          }
         })
       }
-    }
-    // CLONE DROPDOWN OPTIONS
-    //============================
+      // CLONE DROPDOWN SELECTOR
+      //============================
 
+      //============================
+      // CLONE DROPDOWN OPTIONS
+      switch (attributeTypeNames[i]) {
+        case 'core':
+          console.log('enter case for ' + attributeTypeName + ' dropdown options')
+
+            const tplDropdownOptionParent = dropdownOptions;
+            const tplDropdownOptionBase = document.getElementById('template--dropdown--option');
+
+            // iterate over attributes
+            let attributes = Object.keys(db['attribute'][equipmentTypeName][attributeTypeNames[i]])
+
+            for (let attributeName of attributes) {
+              console.log('debug')
+              console.log(attributeName)
+              let clonedDropdownOptionNode = tplDropdownOptionBase.content.cloneNode(true);
+              let dropdownOption = clonedDropdownOptionNode.getElementById('dropdown--option-');
+              dropdownOption.id += `-${gearTypeName}--${attributeTypeName}--${attributeName}`;
+              tplDropdownOptionParent.appendChild(clonedDropdownOptionNode);
+              dropdownOption = document.getElementById(`${dropdownOption.id}`);
+
+              let dropdownOptionKey = dropdownOption.getElementsByClassName('dropdown--option--key')[0];
+
+              let pngName;
+              if (gearItem.rarity == 'Named') {
+                pngName = db['attribute'][equipmentTypeName][attributeTypeNames[i]][gearItem.rarity][attributeName].png;
+              }
+              else if (attributeTypeNames[i] == 'minor') {
+                pngName = db['attribute'][equipmentTypeName][attributeTypeNames[i]]['HighEnd'][attributeName].png;
+              }
+              else {
+                pngName = db['attribute'][equipmentTypeName][attributeTypeNames[i]][attributeName].png;
+              }
+              let img = new Image();
+              img.src = `./icons/${pngName}.png`;
+              dropdownOptionKey.appendChild(img);
+              dropdownOptionKey.innerHTML += ` ${attributeName}`;
+
+              let dropdownOptionValue = dropdownOption.getElementsByClassName('dropdown--option--value')[0];
+              //let optionValue = db['attribute'][equipmentTypeName][attributeTypeNames[i]][attributeName].value;
+              let optionValue;
+              if (attributeTypeNames[i] == 'minor') {
+                optionValue = db['attribute'][equipmentTypeName][attributeTypeNames[i]]['HighEnd'][attributeName].png;
+              }
+              else {
+                optionValue = db['attribute'][equipmentTypeName][attributeTypeNames[i]][attributeName].png;
+              }
+              dropdownOptionValue.innerHTML = `${optionValue}`;
+
+              // core dropdown option onclick
+              dropdownOption.addEventListener('click', () => {
+                dropdownSelectorText.innerHTML = dropdownOptionKey.innerHTML;
+                dropdownSelectorValue.innerHTML = dropdownOptionValue.innerHTML;
+                dropdownSelectorSymbol.innerHTML = "&#9660";
+                dropdownOptions.classList.add('hide');
+              })
+            }
+
+          console.log('leave case ' + attributeTypeNames[i])
+          break;
+        
+        case 'minor':
+          console.log('enter case for ' + attributeTypeName + ' dropdown options')
+
+          console.log('leave case ' + attributeTypeNames[i])
+          break;
+
+        case 'mod':
+          console.log('enter case for ' + attributeTypeName + ' dropdown options')
+
+          console.log('leave case ' + attributeTypeNames[i])
+          break;
+
+        case 'talent':
+          console.log('enter case for ' + attributeTypeName + ' dropdown options')
+
+          console.log('leave case ' + attributeTypeNames[i])
+          break;
+      }
+      if (gearItem.rarity !== 'Exotic' && !(gearItem.rarity == 'Named' || gearItem.hasOwnProperty(attributeTypeName))){
+        const tplDropdownOptionParent = dropdownOptions;
+        const tplDropdownOptionBase = document.getElementById('template--dropdown--option');
+
+        // iterate over attributes
+        let attributes;
+        if (attributeTypeNames[i] == 'minor') {
+          attributes = Object.keys(db['attribute'][equipmentTypeName][attributeTypeNames[i]]['HighEnd'])
+        }
+        else {
+          attributes = Object.keys(db['attribute'][equipmentTypeName][attributeTypeNames[i]])
+        }
+        for (let attributeName of attributes) {
+          let clonedDropdownOptionNode = tplDropdownOptionBase.content.cloneNode(true);
+          let dropdownOption = clonedDropdownOptionNode.getElementById('dropdown--option-');
+          dropdownOption.id += `-${gearTypeName}--${attributeTypeName}--${attributeName}`;
+          tplDropdownOptionParent.appendChild(clonedDropdownOptionNode);
+          dropdownOption = document.getElementById(`${dropdownOption.id}`);
+
+          let dropdownOptionKey = dropdownOption.getElementsByClassName('dropdown--option--key')[0];
+
+          let pngName;
+          if (gearItem.rarity == 'Named') {
+            pngName = db['attribute'][equipmentTypeName][attributeTypeNames[i]][gearItem.rarity][attributeName].png;
+          }
+          else if (attributeTypeNames[i] == 'minor') {
+            pngName = db['attribute'][equipmentTypeName][attributeTypeNames[i]]['HighEnd'][attributeName].png;
+          }
+          else {
+            pngName = db['attribute'][equipmentTypeName][attributeTypeNames[i]][attributeName].png;
+          }
+          let img = new Image();
+          img.src = `./icons/${pngName}.png`;
+          dropdownOptionKey.appendChild(img);
+          dropdownOptionKey.innerHTML += ` ${attributeName}`;
+
+          let dropdownOptionValue = dropdownOption.getElementsByClassName('dropdown--option--value')[0];
+          //let optionValue = db['attribute'][equipmentTypeName][attributeTypeNames[i]][attributeName].value;
+          let optionValue;
+          if (attributeTypeNames[i] == 'minor') {
+            optionValue = db['attribute'][equipmentTypeName][attributeTypeNames[i]]['HighEnd'][attributeName].png;
+          }
+          else {
+            optionValue = db['attribute'][equipmentTypeName][attributeTypeNames[i]][attributeName].png;
+          }
+          dropdownOptionValue.innerHTML = `${optionValue}`;
+
+          // core dropdown option onclick
+          dropdownOption.addEventListener('click', () => {
+            dropdownSelectorText.innerHTML = dropdownOptionKey.innerHTML;
+            dropdownSelectorValue.innerHTML = dropdownOptionValue.innerHTML;
+            dropdownSelectorSymbol.innerHTML = "&#9660";
+            dropdownOptions.classList.add('hide');
+          })
+        }
+      }
+      // CLONE DROPDOWN OPTIONS
+      //============================
+    }
   }
   // GEARSLOT ATTRIBUTES
   //============================
