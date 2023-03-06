@@ -22,7 +22,7 @@ export const db = {
         'Nightwatcher': {
           rarity: "Named",
           type: "Gila Guard",
-          'minor': {
+          'minor 1': {
             name: "Scanner Pulse Haste",
             value: 100,
           },
@@ -38,7 +38,7 @@ export const db = {
       },
     },
   },
-  'attributes': {
+  'attribute': {
     armor: {
       'core': {
         'Weapon Damage': {
@@ -110,96 +110,101 @@ export const db = {
             png: "minorYellow",
             value: 100,
           }
+        },
+      },
+      "minor named": {
+        'Scanner Pulse Haste': {
+          png: "minorYellow",
+          value: 100,
         }
       },
-      mod: {
-        'Critical Hit Chance': {
-          png: "modRed",
-          value: 6,
-        },
-        'Critical Hit Damage': {
-          png: "modRed",
-          value: 12,
-        },
-        'Headshot Damage': {
-          png: "modRed",
-          value: 10,
-        },
-        'Armor on kill': {
-          png: "modBlue",
-          value: 18935,
-        },
-        'Bleed Resistance': {
-          png: "modBlue",
-          value: 10,
-        },
-        'Blind/Deaf Resistance': {
-          png: "modBlue",
-          value: 10,
-        },
-        'Burn Resistance': {
-          png: "modBlue",
-          value: 10,
-        },
-        'Disorient Resistance': {
-          png: "modBlue",
-          value: 10,
-        },
-        'Disrupt Resistance': {
-          png: "modBlue",
-          value: 10,
-        },
-        'Ensnare Resistance': {
-          png: "modBlue",
-          value: 10,
-        },
-        'Incomming Repairs': {
-          png: "modBlue",
-          value: 20,
-        },
-        'Pulse Resistance': {
-          png: "modBlue",
-          value: 10,
-        },
-        'Protection from Elites': {
-          png: "modBlue",
-          value: 13,
-        },
-        'Shock Resistance': {
-          png: "modBlue",
-          value: 10,
-        },
-        'Repair Skills': {
-          png: "modYellow",
-          value: 20,
-        },
-        'Skill Duration': {
-          png: "modYellow",
-          value: 10,
-        },
-        'Skill Haste': {
-          png: "modYellow",
-          value: 12,
-        },
-      },
-      talent: {
-        'weapon': {
-        },
-        'backpack': {
-        },
-        'chest': {
-        },
-      },
     },
-    sets: {
-      GearSet: {
-        "Marksman Rifle Damage": 15,
-      },
-      BrandSet: {
-
-      },
+  },
+  'mod': {
+    'Critical Hit Chance': {
+      png: "modRed",
+      value: 6,
     },
+    'Critical Hit Damage': {
+      png: "modRed",
+      value: 12,
+    },
+    'Headshot Damage': {
+      png: "modRed",
+      value: 10,
+    },
+    'Armor on kill': {
+      png: "modBlue",
+      value: 18935,
+    },
+    'Bleed Resistance': {
+      png: "modBlue",
+      value: 10,
+    },
+    'Blind/Deaf Resistance': {
+      png: "modBlue",
+      value: 10,
+    },
+    'Burn Resistance': {
+      png: "modBlue",
+      value: 10,
+    },
+    'Disorient Resistance': {
+      png: "modBlue",
+      value: 10,
+    },
+    'Disrupt Resistance': {
+      png: "modBlue",
+      value: 10,
+    },
+    'Ensnare Resistance': {
+      png: "modBlue",
+      value: 10,
+    },
+    'Incomming Repairs': {
+      png: "modBlue",
+      value: 20,
+    },
+    'Pulse Resistance': {
+      png: "modBlue",
+      value: 10,
+    },
+    'Protection from Elites': {
+      png: "modBlue",
+      value: 13,
+    },
+    'Shock Resistance': {
+      png: "modBlue",
+      value: 10,
+    },
+    'Repair Skills': {
+      png: "modYellow",
+      value: 20,
+    },
+    'Skill Duration': {
+      png: "modYellow",
+      value: 10,
+    },
+    'Skill Haste': {
+      png: "modYellow",
+      value: 12,
+    },
+  },
+  'talent': {
+    'weapon': {
+    },
+    'backpack': {
+    },
+    'chest': {
+    },
+  },
+  'set': {
+    GearSet: {
+      "Marksman Rifle Damage": 15,
+    },
+    BrandSet: {
 
+    },
   },
   'setboni': {
     GearSet: {
@@ -260,12 +265,6 @@ export const db = {
   },
   /*
   'weapons': {
-
-  },
-  'talents': {
-
-  },
-  'mods': {
 
   },
   */

@@ -245,7 +245,7 @@ for (let equipmentTypeName in db['equipment']) {
       else if (gearItem.hasOwnProperty('talent')) {
         entryTalentName.classList.add('h-line--top');
         entryTalentName.innerHTML = gearItem['talent'].name;
-        panelListEntry.getElementsByClassName('entry--talent-text')[0].innerHTML = db['attributes'][equipmentTypeName]['talent'][gearTypeName][gearItem['talent'].name];
+        panelListEntry.getElementsByClassName('entry--talent-text')[0].innerHTML = db['attribute'][equipmentTypeName]['talent'][gearTypeName][gearItem['talent'].name];
 ;
       };
           }
@@ -364,9 +364,8 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   let attributeTypeNames = []
   attributeTypeNames.push('core');
 
-  // named attribute
-  // TODO: named has "minor", Exotic has "minor 1" and "minor 2"
-  if (gearItem.hasOwnProperty('minor named')) {attributeTypeNames.push('minor named')} else {attributeTypeNames.push('minor')};
+  // first minor attribute
+  attributeTypeNames.push('minor')
 
   // 2nd minor if not gearset
   if (gearItem.rarity !== 'GearSet') {attributeTypeNames.push('minor')};
@@ -377,16 +376,17 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   // talent when exotic, backpack or chest
   if (gearItem.rarity == 'Exotic' || gearTypeName == 'backpack' || gearItemName == 'chest') {attributeTypeNames.push('talent')}
 
-  console.log(attributeTypeNames)
-
-  for (let attributeTypeName of attributeTypeNames) {
-    console.log(attributeTypeNames)
-    let attributeTypeNameData = attributeTypeName; //to choose from attributes-object
-    if (attributeTypeName == 'minor' && document.getElementById(`dropdown--selector--${gearTypeName}--${attributeTypeNameData} 1`) == null) {attributeTypeNameData = attributeTypeName; attributeTypeName = "minor 1"}
-    else if (attributeTypeName == 'minor' && document.getElementById(`dropdown--selector--${gearTypeName}--${attributeTypeName} 1`) !== null) {attributeTypeNameData = attributeTypeName; attributeTypeName = "minor 2"}
+  let attributeTypeName;
+  for (let i in attributeTypeNames) {
+    console.log(attributeTypeNames[i])
+    attributeTypeName = attributeTypeNames[i]
+    if (attributeTypeName == 'minor') {
+      attributeTypeName += " " + i;
+    }
+    console.log(attributeTypeName)
 
     //============================
-    // core DROPDOWN SELECTOR
+    // CLONE DROPDOWN SELECTOR
     const tplDropdownSelectorParent = gearslot;
     const tplDropdownSelectorBase = document.getElementById('template--dropdown');
     let clonedDropdownSelectorNode = tplDropdownSelectorBase.content.cloneNode(true);
@@ -404,35 +404,91 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
     let dropdownSelectorValue = dropdownSelector.getElementsByClassName('dropdown--selector--value')[0];
     let dropdownSelectorSymbol = dropdownSelector.getElementsByClassName('symbol')[0];
 
-    // core dropdown selector default
-    dropdownSelectorText.innerHTML = `Select ${attributeTypeNameData}`;
+    // dropdown selector default
+    dropdownSelectorText.innerHTML = `Select ${attributeTypeName}`;
 
+    // handle item specific attribute
+    if (gearItem.hasOwnProperty(attributeTypeName)) {
+      let source;
+      switch (attributeTypeNames[i]) {
+        case 'core':
+          console.log('enter case for ' + attributeTypeName)
+          source = db['attribute'][equipmentTypeName][attributeTypeName];
+
+          let gearItemAttributeTypeName = gearItem[attributeTypeName].name;
+          dropdownSelectorText.innerHTML = "";
+
+          // add attribute icon (and name)
+          let pngName = source[gearItemAttributeTypeName].png;
+          let img = new Image();
+          img.src = `./icons/${pngName}.png`;
+          dropdownSelectorText.appendChild(img);
+          dropdownSelectorText.innerHTML += " " + gearItemAttributeTypeName;
+
+          console.log('leave case ' + attributeTypeNames[i])
+          break;
+
+        case 'minor':
+          console.log('enter case for ' + attributeTypeName)
+          if (gearItem.rarity == 'Named') {
+            source = db['attribute'][equipmentTypeName][attributeTypeNames[i]][gearItem.rarity];
+          }
+          else {
+            source = db['attribute'][equipmentTypeName][attributeTypeNames[i]]['HighEnd'];
+          }
+
+          console.log('leave case ' + attributeTypeNames[i])
+          break;
+
+        case 'mod':
+          console.log('enter case for ' + attributeTypeName)
+          source = db['mod'];
+
+          console.log('leave case ' + attributeTypeNames[i])
+          break;
+
+        case 'talent':
+          console.log('enter case for ' + attributeTypeName)
+          source = db['talent'];
+
+          console.log('leave case ' + attributeTypeNames[i])
+          break;
+      }
+        }
+    // get item specific attribute (named, exotic)
     if (gearItem.hasOwnProperty(attributeTypeName)) {
       let gearItemAttributeTypeName = gearItem[attributeTypeName].name;
       dropdownSelectorText.innerHTML = "";
+      // add attribute icon (and name) when its not a talent
       if (attributeTypeName !== 'talent') {
-        let pngName = db['attributes'][equipmentTypeName][attributeTypeNameData][gearItemAttributeTypeName].png;
+        let pngName;
+        if (gearItem.rarity == 'Named') {
+          pngName = db['attribute'][equipmentTypeName][attributeTypeNames[i]][gearItem.rarity][gearItemAttributeTypeName].png;
+        }
+        else if (attributeTypeNames[i] == 'minor') {
+          pngName = db['attribute'][equipmentTypeName][attributeTypeNames[i]]['HighEnd'][gearItemAttributeTypeName].png;
+        }
+        else {
+          pngName = db['attribute'][equipmentTypeName][attributeTypeNames[i]][gearItemAttributeTypeName].png;
+        }
         let img = new Image();
         img.src = `./icons/${pngName}.png`;
         dropdownSelectorText.appendChild(img);
         dropdownSelectorText.innerHTML += " " + gearItemAttributeTypeName;
       }
+      // else (if its a talent) add its name
       else {
         dropdownSelectorText.innerHTML = gearItemAttributeTypeName;
       }
 
-      if (attributeTypeName == 'minor named') {
+      if (gearItem.rarity == 'Named' && gearItem.hasOwnProperty(attributeTypeName)) {
         dropdownSelectorText.classList.add('named');
-      }
-
-      dropdownSelectorValue.innerHTML = `${db['attributes'][equipmentTypeName][attributeTypeNameData][gearItemAttributeTypeName].value}`;
-
-      if (gearItem[attributeTypeName].hasOwnProperty('value')) {
-        dropdownSelectorValue.innerHTML = gearItem[attributeTypeName].value;
+        dropdownSelectorValue.innerHTML = `${db['attribute'][equipmentTypeName][attributeTypeNames[i]][gearItem.rarity][gearItemAttributeTypeName]}`;
+        dropdownSelectorValue.innerHTML = `${db['attribute'][equipmentTypeName][attributeTypeNames[i]][gearItem.rarity][gearItemAttributeTypeName].value}`;
       }
     }
 
-    // core dropdown selector onclick
+    // dropdown selector onclick
     if (!(gearItem.hasOwnProperty(attributeTypeName))) {
       dropdownSelector.classList.add('cursor-pointer');
       dropdownSelectorSymbol.innerHTML = "&#9660";
@@ -446,17 +502,24 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
         }
       })
     }
-    // core DROPDOWN SELECTOR
+    // CLONE DROPDOWN SELECTOR
     //============================
 
     //============================
-    // core DROPDOWN OPTIONS
-    if (gearItem.rarity !== 'Exotic'){
+    // CLONE DROPDOWN OPTIONS
+    if (gearItem.rarity !== 'Exotic' && !(gearItem.rarity == 'Named' || gearItem.hasOwnProperty(attributeTypeName))){
       const tplDropdownOptionParent = dropdownOptions;
       const tplDropdownOptionBase = document.getElementById('template--dropdown--option');
 
-      // iterate over attributes armor core
-      for (let attributeName of Object.keys(db['attributes'][equipmentTypeName][attributeTypeNameData])) {
+      // iterate over attributes
+      let attributes;
+      if (attributeTypeNames[i] == 'minor') {
+        attributes = Object.keys(db['attribute'][equipmentTypeName][attributeTypeNames[i]]['HighEnd'])
+      }
+      else {
+        attributes = Object.keys(db['attribute'][equipmentTypeName][attributeTypeNames[i]])
+      }
+      for (let attributeName of attributes) {
         let clonedDropdownOptionNode = tplDropdownOptionBase.content.cloneNode(true);
         let dropdownOption = clonedDropdownOptionNode.getElementById('dropdown--option-');
         dropdownOption.id += `-${gearTypeName}--${attributeTypeName}--${attributeName}`;
@@ -465,14 +528,30 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
 
         let dropdownOptionKey = dropdownOption.getElementsByClassName('dropdown--option--key')[0];
 
-        let pngName = db['attributes'][equipmentTypeName][attributeTypeNameData][attributeName].png;
+        let pngName;
+        if (gearItem.rarity == 'Named') {
+          pngName = db['attribute'][equipmentTypeName][attributeTypeNames[i]][gearItem.rarity][attributeName].png;
+        }
+        else if (attributeTypeNames[i] == 'minor') {
+          pngName = db['attribute'][equipmentTypeName][attributeTypeNames[i]]['HighEnd'][attributeName].png;
+        }
+        else {
+          pngName = db['attribute'][equipmentTypeName][attributeTypeNames[i]][attributeName].png;
+        }
         let img = new Image();
         img.src = `./icons/${pngName}.png`;
         dropdownOptionKey.appendChild(img);
         dropdownOptionKey.innerHTML += ` ${attributeName}`;
 
         let dropdownOptionValue = dropdownOption.getElementsByClassName('dropdown--option--value')[0];
-        let optionValue = db['attributes'][equipmentTypeName][attributeTypeNameData][attributeName].value;
+        //let optionValue = db['attribute'][equipmentTypeName][attributeTypeNames[i]][attributeName].value;
+        let optionValue;
+        if (attributeTypeNames[i] == 'minor') {
+          optionValue = db['attribute'][equipmentTypeName][attributeTypeNames[i]]['HighEnd'][attributeName].png;
+        }
+        else {
+          optionValue = db['attribute'][equipmentTypeName][attributeTypeNames[i]][attributeName].png;
+        }
         dropdownOptionValue.innerHTML = `${optionValue}`;
 
         // core dropdown option onclick
@@ -484,7 +563,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
         })
       }
     }
-    // core DROPDOWN OPTIONS
+    // CLONE DROPDOWN OPTIONS
     //============================
 
   }
