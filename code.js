@@ -407,45 +407,46 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
 
     // handle item specific attribute
     if (gearItem.hasOwnProperty(attributeTypeName)) {
-      let gearItemAttributeTypeName = gearItem[attributeTypeName].name;
-      dropdownSelectorText.innerHTML = gearItem[attributeTypeName].name;
-      let source;
       let pngName;
       let img;
       let gearslotTalentText = gearslot.getElementsByClassName('gearslot--talent-text')[0];
       switch (attributeTypeNames[i]) {
         case 'core':
           console.log('enter case for ' + attributeTypeName)
-          source = db['attribute'][equipmentTypeName][attributeTypeName];
 
           // add attribute icon (and name)
-          pngName = source[gearItemAttributeTypeName].png;
+          pngName = gearItem[attributeTypeName].png;
           img = new Image();
           img.src = `./icons/${pngName}.png`;
           dropdownSelectorText.appendChild(img);
-          dropdownSelectorText.innerHTML += " " + gearItemAttributeTypeName;
+          dropdownSelectorText.innerHTML += " " + gearItem[attributeTypeName].name;
+          dropdownSelectorValue.innerHTML = gearItem[attributeTypeName].value;
 
           console.log('leave case ' + attributeTypeNames[i])
           break;
 
         case 'minor':
           console.log('enter case for ' + attributeTypeName)
-          if (gearItem.rarity == 'Named' && gearItem.hasOwnProperty(attributeTypeName)) {
-            source = db['attribute'][equipmentTypeName][attributeTypeNames[i]][gearItem.rarity];
-
+          if (gearItem.rarity == 'Named') {
             dropdownSelectorText.classList.add('named');
+
+            pngName = gearItem[attributeTypeName].png;
+            img = new Image();
+            img.src = `./icons/${pngName}.png`;
+            dropdownSelectorText.appendChild(img);
+            dropdownSelectorText.innerHTML += " " + gearItem[attributeTypeName].name;
+            dropdownSelectorValue.innerHTML = gearItem[attributeTypeName].value;
           }
           else {
-            source = db['attribute'][equipmentTypeName][attributeTypeNames[i]]['HighEnd'];
+            source = db['attribute'][equipmentTypeName][attributeTypeNames[i]];
+
+            pngName = source[gearItem[attributeTypeName].name].png;
+            img = new Image();
+            img.src = `./icons/${pngName}.png`;
+            dropdownSelectorText.appendChild(img);
+            dropdownSelectorText.innerHTML += " " + gearItem[attributeTypeName].name;
+            dropdownSelectorValue.innerHTML = source[gearItem[attributeTypeName].name].value;
           }
-
-          pngName = source[gearItemAttributeTypeName].png;
-          img = new Image();
-          img.src = `./icons/${pngName}.png`;
-          dropdownSelectorText.appendChild(img);
-          dropdownSelectorText.innerHTML += " " + gearItemAttributeTypeName;
-
-          dropdownSelectorValue.innerHTML = `${source[gearItemAttributeTypeName].value}`;
 
           console.log('leave case ' + attributeTypeNames[i])
           break;
@@ -454,44 +455,45 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
           console.log('enter case for ' + attributeTypeName)
           source = db['talent'];
 
-          gearslotTalentText.innerHTML = gearItem[attributeTypeName].name;
+          dropdownSelectorText.innerHTML = gearItem[attributeTypeName].name;
+          gearslotTalentText.innerHTML = gearItem[attributeTypeName].value;
 
           console.log('leave case ' + attributeTypeNames[i])
           break;
       }
         }
     // get item specific attribute (named, exotic)
-    if (gearItem.hasOwnProperty(attributeTypeName)) {
-      let gearItemAttributeTypeName = gearItem[attributeTypeName].name;
-      dropdownSelectorText.innerHTML = "";
-      // add attribute icon (and name) when its not a talent
-      if (attributeTypeName !== 'talent') {
-        let pngName;
-        if (gearItem.rarity == 'Named') {
-          pngName = db['attribute'][equipmentTypeName][attributeTypeNames[i]][gearItem.rarity][gearItemAttributeTypeName].png;
-        }
-        else if (attributeTypeNames[i] == 'minor') {
-          pngName = db['attribute'][equipmentTypeName][attributeTypeNames[i]]['HighEnd'][gearItemAttributeTypeName].png;
-        }
-        else {
-          pngName = db['attribute'][equipmentTypeName][attributeTypeNames[i]][gearItemAttributeTypeName].png;
-        }
-        let img = new Image();
-        img.src = `./icons/${pngName}.png`;
-        dropdownSelectorText.appendChild(img);
-        dropdownSelectorText.innerHTML += " " + gearItemAttributeTypeName;
-      }
-      // else (if its a talent) add its name
-      else {
-        dropdownSelectorText.innerHTML = gearItemAttributeTypeName;
-      }
+    //if (gearItem.hasOwnProperty(attributeTypeName)) {
+      //let gearItemAttributeTypeName = gearItem[attributeTypeName].name;
+      //dropdownSelectorText.innerHTML = "";
+      //// add attribute icon (and name) when its not a talent
+      //if (attributeTypeName !== 'talent') {
+        //let pngName;
+        //if (gearItem.rarity == 'Named') {
+          //pngName = db['attribute'][equipmentTypeName][attributeTypeNames[i]][gearItem.rarity][gearItemAttributeTypeName].png;
+        //}
+        //else if (attributeTypeNames[i] == 'minor') {
+          //pngName = db['attribute'][equipmentTypeName][attributeTypeNames[i]]['HighEnd'][gearItemAttributeTypeName].png;
+        //}
+        //else {
+          //pngName = db['attribute'][equipmentTypeName][attributeTypeNames[i]][gearItemAttributeTypeName].png;
+        //}
+        //let img = new Image();
+        //img.src = `./icons/${pngName}.png`;
+        //dropdownSelectorText.appendChild(img);
+        //dropdownSelectorText.innerHTML += " " + gearItemAttributeTypeName;
+      //}
+      //// else (if its a talent) add its name
+      //else {
+        //dropdownSelectorText.innerHTML = gearItemAttributeTypeName;
+      //}
 
-      if (gearItem.rarity == 'Named' && gearItem.hasOwnProperty(attributeTypeName)) {
-        dropdownSelectorText.classList.add('named');
-        dropdownSelectorValue.innerHTML = `${db['attribute'][equipmentTypeName][attributeTypeNames[i]][gearItem.rarity][gearItemAttributeTypeName]}`;
-        dropdownSelectorValue.innerHTML = `${db['attribute'][equipmentTypeName][attributeTypeNames[i]][gearItem.rarity][gearItemAttributeTypeName].value}`;
-      }
-    }
+      //if (gearItem.rarity == 'Named' && gearItem.hasOwnProperty(attributeTypeName)) {
+        //dropdownSelectorText.classList.add('named');
+        //dropdownSelectorValue.innerHTML = `${db['attribute'][equipmentTypeName][attributeTypeNames[i]][gearItem.rarity][gearItemAttributeTypeName]}`;
+        //dropdownSelectorValue.innerHTML = `${db['attribute'][equipmentTypeName][attributeTypeNames[i]][gearItem.rarity][gearItemAttributeTypeName].value}`;
+      //}
+    //}
 
     // dropdown selector onclick
     if (!(gearItem.hasOwnProperty(attributeTypeName))) {

@@ -56,7 +56,6 @@ export const db = {
         },
       },
       "minor": {
-        "HighEnd": {
           "Critical Hit Chance": {
             png: "minorRed",
             value: 6,
@@ -105,13 +104,6 @@ export const db = {
             png: "minorYellow",
             value: 10,
           },
-        },
-        "Named": {
-          "Scanner Pulse Haste": {
-            png: "minorYellow",
-            value: 100,
-          }
-        },
       },
     },
   },
