@@ -399,12 +399,12 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
     switch (attributeTypeName) {
       case 'core1': 
       case 'minor1':
-        dropdownSelectorText.innerHTML += "first ";
+        dropdownSelectorText.innerHTML += `first ${attributeTypeNames[i]} attribute`;
         break;
 
       case 'core2': 
       case 'minor2':
-        dropdownSelectorText.innerHTML += "second ";
+        dropdownSelectorText.innerHTML += `second ${attributeTypeNames[i]} attribute`;
         break;
 
       case 'core':
