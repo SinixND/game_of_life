@@ -182,7 +182,7 @@ for (let equipmentTypeName in db['equipment']) {
       // get list entry panel
       let clonedListEntryNode = tplListEntryBase.content.cloneNode(true);
       let panelListEntry = clonedListEntryNode.getElementById('panel--list-entry-');
-      panelListEntry.id += `-${equipmentTypeName}--${gearItemName}`;
+      panelListEntry.id += `-${gearTypeName}--${gearItemName}`;
 
       tplListEntryParent.appendChild(clonedListEntryNode);
       panelListEntry = document.getElementById(`${panelListEntry.id}`);
