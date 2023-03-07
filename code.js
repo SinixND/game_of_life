@@ -422,7 +422,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
 
     let dropdownSelectorText = dropdownSelector.getElementsByClassName('dropdown--selector--text')[0];
     let dropdownSelectorValue = dropdownSelector.getElementsByClassName('dropdown--selector--value')[0];
-    let dropdownSelectorSymbol = dropdownSelector.getElementsByClassName('symbol')[0];
+    let dropdownSelectorSymbol = dropdownSelector.getElementsByClassName('symbol-toggle')[0];
 
     // dropdown selector default
     dropdownSelectorText.innerHTML = "Select ";
