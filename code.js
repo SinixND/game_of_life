@@ -234,12 +234,14 @@ for (let equipmentTypeName in db['equipment']) {
 
         if (gearItem.rarity == "Gearset") {
           for (let attribute in mltpc.Gearset[mltpcName]) {
-            entryMltpcAttributes.innerHTML += "<li>" + mltpc.Gearset[mltpcName][attribute].name + ': ' + mltpc.Gearset[mltpcName][attribute].value + "</li>";
+            entryMltpcAttributes.innerHTML += "<li>" + attribute.name + ': ';
+            if (attribute == "pcs4") {entryMltpcAttributes.innerHTML += "\r\n"}
+            entryMltpcAttributes.innerHTML += attribute.value + "</li>";
           }
         }
         else if (gearItem.rarity !== 'Improvised' && (gearItem.rarity == 'High End' || gearItem.rarity == 'Named')) {
           for (let attribute in mltpc.Brandset[mltpcName]) {
-            entryMltpcAttributes.innerHTML += "<li>" + mltpc.Brandset[mltpcName][attribute].name + ': ' + mltpc.Brandset[mltpcName][attribute].value + "</li>";
+            entryMltpcAttributes.innerHTML += "<li>" + attribute.name + ': ' + attribute.value + "</li>";
           }
         };
       }
