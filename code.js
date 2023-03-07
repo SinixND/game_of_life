@@ -190,7 +190,6 @@ for (let equipmentTypeName in db['equipment']) {
       // list entry panel onclick
       panelListEntry.classList.add('cursor-pointer');
       panelListEntry.addEventListener('click', () => {
-        hideAllOnClicks();
         applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
       }, false);
 
@@ -275,7 +274,6 @@ let abortControlls = {};
 // add listener: close popup on background click
 let popupFrameMain = document.getElementById("popup--frame-main");
 popupFrameMain.addEventListener('click', () => {
-  hideAllOnClicks();
   hidePopup();
 }, false);
 
@@ -290,7 +288,7 @@ for (let equipmentTypeName in db['equipment']) {
     abortControlls[`controller-${gearTypeName}`] = new AbortController();
 
     panelGearType.addEventListener('click', () => {
-      hideAllOnClicks();
+      hideOtherDropdowns();
       showPopup(equipmentTypeName, gearTypeName);
     }, { signal: abortControlls[`controller-${gearTypeName}`].signal }, false);
   }
@@ -301,22 +299,14 @@ for (let equipmentTypeName in db['equipment']) {
 
 //==============================
 /* FUNCTIONS {*/
-function hideAllOnClicks() {
-  let list = [];
-  for (let a of document.querySelectorAll('#popup--frame-main')) {
-    list.push(a);
+function hideOtherDropdowns(target) {
+  let allDropdowns = document.getElementsByClassName('dropdown--options');
+  console.log(allDropdowns)
+  for (let dropdown of allDropdowns) {
+    if (dropdown !== target) {
+      dropdown.classList.add('hide');
+    }
   }
-  for (let a of document.getElementsByClassName('dropdown--options')) {
-  list.push(a);
-  }
-  for (let a of document.getElementsByClassName('popup')) {
-  list.push(a);
-  }
-  console.log(list)
-  for (let obj of list) {
-    obj.classList.add('hide');
-  }
-  document.body.style.overflow = "";
   for (let obj of document.getElementsByClassName('symbol-toggle')) {
     obj.innerHTML = "&#9660"; //hidden
   }
@@ -365,7 +355,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   // add new showPopup listener to gearslot
   gearslotName.classList.add('cursor-pointer');
   gearslotName.addEventListener('click', () => {
-    hideAllOnClicks();
+    hideOtherDropdowns();
     showPopup(equipmentTypeName, gearTypeName);
   }, false);
 
@@ -526,7 +516,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
       dropdownSelector.classList.add('cursor-pointer');
       dropdownSelectorSymbol.innerHTML = "&#9660";
       dropdownSelector.addEventListener('click', () => {
-        hideAllOnClicks();
+        hideOtherDropdowns(dropdownOptions);
         dropdownOptions.classList.toggle('hide');
         if (dropdownOptions.classList.contains('hide')) {
           dropdownSelectorSymbol.innerHTML = "&#9660"; //hidden
@@ -587,7 +577,6 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
 
       // dropdown option onclick
       dropdownOption.addEventListener('click', () => {
-        hideAllOnClicks();
         dropdownSelectorText.innerHTML = dropdownOptionName.innerHTML;
         dropdownSelectorValue.innerHTML = dropdownOptionValue.innerHTML;
         dropdownSelectorSymbol.innerHTML = "&#9660";
