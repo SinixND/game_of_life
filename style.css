@@ -270,7 +270,7 @@ place-self :: (align justify)
   color: inherit;
 }
 
-.entry--type {
+.entry--rarity {
   font-size: var(--txtSmall);
   font-style: italic;
   color: var(--ctxt);
