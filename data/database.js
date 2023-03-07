@@ -22,6 +22,9 @@ export const db = {
         "Nightwatcher": {
           rarity: "Named",
           type: "Gila Guard",
+          core: {
+            name: "Armor",
+          },
           minor1: {
             name: "Scanner Pulse Haste",
             png: "minorYellow",
