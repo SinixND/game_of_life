@@ -200,12 +200,13 @@ for (let equipmentTypeName in db['equipment']) {
       entryName.innerHTML = gearItemName;
 
       // list entry type
-      if (gearItem.hasOwnProperty('type') && gearItem.type !== gearItemName) {
-        let entryType = panelListEntry.getElementsByClassName('entry--type')[0];
-        entryType.innerHTML = "(";
-        entryType.innerHTML += gearItem.type;
-        entryType.innerHTML += ")";
-      };
+      let entryRarity = panelListEntry.getElementsByClassName('entry--rarity')[0];
+      entryRarity.innerHTML = "(";
+      entryRarity.innerHTML += gearItem.rarity;
+      if (gearItem.rarity == 'Named') {
+        entryRarity.innerHTML += " " + gearItem.type;
+      }
+      entryRarity.innerHTML += ")";
 
       // list entry set (mltpc) boni
       if (gearItem.rarity !== 'Exotic' && gearItem.rarity !== 'Improvised') {
