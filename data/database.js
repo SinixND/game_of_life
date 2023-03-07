@@ -2,6 +2,38 @@ export const db = {
   equipment: {
     armor: {
       mask: {
+        "Catharsis": {
+          rarity: "Exotic",
+          core: {
+            name: "Armor",
+          },
+          minor1: {
+            name: "Incoming Repairs",
+          },
+          minor2: {
+            name: "Armor Regeneration",
+          },
+          talent: {
+            name: "Vicious Cycle",
+            value: "Taking damage builds stacks to a cap of 30. Each stack grants 1% Weapon Damage. Taking damage at max stacks triggers a purge, removing all stacks and Status Effects and then dropping a healing cloud which restores 5% of Max Armor for 10s to all allies in the cloud."
+          }
+        },
+        "Coyote's Mask": {
+          rarity: "Exotic",
+          core: {
+            name: "Weapon Damage",
+          },
+          minor1: {
+            name: "Critical Hit Chance",
+          },
+          minor2: {
+            name: "Critical Hit Damage",
+          },
+          talent: {
+            name: "Pack Instincts",
+            value: "You and all allies gain a bonus based on the distance of the last enemy you hit.\r\n \r\n 0-15m: +25% critical hit damage\r\n 15-25m: +10% critical hit damage and +10% critical hit chance\r\n 25m+: +25% critical hit chance"
+          }
+        },
         "Vile": {
           rarity: "Exotic",
           type: "Exotic",
@@ -31,43 +63,151 @@ export const db = {
             value: 100,
           },
         },
-        "Aces & Eights": {
-          rarity: "Gearset",
-          type: "Aces & Eights",
+        "Chill Out": {
+          rarity: "Named",
+          type: "Gila Guard",
+          core: {
+            name: "Armor",
+          },
+          mod: {
+          },
         },
-        "5.11 Tactical": {
-          rarity: "High End",
-          type: "5.11 Tactical",
+        "Punch Drunk": {
+          rarity: "Named",
+          type: "Douglas & Harding",
+          core: {
+            name: "Weapon Damage",
+          },
+          minor: "Headshot Damage",
         },
-        "Catharsis": {
-          rarity: "Exotic",
+        "The Hollow Man": {
+          rarity: "Named",
+          type: "Yaahl Gear",
           core: {
             name: "Armor",
           },
           minor1: {
-            name: "Incoming Repairs",
+            name: "Damage to Health",
           },
-          minor2: {
-            name: "Armor Regeneration",
-          },
-          talent: {
-            name: "Vicious Cycle",
-          }
         },
-        "Coyote's Mask": {
-          rarity: "Exotic",
+        "Aces & Eights": {
+          rarity: "Gearset",
+          type: "Aces & Eights",
           core: {
             name: "Weapon Damage",
           },
-          minor1: {
-            name: "Critical Hit Chance",
+        },
+        "Eclipse Protocol": {
+          rarity: "Gearset",
+          type: "Eclipse Protocol",
+          core: {
+            name: "Skill Tier",
           },
-          minor2: {
-            name: "Critical Hit Damage",
+        },
+        "Foundry Bullwark": {
+          rarity: "Gearset",
+          type: "Foundry Bullwark",
+          core: {
+            name: "Armor",
           },
-          talent: {
-            name: "Pack Instincts",
-          }
+        },
+        "Future Initiative": {
+          rarity: "Gearset",
+          type: "Future Initiative",
+          core: {
+            name: "Skill Tier",
+          },
+        },
+        "Hard Wired": {
+          rarity: "Gearset",
+          type: "Hard Wired",
+          core: {
+            name: "Skill Tier",
+          },
+        },
+        "Heartbreaker": {
+          rarity: "Gearset",
+          type: "Heartbreaker",
+          core: {
+            name: "Weapon Damage",
+          },
+        },
+        "Hotshot": {
+          rarity: "Gearset",
+          type: "Hotshot",
+          core: {
+            name: "Weapon Damage",
+          },
+        },
+        "Hunter's Fury": {
+          rarity: "Gearset",
+          type: "Hunter's Fury",
+          core: {
+            name: "Weapon Damage",
+          },
+        },
+        "Negotiator's Dilemma": {
+          rarity: "Gearset",
+          type: "Negotiator's Dilemma",
+          core: {
+            name: "Weapon Damage",
+          },
+        },
+        "Ongoing Directive": {
+          rarity: "Gearset",
+          type: "Ongoing Directive",
+          core: {
+            name: "Skill Tier",
+          },
+        },
+        "Rigger": {
+          rarity: "Gearset",
+          type: "Rigger",
+          core: {
+            name: "Skill Tier",
+          },
+        },
+        "Striker's Battlegear": {
+          rarity: "Gearset",
+          type: "Striker's Battlegear",
+          core: {
+            name: "Weapon Damage",
+          },
+        },
+        "System Corruption": {
+          rarity: "Gearset",
+          type: "System Corruption",
+          core: {
+            name: "Weapon Damage",
+          },
+        },
+        "Tip of the Spear": {
+          rarity: "Gearset",
+          type: "Tip of the Spear",
+          core: {
+            name: "Weapon Damage",
+          },
+        },
+        "True Patriot": {
+          rarity: "Gearset",
+          type: "True Patriot",
+          core: {
+            name: "Armor",
+          },
+        },
+        "Umbra Initiative": {
+          rarity: "Gearset",
+          type: "Umbra Initiative",
+          core: {
+            name: "Weapon Damage",
+          },
+        },
+        "5.11 Tactical": {
+          rarity: "High End",
+          type: "5.11 Tactical",
+          core: {
+            name: "Armor",
+          },
         },
         "Airaldi Holdings": {
           rarity: "High End",
@@ -88,6 +228,20 @@ export const db = {
           type: "Badger Tuff",
           core: {
             name: "Armor",
+          },
+        },
+        "Belstone Armory": {
+          rarity: "High End",
+          type: "Belstone Armory",
+          core: {
+            name: "Armor",
+          },
+        },
+        "Brazos de Arcabuz": {
+          rarity: "High End",
+          type: "Brazos de Arcabuz",
+          core: {
+            name: "Weapon Damage",
           },
         },
         "Ceska Vyroba s.r.o.": {
@@ -111,13 +265,12 @@ export const db = {
             name: "Weapon Damage",
           },
         },
-        "Punch Drunk": {
-          rarity: "Named",
-          type: "Douglas & Harding",
+        "Empress International": {
+          rarity: "High End",
+          type: "Empress International",
           core: {
-            name: "Weapon Damage",
+            name: "Skill Tier",
           },
-          "Minor": "Headshot Damage",
         },
         "Fenris Group AB": {
           rarity: "High End",
@@ -125,14 +278,6 @@ export const db = {
           core: {
             name: "Weapon Damage",
           },
-        },
-        "Foundry Bullwark": {
-          rarity: "Gearset",
-          type: "Foundry Bullwark",
-        },
-        "Future Initiative": {
-          rarity: "Gearset",
-          type: "Future Initiative",
         },
         "Gila Guard": {
           rarity: "High End",
@@ -155,6 +300,13 @@ export const db = {
             name: "Weapon Damage",
           },
         },
+        "Habsburg Guard": {
+          rarity: "High End",
+          type: "Habsburg Guard",
+          core: {
+            name: "Weapon Damage",
+          },
+        },
         "Hana-U Corporation": {
           rarity: "High End",
           type: "Hana-U Corporation",
@@ -162,30 +314,9 @@ export const db = {
             name: "Skill Tier",
           },
         },
-        "Hard Wired": {
-          rarity: "Gearset",
-          type: "Hard Wired",
-          core: {
-            name: "Skill Tier",
-          },
-        },
         "Murakami Industries": {
           rarity: "High End",
           type: "Murakami Industries",
-          core: {
-            name: "Skill Tier",
-          },
-        },
-        "Negotiator's Dilemma": {
-          rarity: "Gearset",
-          type: "Negotiator's Dilemma",
-          core: {
-            name: "Weapon Damage",
-          },
-        },
-        "Ongoing Directive": {
-          rarity: "Gearset",
-          type: "Ongoing Directive",
           core: {
             name: "Skill Tier",
           },
@@ -225,32 +356,18 @@ export const db = {
             name: "Weapon Damage",
           },
         },
-        "Striker's Battlegear": {
-          rarity: "Gearset",
-          type: "Striker's Battlegear",
-          core: {
-            name: "Weapon Damage",
-          },
-        },
-        "System Corruption": {
-          rarity: "Gearset",
-          type: "System Corruption",
-          core: {
-            name: "Weapon Damage",
-          },
-        },
-        "Tip of the Spear": {
-          rarity: "Gearset",
-          type: "Tip of the Spear",
-          core: {
-            name: "Weapon Damage",
-          },
-        },
-        "True Patriot": {
-          rarity: "Gearset",
-          type: "True Patriot",
+        "Uzina Getica": {
+          rarity: "High End",
+          type: "Uzina Getica",
           core: {
             name: "Armor",
+          },
+        },
+        "Walker, Harris & Co.": {
+          rarity: "High End",
+          type: "Walker, Harris & Co.",
+          core: {
+            name: "Weapon Damage",
           },
         },
         "Wyvern Wear": {
@@ -267,15 +384,9 @@ export const db = {
             name: "Armor",
           },
         },
-        "The Hollow Man": {
-          rarity: "Named",
-          type: "Yaahl Gear",
-          core: {
-            name: "Armor",
-          },
-          minor1: {
-            name: "Damage to Health",
-          },
+        "Improvised": {
+          rarity: "High End",
+          type: "Improvised",
         },
       },
     },
