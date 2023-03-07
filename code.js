@@ -481,7 +481,6 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
           break;
       }
     }
-    else {
       // dropdown selector onclick
       console.log(`rarity == ${gearItem.rarity} || ( has(${attributeTypeName}) && ${attributeTypeNames[i]} !== core )`);
       if (!(gearItem.rarity == 'Exotic' || (gearItem.hasOwnProperty(attributeTypeName) && attributeTypeNames[i] !== 'core'))) {
@@ -557,7 +556,6 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
 
       // CLONE DROPDOWN OPTIONS
       //============================
-    }
   }
   // GEARSLOT ATTRIBUTES
   //============================
