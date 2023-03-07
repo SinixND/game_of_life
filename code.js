@@ -395,7 +395,27 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
     let dropdownSelectorSymbol = dropdownSelector.getElementsByClassName('symbol')[0];
 
     // dropdown selector default
-    dropdownSelectorText.innerHTML = `Select ${attributeTypeName}`;
+    dropdownSelectorText.innerHTML = "Select ";
+    switch (attributeTypeName) {
+      case 'core1': 
+      case 'minor1':
+        dropdownSelectorText.innerHTML += "first ";
+        break;
+
+      case 'core2': 
+      case 'minor2':
+        dropdownSelectorText.innerHTML += "second ";
+        break;
+
+      case 'core':
+      case 'minor':
+        dropdownSelectorText.innerHTML += `${attributeTypeNames[i]} attribute`;
+        break;
+      
+      default: 
+        dropdownSelectorText.innerHTML += `${attributeTypeNames[i]}`;
+        break;
+    }
 
     // handle item specific attribute
     if (gearItem.hasOwnProperty(attributeTypeName)) {
