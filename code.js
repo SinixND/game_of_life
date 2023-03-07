@@ -176,15 +176,6 @@ for (let equipmentTypeName in db['equipment']) {
     const tplListEntryBase = document.getElementById('template--selection-list-entry');
 
     // iterate over all items in $gearType
-    // pre-sort by rarity
-    let gearTypeSorted = [];
-    for (let selector of ['Exotic', 'Named', 'Gearset', 'High End']) {
-      for (let gearItemName in gearType) {
-        if (gearType[gearItemName].rarity == selector) {
-          gearTypeSorted.push(gearType[gearItemName]);
-        }
-      }
-    }
     for (let gearItemName in gearTypeSorted) {
       let gearItem = gearTypeSorted[gearItemName];
 
