@@ -169,6 +169,7 @@ for (let equipmentTypeName in db['equipment']) {
     tplPopupParent.appendChild(clonedPopupSelectEquipmentTypeNode);
 
     popupSelectEquipmentType = document.getElementById(`${popupSelectEquipmentType.id}`)
+    popupSelectEquipmentType.getElementsByClassName('popup--title').innerHTML = `- ${gearTypeName} -`
 
     //============================
     /* CLONE SELECTION LIST ENTRY {*/

@@ -36,7 +36,7 @@
 
   /* text color */
   --ctxt: rgba(200, 200, 200, 1.0);
-  --ctxthl: rgba(247, 208, 124, 1.0);
+  --ctxthl: rgb(75, 115, 175);
 
   /* border colors */
   --cbrd: rgba(255, 255, 255, 1.0);
@@ -295,11 +295,11 @@ place-self :: (align justify)
   padding-top: var(--bWeight);
 }
 
-.input--search {
-  color: inherit;
+.popup--title {
+  color: var(--ctxthl);
   font: inherit;
   height: min-content;
-  border-width: 0;
+  border-bottom: var(--bWeight) solid var(--ctxthl);
   background-color: var(--cbg);
 }
 
