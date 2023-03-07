@@ -289,7 +289,8 @@ place-self :: (align justify)
   color: var(--ctxt);
 }
 
-.symbol {
+.symbol-menu,
+.symbol-toggle {
   color: var(--ctxt);
   margin-left: auto;
   margin-right: calc(5 * var(--tpx));
