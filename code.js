@@ -234,9 +234,12 @@ for (let equipmentTypeName in db['equipment']) {
 
         if (gearItem.rarity == "Gearset") {
           for (let attribute in mltpc.Gearset[mltpcName]) {
-            entryMltpcAttributes.innerHTML += "<li>" + mltpc.Gearset[mltpcName][attribute].name + ': ';
-            if (mltpc.Gearset[mltpcName][attribute].requiredPieces == 4) {console.log("breadwk"); entryMltpcAttributes.innerHTML += "\r\n"};
-            entryMltpcAttributes.innerHTML += mltpc.Gearset[mltpcName][attribute].value + "</li>";
+            if (mltpc.Gearset[mltpcName][attribute].requiredPieces == 4) {
+              entryMltpcAttributes.innerHTML += "<li>" + mltpc.Gearset[mltpcName][attribute].name + ': <br><br>' + mltpc.Gearset[mltpcName][attribute].value + "</li>";
+            }
+            else {
+              entryMltpcAttributes.innerHTML += "<li>" + mltpc.Gearset[mltpcName][attribute].name + ': ' + mltpc.Gearset[mltpcName][attribute].value + "</li>";
+            }
           }
         }
         else if (gearItem.rarity !== 'Improvised' && (gearItem.rarity == 'High End' || gearItem.rarity == 'Named')) {
@@ -276,7 +279,7 @@ let abortControlls = {};
 
 // add listener: close popup on background click
 let popupFrameMain = document.getElementById("popup--frame-main");
-popupFrameMain.addEventListener('click', () => {
+popupFrameMain.addEventListener('click', (e) => {
   hidePopups();
 }, false);
 
