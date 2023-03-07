@@ -232,8 +232,6 @@ for (let equipmentTypeName in db['equipment']) {
         let mltpcName = gearItem.type;
 
         if (gearItem.rarity == "Gearset") {
-          console.log('att mltpc attributes in for loop')
-          console.log(mltpc.Gearset[mltpcName])
           for (let attribute in mltpc.Gearset[mltpcName]) {
             entryMltpcAttributes.innerHTML += "<li>" + mltpc.Gearset[mltpcName][attribute].name + ': ' + mltpc.Gearset[mltpcName][attribute].value + "</li>";
           }
