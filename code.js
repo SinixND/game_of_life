@@ -176,8 +176,8 @@ for (let equipmentTypeName in db['equipment']) {
     const tplListEntryBase = document.getElementById('template--selection-list-entry');
 
     // iterate over all items in $gearType
-    for (let gearItemName in gearTypeSorted) {
-      let gearItem = gearTypeSorted[gearItemName];
+    for (let gearItemName in gearType) {
+      let gearItem = gearType[gearItemName];
 
       // get list entry panel
       let clonedListEntryNode = tplListEntryBase.content.cloneNode(true);
