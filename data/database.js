@@ -24,6 +24,7 @@ export const db = {
           type: "Gila Guard",
           minor1: {
             name: "Scanner Pulse Haste",
+            png: "minorYellow",
             value: 100,
           },
         },
