@@ -235,7 +235,8 @@ for (let equipmentTypeName in db['equipment']) {
         if (gearItem.rarity == "Gearset") {
           for (let attribute in mltpc.Gearset[mltpcName]) {
             entryMltpcAttributes.innerHTML += "<li>" + mltpc.Gearset[mltpcName][attribute].name + ': ';
-            if (mltpc.Gearset[mltpcName][attribute] == "pcs4") {entryMltpcAttributes.innerHTML += "\r\n"}
+            console.log(mltpc.Gearset[mltpcName][attribute])
+            if (mltpc.Gearset[mltpcName][attribute] == 'pcs4') {entryMltpcAttributes.innerHTML += "\r\n"};
             entryMltpcAttributes.innerHTML += mltpc.Gearset[mltpcName][attribute].value + "</li>";
           }
         }
