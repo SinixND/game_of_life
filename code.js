@@ -303,9 +303,15 @@ for (let equipmentTypeName in db['equipment']) {
 /* FUNCTIONS {*/
 function hideAllOnClicks() {
   let list = [];
-  list.push(document.querySelectorAll('#popup--frame-main'));
-  list.push(document.getElementsByClassName('dropdown--options'));
-  list.push(document.getElementsByClassName('popup'));
+  for (let a of document.querySelectorAll('#popup--frame-main')) {
+    list.push(a);
+  }
+  for (let a of document.getElementsByClassName('dropdown--options')) {
+  list.push(a);
+  }
+  for (let a of document.getElementsByClassName('popup')) {
+  list.push(a);
+  }
   console.log(list)
   for (let obj of list) {
     obj.classList.add('hide');
