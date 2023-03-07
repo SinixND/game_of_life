@@ -186,7 +186,7 @@ for (let equipmentTypeName in db['equipment']) {
       }
     }
     for (let gearItemName in gearTypeSorted) {
-      let gearItem = gearType[gearItemName];
+      let gearItem = gearTypeSorted[gearItemName];
 
       // get list entry panel
       let clonedListEntryNode = tplListEntryBase.content.cloneNode(true);
