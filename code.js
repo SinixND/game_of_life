@@ -190,7 +190,7 @@ for (let equipmentTypeName in db['equipment']) {
         panelListEntry.style.borderColor = 'var(--cGearset)';
         panelListEntry.style.color = 'var(--cGearset)';
       }
-      else if (gearItem.rarity == "HighEnd") {
+      else if (gearItem.rarity == "High End") {
         panelListEntry.style.borderColor = 'var(--cHighEnd)';
         panelListEntry.style.color = 'var(--cHighEnd)';
       }
@@ -220,7 +220,7 @@ for (let equipmentTypeName in db['equipment']) {
             entryMltpcAttributes.innerHTML += "<li>" + mltpc.Gearset[mltpcName][attribute].name + ': ' + mltpc.Gearset[mltpcName][attribute].value + "</li>";
           }
         }
-        else if (gearItem.rarity !== 'Improvised' && (gearItem.rarity == 'HighEnd' || gearItem.rarity == 'Named')) {
+        else if (gearItem.rarity !== 'Improvised' && (gearItem.rarity == 'High End' || gearItem.rarity == 'Named')) {
           for (let attribute in mltpc.Brandset[mltpcName]) {
             entryMltpcAttributes.innerHTML += "<li>" + mltpc.Brandset[mltpcName][attribute].name + ': ' + mltpc.Brandset[mltpcName][attribute].value + "</li>";
           }
@@ -345,7 +345,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
     gearslotName.style.color = 'var(--cNamed)';
     gearslotName.style.background = 'linear-gradient(28deg, var(--c0), var(--cNamed))';
   }
-  else if (gearItem.rarity == "HighEnd") {
+  else if (gearItem.rarity == "High End") {
     tplGearslotParent.style.borderColor = 'var(--cHighEnd)';
     gearslotName.style.color = 'var(--cHighEnd)';
     gearslotName.style.background = 'linear-gradient(28deg, var(--c0), var(--cNamed))';

@@ -32,7 +32,7 @@ export const db = {
           type: "Aces & Eights",
         },
         "5.11 Tactical": {
-          rarity: "HighEnd",
+          rarity: "High End",
           type: "5.11 Tactical",
         },
         "Catharsis": {
@@ -66,42 +66,42 @@ export const db = {
           }
         },
         "Airaldi Holdings": {
-          rarity: "HighEnd",
+          rarity: "High End",
           type: "Airaldi Holdings",
           core: {
             name: "Weapon Damage",
           },
         },
         "Alps Summit Armaments": {
-          rarity: "HighEnd",
+          rarity: "High End",
           type: "Alps Summit Armaments",
           core: {
             name: "Skill Tier",
           },
         },
         "Badger Tuff": {
-          rarity: "HighEnd",
+          rarity: "High End",
           type: "Badger Tuff",
           core: {
             name: "Armor",
           },
         },
         "Ceska Vyroba s.r.o.": {
-          rarity: "HighEnd",
+          rarity: "High End",
           type: "Ceska Vyroba s.r.o.",
           core: {
             name: "Weapon Damage",
           },
         },
         "China Light Industries Corporation": {
-          rarity: "HighEnd",
+          rarity: "High End",
           type: "China Light Industries Corporation",
           core: {
             name: "Skill Tier",
           },
         },
         "Douglas & Harding": {
-          rarity: "HighEnd",
+          rarity: "High End",
           type: "Douglas & Harding",
           core: {
             name: "Weapon Damage",
@@ -116,7 +116,7 @@ export const db = {
           "Minor": "Headshot Damage",
         },
         "Fenris Group AB": {
-          rarity: "HighEnd",
+          rarity: "High End",
           type: "Fenris Group AB",
           core: {
             name: "Weapon Damage",
@@ -131,28 +131,28 @@ export const db = {
           type: "Future Initiative",
         },
         "Gila Guard": {
-          rarity: "HighEnd",
+          rarity: "High End",
           type: "Gila Guard",
           core: {
             name: "Armor",
           },
         },
         "Golan Gear Ltd": {
-          rarity: "HighEnd",
+          rarity: "High End",
           type: "Golan Gear Ltd",
           core: {
             name: "Armor",
           },
         },
         "Grupo Sombra S.A.": {
-          rarity: "HighEnd",
+          rarity: "High End",
           type: "Grupo Sombra S.A.",
           core: {
             name: "Weapon Damage",
           },
         },
         "Hana-U Corporation": {
-          rarity: "HighEnd",
+          rarity: "High End",
           type: "Hana-U Corporation",
           core: {
             name: "Skill Tier",
@@ -166,7 +166,7 @@ export const db = {
           },
         },
         "Murakami Industries": {
-          rarity: "HighEnd",
+          rarity: "High End",
           type: "Murakami Industries",
           core: {
             name: "Skill Tier",
@@ -187,35 +187,35 @@ export const db = {
           },
         },
         "Overlord Armaments": {
-          rarity: "HighEnd",
+          rarity: "High End",
           type: "Overlord Armaments",
           core: {
             name: "Weapon Damage",
           },
         },
         "Petrov Defense Group": {
-          rarity: "HighEnd",
+          rarity: "High End",
           type: "Petrov Defense Group",
           core: {
             name: "Weapon Damage",
           },
         },
         "Providence Defense": {
-          rarity: "HighEnd",
+          rarity: "High End",
           type: "Providence Defense",
           core: {
             name: "Weapon Damage",
           },
         },
         "Richter & Kaiser GmbH": {
-          rarity: "HighEnd",
+          rarity: "High End",
           type: "Richter & Kaiser GmbH",
           core: {
             name: "Skill Tier",
           },
         },
         "Sokolov Concern": {
-          rarity: "HighEnd",
+          rarity: "High End",
           type: "Sokolov Concern",
           core: {
             name: "Weapon Damage",
@@ -250,14 +250,14 @@ export const db = {
           },
         },
         "Wyvern Wear": {
-          rarity: "HighEnd",
+          rarity: "High End",
           type: "Wyvern Wear",
           core: {
             name: "Skill Tier",
           },
         },
         "Yaahl Gear": {
-          rarity: "HighEnd",
+          rarity: "High End",
           type: "Yaahl Gear",
           core: {
             name: "Armor",
