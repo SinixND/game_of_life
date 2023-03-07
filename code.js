@@ -426,8 +426,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
       let gearslotTalentText = gearslot.getElementsByClassName('gearslot--talent-text')[0];
       switch (attributeTypeNames[i]) {
         case 'core':
-          console.log('enter case for ' + attributeTypeName + ' dropdown selector')
-            selectorSource = db['attribute'][equipmentTypeName][attributeTypeNames[i]];
+          selectorSource = db['attribute'][equipmentTypeName][attributeTypeNames[i]];
 
           // add attribute icon (and name)
           pngName = selectorSource[gearItem[attributeTypeName].name].png;
@@ -437,11 +436,9 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
           dropdownSelectorText.innerHTML += " " + gearItem[attributeTypeName].name;
           dropdownSelectorValue.innerHTML = selectorSource[gearItem[attributeTypeName].name].value;
 
-          console.log('leave case ' + attributeTypeNames[i])
           break;
 
         case 'minor':
-          console.log('enter case for item specific ' + attributeTypeName + ' dropdown selector')
           if (gearItem.rarity == 'Named') {
             dropdownSelectorText.classList.add('named');
 
@@ -463,11 +460,9 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
             dropdownSelectorValue.innerHTML = selectorSource[gearItem[attributeTypeName].name].value;
           }
 
-          console.log('leave case ' + attributeTypeNames[i])
           break;
 
         case 'talent':
-          console.log('enter case for item specific ' + attributeTypeName + ' dropdown selector')
           selectorSource = db['talent'];
           if (gearItem.rarity == 'Exotic') {
             dropdownSelectorText.classList.add('exotic');
@@ -483,7 +478,6 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
           gearslotTalentText.innerHTML = gearItem[attributeTypeName].value;
           gearslot.appendChild(gearslot.getElementsByClassName('gearslot--talent-text')[0]);
 
-          console.log('leave case ' + attributeTypeNames[i])
           break;
       }
     }
@@ -514,22 +508,16 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
       switch (attributeTypeNames[i]) {
         case 'core':
         case 'minor':
-          console.log('enter case for ' + attributeTypeName + ' dropdown options')
-
           attributeSource = db['attribute'][equipmentTypeName][attributeTypeNames[i]];
           dbAttributeList = Object.keys(attributeSource);
 
-          console.log('leave case ' + attributeTypeNames[i])
           break;
 
         case 'mod':
         case 'talent':
-          console.log('enter case for ' + attributeTypeName + ' dropdown options')
-
           attributeSource = db[attributeTypeNames[i]];
           dbAttributeList = Object.keys(attributeSource);
 
-          console.log('leave case ' + attributeTypeNames[i])
           break;
       }
     
