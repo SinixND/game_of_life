@@ -71,6 +71,7 @@
   padding: 0;
 }
 
+/* TAG SETTINGS */
 body {
   margin: 5px;
   background-color: var(--cbgr);
@@ -79,8 +80,46 @@ body {
   font-size: var(--txtBase);
 }
 
-/* CLASS SETTINGS */
+ol {
+  padding-left: 2em;
+  border-color: inherit;
+}
 
+li {
+  width: 100%;
+  border-left: var(--bWeight) solid;
+  border-color: inherit;
+  margin: calc(4 * var(--bWeight)) 0;
+  padding-left: calc(2 * var(--bWeight));
+}
+
+img {
+  height: var(--txtBase);
+}
+
+/* ID SETTINGS */
+#frame-main {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: auto;
+}
+
+#popup--frame-main {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--cbgr75);
+  overflow: auto;
+}
+
+/* CLASS SETTINGS */
 .panel,
 .panel--border {
   /* border: var(--bWeightTemp) dotted var(--cTemp); /* develop */
@@ -231,6 +270,7 @@ place-self :: (align justify)
 }
 
 .popup {
+  position: absolute;
   min-width: var(--widthMin);
   max-width: 80%;
   height: 90%;
@@ -364,43 +404,4 @@ place-self :: (align justify)
 .dropdown--option--value {
   margin-left: auto;
   align-self: flex-end;
-}
-/* ID SETTINGS */
-#frame-main {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  overflow: auto;
-}
-
-#popup--frame-main {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--cbgr75);
-  overflow: auto;
-}
-
-/* TAG SETTINGS */
-ol {
-  padding-left: 2em;
-  border-color: inherit;
-}
-
-li {
-  width: 100%;
-  border-left: var(--bWeight) solid;
-  border-color: inherit;
-  margin: calc(4 * var(--bWeight)) 0;
-  padding-left: calc(2 * var(--bWeight));
-}
-
-img {
-  height: var(--txtBase);
 }

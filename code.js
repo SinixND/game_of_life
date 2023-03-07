@@ -274,7 +274,7 @@ let abortControlls = {};
 // add listener: close popup on background click
 let popupFrameMain = document.getElementById("popup--frame-main");
 popupFrameMain.addEventListener('click', () => {
-  hidePopup();
+  hidePopups();
 }, false);
 
 // add removable listener to gearslot-panel: show selection popup
@@ -309,17 +309,18 @@ function hideOtherDropdowns(target) {
   }
 }
 function showPopup(equipmentTypeName, gearTypeName) {
-  //document.getElementById('popup--frame-main').style.display = "flex";
   document.getElementById('popup--frame-main').classList.remove("hide");
-  //document.getElementById(`popup--select-armor--${equipmentTypeName}`).style.display = "flex";
   document.getElementById(`popup--select-${equipmentTypeName}--${gearTypeName}`).classList.remove("hide");
   // reset scroll state to top
   document.getElementById(`list--select-${equipmentTypeName}--${gearTypeName}`).scrollTop = 0;
   document.body.style.overflow = "hidden"; //prevent backgroundscrolling
 }
 
-function hidePopup() {
+function hidePopups() {
   document.getElementById('popup--frame-main').classList.add("hide");
+  for (let element of document.getElementsByClassName('popup')) {
+    element.classList.add("hide");
+  }
   document.body.style.overflow = "";
 }
 
@@ -330,7 +331,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   panelGearType.classList.remove('cursor-pointer');
   abortControlls[`controller-${gearTypeName}`].abort();
 
-  hidePopup();
+  hidePopups();
 
   //============================
   /* CLONE GEAR SLOT {*/
