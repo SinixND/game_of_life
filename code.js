@@ -489,7 +489,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
     }
     else {
       // dropdown selector onclick
-      if (!(gearItem.rarity == 'Exotic' || (gearItem.hasOwnProperty(attributeTypeName) && attributeTypeNames !== 'core'))) {
+      if (!(gearItem.rarity == 'Exotic' || (gearItem.hasOwnProperty(attributeTypeName) && attributeTypeNames[i] !== 'core'))) {
         dropdownSelector.classList.add('cursor-pointer');
         dropdownSelectorSymbol.innerHTML = "&#9660";
         dropdownSelector.addEventListener('click', () => {
