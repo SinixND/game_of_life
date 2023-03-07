@@ -474,10 +474,11 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
         dropdownSelector.addEventListener('click', () => {
           dropdownOptions.classList.toggle('hide');
           if (dropdownOptions.classList.contains('hide')) {
-            dropdownSelectorSymbol.innerHTML = "&#9660";
+            dropdownSelectorSymbol.innerHTML = "&#9660"; //hidden
           }
           else {
-            dropdownSelectorSymbol.innerHTML = "&#9661";
+            dropdownSelectorSymbol.innerHTML = "&#9661"; //shown
+            dropdownOptions.scrollTop = 0;
           }
         })
       }
@@ -535,7 +536,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
             let optionValue = attributeSource[attributeName].value;
             dropdownOptionValue.innerHTML = optionValue;
 
-            // core dropdown option onclick
+            // dropdown option onclick
             dropdownOption.addEventListener('click', () => {
               dropdownSelectorText.innerHTML = dropdownOptionName.innerHTML;
               dropdownSelectorValue.innerHTML = dropdownOptionValue.innerHTML;
