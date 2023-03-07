@@ -296,11 +296,14 @@ place-self :: (align justify)
 }
 
 .popup--title {
-  color: var(--ctxthl);
-  font: inherit;
+  display: flex;
+  justify-content: center;
   height: min-content;
-  border-bottom: var(--bWeight) solid var(--ctxthl);
   background-color: var(--cbg);
+  font: inherit;
+  font-size: var(--txtBig);
+  font-weight: bold;
+  color: var(--ctxt);
 }
 
 .entry--name {
