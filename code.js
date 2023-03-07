@@ -176,7 +176,14 @@ for (let equipmentTypeName in db['equipment']) {
     const tplListEntryBase = document.getElementById('template--selection-list-entry');
 
     // iterate over all items in $gearType
+    let gearTypeSorted = [];
+    for (let selector of ['Exotic', 'Named', 'Gearset', 'High End'])
     for (let gearItemName in gearType) {
+      if (gearType[gearItemName].rarity == selector) {
+        gearTypeSorted.push(gearType[gearItemName]);
+      }
+    }
+    for (let gearItemName in gearTypeSorted) {
       let gearItem = gearType[gearItemName];
 
       // get list entry panel
@@ -315,7 +322,7 @@ function showPopup(equipmentTypeName, gearTypeName) {
   document.getElementById(`popup--select-${equipmentTypeName}--${gearTypeName}`).classList.remove("hide");
   // reset scroll state to top
   document.getElementById(`list--select-${equipmentTypeName}--${gearTypeName}`).scrollTop = 0;
-  document.body.style.overflow = "hidden";
+  document.body.style.overflow = "hidden"; //prevent backgroundscrolling
 }
 
 function hidePopup() {
