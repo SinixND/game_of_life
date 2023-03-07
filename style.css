@@ -25,7 +25,7 @@
   /* rarity colors */
   --cExotic: rgba(225, 75, 50, 1.0);
   --cNamed: rgba(255, 175, 0, 1.0);
-  --cGearSet: rgba(75, 175, 100, 1.0);
+  --cGearset: rgba(75, 175, 100, 1.0);
   --cHighEnd: rgb(175, 175, 175, 1.0);
 
   /* background color */
@@ -304,7 +304,7 @@ place-self :: (align justify)
 }
 
 .gearset {
-  color: var(--cGearSet);
+  color: var(--cGearset);
 }
 
 .gearslot--name {

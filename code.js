@@ -187,8 +187,8 @@ for (let equipmentTypeName in db['equipment']) {
         panelListEntry.style.color = 'var(--cNamed)';
       }
       else if (gearItem.rarity == "Gearset") {
-        panelListEntry.style.borderColor = 'var(--cGearSet)';
-        panelListEntry.style.color = 'var(--cGearSet)';
+        panelListEntry.style.borderColor = 'var(--cGearset)';
+        panelListEntry.style.color = 'var(--cGearset)';
       }
       else if (gearItem.rarity == "HighEnd") {
         panelListEntry.style.borderColor = 'var(--cHighEnd)';
@@ -215,13 +215,13 @@ for (let equipmentTypeName in db['equipment']) {
         let mltpcName = gearItem.type;
 
         if (gearItem.rarity == "Gearset") {
-          for (let attribute in mltpc.GearSet[mltpcName]) {
-            entryMltpcAttributes.innerHTML += "<li>" + mltpc.GearSet[mltpcName][attribute].name + ': ' + mltpc.GearSet[mltpcName][attribute].value + "</li>";
+          for (let attribute in mltpc.Gearset[mltpcName]) {
+            entryMltpcAttributes.innerHTML += "<li>" + mltpc.Gearset[mltpcName][attribute].name + ': ' + mltpc.Gearset[mltpcName][attribute].value + "</li>";
           }
         }
         else if (gearItem.rarity !== 'Improvised' && (gearItem.rarity == 'HighEnd' || gearItem.rarity == 'Named')) {
-          for (let attribute in mltpc.BrandSet[mltpcName]) {
-            entryMltpcAttributes.innerHTML += "<li>" + mltpc.BrandSet[mltpcName][attribute].name + ': ' + mltpc.BrandSet[mltpcName][attribute].value + "</li>";
+          for (let attribute in mltpc.Brandset[mltpcName]) {
+            entryMltpcAttributes.innerHTML += "<li>" + mltpc.Brandset[mltpcName][attribute].name + ': ' + mltpc.Brandset[mltpcName][attribute].value + "</li>";
           }
         };
       }
@@ -335,9 +335,9 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
     gearslotName.style.background = 'linear-gradient(28deg, var(--c0), var(--cExotic))';
   }
   else if (gearItem.rarity == "Gearset") {
-    tplGearslotParent.style.borderColor = 'var(--cGearSet)';
-    gearslotName.style.color = 'var(--cGearSet)';
-    gearslotName.style.background = 'linear-gradient(28deg, var(--c0), var(--cGearSet))';
+    tplGearslotParent.style.borderColor = 'var(--cGearset)';
+    gearslotName.style.color = 'var(--cGearset)';
+    gearslotName.style.background = 'linear-gradient(28deg, var(--c0), var(--cGearset))';
   }
   else if (gearItem.rarity == "Named") {
     tplGearslotParent.style.borderColor = 'var(--cNamed)';
@@ -359,7 +359,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   attributeTypeNames.push('minor')
 
   // 2nd minor if not gearset
-  if (gearItem.rarity !== 'GearSet') {attributeTypeNames.push('minor')};
+  if (gearItem.rarity !== 'Gearset') {attributeTypeNames.push('minor')};
 
   // mod when mask, backpack, chest or improvised
   if (gearTypeName == 'mask' || gearTypeName == 'backpack' || gearTypeName == 'chest' || gearItem.type == 'Improvised') {attributeTypeNames.push('mod')};
@@ -454,7 +454,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
           else if (gearItem.rarity == 'Named') {
             dropdownSelectorText.classList.add('named');
           }
-          else if (gearItem.rarity == 'GearSet') {
+          else if (gearItem.rarity == 'Gearset') {
             dropdownSelectorText.classList.add('gearset');
           }
 
