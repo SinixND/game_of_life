@@ -212,21 +212,12 @@ for (let equipmentTypeName in db['equipment']) {
         let entryMltpcAttributes = panelListEntry.getElementsByClassName('entry--mltpc-attributes')[0];
         entryMltpcAttributes.classList.add('h-line--top');
         entryMltpcAttributes = entryMltpcAttributes.getElementsByClassName('ol')[0];
-        //let mltpcAttribute1 = panelListEntry.getElementsByClassName('mltpc-attribute-1')[0];
-        //let mltpcAttribute2 = panelListEntry.getElementsByClassName('mltpc-attribute-2')[0];
-        //let mltpcAttribute3 = panelListEntry.getElementsByClassName('mltpc-attribute-3')[0];
         let mltpcName = gearItem.type;
 
         if (gearItem.rarity == "Gearset") {
           for (let attribute in mltpc.GearSet[mltpcName]) {
             entryMltpcAttributes.innerHTML += "<li>" + mltpc.GearSet[mltpcName][attribute].name + ': ' + mltpc.GearSet[mltpcName][attribute].value + "</li>";
           }
-          //mltpcAttribute1.innerHTML = mltpc.GearSet[mltpcName].attribute1.name + ': ';
-          //mltpcAttribute1.innerHTML += mltpc[mltpcName].attributeCoreValue;
-          //mltpcAttribute2.innerHTML = mltpc[mltpcName].attributeMinor1 + ': ';
-          //mltpcAttribute2.innerHTML += mltpc[mltpcName].attributeMinor1Value;
-          //mltpcAttribute3.innerHTML = mltpc[mltpcName].gearSetTalentName + '<br><br>';
-          //mltpcAttribute3.innerHTML += mltpc[mltpcName].gearSetTalentText;
         }
         else if (gearItem.rarity !== 'Improvised' && (gearItem.rarity == 'HighEnd' || gearItem.rarity == 'Named')) {
           for (let attribute in mltpc.BrandSet[mltpcName]) {
@@ -380,7 +371,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   for (let i in attributeTypeNames) {
     attributeTypeName = attributeTypeNames[i]
     if (attributeTypeName == 'minor') {
-      attributeTypeName += " " + i;
+      attributeTypeName += i;
     }
 
     //============================
