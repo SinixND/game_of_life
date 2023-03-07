@@ -306,7 +306,7 @@ place-self :: (align justify)
 .entry--name {
   font-size: var(--txtBig);
   font-weight: bold;
-  white-space: nowrap;
+  /* white-space: nowrap; */
   color: inherit;
 }
 
