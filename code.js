@@ -238,9 +238,9 @@ for (let equipmentTypeName in db['equipment']) {
         entryTalentName.classList.add('h-line--top');
         entryTalentName.innerHTML = gearItem['talent'].name;
         panelListEntry.getElementsByClassName('entry--talent-text')[0].innerHTML = db['attribute'][equipmentTypeName]['talent'][gearTypeName][gearItem['talent'].name];
-;
+        ;
       };
-          }
+    }
 
     // CLONE SELECTION LIST ENTRY
     //============================
@@ -360,13 +360,13 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   attributeTypeNames.push('minor')
 
   // 2nd minor if not gearset
-  if (gearItem.rarity !== 'Gearset') {attributeTypeNames.push('minor')};
+  if (gearItem.rarity !== 'Gearset') { attributeTypeNames.push('minor') };
 
   // mod when mask, backpack, chest or improvised
-  if (gearTypeName == 'mask' || gearTypeName == 'backpack' || gearTypeName == 'chest' || gearItem.type == 'Improvised') {attributeTypeNames.push('mod')};
+  if (gearTypeName == 'mask' || gearTypeName == 'backpack' || gearTypeName == 'chest' || gearItem.type == 'Improvised') { attributeTypeNames.push('mod') };
 
   // talent when exotic, backpack or chest
-  if (gearItem.rarity == 'Exotic' || gearTypeName == 'backpack' || gearItemName == 'chest' || equipmentTypeName == 'weapon') {attributeTypeNames.push('talent')}
+  if (gearItem.rarity == 'Exotic' || gearTypeName == 'backpack' || gearItemName == 'chest' || equipmentTypeName == 'weapon') { attributeTypeNames.push('talent') }
 
   let attributeTypeName;
   for (let i in attributeTypeNames) {
@@ -397,12 +397,12 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
     // dropdown selector default
     dropdownSelectorText.innerHTML = "Select ";
     switch (attributeTypeName) {
-      case 'core1': 
+      case 'core1':
       case 'minor1':
         dropdownSelectorText.innerHTML += `first ${attributeTypeNames[i]} attribute`;
         break;
 
-      case 'core2': 
+      case 'core2':
       case 'minor2':
         dropdownSelectorText.innerHTML += `second ${attributeTypeNames[i]} attribute`;
         break;
@@ -411,8 +411,8 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
       case 'minor':
         dropdownSelectorText.innerHTML += `${attributeTypeNames[i]} attribute`;
         break;
-      
-      default: 
+
+      default:
         dropdownSelectorText.innerHTML += `${attributeTypeNames[i]}`;
         break;
     }
@@ -481,22 +481,20 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
           break;
       }
     }
-      // dropdown selector onclick
-      console.log(`rarity == ${gearItem.rarity} || ( has(${attributeTypeName}) && ${attributeTypeNames[i]} !== core )`);
-      if (attributeTypeNames[i] == 'mod' || !(gearItem.rarity == 'Exotic' || (gearItem.hasOwnProperty(attributeTypeName) && attributeTypeNames[i] !== 'core'))) {
-        dropdownSelector.classList.add('cursor-pointer');
-        dropdownSelectorSymbol.innerHTML = "&#9660";
-        dropdownSelector.addEventListener('click', () => {
-          dropdownOptions.classList.toggle('hide');
-          if (dropdownOptions.classList.contains('hide')) {
-            dropdownSelectorSymbol.innerHTML = "&#9660"; //hidden
-          }
-          else {
-            dropdownSelectorSymbol.innerHTML = "&#9661"; //shown
-            dropdownOptions.scrollTop = 0;
-          }
-        })
-      }
+    // dropdown selector onclick
+    if (attributeTypeNames[i] == 'mod' || !(gearItem.rarity == 'Exotic' || (gearItem.hasOwnProperty(attributeTypeName) && attributeTypeNames[i] !== 'core'))) {
+      dropdownSelector.classList.add('cursor-pointer');
+      dropdownSelectorSymbol.innerHTML = "&#9660";
+      dropdownSelector.addEventListener('click', () => {
+        dropdownOptions.classList.toggle('hide');
+        if (dropdownOptions.classList.contains('hide')) {
+          dropdownSelectorSymbol.innerHTML = "&#9660"; //hidden
+        }
+        else {
+          dropdownSelectorSymbol.innerHTML = "&#9661"; //shown
+          dropdownOptions.scrollTop = 0;
+        }
+      })
       // CLONE DROPDOWN SELECTOR
       //============================
 
@@ -519,43 +517,44 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
 
           break;
       }
-    
-          const tplDropdownOptionParent = dropdownOptions;
-          const tplDropdownOptionBase = document.getElementById('template--dropdown--option');
 
-          // iterate over attributes
+      const tplDropdownOptionParent = dropdownOptions;
+      const tplDropdownOptionBase = document.getElementById('template--dropdown--option');
 
-          for (let attributeName of dbAttributeList) {
-            let clonedDropdownOptionNode = tplDropdownOptionBase.content.cloneNode(true);
-            let dropdownOption = clonedDropdownOptionNode.getElementById('dropdown--option-');
-            dropdownOption.id += `-${gearTypeName}--${attributeTypeName}--${attributeName}`;
-            tplDropdownOptionParent.appendChild(clonedDropdownOptionNode);
-            dropdownOption = document.getElementById(`${dropdownOption.id}`);
+      // iterate over attributes
 
-            let dropdownOptionName = dropdownOption.getElementsByClassName('dropdown--option--name')[0];
+      for (let attributeName of dbAttributeList) {
+        let clonedDropdownOptionNode = tplDropdownOptionBase.content.cloneNode(true);
+        let dropdownOption = clonedDropdownOptionNode.getElementById('dropdown--option-');
+        dropdownOption.id += `-${gearTypeName}--${attributeTypeName}--${attributeName}`;
+        tplDropdownOptionParent.appendChild(clonedDropdownOptionNode);
+        dropdownOption = document.getElementById(`${dropdownOption.id}`);
 
-            let pngName = attributeSource[attributeName].png;
+        let dropdownOptionName = dropdownOption.getElementsByClassName('dropdown--option--name')[0];
 
-            let img = new Image();
-            img.src = `./icons/${pngName}.png`;
-            dropdownOptionName.appendChild(img);
-            dropdownOptionName.innerHTML += " " + attributeName;
+        let pngName = attributeSource[attributeName].png;
 
-            let dropdownOptionValue = dropdownOption.getElementsByClassName('dropdown--option--value')[0];
-            let optionValue = attributeSource[attributeName].value;
-            dropdownOptionValue.innerHTML = optionValue;
+        let img = new Image();
+        img.src = `./icons/${pngName}.png`;
+        dropdownOptionName.appendChild(img);
+        dropdownOptionName.innerHTML += " " + attributeName;
 
-            // dropdown option onclick
-            dropdownOption.addEventListener('click', () => {
-              dropdownSelectorText.innerHTML = dropdownOptionName.innerHTML;
-              dropdownSelectorValue.innerHTML = dropdownOptionValue.innerHTML;
-              dropdownSelectorSymbol.innerHTML = "&#9660";
-              dropdownOptions.classList.add('hide');
-            })
-          }
+        let dropdownOptionValue = dropdownOption.getElementsByClassName('dropdown--option--value')[0];
+        let optionValue = attributeSource[attributeName].value;
+        dropdownOptionValue.innerHTML = optionValue;
+
+        // dropdown option onclick
+        dropdownOption.addEventListener('click', () => {
+          dropdownSelectorText.innerHTML = dropdownOptionName.innerHTML;
+          dropdownSelectorValue.innerHTML = dropdownOptionValue.innerHTML;
+          dropdownSelectorSymbol.innerHTML = "&#9660";
+          dropdownOptions.classList.add('hide');
+        })
+      }
 
       // CLONE DROPDOWN OPTIONS
       //============================
+    }
   }
   // GEARSLOT ATTRIBUTES
   //============================
