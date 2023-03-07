@@ -301,14 +301,11 @@ for (let equipmentTypeName in db['equipment']) {
 /* FUNCTIONS {*/
 function hideOtherDropdowns(target) {
   let allDropdowns = document.getElementsByClassName('dropdown--options');
-  console.log(allDropdowns)
   for (let dropdown of allDropdowns) {
-    if (dropdown !== target) {
+    if (dropdown !== target && !(dropdown.classList.contains('hide'))) {
       dropdown.classList.add('hide');
+      dropdown.parentElement.previousElementSibling.getElementsByClassName('symbol-toggle')[0].innerHTML = "&#9660"; //hidden
     }
-  }
-  for (let obj of document.getElementsByClassName('symbol-toggle')) {
-    obj.innerHTML = "&#9660"; //hidden
   }
 }
 function showPopup(equipmentTypeName, gearTypeName) {
