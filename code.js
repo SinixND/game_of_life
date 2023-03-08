@@ -460,15 +460,17 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
       let gearslotTalentText = gearslot.getElementsByClassName('gearslot--talent-text')[0];
       switch (attributeTypeNames[i]) {
         case 'core':
-          selectorSource = db['attribute'][equipmentTypeName][attributeTypeNames[i]];
+          if (gearItem.type !== 'Improvised') {
+            selectorSource = db['attribute'][equipmentTypeName][attributeTypeNames[i]];
 
-          // add attribute icon (and name)
-          pngName = selectorSource[gearItem[attributeTypeName].name].png;
-          img = new Image();
-          img.src = `./icons/${pngName}.png`;
-          dropdownSelectorText.appendChild(img);
-          dropdownSelectorText.innerHTML += " " + gearItem[attributeTypeName].name;
-          dropdownSelectorValue.innerHTML = selectorSource[gearItem[attributeTypeName].name].value;
+            // add attribute icon (and name)
+            pngName = selectorSource[gearItem[attributeTypeName].name].png;
+            img = new Image();
+            img.src = `./icons/${pngName}.png`;
+            dropdownSelectorText.appendChild(img);
+            dropdownSelectorText.innerHTML += " " + gearItem[attributeTypeName].name;
+            dropdownSelectorValue.innerHTML = selectorSource[gearItem[attributeTypeName].name].value;
+          }
 
           break;
 

@@ -384,7 +384,7 @@ export const db = {
             name: "Armor",
           },
         },
-        "Improvised": {
+        "Improvised (Crafted)": {
           rarity: "High End",
           type: "Improvised",
         },
