@@ -465,6 +465,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
 
           // add attribute icon (and name)
           pngName = selectorSource[gearItem[attributeTypeName].name].png;
+      console.log(pngName)
           img = new Image();
           img.src = `./icons/${pngName}.png`;
           dropdownSelectorText.appendChild(img);
@@ -478,6 +479,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
             dropdownSelectorText.classList.add('named');
 
             pngName = gearItem[attributeTypeName].png;
+      console.log(pngName)
             img = new Image();
             img.src = `./icons/${pngName}.png`;
             dropdownSelectorText.appendChild(img);
@@ -488,6 +490,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
             selectorSource = db['attribute'][equipmentTypeName][attributeTypeNames[i]];
 
             pngName = selectorSource[gearItem[attributeTypeName].name].png;
+      console.log(pngName)
             img = new Image();
             img.src = `./icons/${pngName}.png`;
             dropdownSelectorText.appendChild(img);
@@ -515,7 +518,6 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
 
           break;
       }
-      console.log(pngName)
     }
     // dropdown selector onclick
     if (attributeTypeNames[i] == 'mod' || !(gearItem.rarity == 'Exotic' || (gearItem.hasOwnProperty(attributeTypeName) && attributeTypeNames[i] !== 'core'))) {
