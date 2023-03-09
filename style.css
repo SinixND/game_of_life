@@ -231,7 +231,7 @@ grid :: (template--rows template--columns template--areas auto-rows auto-columns
 }
 
 .grid-c--layout {
-  grid-template-columns: repeat(auto-fit, minmax(var(--widthMin), 3fr 2fr));
+  grid-template-columns: repeat(auto-fit, minmax(calc(300 * var(--tpx)), 3fr 2fr));
   height: 100%;
   overflow: auto;
 }
