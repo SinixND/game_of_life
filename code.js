@@ -252,16 +252,11 @@ for (let equipmentTypeName in db['equipment']) {
 
       // list entry talent
       let entryTalentName = panelListEntry.getElementsByClassName('entry--talent-name')[0];
-      if (gearItem.rarity == 'Exotic' || gearItem.rarity == 'Gearset') {
+      if (gearItem.hasOwnProperty('talent')) {
         entryTalentName.classList.add('h-line--top');
         entryTalentName.innerHTML = gearItem['talent'].name;
         panelListEntry.getElementsByClassName('entry--talent-text')[0].innerHTML = gearItem['talent'].value;
       }
-      else if (gearItem.hasOwnProperty('talent')) {
-        entryTalentName.classList.add('h-line--top');
-        entryTalentName.innerHTML = gearItem['talent'].name;
-        panelListEntry.getElementsByClassName('entry--talent-text')[0].innerHTML = db['attribute'][equipmentTypeName]['talent'][gearTypeName][gearItem['talent'].name];
-      };
     }
 
     /*} CLONE SELECTION LIST ENTRY  */
