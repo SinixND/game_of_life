@@ -164,7 +164,7 @@ img {
   cursor: pointer;
 }
 
-/* flex container:
+/* flex parent:
 display
 flex-direction
 flex-wrap
@@ -182,19 +182,17 @@ column-gap
   display: flex;
 }
 
-.flex-p--h,
-.flex-p--v {
-  justify-content: space-between;
-}
 .flex-p--h {
+  justify-content: space-between;
   flex-flow: row wrap;
 }
 
 .flex-p--v {
+  justify-content: flex-start;
   flex-flow: column nowrap;
 }
 
-/* flex item:
+/* flex child:
 order
 flex-grow
 flex-shrink
@@ -214,7 +212,7 @@ align-self
   flex: 2 1 calc(2 * var(--widthMinLayout));
 }
 
-/* grid container:
+/* grid parent:
 display
 grid-template--(columns|rows|areas)
 grid-template :: (rows / columns)
@@ -238,7 +236,7 @@ grid :: (template--rows template--columns template--areas auto-rows auto-columns
   overflow: auto;
 }
 
-/* grid item
+/* grid child:
 grid-(column|row)-(start|end)
 grid-(column|row)
 grid-area
