@@ -9,7 +9,7 @@ export const db = {
           },
           minor1: {
             name: "Incoming Repairs",
-            png: "minorblue.png",
+            png: "minorBlue",
             value: 20,
           },
           minor2: {
