@@ -388,13 +388,18 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   // first minor attribute
   attributeTypeNames.push('minor');
 
-  // 2nd minor if not gearset
-  if (gearItem.rarity !== 'Gearset') {
+  // 2nd minor if not gearset or Chill Out Mask
+  if (gearItem.rarity !== 'Gearset' && gearItemName !== 'Chill Out') {
     attributeTypeNames.push('minor');
   }
 
   // mod when mask, backpack, chest or improvised
   if (gearTypeName == 'mask' || gearTypeName == 'backpack' || gearTypeName == 'chest' || gearItem.type == 'Improvised') {
+    attributeTypeNames.push('mod');
+  }
+  
+  // 2nd mod if Chill Out Mask
+  if (gearItemName == 'Chill Out') {
     attributeTypeNames.push('mod');
   }
 
