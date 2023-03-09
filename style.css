@@ -224,14 +224,16 @@ grid :: (template--rows template--columns template--areas auto-rows auto-columns
   display: grid;
 }
 
-.grid-c--c {
+.grid-c--list {
   grid-template-columns: repeat(auto-fit, minmax(var(--widthMin), 1fr));
   height: 100%;
   overflow: auto;
 }
 
-.grid-c--r {
-  grid-template-rows: repeat(auto-fit, minmax(var(--widthMin), 1fr));
+.grid-c--layout {
+  grid-template-columns: repeat(auto-fit, minmax(var(--widthMin), 3fr 2fr));
+  height: 100%;
+  overflow: auto;
 }
 
 /* grid item
