@@ -15,7 +15,7 @@ export const db = {
           },
           talent: {
             name: "Vicious Cycle",
-            value: "bsr\r bsn\n dbsn\\n dbsr\\r bsr bsn\r\n dbsn dbsr\\n\\rTaking damage builds stacks to a cap of 30. Each stack grants 1% Weapon Damage. Taking damage at max stacks triggers a purge, removing all stacks and Status Effects and then dropping a healing cloud which restores 5% of Max Armor for 10s to all allies in the cloud."
+            value: "bsr\r bsn\n dbsn\\n dbsr\\r bsr bsn\r\n dbsn dbsr\\n\\r Taking damage builds stacks to a cap of 30. Each stack grants 1% Weapon Damage. Taking damage at max stacks triggers a purge, removing all stacks and Status Effects and then dropping a healing cloud which restores 5% of Max Armor for 10s to all allies in the cloud."
           }
         },
         "Coyote's Mask": {
@@ -404,14 +404,7 @@ export const db = {
           },
           talent: {
             name: "One in Hand...",
-            value: "Throwing a grenade refunds it and grants +1 skill tier for 15s. Grants overcharge if already at skill tier 6. Cooldown: 60s
-
-            Two in the Bag:
-            +1 Armor Kit Capacity
-            +3 Grenade Capacity
-            +25% Ammo Capacity
-            +10% Repair-skills
-            +10% Status Effects"
+            value: "Throwing a grenade refunds it and grants +1 skill tier for 15s. Grants overcharge if already at skill tier 6. Cooldown: 60s\r\n \r\n Two in the Bag:\r\n +1 Armor Kit Capacity\r\n +3 Grenade Capacity\r\n +25% Ammo Capacity\r\n +10% Repair-skills\r\n +10% Status Effects"
           },
         },
         "5.11 Tactical": {
