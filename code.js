@@ -465,6 +465,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
 
           // add attribute icon (and name)
           pngName = selectorSource[gearItem[attributeTypeName].name].png;
+          console.log(pngName)
           img = new Image();
           img.src = `./icons/${pngName}.png`;
           dropdownSelectorText.appendChild(img);
