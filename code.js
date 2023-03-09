@@ -391,16 +391,22 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   attributeTypeNames.push('core');
 
   // first minor attribute
-  attributeTypeNames.push('minor')
+  attributeTypeNames.push('minor');
 
   // 2nd minor if not gearset
-  if (gearItem.rarity !== 'Gearset') { attributeTypeNames.push('minor') };
+  if (gearItem.rarity !== 'Gearset') {
+    attributeTypeNames.push('minor');
+  }
 
   // mod when mask, backpack, chest or improvised
-  if (gearTypeName == 'mask' || gearTypeName == 'backpack' || gearTypeName == 'chest' || gearItem.type == 'Improvised') { attributeTypeNames.push('mod') };
+  if (gearTypeName == 'mask' || gearTypeName == 'backpack' || gearTypeName == 'chest' || gearItem.type == 'Improvised') {
+    attributeTypeNames.push('mod');
+  }
 
   // talent when exotic, backpack or chest
-  if (gearItem.rarity == 'Exotic' || gearTypeName == 'backpack' || gearItemName == 'chest' || equipmentTypeName == 'weapon') { attributeTypeNames.push('talent') }
+  if (gearItem.rarity == 'Exotic' || gearTypeName == 'backpack' || gearItemName == 'chest' || equipmentTypeName == 'weapon') {
+    attributeTypeNames.push('talent');
+  }
 
   let attributeTypeName;
   for (let i in attributeTypeNames) {

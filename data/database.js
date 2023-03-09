@@ -15,7 +15,7 @@ export const db = {
           },
           talent: {
             name: "Vicious Cycle",
-            value: "Taking damage builds stacks to a cap of 30. Each stack grants 1% Weapon Damage. Taking damage at max stacks triggers a purge, removing all stacks and Status Effects and then dropping a healing cloud which restores 5% of Max Armor for 10s to all allies in the cloud."
+            value: "bsr\r bsn\n dbsn\\n dbsr\\r bsr bsn\r\n dbsn dbsr\\n\\rTaking damage builds stacks to a cap of 30. Each stack grants 1% Weapon Damage. Taking damage at max stacks triggers a purge, removing all stacks and Status Effects and then dropping a healing cloud which restores 5% of Max Armor for 10s to all allies in the cloud."
           }
         },
         "Coyote's Mask": {
@@ -388,6 +388,646 @@ export const db = {
           rarity: "High End",
           type: "Improvised",
         },
+      },
+      backpack: {
+        "Acosta's Go-Bag": {
+          rarity: "Exotic",
+          type: "Exotic",
+          core: {
+            name: "Skill Tier",
+          },
+          minor1: {
+            name: "Skill Haste",
+          },
+          minor2: {
+            name: "Skill Damage",
+          },
+          talent: {
+            name: "One in Hand...",
+            value: "Throwing a grenade refunds it and grants +1 skill tier for 15s. Grants overcharge if already at skill tier 6. Cooldown: 60s
+
+            Two in the Bag:
+            +1 Armor Kit Capacity
+            +3 Grenade Capacity
+            +25% Ammo Capacity
+            +10% Repair-skills
+            +10% Status Effects"
+          },
+        },
+        "5.11 Tactical": {
+          rarity: "HighEnd",
+          type: "5.11 Tactical",
+          core: {
+            name: "Armor",
+          },
+        },
+        "Aces and Eights": {
+          rarity: "Gearset",
+          type: "Aces and Eights",
+          core: {
+            name: "Weapon Damage",
+          },
+          talent: {
+            name: "Poker Face",
+          }
+        },
+        "Airaldi Holdings": {
+          rarity: "HighEnd",
+          type: "Airaldi Holdings",
+          core: {
+            name: "Weapon Damage",
+          },
+        },
+        "Alps Summit Armaments": {
+          rarity: "HighEnd",
+          type: "Alps Summit Armaments",
+          core: {
+            name: "Skill Tier",
+          },
+        },
+        "Percussive Maintenance": {
+          rarity: "Named",
+          type: "Alps Summit Armaments",
+          core: {
+            name: "Skill Tier",
+          },
+          talent: {
+            name: "Perfect Tech Support",
+          }
+        },
+        "Badger Tuff": {
+          rarity: "HighEnd",
+          type: "Badger Tuff",
+          core: {
+            name: "Armor",
+          },
+        },
+        "Ceska Vyroba s.r.o.": {
+          rarity: "HighEnd",
+          type: "Ceska Vyroba s.r.o.",
+          core: {
+            name: "Weapon Damage",
+          },
+        },
+        "Devil's Due": {
+          rarity: "Named",
+          type: "Ceska Vyroba s.r.o.",
+          core: {
+            name: "Weapon Damage",
+          },
+          talent: {
+            name: "Perfect Clutch",
+          }
+        },
+        "China Light Industries Corporation": {
+          rarity: "HighEnd",
+          type: "China Light Industries Corporation",
+          core: {
+            name: "Skill Tier",
+          },
+        },
+        "Strategic Alignment": {
+          rarity: "Named",
+          type: "China Light Industries Corporation",
+          core: {
+            name: "Skill Tier",
+          },
+          talent: {
+            name: "Perfect Shock and Awe",
+          }
+        },
+        "Douglas & Harding": {
+          rarity: "HighEnd",
+          type: "Douglas & Harding",
+          core: {
+            name: "Weapon Damage",
+          },
+        },
+        "Fenris Group AB": {
+          rarity: "HighEnd",
+          type: "Fenris Group AB",
+          core: {
+            name: "Weapon Damage",
+          },
+        },
+        "Foundry Bullwark": {
+          rarity: "Gearset",
+          type: "Foundry Bullwark",
+        },
+        "Future Initiative": {
+          rarity: "Gearset",
+          type: "Future Initiative",
+        },
+        "Gila Guard": {
+          rarity: "HighEnd",
+          type: "Gila Guard",
+          core: {
+            name: "Armor",
+          },
+        },
+        "Golan Gear Ltd": {
+          rarity: "HighEnd",
+          type: "Golan Gear Ltd",
+          core: {
+            name: "Armor",
+          },
+        },
+        "Anarchist's Cookbook": {
+          rarity: "Named",
+          type: "Golan Gear Ltd",
+          core: {
+            name: "Weapon Damage",
+          },
+          talent: {
+            name: "Perfectly Wicked",
+          }
+        },
+        "Grupo Sombra S.A.": {
+          rarity: "HighEnd",
+          type: "Grupo Sombra S.A.",
+          core: {
+            name: "Weapon Damage",
+          },
+        },
+        "Hana-U Corporation": {
+          rarity: "HighEnd",
+          type: "Hana-U Corporation",
+          core: {
+            name: "Skill Tier",
+          },
+        },
+        "Force Multiplier": {
+          rarity: "Named",
+          type: "Hana-U Corporation",
+          core: {
+            name: "Skill Tier",
+          },
+          talent: {
+            name: "Perfect Combined Arms",
+          }
+        },
+        "Hard Wired": {
+          rarity: "Gearset",
+          type: "Hard Wired",
+          core: {
+            name: "Skill Tier",
+          },
+          talent: {
+            name: "Short Circuit",
+          }
+        },
+        "Murakami Industries": {
+          rarity: "HighEnd",
+          type: "Murakami Industries",
+          core: {
+            name: "Skill Tier",
+          },
+        },
+        "Negotiator's Dilemma": {
+          rarity: "Gearset",
+          type: "Negotiator's Dilemma",
+          core: {
+            name: "Weapon Damage",
+          },
+          talent: {
+            name: "Critical Measures",
+          }
+        },
+        "Ongoing Directive": {
+          rarity: "Gearset",
+          type: "Ongoing Directive",
+          core: {
+            name: "Skill Tier",
+          },
+          talent: {
+            name: "Emergency Requisition",
+          }
+        },
+        "Overlord Armaments": {
+          rarity: "HighEnd",
+          type: "Overlord Armaments",
+          core: {
+            name: "Weapon Damage",
+          },
+        },
+        "Petrov Defense Group": {
+          rarity: "HighEnd",
+          type: "Petrov Defense Group",
+          core: {
+            name: "Weapon Damage",
+          },
+        },
+        "Providence Defense": {
+          rarity: "HighEnd",
+          type: "Providence Defense",
+          core: {
+            name: "Weapon Damage",
+          },
+        },
+        "The Gift": {
+          rarity: "Named",
+          type: "Providence Defense",
+          core: {
+            name: "Weapon Damage",
+          },
+          talent: {
+            name: "Perfect Vigilance",
+          }
+        },
+        "Richter & Kaiser GmbH": {
+          rarity: "HighEnd",
+          type: "Richter & Kaiser GmbH",
+          core: {
+            name: "Skill Tier",
+          },
+        },
+        "Sokolov Concern": {
+          rarity: "HighEnd",
+          type: "Sokolov Concern",
+          core: {
+            name: "Weapon Damage",
+          },
+        },
+        "Striker's Battlegear": {
+          rarity: "Gearset",
+          type: "Striker's Battlegear",
+          core: {
+            name: "Weapon Damage",
+          },
+          talent: {
+            name: "Risk Management",
+          }
+        },
+        "System Corruption": {
+          rarity: "Gearset",
+          type: "System Corruption",
+          core: {
+            name: "Armor",
+          },
+          talent: {
+            name: "Multithreaded Execution",
+          }
+        },
+        "Tip of the Spear": {
+          rarity: "Gearset",
+          type: "Tip of the Spear",
+          core: {
+            name: "Weapon Damage",
+          },
+          talent: {
+            name: "Crossbow Expert",
+          }
+        },
+        "True Patriot": {
+          rarity: "Gearset",
+          type: "True Patriot",
+          core: {
+            name: "Armor",
+          },
+          talent: {
+            name: "Patriotic Boost",
+          }
+        },
+        "Wyvern Wear": {
+          rarity: "HighEnd",
+          type: "Wyvern Wear",
+          core: {
+            name: "Skill Tier",
+          },
+        },
+        "Yaahl Gear": {
+          rarity: "HighEnd",
+          type: "Yaahl Gear",
+          core: {
+            name: "Armor",
+          },
+        }
+      },
+      chest: {
+        "Tardigrade Armor System": {
+          rarity: "Exotic",
+          type: "Exotic",
+          core: {
+            name: "Armor",
+          },
+          minor1: {
+            name: "Explosive Resistance",
+          },
+          minor2: {
+            name: "Armor Regeneration",
+          },
+          talent: {
+            name: "Ablative Nano-Plating",
+          },
+        },
+        "5.11 Tactical": {
+          rarity: "HighEnd",
+          type: "5.11 Tactical",
+          core: {
+            name: "Armor",
+          },
+        },
+        "Aces and Eights": {
+          rarity: "Gearset",
+          type: "Aces and Eights",
+          core: {
+            name: "Weapon Damage",
+          },
+          talent: {
+            name: "No Limit",
+          }
+        },
+        "Airaldi Holdings": {
+          rarity: "HighEnd",
+          type: "Airaldi Holdings",
+          core: {
+            name: "Weapon Damage",
+          },
+        },
+        "Pristine Example": {
+          rarity: "Named",
+          type: "Airaldi Holdings",
+          core: {
+            name: "Weapon Damage",
+          },
+          talent: {
+            name: "Perfect Focus",
+          }
+        },
+        "Alps Summit Armaments": {
+          rarity: "HighEnd",
+          type: "Alps Summit Armaments",
+          core: {
+            name: "Skill Tier",
+          },
+        },
+        "Badger Tuff": {
+          rarity: "HighEnd",
+          type: "Badger Tuff",
+          core: {
+            name: "Armor",
+          },
+        },
+        "Zero F's": {
+          rarity: "Named",
+          type: "Badger Tuff",
+          core: {
+            name: "Armor",
+          },
+          talent: {
+            name: "Perfectly Unbreakable",
+          }
+        },
+        "Ceska Vyroba s.r.o.": {
+          rarity: "HighEnd",
+          type: "Ceska Vyroba s.r.o.",
+          core: {
+            name: "Weapon Damage",
+          },
+        },
+        "China Light Industries Corporation": {
+          rarity: "HighEnd",
+          type: "China Light Industries Corporation",
+          core: {
+            name: "Skill Tier",
+          },
+        },
+        "Douglas & Harding": {
+          rarity: "HighEnd",
+          type: "Douglas & Harding",
+          core: {
+            name: "Weapon Damage",
+          },
+        },
+        "Fenris Group AB": {
+          rarity: "HighEnd",
+          type: "Fenris Group AB",
+          core: {
+            name: "Weapon Damage",
+          },
+        },
+        "Ferocious Calm": {
+          rarity: "Named",
+          type: "Fenris Group AB",
+          core: {
+            name: "Weapon Damage",
+          },
+          talent: {
+            name: "Perfect Overwatch",
+          }
+        },
+        "Foundry Bullwark": {
+          rarity: "Gearset",
+          type: "Foundry Bullwark",
+        },
+        "Future Initiative": {
+          rarity: "Gearset",
+          type: "Future Initiative",
+        },
+        "Gila Guard": {
+          rarity: "HighEnd",
+          type: "Gila Guard",
+          core: {
+            name: "Armor",
+          },
+        },
+        "Pointman": {
+          rarity: "Named",
+          type: "Gila Guard",
+          core: {
+            name: "Armor",
+          },
+          talent: {
+            name: "Perfect Vanguard",
+          }
+        },
+        "Golan Gear Ltd": {
+          rarity: "HighEnd",
+          type: "Golan Gear Ltd",
+          core: {
+            name: "Armor",
+          },
+        },
+        "Hunter-Killer": {
+          rarity: "Named",
+          type: "Golan Gear Ltd",
+          core: {
+            name: "Skill Tier",
+          },
+          talent: {
+            name: "Perfect Intimidate",
+          }
+        },
+        "Grupo Sombra S.A.": {
+          rarity: "HighEnd",
+          type: "Grupo Sombra S.A.",
+          core: {
+            name: "Weapon Damage",
+          },
+        },
+        "Door-Kicker's Knock": {
+          rarity: "Named",
+          type: "Grupo Sombra S.A.",
+          core: {
+            name: "Weapon Damage",
+          },
+          talent: {
+            name: "Perfect Spark",
+          }
+        },
+        "Hana-U Corporation": {
+          rarity: "HighEnd",
+          type: "Hana-U Corporation",
+          core: {
+            name: "Skill Tier",
+          },
+        },
+        "Hard Wired": {
+          rarity: "Gearset",
+          type: "Hard Wired",
+          core: {
+            name: "Skill Tier",
+          },
+          talent: {
+            name: "Positive Reinforcement",
+          }
+        },
+        "Murakami Industries": {
+          rarity: "HighEnd",
+          type: "Murakami Industries",
+          core: {
+            name: "Skill Tier",
+          },
+        },
+        "Negotiator's Dilemma": {
+          rarity: "Gearset",
+          type: "Negotiator's Dilemma",
+          core: {
+            name: "Weapon Damage",
+          },
+          talent: {
+            name: "Target Rich Environment",
+          }
+        },
+        "Ongoing Directive": {
+          rarity: "Gearset",
+          type: "Ongoing Directive",
+          core: {
+            name: "Skill Tier",
+          },
+          talent: {
+            name: "Parabellum Rounds",
+          }
+        },
+        "Overlord Armaments": {
+          rarity: "HighEnd",
+          type: "Overlord Armaments",
+          core: {
+            name: "Weapon Damage",
+          },
+        },
+        "Petrov Defense Group": {
+          rarity: "HighEnd",
+          type: "Petrov Defense Group",
+          core: {
+            name: "Weapon Damage",
+          },
+        },
+        "Vedmedytsya Vest": {
+          rarity: "Named",
+          type: "Petrov Defense Group",
+          core: {
+            name: "Weapon Damage",
+          },
+          talent: {
+            name: "Perfect Braced",
+          }
+        },
+        "Providence Defense": {
+          rarity: "HighEnd",
+          type: "Providence Defense",
+          core: {
+            name: "Weapon Damage",
+          },
+        },
+        "The Sacrifice": {
+          rarity: "Named",
+          type: "Providence Defense",
+          core: {
+            name: "Weapon Damage",
+          },
+          talent: {
+            name: "Perfect Glass Cannon",
+          }
+        },
+        "Richter & Kaiser GmbH": {
+          rarity: "HighEnd",
+          type: "Richter & Kaiser GmbH",
+          core: {
+            name: "Skill Tier",
+          },
+        },
+        "Sokolov Concern": {
+          rarity: "HighEnd",
+          type: "Sokolov Concern",
+          core: {
+            name: "Weapon Damage",
+          },
+        },
+        "Striker's Battlegear": {
+          rarity: "Gearset",
+          type: "Striker's Battlegear",
+          core: {
+            name: "Weapon Damage",
+          },
+          talent: {
+            name: "Press the Advantage",
+          }
+        },
+        "System Corruption": {
+          rarity: "Gearset",
+          type: "System Corruption",
+          core: {
+            name: "Weapon Damage",
+          },
+          talent: {
+            name: "Compiler Optimization",
+          }
+        },
+        "Tip of the Spear": {
+          rarity: "Gearset",
+          type: "Tip of the Spear",
+          core: {
+            name: "Weapon Damage",
+          },
+          talent: {
+            name: "Specialized Destruction",
+          }
+        },
+        "True Patriot": {
+          rarity: "Gearset",
+          type: "True Patriot",
+          core: {
+            name: "Armor",
+          },
+          talent: {
+            name: "Waving the Flag",
+          }
+        },
+        "Wyvern Wear": {
+          rarity: "HighEnd",
+          type: "Wyvern Wear",
+          core: {
+            name: "Skill Tier",
+          },
+        },
+        "Yaahl Gear": {
+          rarity: "HighEnd",
+          type: "Yaahl Gear",
+          core: {
+            name: "Armor",
+          },
+        }
       },
       gloves: {
         "Aces & Eights": {
@@ -1308,54 +1948,54 @@ export const db = {
         },
       },
       minor: {
-          "Critical Hit Chance": {
-            png: "minorRed",
-            value: 6,
-          },
-          "Critical Hit Damage": {
-            png: "minorRed",
-            value: 12,
-          },
-          "Headshot Damage": {
-            png: "minorRed",
-            value: 10,
-          },
-          "Weapon Handling": {
-            png: "minorRed",
-            value: 8,
-          },
-          "Armor Regeneration": {
-            png: "minorBlue",
-            value: 4925,
-          },
-          "Explosive Resistance": {
-            png: "minorBlue",
-            value: 10,
-          },
-          "Hazard Protection": {
-            png: "minorBlue",
-            value: 10,
-          },
-          "Health": {
-            png: "minorBlue",
-            value: 18935,
-          },
-          "Repair Skills": {
-            png: "minorYellow",
-            value: 20,
-          },
-          "Skill Damage": {
-            png: "minorYellow",
-            value: 10,
-          },
-          "Skill Haste": {
-            png: "minorYellow",
-            value: 12,
-          },
-          "Status Effects": {
-            png: "minorYellow",
-            value: 10,
-          },
+        "Critical Hit Chance": {
+          png: "minorRed",
+          value: 6,
+        },
+        "Critical Hit Damage": {
+          png: "minorRed",
+          value: 12,
+        },
+        "Headshot Damage": {
+          png: "minorRed",
+          value: 10,
+        },
+        "Weapon Handling": {
+          png: "minorRed",
+          value: 8,
+        },
+        "Armor Regeneration": {
+          png: "minorBlue",
+          value: 4925,
+        },
+        "Explosive Resistance": {
+          png: "minorBlue",
+          value: 10,
+        },
+        "Hazard Protection": {
+          png: "minorBlue",
+          value: 10,
+        },
+        "Health": {
+          png: "minorBlue",
+          value: 18935,
+        },
+        "Repair Skills": {
+          png: "minorYellow",
+          value: 20,
+        },
+        "Skill Damage": {
+          png: "minorYellow",
+          value: 10,
+        },
+        "Skill Haste": {
+          png: "minorYellow",
+          value: 12,
+        },
+        "Status Effects": {
+          png: "minorYellow",
+          value: 10,
+        },
       },
     },
   },
