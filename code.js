@@ -178,6 +178,7 @@ for (let equipmentTypeName in db['equipment']) {
 
     // iterate over all items in $gearType
     for (let gearItemName in gearType) {
+      console.log(gearItemName)
       let gearItem = gearType[gearItemName];
 
       // get list entry panel
@@ -251,7 +252,7 @@ for (let equipmentTypeName in db['equipment']) {
 
       // list entry talent
       let entryTalentName = panelListEntry.getElementsByClassName('entry--talent-name')[0];
-      if (gearItem.rarity == "Exotic") {
+      if (gearItem.rarity == 'Exotic' || gearItem.rarity == 'Gearset') {
         entryTalentName.classList.add('h-line--top');
         entryTalentName.innerHTML = gearItem['talent'].name;
         panelListEntry.getElementsByClassName('entry--talent-text')[0].innerHTML = gearItem['talent'].value;
@@ -260,7 +261,6 @@ for (let equipmentTypeName in db['equipment']) {
         entryTalentName.classList.add('h-line--top');
         entryTalentName.innerHTML = gearItem['talent'].name;
         panelListEntry.getElementsByClassName('entry--talent-text')[0].innerHTML = db['attribute'][equipmentTypeName]['talent'][gearTypeName][gearItem['talent'].name];
-        ;
       };
     }
 
