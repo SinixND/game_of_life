@@ -31,7 +31,7 @@ export const db = {
           },
           talent: {
             name: "Pack Instincts",
-            value: "You and all allies gain a bonus based on the distance of the last enemy you hit.\r\n \r\n 0 - 15m:\t \t+25% critical hit damage\r\n 15 - 25 m:\t +10% critical hit damage and +10% critical hit chance\r\n 25m+:\t +25% critical hit chance"
+            value: "You and all allies gain a bonus based on the distance of the last enemy you hit.\r\n \r\n 0 - 15m: \t+25% critical hit damage\r\n 15 - 25 m: \t+10% critical hit damage and +10% critical hit chance\r\n 25m+: \t+25% critical hit chance"
           }
         },
         "Vile": {
