@@ -398,11 +398,6 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
     attributeTypeNames.push('mod');
   }
   
-  // 2nd mod if Chill Out Mask
-  if (gearItemName == 'Chill Out') {
-    attributeTypeNames.push('mod');
-  }
-
   // talent when exotic, backpack or chest
   if (gearItem.rarity == 'Exotic' || gearTypeName == 'backpack' || gearItemName == 'chest' || equipmentTypeName == 'weapon') {
     attributeTypeNames.push('talent');
