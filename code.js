@@ -255,7 +255,7 @@ for (let equipmentTypeName in db['equipment']) {
       if (gearItem.hasOwnProperty('talent')) {
         entryTalentName.classList.add('h-line--top');
         entryTalentName.innerHTML = gearItem['talent'].name;
-        panelListEntry.getElementsByClassName('entry--talent-text')[0].innerHTML = gearItem['talent'].value;
+        panelListEntry.getElementsByClassName('entry--talent-text')[0].innerText = gearItem['talent'].value;
       }
     }
 
