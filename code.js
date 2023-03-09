@@ -512,7 +512,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
           }
 
           dropdownSelectorText.innerHTML = gearItem[attributeTypeName].name;
-          gearslotTalentText.innerHTML = gearItem[attributeTypeName].value;
+          gearslotTalentText.innerText = gearItem[attributeTypeName].value;
           gearslot.appendChild(gearslot.getElementsByClassName('gearslot--talent-text')[0]);
 
           break;
