@@ -8,7 +8,7 @@
   /* min panel size */
   --widthMin: calc(280 * var(--tpx));
   --widthMinLayout: calc(300 * var(--tpx));
-  --heightMin: calc(var(--widthMin) * .618); /*golden ratio*/
+  --heightMin: calc(var(--widthMin) * .618); /* proportio divina */
 
   /* border properties */
   /* border: width | style | color - ANY ORDER */
@@ -201,15 +201,18 @@ flex :: (grow shrink basis)
 align-self
 */
 .flex-c {
-  flex: auto;
+  flex: 1 1 auto;
 }
 
+:root {
+  --bsratio: calc(7/3);
+}
 .flex-c--left {
-  flex: 3 1 calc(3 * var(--widthMinLayout));
+  flex: var(--bsratio) 1 calc(var(--bsratio) * var(--widthMinLayout));
 }
 
 .flex-c--right {
-  flex: 2 1 calc(2 * var(--widthMinLayout));
+  flex: 1 1 calc(1 * var(--widthMinLayout));
 }
 
 /* grid parent:
@@ -226,13 +229,19 @@ grid-auto-flow
 grid :: (template--rows template--columns template--areas auto-rows auto-columns auto-flow)
 */
 .grid-p,
-.grid-p--list {
+.grid-p--list,
+.grid-p--2x {
   display: grid;
 }
 
 .grid-p--list {
   grid-template-columns: repeat(auto-fit, minmax(var(--widthMin), 1fr));
   height: 100%;
+  overflow: auto;
+}
+
+.grid-p--2x {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, max(var(--widthMinLayout), 100%/2)), 1fr));
   overflow: auto;
 }
 
@@ -245,14 +254,6 @@ align-self
 place-self :: (align justify)
 */
 
-.grid-c--left {
-  grid-column: span 3;
-}
-
-.grid-c--right {
-  grid-column: span 2;
-}
-
 .container {
   padding: calc(4 * var(--bWeight));
   border: var(--bWeightSmall) dotted;
@@ -262,7 +263,6 @@ place-self :: (align justify)
   height: 100%;
   font-size: var(--txtBase);
   gap: var(--bWeight);
-  justify-content: flex-start;
 }
 
 .empty {
