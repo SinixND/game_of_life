@@ -220,7 +220,7 @@ grid :: (template--rows template--columns template--areas auto-rows auto-columns
 */
 .grid-c,
 .grid-c--c,
-.grid-c--r {
+.grid-c--layout {
   display: grid;
 }
 
@@ -231,9 +231,8 @@ grid :: (template--rows template--columns template--areas auto-rows auto-columns
 }
 
 .grid-c--layout {
-  grid-template-columns: repeat(auto-fit, minmax(calc(300 * var(--tpx)), 3fr 2fr));
+  grid-template-columns: repeat(auto-fit, minmax(calc(100 * var(--tpx)), 1fr));
   height: 100%;
-  overflow: auto;
 }
 
 /* grid item
@@ -243,11 +242,15 @@ grid-area
 justify-self
 align-self
 place-self :: (align justify)
-
-.grid-i {
-
-}
 */
+
+.grid-i--left {
+  grid-column: span 3;
+}
+
+.grid-i--right {
+  grid-column: span 2;
+}
 
 .container {
   padding: calc(4 * var(--bWeight));
