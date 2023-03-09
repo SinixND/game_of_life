@@ -176,21 +176,21 @@ gap
 row-gap
 column-gap
 */
-.flex-c,
-.flex-c--h,
-.flex-c--v {
+.flex-p,
+.flex-p--h,
+.flex-p--v {
   display: flex;
 }
 
-.flex-c--h,
-.flex-c--v {
+.flex-p--h,
+.flex-p--v {
   justify-content: space-between;
 }
-.flex-c--h {
+.flex-p--h {
   flex-flow: row wrap;
 }
 
-.flex-c--v {
+.flex-p--v {
   flex-flow: column nowrap;
 }
 
@@ -202,15 +202,15 @@ flex-basis
 flex :: (grow shrink basis)
 align-self
 */
-.flex-i {
+.flex-c {
   flex: auto;
 }
 
-.flex-i--left {
+.flex-c--left {
   flex: 3 1 calc(3 * var(--widthMinLayout));
 }
 
-.flex-i--right {
+.flex-c--right {
   flex: 2 1 calc(2 * var(--widthMinLayout));
 }
 
@@ -227,12 +227,12 @@ grid-auto-(columns|rows)
 grid-auto-flow
 grid :: (template--rows template--columns template--areas auto-rows auto-columns auto-flow)
 */
-.grid-c,
-.grid-c--c {
+.grid-p,
+.grid-p--c {
   display: grid;
 }
 
-.grid-c--list {
+.grid-p--list {
   grid-template-columns: repeat(auto-fit, minmax(var(--widthMin), 1fr));
   height: 100%;
   overflow: auto;
@@ -247,11 +247,11 @@ align-self
 place-self :: (align justify)
 */
 
-.grid-i--left {
+.grid-c--left {
   grid-column: span 3;
 }
 
-.grid-i--right {
+.grid-c--right {
   grid-column: span 2;
 }
 
