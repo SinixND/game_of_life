@@ -486,8 +486,8 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
           }
           else {
             selectorSource = db['attribute'][equipmentTypeName][attributeTypeNames[i]];
-            console.log(selectorSource)
 
+            console.log(attributeTypeName)
             pngName = selectorSource[gearItem[attributeTypeName].name].png;
             img = new Image();
             img.src = `./icons/${pngName}.png`;
