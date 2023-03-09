@@ -425,6 +425,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
 
     dropdownSelector.classList.add('h-line--bottom');
 
+    let dropdownSelectorType = dropdownSelector.getElementsByClassName('dropdown--selector--type')[0];
     let dropdownSelectorText = dropdownSelector.getElementsByClassName('dropdown--selector--text')[0];
     let dropdownSelectorValue = dropdownSelector.getElementsByClassName('dropdown--selector--value')[0];
     let dropdownSelectorSymbol = dropdownSelector.getElementsByClassName('symbol-toggle')[0];
@@ -511,6 +512,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
             dropdownSelectorText.classList.add('gearset');
           }
 
+          dropdownSelectorType.innerHTML = "Talent: ";
           dropdownSelectorText.innerHTML = gearItem[attributeTypeName].name;
           gearslotTalentText.innerHTML = gearItem[attributeTypeName].value;
           gearslot.appendChild(gearslot.getElementsByClassName('gearslot--talent-text')[0]);
