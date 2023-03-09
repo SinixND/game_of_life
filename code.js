@@ -476,7 +476,8 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
         case 'minor':
           if (gearItem.rarity == 'Named') {
             dropdownSelectorText.classList.add('named');
-
+          }
+          if (gearItem[attributeTypeName].hasOwnProperty('value')) {
             pngName = gearItem[attributeTypeName].png;
             img = new Image();
             img.src = `./icons/${pngName}.png`;
