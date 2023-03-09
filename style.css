@@ -7,6 +7,7 @@
 
   /* min panel size */
   --widthMin: calc(280 * var(--tpx));
+  --widthMinLayout: calc(300 * var(--tpx));
   --heightMin: calc(var(--widthMin) * .618); /*golden ratio*/
 
   /* border properties */
@@ -205,6 +206,14 @@ align-self
   flex: auto;
 }
 
+.flex-i--left {
+  flex: 3 0 calc(3 * var(--widthMinLayout));
+}
+
+.flex-i--right {
+  flex: 2 0 calc(2 * var(--widthMinLayout));
+}
+
 /* grid container:
 display
 grid-template--(columns|rows|areas)
@@ -219,8 +228,7 @@ grid-auto-flow
 grid :: (template--rows template--columns template--areas auto-rows auto-columns auto-flow)
 */
 .grid-c,
-.grid-c--c,
-.grid-c--layout {
+.grid-c--c {
   display: grid;
 }
 
@@ -228,11 +236,6 @@ grid :: (template--rows template--columns template--areas auto-rows auto-columns
   grid-template-columns: repeat(auto-fit, minmax(var(--widthMin), 1fr));
   height: 100%;
   overflow: auto;
-}
-
-.grid-c--layout {
-  grid-template-columns: repeat(auto-fit, minmax(calc(100 * var(--tpx)), 1fr));
-  height: 100%;
 }
 
 /* grid item
