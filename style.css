@@ -207,11 +207,11 @@ align-self
 }
 
 .flex-i--left {
-  flex: 3 0 calc(3 * var(--widthMinLayout));
+  flex: 3 1 calc(3 * var(--widthMinLayout));
 }
 
 .flex-i--right {
-  flex: 2 0 calc(2 * var(--widthMinLayout));
+  flex: 2 1 calc(2 * var(--widthMinLayout));
 }
 
 /* grid container:
