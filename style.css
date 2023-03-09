@@ -228,7 +228,7 @@ grid-auto-flow
 grid :: (template--rows template--columns template--areas auto-rows auto-columns auto-flow)
 */
 .grid-p,
-.grid-p--c {
+.grid-p--list {
   display: grid;
 }
 
