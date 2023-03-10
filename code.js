@@ -400,7 +400,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
 
   // 2nd mod when 'Chill Out'
   if (gearItemName == 'Chill Out') {
-    attributeTypeNames.push('mod2');
+    attributeTypeNames.push('mod');
   }
   
   // talent when exotic, backpack or chest
