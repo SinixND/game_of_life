@@ -56,9 +56,6 @@ export const db = {
         "Nightwatcher": {
           rarity: "Named",
           type: "Gila Guard",
-          core: {
-            name: "Armor",
-          },
           minor1: {
             name: "Scanner Pulse Haste",
             png: "minorYellow",
@@ -68,26 +65,17 @@ export const db = {
         "Chill Out": {
           rarity: "Named",
           type: "Gila Guard",
-          core: {
-            name: "Armor",
-          },
           mod2: {
           },
         },
         "Punch Drunk": {
           rarity: "Named",
           type: "Douglas & Harding",
-          core: {
-            name: "Weapon Damage",
-          },
           minor: "Headshot Damage",
         },
         "The Hollow Man": {
           rarity: "Named",
           type: "Yaahl Gear",
-          core: {
-            name: "Armor",
-          },
           minor1: {
             name: "Damage to Health",
           },
@@ -95,296 +83,173 @@ export const db = {
         "Aces & Eights": {
           rarity: "Gearset",
           type: "Aces & Eights",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Eclipse Protocol": {
           rarity: "Gearset",
           type: "Eclipse Protocol",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Foundry Bullwark": {
           rarity: "Gearset",
           type: "Foundry Bullwark",
-          core: {
-            name: "Armor",
-          },
         },
         "Future Initiative": {
           rarity: "Gearset",
           type: "Future Initiative",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Hard Wired": {
           rarity: "Gearset",
           type: "Hard Wired",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Heartbreaker": {
           rarity: "Gearset",
           type: "Heartbreaker",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Hotshot": {
           rarity: "Gearset",
           type: "Hotshot",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Hunter's Fury": {
           rarity: "Gearset",
           type: "Hunter's Fury",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Negotiator's Dilemma": {
           rarity: "Gearset",
           type: "Negotiator's Dilemma",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Ongoing Directive": {
           rarity: "Gearset",
           type: "Ongoing Directive",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Rigger": {
           rarity: "Gearset",
           type: "Rigger",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Striker's Battlegear": {
           rarity: "Gearset",
           type: "Striker's Battlegear",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "System Corruption": {
           rarity: "Gearset",
           type: "System Corruption",
           core: {
             name: "Weapon Damage",
-          },
+          }
         },
         "Tip of the Spear": {
           rarity: "Gearset",
           type: "Tip of the Spear",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "True Patriot": {
           rarity: "Gearset",
           type: "True Patriot",
-          core: {
-            name: "Armor",
-          },
         },
         "Umbra Initiative": {
           rarity: "Gearset",
           type: "Umbra Initiative",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "5.11 Tactical": {
           rarity: "High End",
           type: "5.11 Tactical",
-          core: {
-            name: "Armor",
-          },
         },
         "Airaldi Holdings": {
           rarity: "High End",
           type: "Airaldi Holdings",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Alps Summit Armaments": {
           rarity: "High End",
           type: "Alps Summit Armaments",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Badger Tuff": {
           rarity: "High End",
           type: "Badger Tuff",
-          core: {
-            name: "Armor",
-          },
         },
         "Belstone Armory": {
           rarity: "High End",
           type: "Belstone Armory",
-          core: {
-            name: "Armor",
-          },
         },
         "Brazos de Arcabuz": {
           rarity: "High End",
           type: "Brazos de Arcabuz",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Ceska Vyroba s.r.o.": {
           rarity: "High End",
           type: "Ceska Vyroba s.r.o.",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "China Light Industries Corporation": {
           rarity: "High End",
           type: "China Light Industries Corporation",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Douglas & Harding": {
           rarity: "High End",
           type: "Douglas & Harding",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Empress International": {
           rarity: "High End",
           type: "Empress International",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Fenris Group AB": {
           rarity: "High End",
           type: "Fenris Group AB",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Gila Guard": {
           rarity: "High End",
           type: "Gila Guard",
-          core: {
-            name: "Armor",
-          },
         },
         "Golan Gear Ltd": {
           rarity: "High End",
           type: "Golan Gear Ltd",
-          core: {
-            name: "Armor",
-          },
         },
         "Grupo Sombra S.A.": {
           rarity: "High End",
           type: "Grupo Sombra S.A.",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Habsburg Guard": {
           rarity: "High End",
           type: "Habsburg Guard",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Hana-U Corporation": {
           rarity: "High End",
           type: "Hana-U Corporation",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Murakami Industries": {
           rarity: "High End",
           type: "Murakami Industries",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Overlord Armaments": {
           rarity: "High End",
           type: "Overlord Armaments",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Petrov Defense Group": {
           rarity: "High End",
           type: "Petrov Defense Group",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Providence Defense": {
           rarity: "High End",
           type: "Providence Defense",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Richter & Kaiser GmbH": {
           rarity: "High End",
           type: "Richter & Kaiser GmbH",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Sokolov Concern": {
           rarity: "High End",
           type: "Sokolov Concern",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Uzina Getica": {
           rarity: "High End",
           type: "Uzina Getica",
-          core: {
-            name: "Armor",
-          },
         },
         "Walker, Harris & Co.": {
           rarity: "High End",
           type: "Walker, Harris & Co.",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Wyvern Wear": {
           rarity: "High End",
           type: "Wyvern Wear",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Yaahl Gear": {
           rarity: "High End",
           type: "Yaahl Gear",
-          core: {
-            name: "Armor",
-          },
         },
         "Improvised (Crafted)": {
           rarity: "High End",
@@ -455,72 +320,105 @@ export const db = {
             value: "Slots in with any equipped Gear Set and/or Brand Set item to fulfill a requirement towards unlocking a Gear Sets bonus. Allows to unlock bonuses from multiple sets simultaneously."
           },
         },
-        "Percussive Maintenance": {
+        "Anarchist's Cookbook": {
           rarity: "Named",
-          type: "Alps Summit Armaments",
-          core: {
-            name: "Skill Tier",
-          },
+          type: "Golan Gear Ltd",
           talent: {
-            name: "Perfect Tech Support",
+            name: "Perfectly Wicked",
+            value: "Applying a status effect increases total weapon damage by 18% for 27s.",
+          }
+        },
+        "Battery Pack": {
+          rarity: "Named",
+          type: "Empress International",
+          talent: {
+            name: "Perfectly Calculated",
+            value: "Kills from cover reduce skill cooldowns by 15%.",
           }
         },
         "Devil's Due": {
           rarity: "Named",
           type: "Ceska Vyroba s.r.o.",
-          core: {
-            name: "Weapon Damage",
-          },
           talent: {
             name: "Perfect Clutch",
-          }
-        },
-        "Strategic Alignment": {
-          rarity: "Named",
-          type: "China Light Industries Corporation",
-          core: {
-            name: "Skill Tier",
-          },
-          talent: {
-            name: "Perfect Shock and Awe",
-          }
-        },
-        "Anarchist's Cookbook": {
-          rarity: "Named",
-          type: "Golan Gear Ltd",
-          core: {
-            name: "Weapon Damage",
-          },
-          talent: {
-            name: "Perfectly Wicked",
+            value: "If you are below 20% armor, critical hits repair 2.5% missing armor. Kills allow you to repair up to 100% armor for 4-10s, based on your number of offensive core attributes.",
           }
         },
         "Force Multiplier": {
           rarity: "Named",
           type: "Hana-U Corporation",
-          core: {
-            name: "Skill Tier",
-          },
           talent: {
             name: "Perfect Combined Arms",
+            value: "Shooting an enemy increases total skill damage by 30% for 3s."
+          }
+        },
+        "Hermano": {
+          rarity: "Named",
+          type: "Brazos de Arcabuz",
+          talent: {
+            name: "Perfect Overclock",
+            value: "Allies within 15m of your deployed skills, gain +30% reload speed and reduces their active cooldowns by 0.6s each second.",
+          }
+        },
+        "Liquid Engineer": {
+          rarity: "Named",
+          type: "Belstone Armory",
+          talent: {
+            name: "Perfect Bloodsucker",
+            value: "Killing an enemy adds and refreshes a stack of +12% bonus armor for 10s. Max stack is 10.",
+          }
+        },
+        "Matador": {
+          rarity: "Named",
+          type: "Walker, Harris & Co.",
+          talent: {
+            name: "Perfect Adrenaline Rush",
+            value: "Whenever you are within 10m of an enemy, gain 23% bonus armor for 5s. Stacks up to 3 times. Cooldown: 5s",
+          }
+        },
+        "Percussive Maintenance": {
+          rarity: "Named",
+          type: "Alps Summit Armaments",
+          talent: {
+            name: "Perfect Tech Support",
+            value: "Skill kills increase total skill damage by 25% for 27s.",
+          }
+        },
+        "Strategic Alignment": {
+          rarity: "Named",
+          type: "China Light Industries Corporation",
+          talent: {
+            name: "Perfect Shock and Awe",
+            value: "Applying a status effect to an enemy increases total skill damage and repair by 20% for 27s.",
+          }
+        },
+        "The Courier": {
+          rarity: "Named",
+          type: "Habsburg Guard",
+          talent: {
+            name: "Perfect Creeping Death",
+            value: "Causing Status Effect on an enemy has a chance to spread that same Status Effect to the nearest enemy within a 10-meter radius. Can only occur once every 10 seconds.",
           }
         },
         "The Gift": {
           rarity: "Named",
           type: "Providence Defense",
-          core: {
-            name: "Weapon Damage",
-          },
           talent: {
             name: "Perfect Vigilance",
+            value: "Increases total weapon damage by 25%. Taking damage disables this buff for 3s.",
+          }
+        },
+        "The Setup": {
+          rarity: "Named",
+          type: "Uzina Getica",
+          talent: {
+            name: "Perfect Opportunistic",
+            value: "Enemies you hit with shotguns and marksman rifles amplifies the damage they take by 15% from all sources for 5s.",
           }
         },
         "Aces and Eights": {
           rarity: "Gearset",
           type: "Aces and Eights",
-          core: {
-            name: "Weapon Damage",
-          },
           talent: {
             name: "Poker Face",
           }
@@ -536,9 +434,6 @@ export const db = {
         "Hard Wired": {
           rarity: "Gearset",
           type: "Hard Wired",
-          core: {
-            name: "Skill Tier",
-          },
           talent: {
             name: "Short Circuit",
           }
@@ -546,9 +441,6 @@ export const db = {
         "Negotiator's Dilemma": {
           rarity: "Gearset",
           type: "Negotiator's Dilemma",
-          core: {
-            name: "Weapon Damage",
-          },
           talent: {
             name: "Critical Measures",
           }
@@ -556,9 +448,6 @@ export const db = {
         "Ongoing Directive": {
           rarity: "Gearset",
           type: "Ongoing Directive",
-          core: {
-            name: "Skill Tier",
-          },
           talent: {
             name: "Emergency Requisition",
           }
@@ -566,9 +455,6 @@ export const db = {
         "Striker's Battlegear": {
           rarity: "Gearset",
           type: "Striker's Battlegear",
-          core: {
-            name: "Weapon Damage",
-          },
           talent: {
             name: "Risk Management",
           }
@@ -578,7 +464,7 @@ export const db = {
           type: "System Corruption",
           core: {
             name: "Armor",
-          },
+          }
           talent: {
             name: "Multithreaded Execution",
           }
@@ -586,9 +472,6 @@ export const db = {
         "Tip of the Spear": {
           rarity: "Gearset",
           type: "Tip of the Spear",
-          core: {
-            name: "Weapon Damage",
-          },
           talent: {
             name: "Crossbow Expert",
           }
@@ -596,9 +479,6 @@ export const db = {
         "True Patriot": {
           rarity: "Gearset",
           type: "True Patriot",
-          core: {
-            name: "Armor",
-          },
           talent: {
             name: "Patriotic Boost",
           }
@@ -606,142 +486,82 @@ export const db = {
         "5.11 Tactical": {
           rarity: "HighEnd",
           type: "5.11 Tactical",
-          core: {
-            name: "Armor",
-          },
         },
         "Airaldi Holdings": {
           rarity: "HighEnd",
           type: "Airaldi Holdings",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Alps Summit Armaments": {
           rarity: "HighEnd",
           type: "Alps Summit Armaments",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Badger Tuff": {
           rarity: "HighEnd",
           type: "Badger Tuff",
-          core: {
-            name: "Armor",
-          },
         },
         "Ceska Vyroba s.r.o.": {
           rarity: "HighEnd",
           type: "Ceska Vyroba s.r.o.",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "China Light Industries Corporation": {
           rarity: "HighEnd",
           type: "China Light Industries Corporation",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Douglas & Harding": {
           rarity: "HighEnd",
           type: "Douglas & Harding",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Fenris Group AB": {
           rarity: "HighEnd",
           type: "Fenris Group AB",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Gila Guard": {
           rarity: "HighEnd",
           type: "Gila Guard",
-          core: {
-            name: "Armor",
-          },
         },
         "Golan Gear Ltd": {
           rarity: "HighEnd",
           type: "Golan Gear Ltd",
-          core: {
-            name: "Armor",
-          },
         },
         "Grupo Sombra S.A.": {
           rarity: "HighEnd",
           type: "Grupo Sombra S.A.",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Hana-U Corporation": {
           rarity: "HighEnd",
           type: "Hana-U Corporation",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Murakami Industries": {
           rarity: "HighEnd",
           type: "Murakami Industries",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Overlord Armaments": {
           rarity: "HighEnd",
           type: "Overlord Armaments",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Petrov Defense Group": {
           rarity: "HighEnd",
           type: "Petrov Defense Group",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Providence Defense": {
           rarity: "HighEnd",
           type: "Providence Defense",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Richter & Kaiser GmbH": {
           rarity: "HighEnd",
           type: "Richter & Kaiser GmbH",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Sokolov Concern": {
           rarity: "HighEnd",
           type: "Sokolov Concern",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Wyvern Wear": {
           rarity: "HighEnd",
           type: "Wyvern Wear",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Yaahl Gear": {
           rarity: "HighEnd",
           type: "Yaahl Gear",
-          core: {
-            name: "Armor",
-          },
         },
         "Improvised (Crafted)": {
           rarity: "High End",
@@ -768,9 +588,6 @@ export const db = {
         "Pristine Example": {
           rarity: "Named",
           type: "Airaldi Holdings",
-          core: {
-            name: "Weapon Damage",
-          },
           talent: {
             name: "Perfect Focus",
           }
@@ -778,9 +595,6 @@ export const db = {
         "Zero F's": {
           rarity: "Named",
           type: "Badger Tuff",
-          core: {
-            name: "Armor",
-          },
           talent: {
             name: "Perfectly Unbreakable",
           }
@@ -788,9 +602,6 @@ export const db = {
         "Ferocious Calm": {
           rarity: "Named",
           type: "Fenris Group AB",
-          core: {
-            name: "Weapon Damage",
-          },
           talent: {
             name: "Perfect Overwatch",
           }
@@ -798,9 +609,6 @@ export const db = {
         "Pointman": {
           rarity: "Named",
           type: "Gila Guard",
-          core: {
-            name: "Armor",
-          },
           talent: {
             name: "Perfect Vanguard",
           }
@@ -808,9 +616,6 @@ export const db = {
         "Hunter-Killer": {
           rarity: "Named",
           type: "Golan Gear Ltd",
-          core: {
-            name: "Skill Tier",
-          },
           talent: {
             name: "Perfect Intimidate",
           }
@@ -818,9 +623,6 @@ export const db = {
         "Door-Kicker's Knock": {
           rarity: "Named",
           type: "Grupo Sombra S.A.",
-          core: {
-            name: "Weapon Damage",
-          },
           talent: {
             name: "Perfect Spark",
           }
@@ -828,9 +630,6 @@ export const db = {
         "Vedmedytsya Vest": {
           rarity: "Named",
           type: "Petrov Defense Group",
-          core: {
-            name: "Weapon Damage",
-          },
           talent: {
             name: "Perfect Braced",
           }
@@ -838,9 +637,6 @@ export const db = {
         "The Sacrifice": {
           rarity: "Named",
           type: "Providence Defense",
-          core: {
-            name: "Weapon Damage",
-          },
           talent: {
             name: "Perfect Glass Cannon",
           }
@@ -848,9 +644,6 @@ export const db = {
         "Aces and Eights": {
           rarity: "Gearset",
           type: "Aces and Eights",
-          core: {
-            name: "Weapon Damage",
-          },
           talent: {
             name: "No Limit",
           }
@@ -866,9 +659,6 @@ export const db = {
         "Hard Wired": {
           rarity: "Gearset",
           type: "Hard Wired",
-          core: {
-            name: "Skill Tier",
-          },
           talent: {
             name: "Positive Reinforcement",
           }
@@ -876,9 +666,6 @@ export const db = {
         "Negotiator's Dilemma": {
           rarity: "Gearset",
           type: "Negotiator's Dilemma",
-          core: {
-            name: "Weapon Damage",
-          },
           talent: {
             name: "Target Rich Environment",
           }
@@ -886,9 +673,6 @@ export const db = {
         "Ongoing Directive": {
           rarity: "Gearset",
           type: "Ongoing Directive",
-          core: {
-            name: "Skill Tier",
-          },
           talent: {
             name: "Parabellum Rounds",
           }
@@ -896,9 +680,6 @@ export const db = {
         "Striker's Battlegear": {
           rarity: "Gearset",
           type: "Striker's Battlegear",
-          core: {
-            name: "Weapon Damage",
-          },
           talent: {
             name: "Press the Advantage",
           }
@@ -908,7 +689,7 @@ export const db = {
           type: "System Corruption",
           core: {
             name: "Weapon Damage",
-          },
+          }
           talent: {
             name: "Compiler Optimization",
           }
@@ -916,9 +697,6 @@ export const db = {
         "Tip of the Spear": {
           rarity: "Gearset",
           type: "Tip of the Spear",
-          core: {
-            name: "Weapon Damage",
-          },
           talent: {
             name: "Specialized Destruction",
           }
@@ -926,9 +704,6 @@ export const db = {
         "True Patriot": {
           rarity: "Gearset",
           type: "True Patriot",
-          core: {
-            name: "Armor",
-          },
           talent: {
             name: "Waving the Flag",
           }
@@ -936,142 +711,82 @@ export const db = {
         "5.11 Tactical": {
           rarity: "HighEnd",
           type: "5.11 Tactical",
-          core: {
-            name: "Armor",
-          },
         },
         "Airaldi Holdings": {
           rarity: "HighEnd",
           type: "Airaldi Holdings",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Alps Summit Armaments": {
           rarity: "HighEnd",
           type: "Alps Summit Armaments",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Badger Tuff": {
           rarity: "HighEnd",
           type: "Badger Tuff",
-          core: {
-            name: "Armor",
-          },
         },
         "Ceska Vyroba s.r.o.": {
           rarity: "HighEnd",
           type: "Ceska Vyroba s.r.o.",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "China Light Industries Corporation": {
           rarity: "HighEnd",
           type: "China Light Industries Corporation",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Douglas & Harding": {
           rarity: "HighEnd",
           type: "Douglas & Harding",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Fenris Group AB": {
           rarity: "HighEnd",
           type: "Fenris Group AB",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Gila Guard": {
           rarity: "HighEnd",
           type: "Gila Guard",
-          core: {
-            name: "Armor",
-          },
         },
         "Golan Gear Ltd": {
           rarity: "HighEnd",
           type: "Golan Gear Ltd",
-          core: {
-            name: "Armor",
-          },
         },
         "Grupo Sombra S.A.": {
           rarity: "HighEnd",
           type: "Grupo Sombra S.A.",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Hana-U Corporation": {
           rarity: "HighEnd",
           type: "Hana-U Corporation",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Murakami Industries": {
           rarity: "HighEnd",
           type: "Murakami Industries",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Overlord Armaments": {
           rarity: "HighEnd",
           type: "Overlord Armaments",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Petrov Defense Group": {
           rarity: "HighEnd",
           type: "Petrov Defense Group",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Providence Defense": {
           rarity: "HighEnd",
           type: "Providence Defense",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Richter & Kaiser GmbH": {
           rarity: "HighEnd",
           type: "Richter & Kaiser GmbH",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Sokolov Concern": {
           rarity: "HighEnd",
           type: "Sokolov Concern",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Wyvern Wear": {
           rarity: "HighEnd",
           type: "Wyvern Wear",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Yaahl Gear": {
           rarity: "HighEnd",
           type: "Yaahl Gear",
-          core: {
-            name: "Armor",
-          },
         },
         "Improvised (Crafted)": {
           rarity: "High End",
@@ -1082,296 +797,173 @@ export const db = {
         "Aces & Eights": {
           rarity: "Gearset",
           type: "Aces & Eights",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Eclipse Protocol": {
           rarity: "Gearset",
           type: "Eclipse Protocol",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Foundry Bullwark": {
           rarity: "Gearset",
           type: "Foundry Bullwark",
-          core: {
-            name: "Armor",
-          },
         },
         "Future Initiative": {
           rarity: "Gearset",
           type: "Future Initiative",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Hard Wired": {
           rarity: "Gearset",
           type: "Hard Wired",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Heartbreaker": {
           rarity: "Gearset",
           type: "Heartbreaker",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Hotshot": {
           rarity: "Gearset",
           type: "Hotshot",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Hunter's Fury": {
           rarity: "Gearset",
           type: "Hunter's Fury",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Negotiator's Dilemma": {
           rarity: "Gearset",
           type: "Negotiator's Dilemma",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Ongoing Directive": {
           rarity: "Gearset",
           type: "Ongoing Directive",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Rigger": {
           rarity: "Gearset",
           type: "Rigger",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Striker's Battlegear": {
           rarity: "Gearset",
           type: "Striker's Battlegear",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "System Corruption": {
           rarity: "Gearset",
           type: "System Corruption",
           core: {
             name: "Weapon Damage",
-          },
+          }
         },
         "Tip of the Spear": {
           rarity: "Gearset",
           type: "Tip of the Spear",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "True Patriot": {
           rarity: "Gearset",
           type: "True Patriot",
-          core: {
-            name: "Armor",
-          },
         },
         "Umbra Initiative": {
           rarity: "Gearset",
           type: "Umbra Initiative",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "5.11 Tactical": {
           rarity: "High End",
           type: "5.11 Tactical",
-          core: {
-            name: "Armor",
-          },
         },
         "Airaldi Holdings": {
           rarity: "High End",
           type: "Airaldi Holdings",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Alps Summit Armaments": {
           rarity: "High End",
           type: "Alps Summit Armaments",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Badger Tuff": {
           rarity: "High End",
           type: "Badger Tuff",
-          core: {
-            name: "Armor",
-          },
         },
         "Belstone Armory": {
           rarity: "High End",
           type: "Belstone Armory",
-          core: {
-            name: "Armor",
-          },
         },
         "Brazos de Arcabuz": {
           rarity: "High End",
           type: "Brazos de Arcabuz",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Ceska Vyroba s.r.o.": {
           rarity: "High End",
           type: "Ceska Vyroba s.r.o.",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "China Light Industries Corporation": {
           rarity: "High End",
           type: "China Light Industries Corporation",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Douglas & Harding": {
           rarity: "High End",
           type: "Douglas & Harding",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Empress International": {
           rarity: "High End",
           type: "Empress International",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Fenris Group AB": {
           rarity: "High End",
           type: "Fenris Group AB",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Gila Guard": {
           rarity: "High End",
           type: "Gila Guard",
-          core: {
-            name: "Armor",
-          },
         },
         "Golan Gear Ltd": {
           rarity: "High End",
           type: "Golan Gear Ltd",
-          core: {
-            name: "Armor",
-          },
         },
         "Grupo Sombra S.A.": {
           rarity: "High End",
           type: "Grupo Sombra S.A.",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Habsburg Guard": {
           rarity: "High End",
           type: "Habsburg Guard",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Hana-U Corporation": {
           rarity: "High End",
           type: "Hana-U Corporation",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Murakami Industries": {
           rarity: "High End",
           type: "Murakami Industries",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Overlord Armaments": {
           rarity: "High End",
           type: "Overlord Armaments",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Petrov Defense Group": {
           rarity: "High End",
           type: "Petrov Defense Group",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Providence Defense": {
           rarity: "High End",
           type: "Providence Defense",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Richter & Kaiser GmbH": {
           rarity: "High End",
           type: "Richter & Kaiser GmbH",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Sokolov Concern": {
           rarity: "High End",
           type: "Sokolov Concern",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Uzina Getica": {
           rarity: "High End",
           type: "Uzina Getica",
-          core: {
-            name: "Armor",
-          },
         },
         "Walker, Harris & Co.": {
           rarity: "High End",
           type: "Walker, Harris & Co.",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Wyvern Wear": {
           rarity: "High End",
           type: "Wyvern Wear",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Yaahl Gear": {
           rarity: "High End",
           type: "Yaahl Gear",
-          core: {
-            name: "Armor",
-          },
         },
         "Improvised (Crafted)": {
           rarity: "High End",
@@ -1382,296 +974,173 @@ export const db = {
         "Aces & Eights": {
           rarity: "Gearset",
           type: "Aces & Eights",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Eclipse Protocol": {
           rarity: "Gearset",
           type: "Eclipse Protocol",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Foundry Bullwark": {
           rarity: "Gearset",
           type: "Foundry Bullwark",
-          core: {
-            name: "Armor",
-          },
         },
         "Future Initiative": {
           rarity: "Gearset",
           type: "Future Initiative",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Hard Wired": {
           rarity: "Gearset",
           type: "Hard Wired",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Heartbreaker": {
           rarity: "Gearset",
           type: "Heartbreaker",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Hotshot": {
           rarity: "Gearset",
           type: "Hotshot",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Hunter's Fury": {
           rarity: "Gearset",
           type: "Hunter's Fury",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Negotiator's Dilemma": {
           rarity: "Gearset",
           type: "Negotiator's Dilemma",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Ongoing Directive": {
           rarity: "Gearset",
           type: "Ongoing Directive",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Rigger": {
           rarity: "Gearset",
           type: "Rigger",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Striker's Battlegear": {
           rarity: "Gearset",
           type: "Striker's Battlegear",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "System Corruption": {
           rarity: "Gearset",
           type: "System Corruption",
           core: {
-            name: "Weapon Damage",
-          },
+            name: "Armor",
+          }
         },
         "Tip of the Spear": {
           rarity: "Gearset",
           type: "Tip of the Spear",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "True Patriot": {
           rarity: "Gearset",
           type: "True Patriot",
-          core: {
-            name: "Armor",
-          },
         },
         "Umbra Initiative": {
           rarity: "Gearset",
           type: "Umbra Initiative",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "5.11 Tactical": {
           rarity: "High End",
           type: "5.11 Tactical",
-          core: {
-            name: "Armor",
-          },
         },
         "Airaldi Holdings": {
           rarity: "High End",
           type: "Airaldi Holdings",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Alps Summit Armaments": {
           rarity: "High End",
           type: "Alps Summit Armaments",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Badger Tuff": {
           rarity: "High End",
           type: "Badger Tuff",
-          core: {
-            name: "Armor",
-          },
         },
         "Belstone Armory": {
           rarity: "High End",
           type: "Belstone Armory",
-          core: {
-            name: "Armor",
-          },
         },
         "Brazos de Arcabuz": {
           rarity: "High End",
           type: "Brazos de Arcabuz",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Ceska Vyroba s.r.o.": {
           rarity: "High End",
           type: "Ceska Vyroba s.r.o.",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "China Light Industries Corporation": {
           rarity: "High End",
           type: "China Light Industries Corporation",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Douglas & Harding": {
           rarity: "High End",
           type: "Douglas & Harding",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Empress International": {
           rarity: "High End",
           type: "Empress International",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Fenris Group AB": {
           rarity: "High End",
           type: "Fenris Group AB",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Gila Guard": {
           rarity: "High End",
           type: "Gila Guard",
-          core: {
-            name: "Armor",
-          },
         },
         "Golan Gear Ltd": {
           rarity: "High End",
           type: "Golan Gear Ltd",
-          core: {
-            name: "Armor",
-          },
         },
         "Grupo Sombra S.A.": {
           rarity: "High End",
           type: "Grupo Sombra S.A.",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Habsburg Guard": {
           rarity: "High End",
           type: "Habsburg Guard",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Hana-U Corporation": {
           rarity: "High End",
           type: "Hana-U Corporation",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Murakami Industries": {
           rarity: "High End",
           type: "Murakami Industries",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Overlord Armaments": {
           rarity: "High End",
           type: "Overlord Armaments",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Petrov Defense Group": {
           rarity: "High End",
           type: "Petrov Defense Group",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Providence Defense": {
           rarity: "High End",
           type: "Providence Defense",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Richter & Kaiser GmbH": {
           rarity: "High End",
           type: "Richter & Kaiser GmbH",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Sokolov Concern": {
           rarity: "High End",
           type: "Sokolov Concern",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Uzina Getica": {
           rarity: "High End",
           type: "Uzina Getica",
-          core: {
-            name: "Armor",
-          },
         },
         "Walker, Harris & Co.": {
           rarity: "High End",
           type: "Walker, Harris & Co.",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Wyvern Wear": {
           rarity: "High End",
           type: "Wyvern Wear",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Yaahl Gear": {
           rarity: "High End",
           type: "Yaahl Gear",
-          core: {
-            name: "Armor",
-          },
         },
         "Improvised (Crafted)": {
           rarity: "High End",
@@ -1682,296 +1151,173 @@ export const db = {
         "Aces & Eights": {
           rarity: "Gearset",
           type: "Aces & Eights",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Eclipse Protocol": {
           rarity: "Gearset",
           type: "Eclipse Protocol",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Foundry Bullwark": {
           rarity: "Gearset",
           type: "Foundry Bullwark",
-          core: {
-            name: "Armor",
-          },
         },
         "Future Initiative": {
           rarity: "Gearset",
           type: "Future Initiative",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Hard Wired": {
           rarity: "Gearset",
           type: "Hard Wired",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Heartbreaker": {
           rarity: "Gearset",
           type: "Heartbreaker",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Hotshot": {
           rarity: "Gearset",
           type: "Hotshot",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Hunter's Fury": {
           rarity: "Gearset",
           type: "Hunter's Fury",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Negotiator's Dilemma": {
           rarity: "Gearset",
           type: "Negotiator's Dilemma",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Ongoing Directive": {
           rarity: "Gearset",
           type: "Ongoing Directive",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Rigger": {
           rarity: "Gearset",
           type: "Rigger",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Striker's Battlegear": {
           rarity: "Gearset",
           type: "Striker's Battlegear",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "System Corruption": {
           rarity: "Gearset",
           type: "System Corruption",
           core: {
-            name: "Weapon Damage",
-          },
+            name: "Armor"
+          }
         },
         "Tip of the Spear": {
           rarity: "Gearset",
           type: "Tip of the Spear",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "True Patriot": {
           rarity: "Gearset",
           type: "True Patriot",
-          core: {
-            name: "Armor",
-          },
         },
         "Umbra Initiative": {
           rarity: "Gearset",
           type: "Umbra Initiative",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "5.11 Tactical": {
           rarity: "High End",
           type: "5.11 Tactical",
-          core: {
-            name: "Armor",
-          },
         },
         "Airaldi Holdings": {
           rarity: "High End",
           type: "Airaldi Holdings",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Alps Summit Armaments": {
           rarity: "High End",
           type: "Alps Summit Armaments",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Badger Tuff": {
           rarity: "High End",
           type: "Badger Tuff",
-          core: {
-            name: "Armor",
-          },
         },
         "Belstone Armory": {
           rarity: "High End",
           type: "Belstone Armory",
-          core: {
-            name: "Armor",
-          },
         },
         "Brazos de Arcabuz": {
           rarity: "High End",
           type: "Brazos de Arcabuz",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Ceska Vyroba s.r.o.": {
           rarity: "High End",
           type: "Ceska Vyroba s.r.o.",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "China Light Industries Corporation": {
           rarity: "High End",
           type: "China Light Industries Corporation",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Douglas & Harding": {
           rarity: "High End",
           type: "Douglas & Harding",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Empress International": {
           rarity: "High End",
           type: "Empress International",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Fenris Group AB": {
           rarity: "High End",
           type: "Fenris Group AB",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Gila Guard": {
           rarity: "High End",
           type: "Gila Guard",
-          core: {
-            name: "Armor",
-          },
         },
         "Golan Gear Ltd": {
           rarity: "High End",
           type: "Golan Gear Ltd",
-          core: {
-            name: "Armor",
-          },
         },
         "Grupo Sombra S.A.": {
           rarity: "High End",
           type: "Grupo Sombra S.A.",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Habsburg Guard": {
           rarity: "High End",
           type: "Habsburg Guard",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Hana-U Corporation": {
           rarity: "High End",
           type: "Hana-U Corporation",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Murakami Industries": {
           rarity: "High End",
           type: "Murakami Industries",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Overlord Armaments": {
           rarity: "High End",
           type: "Overlord Armaments",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Petrov Defense Group": {
           rarity: "High End",
           type: "Petrov Defense Group",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Providence Defense": {
           rarity: "High End",
           type: "Providence Defense",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Richter & Kaiser GmbH": {
           rarity: "High End",
           type: "Richter & Kaiser GmbH",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Sokolov Concern": {
           rarity: "High End",
           type: "Sokolov Concern",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Uzina Getica": {
           rarity: "High End",
           type: "Uzina Getica",
-          core: {
-            name: "Armor",
-          },
         },
         "Walker, Harris & Co.": {
           rarity: "High End",
           type: "Walker, Harris & Co.",
-          core: {
-            name: "Weapon Damage",
-          },
         },
         "Wyvern Wear": {
           rarity: "High End",
           type: "Wyvern Wear",
-          core: {
-            name: "Skill Tier",
-          },
         },
         "Yaahl Gear": {
           rarity: "High End",
           type: "Yaahl Gear",
-          core: {
-            name: "Armor",
-          },
         },
         "Improvised (Crafted)": {
           rarity: "High End",
@@ -2150,6 +1496,9 @@ export const db = {
   setboni: {
     Gearset: {
       "Aces & Eights": {
+        core: {
+          name: "Weapon Damage",
+        },
         pcs2: {
           name: "Marksman Rifle Damage",
           requiredPieces: 2,
@@ -2164,6 +1513,308 @@ export const db = {
           name: "Dead Man's Hand",
           requiredPieces: 4,
           value: "Flip a card when landing shots with a Marksman Rifle.<br> After 5 cards are flipped, the damage of your next shot is amplified by 30%. More shots are enhanced, the better the hand revealed.<br> <br> Four of a Kind: 4 shots.<br> Full House: 3 shots.<br> Aces and Eights: 2 shots.<br> <br> Flip an additional card on headshots."
+        },
+      },
+      "Eclipse Protocol": {
+        core: {
+          name: "Skill Tier",
+        },
+        pcs2: {
+          name: "Status Effects",
+          requiredPieces: 2,
+          value: 15,
+        },
+        pcs3: {
+          name: "Skill Haste",
+          requiredPieces: 3,
+          value: 15,
+        },
+        pcs32: {
+          name: "Hazard Protection",
+          requiredPieces: 3,
+          value: 30,
+        }
+        pcs4: {
+          name: "Indirect Transmission",
+          requiredPieces: 4,
+          value: "Your Status Effects"
+        },
+      },
+      "Foundry Bullwark": {
+        core: {
+          name: "",
+        },
+        pcs2: {
+          name: "",
+          requiredPieces: 2,
+          value: ,
+        },
+        pcs3: {
+          name: "",
+          requiredPieces: 3,
+          value: ,
+        },
+        pcs4: {
+          name: "",
+          requiredPieces: 4,
+          value: ""
+        },
+      },
+      "Future Initiative": {
+        core: {
+          name: "",
+        },
+        pcs2: {
+          name: "",
+          requiredPieces: 2,
+          value: ,
+        },
+        pcs3: {
+          name: "",
+          requiredPieces: 3,
+          value: ,
+        },
+        pcs4: {
+          name: "",
+          requiredPieces: 4,
+          value: ""
+        },
+      },
+      "Hard Wired": {
+        core: {
+          name: "",
+        },
+        pcs2: {
+          name: "",
+          requiredPieces: 2,
+          value: ,
+        },
+        pcs3: {
+          name: "",
+          requiredPieces: 3,
+          value: ,
+        },
+        pcs4: {
+          name: "",
+          requiredPieces: 4,
+          value: ""
+        },
+      },
+      "Heartbreaker": {
+        core: {
+          name: "",
+        },
+        pcs2: {
+          name: "",
+          requiredPieces: 2,
+          value: ,
+        },
+        pcs3: {
+          name: "",
+          requiredPieces: 3,
+          value: ,
+        },
+        pcs4: {
+          name: "",
+          requiredPieces: 4,
+          value: ""
+        },
+      },
+      "Hotshot": {
+        core: {
+          name: "",
+        },
+        pcs2: {
+          name: "",
+          requiredPieces: 2,
+          value: ,
+        },
+        pcs3: {
+          name: "",
+          requiredPieces: 3,
+          value: ,
+        },
+        pcs4: {
+          name: "",
+          requiredPieces: 4,
+          value: ""
+        },
+      },
+      "Hunter's Fury": {
+        core: {
+          name: "",
+        },
+        pcs2: {
+          name: "",
+          requiredPieces: 2,
+          value: ,
+        },
+        pcs3: {
+          name: "",
+          requiredPieces: 3,
+          value: ,
+        },
+        pcs4: {
+          name: "",
+          requiredPieces: 4,
+          value: ""
+        },
+      },
+      "Negotiator's Dilemma": {
+        core: {
+          name: "",
+        },
+        pcs2: {
+          name: "",
+          requiredPieces: 2,
+          value: ,
+        },
+        pcs3: {
+          name: "",
+          requiredPieces: 3,
+          value: ,
+        },
+        pcs4: {
+          name: "",
+          requiredPieces: 4,
+          value: ""
+        },
+      },
+      "Ongoing Directive": {
+        core: {
+          name: "",
+        },
+        pcs2: {
+          name: "",
+          requiredPieces: 2,
+          value: ,
+        },
+        pcs3: {
+          name: "",
+          requiredPieces: 3,
+          value: ,
+        },
+        pcs4: {
+          name: "",
+          requiredPieces: 4,
+          value: ""
+        },
+      },
+      "Rigger": {
+        core: {
+          name: "",
+        },
+        pcs2: {
+          name: "",
+          requiredPieces: 2,
+          value: ,
+        },
+        pcs3: {
+          name: "",
+          requiredPieces: 3,
+          value: ,
+        },
+        pcs4: {
+          name: "",
+          requiredPieces: 4,
+          value: ""
+        },
+      },
+      "Striker's Battlegear": {
+        core: {
+          name: "",
+        },
+        pcs2: {
+          name: "",
+          requiredPieces: 2,
+          value: ,
+        },
+        pcs3: {
+          name: "",
+          requiredPieces: 3,
+          value: ,
+        },
+        pcs4: {
+          name: "",
+          requiredPieces: 4,
+          value: ""
+        },
+      },
+      "System Corruption": {
+        pcs2: {
+          name: "",
+          requiredPieces: 2,
+          value: ,
+        },
+        pcs3: {
+          name: "",
+          requiredPieces: 3,
+          value: ,
+        },
+        pcs4: {
+          name: "",
+          requiredPieces: 4,
+          value: ""
+        },
+      },
+      "Tip of the Spear": {
+        core: {
+          name: "",
+        },
+        pcs2: {
+          name: "",
+          requiredPieces: 2,
+          value: ,
+        },
+        pcs3: {
+          name: "",
+          requiredPieces: 3,
+          value: ,
+        },
+        pcs4: {
+          name: "",
+          requiredPieces: 4,
+          value: ""
+        },
+      },
+      "True Patriot": {
+        core: {
+          name: "",
+        },
+        pcs2: {
+          name: "",
+          requiredPieces: 2,
+          value: ,
+        },
+        pcs3: {
+          name: "",
+          requiredPieces: 3,
+          value: ,
+        },
+        pcs4: {
+          name: "",
+          requiredPieces: 4,
+          value: ""
+        },
+      },
+      "Umbra Initiative": {
+        core: {
+          name: "",
+        },
+        pcs2: {
+          name: "",
+          requiredPieces: 2,
+          value: ,
+        },
+        pcs3: {
+          name: "",
+          requiredPieces: 3,
+          value: ,
+        },
+        pcs4: {
+          name: "",
+          requiredPieces: 4,
+          value: ""
         },
       },
     },
