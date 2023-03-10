@@ -460,6 +460,10 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
       let img;
       let gearslotTalentText = gearslot.getElementsByClassName('gearslot--talent-text')[0];
       switch (attributeTypeNames[i]) {
+        case 'minor':
+          if (gearItem.rarity == 'Named') {
+            dropdownSelectorText.classList.add('named');
+          }
         case 'core':
           if (gearItem[attributeTypeName].hasOwnProperty('value')) {
             selectorSource = gearItem[attributeTypeName];
@@ -477,26 +481,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
           dropdownSelectorValue.innerHTML = selectorSource.value;
 
           break;
-
-        case 'minor':
-          if (gearItem.rarity == 'Named') {
-            dropdownSelectorText.classList.add('named');
-          }
-          if (gearItem[attributeTypeName].hasOwnProperty('value')) {
-            selectorSource = gearItem[attributeTypeName];
-          }
-          else {
-            selectorSource = db['attribute'][equipmentTypeName][attributeTypeNames[i]][gearItem[attributeTypeName].name];
-          }
-          pngName = selectorSource[gearItem[attributeTypeName].name].png;
-          img = new Image();
-          img.src = `./icons/${pngName}.png`;
-          dropdownSelectorText.appendChild(img);
-          dropdownSelectorText.innerHTML += " " + gearItem[attributeTypeName].name;
-          dropdownSelectorValue.innerHTML = selectorSource[gearItem[attributeTypeName].name].value;
-
-          break;
-
+          
         case 'talent':
           selectorSource = db['talent'];
           if (gearItem.rarity == 'Exotic') {
