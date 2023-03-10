@@ -393,8 +393,13 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
     attributeTypeNames.push('minor');
   }
 
-  // mod when mask, backpack, chest or improvised
+  // mod when mask, backpack, chest or improvised 
   if (gearTypeName == 'mask' || gearTypeName == 'backpack' || gearTypeName == 'chest' || gearItem.type == 'Improvised') {
+    attributeTypeNames.push('mod');
+  }
+
+  // 2nd mod when 'Chill Out'
+  if (gearItemName == 'Chill Out') {
     attributeTypeNames.push('mod');
   }
   
@@ -404,10 +409,17 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   }
 
   let attributeTypeName;
+  let counterMinor = 1;
+  let counterMod = 1;
   for (let i in attributeTypeNames) {
     attributeTypeName = attributeTypeNames[i]
     if (attributeTypeName == 'minor') {
-      attributeTypeName += i;
+      attributeTypeName += counterMinor;
+      counterMinor++;
+    }
+    if (attributeTypeName == 'mod') {
+      attributeTypeName += counterMod;
+      counterMod++;
     }
 
     //============================
@@ -432,12 +444,10 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
     // dropdown selector default
     dropdownSelectorText.innerHTML = "Select ";
     switch (attributeTypeName) {
-      case 'core1':
       case 'minor1':
         dropdownSelectorText.innerHTML += `first ${attributeTypeNames[i]} attribute`;
         break;
 
-      case 'core2':
       case 'minor2':
         dropdownSelectorText.innerHTML += `second ${attributeTypeNames[i]} attribute`;
         break;
@@ -445,6 +455,14 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
       case 'core':
       case 'minor':
         dropdownSelectorText.innerHTML += `${attributeTypeNames[i]} attribute`;
+        break;
+
+      case 'mod1':
+        dropdownSelectorText.innerHTML += `first ${attributeTypeNames[i]}`;
+        break;
+
+      case 'mod2':
+        dropdownSelectorText.innerHTML += `second ${attributeTypeNames[i]}`;
         break;
 
       default:

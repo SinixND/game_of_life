@@ -71,7 +71,7 @@ export const db = {
           core: {
             name: "Armor",
           },
-          mod: {
+          mod2: {
           },
         },
         "Punch Drunk": {
