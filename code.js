@@ -409,10 +409,17 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   }
 
   let attributeTypeName;
+  let counterMod = 1;
   for (let i in attributeTypeNames) {
     attributeTypeName = attributeTypeNames[i]
     if (attributeTypeName == 'minor') {
       attributeTypeName += i;
+    }
+    if (attributeTypeName == 'mod') {
+      if (counterMod == 2) {
+        attributeTypeName += counterMod;
+      }
+      counterMod++;
     }
 
     //============================
