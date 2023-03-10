@@ -400,7 +400,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
 
   // 2nd mod when 'Chill Out'
   if (gearItemName == 'Chill Out') {
-    attributeTypeNames.push('mod');
+    attributeTypeNames.push('mod2');
   }
   
   // talent when exotic, backpack or chest
@@ -409,17 +409,10 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   }
 
   let attributeTypeName;
-  let counterMinor = 1;
-  let counterMod = 1;
   for (let i in attributeTypeNames) {
     attributeTypeName = attributeTypeNames[i]
     if (attributeTypeName == 'minor') {
-      attributeTypeName += counterMinor;
-      counterMinor++;
-    }
-    if (attributeTypeName == 'mod') {
-      attributeTypeName += counterMod;
-      counterMod++;
+      attributeTypeName += i;
     }
 
     //============================
@@ -455,10 +448,6 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
       case 'core':
       case 'minor':
         dropdownSelectorText.innerHTML += `${attributeTypeNames[i]} attribute`;
-        break;
-
-      case 'mod1':
-        dropdownSelectorText.innerHTML += `first ${attributeTypeNames[i]}`;
         break;
 
       case 'mod2':
