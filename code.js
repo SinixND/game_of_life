@@ -461,7 +461,12 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
       let gearslotTalentText = gearslot.getElementsByClassName('gearslot--talent-text')[0];
       switch (attributeTypeNames[i]) {
         case 'core':
-          selectorSource = db['attribute'][equipmentTypeName][attributeTypeNames[i]];
+          if (gearItem[attributeTypeName].hasOwnProperty('value')) {
+            selectorSource = gearItem[attributeTypeName];
+          }
+          else {
+            selectorSource = db['attribute'][equipmentTypeName][attributeTypeNames[i]][gearItem[attributeTypeName].name];
+          }
 
           // add attribute icon (and name)
           pngName = selectorSource[gearItem[attributeTypeName].name].png;
