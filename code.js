@@ -469,12 +469,12 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
           }
 
           // add attribute icon (and name)
-          pngName = selectorSource[gearItem[attributeTypeName].name].png;
+          pngName = selectorSource.png;
           img = new Image();
           img.src = `./icons/${pngName}.png`;
           dropdownSelectorText.appendChild(img);
           dropdownSelectorText.innerHTML += " " + gearItem[attributeTypeName].name;
-          dropdownSelectorValue.innerHTML = selectorSource[gearItem[attributeTypeName].name].value;
+          dropdownSelectorValue.innerHTML = selectorSource.value;
 
           break;
 
@@ -483,24 +483,17 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
             dropdownSelectorText.classList.add('named');
           }
           if (gearItem[attributeTypeName].hasOwnProperty('value')) {
-            pngName = gearItem[attributeTypeName].png;
-            img = new Image();
-            img.src = `./icons/${pngName}.png`;
-            dropdownSelectorText.appendChild(img);
-            dropdownSelectorText.innerHTML += " " + gearItem[attributeTypeName].name;
-            dropdownSelectorValue.innerHTML = gearItem[attributeTypeName].value;
+            selectorSource = gearItem[attributeTypeName];
           }
           else {
-            selectorSource = db['attribute'][equipmentTypeName][attributeTypeNames[i]];
-
-            console.log(attributeTypeName)
-            pngName = selectorSource[gearItem[attributeTypeName].name].png;
-            img = new Image();
-            img.src = `./icons/${pngName}.png`;
-            dropdownSelectorText.appendChild(img);
-            dropdownSelectorText.innerHTML += " " + gearItem[attributeTypeName].name;
-            dropdownSelectorValue.innerHTML = selectorSource[gearItem[attributeTypeName].name].value;
+            selectorSource = db['attribute'][equipmentTypeName][attributeTypeNames[i]][gearItem[attributeTypeName].name];
           }
+          pngName = selectorSource[gearItem[attributeTypeName].name].png;
+          img = new Image();
+          img.src = `./icons/${pngName}.png`;
+          dropdownSelectorText.appendChild(img);
+          dropdownSelectorText.innerHTML += " " + gearItem[attributeTypeName].name;
+          dropdownSelectorValue.innerHTML = selectorSource[gearItem[attributeTypeName].name].value;
 
           break;
 
