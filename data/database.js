@@ -455,6 +455,66 @@ export const db = {
             value: "Slots in with any equipped Gear Set and/or Brand Set item to fulfill a requirement towards unlocking a Gear Sets bonus. Allows to unlock bonuses from multiple sets simultaneously."
           },
         },
+        "Percussive Maintenance": {
+          rarity: "Named",
+          type: "Alps Summit Armaments",
+          core: {
+            name: "Skill Tier",
+          },
+          talent: {
+            name: "Perfect Tech Support",
+          }
+        },
+        "Devil's Due": {
+          rarity: "Named",
+          type: "Ceska Vyroba s.r.o.",
+          core: {
+            name: "Weapon Damage",
+          },
+          talent: {
+            name: "Perfect Clutch",
+          }
+        },
+        "Strategic Alignment": {
+          rarity: "Named",
+          type: "China Light Industries Corporation",
+          core: {
+            name: "Skill Tier",
+          },
+          talent: {
+            name: "Perfect Shock and Awe",
+          }
+        },
+        "Anarchist's Cookbook": {
+          rarity: "Named",
+          type: "Golan Gear Ltd",
+          core: {
+            name: "Weapon Damage",
+          },
+          talent: {
+            name: "Perfectly Wicked",
+          }
+        },
+        "Force Multiplier": {
+          rarity: "Named",
+          type: "Hana-U Corporation",
+          core: {
+            name: "Skill Tier",
+          },
+          talent: {
+            name: "Perfect Combined Arms",
+          }
+        },
+        "The Gift": {
+          rarity: "Named",
+          type: "Providence Defense",
+          core: {
+            name: "Weapon Damage",
+          },
+          talent: {
+            name: "Perfect Vigilance",
+          }
+        },
         "5.11 Tactical": {
           rarity: "HighEnd",
           type: "5.11 Tactical",
@@ -486,16 +546,6 @@ export const db = {
             name: "Skill Tier",
           },
         },
-        "Percussive Maintenance": {
-          rarity: "Named",
-          type: "Alps Summit Armaments",
-          core: {
-            name: "Skill Tier",
-          },
-          talent: {
-            name: "Perfect Tech Support",
-          }
-        },
         "Badger Tuff": {
           rarity: "HighEnd",
           type: "Badger Tuff",
@@ -510,32 +560,12 @@ export const db = {
             name: "Weapon Damage",
           },
         },
-        "Devil's Due": {
-          rarity: "Named",
-          type: "Ceska Vyroba s.r.o.",
-          core: {
-            name: "Weapon Damage",
-          },
-          talent: {
-            name: "Perfect Clutch",
-          }
-        },
         "China Light Industries Corporation": {
           rarity: "HighEnd",
           type: "China Light Industries Corporation",
           core: {
             name: "Skill Tier",
           },
-        },
-        "Strategic Alignment": {
-          rarity: "Named",
-          type: "China Light Industries Corporation",
-          core: {
-            name: "Skill Tier",
-          },
-          talent: {
-            name: "Perfect Shock and Awe",
-          }
         },
         "Douglas & Harding": {
           rarity: "HighEnd",
@@ -573,16 +603,6 @@ export const db = {
             name: "Armor",
           },
         },
-        "Anarchist's Cookbook": {
-          rarity: "Named",
-          type: "Golan Gear Ltd",
-          core: {
-            name: "Weapon Damage",
-          },
-          talent: {
-            name: "Perfectly Wicked",
-          }
-        },
         "Grupo Sombra S.A.": {
           rarity: "HighEnd",
           type: "Grupo Sombra S.A.",
@@ -596,16 +616,6 @@ export const db = {
           core: {
             name: "Skill Tier",
           },
-        },
-        "Force Multiplier": {
-          rarity: "Named",
-          type: "Hana-U Corporation",
-          core: {
-            name: "Skill Tier",
-          },
-          talent: {
-            name: "Perfect Combined Arms",
-          }
         },
         "Hard Wired": {
           rarity: "Gearset",
@@ -664,16 +674,6 @@ export const db = {
           core: {
             name: "Weapon Damage",
           },
-        },
-        "The Gift": {
-          rarity: "Named",
-          type: "Providence Defense",
-          core: {
-            name: "Weapon Damage",
-          },
-          talent: {
-            name: "Perfect Vigilance",
-          }
         },
         "Richter & Kaiser GmbH": {
           rarity: "HighEnd",
