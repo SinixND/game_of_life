@@ -429,7 +429,7 @@ export const db = {
           },
           talent: {
             name: "Kill Confirmed",
-            value: "Enemies you kill drop a trophy on death. Collecting trophies provides both a short and long-term buff, the first of which scales with the number of core attributes equipped and lasts 10 seconds.\n \n 5% weapon damage per red core,\n 10% bonus armor per blue core.\n 5% skill efficiency per yellow core.\n \n For every trophy collected, gain an additional +1% weapon damage, +1% skill efficiency, and +0.1% armor regeneration for 300s. Maximum 30 stacks."
+            value: "Enemies you kill drop a trophy on death. Collecting trophies provides both a short and long-term buff, the first of which scales with the number of core attributes equipped and lasts 10 seconds.\r\n \r\n 5% weapon damage per red core,\r\n 10% bonus armor per blue core.\r\n 5% skill efficiency per yellow core.\r\n \r\n For every trophy collected, gain an additional +1% weapon damage, +1% skill efficiency, and +0.1% armor regeneration for 300s. Maximum 30 stacks."
           },
         },
         "NinjaBike Messenger Bag": {
