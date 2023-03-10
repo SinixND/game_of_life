@@ -412,35 +412,47 @@ export const db = {
         "Memento": {
           rarity: "Exotic",
           type: "Exotic",
-          core1: {
+          core: {
             name: "Weapon Damage",
+            png: "coreRed",
+            value: 15,
           },
-          core2: {
+          minor1: {
             name: "Armor",
+            png: "coreBlue",
+            value: 170001,
           },
-          core3: {
+          minor2: {
             name: "Skill Tier",
+            png: "coreYellow",
+            value: 1,
           },
           talent: {
             name: "Kill Confirmed",
             value: "Enemies you kill drop a trophy on death. Collecting trophies provides both a short and long-term buff, the first of which scales with the number of core attributes equipped and lasts 10 seconds.\n\r \n\r 5% weapon damage per red core,\n\r 10% bonus armor per blue core.\n\r 5% skill efficiency per yellow core.\n\r \n\r For every trophy collected, gain an additional +1% weapon damage, +1% skill efficiency, and +0.1% armor regeneration for 300s. Maximum 30 stacks."
           },
         },
-        "Acosta's Go-Bag": {
+        "NinjaBike Messenger Bag": {
           rarity: "Exotic",
           type: "Exotic",
           core: {
-            name: "Skill Tier",
+            name: "Weapon Damage",
+            png: "coreRed",
+            value: 15,
           },
           minor1: {
-            name: "Skill Haste",
+            name: "Armor",
+            png: "coreBlue",
+            value: 170001,
           },
           minor2: {
-            name: "Skill Damage",
+            name: "Skill Tier",
+            png: "coreYellow",
+            value: 1,
           },
           talent: {
-            name: "One in Hand...",
-            value: "Throwing a grenade refunds it and grants +1 skill tier for 15s.\r\n Grants overcharge if already at skill tier 6. Cooldown: 60s\r\n \r\n Two in the Bag:\r\n \t+1 Armor Kit Capacity\r\n \t+3 Grenade Capacity\r\n \t+25% Ammo Capacity\r\n \t+10% Repair-skills\r\n \t+10% Status Effects"
+            name: "Resourceful",
+            value: "Slots in with any equipped Gear Set and/or Brand Set item to fulfill a requirement towards unlocking a Gear Sets bonus. Allows to unlock bonuses from multiple sets simultaneously."
           },
         },
         "5.11 Tactical": {
