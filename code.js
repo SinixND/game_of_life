@@ -445,7 +445,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
     dropdownSelectorText.innerHTML = "Select ";
     switch (attributeTypeName) {
       case 'minor1':
-        dropdownSelectorText.innerHTML += `first ${attributeTypeNames[i]} attribute`;
+        dropdownSelectorText.innerHTML += `${attributeTypeNames[i]} attribute`;
         break;
 
       case 'minor2':
