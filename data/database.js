@@ -416,11 +416,12 @@ export const db = {
             value: "Enemies you hit with shotguns and marksman rifles amplifies the damage they take by 15% from all sources for 5s.",
           }
         },
-        "Aces and Eights": {
+        "Aces & Eights": {
           rarity: "Gearset",
-          type: "Aces and Eights",
+          type: "Aces & Eights",
           talent: {
             name: "Poker Face",
+            value: "Flip an additional Dead Man's Hand card on 1 shot.",
           }
         },
         "Foundry Bullwark": {

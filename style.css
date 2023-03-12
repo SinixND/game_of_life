@@ -205,9 +205,6 @@ align-self
   flex: 1 1 auto;
 }
 
-:root {
-  --bsratio: calc(7/3);
-}
 .flex-c--left {
   flex: var(--bsratio) 1 calc(var(--bsratio) * var(--widthMinLayout));
 }
@@ -365,6 +362,10 @@ place-self :: (align justify)
   align-items: center;
   font-size: var(--txtBig);
   font-weight: bold;
+}
+
+.ol--gearset {
+  counter-increment: start 3;
 }
 
 .dropdown--selector {

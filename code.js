@@ -234,18 +234,21 @@ for (let equipmentTypeName in db['equipment']) {
         let mltpcName = gearItem.type;
 
         if (gearItem.rarity == "Gearset") {
+          entryMltpcAttributes.start = 2;
           for (let attribute in mltpc.Gearset[mltpcName]) {
             if (mltpc.Gearset[mltpcName][attribute].requiredPieces == 4) {
               entryMltpcAttributes.innerHTML += "<li>" + mltpc.Gearset[mltpcName][attribute].name + ': <br><br>' + mltpc.Gearset[mltpcName][attribute].value + "</li>";
             }
-            else {
+            else if (attribute !== 'core') {
               entryMltpcAttributes.innerHTML += "<li>" + mltpc.Gearset[mltpcName][attribute].name + ': ' + mltpc.Gearset[mltpcName][attribute].value + "</li>";
             }
           }
         }
         else if (gearItem.rarity !== 'Improvised' && (gearItem.rarity == 'High End' || gearItem.rarity == 'Named')) {
           for (let attribute in mltpc.Brandset[mltpcName]) {
-            entryMltpcAttributes.innerHTML += "<li>" + mltpc.Brandset[mltpcName][attribute].name + ': ' + mltpc.Brandset[mltpcName][attribute].value + "</li>";
+            if (attribute !== 'core') {
+              entryMltpcAttributes.innerHTML += "<li>" + mltpc.Brandset[mltpcName][attribute].name + ': ' + mltpc.Brandset[mltpcName][attribute].value + "</li>";
+            }
           }
         };
       }
@@ -453,6 +456,26 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
         break;
 
       case 'core':
+        if (gearItem.type !== 'Improvised' && gearItem.rarity !== 'Exotic') {
+          // add attribute icon (and name)
+          let defaultCore;
+          if (gearItem.rarity == 'Gearset') {
+            defaultCore = db['setboni']['Gearset'][gearItem.type]['core'];
+          }
+          else{
+            defaultCore = db['setboni']['Brandset'][gearItem.type]['core'];
+          }
+          console.log(defaultCore.name)
+          let pngName = db['attribute'][equipmentTypeName][attributeTypeName][defaultCore.name].png;
+          img = new Image();
+          img.src = `./icons/${pngName}.png`;
+          dropdownSelectorText.innerHTML = "";
+          dropdownSelectorText.appendChild(img);
+          dropdownSelectorText.innerHTML += " " + defaultCore.name;
+          dropdownSelectorValue.innerHTML = db['attribute'][equipmentTypeName][attributeTypeName][defaultCore.name].value;
+        }
+
+        break;
       case 'minor':
         dropdownSelectorText.innerHTML += `${attributeTypeNames[i]} attribute`;
         break;
@@ -510,7 +533,6 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
 
           dropdownSelectorText.innerHTML = gearItem[attributeTypeName].name;
           gearslotTalentText.innerText = gearItem[attributeTypeName].value;
-          gearslot.appendChild(gearslot.getElementsByClassName('gearslot--talent-text')[0]);
 
           break;
       }
@@ -530,6 +552,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
           dropdownOptions.scrollTop = 0;
         }
       })
+      gearslot.appendChild(gearslot.getElementsByClassName('gearslot--talent-text')[0]);
     }
     /*} CLONE DROPDOWN SELECTOR  */
     //============================
