@@ -134,6 +134,7 @@ img {
   margin: calc(2 * var(--bWeight));
   border: var(--bWeightSmall) dotted var(--cbrd);
   position: relative;
+  min-width: fit-content;
 }
 
 .panel--border::before,
@@ -235,7 +236,7 @@ grid :: (template--rows template--columns template--areas auto-rows auto-columns
 }
 
 .grid-p--list {
-  grid-template-columns: repeat(auto-fit, minmax(var(--widthMin), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(var(--widthMinLayout), 1fr));
   height: 100%;
   overflow: auto;
 }

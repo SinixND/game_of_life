@@ -255,7 +255,7 @@ for (let equipmentTypeName in db['equipment']) {
       if (gearItem.hasOwnProperty('talent')) {
         entryTalentName.classList.add('h-line--top');
         entryTalentName.innerHTML = gearItem['talent'].name;
-        panelListEntry.getElementsByClassName('entry--talent-text')[0].innerText = gearItem['talent'].value;
+        panelListEntry.getElementsByClassName('entry--talent-text')[0].innerHTML = gearItem['talent'].value;
       }
     }
 
@@ -393,7 +393,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
     attributeTypeNames.push('minor');
   }
 
-  // mod when mask, backpack, chest or improvised 
+  // mod when mask, backpack, chest or improvised
   if (gearTypeName == 'mask' || gearTypeName == 'backpack' || gearTypeName == 'chest' || gearItem.type == 'Improvised') {
     attributeTypeNames.push('mod');
   }
@@ -402,7 +402,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
   if (gearItemName == 'Chill Out') {
     attributeTypeNames.push('mod');
   }
-  
+
   // talent when exotic, backpack or chest
   if (gearItem.rarity == 'Exotic' || gearTypeName == 'backpack' || gearItemName == 'chest' || equipmentTypeName == 'weapon') {
     attributeTypeNames.push('talent');
@@ -495,7 +495,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
           dropdownSelectorValue.innerHTML = selectorSource.value;
 
           break;
-          
+
         case 'talent':
           selectorSource = db['talent'];
           if (gearItem.rarity == 'Exotic') {
@@ -509,7 +509,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
           }
 
           dropdownSelectorText.innerHTML = gearItem[attributeTypeName].name;
-          gearslotTalentText.innerText = gearItem[attributeTypeName].value;
+          gearslotTalentText.innerHTML = gearItem[attributeTypeName].value;
           gearslot.appendChild(gearslot.getElementsByClassName('gearslot--talent-text')[0]);
 
           break;

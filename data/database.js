@@ -17,7 +17,7 @@ export const db = {
           },
           talent: {
             name: "Vicious Cycle",
-            value: "Taking damage builds stacks to a cap of 30. Each stack grants 1% Weapon Damage.\r\n Taking damage at max stacks triggers a purge, removing all stacks and Status Effects and then dropping a healing cloud which restores 5% of Max Armor for 10s to all allies in the cloud."
+            value: "Taking damage builds stacks to a cap of 30. Each stack grants 1% Weapon Damage.<br> <br> Taking damage at max stacks triggers a purge, removing all stacks and Status Effects and then dropping a healing cloud which restores 5% of Max Armor for 10s to all allies in the cloud."
           }
         },
         "Coyote's Mask": {
@@ -33,7 +33,7 @@ export const db = {
           },
           talent: {
             name: "Pack Instincts",
-            value: "You and all allies gain a bonus based on the distance of the last enemy you hit.\r\n \r\n 0 - 15m: \t+25% critical hit damage\r\n 15 - 25 m: \t+10% critical hit damage and +10% critical hit chance\r\n 25m+: \t+25% critical hit chance"
+            value: "You and all allies gain a bonus based on the distance of the last enemy you hit.<br> <br> <br> 0 - 15m: +25% critical hit damage<br> <br> 15 - 25 m: +10% critical hit damage and +10% critical hit chance<br> <br> 25m+: +25% critical hit chance"
           }
         },
         "Vile": {
@@ -50,7 +50,7 @@ export const db = {
           },
           talent: {
             name: "Toxic Delivery",
-            value: "Status effects also apply a damage over time debuff for 10s.\r\n Total damage dealt is equal to 50% of your concussion grenade damage and increased by your status effect attributes.",
+            value: "Status effects also apply a damage over time debuff for 10s.<br> <br> Total damage dealt is equal to 50% of your concussion grenade damage and increased by your status effect attributes.",
           },
         },
         "Nightwatcher": {
@@ -271,7 +271,7 @@ export const db = {
           },
           talent: {
             name: "One in Hand...",
-            value: "Throwing a grenade refunds it and grants +1 skill tier for 15s.\r\n Grants overcharge if already at skill tier 6. Cooldown: 60s\r\n \r\n Two in the Bag:\r\n \t+1 Armor Kit Capacity\r\n \t+3 Grenade Capacity\r\n \t+25% Ammo Capacity\r\n \t+10% Repair-skills\r\n \t+10% Status Effects"
+            value: "Throwing a grenade refunds it and grants +1 skill tier for 15s.<br> <br> Grants overcharge if already at skill tier 6. Cooldown: 60s<br> <br> <br> Two in the Bag:<br> <br> +1 Armor Kit Capacity<br> <br> +3 Grenade Capacity<br> <br> +25% Ammo Capacity<br> <br> +10% Repair-skills<br> <br> +10% Status Effects"
           },
         },
         "Memento": {
@@ -294,7 +294,7 @@ export const db = {
           },
           talent: {
             name: "Kill Confirmed",
-            value: "Enemies you kill drop a trophy on death. Collecting trophies provides both a short and long-term buff, the first of which scales with the number of core attributes equipped and lasts 10 seconds.\r\n \r\n 5% weapon damage per red core,\r\n 10% bonus armor per blue core.\r\n 5% skill efficiency per yellow core.\r\n \r\n For every trophy collected, gain an additional +1% weapon damage, +1% skill efficiency, and +0.1% armor regeneration for 300s. Maximum 30 stacks."
+            value: "Enemies you kill drop a trophy on death. Collecting trophies provides both a short and long-term buff, the first of which scales with the number of core attributes equipped and lasts 10 seconds.<br> <br> <br> 5% weapon damage per red core,<br> <br> 10% bonus armor per blue core.<br> <br> 5% skill efficiency per yellow core.<br> <br> <br> For every trophy collected, gain an additional +1% weapon damage, +1% skill efficiency, and +0.1% armor regeneration for 300s. Maximum 30 stacks."
           },
         },
         "NinjaBike Messenger Bag": {
@@ -464,7 +464,7 @@ export const db = {
           type: "System Corruption",
           core: {
             name: "Armor",
-          }
+          },
           talent: {
             name: "Multithreaded Execution",
           }
@@ -689,7 +689,7 @@ export const db = {
           type: "System Corruption",
           core: {
             name: "Weapon Damage",
-          }
+          },
           talent: {
             name: "Compiler Optimization",
           }
@@ -1512,7 +1512,7 @@ export const db = {
         pcs4: {
           name: "Dead Man's Hand",
           requiredPieces: 4,
-          value: "Flip a card when landing shots with a Marksman Rifle.<br> After 5 cards are flipped, the damage of your next shot is amplified by 30%. More shots are enhanced, the better the hand revealed.<br> <br> Four of a Kind: 4 shots.<br> Full House: 3 shots.<br> Aces and Eights: 2 shots.<br> <br> Flip an additional card on headshots."
+          value: "Flip a card when landing shots with a Marksman Rifle.<br> <br> After 5 cards are flipped, the damage of your next shot is amplified by 30%.<br> More shots are enhanced, the better the hand revealed.<br> <br> Four of a Kind: 4 shots <br> <br> Full House: 3 shots <br> <br> Aces and Eights: 2 shots <br> <br> Flip an additional card on headshots."
         },
       },
       "Eclipse Protocol": {
@@ -1533,300 +1533,19 @@ export const db = {
           name: "Hazard Protection",
           requiredPieces: 3,
           value: 30,
-        }
+        },
         pcs4: {
           name: "Indirect Transmission",
           requiredPieces: 4,
-          value: "Your Status Effects"
+          value: "Your status effects now spread on kill to all enemies within 10m and refresh 50% of the duration."
         },
       },
       "Foundry Bullwark": {
         core: {
-          name: "",
+          name: "Armor",
         },
         pcs2: {
-          name: "",
-          requiredPieces: 2,
-          value: ,
-        },
-        pcs3: {
-          name: "",
-          requiredPieces: 3,
-          value: ,
-        },
-        pcs4: {
-          name: "",
-          requiredPieces: 4,
-          value: ""
-        },
-      },
-      "Future Initiative": {
-        core: {
-          name: "",
-        },
-        pcs2: {
-          name: "",
-          requiredPieces: 2,
-          value: ,
-        },
-        pcs3: {
-          name: "",
-          requiredPieces: 3,
-          value: ,
-        },
-        pcs4: {
-          name: "",
-          requiredPieces: 4,
-          value: ""
-        },
-      },
-      "Hard Wired": {
-        core: {
-          name: "",
-        },
-        pcs2: {
-          name: "",
-          requiredPieces: 2,
-          value: ,
-        },
-        pcs3: {
-          name: "",
-          requiredPieces: 3,
-          value: ,
-        },
-        pcs4: {
-          name: "",
-          requiredPieces: 4,
-          value: ""
-        },
-      },
-      "Heartbreaker": {
-        core: {
-          name: "",
-        },
-        pcs2: {
-          name: "",
-          requiredPieces: 2,
-          value: ,
-        },
-        pcs3: {
-          name: "",
-          requiredPieces: 3,
-          value: ,
-        },
-        pcs4: {
-          name: "",
-          requiredPieces: 4,
-          value: ""
-        },
-      },
-      "Hotshot": {
-        core: {
-          name: "",
-        },
-        pcs2: {
-          name: "",
-          requiredPieces: 2,
-          value: ,
-        },
-        pcs3: {
-          name: "",
-          requiredPieces: 3,
-          value: ,
-        },
-        pcs4: {
-          name: "",
-          requiredPieces: 4,
-          value: ""
-        },
-      },
-      "Hunter's Fury": {
-        core: {
-          name: "",
-        },
-        pcs2: {
-          name: "",
-          requiredPieces: 2,
-          value: ,
-        },
-        pcs3: {
-          name: "",
-          requiredPieces: 3,
-          value: ,
-        },
-        pcs4: {
-          name: "",
-          requiredPieces: 4,
-          value: ""
-        },
-      },
-      "Negotiator's Dilemma": {
-        core: {
-          name: "",
-        },
-        pcs2: {
-          name: "",
-          requiredPieces: 2,
-          value: ,
-        },
-        pcs3: {
-          name: "",
-          requiredPieces: 3,
-          value: ,
-        },
-        pcs4: {
-          name: "",
-          requiredPieces: 4,
-          value: ""
-        },
-      },
-      "Ongoing Directive": {
-        core: {
-          name: "",
-        },
-        pcs2: {
-          name: "",
-          requiredPieces: 2,
-          value: ,
-        },
-        pcs3: {
-          name: "",
-          requiredPieces: 3,
-          value: ,
-        },
-        pcs4: {
-          name: "",
-          requiredPieces: 4,
-          value: ""
-        },
-      },
-      "Rigger": {
-        core: {
-          name: "",
-        },
-        pcs2: {
-          name: "",
-          requiredPieces: 2,
-          value: ,
-        },
-        pcs3: {
-          name: "",
-          requiredPieces: 3,
-          value: ,
-        },
-        pcs4: {
-          name: "",
-          requiredPieces: 4,
-          value: ""
-        },
-      },
-      "Striker's Battlegear": {
-        core: {
-          name: "",
-        },
-        pcs2: {
-          name: "",
-          requiredPieces: 2,
-          value: ,
-        },
-        pcs3: {
-          name: "",
-          requiredPieces: 3,
-          value: ,
-        },
-        pcs4: {
-          name: "",
-          requiredPieces: 4,
-          value: ""
-        },
-      },
-      "System Corruption": {
-        pcs2: {
-          name: "",
-          requiredPieces: 2,
-          value: ,
-        },
-        pcs3: {
-          name: "",
-          requiredPieces: 3,
-          value: ,
-        },
-        pcs4: {
-          name: "",
-          requiredPieces: 4,
-          value: ""
-        },
-      },
-      "Tip of the Spear": {
-        core: {
-          name: "",
-        },
-        pcs2: {
-          name: "",
-          requiredPieces: 2,
-          value: ,
-        },
-        pcs3: {
-          name: "",
-          requiredPieces: 3,
-          value: ,
-        },
-        pcs4: {
-          name: "",
-          requiredPieces: 4,
-          value: ""
-        },
-      },
-      "True Patriot": {
-        core: {
-          name: "",
-        },
-        pcs2: {
-          name: "",
-          requiredPieces: 2,
-          value: ,
-        },
-        pcs3: {
-          name: "",
-          requiredPieces: 3,
-          value: ,
-        },
-        pcs4: {
-          name: "",
-          requiredPieces: 4,
-          value: ""
-        },
-      },
-      "Umbra Initiative": {
-        core: {
-          name: "",
-        },
-        pcs2: {
-          name: "",
-          requiredPieces: 2,
-          value: ,
-        },
-        pcs3: {
-          name: "",
-          requiredPieces: 3,
-          value: ,
-        },
-        pcs4: {
-          name: "",
-          requiredPieces: 4,
-          value: ""
-        },
-      },
-    },
-    Brandset: {
-      "Gila Guard": {
-        pcs1: {
           name: "Total Armor",
-          requiredPieces: 1,
-          value: 5,
-        },
-        pcs2: {
-          name: "Health",
           requiredPieces: 2,
           value: 10,
         },
@@ -1835,8 +1554,305 @@ export const db = {
           requiredPieces: 3,
           value: 1,
         },
+        pcs4: {
+          name: "Makeshift Repairs",
+          requiredPieces: 4,
+          value: "Whenever you or your shield take damage, 20% of that amount is repaired to both over 15s."
+        },
       },
+      "Future Initiative": {
+        core: {
+          name: "Skill Tier",
+        },
+        pcs2: {
+          name: "Repair Skills",
+          requiredPieces: 2,
+          value: 30,
+        },
+        pcs3: {
+          name: "Skill Duration",
+          requiredPieces: 3,
+          value: 30,
+        },
+        pcs4: {
+          name: "Ground Control",
+          requiredPieces: 4,
+          value: "Increases you and your allies' total weapon and skill damage by 15% when at full armor.<br> <br> When you repair an ally, you and all allies within 5m of you are also repaired for 60% of that amount."
+        },
+      },
+      "Hard Wired": {
+        core: {
+          name: "Skill Tier",
+        },
+        pcs2: {
+          name: "Skill Haste",
+          requiredPieces: 2,
+          value: 15,
+        },
+        pcs3: {
+          name: "Skill Damage",
+          requiredPieces: 3,
+          value: 15,
+        },
+        pcs32: {
+          name: "Repair Skills",
+          requiredPieces: 3,
+          value: 30,
+        },
+        pcs4: {
+          name: "Feedback Loop",
+          requiredPieces: 4,
+          value: "Whenever you use or cancel a skill, your other skill's cooldown is automatically reduced by 30s while increasing total skill damage and repair by 10% for 20s.<br> <br> Feedback Loop can occur once every 20s."
+        },
+      },
+      "Heartbreaker": {
+        core: {
+          name: "Weapon Damage",
+        },
+        pcs2: {
+          name: "Assault Rifle Damage",
+          requiredPieces: 2,
+          value: 15,
+        },
+        pcs22: {
+          name: "LMG Damage",
+          requiredPieces: 2,
+          value: 15,
+        },
+        pcs3: {
+          name: "Weapon Handling",
+          requiredPieces: 3,
+          value: 15,
+        },
+        pcs4: {
+          name: "Heartstopper",
+          requiredPieces: 4,
+          value: "Headshots apply pulse for 5s.<br> <br> Weapon hits on pulsed enemies add a stack of +1% bonus armor and +1% damage to pulsed enemies, up to a max of 50 stacks.<br> <br> 2 stacks are lost each second."
+        },
+      },
+      "Hotshot": {
+        core: {
+          name: "Weapon Damage",
+        },
+        pcs2: {
+          name: "Marksman Rifle Damage",
+          requiredPieces: 2,
+          value: 30,
+        },
+        pcs22: {
+          name: "Stability",
+          requiredPieces: 2,
+          value: 30,
+        },
+        pcs3: {
+          name: "Headshot Damage",
+          requiredPieces: 3,
+          value: 30,
+        },
+        pcs4: {
+          name: "Headache",
+          requiredPieces: 4,
+          value: "First Headshot with a Marksman Rifle will increase next headshot by 20%.<br> <br> Second consecutive headshot with a Marksman Rifle will give +10% armor (if at full armor it will give bonus armor max +50% of current armor value).<br> <br> Third consecutive headshot will refill magazine.<br> <br> From the fourth headshot forward, agents will get all 3 bonuses for each consecutive headshot kill.<br> <br> Missing a headshot will reset the cycle."
+        },
+      },
+      "Hunter's Fury": {
+        core: {
+          name: "Weapon Damage",
+        },
+        pcs2: {
+          name: "SMG Damage",
+          requiredPieces: 2,
+          value: 15,
+        },
+        pcs22: {
+          name: "Shotgun Damage",
+          requiredPieces: 2,
+          value: 15,
+        },
+        pcs32: {
+          name: "Armor on Kill",
+          requiredPieces: 3,
+          value: 20,
+        },
+        pcs3: {
+          name: "Health on Kill",
+          requiredPieces: 3,
+          value: 100,
+        },
+        pcs4: {
+          name: "Apex Predator",
+          requiredPieces: 4,
+          value: "Enemies within 15m receive a debuff, amplifying your weapon damage against them by 20%.<br> <br> Killing a debuffed enemy with your weapon disorients other enemies within 5m, and amplifies weapon damage by 5% for 10s, stacking up to 5 times."
+        },
+      },
+      "Negotiator's Dilemma": {
+        core: {
+          name: "Weapon Damage",
+        },
+        pcs2: {
+          name: "Critical Hit Chance",
+          requiredPieces: 2,
+          value: 15,
+        },
+        pcs3: {
+          name: "Critical Hit Damage",
+          requiredPieces: 3,
+          value: 20,
+        },
+        pcs4: {
+          name: "Hostile Negotiations",
+          requiredPieces: 4,
+          value: "Critical hits mark enemies for 20s, up to 3 marks total.<br> <br> When you critically hit a marked enemy, all other marked enemies take 60% of the damage dealt.<br> <br> Whenever a marked enemy dies, gain +2% critical hit damage, stacking up to 20 times, until combat ends."
+        },
+      },
+      "Ongoing Directive": {
+        core: {
+          name: "Weapon Damage",
+        },
+        pcs2: {
+          name: "Status Effect",
+          requiredPieces: 2,
+          value: 15,
+        },
+        pcs3: {
+          name: "Reload Speed",
+          requiredPieces: 3,
+          value: 30,
+        },
+        pcs4: {
+          name: "Rules of Engagement",
+          requiredPieces: 4,
+          value: "Killing a marked enemy grants a full clip of Hollow-Point Ammo for your active weapon, and half a clip of the agent's active weapon to the rest of the party.<br> <br> Hollow-Point Ammo amplifies weapon damage by 20% and applies bleed on hit."
+        },
+      },
+      "Rigger": {
+        core: {
+          name: "Skill Tier",
+        },
+        pcs2: {
+          name: "Skill Haste",
+          requiredPieces: 2,
+          value: 15,
+        },
+        pcs3: {
+          name: "Skill Duration",
+          requiredPieces: 3,
+          value: 15,
+        },
+        pcs4: {
+          name: "Tend and Befriend",
+          requiredPieces: 4,
+          value: "Interacting with your deployed skills grants the skill 25% skill damage for 10s.<br> This buff cannot be refreshed.<br> <br> Interactions include:<br> - Using / Deploying the Skill<br> - Changing the skill's target<br> - Healing the skill"
+        },
+      },
+      "Striker's Battlegear": {
+        core: {
+          name: "Weapon Damage",
+        },
+        pcs2: {
+          name: "Weapon Handling",
+          requiredPieces: 2,
+          value: 15,
+        },
+        pcs3: {
+          name: "Rate of Fire",
+          requiredPieces: 3,
+          value: 15,
+        },
+        pcs4: {
+          name: "Striker's Gamble",
+          requiredPieces: 4,
+          value: "Weapon hits increase total weapon damage by 0.65%, stacking up to 100 times.<br> <br> 2 stacks are lost each second."
+        },
+      },
+      "System Corruption": {
+        pcs2: {
+          name: "Armor on Kill",
+          requiredPieces: 2,
+          value: 15,
+        },
+        pcs3: {
+          name: "Pulse Resistance",
+          requiredPieces: 3,
+          value: 40,
+        },
+        pcs32: {
+          name: "Disrupt Resistance",
+          requiredPieces: 3,
+          value: 40,
+        },
+        pcs4: {
+          name: "Hackstep Protocol",
+          requiredPieces: 4,
+          value: "Replaces armor kits with an instant, infinite-use ability on a 20s cooldown, that repairs 20% armor, grants 50% bonus armor and hides your nameplate for 5s.<br> <br> Increases total weapon damage by 1% per 5% bonus armor gained, up to 20%."
+        },
+      },
+      "Tip of the Spear": {
+        core: {
+          name: "Weapon Damage",
+        },
+        pcs2: {
+          name: "Signature Weapon Damage",
+          requiredPieces: 2,
+          value: 10,
+        },
+        pcs3: {
+          name: "Weapon Damage",
+          requiredPieces: 3,
+          value: 10,
+        },
+        pcs4: {
+          name: "Aggressive Recon",
+          requiredPieces: 4,
+          value: "Specialization weapon kills increase total weapon damage by 20% for 60s.<br> <br> Automatically generate specialization ammo every 60s."
+        },
+      },
+      "True Patriot": {
+        core: {
+          name: "Weapon Damage",
+        },
+        pcs2: {
+          name: "Ammo Capacity",
+          requiredPieces: 2,
+          value: 30,
+        },
+        pcs3: {
+          name: "Magazine Size",
+          requiredPieces: 3,
+          value: 30,
+        },
+        pcs4: {
+          name: "Red, White and Blue",
+          requiredPieces: 4,
+          value: "Every 2s, enemies you shoot receive a stacking debuff of Red, White and Blue.<br> <br> Red:<br> Amplifies the enemy's damage taken by 8%.<br> <br> White:<br> Shooting the enemy repairs you and your allies' armor by 2% once every second.<br> <br> Blue:<br> Decreases the enemy's damage dealt by 8%.<br> <br> Full Flag:<br> Enemies that die while under the effect of all 3 debuffs create a 5m explosion, dealing damage equal to their total health and armor.<br> <br> (Explosion damage reduced on Named enemy deaths.)"
+        },
+      },
+      "Umbra Initiative": {
+        core: {
+          name: "Weapon Damage",
+        },
+        pcs2: {
+          name: "Critical Hit Chance",
+          requiredPieces: 2,
+          value: 15,
+        },
+        pcs3: {
+          name: "Reload Speed",
+          requiredPieces: 3,
+          value: 30,
+        },
+        pcs4: {
+          name: "From The Shadows / Into The Light",
+          requiredPieces: 4,
+          value: "From The Shadows:<br> <br> While in cover, gain 10 stacks per seconds up to 50.<br> Each stack gives 1% Critical Hit Damage increase and 0.3% RPM.<br> Buff only applies while out of cover.<br> While out of cover, you will lose 2 stacks per seconds at normal speed and 1 stack per second if sprinting.<br> <br> Into The Light:<br> <br> While out of cover and in combat, gain 10 stacks per seconds up to 50.<br> Each stack gives 0.8% Armor Regen when consumed.<br> Stacks are consumed at 10 stacks per second while in cover."
+        },
+      },
+    },
+    Brandset: {
       "5.11 Tactical": {
+        core: {
+          name: "Armor",
+        },
         pcs1: {
           name: "Health",
           requiredPieces: 1,
@@ -1853,11 +1869,511 @@ export const db = {
           value: 10,
         },
       },
+      "Airaldi Holdings": {
+        core: {
+          name: "Weapon Damage",
+        },
+        pcs1: {
+          name: "Marksman Rifle Damage",
+          requiredPieces: 1,
+          value: 10,
+        },
+        pcs2: {
+          name: "Headshot Damage",
+          requiredPieces: 2,
+          value: 10,
+        },
+        pcs3: {
+          name: "Damage to Armor",
+          requiredPieces: 3,
+          value: 5,
+        },
+      },
+      "Alps Summit Armaments": {
+        core: {
+          name: "Skill Tier",
+        },
+        pcs1: {
+          name: "Repair Skills",
+          requiredPieces: 1,
+          value: 15,
+        },
+        pcs2: {
+          name: "Skill Duration",
+          requiredPieces: 2,
+          value: 20,
+        },
+        pcs3: {
+          name: "Cooldown Reduction",
+          requiredPieces: 3,
+          value: 10,
+        },
+      },
+      "Badger Tuff": {
+        core: {
+          name: "Armor",
+        },
+        pcs1: {
+          name: "Shotgun Damage",
+          requiredPieces: 1,
+          value: 10,
+        },
+        pcs2: {
+          name: "Armor",
+          requiredPieces: 2,
+          value: 5,
+        },
+        pcs3: {
+          name: "Armor on Kill",
+          requiredPieces: 3,
+          value: 10,
+        },
+      },
+      "Belstone Armory": {
+        core: {
+          name: "Armor",
+        },
+        pcs1: {
+          name: "Armor Regeneration",
+          requiredPieces: 1,
+          value: 1,
+        },
+        pcs2: {
+          name: "Armor on Kill",
+          requiredPieces: 2,
+          value: 10,
+        },
+        pcs3: {
+          name: "Incoming Repairs",
+          requiredPieces: 3,
+          value: 20,
+        },
+      },
+      "Brazos de Arcabuz": {
+        core: {
+          name: "Armor",
+        },
+        pcs1: {
+          name: "Skill Haste",
+          requiredPieces: 1,
+          value: 10,
+        },
+        pcs2: {
+          name: "Skill Tier",
+          requiredPieces: 2,
+          value: 1,
+        },
+        pcs3: {
+          name: "Magazine Size",
+          requiredPieces: 3,
+          value: 20,
+        },
+      },
+      "Ceska Vyroba s.r.o.": {
+        core: {
+          name: "Weapon Damage",
+        },
+        pcs1: {
+          name: "Critical Hit Chance",
+          requiredPieces: 1,
+          value: 10,
+        },
+        pcs2: {
+          name: "Hazard Protection",
+          requiredPieces: 2,
+          value: 10,
+        },
+        pcs3: {
+          name: "Health",
+          requiredPieces: 3,
+          value: 10,
+        },
+      },
+      "China Light Industries Corporation": {
+        core: {
+          name: "Skill Tier",
+        },
+        pcs1: {
+          name: "Explosive Damage",
+          requiredPieces: 1,
+          value: 15,
+        },
+        pcs2: {
+          name: "Cooldown Reduction",
+          requiredPieces: 2,
+          value: 10,
+        },
+        pcs3: {
+          name: "Status Effects",
+          requiredPieces: 3,
+          value: 10,
+        },
+      },
+      "Douglas & Harding": {
+        core: {
+          name: "Weapon Damage",
+        },
+        pcs1: {
+          name: "Pistol Damage",
+          requiredPieces: 1,
+          value: 20,
+        },
+        pcs2: {
+          name: "Stability",
+          requiredPieces: 2,
+          value: 10,
+        },
+        pcs3: {
+          name: "Accuracy",
+          requiredPieces: 3,
+          value: 10,
+        },
+      },
+      "Empress International": {
+        core: {
+          name: "Skill Tier",
+        },
+        pcs1: {
+          name: "Skill Health",
+          requiredPieces: 1,
+          value: 10,
+        },
+        pcs2: {
+          name: "Skill Damage",
+          requiredPieces: 2,
+          value: 10,
+        },
+        pcs3: {
+          name: "Skill Efficiency",
+          requiredPieces: 3,
+          value: 10,
+        },
+      },
+      "Fenris Group AB": {
+        core: {
+          name: "Weapon Damage",
+        },
+        pcs1: {
+          name: "Assault Rifle Damage",
+          requiredPieces: 1,
+          value: 10,
+        },
+        pcs2: {
+          name: "Reload Speed",
+          requiredPieces: 2,
+          value: 10,
+        },
+        pcs3: {
+          name: "Stability",
+          requiredPieces: 3,
+          value: 10,
+        },
+      },
+      "Gila Guard": {
+        core: {
+          name: "Armor",
+        },
+        pcs1: {
+          name: "Armor",
+          requiredPieces: 1,
+          value: 5,
+        },
+        pcs2: {
+          name: "Health",
+          requiredPieces: 2,
+          value: 10,
+        },
+        pcs3: {
+          name: "Armor Regeneration",
+          requiredPieces: 3,
+          value: 1,
+        },
+      },
+      "Golan Gear Ltd": {
+        core: {
+          name: "Armor",
+        },
+        pcs1: {
+          name: "Status Effects",
+          requiredPieces: 1,
+          value: 10,
+        },
+        pcs2: {
+          name: "Armor Regeneration",
+          requiredPieces: 2,
+          value: 1,
+        },
+        pcs3: {
+          name: "Armor",
+          requiredPieces: 3,
+          value: 5,
+        },
+      },
+      "Grupo Sombra S.A.": {
+        core: {
+          name: "Weapon Damage",
+        },
+        pcs1: {
+          name: "Critical Hit Damage",
+          requiredPieces: 1,
+          value: 15,
+        },
+        pcs2: {
+          name: "Explosive Damage",
+          requiredPieces: 2,
+          value: 15,
+        },
+        pcs3: {
+          name: "Headshot Damage",
+          requiredPieces: 3,
+          value: 10,
+        },
+      },
+      "Habsburg Guard": {
+        core: {
+          name: "Weapon Damage",
+        },
+        pcs1: {
+          name: "Headshot Damage 15",
+          requiredPieces: 1,
+          value: 15,
+        },
+        pcs2: {
+          name: "Marksman Rifle Damage",
+          requiredPieces: 2,
+          value: 15,
+        },
+        pcs3: {
+          name: "Status Effects",
+          requiredPieces: 3,
+          value: 10,
+        },
+      },
+      "Hana-U Corporation": {
+        core: {
+          name: "Skill Tier",
+        },
+        pcs1: {
+          name: "Cooldown Reduction",
+          requiredPieces: 1,
+          value: 10,
+        },
+        pcs2: {
+          name: "Skill Damage",
+          requiredPieces: 2,
+          value: 10,
+        },
+        pcs3: {
+          name: "Weapon Damage",
+          requiredPieces: 3,
+          value: 5,
+        },
+      },
+      "Murakami Industries": {
+        core: {
+          name: "Skill Tier",
+        },
+        pcs1: {
+          name: "Skill Duration",
+          requiredPieces: 1,
+          value: 20,
+        },
+        pcs2: {
+          name: "Repair Skills",
+          requiredPieces: 2,
+          value: 15,
+        },
+        pcs3: {
+          name: "Skill Damage",
+          requiredPieces: 3,
+          value: 10,
+        },
+      },
+      "Overlord Armaments": {
+        core: {
+          name: "Weapon Damage",
+        },
+        pcs1: {
+          name: "Rifle Damage",
+          requiredPieces: 1,
+          value: 10,
+        },
+        pcs2: {
+          name: "Accuracy",
+          requiredPieces: 2,
+          value: 10,
+        },
+        pcs3: {
+          name: "Weapon Handling",
+          requiredPieces: 3,
+          value: 10,
+        },
+      },
+      "Petrov Defense Group": {
+        core: {
+          name: "Weapon Damage",
+        },
+        pcs1: {
+          name: "LMG Damage",
+          requiredPieces: 1,
+          value: 10,
+        },
+        pcs2: {
+          name: "Weapon Handling",
+          requiredPieces: 2,
+          value: 10,
+        },
+        pcs3: {
+          name: "Ammo Capacity",
+          requiredPieces: 3,
+          value: 20,
+        },
+      },
+      "Providence Defense": {
+        core: {
+          name: "Weapon Damage",
+        },
+        pcs1: {
+          name: "Headshot Damage",
+          requiredPieces: 1,
+          value: 10,
+        },
+        pcs2: {
+          name: "Critical Hit Chance",
+          requiredPieces: 2,
+          value: 10,
+        },
+        pcs3: {
+          name: "Critical Hit Damage",
+          requiredPieces: 3,
+          value: 15,
+        },
+      },
+      "Richter & Kaiser GmbH": {
+        core: {
+          name: "Armor",
+        },
+        pcs1: {
+          name: "Incoming Repairs",
+          requiredPieces: 1,
+          value: 15,
+        },
+        pcs2: {
+          name: "Explosive Resistance",
+          requiredPieces: 2,
+          value: 10,
+        },
+        pcs3: {
+          name: "Skill Repair",
+          requiredPieces: 3,
+          value: 15,
+        },
+      },
+      "Sokolov Concern": {
+        core: {
+          name: "Weapon Damage",
+        },
+        pcs1: {
+          name: "SMG Damage",
+          requiredPieces: 1,
+          value: 10,
+        },
+        pcs2: {
+          name: "Critical Hit Damage",
+          requiredPieces: 2,
+          value: 15,
+        },
+        pcs3: {
+          name: "Critical Hit Chance",
+          requiredPieces: 3,
+          value: 10,
+        },
+      },
+      "Uzina Getica": {
+        core: {
+          name: "Armor",
+        },
+        pcs1: {
+          name: "Armor",
+          requiredPieces: 1,
+          value: 5,
+        },
+        pcs2: {
+          name: "Armor on Kill",
+          requiredPieces: 2,
+          value: 10,
+        },
+        pcs3: {
+          name: "Hazard Protection",
+          requiredPieces: 3,
+          value: 10,
+        },
+      },
+      "Walker, Harris & Co.": {
+        core: {
+          name: "Weapon Damage",
+        },
+        pcs1: {
+          name: "Weapon Damage",
+          requiredPieces: 1,
+          value: 5,
+        },
+        pcs2: {
+          name: "Damage to Armor",
+          requiredPieces: 2,
+          value: 5,
+        },
+        pcs3: {
+          name: "Damage to Health",
+          requiredPieces: 3,
+          value: 5,
+        },
+      },
+      "Wyvern Wear": {
+        core: {
+          name: "Skill Tier",
+        },
+        pcs1: {
+          name: "Skill Damage",
+          requiredPieces: 1,
+          value: 10,
+        },
+        pcs2: {
+          name: "Status Effects",
+          requiredPieces: 2,
+          value: 10,
+        },
+        pcs3: {
+          name: "Skill Duration",
+          requiredPieces: 3,
+          value: 20,
+        },
+      },
+      "Yaahl Gear": {
+        core: {
+          name: "Armor",
+        },
+        pcs1: {
+          name: "Hazard Protection",
+          requiredPieces: 1,
+          value: 10,
+        },
+        pcs2: {
+          name: "Weapon Damage",
+          requiredPieces: 2,
+          value: 5,
+        },
+        pcs3: {
+          name: "Pulse Resistance",
+          requiredPieces: 3,
+          value: 40,
+        },
+      },
     },
-  },
-  /*
-  weapons: {
+    /*
+    weapons: {
 
-  },
-  */
+    },
+    */
+  }
 }
