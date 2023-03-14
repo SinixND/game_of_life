@@ -258,7 +258,7 @@ for (let equipmentTypeName in db['equipment']) {
       if (gearItem.hasOwnProperty('talent')) {
         entryTalentName.classList.add('h-line--top');
         entryTalentName.innerHTML = gearItem['talent'].name;
-        panelListEntry.getElementsByClassName('entry--talent-text')[0].innerText = gearItem['talent'].value;
+        panelListEntry.getElementsByClassName('entry--talent-text')[0].innerHTML = gearItem['talent'].value;
       }
     }
 
@@ -532,7 +532,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
           }
 
           dropdownSelectorText.innerHTML = gearItem[attributeTypeName].name;
-          gearslotTalentText.innerText = gearItem[attributeTypeName].value;
+          gearslotTalentText.innerHTML = gearItem[attributeTypeName].value;
 
           break;
       }
@@ -609,8 +609,10 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
         dropdownSelectorSymbol.innerHTML = "&#9660";
         dropdownOptions.classList.add('hide');
       })
-
     }
+    // put talent text to end of panel
+    gearslot.appendChild(gearslot.getElementsByClassName('gearslot--talent-text')[0]);
+
     /*} CLONE DROPDOWN OPTIONS  */
     //============================
   }

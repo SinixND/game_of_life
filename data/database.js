@@ -17,7 +17,7 @@ export const db = {
           },
           talent: {
             name: "Vicious Cycle",
-            value: "Taking damage builds stacks to a cap of 30. Each stack grants 1% Weapon Damage.<br> <br> Taking damage at max stacks triggers a purge, removing all stacks and Status Effects and then dropping a healing cloud which restores 5% of Max Armor for 10s to all allies in the cloud."
+            value: "Taking damage builds stacks to a cap of 30. Each stack grants 1% Weapon Damage. <br> <br> Taking damage at max stacks triggers a purge, removing all stacks and Status Effects and then dropping a healing cloud which restores 5% of Max Armor for 10s to all allies in the cloud."
           }
         },
         "Coyote's Mask": {
@@ -33,7 +33,7 @@ export const db = {
           },
           talent: {
             name: "Pack Instincts",
-            value: "You and all allies gain a bonus based on the distance of the last enemy you hit.<br> <br> <br> 0 - 15m: +25% critical hit damage<br> <br> 15 - 25 m: +10% critical hit damage and +10% critical hit chance<br> <br> 25m+: +25% critical hit chance"
+            value: "You and all allies gain a bonus based on the distance of the last enemy you hit. <br> <br> 0 - 15m: +25% critical hit damage <br> 15 - 25 m: +10% critical hit damage and +10% critical hit chance <br> 25m+: +25% critical hit chance"
           }
         },
         "Vile": {
@@ -50,7 +50,7 @@ export const db = {
           },
           talent: {
             name: "Toxic Delivery",
-            value: "Status effects also apply a damage over time debuff for 10s.<br> <br> Total damage dealt is equal to 50% of your concussion grenade damage and increased by your status effect attributes.",
+            value: "Status effects also apply a damage over time debuff for 10s. <br> <br> Total damage dealt is equal to 50% of your concussion grenade damage and increased by your status effect attributes.",
           },
         },
         "Nightwatcher": {
@@ -271,7 +271,7 @@ export const db = {
           },
           talent: {
             name: "One in Hand...",
-            value: "Throwing a grenade refunds it and grants +1 skill tier for 15s.<br> <br> Grants overcharge if already at skill tier 6. Cooldown: 60s<br> <br> <br> Two in the Bag:<br> <br> +1 Armor Kit Capacity<br> <br> +3 Grenade Capacity<br> <br> +25% Ammo Capacity<br> <br> +10% Repair-skills<br> <br> +10% Status Effects"
+            value: "Throwing a grenade refunds it and grants +1 skill tier for 15s. <br> <br> Grants overcharge if already at skill tier 6. Cooldown: 60s. <br> <br> Two in the Bag: <br> <br> +1 Armor Kit Capacity <br> +3 Grenade Capacity <br> +25% Ammo Capacity <br> +10% Repair-skills <br> +10% Status Effects"
           },
         },
         "Memento": {
@@ -294,7 +294,7 @@ export const db = {
           },
           talent: {
             name: "Kill Confirmed",
-            value: "Enemies you kill drop a trophy on death. Collecting trophies provides both a short and long-term buff, the first of which scales with the number of core attributes equipped and lasts 10 seconds.<br> <br> <br> 5% weapon damage per red core,<br> <br> 10% bonus armor per blue core.<br> <br> 5% skill efficiency per yellow core.<br> <br> <br> For every trophy collected, gain an additional +1% weapon damage, +1% skill efficiency, and +0.1% armor regeneration for 300s. Maximum 30 stacks."
+            value: "Enemies you kill drop a trophy on death. Collecting trophies provides both a short and long-term buff, the first of which scales with the number of core attributes equipped and lasts 10 seconds. <br> <br> 5% weapon damage per red core, <br> 10% bonus armor per blue core. <br> 5% skill efficiency per yellow core. <br> <br> For every trophy collected, gain an additional +1% weapon damage, +1% skill efficiency, and +0.1% armor regeneration for 300s. Maximum 30 stacks."
           },
         },
         "NinjaBike Messenger Bag": {
@@ -1513,7 +1513,7 @@ export const db = {
         pcs4: {
           name: "Dead Man's Hand",
           requiredPieces: 4,
-          value: "Flip a card when landing shots with a Marksman Rifle.<br> <br> After 5 cards are flipped, the damage of your next shot is amplified by 30%.<br> More shots are enhanced, the better the hand revealed.<br> <br> Four of a Kind: 4 shots <br> <br> Full House: 3 shots <br> <br> Aces and Eights: 2 shots <br> <br> Flip an additional card on headshots."
+          value: "Flip a card when landing shots with a Marksman Rifle. <br> <br> After 5 cards are flipped, the damage of your next shot is amplified by 30%. <br> More shots are enhanced, the better the hand revealed. <br> <br> Four of a Kind: 4 shots <br> <br> Full House: 3 shots <br> <br> Aces and Eights: 2 shots <br> <br> Flip an additional card on headshots."
         },
       },
       "Eclipse Protocol": {
@@ -1578,7 +1578,7 @@ export const db = {
         pcs4: {
           name: "Ground Control",
           requiredPieces: 4,
-          value: "Increases you and your allies' total weapon and skill damage by 15% when at full armor.<br> <br> When you repair an ally, you and all allies within 5m of you are also repaired for 60% of that amount."
+          value: "Increases you and your allies' total weapon and skill damage by 15% when at full armor. <br> <br> When you repair an ally, you and all allies within 5m of you are also repaired for 60% of that amount."
         },
       },
       "Hard Wired": {
@@ -1603,7 +1603,7 @@ export const db = {
         pcs4: {
           name: "Feedback Loop",
           requiredPieces: 4,
-          value: "Whenever you use or cancel a skill, your other skill's cooldown is automatically reduced by 30s while increasing total skill damage and repair by 10% for 20s.<br> <br> Feedback Loop can occur once every 20s."
+          value: "Whenever you use or cancel a skill, your other skill's cooldown is automatically reduced by 30s while increasing total skill damage and repair by 10% for 20s. <br> <br> Feedback Loop can occur once every 20s."
         },
       },
       "Heartbreaker": {
@@ -1628,7 +1628,7 @@ export const db = {
         pcs4: {
           name: "Heartstopper",
           requiredPieces: 4,
-          value: "Headshots apply pulse for 5s.<br> <br> Weapon hits on pulsed enemies add a stack of +1% bonus armor and +1% damage to pulsed enemies, up to a max of 50 stacks.<br> <br> 2 stacks are lost each second."
+          value: "Headshots apply pulse for 5s. <br> <br> Weapon hits on pulsed enemies add a stack of +1% bonus armor and +1% damage to pulsed enemies, up to a max of 50 stacks. <br> <br> 2 stacks are lost each second."
         },
       },
       "Hotshot": {
@@ -1653,7 +1653,7 @@ export const db = {
         pcs4: {
           name: "Headache",
           requiredPieces: 4,
-          value: "First Headshot with a Marksman Rifle will increase next headshot by 20%.<br> <br> Second consecutive headshot with a Marksman Rifle will give +10% armor (if at full armor it will give bonus armor max +50% of current armor value).<br> <br> Third consecutive headshot will refill magazine.<br> <br> From the fourth headshot forward, agents will get all 3 bonuses for each consecutive headshot kill.<br> <br> Missing a headshot will reset the cycle."
+          value: "First Headshot with a Marksman Rifle will increase next headshot by 20%. <br> <br> Second consecutive headshot with a Marksman Rifle will give +10% armor (if at full armor it will give bonus armor max +50% of current armor value). <br> <br> Third consecutive headshot will refill magazine. <br> <br> From the fourth headshot forward, agents will get all 3 bonuses for each consecutive headshot kill. <br> <br> Missing a headshot will reset the cycle."
         },
       },
       "Hunter's Fury": {
@@ -1683,7 +1683,7 @@ export const db = {
         pcs4: {
           name: "Apex Predator",
           requiredPieces: 4,
-          value: "Enemies within 15m receive a debuff, amplifying your weapon damage against them by 20%.<br> <br> Killing a debuffed enemy with your weapon disorients other enemies within 5m, and amplifies weapon damage by 5% for 10s, stacking up to 5 times."
+          value: "Enemies within 15m receive a debuff, amplifying your weapon damage against them by 20%. <br> <br> Killing a debuffed enemy with your weapon disorients other enemies within 5m, and amplifies weapon damage by 5% for 10s, stacking up to 5 times."
         },
       },
       "Negotiator's Dilemma": {
@@ -1703,7 +1703,7 @@ export const db = {
         pcs4: {
           name: "Hostile Negotiations",
           requiredPieces: 4,
-          value: "Critical hits mark enemies for 20s, up to 3 marks total.<br> <br> When you critically hit a marked enemy, all other marked enemies take 60% of the damage dealt.<br> <br> Whenever a marked enemy dies, gain +2% critical hit damage, stacking up to 20 times, until combat ends."
+          value: "Critical hits mark enemies for 20s, up to 3 marks total. <br> <br> When you critically hit a marked enemy, all other marked enemies take 60% of the damage dealt. <br> <br> Whenever a marked enemy dies, gain +2% critical hit damage, stacking up to 20 times, until combat ends."
         },
       },
       "Ongoing Directive": {
@@ -1723,7 +1723,7 @@ export const db = {
         pcs4: {
           name: "Rules of Engagement",
           requiredPieces: 4,
-          value: "Killing a marked enemy grants a full clip of Hollow-Point Ammo for your active weapon, and half a clip of the agent's active weapon to the rest of the party.<br> <br> Hollow-Point Ammo amplifies weapon damage by 20% and applies bleed on hit."
+          value: "Killing a marked enemy grants a full clip of Hollow-Point Ammo for your active weapon, and half a clip of the agent's active weapon to the rest of the party. <br> <br> Hollow-Point Ammo amplifies weapon damage by 20% and applies bleed on hit."
         },
       },
       "Rigger": {
@@ -1743,7 +1743,7 @@ export const db = {
         pcs4: {
           name: "Tend and Befriend",
           requiredPieces: 4,
-          value: "Interacting with your deployed skills grants the skill 25% skill damage for 10s.<br> This buff cannot be refreshed.<br> <br> Interactions include:<br> - Using / Deploying the Skill<br> - Changing the skill's target<br> - Healing the skill"
+          value: "Interacting with your deployed skills grants the skill 25% skill damage for 10s. <br> This buff cannot be refreshed. <br> <br> Interactions include: <br> - Using / Deploying the Skill <br> - Changing the skill's target <br> - Healing the skill"
         },
       },
       "Striker's Battlegear": {
@@ -1763,7 +1763,7 @@ export const db = {
         pcs4: {
           name: "Striker's Gamble",
           requiredPieces: 4,
-          value: "Weapon hits increase total weapon damage by 0.65%, stacking up to 100 times.<br> <br> 2 stacks are lost each second."
+          value: "Weapon hits increase total weapon damage by 0.65%, stacking up to 100 times. <br> <br> 2 stacks are lost each second."
         },
       },
       "System Corruption": {
@@ -1785,7 +1785,7 @@ export const db = {
         pcs4: {
           name: "Hackstep Protocol",
           requiredPieces: 4,
-          value: "Replaces armor kits with an instant, infinite-use ability on a 20s cooldown, that repairs 20% armor, grants 50% bonus armor and hides your nameplate for 5s.<br> <br> Increases total weapon damage by 1% per 5% bonus armor gained, up to 20%."
+          value: "Replaces armor kits with an instant, infinite-use ability on a 20s cooldown, that repairs 20% armor, grants 50% bonus armor and hides your nameplate for 5s. <br> <br> Increases total weapon damage by 1% per 5% bonus armor gained, up to 20%."
         },
       },
       "Tip of the Spear": {
@@ -1805,7 +1805,7 @@ export const db = {
         pcs4: {
           name: "Aggressive Recon",
           requiredPieces: 4,
-          value: "Specialization weapon kills increase total weapon damage by 20% for 60s.<br> <br> Automatically generate specialization ammo every 60s."
+          value: "Specialization weapon kills increase total weapon damage by 20% for 60s. <br> <br> Automatically generate specialization ammo every 60s."
         },
       },
       "True Patriot": {
@@ -1825,7 +1825,7 @@ export const db = {
         pcs4: {
           name: "Red, White and Blue",
           requiredPieces: 4,
-          value: "Every 2s, enemies you shoot receive a stacking debuff of Red, White and Blue.<br> <br> Red:<br> Amplifies the enemy's damage taken by 8%.<br> <br> White:<br> Shooting the enemy repairs you and your allies' armor by 2% once every second.<br> <br> Blue:<br> Decreases the enemy's damage dealt by 8%.<br> <br> Full Flag:<br> Enemies that die while under the effect of all 3 debuffs create a 5m explosion, dealing damage equal to their total health and armor.<br> <br> (Explosion damage reduced on Named enemy deaths.)"
+          value: "Every 2s, enemies you shoot receive a stacking debuff of Red, White and Blue. <br> <br> Red: <br> Amplifies the enemy's damage taken by 8%. <br> <br> White: <br> Shooting the enemy repairs you and your allies' armor by 2% once every second. <br> <br> Blue: <br> Decreases the enemy's damage dealt by 8%. <br> <br> Full Flag: <br> Enemies that die while under the effect of all 3 debuffs create a 5m explosion, dealing damage equal to their total health and armor. <br> <br> (Explosion damage reduced on Named enemy deaths.)"
         },
       },
       "Umbra Initiative": {
@@ -1845,7 +1845,7 @@ export const db = {
         pcs4: {
           name: "From The Shadows / Into The Light",
           requiredPieces: 4,
-          value: "From The Shadows:<br> <br> While in cover, gain 10 stacks per seconds up to 50.<br> Each stack gives 1% Critical Hit Damage increase and 0.3% RPM.<br> Buff only applies while out of cover.<br> While out of cover, you will lose 2 stacks per seconds at normal speed and 1 stack per second if sprinting.<br> <br> Into The Light:<br> <br> While out of cover and in combat, gain 10 stacks per seconds up to 50.<br> Each stack gives 0.8% Armor Regen when consumed.<br> Stacks are consumed at 10 stacks per second while in cover."
+          value: "From The Shadows: <br> <br> While in cover, gain 10 stacks per seconds up to 50. <br> Each stack gives 1% Critical Hit Damage increase and 0.3% RPM. <br> Buff only applies while out of cover. <br> While out of cover, you will lose 2 stacks per seconds at normal speed and 1 stack per second if sprinting. <br> <br> Into The Light: <br> <br> While out of cover and in combat, gain 10 stacks per seconds up to 50. <br> Each stack gives 0.8% Armor Regen when consumed. <br> Stacks are consumed at 10 stacks per second while in cover."
         },
       },
     },
