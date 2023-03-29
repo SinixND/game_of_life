@@ -424,19 +424,60 @@ export const db = {
             value: "Flip an additional Dead Man's Hand card on 1 shot.",
           }
         },
+        "Eclipse Protocol": {
+          rarity: "Gearset",
+          type: "Eclipse Protocol",
+          talent: {
+            name: "Symptom Aggravator",
+            value: "Amplifies all damage you deal to status effected targets by 30%.",
+          }
+        },
         "Foundry Bullwark": {
           rarity: "Gearset",
           type: "Foundry Bullwark",
+          talent: {
+            name: "Process Refinery",
+            value: "Increases Makeshift Repairs speed from 15s to 10s.",
+          }
         },
         "Future Initiative": {
           rarity: "Gearset",
           type: "Future Initiative",
+          talent: {
+            name: "Strategic Combat Support",
+            value: "Increases Ground Control proximity repair from 60% to 120%.",
+          }
         },
         "Hard Wired": {
           rarity: "Gearset",
           type: "Hard Wired",
           talent: {
             name: "Short Circuit",
+            value: "Decreases Feedback Loop cooldown from 20s to 10s."
+          }
+        },
+        "Heartbreaker": {
+          rarity: "Gearset",
+          type: "Heartbreaker",
+          talent: {
+            name: "Cold",
+            value: "Increases total bonus armor gained per stack of Hearstopper from 1% to 2%."
+          }
+        },
+        "Hotshot": {
+          rarity: "Gearset",
+          type: "Hotshot",
+          talent: {
+            name: "Blessed",
+            value: "Agents can miss a headshot before resetting the cycle."
+          }
+        },
+        "Hunter's Fury": {
+          rarity: "Gearset",
+          type: "Hunter's Fury",
+          talent: {
+            name: "Overwhelming Force",
+            value: "Increases the radius of disorient on Apex Predator kills from 5m to 10m."
           }
         },
         "Negotiator's Dilemma": {
@@ -444,6 +485,7 @@ export const db = {
           type: "Negotiator's Dilemma",
           talent: {
             name: "Critical Measures",
+            value: "Increases Hostile Negotiations damage to additional marked enemies from 60% to 100%."
           }
         },
         "Ongoing Directive": {
@@ -451,6 +493,15 @@ export const db = {
           type: "Ongoing Directive",
           talent: {
             name: "Emergency Requisition",
+            value: "Increases the duration of your bleed status effects by 50% and all bleed damage done by 100%."
+          }
+        },
+        "Rigger": {
+          rarity: "Gearset",
+          type: "Rigger",
+          talent: {
+            name: "Complete Uptime",
+            value: "Cancelling your skills will reset their cooldown."
           }
         },
         "Striker's Battlegear": {
@@ -458,6 +509,7 @@ export const db = {
           type: "Striker's Battlegear",
           talent: {
             name: "Risk Management",
+            value: "Increases total weapon damage gained per stack of Striker's Gamble from 0.65% to 1%"
           }
         },
         "System Corruption": {
@@ -468,13 +520,15 @@ export const db = {
           },
           talent: {
             name: "Multithreaded Execution",
+            value: "Increases Hackstep Protocol bonus armor from 50% to 100%."
           }
         },
         "Tip of the Spear": {
           rarity: "Gearset",
           type: "Tip of the Spear",
           talent: {
-            name: "Crossbow Expert",
+            name: "xxx",
+            value: "xxx"
           }
         },
         "True Patriot": {
@@ -482,6 +536,7 @@ export const db = {
           type: "True Patriot",
           talent: {
             name: "Patriotic Boost",
+            value: "Increases Red, White and Blue debuff strength. <br> Red: 8% to 12%. <br> White: 2% to 3%. <br> Blue: 8% to 12%."
           }
         },
         "5.11 Tactical": {
