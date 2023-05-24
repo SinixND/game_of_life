@@ -1,18 +1,37 @@
-# sinixnd.github.io
--------------------
+# TODO
+## Title Screeen
+## Main Menu
+### Run
+### Rules
+#### changeable?
+### Settings (initial settings), saveable? (settings.ini)
+#### Submenus?
+#### window resolution
+#### board size
+#### life density
+#### seed
+#### fps (native/vsync, fixed) and/or update interval
+#### run/pause/stop/step forward/step backward
+#### Color settings
+#### 2D/3D
+#### cell shape
+#### cell age
+#### fading cells
+#### strong/weak cells
+#### additional ideas?
+### Credits/About?
+### Quit
+## (live settings)
+### Overlay to adjust variables (what in toolbar, what in overlay?)
+### update interval
+## Color schemes?
+## LMB set alive, RMB set dead
+## zoom
+## pan
 
-## First public web app project
+process-loop:
 
-## Next ToDo's:
-0. Fill database
-0. Chill Out 2nd modslot but only 1 minor attribute
-0. Improvised modslot (only for Gloves, Holster, Kneepads); no default core (set default temporarily?)
-0. Brazos only 2 cores selectable
-
-### License
-
-[![License: CC BY-NC-SA 4.0](https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
-
-### Credits
-
-heavily inspired by https://mxswat.github.io/mx-division-builds/#/github.com/mxswat
+setup/initialise environment
+loop: if (alive) {increment adjacents/count adjacents?}
+loop: dpendent on adjacentActive -> setStatusNext and setStatusChanging
+loop: update status and statusChanging=false
