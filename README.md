@@ -31,7 +31,7 @@
 
 process-loop:
 
-setup/initialise environment
+setup/initialise agents
 loop: if (alive) {increment adjacents/count adjacents?}
 loop: dpendent on adjacentActive -> setStatusNext and setStatusChanging
 loop: update status and statusChanging=false

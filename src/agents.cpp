@@ -65,19 +65,19 @@ void cAgent::decreaseVitality()
   }
 };
 
-int countAdjacents(std::vector<std::vector<cAgent>> &environment, const int colX, const int rowY)
+int countAdjacents(std::vector<std::vector<cAgent>> &agents, const int colX, const int rowY)
 {
   int cnt = 0;
   for (int dx : {-1, 0, 1})
   {
     for (int dy : {-1, 0, 1})
     {
-      int posX = ((colX + dx) + environment[rowY].size()) % environment[rowY].size();
-      int posY = ((rowY + dy) + environment.size()) % environment.size();
+      int posX = ((colX + dx) + agents[rowY].size()) % agents[rowY].size();
+      int posY = ((rowY + dy) + agents.size()) % agents.size();
       if (dx != 0 || dy != 0)
       {
-        // if (environment[y][x].getStatusIs() == true) { environment[posY][posX].setAdjacents(getAdjacents() + 1) };
-        if (environment[posY][posX].getStatusIs() == true)
+        // if (agents[y][x].getStatusIs() == true) { agents[posY][posX].setAdjacents(getAdjacents() + 1) };
+        if (agents[posY][posX].getStatusIs() == true)
         {
           cnt += 1;
         }

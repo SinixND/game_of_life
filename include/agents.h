@@ -32,6 +32,6 @@ private:
   int mVitality;
 };
 
-int countAdjacents( std::vector<std::vector<cAgent>> &environment, const int colX, const int rowY );
+int countAdjacents( std::vector<std::vector<cAgent>> &agents, const int colX, const int rowY );
 
 #endif
