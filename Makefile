@@ -17,7 +17,7 @@ INC_DIR := /usr/include ./include $(wildcard ./include/*/)
 LIB_DIR := /usr/lib 
 OBJ_DIR := ./build
 
-MAKEFLAGS := #-j4
+MAKEFLAGS := -j4
 C_FLAGS := `pkg-config --cflags $(LIBRARIES)`\
 -g -Wall #-Wextra -ggdb -MMD -MP -O3 -std=c++17
 LD_FLAG := $(LIBRARIES)
