@@ -2,6 +2,8 @@
 #define BENCHMARK_H
 
 #include <chrono>
+typedef std::chrono::steady_clock::time_point td_timePoint;
+typedef std::chrono::duration<double> td_dblDuration;
 #include <string>
 #include <vector>
 
@@ -13,12 +15,12 @@ public:
   cBenchmark(std::string ID);
 
   std::string mID = "";
-  std::chrono::steady_clock::time_point mStartTime;
-  std::chrono::steady_clock::time_point mStopTime;
-  std::chrono::duration<double> mLatestTime;
+  td_timePoint mStartTime;
+  td_timePoint mStopTime;
+  td_dblDuration mLatestTime;
 
   double mIterations;
-  std::chrono::duration<double> mAvgTime;
+  td_dblDuration mAvgTime;
 };
 
 
