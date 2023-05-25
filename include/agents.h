@@ -3,14 +3,22 @@
 
 #include <vector>
 
-class cAgent
-{
+class cAgent {
 public:
-  // constructor
-  cAgent();
-  // destructor
+  cAgent(int rowY, int colX);
   ~cAgent();
 
+private:
+  int mPosY;
+  int mPosX;
+  bool mStatusIs;
+  bool mStatusNext;
+  bool mStatusChanging;
+  bool mCheckStatus;
+  int mAdjacentsActive;
+  int mVitality;
+
+public:
   void setStatusIs( bool arg );
   bool getStatusIs();
 
@@ -20,18 +28,15 @@ public:
   void setStatusChanging( bool arg );
   bool getStatusChanging();
 
+  void setCheckStatus( bool arg );
+  bool getCheckStatus();
+
   void setVitality( int arg );
   int getVitality();
   void decreaseVitality();
 
-private:
-  bool mStatusIs;
-  bool mStatusNext;
-  bool mStatusChanging;
-  int mAdjacentsActive;
-  int mVitality;
+  int countAdjacents( std::vector<std::vector<cAgent>> &agents);
+  void pingAdjacents(std::vector<std::vector<cAgent>> &agents);
 };
-
-int countAdjacents( std::vector<std::vector<cAgent>> &agents, const int colX, const int rowY );
 
 #endif

@@ -1,6 +1,6 @@
 #include <iostream>
-#include <vector>
 #include <time.h>
+#include <vector>
 
 #include "raylib.h"
 #define RAYGUI_IMPLEMENTATION
@@ -18,29 +18,25 @@
 //============================
 #include "screens.h"
 
-int main()
-{
+int main() {
   InitWindow(windowWidth, windowHeight, "Conway's Game of Life");
   SetTargetFPS(targetFPS);
 
-//============================
-// MAIN APP LOOP
-//============================
+  //============================
+  // MAIN APP LOOP
+  //============================
   while (!WindowShouldClose()) // Detect window close button or ESC keWHITEy
   {
     //============================
     // Define color mode
     //============================
-    if (darkMode == true)
-    {
+    if (darkMode == true) {
       BG = BLACK;
       FG = WHITE;
       FG2 = LIGHTGRAY;
       FG3 = GRAY;
       FG4 = DARKGRAY;
-    }
-    else
-    {
+    } else {
       BG = WHITE;
       FG = BLACK;
       FG2 = DARKGRAY;
@@ -48,8 +44,7 @@ int main()
       FG4 = LIGHTGRAY;
     }
 
-    switch (currentScreen)
-    {
+    switch (currentScreen) {
     case MENU:
       runMenuScreen();
       break;

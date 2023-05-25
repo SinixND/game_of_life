@@ -1,13 +1,13 @@
 #ifndef PANELS_H
 #define PANELS_H
 
-class cPanel
-{
+class cPanel {
 public:
   cPanel(int width, int height, int offsetX, int offsetY, int margin);
 
   ~cPanel();
 
+public:
   // setters and getters
   void setPanelWidth(int width);
   int getPanelWidth();
@@ -34,7 +34,6 @@ public:
   int getPanelContentBottomY();
   int getPanelContentWidth();
   int getPanelContentHeight();
-  
 
 private:
   int mPanelWidth;

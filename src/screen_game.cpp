@@ -6,267 +6,226 @@
 #include "raylib.h"
 #define RAYBUI_IMPLEMENTATION
 #include "raygui.h"
-#include "globals.h"
-#include "panels.h"
-#include "agents.h"
 
-// game screen
+#include "globals.h"
+#include "agents.h"
+#include "panels.h"
+
+// GAME SCREEN
+//---------------------------------
 bool pauseState = true;
 
-// menubar
+// MENUBAR
+//---------------------------------
 cPanel menubar(windowWidth, 75, 0, 0, 10);
 const char *txtButtonPause = "[P]ause";
 const char *txtButtonDarkMode;
 
-// statusbar
+// STATUSBAR
+//---------------------------------
 cPanel statusbar(windowWidth, (txtSmall + 20), 0, (windowHeight - (txtSmall + 20)), 10);
 
-// display
+// DISPLAY
+//---------------------------------
 cPanel display(windowWidth, windowHeight - menubar.getPanelHeight() - statusbar.getPanelHeight(), 0, menubar.getPanelHeight(), 10);
 
-// agent
+// AGENT
+//---------------------------------
 int agentWidth = 10;
 int agentHeight = agentWidth; // independent height and width possible
 int agentInnerBorderWeight = 1;
 bool decayingAgents = true;
 
-// agents
+// AGENTS
+//---------------------------------
 int agentGap = 1;
 int colsX = display.getPanelContentWidth() / (agentWidth + agentGap);
 int rowsY = display.getPanelContentHeight() / (agentHeight + agentGap);
 int agentsSize = colsX * rowsY;
 bool evolutionState = true;
 bool agentsInitialized = false;
+std::vector<std::vector<cAgent>> agents;
 
-// logic
-float lifeDensity = 2.0f / 8.0f; // in %, eg. 25
+// LOGIC
+//---------------------------------
+float lifeDensity = 0.25; // in %, eg. 25
 int evolutionTime = 100;         // in ms
 float timePassed = 0;
 int day = 0;
 std::vector<int> agentsState0;
 std::vector<int> agentsState1;
 std::vector<int> agentsState2;
-std::vector<std::vector<cAgent>> agents;
 
-// game end overlay
+// GAME END OVERLAY
+//---------------------------------
 bool gameEndOverlayVisible = true;
+Rectangle rectGameEndBackground{0, 0, float(windowWidth), float(windowHeight)};
 
-Rectangle rectGameEndBackground{
-    0,
-    0,
-    float(windowWidth),
-    float(windowHeight)};
+void initialiseGameScreen() {
+  // INITIALISE AGENTS
+  //---------------------------------
+  for (int rowY = 0; rowY < rowsY; ++rowY) {
+    std::vector<cAgent> row;
+    agents.push_back(row);
 
-void initialiseGameScreen()
-{
-  // initialise agents
-  for (int rowY = 0; rowY < rowsY; ++rowY)
-  {
-    std::vector<cAgent> v;
-    agents.push_back(v);
-
-    for (int colX = 0; colX < colsX; ++colX)
-    {
-      agents[rowY].push_back(cAgent());
+    for (int colX = 0; colX < colsX; ++colX) {
+      agents[rowY].push_back(cAgent(rowY, colX));
 
       cAgent &agent = agents[rowY][colX];
 
-      if (((rand() % 100) * 0.01) <= lifeDensity)
-      {
+      if (((rand() % 100) * 0.01) <= lifeDensity) {
         agent.setStatusIs(true); // make alive
       }
     }
   }
-};
+}
 
-void processGameScreen()
-{
-  if (pauseState == false)
-  {
-    // display
-    // determine next day agents state
-    for (int rowY = 0; rowY < rowsY; ++rowY)
-    {
-      for (int colX = 0; colX < colsX; ++colX)
-      {
-        cAgent &agent = agents[rowY][colX];
-        // Adjacent count = 2 -> remain.
-        // Adjacent count = 3 -> alive.
-        // All other die.
-
-        if (countAdjacents(agents, colX, rowY) == 2)
-        {
-          agent.setStatusNext(agent.getStatusIs());
-        }
-        else if (countAdjacents(agents, colX, rowY) == 3)
-        {
-          agent.setStatusNext(true);
-        }
-        else
-        {
-          agent.setStatusNext(false);
-        }
-
-        if (agent.getStatusIs() != agent.getStatusNext())
-        {
-          agent.setStatusChanging(true);
-        }
-      }
-    }
-
-    if ((evolutionState == false) && (gameEndOverlayVisible == true))
-    {
-      if ((IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), rectGameEndBackground)) || IsKeyPressed(KEY_ENTER))
-      {
-        gameEndOverlayVisible = false;
-      }
-    }
-  }
-
-  if (IsKeyPressed(KEY_P))
-  {
+void processGameScreen() {
+  if (IsKeyPressed(KEY_P)) {
     pauseState = !pauseState;
   }
-};
 
-void updateGameScreen()
-{
-  // menubar
-  if (pauseState == true)
-  {
-    txtButtonPause = "Resume";
-  }
-  else
-  {
-    txtButtonPause = "Pause";
+  if (pauseState == true) {
+    return;
   }
 
-  if (darkMode == true)
-  {
+  // DETERMINE NEXT DAY AGENTS STATE
+  //---------------------------------
+  for (int rowY = 0; rowY < rowsY; ++rowY) {
+    for (int colX = 0; colX < colsX; ++colX) {
+      cAgent &agent = agents[rowY][colX];
+
+      // Default Ruleset:
+      // Adjacent count = 2 -> remain.
+      // Adjacent count = 3 -> alive.
+      // All other die.
+
+      if (agent.getCheckStatus() == false)
+      {
+        continue;
+      }
+      agent.setCheckStatus(false);
+
+      if (agent.countAdjacents(agents) == 2) {
+        agent.setStatusNext(agent.getStatusIs());
+      } else if (agent.countAdjacents(agents) == 3) {
+        agent.setStatusNext(true);
+      } else {
+        agent.setStatusNext(false);
+      }
+    }
+  }
+
+  if ((evolutionState == false) && (gameEndOverlayVisible == true)) {
+    if ((IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), rectGameEndBackground)) || IsKeyPressed(KEY_ENTER)) {
+      gameEndOverlayVisible = false;
+    }
+  }
+}
+
+void updateGameScreen() {
+  // MENUBAR
+  //---------------------------------
+  if (darkMode == true) {
     txtButtonDarkMode = "Light";
-  }
-  else
-  {
+  } else {
     txtButtonDarkMode = "Dark";
   }
 
-  if (pauseState == false)
-  {
-    // display
-    if (evolutionState == true)
-    {
-      if (timePassed <= evolutionTime)
-      {
-        // wait till day time is passed
-        timePassed += GetFrameTime() * 1000; // in ms
-      }
-      else
-      {
-        // reset day time; increment day
-        timePassed = 0;
-        day += 1;
+  if (pauseState == true) {
+    txtButtonPause = "Resume";
+    return;
+  } else {
+    txtButtonPause = "Pause";
+  }
 
-        // remember last 3 agents states for game end condition
-        agentsState2 = agentsState1;
-        agentsState1 = agentsState0;
-        agentsState0.clear();
+  // DISPLAY
+  //---------------------------------
+  if (evolutionState == false) {
+    return;
+  }
 
-        // update agents
-        for (int rowY = 0; rowY < rowsY; ++rowY)
-        {
-          for (int colX = 0; colX < colsX; ++colX)
-          {
-            cAgent &agent = agents[rowY][colX];
-            if (agent.getStatusChanging() == true)
-            {
-              if (agent.getStatusNext() == true)
-              {
-                agent.setStatusIs(true);
-                if (decayingAgents == true)
-                {
-                  agent.setVitality(4);
-                }
-              }
-              else
-              {
-                agent.setStatusIs(false);
-              }
-            }
+  if (timePassed <= evolutionTime) {
+    timePassed += GetFrameTime() * 1000;
+    return;
+  }
 
-            if (agent.getStatusIs() == true)
-            {
-              agentsState0.push_back(1);
-            }
-            else
-            {
-              agentsState0.push_back(0);
-              agent.decreaseVitality();
-            }
+  timePassed = 0;
+  day += 1;
+
+  // remember last 3 agents states for game end condition
+  agentsState2 = agentsState1;
+  agentsState1 = agentsState0;
+  agentsState0.clear();
+
+  // UPDATE AGENTS
+  //---------------------------------
+  for (int rowY = 0; rowY < rowsY; ++rowY) {
+    for (int colX = 0; colX < colsX; ++colX) {
+      cAgent &agent = agents[rowY][colX];
+
+      if (agent.getStatusChanging() == true) {
+        agent.pingAdjacents(agents);
+
+        if (agent.getStatusNext() == true) {
+          agent.setStatusIs(true);
+
+          if (decayingAgents == true) {
+            agent.setVitality(4);
           }
+        } else {
+          agent.setStatusIs(false);
         }
+      }
 
-        if (agentsState0 == agentsState2)
-        {
-          evolutionState = false;
-        }
+      if (agent.getStatusIs() == true) {
+        agentsState0.push_back(1);
+      } else {
+        agentsState0.push_back(0);
+        agent.decreaseVitality();
       }
     }
   }
-};
 
-void outputGameScreen()
-{
+  if (agentsState0 == agentsState2) {
+    evolutionState = false;
+  }
+}
+
+void outputGameScreen() {
   BeginDrawing();
   ClearBackground(BG);
 
-  // menubar
+  // MENUBAR
+  //---------------------------------
   int rectButtonPauseWidth = MeasureText("Resume", txtSmall);
-  if (GuiButton(Rectangle{
-                    float(alignHorizontalCenter(menubar, rectButtonPauseWidth)),
-                    float(alignVerticalTop(menubar, 0)),
-                    float(rectButtonPauseWidth),
-                    float(txtSmall + 10)},
-                txtButtonPause))
-  {
+  if (GuiButton(Rectangle{float(alignHorizontalCenter(menubar, rectButtonPauseWidth)), float(alignVerticalTop(menubar, 0)), float(rectButtonPauseWidth), float(txtSmall + 10)}, txtButtonPause)) {
     pauseState = !pauseState;
   };
 
   int rectButtonDarkModeWidth = MeasureText("Light", txtSmall);
-  if (GuiButton(Rectangle{
-                    float(alignHorizontalRight(menubar, rectButtonDarkModeWidth, 0)),
-                    float(alignVerticalTop(menubar, 0)),
-                    float(rectButtonDarkModeWidth),
-                    float(txtSmall + 10)},
-                txtButtonDarkMode))
-  {
+  if (GuiButton(Rectangle{float(alignHorizontalRight(menubar, rectButtonDarkModeWidth, 0)), float(alignVerticalTop(menubar, 0)), float(rectButtonDarkModeWidth), float(txtSmall + 10)}, txtButtonDarkMode)) {
     darkMode = !darkMode;
   };
 
-  // statusbar
+  // STATUSBAR
+  //---------------------------------
   DrawText(TextFormat("Time: %i ms; Day: %i", evolutionTime, day), alignHorizontalLeft(statusbar, 0), alignVerticalTop(statusbar, 0), txtSmall, FG);
 
-  // display
+  // DISPLAY
+  //---------------------------------
   // draw agents
-  for (int rowY = 0; rowY < rowsY; ++rowY)
-  {
-    for (int colX = 0; colX < colsX; ++colX)
-    {
+  for (int rowY = 0; rowY < rowsY; ++rowY) {
+    for (int colX = 0; colX < colsX; ++colX) {
       cAgent &agent = agents[rowY][colX];
-      Rectangle rectAgent{
-          float(alignHorizontalCenter(display, (colsX * (agentWidth + agentGap) - agentGap)) + (colX * (agentWidth + agentGap))),
-          float(alignVerticalCenter(display, (rowsY * (agentHeight + agentGap) - agentGap)) + (rowY * (agentHeight + agentGap))),
-          float(agentWidth),
-          float(agentHeight)};
 
-      if (agent.getStatusIs() == true)
-      {
+      Rectangle rectAgent{float(alignHorizontalCenter(display, (colsX * (agentWidth + agentGap) - agentGap)) + (colX * (agentWidth + agentGap))), float(alignVerticalCenter(display, (rowsY * (agentHeight + agentGap) - agentGap)) + (rowY * (agentHeight + agentGap))), float(agentWidth), float(agentHeight)};
+
+      if (agent.getStatusIs() == true) {
         DrawRectangleRec(rectAgent, FG);
-      }
-      else
-      {
+      } else {
         Color agentVitalityColor;
-        switch (agent.getVitality())
-        {
+        switch (agent.getVitality()) {
         case 4:
           agentVitalityColor = FG;
           DrawRectangleRec(rectAgent, agentVitalityColor);
@@ -295,29 +254,20 @@ void outputGameScreen()
     }
   }
 
-  // draw game end screen
-  if ((evolutionState == false) && (gameEndOverlayVisible == true))
-  {
+  // DRAW GAME END OVERLAY
+  //---------------------------------
+  if ((evolutionState == false) && (gameEndOverlayVisible == true)) {
     DrawRectangleRec(rectGameEndBackground, CLITERAL(Color){130, 130, 130, 175});
     DrawRectangleLinesEx(rectGameEndBackground, 10, DARKGRAY);
     DrawText(TextFormat("Game over!\nUniverse survived for %d days. \nPress Enter or click to \ngo back to agents. \nPress ESC to leave.", day), 50, 50, txtNormal, RED);
   }
 
-  // draw pause state
-  else if (pauseState == true)
-  {
-    Rectangle rectDisplay{
-        float(display.getPanelLeftX()),
-        float(display.getPanelTopY()),
-        float(display.getPanelWidth()),
-        float(display.getPanelHeight())};
+  // DRAW PAUSE OVERLAY
+  //---------------------------------
+  else if (pauseState == true) {
+    Rectangle rectDisplay{float(display.getPanelLeftX()), float(display.getPanelTopY()), float(display.getPanelWidth()), float(display.getPanelHeight())};
 
-    DrawRectangleRec(Rectangle{
-                         float(display.getPanelLeftX()),
-                         float(display.getPanelTopY()),
-                         float(display.getPanelWidth()),
-                         float(display.getPanelHeight())},
-                     CLITERAL(Color){130, 130, 130, 175});
+    DrawRectangleRec(Rectangle{float(display.getPanelLeftX()), float(display.getPanelTopY()), float(display.getPanelWidth()), float(display.getPanelHeight())}, CLITERAL(Color){130, 130, 130, 175});
 
     DrawRectangleLinesEx(rectDisplay, 10, DARKGRAY);
 
@@ -327,12 +277,10 @@ void outputGameScreen()
 
   DrawFPS(GetScreenWidth() - 95, 10);
   EndDrawing();
-};
+}
 
-void runGameScreen()
-{
-  if (agentsInitialized == false)
-  {
+void runGameScreen() {
+  if (agentsInitialized == false) {
     initialiseGameScreen();
     outputGameScreen();
     agentsInitialized = true;
@@ -342,4 +290,4 @@ void runGameScreen()
   updateGameScreen();
 
   outputGameScreen();
-};
+}
