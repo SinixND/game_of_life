@@ -1,55 +1,57 @@
 #include "benchmark.h"
 
-#include <string>
 #include <vector>
+#include <string>
 #include <chrono>
+#include <iostream>
 
-bool bmkFound = false;
+std::vector<cBenchmark> benchmarks = {cBenchmark("NULL")};
+bool benchmarkFound = false;
 
-bmk::bmk(std::string &ID) {
+cBenchmark::cBenchmark(std::string ID) {
   mID = ID;
-  mPrecision = 0;
+  mIterations = 0;
 }
 
-void startBmk(std::vector<bmk> &bmks, std::string &ID) {
-  bmkFound = false;
+void benchmarkStart(std::string ID) {
+  benchmarkFound = false;
 
-  for (auto &bmk : bmks) {
-    if (bmk.mID == ID) {
-      bmkFound = true;
+  for (auto& benchmark : benchmarks) {
+    if (benchmark.mID == ID) {
+      benchmarkFound = true;
       break;
     } 
-
-    if (bmkFound == false) {
-      bmks.push_back(bmk(ID));
-    }
+  }
+  if (benchmarkFound == false) {
+    benchmarks.push_back(cBenchmark(ID));
   }
 
-  for (auto &bmk : bmks) {
-    if (bmk.mID == ID) {
-      bmk.mStartTime = std::chrono::steady_clock::now();
+  for (auto& benchmark : benchmarks) {
+    if (benchmark.mID == ID) {
+      benchmark.mStartTime = std::chrono::steady_clock::now();
+      break;
     }
   }
 }
 
-void stopBmk(std::vector<bmk> &bmks, std::string &ID) {
-  for (auto &bmk : bmks) {
-    if (bmk.mID == ID) {
-      std::chrono::steady_clock::time_point bmk.mStopTime = std::chrono::steady_clock::now();
-      std::chrono::duration<double> bmk.mTime = std::chrono::duration_cast<std::chrono::milliseconds>(bmk.mStopTime - bmk.mStartTime);
-      if (bmk.mTime > bmk.mSlowest) {
-        bmk.mSlowest = bmk.mTime;
-      }
-      
-      if (bmk.mTime < bmk.mFastest) {
-        bmk.mFastest = bmk.mTime;
-      }
+void benchmarkStop(std::string ID) {
+  for (auto& benchmark : benchmarks) {
+    if (benchmark.mID == ID) {
+      benchmark.mStopTime = std::chrono::steady_clock::now();
+      benchmark.mLatestTime = std::chrono::duration_cast<std::chrono::nanoseconds>(benchmark.mStopTime - benchmark.mStartTime);
 
-      bmk.mPrecision += 1;
-      bmk.mAvgTime = (bmk.mAvgTime.count() + bmk.mTime.count()) / bmk.mPrecision;
-      //std::cout << 'Last | Slowest | Avg | Fastest\n';
-      std::cout << bmk.mTime.count() << bmk.mSlowest.count() << bmk.mAvgTime.count() << bmk.mFastest.count() << '\n';
+      benchmark.mIterations += 1;
+      benchmark.mAvgTime = (benchmark.mAvgTime + benchmark.mLatestTime) / benchmark.mIterations;
     break;
     }
   }
+}
+
+void benchmarkShow() {
+  for (auto& benchmark : benchmarks) {
+    if (benchmark.mID != "NULL") {
+      std::cout << benchmark.mID << " (Latest | Avg | Iterations): " << benchmark.mLatestTime.count() << " | " << benchmark.mAvgTime.count() << " | " << benchmark.mIterations << '\n\n';
+    }
+  }
+
 }

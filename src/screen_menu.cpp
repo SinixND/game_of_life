@@ -2,9 +2,10 @@
 
 #include "raylib.h"
 #define RAYBUI_IMPLEMENTATION
+#include "raygui.h"
+
 #include "globals.h"
 #include "panels.h"
-#include "raygui.h"
 
 cPanel screenMenu(windowWidth, windowHeight, 0, 0, 10);
 

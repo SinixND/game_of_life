@@ -7,16 +7,9 @@
 #include "raygui.h"
 
 #include "agents.h"
-
-//============================
-// Define globals
-//============================
 #include "globals.h"
-
-//============================
-// Define screens
-//============================
 #include "screens.h"
+#include "benchmark.h"
 
 int main() {
   InitWindow(windowWidth, windowHeight, "Conway's Game of Life");

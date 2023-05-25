@@ -10,6 +10,9 @@
 #include "globals.h"
 #include "agents.h"
 #include "panels.h"
+#include "benchmark.h"
+#define BENCHMARK_ON
+
 
 // GAME SCREEN
 //---------------------------------
@@ -31,7 +34,7 @@ cPanel display(windowWidth, windowHeight - menubar.getPanelHeight() - statusbar.
 
 // AGENT
 //---------------------------------
-int agentWidth = 10;
+int agentWidth = 3;
 int agentHeight = agentWidth; // independent height and width possible
 int agentInnerBorderWeight = 1;
 bool decayingAgents = true;
@@ -89,6 +92,14 @@ void processGameScreen() {
     return;
   }
 
+  if (timePassed <= evolutionTime) {
+    return;
+  }
+
+  #ifdef BENCHMARK_ON
+    benchmarkStart("bm_process_game_screen");
+  #endif
+
   // DETERMINE NEXT DAY AGENTS STATE
   //---------------------------------
   for (int rowY = 0; rowY < rowsY; ++rowY) {
@@ -115,6 +126,10 @@ void processGameScreen() {
       }
     }
   }
+
+  #ifdef BENCHMARK_ON
+    benchmarkStop("bm_process_game_screen");
+  #endif
 
   if ((evolutionState == false) && (gameEndOverlayVisible == true)) {
     if ((IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), rectGameEndBackground)) || IsKeyPressed(KEY_ENTER)) {
@@ -149,6 +164,10 @@ void updateGameScreen() {
     timePassed += GetFrameTime() * 1000;
     return;
   }
+
+  #ifdef BENCHMARK_ON
+    benchmarkStart("bm_update_display");
+  #endif
 
   timePassed = 0;
   day += 1;
@@ -190,11 +209,21 @@ void updateGameScreen() {
   if (agentsState0 == agentsState2) {
     evolutionState = false;
   }
+
+  #ifdef BENCHMARK_ON
+    benchmarkStop("bm_update_display");
+  #endif
 }
 
 void outputGameScreen() {
   BeginDrawing();
   ClearBackground(BG);
+
+  #ifdef BENCHMARK_ON
+  if (pauseState == false) {
+    benchmarkStart("bm_ouput_game_screen");
+  }
+  #endif
 
   // MENUBAR
   //---------------------------------
@@ -275,6 +304,12 @@ void outputGameScreen() {
     DrawText(txtPaused, alignHorizontalRight(statusbar, MeasureText(txtPaused, txtNormal), 0), alignVerticalCenter(statusbar, txtNormal), txtNormal, FG);
   }
 
+  #ifdef BENCHMARK_ON
+  if (pauseState == false) {
+    benchmarkStop("bm_ouput_game_screen");
+  }
+  #endif
+
   DrawFPS(GetScreenWidth() - 95, 10);
   EndDrawing();
 }
@@ -288,6 +323,7 @@ void runGameScreen() {
 
   processGameScreen();
   updateGameScreen();
-
   outputGameScreen();
+
+  benchmarkShow();
 }
