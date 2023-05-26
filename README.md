@@ -20,6 +20,9 @@
 0. Performance
     - Mutlithreading
     - determing state with if or switch?
+0. Code
+    - Structure EVA 
+    - doA(), doB(), f(call doA() & doB()) for core gamesteps (eg. determine next agents[] state)
 0. Features
     - LMB / RMB set alive/dead [PRIO]
     - Seeding
