@@ -1,37 +1,34 @@
 # TODO
-## Title Screeen
-## Main Menu
-### Run
-### Rules
-#### changeable?
-### Settings (initial settings), saveable? (settings.ini)
-#### Submenus?
-#### window resolution
-#### board size
-#### life density
-#### seed
-#### fps (native/vsync, fixed) and/or update interval
-#### run/pause/stop/step forward/step backward
-#### Color settings
-#### 2D/3D
-#### cell shape
-#### cell age
-#### fading cells
-#### strong/weak cells
-#### additional ideas?
-### Credits/About?
-### Quit
-## (live settings)
-### Overlay to adjust variables (what in toolbar, what in overlay?)
-### update interval
-## Color schemes?
-## LMB set alive, RMB set dead
-## zoom
-## pan
-
-process-loop:
-
-setup/initialise environment
-loop: if (alive) {increment adjacents/count adjacents?}
-loop: dpendent on adjacentActive -> setStatusNext and setStatusChanging
-loop: update status and statusChanging=false
+- Github pages? (emscripten)
+0. Screens
+    - Main [started]
+      - Start [done]
+      - Settings
+      - About
+      - Exit
+0. Settings
+    - Keybindings
+    - Gamesettings
+        0. start empty
+        0. start paused
+    - Save settings (.ini)
+0. Menubar
+    - Reset
+    - Quit
+    - Pause [done]
+    - live settings (eg. speed)
+0. Performance
+    - Mutlithreading
+    - determing state with if or switch?
+0. Features
+    - LMB / RMB set alive/dead [PRIO]
+    - Seeding
+    - Pausing [done]
+    - Stepping FW/BW
+    - Darkmode (switch) [started]
+    - Colors
+    - 3D
+    - different agent shape
+    - agent age/fading [done]
+    - strong/weak cells
+    - zoom/pan/live grid change
