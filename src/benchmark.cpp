@@ -50,7 +50,7 @@ void benchmarkStop(std::string ID) {
 void benchmarkShow() {
   for (auto& benchmark : benchmarks) {
     if (benchmark.mID != "NULL") {
-      std::cout << benchmark.mID << " (Latest | Avg | Iterations): " << benchmark.mLatestTime.count() << " ns | " << benchmark.mAvgTime.count() << " ns | " << benchmark.mIterations << '\n\n';
+      std::cout << benchmark.mID << " (Lst|Avg|Itr): " << benchmark.mLatestTime.count() << " ns | " << benchmark.mAvgTime.count() << " ns | " << benchmark.mIterations << '\n\n';
     }
   }
 
