@@ -17,46 +17,6 @@ cPanel::cPanel(int width, int height, int offsetX = 0, int offsetY = 0, int marg
 
 cPanel::~cPanel(){}
 
-void cPanel::setPanelWidth(int width) {
-  mPanelWidth = width;
-}
-
-int cPanel::getPanelWidth() {
-  return mPanelWidth;
-}
-
-void cPanel::setPanelHeight(int height) {
-  mPanelHeight = height;
-}
-
-int cPanel::getPanelHeight() {
-  return mPanelHeight;
-}
-
-void cPanel::setPanelLeftX(int offsetX) {
-  mPanelLeftX = offsetX;
-}
-
-int cPanel::getPanelLeftX() {
-  return mPanelLeftX;
-}
-
-void cPanel::setPanelTopY(int offsetY) {
-  mPanelTopY = offsetY;
-}
-
-int cPanel::getPanelTopY() {
-  return mPanelTopY;
-}
-
-void cPanel::setPanelMargin(int margin) {
-  mPanelMargin = margin;
-}
-
-int cPanel::getPanelMargin() {
-  return mPanelMargin;
-}
-
 int cPanel::getPanelRightX() {
   return mPanelLeftX + mPanelWidth;
 }

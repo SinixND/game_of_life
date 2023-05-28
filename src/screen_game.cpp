@@ -30,7 +30,7 @@ cPanel statusbar(windowWidth, (txtSmall + 20), 0, (windowHeight - (txtSmall + 20
 
 // DISPLAY
 //---------------------------------
-cPanel display(windowWidth, windowHeight - menubar.getPanelHeight() - statusbar.getPanelHeight(), 0, menubar.getPanelHeight(), 10);
+cPanel display(windowWidth, windowHeight - menubar.mPanelHeight - statusbar.mPanelHeight, 0, menubar.mPanelHeight, 10);
 
 // AGENT
 //---------------------------------
@@ -294,9 +294,9 @@ void outputGameScreen() {
   // DRAW PAUSE OVERLAY
   //---------------------------------
   else if (pauseState == true) {
-    Rectangle rectDisplay{float(display.getPanelLeftX()), float(display.getPanelTopY()), float(display.getPanelWidth()), float(display.getPanelHeight())};
+    Rectangle rectDisplay{float(display.mPanelLeftX), float(display.mPanelTopY), float(display.mPanelWidth), float(display.mPanelHeight)};
 
-    DrawRectangleRec(Rectangle{float(display.getPanelLeftX()), float(display.getPanelTopY()), float(display.getPanelWidth()), float(display.getPanelHeight())}, CLITERAL(Color){130, 130, 130, 175});
+    DrawRectangleRec(Rectangle{float(display.mPanelLeftX), float(display.mPanelTopY), float(display.mPanelWidth), float(display.mPanelHeight)}, CLITERAL(Color){130, 130, 130, 175});
 
     DrawRectangleLinesEx(rectDisplay, 10, DARKGRAY);
 
