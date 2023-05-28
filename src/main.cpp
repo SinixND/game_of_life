@@ -3,8 +3,6 @@
 #include <vector>
 
 #include "raylib.h"
-#define RAYGUI_IMPLEMENTATION
-#include "raygui.h"
 
 #include "agents.h"
 #include "globals.h"

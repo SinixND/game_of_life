@@ -4,15 +4,16 @@
 #include "raylib.h"
 #include "screens.h"
 
+// SETTINGS
 extern int windowWidth;
 extern int windowHeight;
 extern int targetFPS;
 
-extern screen currentScreen;
-
 extern int txtSmall;
 extern int txtNormal;
 
+// GLOBALS
+extern screen currentScreen;
 extern bool darkMode;
 extern Color BG;
 extern Color FG;

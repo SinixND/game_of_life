@@ -4,7 +4,6 @@
 #include <vector>
 
 #include "raylib.h"
-#define RAYBUI_IMPLEMENTATION
 #include "raygui.h"
 
 #include "globals.h"
@@ -36,7 +35,7 @@ cPanel display(windowWidth, windowHeight - menubar.mPanelHeight - statusbar.mPan
 //---------------------------------
 int agentWidth = 3;
 int agentHeight = agentWidth; // independent height and width possible
-int agentInnerBorderWeight = 1;
+int agentInnerBorderWeight = 0;
 bool decayingAgents = true;
 
 // AGENTS

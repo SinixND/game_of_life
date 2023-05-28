@@ -1,7 +1,6 @@
 #include "screens.h"
 
 #include "raylib.h"
-#define RAYBUI_IMPLEMENTATION
 #include "raygui.h"
 
 #include "globals.h"
@@ -17,13 +16,19 @@ void outputMenuScreen() {
   BeginDrawing();
   ClearBackground(BG);
 
-  int rectButtonStartWidth = MeasureText("Start", txtNormal);
-  int rectButtonStartHeight = txtNormal + 10;
-  if (GuiButton(Rectangle{float(alignHorizontalCenter(screenMenu, rectButtonStartWidth)), float(alignVerticalCenter(screenMenu, rectButtonStartHeight)), float(rectButtonStartWidth), float(rectButtonStartHeight)}, TextFormat("Start")) || IsKeyPressed(KEY_ENTER) || IsKeyPressed(KEY_SPACE)) {
+  int rectButtonWidth = MeasureText("Start Game", txtNormal);
+//int rectButtonWidth = MeasureText("Settings", txtNormal);
+int rectButtonHeight = txtNormal + 10;
+
+
+  if (GuiButton(Rectangle{float(alignHorizontalCenter(screenMenu, rectButtonWidth)), float(alignVerticalTop(screenMenu, rectButtonHeight)), float(rectButtonWidth), float(rectButtonHeight)}, TextFormat("Start Game")) || IsKeyPressed(KEY_ENTER) || IsKeyPressed(KEY_SPACE)) {
     currentScreen = GAME;
   }
 
-  DrawFPS(GetScreenWidth() - 95, 10);
+  if (GuiButton(Rectangle{float(alignHorizontalCenter(screenMenu, rectButtonWidth)), float(alignVerticalCenter(screenMenu, rectButtonHeight)), float(rectButtonWidth), float(rectButtonHeight)}, TextFormat("Settings")) || IsKeyPressed(KEY_ENTER) || IsKeyPressed(KEY_SPACE)) {
+    currentScreen = SETTINGS;
+  }
+
   EndDrawing();
 }
 

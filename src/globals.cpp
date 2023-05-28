@@ -1,16 +1,19 @@
 #include "globals.h"
 
+#include "raylib.h"
+
 #include "screens.h"
 
-int windowWidth = 640 *2;
-int windowHeight = 480 *2;
+// SETTINGS
+int windowWidth = 640;
+int windowHeight = 480;
 int targetFPS = 144;
 
+int txtNormal = windowWidth / 20;
+int txtSmall = txtNormal / 1.5;
+
+// GLOBALS
 screen currentScreen = MENU;
-
-int txtSmall = 20;
-int txtNormal = 30;
-
 bool darkMode = false;
 Color BG = BLACK;
 Color FG = WHITE;
