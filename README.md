@@ -1,7 +1,7 @@
 # TODO
 - Github pages? (emscripten)
 0. Screens
-    - Main [started]
+    - Main [done]
       - Start [done]
       - Settings
       - About
@@ -14,21 +14,22 @@
     - Save settings (.ini)
 0. Menubar
     - Reset
-    - Quit
     - Pause [done]
     - live settings (eg. speed)
+0. Overlay
+    - Quit
 0. Performance
     - Mutlithreading
-    - determing state with if or switch?
+    - Speedup Output?
 0. Code
     - Structure EVA 
     - doA(), doB(), f(call doA() & doB()) for core gamesteps (eg. determine next agents[] state)
 0. Features
-    - LMB / RMB set alive/dead [PRIO]
-    - Seeding
+    - LMB / RMB set alive/dead
+    - Seeding (seed[1-99999] * fieldSize; srand(seed*fieldSize)-fieldSize + fieldNumber)
     - Pausing [done]
     - Stepping FW/BW
-    - Darkmode (switch) [started]
+    - Darkmode (switch) [done]
     - Colors
     - 3D
     - different agent shape
