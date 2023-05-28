@@ -24,6 +24,7 @@
 0. Code
     - Structure EVA 
     - doA(), doB(), f(call doA() & doB()) for core gamesteps (eg. determine next agents[] state)
+    - constants? CAPITAL_LETTERS
 0. Features
     - LMB / RMB set alive/dead
     - Seeding (seed[1-99999] * fieldSize; srand(seed*fieldSize)-fieldSize + fieldNumber)
