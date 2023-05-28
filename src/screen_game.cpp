@@ -16,7 +16,7 @@
 
 // GAME SCREEN
 //---------------------------------
-bool pauseState = true;
+bool pauseState = false;
 
 // MENUBAR
 //---------------------------------
@@ -74,10 +74,10 @@ void initialiseGameScreen() {
     for (int colX = 0; colX < colsX; ++colX) {
       agents[rowY].push_back(cAgent(rowY, colX));
 
-      cAgent &agent = agents[rowY][colX];
+      cAgent& agent = agents[rowY][colX];
 
       if (((rand() % 100) * 0.01) <= lifeDensity) {
-        agent.setStatusIs(true); // make alive
+        agent.mStatusIs = true; // make alive
       }
     }
   }
@@ -104,22 +104,22 @@ void processGameScreen() {
   //---------------------------------
   for (int rowY = 0; rowY < rowsY; ++rowY) {
     for (int colX = 0; colX < colsX; ++colX) {
-      cAgent &agent = agents[rowY][colX];
+      cAgent& agent = agents[rowY][colX];
 
       // Default Ruleset:
-      // Adjacent count = 2 -> remain.
-      // Adjacent count = 3 -> alive.
+      // AdjacentAgent count = 2 -> remain.
+      // AdjacentAgent count = 3 -> alive.
       // All other die.
 
-      if (agent.getCheckStatus() == false)
+      if (agent.mCheckStatus == false)
       {
         continue;
       }
-      agent.setCheckStatus(false);
+      agent.mCheckStatus = false;
 
-      if (agent.countAdjacents(agents) == 2) {
-        agent.setStatusNext(agent.getStatusIs());
-      } else if (agent.countAdjacents(agents) == 3) {
+      if (agent.countAdjacentAgents(agents) == 2) {
+        agent.setStatusNext(agent.mStatusIs);
+      } else if (agent.countAdjacentAgents(agents) == 3) {
         agent.setStatusNext(true);
       } else {
         agent.setStatusNext(false);
@@ -181,23 +181,23 @@ void updateGameScreen() {
   //---------------------------------
   for (int rowY = 0; rowY < rowsY; ++rowY) {
     for (int colX = 0; colX < colsX; ++colX) {
-      cAgent &agent = agents[rowY][colX];
+      cAgent& agent = agents[rowY][colX];
 
-      if (agent.getStatusChanging() == true) {
-        agent.pingAdjacents(agents);
+      if (agent.mStatusChanging == true) {
+        agent.pingAdjacentAgents(agents);
 
         if (agent.getStatusNext() == true) {
-          agent.setStatusIs(true);
+          agent.mStatusIs = true;
 
           if (decayingAgents == true) {
-            agent.setVitality(4);
+            agent.mVitality = 4;
           }
         } else {
-          agent.setStatusIs(false);
+          agent.mStatusIs = false;
         }
       }
 
-      if (agent.getStatusIs() == true) {
+      if (agent.mStatusIs == true) {
         agentsState0.push_back(1);
       } else {
         agentsState0.push_back(0);
@@ -246,15 +246,15 @@ void outputGameScreen() {
   // draw agents
   for (int rowY = 0; rowY < rowsY; ++rowY) {
     for (int colX = 0; colX < colsX; ++colX) {
-      cAgent &agent = agents[rowY][colX];
+      cAgent& agent = agents[rowY][colX];
 
       Rectangle rectAgent{float(alignHorizontalCenter(display, (colsX * (agentWidth + agentGap) - agentGap)) + (colX * (agentWidth + agentGap))), float(alignVerticalCenter(display, (rowsY * (agentHeight + agentGap) - agentGap)) + (rowY * (agentHeight + agentGap))), float(agentWidth), float(agentHeight)};
 
-      if (agent.getStatusIs() == true) {
+      if (agent.mStatusIs == true) {
         DrawRectangleRec(rectAgent, FG);
       } else {
         Color agentVitalityColor;
-        switch (agent.getVitality()) {
+        switch (agent.mVitality) {
         case 4:
           agentVitalityColor = FG;
           DrawRectangleRec(rectAgent, agentVitalityColor);

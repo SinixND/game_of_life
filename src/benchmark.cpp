@@ -20,7 +20,7 @@ void benchmarkStart(std::string ID) {
     if (benchmark.mID == ID) {
       benchmarkFound = true;
       break;
-    } 
+    }
   }
   if (benchmarkFound == false) {
     benchmarks.push_back(cBenchmark(ID));
@@ -41,7 +41,8 @@ void benchmarkStop(std::string ID) {
       benchmark.mLatestTime = std::chrono::duration_cast<std::chrono::nanoseconds>(benchmark.mStopTime - benchmark.mStartTime);
 
       benchmark.mIterations += 1;
-      benchmark.mAvgTime = (benchmark.mAvgTime + benchmark.mLatestTime) / benchmark.mIterations;
+      //new_average = (old_average * (n-1) + new_value) / n
+      benchmark.mAvgTime = (benchmark.mAvgTime * (benchmark.mIterations - 1) + benchmark.mLatestTime) / benchmark.mIterations;
     break;
     }
   }
@@ -50,8 +51,8 @@ void benchmarkStop(std::string ID) {
 void benchmarkShow() {
   for (auto& benchmark : benchmarks) {
     if (benchmark.mID != "NULL") {
-      std::cout << benchmark.mID << " (Lst|Avg|Itr): " << benchmark.mLatestTime.count() << " ns | " << benchmark.mAvgTime.count() << " ns | " << benchmark.mIterations << '\n\n';
+      std::cout << benchmark.mID << " (Lst|Avg|Itr): " << benchmark.mLatestTime.count() << " ns | " << benchmark.mAvgTime.count() << " ns | " << benchmark.mIterations << "\n";
     }
   }
-
+  std::cout << "\n";
 }

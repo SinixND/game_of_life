@@ -19,7 +19,7 @@ void outputMenuScreen() {
 
   int rectButtonStartWidth = MeasureText("Start", txtNormal);
   int rectButtonStartHeight = txtNormal + 10;
-  if (GuiButton(Rectangle{float(alignHorizontalCenter(screenMenu, rectButtonStartWidth)), float(alignVerticalCenter(screenMenu, rectButtonStartHeight)), float(rectButtonStartWidth), float(rectButtonStartHeight)}, TextFormat("Start"))) {
+  if (GuiButton(Rectangle{float(alignHorizontalCenter(screenMenu, rectButtonStartWidth)), float(alignVerticalCenter(screenMenu, rectButtonStartHeight)), float(rectButtonStartWidth), float(rectButtonStartHeight)}, TextFormat("Start")) || IsKeyPressed(KEY_ENTER) || IsKeyPressed(KEY_SPACE)) {
     currentScreen = GAME;
   }
 
