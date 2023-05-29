@@ -63,6 +63,29 @@ std::vector<int> agentsState2;
 bool gameEndOverlayVisible = true;
 Rectangle rectGameEndBackground{0, 0, float(windowWidth), float(windowHeight)};
 
+// FUNCTION DECLARATION
+//---------------------------------
+void initialiseGameScreen();
+void processGameScreen();
+void updateGameScreen();
+void outputGameScreen();
+
+void runGameScreen() {
+  if (agentsInitialized == false) {
+    initialiseGameScreen();
+    outputGameScreen();
+    agentsInitialized = true;
+  }
+
+  processGameScreen();
+  updateGameScreen();
+  outputGameScreen();
+
+  benchmarkShow();
+}
+
+// FUNCTION DEFINITION
+//---------------------------------
 void initialiseGameScreen() {
   // INITIALISE AGENTS
   //---------------------------------
@@ -311,18 +334,4 @@ void outputGameScreen() {
 
   DrawFPS(GetScreenWidth() - 95, 10);
   EndDrawing();
-}
-
-void runGameScreen() {
-  if (agentsInitialized == false) {
-    initialiseGameScreen();
-    outputGameScreen();
-    agentsInitialized = true;
-  }
-
-  processGameScreen();
-  updateGameScreen();
-  outputGameScreen();
-
-  benchmarkShow();
 }
