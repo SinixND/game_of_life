@@ -250,7 +250,7 @@ void outputGameScreen() {
 
   // STATUSBAR
   //---------------------------------
-  DrawText(TextFormat("Time: %i ms; Day: %i", evolutionTime, day), alignHorizontalLeft(statusbar, 0), alignVerticalTop(statusbar, 0), txtSmall, FG);
+  DrawText(TextFormat("Time: %i ms; Day: %i", evolutionTime, day), alignHorizontalLeft(statusbar, 0), alignVerticalCenter(statusbar, txtSmall), txtSmall, FG);
 
   // DISPLAY
   //---------------------------------
@@ -312,7 +312,7 @@ void outputGameScreen() {
     DrawRectangleLinesEx(rectDisplay, 10, DARKGRAY);
 
     const char *txtPaused = TextFormat("[P]aused...");
-    DrawText(txtPaused, alignHorizontalRight(statusbar, MeasureText(txtPaused, txtNormal), 0), alignVerticalCenter(statusbar, txtNormal), txtNormal, FG);
+    DrawText(txtPaused, alignHorizontalRight(statusbar, MeasureText(txtPaused, txtSmall), 0), alignVerticalCenter(statusbar, txtSmall), txtSmall, FG);
   }
 
   #ifdef BENCHMARK_ON
