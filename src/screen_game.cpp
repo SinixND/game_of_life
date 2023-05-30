@@ -10,48 +10,31 @@
 #include "agents.h"
 #include "panels.h"
 #include "benchmark.h"
-#define BENCHMARK_ON
+//#define BENCHMARK_ON
 
-
-// GAME SCREEN
+// SET GUI ELEMENTS
 //---------------------------------
-bool pauseState = false;
+cPanel menubar(windowWidth, (guiButtonBaseHeight + 20), 0, 0, 10);
+cPanel statusbar(windowWidth, (txtSmall + 20), 0, (windowHeight - (txtSmall + 20)), 10);
+cPanel display(windowWidth, windowHeight - menubar.mPanelHeight - statusbar.mPanelHeight, 0, menubar.mPanelHeight, 10);
 
-// MENUBAR
-//---------------------------------
-cPanel menubar(windowWidth, 75, 0, 0, 10);
 const char *txtButtonPause = "[P]ause";
 const char *txtButtonDarkMode;
 
-// STATUSBAR
+// AGENTS / ENVIRONMENT
 //---------------------------------
-cPanel statusbar(windowWidth, (txtSmall + 20), 0, (windowHeight - (txtSmall + 20)), 10);
-
-// DISPLAY
-//---------------------------------
-cPanel display(windowWidth, windowHeight - menubar.mPanelHeight - statusbar.mPanelHeight, 0, menubar.mPanelHeight, 10);
-
-// AGENT
-//---------------------------------
-int agentWidth = 3;
-int agentHeight = agentWidth; // independent height and width possible
-int agentInnerBorderWeight = 0;
-bool decayingAgents = true;
-
-// AGENTS
-//---------------------------------
-int agentGap = 1;
+bool pauseState = false;
+bool evolutionState = true;
+bool agentsInitialized = false;
 int colsX = display.getPanelContentWidth() / (agentWidth + agentGap);
 int rowsY = display.getPanelContentHeight() / (agentHeight + agentGap);
 int agentsSize = colsX * rowsY;
-bool evolutionState = true;
-bool agentsInitialized = false;
+
 std::vector<std::vector<cAgent>> agents;
 
 // LOGIC
 //---------------------------------
 float lifeDensity = 0.25; // in %, eg. 25
-int evolutionTime = 100;         // in ms
 float timePassed = 0;
 int day = 0;
 std::vector<int> agentsState0;
@@ -139,12 +122,18 @@ void processGameScreen() {
       }
       agent.mCheckStatus = false;
 
-      if (agent.countAdjacentAgents(agents) == 2) {
+      switch (agent.countAdjacentAgents(agents)){
+      case 2:
         agent.setStatusNext(agent.mStatusIs);
-      } else if (agent.countAdjacentAgents(agents) == 3) {
+        break;
+      
+      case 3:
         agent.setStatusNext(true);
-      } else {
+        break;
+      
+      default:
         agent.setStatusNext(false);
+        break;
       }
     }
   }
@@ -249,13 +238,13 @@ void outputGameScreen() {
 
   // MENUBAR
   //---------------------------------
-  int rectButtonPauseWidth = MeasureText("Resume", txtSmall);
-  if (GuiButton(Rectangle{float(alignHorizontalCenter(menubar, rectButtonPauseWidth)), float(alignVerticalTop(menubar, 0)), float(rectButtonPauseWidth), float(txtSmall + 10)}, txtButtonPause)) {
+  int rectButtonPauseWidth = guiButtonBaseWidth + MeasureText("Resume", DEFAULT);
+  if (GuiButton(Rectangle{float(alignHorizontalCenter(menubar, rectButtonPauseWidth)), float(alignVerticalTop(menubar, 0)), float(rectButtonPauseWidth), float(guiButtonBaseHeight)}, txtButtonPause)) {
     pauseState = !pauseState;
   };
 
-  int rectButtonDarkModeWidth = MeasureText("Light", txtSmall);
-  if (GuiButton(Rectangle{float(alignHorizontalRight(menubar, rectButtonDarkModeWidth, 0)), float(alignVerticalTop(menubar, 0)), float(rectButtonDarkModeWidth), float(txtSmall + 10)}, txtButtonDarkMode)) {
+  int rectButtonDarkModeWidth = guiButtonBaseWidth + MeasureText("Light", txtSmall);
+  if (GuiButton(Rectangle{float(alignHorizontalRight(menubar, rectButtonDarkModeWidth, 0)), float(alignVerticalTop(menubar, 0)), float(rectButtonDarkModeWidth), float(guiButtonBaseHeight)}, txtButtonDarkMode)) {
     darkMode = !darkMode;
   };
 

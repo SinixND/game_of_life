@@ -4,14 +4,12 @@
 #include <vector>
 
 class cAgent {
-private:
-  int mPosY;
-  int mPosX;
-
 public:
   cAgent(int rowY, int colX);
   ~cAgent();
 
+  int mPosY;
+  int mPosX;
   bool mStatusIs;
   bool mStatusChanging;
   bool mCheckStatus;

@@ -5,12 +5,29 @@
 #include "screens.h"
 
 // SETTINGS
+// APPLICATION
 extern int windowWidth;
 extern int windowHeight;
 extern int targetFPS;
 
+// GUI ELEMENTS
 extern int txtSmall;
 extern int txtNormal;
+extern Vector2 buttonBase;
+extern int guiButtonBaseWidth;
+extern int guiButtonBaseHeight;
+
+// AGENT
+extern int agentWidth;
+extern int agentHeight; // independent height and width possible
+extern int agentInnerBorderWeight;
+extern bool decayingAgents;
+
+// AGENTS / ENVIRONMENT
+extern int agentGap;
+
+// CONTROLS
+extern int evolutionTime; // in ms
 
 // GLOBALS
 extern screen currentScreen;

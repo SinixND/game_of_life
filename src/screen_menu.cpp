@@ -8,32 +8,33 @@
 
 cPanel screenMenu(windowWidth, windowHeight, 0, 0, 10);
 
-void processMenuScreen(){}
-
-void updateMenuScreen(){}
-
-void outputMenuScreen() {
-  BeginDrawing();
-  ClearBackground(BG);
-
-  int rectButtonWidth = MeasureText("Start Game", txtNormal);
-//int rectButtonWidth = MeasureText("Settings", txtNormal);
-int rectButtonHeight = txtNormal + 10;
-
-
-  if (GuiButton(Rectangle{float(alignHorizontalCenter(screenMenu, rectButtonWidth)), float(alignVerticalTop(screenMenu, rectButtonHeight)), float(rectButtonWidth), float(rectButtonHeight)}, TextFormat("Start Game")) || IsKeyPressed(KEY_ENTER) || IsKeyPressed(KEY_SPACE)) {
-    currentScreen = GAME;
-  }
-
-  if (GuiButton(Rectangle{float(alignHorizontalCenter(screenMenu, rectButtonWidth)), float(alignVerticalCenter(screenMenu, rectButtonHeight)), float(rectButtonWidth), float(rectButtonHeight)}, TextFormat("Settings")) || IsKeyPressed(KEY_ENTER) || IsKeyPressed(KEY_SPACE)) {
-    currentScreen = SETTINGS;
-  }
-
-  EndDrawing();
-}
+void processMenuScreen();
+void updateMenuScreen();
+void outputMenuScreen();
 
 void runMenuScreen() {
   processMenuScreen();
   updateMenuScreen();
   outputMenuScreen();
+}
+
+void processMenuScreen(){};
+
+void updateMenuScreen(){};
+
+void outputMenuScreen() {
+  BeginDrawing();
+  ClearBackground(BG);
+
+  int rectButtonMenuWidth = guiButtonBaseWidth + MeasureText("Start Game", DEFAULT);
+
+  if (GuiButton(Rectangle{float(alignHorizontalCenter(screenMenu, rectButtonMenuWidth)), float(alignVerticalTop(screenMenu, guiButtonBaseHeight)), float(rectButtonMenuWidth), float(guiButtonBaseHeight)}, TextFormat("Start Game")) || IsKeyPressed(KEY_ENTER) || IsKeyPressed(KEY_SPACE)) {
+    currentScreen = GAME;
+  }
+
+  if (GuiButton(Rectangle{float(alignHorizontalCenter(screenMenu, rectButtonMenuWidth)), float(alignVerticalCenter(screenMenu, guiButtonBaseHeight)), float(rectButtonMenuWidth), float(guiButtonBaseHeight)}, TextFormat("Settings")) || IsKeyPressed(KEY_ENTER) || IsKeyPressed(KEY_SPACE)) {
+    currentScreen = SETTINGS;
+  }
+
+  EndDrawing();
 }

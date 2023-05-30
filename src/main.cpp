@@ -16,7 +16,7 @@ int main() {
   //============================
   // MAIN APP LOOP
   //============================
-  while (!WindowShouldClose()) // Detect window close button or ESC keWHITEy
+  while (!WindowShouldClose()) // Detect window close button or ESC key
   {
     //============================
     // Define color mode
