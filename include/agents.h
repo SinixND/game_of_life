@@ -6,7 +6,6 @@
 class cAgent {
 public:
   cAgent(int rowY, int colX);
-  ~cAgent();
 
   int mPosY;
   int mPosX;

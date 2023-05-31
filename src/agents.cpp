@@ -14,8 +14,6 @@ cAgent::cAgent(int rowY, int colX) {
   mVitality = 0;
 }
 
-cAgent::~cAgent(){}
-
 void cAgent::SetStatusNext(bool arg) {
   mStatusNext = arg;
   if (mStatusIs != mStatusNext) {

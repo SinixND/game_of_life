@@ -5,8 +5,6 @@ class cPanel {
 public:
   cPanel(int width, int height, int offsetX, int offsetY, int margin);
 
-  ~cPanel();
-
   int mPanelWidth;
   int mPanelHeight;
   int mPanelLeftX;

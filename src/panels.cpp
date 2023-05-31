@@ -15,8 +15,6 @@ cPanel::cPanel(int width, int height, int offsetX = 0, int offsetY = 0, int marg
   mPanelContentHeight = mPanelHeight - (2 * mPanelMargin);
 }
 
-cPanel::~cPanel(){}
-
 int cPanel::GetPanelRightX() {
   return mPanelLeftX + mPanelWidth;
 }
