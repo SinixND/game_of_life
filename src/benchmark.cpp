@@ -1,5 +1,7 @@
 #include "benchmark.h"
-
+// Starting point: StartBenchmark("ID");
+// Stopping point: StopBenchmark("ID");
+// Showing Results: ShowBenchmark();
 #include <vector>
 #include <string>
 #include <chrono>

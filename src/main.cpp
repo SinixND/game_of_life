@@ -7,9 +7,22 @@
 #include "agents.h"
 #include "globals.h"
 #include "screens.h"
-#include "benchmark.h"
 
 int main() {
+  //============================
+  // Adjust window if greater than screen
+  //============================
+  //int monitorWidth = GetMonitorWidth(GetCurrentMonitor());
+  //int monitorHeight = GetMonitorHeight(GetCurrentMonitor());
+  //if (monitorWidth < windowWidth) {
+    //windowWidth = monitorWidth;
+  //}
+  //if (monitorHeight < windowHeight) {
+    //windowHeight = monitorHeight;
+  //}
+  //SetWindowSize(windowWidth, windowHeight);
+  //SetWindowPosition(0, 0);
+
   InitWindow(windowWidth, windowHeight, "Conway's Game of Life");
   SetTargetFPS(targetFPS);
 

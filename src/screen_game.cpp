@@ -9,8 +9,6 @@
 #include "globals.h"
 #include "agents.h"
 #include "panels.h"
-#include "benchmark.h"
-//#define BENCHMARK_ON
 
 // SET GUI ELEMENTS
 //---------------------------------
@@ -26,6 +24,7 @@ const char *txtButtonDarkMode;
 bool pauseState = false;
 bool evolutionState = true;
 bool agentsInitialized = false;
+
 int colsX = display.GetPanelContentWidth() / (agentWidth + agentGap);
 int rowsY = display.GetPanelContentHeight() / (agentHeight + agentGap);
 int agentsSize = colsX * rowsY;
@@ -34,12 +33,11 @@ std::vector<std::vector<cAgent>> agents;
 
 // LOGIC
 //---------------------------------
-float lifeDensity = 0.25; // in %, eg. 25
 float timePassed = 0;
 int day = 0;
-std::vector<int> agentsState0;
-std::vector<int> agentsState1;
-std::vector<int> agentsState2;
+std::vector<bool> agentsState0;
+std::vector<bool> agentsState1;
+std::vector<bool> agentsState2;
 
 // GAME END OVERLAY
 //---------------------------------
@@ -63,8 +61,6 @@ void RunGameScreen() {
   ProcessGameScreen();
   UpdateGameScreen();
   OutputGameScreen();
-
-  ShowBenchmark();
 }
 
 // FUNCTION DEFINITION
@@ -72,11 +68,11 @@ void RunGameScreen() {
 void InitialiseGameScreen() {
   // INITIALISE AGENTS
   //---------------------------------
-  for (int rowY = 0; rowY < rowsY; ++rowY) {
+  for (auto rowY = 0; rowY < rowsY; ++rowY) {
     std::vector<cAgent> row;
     agents.push_back(row);
 
-    for (int colX = 0; colX < colsX; ++colX) {
+    for (auto colX = 0; colX < colsX; ++colX) {
       agents[rowY].push_back(cAgent(rowY, colX));
 
       cAgent& agent = agents[rowY][colX];
@@ -101,16 +97,10 @@ void ProcessGameScreen() {
     return;
   }
 
-  #ifdef BENCHMARK_ON
-    StartBenchmark("bm_process_game_screen");
-  #endif
-
-  // DETERMINE NEXT DAY AGENTS STATE
+  // DETERMINE NEXT AGENTS STATE
   //---------------------------------
-  for (int rowY = 0; rowY < rowsY; ++rowY) {
-    for (int colX = 0; colX < colsX; ++colX) {
-      cAgent& agent = agents[rowY][colX];
-
+  for (auto& row : agents) {
+    for (auto& agent : row) {
       // Default Ruleset:
       // AdjacentAgent count = 2 -> remain.
       // AdjacentAgent count = 3 -> alive.
@@ -137,10 +127,6 @@ void ProcessGameScreen() {
       }
     }
   }
-
-  #ifdef BENCHMARK_ON
-    StopBenchmark("bm_process_game_screen");
-  #endif
 
   if ((evolutionState == false) && (gameEndOverlayVisible == true)) {
     if ((IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), rectGameEndBackground)) || IsKeyPressed(KEY_ENTER)) {
@@ -176,10 +162,6 @@ void UpdateGameScreen() {
     return;
   }
 
-  #ifdef BENCHMARK_ON
-    StartBenchmark("bm_update_display");
-  #endif
-
   timePassed = 0;
   day += 1;
 
@@ -190,10 +172,8 @@ void UpdateGameScreen() {
 
   // UPDATE AGENTS
   //---------------------------------
-  for (int rowY = 0; rowY < rowsY; ++rowY) {
-    for (int colX = 0; colX < colsX; ++colX) {
-      cAgent& agent = agents[rowY][colX];
-
+  for (auto& row : agents) {
+    for (auto& agent : row) {
       if (agent.mStatusChanging == true) {
         agent.PingAdjacentAgents(agents);
 
@@ -209,9 +189,9 @@ void UpdateGameScreen() {
       }
 
       if (agent.mStatusIs == true) {
-        agentsState0.push_back(1);
+        agentsState0.push_back(true);
       } else {
-        agentsState0.push_back(0);
+        agentsState0.push_back(false);
         agent.DecreaseVitality();
       }
     }
@@ -220,21 +200,11 @@ void UpdateGameScreen() {
   if (agentsState0 == agentsState2) {
     evolutionState = false;
   }
-
-  #ifdef BENCHMARK_ON
-    StopBenchmark("bm_update_display");
-  #endif
 }
 
 void OutputGameScreen() {
   BeginDrawing();
   ClearBackground(BG);
-
-  #ifdef BENCHMARK_ON
-  if (pauseState == false) {
-    StartBenchmark("bm_ouput_game_screen");
-  }
-  #endif
 
   // MENUBAR
   //---------------------------------
@@ -255,11 +225,9 @@ void OutputGameScreen() {
   // DISPLAY
   //---------------------------------
   // draw agents
-  for (int rowY = 0; rowY < rowsY; ++rowY) {
-    for (int colX = 0; colX < colsX; ++colX) {
-      cAgent& agent = agents[rowY][colX];
-
-      Rectangle rectAgent{float(AlignHorizontalCenter(display, (colsX * (agentWidth + agentGap) - agentGap)) + (colX * (agentWidth + agentGap))), float(AlignVerticalCenter(display, (rowsY * (agentHeight + agentGap) - agentGap)) + (rowY * (agentHeight + agentGap))), float(agentWidth), float(agentHeight)};
+  for (auto& row : agents) {
+    for (auto& agent : row) {
+      Rectangle rectAgent{float(AlignHorizontalCenter(display, (colsX * (agentWidth + agentGap) - agentGap)) + (agent.mPosX * (agentWidth + agentGap))), float(AlignVerticalCenter(display, (rowsY * (agentHeight + agentGap) - agentGap)) + (agent.mPosY * (agentHeight + agentGap))), float(agentWidth), float(agentHeight)};
 
       if (agent.mStatusIs == true) {
         DrawRectangleRec(rectAgent, FG);
@@ -315,12 +283,6 @@ void OutputGameScreen() {
     DrawText(txtPaused, AlignHorizontalRight(statusbar, MeasureText(txtPaused, txtSmall), 0), AlignVerticalCenter(statusbar, txtSmall), txtSmall, FG);
   }
 
-  #ifdef BENCHMARK_ON
-  if (pauseState == false) {
-    StopBenchmark("bm_ouput_game_screen");
-  }
-  #endif
-
-  DrawFPS(GetScreenWidth() - 95, 10);
+  //DrawFPS(GetScreenWidth() - 95, 10);
   EndDrawing();
 }

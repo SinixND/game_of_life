@@ -27,6 +27,7 @@ bool decayingAgents = true;
 
 // AGENTS / ENVIRONMENT
 int agentGap = 1;
+float lifeDensity = 0.25; // in %, eg. 25
 
 // CONTROLS
 int evolutionTime = 100;

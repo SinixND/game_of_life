@@ -25,6 +25,7 @@ extern bool decayingAgents;
 
 // AGENTS / ENVIRONMENT
 extern int agentGap;
+extern float lifeDensity; // in %, eg. 25
 
 // CONTROLS
 extern int evolutionTime; // in ms
