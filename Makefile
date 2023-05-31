@@ -19,7 +19,7 @@ OBJ_DIR := ./build
 
 MAKEFLAGS := -j4
 C_FLAGS := `pkg-config --cflags $(LIBRARIES)`\
--g -Wall #-Wextra -ggdb -MMD -MP -O3 -std=c++17
+-g -Wall -O2 -S #-Wextra -ggdb -MMD -MP -std=c++17
 LD_FLAG := $(LIBRARIES)
 
 INC_FLAGS := $(addprefix -I,$(INC_DIR))

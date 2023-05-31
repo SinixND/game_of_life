@@ -28,6 +28,7 @@
     - constants? CAPITAL_LETTERS
     - Neighbors == vector of references/pointers, agent-constructor with reference to board? But is it better than current anyway?
     - introduce board class?
+    - change to: for(auto it = v.cbegin(), end = v.cend(); it != end; ++it) OR (auto& i : v)? (iterator needed -> position as agent property or environment?)
 0. Features
     - LMB / RMB set alive/dead
     - Seeding (seed[1-99999] * fieldSize; srand(seed*fieldSize)-fieldSize + fieldNumber)
