@@ -24,7 +24,7 @@
 0. Code
     - change to: for(auto it = v.cbegin(), end = v.cend(); it != end; ++it) OR (auto& i : v)? (iterator needed? check neighbor for-loop first)
     - Neighbors == vector of references/pointers, agent-constructor with reference to board? But is it better than current anyway?
-    - introduce board class?
+    - introduce board class, no higher-dimension info in agent class!
     - auto space after opening/before closing bracket in parameter list
     - Structure EVA 
     - doA(), doB(), f(call doA() & doB()) for core gamesteps (eg. determine next agents[] state)
