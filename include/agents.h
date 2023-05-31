@@ -15,18 +15,18 @@ public:
   bool mCheckStatus;
   int mVitality;
 
-  void decreaseVitality();
+  void DecreaseVitality();
 
 private:
   bool mStatusNext;
   int mAdjacentAgentsActive;
 
 public:
-  void setStatusNext( bool arg );
-  bool getStatusNext();
+  void SetStatusNext( bool arg );
+  bool GetStatusNext();
 
-  int countAdjacentAgents(std::vector<std::vector<cAgent>>& agents);
-  void pingAdjacentAgents(std::vector<std::vector<cAgent>>& agents);
+  int CountAdjacentAgents(std::vector<std::vector<cAgent>>& agents);
+  void PingAdjacentAgents(std::vector<std::vector<cAgent>>& agents);
 };
 
 #endif

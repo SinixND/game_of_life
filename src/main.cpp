@@ -37,11 +37,11 @@ int main() {
 
     switch (currentScreen) {
     case MENU:
-      runMenuScreen();
+      RunMenuScreen();
       break;
 
     case GAME:
-      runGameScreen();
+      RunGameScreen();
       break;
 
     default:

@@ -12,7 +12,7 @@ typedef enum screen
 //============================
 // SCREENS
 //============================
-void runGameScreen();
-void runMenuScreen();
+void RunGameScreen();
+void RunMenuScreen();
 
 #endif

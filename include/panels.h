@@ -24,22 +24,22 @@ private:
   int mPanelContentHeight;
 
 public:
-  int getPanelRightX();
-  int getPanelBottomY();
+  int GetPanelRightX();
+  int GetPanelBottomY();
 
-  int getPanelContentLeftX();
-  int getPanelContentTopY();
-  int getPanelContentRightX();
-  int getPanelContentBottomY();
-  int getPanelContentWidth();
-  int getPanelContentHeight();
+  int GetPanelContentLeftX();
+  int GetPanelContentTopY();
+  int GetPanelContentRightX();
+  int GetPanelContentBottomY();
+  int GetPanelContentWidth();
+  int GetPanelContentHeight();
 };
 
-int alignHorizontalLeft(cPanel panel, int offset);
-int alignHorizontalCenter(cPanel panel, int contentWidth);
-int alignHorizontalRight(cPanel panel, int contentWidth, int offset);
-int alignVerticalTop(cPanel panel, int offset);
-int alignVerticalCenter(cPanel panel, int contentHeight);
-int alignVerticalBottom(cPanel panel, int contentHeight, int offset);
+int AlignHorizontalLeft(cPanel panel, int offset);
+int AlignHorizontalCenter(cPanel panel, int contentWidth);
+int AlignHorizontalRight(cPanel panel, int contentWidth, int offset);
+int AlignVerticalTop(cPanel panel, int offset);
+int AlignVerticalCenter(cPanel panel, int contentHeight);
+int AlignVerticalBottom(cPanel panel, int contentHeight, int offset);
 
 #endif

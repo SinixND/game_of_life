@@ -26,8 +26,8 @@ const char *txtButtonDarkMode;
 bool pauseState = false;
 bool evolutionState = true;
 bool agentsInitialized = false;
-int colsX = display.getPanelContentWidth() / (agentWidth + agentGap);
-int rowsY = display.getPanelContentHeight() / (agentHeight + agentGap);
+int colsX = display.GetPanelContentWidth() / (agentWidth + agentGap);
+int rowsY = display.GetPanelContentHeight() / (agentHeight + agentGap);
 int agentsSize = colsX * rowsY;
 
 std::vector<std::vector<cAgent>> agents;
@@ -48,28 +48,28 @@ Rectangle rectGameEndBackground{0, 0, float(windowWidth), float(windowHeight)};
 
 // FUNCTION DECLARATION
 //---------------------------------
-void initialiseGameScreen();
-void processGameScreen();
-void updateGameScreen();
-void outputGameScreen();
+void InitialiseGameScreen();
+void ProcessGameScreen();
+void UpdateGameScreen();
+void OutputGameScreen();
 
-void runGameScreen() {
+void RunGameScreen() {
   if (agentsInitialized == false) {
-    initialiseGameScreen();
-    outputGameScreen();
+    InitialiseGameScreen();
+    OutputGameScreen();
     agentsInitialized = true;
   }
 
-  processGameScreen();
-  updateGameScreen();
-  outputGameScreen();
+  ProcessGameScreen();
+  UpdateGameScreen();
+  OutputGameScreen();
 
-  benchmarkShow();
+  ShowBenchmark();
 }
 
 // FUNCTION DEFINITION
 //---------------------------------
-void initialiseGameScreen() {
+void InitialiseGameScreen() {
   // INITIALISE AGENTS
   //---------------------------------
   for (int rowY = 0; rowY < rowsY; ++rowY) {
@@ -88,7 +88,7 @@ void initialiseGameScreen() {
   }
 }
 
-void processGameScreen() {
+void ProcessGameScreen() {
   if (IsKeyPressed(KEY_P)) {
     pauseState = !pauseState;
   }
@@ -102,7 +102,7 @@ void processGameScreen() {
   }
 
   #ifdef BENCHMARK_ON
-    benchmarkStart("bm_process_game_screen");
+    StartBenchmark("bm_process_game_screen");
   #endif
 
   // DETERMINE NEXT DAY AGENTS STATE
@@ -122,24 +122,24 @@ void processGameScreen() {
       }
       agent.mCheckStatus = false;
 
-      switch (agent.countAdjacentAgents(agents)){
+      switch (agent.CountAdjacentAgents(agents)){
       case 2:
-        agent.setStatusNext(agent.mStatusIs);
+        agent.SetStatusNext(agent.mStatusIs);
         break;
       
       case 3:
-        agent.setStatusNext(true);
+        agent.SetStatusNext(true);
         break;
       
       default:
-        agent.setStatusNext(false);
+        agent.SetStatusNext(false);
         break;
       }
     }
   }
 
   #ifdef BENCHMARK_ON
-    benchmarkStop("bm_process_game_screen");
+    StopBenchmark("bm_process_game_screen");
   #endif
 
   if ((evolutionState == false) && (gameEndOverlayVisible == true)) {
@@ -149,7 +149,7 @@ void processGameScreen() {
   }
 }
 
-void updateGameScreen() {
+void UpdateGameScreen() {
   // MENUBAR
   //---------------------------------
   if (darkMode == true) {
@@ -177,7 +177,7 @@ void updateGameScreen() {
   }
 
   #ifdef BENCHMARK_ON
-    benchmarkStart("bm_update_display");
+    StartBenchmark("bm_update_display");
   #endif
 
   timePassed = 0;
@@ -195,9 +195,9 @@ void updateGameScreen() {
       cAgent& agent = agents[rowY][colX];
 
       if (agent.mStatusChanging == true) {
-        agent.pingAdjacentAgents(agents);
+        agent.PingAdjacentAgents(agents);
 
-        if (agent.getStatusNext() == true) {
+        if (agent.GetStatusNext() == true) {
           agent.mStatusIs = true;
 
           if (decayingAgents == true) {
@@ -212,7 +212,7 @@ void updateGameScreen() {
         agentsState0.push_back(1);
       } else {
         agentsState0.push_back(0);
-        agent.decreaseVitality();
+        agent.DecreaseVitality();
       }
     }
   }
@@ -222,35 +222,35 @@ void updateGameScreen() {
   }
 
   #ifdef BENCHMARK_ON
-    benchmarkStop("bm_update_display");
+    StopBenchmark("bm_update_display");
   #endif
 }
 
-void outputGameScreen() {
+void OutputGameScreen() {
   BeginDrawing();
   ClearBackground(BG);
 
   #ifdef BENCHMARK_ON
   if (pauseState == false) {
-    benchmarkStart("bm_ouput_game_screen");
+    StartBenchmark("bm_ouput_game_screen");
   }
   #endif
 
   // MENUBAR
   //---------------------------------
   int rectButtonPauseWidth = guiButtonBaseWidth + MeasureText("Resume", DEFAULT);
-  if (GuiButton(Rectangle{float(alignHorizontalCenter(menubar, rectButtonPauseWidth)), float(alignVerticalTop(menubar, 0)), float(rectButtonPauseWidth), float(guiButtonBaseHeight)}, txtButtonPause)) {
+  if (GuiButton(Rectangle{float(AlignHorizontalCenter(menubar, rectButtonPauseWidth)), float(AlignVerticalTop(menubar, 0)), float(rectButtonPauseWidth), float(guiButtonBaseHeight)}, txtButtonPause)) {
     pauseState = !pauseState;
   };
 
   int rectButtonDarkModeWidth = guiButtonBaseWidth + MeasureText("Light", txtSmall);
-  if (GuiButton(Rectangle{float(alignHorizontalRight(menubar, rectButtonDarkModeWidth, 0)), float(alignVerticalTop(menubar, 0)), float(rectButtonDarkModeWidth), float(guiButtonBaseHeight)}, txtButtonDarkMode)) {
+  if (GuiButton(Rectangle{float(AlignHorizontalRight(menubar, rectButtonDarkModeWidth, 0)), float(AlignVerticalTop(menubar, 0)), float(rectButtonDarkModeWidth), float(guiButtonBaseHeight)}, txtButtonDarkMode)) {
     darkMode = !darkMode;
   };
 
   // STATUSBAR
   //---------------------------------
-  DrawText(TextFormat("Time: %i ms; Day: %i", evolutionTime, day), alignHorizontalLeft(statusbar, 0), alignVerticalCenter(statusbar, txtSmall), txtSmall, FG);
+  DrawText(TextFormat("Time: %i ms; Day: %i", evolutionTime, day), AlignHorizontalLeft(statusbar, 0), AlignVerticalCenter(statusbar, txtSmall), txtSmall, FG);
 
   // DISPLAY
   //---------------------------------
@@ -259,7 +259,7 @@ void outputGameScreen() {
     for (int colX = 0; colX < colsX; ++colX) {
       cAgent& agent = agents[rowY][colX];
 
-      Rectangle rectAgent{float(alignHorizontalCenter(display, (colsX * (agentWidth + agentGap) - agentGap)) + (colX * (agentWidth + agentGap))), float(alignVerticalCenter(display, (rowsY * (agentHeight + agentGap) - agentGap)) + (rowY * (agentHeight + agentGap))), float(agentWidth), float(agentHeight)};
+      Rectangle rectAgent{float(AlignHorizontalCenter(display, (colsX * (agentWidth + agentGap) - agentGap)) + (colX * (agentWidth + agentGap))), float(AlignVerticalCenter(display, (rowsY * (agentHeight + agentGap) - agentGap)) + (rowY * (agentHeight + agentGap))), float(agentWidth), float(agentHeight)};
 
       if (agent.mStatusIs == true) {
         DrawRectangleRec(rectAgent, FG);
@@ -312,12 +312,12 @@ void outputGameScreen() {
     DrawRectangleLinesEx(rectDisplay, 10, DARKGRAY);
 
     const char *txtPaused = TextFormat("[P]aused...");
-    DrawText(txtPaused, alignHorizontalRight(statusbar, MeasureText(txtPaused, txtSmall), 0), alignVerticalCenter(statusbar, txtSmall), txtSmall, FG);
+    DrawText(txtPaused, AlignHorizontalRight(statusbar, MeasureText(txtPaused, txtSmall), 0), AlignVerticalCenter(statusbar, txtSmall), txtSmall, FG);
   }
 
   #ifdef BENCHMARK_ON
   if (pauseState == false) {
-    benchmarkStop("bm_ouput_game_screen");
+    StopBenchmark("bm_ouput_game_screen");
   }
   #endif
 

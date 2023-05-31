@@ -13,7 +13,7 @@ cBenchmark::cBenchmark(std::string ID) {
   mIterations = 0;
 }
 
-void benchmarkStart(std::string ID) {
+void StartBenchmark(std::string ID) {
   benchmarkFound = false;
 
   for (auto& benchmark : benchmarks) {
@@ -34,7 +34,7 @@ void benchmarkStart(std::string ID) {
   }
 }
 
-void benchmarkStop(std::string ID) {
+void StopBenchmark(std::string ID) {
   for (auto& benchmark : benchmarks) {
     if (benchmark.mID == ID) {
       benchmark.mStopTime = std::chrono::steady_clock::now();
@@ -48,7 +48,7 @@ void benchmarkStop(std::string ID) {
   }
 }
 
-void benchmarkShow() {
+void ShowBenchmark() {
   for (auto& benchmark : benchmarks) {
     if (benchmark.mID != "NULL") {
       std::cout << benchmark.mID << " (Lst|Avg|Itr): " << benchmark.mLatestTime.count() << " ns | " << benchmark.mAvgTime.count() << " ns | " << benchmark.mIterations << "\n";

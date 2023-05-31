@@ -16,7 +16,7 @@ cAgent::cAgent(int rowY, int colX) {
 
 cAgent::~cAgent(){}
 
-void cAgent::setStatusNext(bool arg) {
+void cAgent::SetStatusNext(bool arg) {
   mStatusNext = arg;
   if (mStatusIs != mStatusNext) {
     mStatusChanging  = true;
@@ -24,17 +24,17 @@ void cAgent::setStatusNext(bool arg) {
     mStatusChanging = false;
   }
 }
-bool cAgent::getStatusNext() {
+bool cAgent::GetStatusNext() {
   return mStatusNext;
 }
 
-void cAgent::decreaseVitality() {
+void cAgent::DecreaseVitality() {
   if (mVitality > 0) {
     mVitality -= 1;
   }
 }
 
-int cAgent::countAdjacentAgents(std::vector<std::vector<cAgent>>& agents) {
+int cAgent::CountAdjacentAgents(std::vector<std::vector<cAgent>>& agents) {
   int cnt = 0;
   for (int dy : {-1, 0, 1}) {
     for (int dx : {-1, 0, 1}) {
@@ -52,7 +52,7 @@ int cAgent::countAdjacentAgents(std::vector<std::vector<cAgent>>& agents) {
   return cnt;
 }
 
-void cAgent::pingAdjacentAgents(std::vector<std::vector<cAgent>>& agents) {
+void cAgent::PingAdjacentAgents(std::vector<std::vector<cAgent>>& agents) {
   for (int dx : {-1, 0, 1}) {
     for (int dy : {-1, 0, 1}) {
       // wraps around matrix

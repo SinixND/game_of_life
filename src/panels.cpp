@@ -17,64 +17,64 @@ cPanel::cPanel(int width, int height, int offsetX = 0, int offsetY = 0, int marg
 
 cPanel::~cPanel(){}
 
-int cPanel::getPanelRightX() {
+int cPanel::GetPanelRightX() {
   return mPanelLeftX + mPanelWidth;
 }
 
-int cPanel::getPanelBottomY() {
+int cPanel::GetPanelBottomY() {
   return mPanelTopY + mPanelHeight;
 }
 
-int cPanel::getPanelContentLeftX() {
+int cPanel::GetPanelContentLeftX() {
   mPanelContentLeftX = mPanelLeftX + mPanelMargin;
   return mPanelContentLeftX;
 }
 
-int cPanel::getPanelContentTopY() {
+int cPanel::GetPanelContentTopY() {
   mPanelContentTopY = mPanelTopY + mPanelMargin;
   return mPanelContentTopY;
 }
 
-int cPanel::getPanelContentRightX() {
+int cPanel::GetPanelContentRightX() {
   mPanelContentRightX = mPanelLeftX + mPanelWidth - mPanelMargin;
   return mPanelContentRightX;
 }
 
-int cPanel::getPanelContentBottomY() {
+int cPanel::GetPanelContentBottomY() {
   mPanelContentBottomY = mPanelTopY + mPanelHeight - mPanelMargin;
   return mPanelContentBottomY;
 }
 
-int cPanel::getPanelContentWidth() {
+int cPanel::GetPanelContentWidth() {
   mPanelContentWidth = mPanelWidth - (2 * mPanelMargin);
   return mPanelContentWidth;
 }
 
-int cPanel::getPanelContentHeight() {
+int cPanel::GetPanelContentHeight() {
   mPanelContentHeight = mPanelHeight - (2 * mPanelMargin);
   return mPanelContentHeight;
 }
 
-int alignHorizontalLeft(cPanel panel, int offset) {
-  return panel.getPanelContentLeftX() + offset;
+int AlignHorizontalLeft(cPanel panel, int offset) {
+  return panel.GetPanelContentLeftX() + offset;
 }
 
-int alignHorizontalCenter(cPanel panel, int contentWidth) {
-  return panel.getPanelContentLeftX() + ((panel.getPanelContentWidth() - contentWidth) / 2);
+int AlignHorizontalCenter(cPanel panel, int contentWidth) {
+  return panel.GetPanelContentLeftX() + ((panel.GetPanelContentWidth() - contentWidth) / 2);
 }
 
-int alignHorizontalRight(cPanel panel, int contentWidth, int offset) {
-  return panel.getPanelContentLeftX() + (panel.getPanelContentWidth() - contentWidth - offset);
+int AlignHorizontalRight(cPanel panel, int contentWidth, int offset) {
+  return panel.GetPanelContentLeftX() + (panel.GetPanelContentWidth() - contentWidth - offset);
 }
 
-int alignVerticalTop(cPanel panel, int offset) {
-  return panel.getPanelContentTopY() + offset;
+int AlignVerticalTop(cPanel panel, int offset) {
+  return panel.GetPanelContentTopY() + offset;
 }
 
-int alignVerticalCenter(cPanel panel, int contentHeight) {
-  return panel.getPanelContentTopY() + ((panel.getPanelContentHeight() - contentHeight) / 2);
+int AlignVerticalCenter(cPanel panel, int contentHeight) {
+  return panel.GetPanelContentTopY() + ((panel.GetPanelContentHeight() - contentHeight) / 2);
 }
 
-int alignVerticalBottom(cPanel panel, int contentHeight, int offset) {
-  return panel.getPanelContentTopY() + (panel.getPanelContentHeight() - contentHeight - offset);
+int AlignVerticalBottom(cPanel panel, int contentHeight, int offset) {
+  return panel.GetPanelContentTopY() + (panel.GetPanelContentHeight() - contentHeight - offset);
 }
