@@ -22,6 +22,7 @@
     - Mutlithreading
     - Speedup Output?
 0. Code
+    - auto space after opening/before closing bracket in parameter list
     - Structure EVA 
     - doA(), doB(), f(call doA() & doB()) for core gamesteps (eg. determine next agents[] state)
     - constants? CAPITAL_LETTERS
