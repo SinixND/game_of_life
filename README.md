@@ -22,12 +22,10 @@
     - Mutlithreading
     - Speedup Output?
 0. Code
-    - change to: for(auto it = v.cbegin(), end = v.cend(); it != end; ++it) OR (auto& i : v)? (iterator needed? check neighbor for-loop first)
-    - Neighbors == vector of references/pointers, agent-constructor with reference to board? But is it better than current anyway?
-    - introduce board class, no higher-dimension info in agent class!
+    - introduce board to agents class, no higher-dimension info in agent class?
+    - doA(), doB(), f(call doA() & doB()) for core gamesteps (eg. determine next agents[] state)
     - auto space after opening/before closing bracket in parameter list
     - Structure EVA 
-    - doA(), doB(), f(call doA() & doB()) for core gamesteps (eg. determine next agents[] state)
 0. Features
     - LMB / RMB set alive/dead
     - Seeding (seed[1-99999] * fieldSize; srand(seed*fieldSize)-fieldSize + fieldNumber)
