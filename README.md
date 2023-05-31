@@ -37,6 +37,7 @@
     - Pausing [done]
     - Stepping FW/BW
     - Darkmode (switch) [done]
+    - spontaneous/probability alive, percentage dependent on neighbors, like 3ngb(50%) - 8ngb(100%) maybe
     - Colors
     - 3D
     - different agent shape
