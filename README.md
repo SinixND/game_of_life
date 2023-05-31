@@ -23,6 +23,7 @@
     - Speedup Output?
 0. Code
     - use size_t for sizes instead of int
+    - use Vector2 position instead of posX / posY (position.x, position.y)
     - change to: for(auto it = v.cbegin(), end = v.cend(); it != end; ++it) OR (auto& i : v)? (iterator needed? check neighbor for-loop first)
     - Neighbors == vector of references/pointers, agent-constructor with reference to board? But is it better than current anyway?
     - introduce board class, no higher-dimension info in agent class!
