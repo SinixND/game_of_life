@@ -4,7 +4,7 @@
 
 #include "screens.h"
 
-// SETTINGS
+// SETTINGS / CONFIGS
 // APPLICATION
 int windowWidth = 640;
 int windowHeight = 480;
@@ -15,7 +15,6 @@ int targetFPS = 144;
 int txtSmall = 20;
 int txtNormal = 30;
 
-Vector2 buttonBase = {20, 30};
 int guiButtonBaseWidth = 20;
 int guiButtonBaseHeight = 30;
 

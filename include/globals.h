@@ -7,7 +7,6 @@
 
 // SETTINGS / CONFIGS
 //---------------------------------
-//class cConfig {};
 // APPLICATION
 extern int windowWidth;
 extern int windowHeight;
