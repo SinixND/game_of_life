@@ -16,7 +16,6 @@ extern int targetFPS;
 // GUI ELEMENTS
 extern int txtSmall;
 extern int txtNormal;
-extern Vector2 buttonBase;
 extern int guiButtonBaseWidth;
 extern int guiButtonBaseHeight;
 
