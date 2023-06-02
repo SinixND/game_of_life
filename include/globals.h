@@ -7,6 +7,22 @@
 
 // SETTINGS / CONFIGS
 //---------------------------------
+class MySingleton{
+public:
+  //getter
+  //setter
+
+  static MySingleton& getInstance(); // public method to make an instance
+
+private:
+  //member
+
+  MySingleton()= default; // private constructor
+  ~MySingleton()= default; // private destructor
+  MySingleton(const MySingleton&)= delete; // delete copy constructor
+  MySingleton& operator=(const MySingleton&)= delete; // delete copy operator(?)
+};
+
 // APPLICATION
 extern int windowWidth;
 extern int windowHeight;

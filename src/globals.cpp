@@ -5,6 +5,11 @@
 #include "screens.h"
 
 // SETTINGS / CONFIGS
+MySingleton& MySingleton::getInstance(){
+  static MySingleton instance;
+  return instance;
+}
+extern MySingleton& config = MySingleton::getInstance();
 // APPLICATION
 int windowWidth = 640;
 int windowHeight = 480;
