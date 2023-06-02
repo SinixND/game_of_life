@@ -20,7 +20,6 @@
     - Quit
 0. Performance
     - Mutlithreading
-    - Speedup Output?
 0. Code
     - Neighbors dont change, save neighbor-references in agent
     - introduce board to agents class, no higher-dimension info in agent class?
