@@ -21,6 +21,7 @@
 0. Performance
     - Mutlithreading
 0. Code
+    - agents inner class
     - Neighbors dont change, save neighbor-references in agent
     - introduce board to agents class, no higher-dimension info in agent class?
     - doA(), doB(), f(call doA() & doB()) for core gamesteps (eg. determine next agents[] state)
