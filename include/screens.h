@@ -9,6 +9,8 @@ typedef enum screen
   ABOUT
 } screen;
 
+extern screen currentScreen;
+
 //============================
 // SCREENS
 //============================

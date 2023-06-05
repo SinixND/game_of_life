@@ -2,46 +2,50 @@
 
 #include "raylib.h"
 
-#include "screens.h"
+//============================
+// NOT CUSTOMIZABLE BY USER
+//============================
+cGlobal global; // declare extern object
+cGlobal::cGlobal(){
+  // GUI ELEMENTS
+  // default text size is 16
+   txtSmall = 20;
+   txtNormal = 30;
+   guiButtonBaseWidth = 20;
+   guiButtonBaseHeight = 30;
 
-// SETTINGS / CONFIGS
-MySingleton& MySingleton::getInstance(){
-  static MySingleton instance;
-  return instance;
-}
-extern MySingleton& config = MySingleton::getInstance();
-// APPLICATION
-int windowWidth = 640;
-int windowHeight = 480;
-int targetFPS = 144;
 
-// GUI ELEMENTS
-// default = 16
-int txtSmall = 20;
-int txtNormal = 30;
+  // PRIVATE
+  // DARK MODE
+  darkMode = false;
+  colorBackground = WHITE;
+  colorForeground = BLACK;
+  colorAgentDecay1 = DARKGRAY;
+  colorAgentDecay2 = GRAY;
+  colorAgentDecay3 = LIGHTGRAY;
+};
 
-int guiButtonBaseWidth = 20;
-int guiButtonBaseHeight = 30;
+void cGlobal::setDarkMode(bool arg){
+  darkMode = arg;
 
-// AGENT
-int agentWidth = 3;
-int agentHeight = agentWidth;
-int agentInnerBorderWeight = 0;
-bool decayingAgents = true;
+  if (darkMode == true) {
+    colorBackground = BLACK;
+    colorForeground = WHITE;
+    colorAgentDecay1 = LIGHTGRAY;
+    colorAgentDecay2 = GRAY;
+    colorAgentDecay3 = DARKGRAY;
+  } else {
+    colorBackground = WHITE;
+    colorForeground = BLACK;
+    colorAgentDecay1 = DARKGRAY;
+    colorAgentDecay2 = GRAY;
+    colorAgentDecay3 = LIGHTGRAY;
+  }
+};
+bool cGlobal::getDarkMode(){ return darkMode; };
 
-// AGENTS / ENVIRONMENT
-int agentGap = 1;
-float lifeDensity = 0.25; // in %, eg. 25
-
-// CONTROLS
-int evolutionTime = 100;
-
-// GLOBALS
-screen currentScreen = MENU;
-bool darkMode = false;
-Color BG = BLACK;
-Color FG = WHITE;
-Color FG2 = LIGHTGRAY;
-Color FG3 = GRAY;
-Color FG4 = DARKGRAY;
-
+Color cGlobal::getColorBackground(){ return colorBackground; };
+Color cGlobal::getColorForeground(){ return colorForeground; };
+Color cGlobal::getColorAgentDecay1(){ return colorAgentDecay1; };
+Color cGlobal::getColorAgentDecay2(){ return colorAgentDecay2; };
+Color cGlobal::getColorAgentDecay3(){ return colorAgentDecay3; };

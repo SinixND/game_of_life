@@ -7,14 +7,15 @@
 #include "raygui.h"
 
 #include "globals.h"
+#include "configs.h"
 #include "agents.h"
 #include "panels.h"
 
 // SET GUI ELEMENTS
 //---------------------------------
-cPanel menubar(windowWidth, (guiButtonBaseHeight + 20), 0, 0, 10);
-cPanel statusbar(windowWidth, (txtSmall + 20), 0, (windowHeight - (txtSmall + 20)), 10);
-cPanel display(windowWidth, windowHeight - menubar.mPanelHeight - statusbar.mPanelHeight, 0, menubar.mPanelHeight, 10);
+cPanel menubar(config.windowWidth, (global.guiButtonBaseHeight + 20), 0, 0, 10);
+cPanel statusbar(config.windowWidth, (global.txtSmall + 20), 0, (config.windowHeight - (global.txtSmall + 20)), 10);
+cPanel display(config.windowWidth, config.windowHeight - menubar.mPanelHeight - statusbar.mPanelHeight, 0, menubar.mPanelHeight, 10);
 
 const char *txtButtonPause = "[P]ause";
 const char *txtButtonDarkMode;
@@ -25,8 +26,8 @@ bool pauseState = false;
 bool evolutionState = true;
 bool agentsInitialized = false;
 
-int colsX = display.GetPanelContentWidth() / (agentWidth + agentGap);
-int rowsY = display.GetPanelContentHeight() / (agentHeight + agentGap);
+int colsX = display.GetPanelContentWidth() / (config.agentWidth + config.agentGap);
+int rowsY = display.GetPanelContentHeight() / (config.agentHeight + config.agentGap);
 int agentsSize = colsX * rowsY;
 
 std::vector<std::vector<cAgent>> agents;
@@ -42,7 +43,7 @@ std::vector<bool> agentsState2;
 // GAME END OVERLAY
 //---------------------------------
 bool gameEndOverlayVisible = true;
-Rectangle rectGameEndBackground{0, 0, float(windowWidth), float(windowHeight)};
+Rectangle rectGameEndBackground{0, 0, float(config.windowWidth), float(config.windowHeight)};
 
 // FUNCTION DECLARATION
 //---------------------------------
@@ -77,7 +78,7 @@ void InitialiseGameScreen() {
 
       cAgent& agent = agents[rowY][colX];
 
-      if (((rand() % 100) * 0.01) <= lifeDensity) {
+      if (((rand() % 100) * 0.01) <= config.lifeDensity) {
         agent.mStatusIs = true; // make alive
       }
     }
@@ -93,7 +94,7 @@ void ProcessGameScreen() {
     return;
   }
 
-  if (timePassed <= evolutionTime) {
+  if (timePassed <= config.evolutionTime) {
     return;
   }
 
@@ -138,7 +139,7 @@ void ProcessGameScreen() {
 void UpdateGameScreen() {
   // MENUBAR
   //---------------------------------
-  if (darkMode == true) {
+  if (global.getDarkMode() == true) {
     txtButtonDarkMode = "Light";
   } else {
     txtButtonDarkMode = "Dark";
@@ -157,7 +158,7 @@ void UpdateGameScreen() {
     return;
   }
 
-  if (timePassed <= evolutionTime) {
+  if (timePassed <= config.evolutionTime) {
     timePassed += GetFrameTime() * 1000;
     return;
   }
@@ -180,7 +181,7 @@ void UpdateGameScreen() {
         if (agent.GetStatusNext() == true) {
           agent.mStatusIs = true;
 
-          if (decayingAgents == true) {
+          if (config.decayAgents == true) {
             agent.mVitality = 4;
           }
         } else {
@@ -204,58 +205,58 @@ void UpdateGameScreen() {
 
 void OutputGameScreen() {
   BeginDrawing();
-  ClearBackground(BG);
+  ClearBackground(global.getColorBackground());
 
   // MENUBAR
   //---------------------------------
-  int rectButtonPauseWidth = guiButtonBaseWidth + MeasureText("Resume", DEFAULT);
-  if (GuiButton(Rectangle{float(AlignHorizontalCenter(menubar, rectButtonPauseWidth)), float(AlignVerticalTop(menubar, 0)), float(rectButtonPauseWidth), float(guiButtonBaseHeight)}, txtButtonPause)) {
+  int rectButtonPauseWidth = global.guiButtonBaseWidth + MeasureText("Resume", DEFAULT);
+  if (GuiButton(Rectangle{float(AlignHorizontalCenter(menubar, rectButtonPauseWidth)), float(AlignVerticalTop(menubar, 0)), float(rectButtonPauseWidth), float(global.guiButtonBaseHeight)}, txtButtonPause)) {
     pauseState = !pauseState;
   };
 
-  int rectButtonDarkModeWidth = guiButtonBaseWidth + MeasureText("Light", txtSmall);
-  if (GuiButton(Rectangle{float(AlignHorizontalRight(menubar, rectButtonDarkModeWidth, 0)), float(AlignVerticalTop(menubar, 0)), float(rectButtonDarkModeWidth), float(guiButtonBaseHeight)}, txtButtonDarkMode)) {
-    darkMode = !darkMode;
+  int rectButtonDarkModeWidth = global.guiButtonBaseWidth + MeasureText("Light", global.txtSmall);
+  if (GuiButton(Rectangle{float(AlignHorizontalRight(menubar, rectButtonDarkModeWidth, 0)), float(AlignVerticalTop(menubar, 0)), float(rectButtonDarkModeWidth), float(global.guiButtonBaseHeight)}, txtButtonDarkMode)) {
+    global.setDarkMode(!global.getDarkMode());
   };
 
   // STATUSBAR
   //---------------------------------
-  DrawText(TextFormat("Time: %i ms; Day: %i", evolutionTime, day), AlignHorizontalLeft(statusbar, 0), AlignVerticalCenter(statusbar, txtSmall), txtSmall, FG);
+  DrawText(TextFormat("Time: %i ms; Day: %i", config.evolutionTime, day), AlignHorizontalLeft(statusbar, 0), AlignVerticalCenter(statusbar, global.txtSmall), global.txtSmall, global.getColorForeground());
 
   // DISPLAY
   //---------------------------------
   // draw agents
   for (auto& row : agents) {
     for (auto& agent : row) {
-      Rectangle rectAgent{float(AlignHorizontalCenter(display, (colsX * (agentWidth + agentGap) - agentGap)) + (agent.mPosX * (agentWidth + agentGap))), float(AlignVerticalCenter(display, (rowsY * (agentHeight + agentGap) - agentGap)) + (agent.mPosY * (agentHeight + agentGap))), float(agentWidth), float(agentHeight)};
+      Rectangle rectAgent{float(AlignHorizontalCenter(display, (colsX * (config.agentWidth + config.agentGap) - config.agentGap)) + (agent.mPosX * (config.agentWidth + config.agentGap))), float(AlignVerticalCenter(display, (rowsY * (config.agentHeight + config.agentGap) - config.agentGap)) + (agent.mPosY * (config.agentHeight + config.agentGap))), float(config.agentWidth), float(config.agentHeight)};
 
       if (agent.mStatusIs == true) {
-        DrawRectangleRec(rectAgent, FG);
+        DrawRectangleRec(rectAgent, global.getColorForeground());
       } else {
         Color agentVitalityColor;
         switch (agent.mVitality) {
         case 4:
-          agentVitalityColor = FG;
+          agentVitalityColor = global.getColorForeground();
           DrawRectangleRec(rectAgent, agentVitalityColor);
           break;
 
         case 3:
-          agentVitalityColor = FG2;
+          agentVitalityColor = global.getColorAgentDecay1();
           DrawRectangleRec(rectAgent, agentVitalityColor);
           break;
 
         case 2:
-          agentVitalityColor = FG3;
+          agentVitalityColor = global.getColorAgentDecay2();
           DrawRectangleRec(rectAgent, agentVitalityColor);
           break;
 
         case 1:
-          agentVitalityColor = FG4;
+          agentVitalityColor = global.getColorAgentDecay3();
           DrawRectangleRec(rectAgent, agentVitalityColor);
           break;
 
         default:
-          DrawRectangleLinesEx(rectAgent, agentInnerBorderWeight, GRAY);
+          DrawRectangleLinesEx(rectAgent, config.agentInnerBorderWeight, GRAY);
           break;
         }
       }
@@ -267,7 +268,7 @@ void OutputGameScreen() {
   if ((evolutionState == false) && (gameEndOverlayVisible == true)) {
     DrawRectangleRec(rectGameEndBackground, CLITERAL(Color){130, 130, 130, 175});
     DrawRectangleLinesEx(rectGameEndBackground, 10, DARKGRAY);
-    DrawText(TextFormat("Game over!\nUniverse survived for %d days. \nPress Enter or click to \ngo back to agents. \nPress ESC to leave.", day), 50, 50, txtNormal, RED);
+    DrawText(TextFormat("Game over!\nUniverse survived for %d days. \nPress Enter or click to \ngo back to agents. \nPress ESC to leave.", day), 50, 50, global.txtNormal, RED);
   }
 
   // DRAW PAUSE OVERLAY
@@ -280,7 +281,7 @@ void OutputGameScreen() {
     DrawRectangleLinesEx(rectDisplay, 10, DARKGRAY);
 
     const char *txtPaused = TextFormat("[P]aused...");
-    DrawText(txtPaused, AlignHorizontalRight(statusbar, MeasureText(txtPaused, txtSmall), 0), AlignVerticalCenter(statusbar, txtSmall), txtSmall, FG);
+    DrawText(txtPaused, AlignHorizontalRight(statusbar, MeasureText(txtPaused, global.txtSmall), 0), AlignVerticalCenter(statusbar, global.txtSmall), global.txtSmall, global.getColorForeground());
   }
 
   //DrawFPS(GetScreenWidth() - 95, 10);
