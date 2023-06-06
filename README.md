@@ -21,8 +21,8 @@
 0. Performance
     - Mutlithreading
 0. Code
-    - agents inner class
-    - Neighbors dont change, save neighbor-references in agent
+    - Parameter object if too many
+    - Neighbors dont change!, save neighbor-references in agent
     - introduce board to agents class, no higher-dimension info in agent class?
     - doA(), doB(), f(call doA() & doB()) for core gamesteps (eg. determine next agents[] state)
     - auto space after opening/before closing bracket in parameter list
