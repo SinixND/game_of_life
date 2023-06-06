@@ -1,8 +1,8 @@
 #include "configs.h"
 
-//============================
+//---------------------------------
 // CUSTOMIZABLE BY USER
-//============================
+//---------------------------------
 cConfig config; // declare extern object
 cConfig::cConfig(){
   // APPLICATION

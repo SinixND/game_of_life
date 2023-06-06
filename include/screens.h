@@ -11,9 +11,9 @@ typedef enum screen
 
 extern screen currentScreen;
 
-//============================
+//---------------------------------
 // SCREENS
-//============================
+//---------------------------------
 void RunGameScreen();
 void RunMenuScreen();
 

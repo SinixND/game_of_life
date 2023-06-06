@@ -2,9 +2,9 @@
 
 #include "raylib.h"
 
-//============================
+//---------------------------------
 // NOT CUSTOMIZABLE BY USER
-//============================
+//---------------------------------
 cGlobal global; // declare extern object
 cGlobal::cGlobal(){
   // GUI ELEMENTS

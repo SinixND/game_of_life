@@ -1,9 +1,9 @@
 #ifndef CONFIGS_H
 #define CONFIGS_H
 
-//============================
+//---------------------------------
 // CUSTOMIZABLE BY USER
-//============================
+//---------------------------------
 class cConfig {
 public:
   cConfig();

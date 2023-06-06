@@ -13,9 +13,9 @@ int main() {
   InitWindow(config.windowWidth, config.windowHeight, "Conway's Game of Life");
   SetTargetFPS(config.targetFPS);
 
-  //============================
+  //---------------------------------
   // MAIN APP LOOP
-  //============================
+  //---------------------------------
   while (!WindowShouldClose()) // Detect window close button or ESC key
   {
     switch (currentScreen) {
@@ -32,9 +32,9 @@ int main() {
     }
   }
 
-  //============================
+  //---------------------------------
   // SHUTDOWN APP
-  //============================
+  //---------------------------------
   CloseWindow(); // Close window and OpenGL context
 
   return 0;
