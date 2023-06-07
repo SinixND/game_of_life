@@ -3,8 +3,8 @@
 #include "raylib.h"
 #include "raygui.h"
 
-#include "globals.h"
-#include "configs.h"
+#include "globals.h" // provide object "global" for not configurable application parameters
+#include "configs.h" // provide object "config" for configurable parameters
 #include "panels.h"
 
 cPanel screenMenu(config.windowWidth, config.windowHeight, 0, 0, 10);

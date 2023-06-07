@@ -5,21 +5,23 @@
 
 #include "agents.h"
 
+typedef std::vector<std::vector<cAgent>> vvAgents;
+
 class cGameOfLife {
 public:
-  cGameOfLife();
-
-  std::vector<std::vector<cAgent>> grid;
-  int rowsY;
-  int colsX;
-
+  cGameOfLife(int rowsY, int colsX);
 
 private:
+  vvAgents mGrid;
+
+  int mRowsY;
+  int mColsX;
 
 public:
-  void InitialiseGameOfLife();
+  void InitializeGameOfLife();
   void ProcessGameOfLife();
   void UpdateGameOfLife();
+  vvAgents GetGameState();
 };
 
 #endif

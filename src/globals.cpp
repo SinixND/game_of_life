@@ -1,8 +1,7 @@
-#include "globals.h"
+#include "globals.h" // provide object "global" for not configurable application parameters
 
 #include "raylib.h"
 
-//---------------------------------
 // NOT CUSTOMIZABLE BY USER
 //---------------------------------
 cGlobal global; // declare extern object
@@ -25,7 +24,7 @@ cGlobal::cGlobal(){
   colorAgentDecay3 = LIGHTGRAY;
 };
 
-void cGlobal::setDarkMode(bool arg){
+void cGlobal::SetDarkMode(bool arg){
   darkMode = arg;
 
   if (darkMode == true) {
@@ -42,7 +41,7 @@ void cGlobal::setDarkMode(bool arg){
     colorAgentDecay3 = LIGHTGRAY;
   }
 };
-bool cGlobal::getDarkMode(){ return darkMode; };
+bool cGlobal::GetDarkMode(){ return darkMode; };
 
 Color cGlobal::getColorBackground(){ return colorBackground; };
 Color cGlobal::getColorForeground(){ return colorForeground; };

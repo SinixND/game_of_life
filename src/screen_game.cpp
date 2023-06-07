@@ -6,8 +6,8 @@
 #include "raylib.h"
 #include "raygui.h"
 
-#include "globals.h"
-#include "configs.h"
+#include "globals.h" // provide object "global" for not configurable application parameters
+#include "configs.h" // provide object "config" for configurable parameters
 #include "agents.h"
 #include "panels.h"
 
@@ -47,14 +47,14 @@ Rectangle rectGameEndBackground{0, 0, float(config.windowWidth), float(config.wi
 
 // FUNCTION DECLARATION
 //---------------------------------
-void InitialiseGameScreen();
+void InitializeGameScreen();
 void ProcessGameScreen();
 void UpdateGameScreen();
 void OutputGameScreen();
 
 void RunGameScreen() {
   if (agentsInitialized == false) {
-    InitialiseGameScreen();
+    InitializeGameScreen();
     OutputGameScreen();
     agentsInitialized = true;
   }
@@ -66,8 +66,8 @@ void RunGameScreen() {
 
 // FUNCTION DEFINITION
 //---------------------------------
-void InitialiseGameScreen() {
-  // INITIALISE AGENTS
+void InitializeGameScreen() {
+  // INITIALIZE AGENTS
   //---------------------------------
   for (auto rowY = 0; rowY < rowsY; ++rowY) {
     std::vector<cAgent> row;
@@ -139,7 +139,7 @@ void ProcessGameScreen() {
 void UpdateGameScreen() {
   // MENUBAR
   //---------------------------------
-  if (global.getDarkMode() == true) {
+  if (global.GetDarkMode() == true) {
     txtButtonDarkMode = "Light";
   } else {
     txtButtonDarkMode = "Dark";
@@ -216,7 +216,7 @@ void OutputGameScreen() {
 
   int rectButtonDarkModeWidth = global.guiButtonBaseWidth + MeasureText("Light", global.txtSmall);
   if (GuiButton(Rectangle{float(AlignHorizontalRight(menubar, rectButtonDarkModeWidth, 0)), float(AlignVerticalTop(menubar, 0)), float(rectButtonDarkModeWidth), float(global.guiButtonBaseHeight)}, txtButtonDarkMode)) {
-    global.setDarkMode(!global.getDarkMode());
+    global.SetDarkMode(!global.GetDarkMode());
   };
 
   // STATUSBAR

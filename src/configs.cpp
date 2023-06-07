@@ -1,6 +1,5 @@
-#include "configs.h"
+#include "configs.h" // provide object "config" for configurable parameters
 
-//---------------------------------
 // CUSTOMIZABLE BY USER
 //---------------------------------
 cConfig config; // declare extern object

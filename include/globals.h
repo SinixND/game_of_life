@@ -3,7 +3,6 @@
 
 #include "raylib.h"
 
-//---------------------------------
 // NOT CUSTOMIZABLE BY USER
 //---------------------------------
 class cGlobal {
@@ -26,13 +25,13 @@ private:
   Color colorAgentDecay3;
 
 public:
-  void setDarkMode(bool arg);
-  bool getDarkMode();
-  Color getColorBackground();
-  Color getColorForeground();
-  Color getColorAgentDecay1();
-  Color getColorAgentDecay2();
-  Color getColorAgentDecay3();
+  void SetDarkMode(bool arg);
+  bool GetDarkMode();
+  Color GetColorBackground();
+  Color GetColorForeground();
+  Color GetColorAgentDecay1();
+  Color GetColorAgentDecay2();
+  Color GetColorAgentDecay3();
 };
 extern cGlobal global;
 

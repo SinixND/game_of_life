@@ -21,6 +21,7 @@
 0. Performance
     - Mutlithreading
 0. Code
+    - Move globals to the right place! (to avoid globals: configs should be parameters of something that are accessible from outside, eg. with setter/getter)
     - Parameter object if too many
     - Neighbors dont change!, save neighbor-references in agent
     - introduce board to agents class, no higher-dimension info in agent class?
