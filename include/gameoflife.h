@@ -14,17 +14,22 @@ public:
 private:
   int mRowsY;
   int mColsX;
+  int mDay;
+
+  std::vector<bool> mGridState;
+  std::vector<std::vector<bool>> mGridStates;
 
   vvAgents mGrid;
 
   void InitializeGameOfLife();
 
   void ProcessGameOfLife();
-  int CountAdjacentAgents();
+  int CountAdjacentAgents(cAgent agent);
 
   void UpdateGameOfLife();
 
 public:
+  int GetDay();
   vvAgents GetGameState();
   vvAgents GetNextGameState();
 };
