@@ -71,8 +71,8 @@ int CountAdjacentAgents(){
   for (auto dy : {-1, 0, 1}) {
     for (auto dx : {-1, 0, 1}) {
       // wraps around matrix
-      int posY = ((mPosY + dy) + agents.size()) % agents.size();
-      int posX = ((mPosX + dx) + agents[mPosY].size()) % agents[mPosY].size();
+      int posY = ((mPosY + dy) + mGrid.size()) % mGrid.size();
+      int posX = ((mPosX + dx) + mGrid[mPosY].size()) % mGrid[mPosY].size();
 
       cAgent& adjacentAgent = agents[posY][posX];
 
