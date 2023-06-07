@@ -12,16 +12,21 @@ public:
   cGameOfLife(int rowsY, int colsX);
 
 private:
-  vvAgents mGrid;
-
   int mRowsY;
   int mColsX;
 
-public:
+  vvAgents mGrid;
+
   void InitializeGameOfLife();
+
   void ProcessGameOfLife();
+  int CountAdjacentAgents();
+
   void UpdateGameOfLife();
+
+public:
   vvAgents GetGameState();
+  vvAgents GetNextGameState();
 };
 
 #endif

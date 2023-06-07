@@ -6,11 +6,12 @@
 #include "configs.h" // provide object "config" for configurable parameters
 
 typedef std::vector<cAgent> vAgents;
-//typedef std::vector<std::vector<cAgent>> vvAgents;
 
 cGameOfLife::cGameOfLife(int rowsY, int colsX){
   mRowsY = rowsY;
   mColsX = colsX;
+
+  mGrid = InitialiseGameOfLife();
 };
 
 void cGameOfLife::InitializeGameOfLife() {
@@ -35,7 +36,7 @@ void cGameOfLife::InitializeGameOfLife() {
 void cGameOfLife::ProcessGameOfLife(){
   // DETERMINE NEXT AGENTS STATE
   //---------------------------------
-  for (auto& row : agents) {
+  for (auto& row : mGrid) {
     for (auto& agent : row) {
       // Default Ruleset:
       // AdjacentAgent count = 2 -> remain.
@@ -48,7 +49,7 @@ void cGameOfLife::ProcessGameOfLife(){
       }
       agent.mCheckStatus = false;
 
-      switch (agent.CountAdjacentAgents(agents)){
+      switch (agent.CountAdjacentAgents()){
       case 2:
         agent.SetStatusNext(agent.mStatusIs);
         break;
@@ -65,20 +66,38 @@ void cGameOfLife::ProcessGameOfLife(){
   }
 };
 
+int CountAdjacentAgents(){
+  int cnt = 0;
+  for (auto dy : {-1, 0, 1}) {
+    for (auto dx : {-1, 0, 1}) {
+      // wraps around matrix
+      int posY = ((mPosY + dy) + agents.size()) % agents.size();
+      int posX = ((mPosX + dx) + agents[mPosY].size()) % agents[mPosY].size();
+
+      cAgent& adjacentAgent = agents[posY][posX];
+
+      if ((dy != 0 || dx != 0) && adjacentAgent.mStatusIs == true) {
+        cnt += 1;
+      }
+    }
+  }
+  return cnt;
+};
+
 void cGameOfLife::UpdateGameOfLife(){
   day += 1;
 
   // remember last 3 agents states for game end condition
-  agentsState2 = agentsState1;
-  agentsState1 = agentsState0;
-  agentsState0.clear();
+  mGridState2 = mGridState1;
+  mGridState1 = mGridState0;
+  mGridState0.clear();
 
   // UPDATE AGENTS
   //---------------------------------
-  for (auto& row : agents) {
+  for (auto& row : mGrid) {
     for (auto& agent : row) {
       if (agent.mStatusChanging == true) {
-        agent.PingAdjacentAgents(agents);
+        agent.PingAdjacentAgents(mGrid);
 
         if (agent.GetStatusNext() == true) {
           agent.mStatusIs = true;
@@ -101,5 +120,4 @@ void cGameOfLife::UpdateGameOfLife(){
   }
 };
 
-vvAgents cGameOfLife::GetGameState(){
-};
+vvAgents cGameOfLife::GetNextGameState(){ return mGrid; };
