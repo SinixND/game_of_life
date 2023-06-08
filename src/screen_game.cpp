@@ -135,8 +135,8 @@ void UpdateGameScreen() {
   }
 
   //if (agentsState0 == agentsState2) {
-  int state = GoL.mGridStates.size();
-  if (GoL.mGridStates[state] == GoL.mGridStates[state - 2]) {
+  int currentState = GoL.mGridStates.size() - 1;
+  if (GoL.mGridStates[currentState] == GoL.mGridStates[currentState - 2]) {
     evolutionState = false;
   }
 }
