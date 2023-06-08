@@ -7,7 +7,8 @@ cConfig::cConfig(){
   // APPLICATION
   windowWidth = 640;
   windowHeight = 480;
-  targetFPS = 144;
+  targetFPS = 60;
+  targetTickTime = 1 / targetFPS;
 
   // AGENT
   agentWidth = 3;
@@ -17,8 +18,8 @@ cConfig::cConfig(){
 
   // AGENTS / ENVIRONMENT
   agentGap = 1;
-  lifeDensity = 0.0025; // in %, eg. 25
+  lifeDensity = 0.25;
 
   // CONTROLS
-  evolutionTime = 100;
+  tickTime = 0.1;
 }

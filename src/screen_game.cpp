@@ -8,7 +8,6 @@
 
 #include "globals.h" // provide object "global" for not configurable application parameters
 #include "configs.h" // provide object "config" for configurable parameters
-//#include "agents.h"
 #include "gameoflife.h"
 #include "panels.h"
 
@@ -21,25 +20,17 @@ cPanel display(config.windowWidth, config.windowHeight - menubar.mPanelHeight - 
 const char *txtButtonPause = "[P]ause";
 const char *txtButtonDarkMode;
 
-// AGENTS / ENVIRONMENT
+// GAME OF LIFE / GRID
 //---------------------------------
 bool pauseState = false;
 bool evolutionState = true;
 bool gameScreenInitialized = false;
+float timePassed = 0;
 
 int rowsY = display.GetPanelContentHeight() / (config.agentHeight + config.agentGap);
 int colsX = display.GetPanelContentWidth() / (config.agentWidth + config.agentGap);
 
 cGameOfLife GoL(rowsY, colsX);
-//std::vector<std::vector<cAgent>> agents;
-
-// LOGIC
-//---------------------------------
-float timePassed = 0;
-//int day = 0;
-//std::vector<bool> agentsState0;
-//std::vector<bool> agentsState1;
-//std::vector<bool> agentsState2;
 
 // GAME END OVERLAY
 //---------------------------------
@@ -48,18 +39,11 @@ Rectangle rectGameEndBackground{0, 0, float(config.windowWidth), float(config.wi
 
 // FUNCTION DECLARATION
 //---------------------------------
-void InitializeGameScreen();
 void ProcessGameScreen();
 void UpdateGameScreen();
 void OutputGameScreen();
 
 void RunGameScreen() {
-  //if (gameScreenInitialized == false) {
-    //InitializeGameScreen();
-    //OutputGameScreen();
-    //gameScreenInitialized = true;
-  //}
-
   ProcessGameScreen();
   UpdateGameScreen();
   OutputGameScreen();
@@ -67,26 +51,6 @@ void RunGameScreen() {
 
 // FUNCTION DEFINITION
 //---------------------------------
-void InitializeGameScreen() {
-  //GoL.InitializeGameOfLife();
-  //// INITIALIZE AGENTS
-  ////---------------------------------
-  //for (auto rowY = 0; rowY < rowsY; ++rowY) {
-    //std::vector<cAgent> row;
-    //agents.push_back(row);
-
-    //for (auto colX = 0; colX < colsX; ++colX) {
-      //agents[rowY].push_back(cAgent(rowY, colX));
-
-      //cAgent& agent = agents[rowY][colX];
-
-      //if (((rand() % 100) * 0.01) <= config.lifeDensity) {
-        //agent.mStatusIs = true; // make alive
-      //}
-    //}
-  //}
-}
-
 void ProcessGameScreen() {
   if (IsKeyPressed(KEY_P)) {
     pauseState = !pauseState;
@@ -103,8 +67,8 @@ void ProcessGameScreen() {
     return;
   }
 
-  if (timePassed <= config.evolutionTime) {
-    timePassed += GetFrameTime() * 1000;
+  if (timePassed <= config.tickTime) {
+    timePassed += GetFrameTime();
     return;
   }
 
@@ -128,13 +92,12 @@ void UpdateGameScreen() {
     txtButtonPause = "Pause";
   }
 
-  // DISPLAY
+  // GAME END CONDITION
   //---------------------------------
   if (evolutionState == false) {
     return;
   }
 
-  //if (agentsState0 == agentsState2) {
   int currentState = GoL.mGridStates.size() - 1;
   if (GoL.mGridStates[currentState] == GoL.mGridStates[currentState - 2]) {
     evolutionState = false;
@@ -159,7 +122,7 @@ void OutputGameScreen() {
 
   // STATUSBAR
   //---------------------------------
-  DrawText(TextFormat("Time: %i ms; Day: %i", config.evolutionTime, GoL.GetDay()), AlignHorizontalLeft(statusbar, 0), AlignVerticalCenter(statusbar, global.txtSmall), global.txtSmall, global.GetColorForeground());
+  DrawText(TextFormat("TickTime: %f/%f ms; Day: %i", config.tickTime, config.targetTickTime, GoL.GetDay()), AlignHorizontalLeft(statusbar, 0), AlignVerticalCenter(statusbar, global.txtSmall), global.txtSmall, global.GetColorForeground());
 
   // DISPLAY
   //---------------------------------
@@ -222,6 +185,6 @@ void OutputGameScreen() {
     DrawText(txtPaused, AlignHorizontalRight(statusbar, MeasureText(txtPaused, global.txtSmall), 0), AlignVerticalCenter(statusbar, global.txtSmall), global.txtSmall, global.GetColorForeground());
   }
 
-  DrawFPS(GetScreenWidth() - 95, 10);
+  //DrawFPS(GetScreenWidth() - 95, 10);
   EndDrawing();
 }

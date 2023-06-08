@@ -6,8 +6,6 @@
 cAgent::cAgent(int rowY, int colX) {
   mPosY = rowY;
   mPosX = colX;
-  std::cout << "Agent: "<<mPosY<<","<<mPosX<<";\n";
-
   mStatusIs = false;
   mStatusNext = false;
   mStatusChanging = true;

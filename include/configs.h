@@ -11,6 +11,7 @@ public:
   int windowWidth;
   int windowHeight;
   int targetFPS;
+  float targetTickTime;
 
   // AGENT
   int agentWidth;
@@ -20,10 +21,10 @@ public:
 
   // AGENTS / ENVIRONMENT
   int agentGap;
-  float lifeDensity; // in %, eg. 25
+  float lifeDensity;
 
   // CONTROLS
-  int evolutionTime; // in ms
+  float tickTime;
 
 };
 extern cConfig config;

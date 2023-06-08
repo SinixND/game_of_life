@@ -30,9 +30,6 @@ void cGameOfLife::InitializeGameOfLife() {
     for (auto colX = 0; colX < mColsX; ++colX) {
       mGrid[rowY].push_back(cAgent(rowY, colX));
 
-      if (mGrid.size() > 92){
-        std::cout << "Gridsize: "<<mGrid.size()<<","<<mGrid[rowY].size()<<";\n";
-      }
       cAgent& agent = mGrid[rowY][colX];
 
       if (((rand() % 100) * 0.01) <= config.lifeDensity) {
