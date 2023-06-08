@@ -17,7 +17,7 @@ cConfig::cConfig(){
 
   // AGENTS / ENVIRONMENT
   agentGap = 1;
-  lifeDensity = 0.25; // in %, eg. 25
+  lifeDensity = 0.0025; // in %, eg. 25
 
   // CONTROLS
   evolutionTime = 100;

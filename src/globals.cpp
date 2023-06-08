@@ -43,8 +43,8 @@ void cGlobal::SetDarkMode(bool arg){
 };
 bool cGlobal::GetDarkMode(){ return darkMode; };
 
-Color cGlobal::getColorBackground(){ return colorBackground; };
-Color cGlobal::getColorForeground(){ return colorForeground; };
-Color cGlobal::getColorAgentDecay1(){ return colorAgentDecay1; };
-Color cGlobal::getColorAgentDecay2(){ return colorAgentDecay2; };
-Color cGlobal::getColorAgentDecay3(){ return colorAgentDecay3; };
+Color cGlobal::GetColorBackground(){ return colorBackground; };
+Color cGlobal::GetColorForeground(){ return colorForeground; };
+Color cGlobal::GetColorAgentDecay1(){ return colorAgentDecay1; };
+Color cGlobal::GetColorAgentDecay2(){ return colorAgentDecay2; };
+Color cGlobal::GetColorAgentDecay3(){ return colorAgentDecay3; };

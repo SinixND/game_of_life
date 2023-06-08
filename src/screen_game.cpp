@@ -8,7 +8,8 @@
 
 #include "globals.h" // provide object "global" for not configurable application parameters
 #include "configs.h" // provide object "config" for configurable parameters
-#include "agents.h"
+//#include "agents.h"
+#include "gameoflife.h"
 #include "panels.h"
 
 // SET GUI ELEMENTS
@@ -24,21 +25,21 @@ const char *txtButtonDarkMode;
 //---------------------------------
 bool pauseState = false;
 bool evolutionState = true;
-bool agentsInitialized = false;
+bool gameScreenInitialized = false;
 
-int colsX = display.GetPanelContentWidth() / (config.agentWidth + config.agentGap);
 int rowsY = display.GetPanelContentHeight() / (config.agentHeight + config.agentGap);
-int agentsSize = colsX * rowsY;
+int colsX = display.GetPanelContentWidth() / (config.agentWidth + config.agentGap);
 
-std::vector<std::vector<cAgent>> agents;
+cGameOfLife GoL(rowsY, colsX);
+//std::vector<std::vector<cAgent>> agents;
 
 // LOGIC
 //---------------------------------
 float timePassed = 0;
-int day = 0;
-std::vector<bool> agentsState0;
-std::vector<bool> agentsState1;
-std::vector<bool> agentsState2;
+//int day = 0;
+//std::vector<bool> agentsState0;
+//std::vector<bool> agentsState1;
+//std::vector<bool> agentsState2;
 
 // GAME END OVERLAY
 //---------------------------------
@@ -53,11 +54,11 @@ void UpdateGameScreen();
 void OutputGameScreen();
 
 void RunGameScreen() {
-  if (agentsInitialized == false) {
-    InitializeGameScreen();
-    OutputGameScreen();
-    agentsInitialized = true;
-  }
+  //if (gameScreenInitialized == false) {
+    //InitializeGameScreen();
+    //OutputGameScreen();
+    //gameScreenInitialized = true;
+  //}
 
   ProcessGameScreen();
   UpdateGameScreen();
@@ -67,22 +68,23 @@ void RunGameScreen() {
 // FUNCTION DEFINITION
 //---------------------------------
 void InitializeGameScreen() {
-  // INITIALIZE AGENTS
-  //---------------------------------
-  for (auto rowY = 0; rowY < rowsY; ++rowY) {
-    std::vector<cAgent> row;
-    agents.push_back(row);
+  //GoL.InitializeGameOfLife();
+  //// INITIALIZE AGENTS
+  ////---------------------------------
+  //for (auto rowY = 0; rowY < rowsY; ++rowY) {
+    //std::vector<cAgent> row;
+    //agents.push_back(row);
 
-    for (auto colX = 0; colX < colsX; ++colX) {
-      agents[rowY].push_back(cAgent(rowY, colX));
+    //for (auto colX = 0; colX < colsX; ++colX) {
+      //agents[rowY].push_back(cAgent(rowY, colX));
 
-      cAgent& agent = agents[rowY][colX];
+      //cAgent& agent = agents[rowY][colX];
 
-      if (((rand() % 100) * 0.01) <= config.lifeDensity) {
-        agent.mStatusIs = true; // make alive
-      }
-    }
-  }
+      //if (((rand() % 100) * 0.01) <= config.lifeDensity) {
+        //agent.mStatusIs = true; // make alive
+      //}
+    //}
+  //}
 }
 
 void ProcessGameScreen() {
@@ -94,46 +96,20 @@ void ProcessGameScreen() {
     return;
   }
 
-  if (timePassed <= config.evolutionTime) {
-    return;
-  }
-
-  // DETERMINE NEXT AGENTS STATE
-  //---------------------------------
-  for (auto& row : agents) {
-    for (auto& agent : row) {
-      // Default Ruleset:
-      // AdjacentAgent count = 2 -> remain.
-      // AdjacentAgent count = 3 -> alive.
-      // All other die.
-
-      if (agent.mCheckStatus == false)
-      {
-        continue;
-      }
-      agent.mCheckStatus = false;
-
-      switch (agent.CountAdjacentAgents(agents)){
-      case 2:
-        agent.SetStatusNext(agent.mStatusIs);
-        break;
-      
-      case 3:
-        agent.SetStatusNext(true);
-        break;
-      
-      default:
-        agent.SetStatusNext(false);
-        break;
-      }
-    }
-  }
-
   if ((evolutionState == false) && (gameEndOverlayVisible == true)) {
     if ((IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), rectGameEndBackground)) || IsKeyPressed(KEY_ENTER)) {
       gameEndOverlayVisible = false;
     }
+    return;
   }
+
+  if (timePassed <= config.evolutionTime) {
+    timePassed += GetFrameTime() * 1000;
+    return;
+  }
+
+  timePassed = 0;
+  GoL.EvolveGrid();
 }
 
 void UpdateGameScreen() {
@@ -158,54 +134,16 @@ void UpdateGameScreen() {
     return;
   }
 
-  if (timePassed <= config.evolutionTime) {
-    timePassed += GetFrameTime() * 1000;
-    return;
-  }
-
-  timePassed = 0;
-  day += 1;
-
-  // remember last 3 agents states for game end condition
-  agentsState2 = agentsState1;
-  agentsState1 = agentsState0;
-  agentsState0.clear();
-
-  // UPDATE AGENTS
-  //---------------------------------
-  for (auto& row : agents) {
-    for (auto& agent : row) {
-      if (agent.mStatusChanging == true) {
-        agent.PingAdjacentAgents(agents);
-
-        if (agent.GetStatusNext() == true) {
-          agent.mStatusIs = true;
-
-          if (config.decayAgents == true) {
-            agent.mVitality = 4;
-          }
-        } else {
-          agent.mStatusIs = false;
-        }
-      }
-
-      if (agent.mStatusIs == true) {
-        agentsState0.push_back(true);
-      } else {
-        agentsState0.push_back(false);
-        agent.DecreaseVitality();
-      }
-    }
-  }
-
-  if (agentsState0 == agentsState2) {
+  //if (agentsState0 == agentsState2) {
+  int state = GoL.mGridStates.size();
+  if (GoL.mGridStates[state] == GoL.mGridStates[state - 2]) {
     evolutionState = false;
   }
 }
 
 void OutputGameScreen() {
   BeginDrawing();
-  ClearBackground(global.getColorBackground());
+  ClearBackground(global.GetColorBackground());
 
   // MENUBAR
   //---------------------------------
@@ -221,37 +159,37 @@ void OutputGameScreen() {
 
   // STATUSBAR
   //---------------------------------
-  DrawText(TextFormat("Time: %i ms; Day: %i", config.evolutionTime, day), AlignHorizontalLeft(statusbar, 0), AlignVerticalCenter(statusbar, global.txtSmall), global.txtSmall, global.getColorForeground());
+  DrawText(TextFormat("Time: %i ms; Day: %i", config.evolutionTime, GoL.GetDay()), AlignHorizontalLeft(statusbar, 0), AlignVerticalCenter(statusbar, global.txtSmall), global.txtSmall, global.GetColorForeground());
 
   // DISPLAY
   //---------------------------------
   // draw agents
-  for (auto& row : agents) {
+  for (auto& row : GoL.GetGrid()) {
     for (auto& agent : row) {
       Rectangle rectAgent{float(AlignHorizontalCenter(display, (colsX * (config.agentWidth + config.agentGap) - config.agentGap)) + (agent.mPosX * (config.agentWidth + config.agentGap))), float(AlignVerticalCenter(display, (rowsY * (config.agentHeight + config.agentGap) - config.agentGap)) + (agent.mPosY * (config.agentHeight + config.agentGap))), float(config.agentWidth), float(config.agentHeight)};
 
       if (agent.mStatusIs == true) {
-        DrawRectangleRec(rectAgent, global.getColorForeground());
+        DrawRectangleRec(rectAgent, global.GetColorForeground());
       } else {
         Color agentVitalityColor;
         switch (agent.mVitality) {
         case 4:
-          agentVitalityColor = global.getColorForeground();
+          agentVitalityColor = global.GetColorForeground();
           DrawRectangleRec(rectAgent, agentVitalityColor);
           break;
 
         case 3:
-          agentVitalityColor = global.getColorAgentDecay1();
+          agentVitalityColor = global.GetColorAgentDecay1();
           DrawRectangleRec(rectAgent, agentVitalityColor);
           break;
 
         case 2:
-          agentVitalityColor = global.getColorAgentDecay2();
+          agentVitalityColor = global.GetColorAgentDecay2();
           DrawRectangleRec(rectAgent, agentVitalityColor);
           break;
 
         case 1:
-          agentVitalityColor = global.getColorAgentDecay3();
+          agentVitalityColor = global.GetColorAgentDecay3();
           DrawRectangleRec(rectAgent, agentVitalityColor);
           break;
 
@@ -268,7 +206,7 @@ void OutputGameScreen() {
   if ((evolutionState == false) && (gameEndOverlayVisible == true)) {
     DrawRectangleRec(rectGameEndBackground, CLITERAL(Color){130, 130, 130, 175});
     DrawRectangleLinesEx(rectGameEndBackground, 10, DARKGRAY);
-    DrawText(TextFormat("Game over!\nUniverse survived for %d days. \nPress Enter or click to \ngo back to agents. \nPress ESC to leave.", day), 50, 50, global.txtNormal, RED);
+    DrawText(TextFormat("Game over!\nUniverse survived for %d days. \nPress Enter or click to \ngo back to agents. \nPress ESC to leave.", GoL.GetDay()), 50, 50, global.txtNormal, RED);
   }
 
   // DRAW PAUSE OVERLAY
@@ -281,9 +219,9 @@ void OutputGameScreen() {
     DrawRectangleLinesEx(rectDisplay, 10, DARKGRAY);
 
     const char *txtPaused = TextFormat("[P]aused...");
-    DrawText(txtPaused, AlignHorizontalRight(statusbar, MeasureText(txtPaused, global.txtSmall), 0), AlignVerticalCenter(statusbar, global.txtSmall), global.txtSmall, global.getColorForeground());
+    DrawText(txtPaused, AlignHorizontalRight(statusbar, MeasureText(txtPaused, global.txtSmall), 0), AlignVerticalCenter(statusbar, global.txtSmall), global.txtSmall, global.GetColorForeground());
   }
 
-  //DrawFPS(GetScreenWidth() - 95, 10);
+  DrawFPS(GetScreenWidth() - 95, 10);
   EndDrawing();
 }

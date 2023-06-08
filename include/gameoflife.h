@@ -11,27 +11,29 @@ class cGameOfLife {
 public:
   cGameOfLife(int rowsY, int colsX);
 
+  std::vector<bool> mGridState;
+  std::vector<std::vector<bool>> mGridStates;
+
+  void EvolveGrid();
+
 private:
   int mRowsY;
   int mColsX;
   int mDay;
 
-  std::vector<bool> mGridState;
-  std::vector<std::vector<bool>> mGridStates;
-
   vvAgents mGrid;
 
   void InitializeGameOfLife();
 
+  int CountAdjacentAgents(cAgent& agent);
   void ProcessGameOfLife();
-  int CountAdjacentAgents(cAgent agent);
 
+  void PingAdjacentAgents(cAgent& agent);
   void UpdateGameOfLife();
 
 public:
   int GetDay();
-  vvAgents GetGameState();
-  vvAgents GetNextGameState();
+  vvAgents& GetGrid();
 };
 
 #endif

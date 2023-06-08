@@ -1,9 +1,11 @@
 #include "gameoflife.h"
 
+#include <iostream>
 #include <vector>
+#include <cstdlib>
 
-#include "agents.h"
 #include "configs.h" // provide object "config" for configurable parameters
+#include "agents.h"
 
 typedef std::vector<cAgent> vAgents;
 
@@ -11,6 +13,7 @@ cGameOfLife::cGameOfLife(int rowsY, int colsX){
   mRowsY = rowsY;
   mColsX = colsX;
   mDay = 0;
+  mGrid.clear();
   mGridState.clear();
   mGridStates.clear();
 
@@ -27,6 +30,9 @@ void cGameOfLife::InitializeGameOfLife() {
     for (auto colX = 0; colX < mColsX; ++colX) {
       mGrid[rowY].push_back(cAgent(rowY, colX));
 
+      if (mGrid.size() > 92){
+        std::cout << "Gridsize: "<<mGrid.size()<<","<<mGrid[rowY].size()<<";\n";
+      }
       cAgent& agent = mGrid[rowY][colX];
 
       if (((rand() % 100) * 0.01) <= config.lifeDensity) {
@@ -40,6 +46,24 @@ void cGameOfLife::InitializeGameOfLife() {
   mGridStates.push_back(mGridState);
   mGridState.clear();
 }
+
+int cGameOfLife::CountAdjacentAgents(cAgent& agent){
+  int cnt = 0;
+  for (auto dy : {-1, 0, 1}) {
+    for (auto dx : {-1, 0, 1}) {
+      // wraps around matrix
+      int posY = ((agent.mPosY + dy) + mGrid.size()) % mGrid.size();
+      int posX = ((agent.mPosX + dx) + mGrid[posY].size()) % mGrid[posY].size();
+
+      cAgent& adjacentAgent = mGrid[posY][posX];
+
+      if ((dy != 0 || dx != 0) && adjacentAgent.mStatusIs == true) {
+        cnt += 1;
+      }
+    }
+  }
+  return cnt;
+};
 
 void cGameOfLife::ProcessGameOfLife(){
   // DETERMINE NEXT AGENTS STATE
@@ -74,22 +98,17 @@ void cGameOfLife::ProcessGameOfLife(){
   }
 };
 
-int cGameOfLife::CountAdjacentAgents(cAgent agent){
-  int cnt = 0;
-  for (auto dy : {-1, 0, 1}) {
-    for (auto dx : {-1, 0, 1}) {
+void cGameOfLife::PingAdjacentAgents(cAgent& agent){
+  for (auto dx : {-1, 0, 1}) {
+    for (auto dy : {-1, 0, 1}) {
       // wraps around matrix
       int posY = ((agent.mPosY + dy) + mGrid.size()) % mGrid.size();
-      int posX = ((agent.mPosX + dx) + mGrid[agent.mPosY].size()) % mGrid[agent.mPosY].size();
+      int posX = ((agent.mPosX + dx) + mGrid[posY].size()) % mGrid[posY].size();
 
       cAgent& adjacentAgent = mGrid[posY][posX];
-
-      if ((dy != 0 || dx != 0) && adjacentAgent.mStatusIs == true) {
-        cnt += 1;
-      }
+      adjacentAgent.mCheckStatus = true;
     }
   }
-  return cnt;
 };
 
 void cGameOfLife::UpdateGameOfLife(){
@@ -125,7 +144,12 @@ void cGameOfLife::UpdateGameOfLife(){
   mGridState.clear();
 };
 
-vvAgents cGameOfLife::GetGameState(){ return mGrid; };
+void cGameOfLife::EvolveGrid(){
+  ProcessGameOfLife();
+  UpdateGameOfLife();
+};
 
-vvAgents cGameOfLife::SetNextGameState(){
-  };
+
+vvAgents& cGameOfLife::GetGrid(){ return mGrid; };
+
+int cGameOfLife::GetDay(){ return mDay; };

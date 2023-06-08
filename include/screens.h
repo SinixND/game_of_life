@@ -6,14 +6,14 @@ typedef enum screen
   MENU,
   GAME,
   SETTINGS,
-  ABOUT
 } screen;
 
 extern screen currentScreen;
 
 // SCREENS
 //---------------------------------
-void RunGameScreen();
 void RunMenuScreen();
+void RunGameScreen();
+void RunSettingsScreen();
 
 #endif

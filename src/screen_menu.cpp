@@ -25,7 +25,7 @@ void UpdateMenuScreen(){};
 
 void OutputMenuScreen() {
   BeginDrawing();
-  ClearBackground(global.getColorBackground());
+  ClearBackground(global.GetColorBackground());
 
   int rectButtonMenuWidth = global.guiButtonBaseWidth + MeasureText("Start Game", DEFAULT);
 
