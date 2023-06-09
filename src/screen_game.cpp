@@ -122,7 +122,7 @@ void OutputGameScreen() {
 
   // STATUSBAR
   //---------------------------------
-  DrawText(TextFormat("TickTime: %f/%f ms; Day: %i", config.tickTime, config.targetTickTime, GoL.GetDay()), AlignHorizontalLeft(statusbar, 0), AlignVerticalCenter(statusbar, global.txtSmall), global.txtSmall, global.GetColorForeground());
+  DrawText(TextFormat("TickTime: %.0f ms; Day: %i", config.tickTime * 1000, GoL.GetDay()), AlignHorizontalLeft(statusbar, 0), AlignVerticalCenter(statusbar, global.txtSmall), global.txtSmall, global.GetColorForeground());
 
   // DISPLAY
   //---------------------------------

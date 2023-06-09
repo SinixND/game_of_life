@@ -8,7 +8,6 @@ cConfig::cConfig(){
   windowWidth = 640;
   windowHeight = 480;
   targetFPS = 60;
-  targetTickTime = 1 / targetFPS;
 
   // AGENT
   agentWidth = 3;

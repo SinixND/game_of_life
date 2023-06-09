@@ -11,7 +11,6 @@ public:
   int windowWidth;
   int windowHeight;
   int targetFPS;
-  float targetTickTime;
 
   // AGENT
   int agentWidth;
