@@ -13,12 +13,13 @@
 
 // SET GUI ELEMENTS
 //---------------------------------
-cPanel menubar(config.windowWidth, (global.guiButtonBaseHeight + 20), 0, 0, 10);
-cPanel statusbar(config.windowWidth, (global.txtSmall + 20), 0, (config.windowHeight - (global.txtSmall + 20)), 10);
-cPanel display(config.windowWidth, config.windowHeight - menubar.mPanelHeight - statusbar.mPanelHeight, 0, menubar.mPanelHeight, 10);
+cPanel panelMenubarScreenGame(config.windowWidth, (global.guiButtonBaseHeight + 20), 0, 0, 10);
+cPanel panelStatusbarScreenGame(config.windowWidth, (global.txtSmall + 20), 0, (config.windowHeight - (global.txtSmall + 20)), 10);
+cPanel panelMainScreenGame(config.windowWidth, config.windowHeight - panelMenubarScreenGame.mPanelHeight - panelStatusbarScreenGame.mPanelHeight, 0, panelMenubarScreenGame.mPanelHeight, 10);
 
+const char *txtButtonBackScreenGame = "Back";
 const char *txtButtonPause = "[P]ause";
-const char *txtButtonDarkMode;
+const char *txtButtonDarkModeScreenGame;
 
 // GAME OF LIFE / GRID
 //---------------------------------
@@ -27,10 +28,10 @@ bool evolutionState = true;
 bool gameScreenInitialized = false;
 float timePassed = 0;
 
-int rowsY = display.GetPanelContentHeight() / (config.agentHeight + config.agentGap);
-int colsX = display.GetPanelContentWidth() / (config.agentWidth + config.agentGap);
+bool ScreenGameInitialized = false;
 
-cGameOfLife GoL(rowsY, colsX);
+int rowsY = panelMainScreenGame.GetPanelContentHeight() / (config.agentHeight + config.agentGap);
+int colsX = panelMainScreenGame.GetPanelContentWidth() / (config.agentWidth + config.agentGap);
 
 // GAME END OVERLAY
 //---------------------------------
@@ -39,6 +40,7 @@ Rectangle rectGameEndBackground{0, 0, float(config.windowWidth), float(config.wi
 
 // FUNCTION DECLARATION
 //---------------------------------
+void InitializeGameScreen();
 void ProcessGameScreen();
 void UpdateGameScreen();
 void OutputGameScreen();
@@ -51,6 +53,13 @@ void RunGameScreen() {
 
 // FUNCTION DEFINITION
 //---------------------------------
+void InitializeGameScreen() {
+  if (ScreenGameInitialized == false) {
+    static cGameOfLife GoL(rowsY, colsX);
+    ScreenGameInitialized = true;
+  }
+};
+
 void ProcessGameScreen() {
   if (IsKeyPressed(KEY_P)) {
     pauseState = !pauseState;
@@ -77,12 +86,12 @@ void ProcessGameScreen() {
 }
 
 void UpdateGameScreen() {
-  // MENUBAR
+  // MENUBAR PANEL
   //---------------------------------
   if (global.GetDarkMode() == true) {
-    txtButtonDarkMode = "Light";
+    txtButtonDarkModeScreenGame = "Light";
   } else {
-    txtButtonDarkMode = "Dark";
+    txtButtonDarkModeScreenGame = "Dark";
   }
 
   if (pauseState == true) {
@@ -108,28 +117,34 @@ void OutputGameScreen() {
   BeginDrawing();
   ClearBackground(global.GetColorBackground());
 
-  // MENUBAR
+  // MENUBAR PANEL
   //---------------------------------
+  int rectButtonBackWidth = global.guiButtonBaseWidth + MeasureText(txtButtonBackScreenGame, DEFAULT);
+  if (GuiButton(Rectangle{float(AlignHorizontalLeft(panelMenubarScreenGame, rectButtonBackWidth)), float(AlignVerticalTop(panelMenubarScreenGame, 0)), float(rectButtonBackWidth), float(global.guiButtonBaseHeight)}, txtButtonBackScreenGame)) {
+
+    currentScreen = MENU;
+  };
+
   int rectButtonPauseWidth = global.guiButtonBaseWidth + MeasureText("Resume", DEFAULT);
-  if (GuiButton(Rectangle{float(AlignHorizontalCenter(menubar, rectButtonPauseWidth)), float(AlignVerticalTop(menubar, 0)), float(rectButtonPauseWidth), float(global.guiButtonBaseHeight)}, txtButtonPause)) {
+  if (GuiButton(Rectangle{float(AlignHorizontalCenter(panelMenubarScreenGame, rectButtonPauseWidth)), float(AlignVerticalTop(panelMenubarScreenGame, 0)), float(rectButtonPauseWidth), float(global.guiButtonBaseHeight)}, txtButtonPause)) {
     pauseState = !pauseState;
   };
 
   int rectButtonDarkModeWidth = global.guiButtonBaseWidth + MeasureText("Light", global.txtSmall);
-  if (GuiButton(Rectangle{float(AlignHorizontalRight(menubar, rectButtonDarkModeWidth, 0)), float(AlignVerticalTop(menubar, 0)), float(rectButtonDarkModeWidth), float(global.guiButtonBaseHeight)}, txtButtonDarkMode)) {
+  if (GuiButton(Rectangle{float(AlignHorizontalRight(panelMenubarScreenGame, rectButtonDarkModeWidth, 0)), float(AlignVerticalTop(panelMenubarScreenGame, 0)), float(rectButtonDarkModeWidth), float(global.guiButtonBaseHeight)}, txtButtonDarkModeScreenGame)) {
     global.SetDarkMode(!global.GetDarkMode());
   };
 
-  // STATUSBAR
+  // STATUSBAR PANEL
   //---------------------------------
-  DrawText(TextFormat("TickTime: %.0f ms; Day: %i", config.tickTime * 1000, GoL.GetDay()), AlignHorizontalLeft(statusbar, 0), AlignVerticalCenter(statusbar, global.txtSmall), global.txtSmall, global.GetColorForeground());
+  DrawText(TextFormat("TickTime: %.0f ms; Day: %i", config.tickTime * 1000, GoL.GetDay()), AlignHorizontalLeft(panelStatusbarScreenGame, 0), AlignVerticalCenter(panelStatusbarScreenGame, global.txtSmall), global.txtSmall, global.GetColorForeground());
 
-  // DISPLAY
+  // MAIN PANEL
   //---------------------------------
   // draw agents
   for (auto& row : GoL.GetGrid()) {
     for (auto& agent : row) {
-      Rectangle rectAgent{float(AlignHorizontalCenter(display, (colsX * (config.agentWidth + config.agentGap) - config.agentGap)) + (agent.mPosX * (config.agentWidth + config.agentGap))), float(AlignVerticalCenter(display, (rowsY * (config.agentHeight + config.agentGap) - config.agentGap)) + (agent.mPosY * (config.agentHeight + config.agentGap))), float(config.agentWidth), float(config.agentHeight)};
+      Rectangle rectAgent{float(AlignHorizontalCenter(panelMainScreenGame, (colsX * (config.agentWidth + config.agentGap) - config.agentGap)) + (agent.mPosX * (config.agentWidth + config.agentGap))), float(AlignVerticalCenter(panelMainScreenGame, (rowsY * (config.agentHeight + config.agentGap) - config.agentGap)) + (agent.mPosY * (config.agentHeight + config.agentGap))), float(config.agentWidth), float(config.agentHeight)};
 
       if (agent.mStatusIs == true) {
         DrawRectangleRec(rectAgent, global.GetColorForeground());
@@ -175,14 +190,14 @@ void OutputGameScreen() {
   // DRAW PAUSE OVERLAY
   //---------------------------------
   else if (pauseState == true) {
-    Rectangle rectDisplay{float(display.mPanelLeftX), float(display.mPanelTopY), float(display.mPanelWidth), float(display.mPanelHeight)};
+    Rectangle rectpanelMainScreenGame{float(panelMainScreenGame.mPanelLeftX), float(panelMainScreenGame.mPanelTopY), float(panelMainScreenGame.mPanelWidth), float(panelMainScreenGame.mPanelHeight)};
 
-    DrawRectangleRec(Rectangle{float(display.mPanelLeftX), float(display.mPanelTopY), float(display.mPanelWidth), float(display.mPanelHeight)}, CLITERAL(Color){130, 130, 130, 175});
+    DrawRectangleRec(Rectangle{float(panelMainScreenGame.mPanelLeftX), float(panelMainScreenGame.mPanelTopY), float(panelMainScreenGame.mPanelWidth), float(panelMainScreenGame.mPanelHeight)}, CLITERAL(Color){130, 130, 130, 175});
 
-    DrawRectangleLinesEx(rectDisplay, 10, DARKGRAY);
+    DrawRectangleLinesEx(rectpanelMainScreenGame, 10, DARKGRAY);
 
     const char *txtPaused = TextFormat("[P]aused...");
-    DrawText(txtPaused, AlignHorizontalRight(statusbar, MeasureText(txtPaused, global.txtSmall), 0), AlignVerticalCenter(statusbar, global.txtSmall), global.txtSmall, global.GetColorForeground());
+    DrawText(txtPaused, AlignHorizontalRight(panelStatusbarScreenGame, MeasureText(txtPaused, global.txtSmall), 0), AlignVerticalCenter(panelStatusbarScreenGame, global.txtSmall), global.txtSmall, global.GetColorForeground());
   }
 
   //DrawFPS(GetScreenWidth() - 95, 10);
