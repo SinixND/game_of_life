@@ -32,6 +32,7 @@ bool ScreenGameInitialized = false;
 
 int rowsY = panelMainScreenGame.GetPanelContentHeight() / (config.agentHeight + config.agentGap);
 int colsX = panelMainScreenGame.GetPanelContentWidth() / (config.agentWidth + config.agentGap);
+cGameOfLife GoL(rowsY, colsX);
 
 // GAME END OVERLAY
 //---------------------------------
@@ -55,7 +56,7 @@ void RunGameScreen() {
 //---------------------------------
 void InitializeGameScreen() {
   if (ScreenGameInitialized == false) {
-    static cGameOfLife GoL(rowsY, colsX);
+    GoL = cGameOfLife GameOfLife(rowsY, colsX);
     ScreenGameInitialized = true;
   }
 };
