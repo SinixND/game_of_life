@@ -10,24 +10,25 @@
 // SET GUI ELEMENTS
 //---------------------------------
 cPanel panelMenubarScreenMenu(config.windowWidth, (global.guiButtonBaseHeight + 20), 0, 0, 10);
+cPanel panelStatusbarScreenMenu(config.windowWidth, (global.txtSmall + 20), 0, (config.windowHeight - (global.txtSmall + 20)), 10);
+cPanel panelMainScreenMenu(config.windowWidth, config.windowHeight - panelMenubarScreenMenu.mPanelHeight - panelStatusbarScreenMenu.mPanelHeight, 0, panelMenubarScreenMenu.mPanelHeight, 10);
 
 const char *txtButtonDarkModeScreenMenu;
 
-cPanel panelMainScreenMenu(config.windowWidth, config.windowHeight - panelMenubarScreenMenu.mPanelHeight, 0, panelMenubarScreenMenu.mPanelHeight, 10);
 
-void ProcessMenuScreen();
-void UpdateMenuScreen();
-void OutputMenuScreen();
+void ProcessScreenMenu();
+void UpdateScreenMenu();
+void OutputScreenMenu();
 
-void RunMenuScreen() {
-  ProcessMenuScreen();
-  UpdateMenuScreen();
-  OutputMenuScreen();
+void RunScreenMenu() {
+  ProcessScreenMenu();
+  UpdateScreenMenu();
+  OutputScreenMenu();
 }
 
-void ProcessMenuScreen(){};
+void ProcessScreenMenu(){};
 
-void UpdateMenuScreen(){
+void UpdateScreenMenu(){
   // MENUBAR
   //---------------------------------
   if (global.GetDarkMode() == true) {
@@ -38,24 +39,31 @@ void UpdateMenuScreen(){
 
 };
 
-void OutputMenuScreen() {
+void OutputScreenMenu() {
   BeginDrawing();
   ClearBackground(global.GetColorBackground());
 
-  int rectButtonMenuWidth = global.guiButtonBaseWidth + MeasureText("Start Game", DEFAULT);
+  // MENUBAR PANEL
+  //---------------------------------
+  int buttonDarkModeWidth = global.guiButtonBaseWidth + MeasureText("Light", global.txtSmall);
+  if (GuiButton((Rectangle){float(AlignHorizontalRight(panelMenubarScreenMenu, buttonDarkModeWidth, 0)), float(AlignVerticalCenter(panelMenubarScreenMenu, global.guiButtonBaseHeight, 0)), float(buttonDarkModeWidth), float(global.guiButtonBaseHeight)}, txtButtonDarkModeScreenMenu)) {
+    global.SetDarkMode(!global.GetDarkMode());
+  };
 
-  if (GuiButton(Rectangle{float(AlignHorizontalCenter(panelMainScreenMenu, rectButtonMenuWidth)), float(AlignVerticalTop(panelMainScreenMenu, global.guiButtonBaseHeight)), float(rectButtonMenuWidth), float(global.guiButtonBaseHeight)}, TextFormat("Start Game")) || IsKeyPressed(KEY_ENTER) || IsKeyPressed(KEY_SPACE)) {
+  // STATUSBAR PANEL
+  //---------------------------------
+
+  // MAIN PANEL
+  //---------------------------------
+  int buttonMenuWidth = global.guiButtonBaseWidth + MeasureText("Start Game", DEFAULT);
+
+  if (GuiButton((Rectangle){float(AlignHorizontalCenter(panelMainScreenMenu, buttonMenuWidth, 0)), float(AlignVerticalTop(panelMainScreenMenu, global.guiButtonBaseHeight)), float(buttonMenuWidth), float(global.guiButtonBaseHeight)}, TextFormat("Start Game")) || IsKeyPressed(KEY_ENTER) || IsKeyPressed(KEY_SPACE)) {
     currentScreen = GAME;
   }
 
-  if (GuiButton(Rectangle{float(AlignHorizontalCenter(panelMainScreenMenu, rectButtonMenuWidth)), float(AlignVerticalCenter(panelMainScreenMenu, global.guiButtonBaseHeight)), float(rectButtonMenuWidth), float(global.guiButtonBaseHeight)}, TextFormat("Settings")) || IsKeyPressed(KEY_ENTER) || IsKeyPressed(KEY_SPACE)) {
+  if (GuiButton((Rectangle){float(AlignHorizontalCenter(panelMainScreenMenu, buttonMenuWidth, 0)), float(AlignVerticalCenter(panelMainScreenMenu, global.guiButtonBaseHeight, 0)), float(buttonMenuWidth), float(global.guiButtonBaseHeight)}, TextFormat("Settings")) || IsKeyPressed(KEY_ENTER) || IsKeyPressed(KEY_SPACE)) {
     currentScreen = SETTINGS;
   }
-
-  int rectButtonDarkModeWidth = global.guiButtonBaseWidth + MeasureText("Light", global.txtSmall);
-  if (GuiButton(Rectangle{float(AlignHorizontalRight(panelMenubarScreenMenu, rectButtonDarkModeWidth, 0)), float(AlignVerticalTop(panelMenubarScreenMenu, 0)), float(rectButtonDarkModeWidth), float(global.guiButtonBaseHeight)}, txtButtonDarkModeScreenMenu)) {
-    global.SetDarkMode(!global.GetDarkMode());
-  };
 
   EndDrawing();
 }

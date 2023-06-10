@@ -15,6 +15,7 @@ public:
   std::vector<std::vector<bool>> mGridStates;
 
   void EvolveGrid();
+  void ResetGameOfLife();
 
 private:
   int mRowsY;
@@ -22,8 +23,6 @@ private:
   int mDay;
 
   vvAgents mGrid;
-
-  void InitializeGameOfLife();
 
   int CountAdjacentAgents(cAgent& agent);
   void ProcessGameOfLife();

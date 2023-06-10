@@ -23,9 +23,6 @@ private:
 public:
   void SetStatusNext( bool arg );
   bool GetStatusNext();
-
-  int CountAdjacentAgents(std::vector<std::vector<cAgent>>& agents);
-  void PingAdjacentAgents(std::vector<std::vector<cAgent>>& agents);
 };
 
 #endif

@@ -31,34 +31,3 @@ void cAgent::DecreaseVitality() {
     mVitality -= 1;
   }
 }
-
-int cAgent::CountAdjacentAgents(std::vector<std::vector<cAgent>>& agents) {
-  int cnt = 0;
-  for (auto dy : {-1, 0, 1}) {
-    for (auto dx : {-1, 0, 1}) {
-      // wraps around matrix
-      int posY = ((mPosY + dy) + agents.size()) % agents.size();
-      int posX = ((mPosX + dx) + agents[mPosY].size()) % agents[mPosY].size();
-
-      cAgent& adjacentAgent = agents[posY][posX];
-
-      if ((dy != 0 || dx != 0) && adjacentAgent.mStatusIs == true) {
-        cnt += 1;
-      }
-    }
-  }
-  return cnt;
-}
-
-void cAgent::PingAdjacentAgents(std::vector<std::vector<cAgent>>& agents) {
-  for (auto dx : {-1, 0, 1}) {
-    for (auto dy : {-1, 0, 1}) {
-      // wraps around matrix
-      int posY = ((mPosY + dy) + agents.size()) % agents.size();
-      int posX = ((mPosX + dx) + agents[mPosY].size()) % agents[mPosY].size();
-
-      cAgent& adjacentAgent = agents[posY][posX];
-      adjacentAgent.mCheckStatus = true;
-    }
-  }
-}

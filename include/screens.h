@@ -12,8 +12,8 @@ extern screen currentScreen;
 
 // SCREENS
 //---------------------------------
-void RunMenuScreen();
-void RunGameScreen();
-void RunSettingsScreen();
+void RunScreenMenu();
+void RunScreenGame();
+void RunScreenSettings();
 
 #endif

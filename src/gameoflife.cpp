@@ -12,15 +12,16 @@ typedef std::vector<cAgent> vAgents;
 cGameOfLife::cGameOfLife(int rowsY, int colsX){
   mRowsY = rowsY;
   mColsX = colsX;
+
+  ResetGameOfLife();
+};
+
+void cGameOfLife::ResetGameOfLife() {
   mDay = 0;
   mGrid.clear();
   mGridState.clear();
   mGridStates.clear();
 
-  InitializeGameOfLife();
-};
-
-void cGameOfLife::InitializeGameOfLife() {
   // INITIALIZE AGENTS
   //---------------------------------
   for (auto rowY = 0; rowY < mRowsY; ++rowY) {
@@ -116,7 +117,7 @@ void cGameOfLife::UpdateGameOfLife(){
   for (auto& row : mGrid) {
     for (auto& agent : row) {
       if (agent.mStatusChanging == true) {
-        agent.PingAdjacentAgents(mGrid);
+        PingAdjacentAgents(agent);
 
         if (agent.GetStatusNext() == true) {
           agent.mStatusIs = true;

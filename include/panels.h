@@ -34,10 +34,10 @@ public:
 };
 
 int AlignHorizontalLeft(cPanel panel, int offset);
-int AlignHorizontalCenter(cPanel panel, int contentWidth);
+int AlignHorizontalCenter(cPanel panel, int contentWidth, int offset);
 int AlignHorizontalRight(cPanel panel, int contentWidth, int offset);
 int AlignVerticalTop(cPanel panel, int offset);
-int AlignVerticalCenter(cPanel panel, int contentHeight);
+int AlignVerticalCenter(cPanel panel, int contentHeight, int offset);
 int AlignVerticalBottom(cPanel panel, int contentHeight, int offset);
 
 #endif
