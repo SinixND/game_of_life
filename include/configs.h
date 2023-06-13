@@ -24,7 +24,6 @@ public:
 
   // CONTROLS
   float tickTime;
-
 };
 extern cConfig config;
 

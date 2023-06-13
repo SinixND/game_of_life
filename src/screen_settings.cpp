@@ -1,6 +1,7 @@
 #include "screens.h"
 
-#include <memory>
+#include <iostream>
+//#include <memory>
 
 #include "raygui.h"
 #include "raylib.h"
@@ -74,7 +75,7 @@ void OutputScreenSettings()
 
   // MAIN PANEL
   //---------------------------------
-  GuiCheckBox((Rectangle){float(panelMainScreenSettings.GetPanelContentLeftX()), float(panelMainScreenSettings.GetPanelContentTopY()), 100, 100}, "Decaying Agents", &config.decayAgents);
+  config.decayAgents = GuiCheckBox((Rectangle){float(panelMainScreenSettings.GetPanelContentLeftX()), float(panelMainScreenSettings.GetPanelContentTopY()), global.txtSmall, global.txtSmall}, "Decaying Agents", config.decayAgents);
 
   EndDrawing();
 }
