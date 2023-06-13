@@ -1,8 +1,5 @@
 #include "screens.h"
 
-#include <iostream>
-//#include <memory>
-
 #include "raygui.h"
 #include "raylib.h"
 
@@ -18,12 +15,6 @@ cPanel panelMainScreenSettings(config.windowWidth, config.windowHeight - panelMe
 
 const char *txtButtonBackScreenSettings = "Back";
 const char *txtButtonDarkModeScreenSettings;
-
-Rectangle panelRec = {20, 40, 200, 150};
-Rectangle panelContentRec = {0, 0, 340, 340};
-Rectangle panelView = {0};
-Vector2 panelScroll = {99, -20};
-bool showContentArea = true;
 
 void ProcessScreenSettings();
 void UpdateScreenSettings();

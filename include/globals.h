@@ -10,10 +10,11 @@ public:
   cGlobal();
 
   // GUI ELEMENTS
-  int txtSmall;
-  int txtNormal;
-  int guiButtonBaseWidth;
-  int guiButtonBaseHeight;
+  Font font;
+  float txtSmall;
+  float txtNormal;
+  float guiButtonBaseWidth;
+  float guiButtonBaseHeight;
 
 private:
   // DARK MODE

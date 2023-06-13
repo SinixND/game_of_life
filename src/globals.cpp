@@ -7,11 +7,12 @@
 cGlobal global; // declare extern object
 cGlobal::cGlobal(){
   // GUI ELEMENTS
-  // default text size is 16
-   txtSmall = 20;
-   txtNormal = 30;
-   guiButtonBaseWidth = 20;
-   guiButtonBaseHeight = 30;
+  Font font = GetFontDefault();
+  //GetFontDefault().baseSize == 10
+  txtSmall = 20;
+  txtNormal = 30;
+  guiButtonBaseWidth = 20;
+  guiButtonBaseHeight = 30;
 
 
   // PRIVATE
