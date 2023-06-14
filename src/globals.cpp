@@ -20,9 +20,9 @@ cGlobal::cGlobal(){
   darkMode = false;
   colorBackground = WHITE;
   colorForeground = BLACK;
-  colorAgentDecay1 = DARKGRAY;
-  colorAgentDecay2 = GRAY;
-  colorAgentDecay3 = LIGHTGRAY;
+  colorAgentFaded1 = Fade(colorForeground, 0.75f);
+  colorAgentFaded2 = Fade(colorForeground, 0.50f);
+  colorAgentFaded3 = Fade(colorForeground, 0.25f);
 };
 
 void cGlobal::SetDarkMode(bool arg){
@@ -31,21 +31,21 @@ void cGlobal::SetDarkMode(bool arg){
   if (darkMode == true) {
     colorBackground = BLACK;
     colorForeground = WHITE;
-    colorAgentDecay1 = LIGHTGRAY;
-    colorAgentDecay2 = GRAY;
-    colorAgentDecay3 = DARKGRAY;
+    colorAgentFaded1 = Fade(colorForeground, 0.25f);
+    colorAgentFaded2 = Fade(colorForeground, 0.50f);
+    colorAgentFaded3 = Fade(colorForeground, 0.75f);
   } else {
     colorBackground = WHITE;
     colorForeground = BLACK;
-    colorAgentDecay1 = DARKGRAY;
-    colorAgentDecay2 = GRAY;
-    colorAgentDecay3 = LIGHTGRAY;
+    colorAgentFaded1 = Fade(colorForeground, 0.75f);
+    colorAgentFaded2 = Fade(colorForeground, 0.50f);
+    colorAgentFaded3 = Fade(colorForeground, 0.25f);
   }
 };
 bool cGlobal::GetDarkMode(){ return darkMode; };
 
 Color cGlobal::GetColorBackground(){ return colorBackground; };
 Color cGlobal::GetColorForeground(){ return colorForeground; };
-Color cGlobal::GetColorAgentDecay1(){ return colorAgentDecay1; };
-Color cGlobal::GetColorAgentDecay2(){ return colorAgentDecay2; };
-Color cGlobal::GetColorAgentDecay3(){ return colorAgentDecay3; };
+Color cGlobal::GetColorAgentFaded1(){ return colorAgentFaded1; };
+Color cGlobal::GetColorAgentFaded2(){ return colorAgentFaded2; };
+Color cGlobal::GetColorAgentFaded3(){ return colorAgentFaded3; };

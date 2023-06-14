@@ -167,22 +167,22 @@ void OutputScreenGame() {
           break;
 
         case 3:
-          agentVitalityColor = global.GetColorAgentDecay1();
+          agentVitalityColor = global.GetColorAgentFaded1();
           DrawRectangleRec(rectAgent, agentVitalityColor);
           break;
 
         case 2:
-          agentVitalityColor = global.GetColorAgentDecay2();
+          agentVitalityColor = global.GetColorAgentFaded2();
           DrawRectangleRec(rectAgent, agentVitalityColor);
           break;
 
         case 1:
-          agentVitalityColor = global.GetColorAgentDecay3();
+          agentVitalityColor = global.GetColorAgentFaded3();
           DrawRectangleRec(rectAgent, agentVitalityColor);
           break;
 
         default:
-          DrawRectangleLinesEx(rectAgent, config.agentInnerBorderWeight, GRAY);
+          DrawRectangleLinesEx(rectAgent, config.agentInnerBorderWeight, Fade(colorForeground, 0.50f));
           break;
         }
       }
@@ -193,7 +193,7 @@ void OutputScreenGame() {
   //---------------------------------
   if ((evolutionState == false) && (gameEndOverlayVisible == true)) {
     DrawRectangleRec(rectGameEndBackground, CLITERAL(Color){130, 130, 130, 175});
-    DrawRectangleLinesEx(rectGameEndBackground, 10, DARKGRAY);
+    DrawRectangleLinesEx(rectGameEndBackground, 10, Fade(colorForeground, 0.75f));
     DrawText(TextFormat("Game over!\nUniverse survived for %d days. \nPress Enter or click to \ngo back to agents. \nPress ESC to leave.", GameOfLife.GetDay()), 50, 50, global.txtNormal, RED);
   }
 
@@ -204,7 +204,7 @@ void OutputScreenGame() {
 
     DrawRectangleRec((Rectangle){float(panelMainScreenGame.mPanelLeftX), float(panelMainScreenGame.mPanelTopY), float(panelMainScreenGame.mPanelWidth), float(panelMainScreenGame.mPanelHeight)}, CLITERAL(Color){130, 130, 130, 175});
 
-    DrawRectangleLinesEx(rectpanelMainScreenGame, 10, DARKGRAY);
+    DrawRectangleLinesEx(rectpanelMainScreenGame, 10, Fade(colorForeground, 0.75f));
 
     const char *txtPaused = TextFormat("[P]aused...");
     DrawText(txtPaused, AlignHorizontalRight(panelStatusbarScreenGame, MeasureText(txtPaused, global.txtSmall), 0), AlignVerticalCenter(panelStatusbarScreenGame, global.txtSmall, 0), global.txtSmall, global.GetColorForeground());

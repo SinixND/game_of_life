@@ -122,7 +122,7 @@ void cGameOfLife::UpdateGameOfLife(){
         if (agent.GetStatusNext() == true) {
           agent.mStatusIs = true;
 
-          if (config.decayAgents == true) {
+          if (config.fadingAgents == true) {
             agent.mVitality = 4;
           }
         } else {

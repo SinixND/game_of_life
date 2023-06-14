@@ -13,7 +13,7 @@ cConfig::cConfig(){
   agentWidth = 3;
   agentHeight = agentWidth;
   agentInnerBorderWeight = 0;
-  decayAgents = true;
+  fadingAgents = true;
 
   // AGENTS / ENVIRONMENT
   agentGap = 1;

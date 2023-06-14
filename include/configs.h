@@ -16,7 +16,7 @@ public:
   int agentWidth;
   int agentHeight; // independent height and width possible
   int agentInnerBorderWeight;
-  bool decayAgents;
+  bool fadingAgents;
 
   // AGENTS / ENVIRONMENT
   int agentGap;

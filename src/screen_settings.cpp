@@ -66,7 +66,7 @@ void OutputScreenSettings()
 
   // MAIN PANEL
   //---------------------------------
-  config.decayAgents = GuiCheckBox((Rectangle){float(panelMainScreenSettings.GetPanelContentLeftX()), float(panelMainScreenSettings.GetPanelContentTopY()), global.txtSmall, global.txtSmall}, "Decaying Agents", config.decayAgents);
+  config.fadingAgents = GuiCheckBox((Rectangle){float(panelMainScreenSettings.GetPanelContentLeftX()), float(panelMainScreenSettings.GetPanelContentTopY()), global.txtSmall, global.txtSmall}, "Fading Agents", config.fadingAgents);
 
   EndDrawing();
 }
