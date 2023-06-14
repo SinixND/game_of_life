@@ -159,26 +159,26 @@ void OutputScreenGame() {
       if (agent.mStatusIs == true) {
         DrawRectangleRec(rectAgent, global.GetColorForeground());
       } else {
-        Color agentVitalityColor;
+        Color colorAgentVitality;
         switch (agent.mVitality) {
         case 4:
-          agentVitalityColor = global.GetColorForeground();
-          DrawRectangleRec(rectAgent, agentVitalityColor);
+          colorAgentVitality = global.GetColorForeground();
+          DrawRectangleRec(rectAgent, colorAgentVitality);
           break;
 
         case 3:
-          agentVitalityColor = global.GetColorAgentFaded1();
-          DrawRectangleRec(rectAgent, agentVitalityColor);
+          colorAgentVitality = global.GetColorAgentFaded1();
+          DrawRectangleRec(rectAgent, colorAgentVitality);
           break;
 
         case 2:
-          agentVitalityColor = global.GetColorAgentFaded2();
-          DrawRectangleRec(rectAgent, agentVitalityColor);
+          colorAgentVitality = global.GetColorAgentFaded2();
+          DrawRectangleRec(rectAgent, colorAgentVitality);
           break;
 
         case 1:
-          agentVitalityColor = global.GetColorAgentFaded3();
-          DrawRectangleRec(rectAgent, agentVitalityColor);
+          colorAgentVitality = global.GetColorAgentFaded3();
+          DrawRectangleRec(rectAgent, colorAgentVitality);
           break;
 
         default:
