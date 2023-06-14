@@ -53,7 +53,7 @@ void OutputScreenSettings()
   int buttonDarkModeWidth = global.guiButtonBaseWidth + MeasureText("Light", global.txtSmall);
   if (GuiButton((Rectangle){float(AlignHorizontalRight(panelMenubarScreenSettings, buttonDarkModeWidth, 0)), float(AlignVerticalCenter(panelMenubarScreenSettings, global.guiButtonBaseHeight, 0)), float(buttonDarkModeWidth), float(global.guiButtonBaseHeight)}, txtButtonDarkModeScreenSettings))
   {
-    global.SetDarkMode(!global.GetDarkMode());
+    global.ToggleDarkMode();
   };
 
   // STATUSBAR PANEL
@@ -67,6 +67,11 @@ void OutputScreenSettings()
   // MAIN PANEL
   //---------------------------------
   config.fadingAgents = GuiCheckBox((Rectangle){float(panelMainScreenSettings.GetPanelContentLeftX()), float(panelMainScreenSettings.GetPanelContentTopY()), global.txtSmall, global.txtSmall}, "Fading Agents", config.fadingAgents);
+
+  //Rectangle rectScrollPanelBounds = Rectangle{10, 10, 100, 100};
+  //Rectangle rectScrollPanelContent = Rectangle{10, 10, 100, 500};
+  //Vector2 panelScroll = { 99, -20 };
+  //GuiScrollPanel(rectScrollPanelBounds, "Text", rectScrollPanelContent, &panelScroll);
 
   EndDrawing();
 }

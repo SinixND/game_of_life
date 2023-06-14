@@ -47,7 +47,7 @@ void OutputScreenMenu() {
   //---------------------------------
   int buttonDarkModeWidth = global.guiButtonBaseWidth + MeasureText("Light", global.txtSmall);
   if (GuiButton((Rectangle){float(AlignHorizontalRight(panelMenubarScreenMenu, buttonDarkModeWidth, 0)), float(AlignVerticalCenter(panelMenubarScreenMenu, global.guiButtonBaseHeight, 0)), float(buttonDarkModeWidth), float(global.guiButtonBaseHeight)}, txtButtonDarkModeScreenMenu)) {
-    global.SetDarkMode(!global.GetDarkMode());
+    global.ToggleDarkMode();
   };
 
   // STATUSBAR PANEL

@@ -138,7 +138,7 @@ void OutputScreenGame() {
 
   int buttonDarkModeWidth = global.guiButtonBaseWidth + MeasureText("Light", global.txtSmall);
   if (GuiButton((Rectangle){float(AlignHorizontalRight(panelMenubarScreenGame, buttonDarkModeWidth, 0)), float(AlignVerticalTop(panelMenubarScreenGame, 0)), float(buttonDarkModeWidth), float(global.guiButtonBaseHeight)}, txtButtonDarkModeScreenGame)) {
-    global.SetDarkMode(!global.GetDarkMode());
+    global.ToggleDarkMode();
   };
 
   // STATUSBAR PANEL
@@ -167,22 +167,22 @@ void OutputScreenGame() {
           break;
 
         case 3:
-          colorAgentVitality = global.GetColorAgentFaded1();
+          colorAgentVitality = Fade(global.GetColorForeground(), 0.75f);
           DrawRectangleRec(rectAgent, colorAgentVitality);
           break;
 
         case 2:
-          colorAgentVitality = global.GetColorAgentFaded2();
+          colorAgentVitality = Fade(global.GetColorForeground(), 0.50f);
           DrawRectangleRec(rectAgent, colorAgentVitality);
           break;
 
         case 1:
-          colorAgentVitality = global.GetColorAgentFaded3();
+          colorAgentVitality = Fade(global.GetColorForeground(), 0.25f);
           DrawRectangleRec(rectAgent, colorAgentVitality);
           break;
 
         default:
-          DrawRectangleLinesEx(rectAgent, config.agentInnerBorderWeight, Fade(colorForeground, 0.50f));
+          DrawRectangleLinesEx(rectAgent, config.agentInnerBorderWeight, Fade(global.GetColorForeground(), 0.50f));
           break;
         }
       }
@@ -193,7 +193,7 @@ void OutputScreenGame() {
   //---------------------------------
   if ((evolutionState == false) && (gameEndOverlayVisible == true)) {
     DrawRectangleRec(rectGameEndBackground, CLITERAL(Color){130, 130, 130, 175});
-    DrawRectangleLinesEx(rectGameEndBackground, 10, Fade(colorForeground, 0.75f));
+    DrawRectangleLinesEx(rectGameEndBackground, 10, Fade(global.GetColorForeground(), 0.75f));
     DrawText(TextFormat("Game over!\nUniverse survived for %d days. \nPress Enter or click to \ngo back to agents. \nPress ESC to leave.", GameOfLife.GetDay()), 50, 50, global.txtNormal, RED);
   }
 
@@ -204,7 +204,7 @@ void OutputScreenGame() {
 
     DrawRectangleRec((Rectangle){float(panelMainScreenGame.mPanelLeftX), float(panelMainScreenGame.mPanelTopY), float(panelMainScreenGame.mPanelWidth), float(panelMainScreenGame.mPanelHeight)}, CLITERAL(Color){130, 130, 130, 175});
 
-    DrawRectangleLinesEx(rectpanelMainScreenGame, 10, Fade(colorForeground, 0.75f));
+    DrawRectangleLinesEx(rectpanelMainScreenGame, 10, Fade(global.GetColorForeground(), 0.75f));
 
     const char *txtPaused = TextFormat("[P]aused...");
     DrawText(txtPaused, AlignHorizontalRight(panelStatusbarScreenGame, MeasureText(txtPaused, global.txtSmall), 0), AlignVerticalCenter(panelStatusbarScreenGame, global.txtSmall, 0), global.txtSmall, global.GetColorForeground());

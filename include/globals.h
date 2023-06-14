@@ -21,18 +21,13 @@ private:
   bool darkMode;
   Color colorBackground;
   Color colorForeground;
-  Color colorAgentFaded1;
-  Color colorAgentFaded2;
-  Color colorAgentFaded3;
 
 public:
-  void SetDarkMode(bool arg);
+  void ToggleDarkMode();
   bool GetDarkMode();
+
   Color GetColorBackground();
   Color GetColorForeground();
-  Color GetColorAgentFaded1();
-  Color GetColorAgentFaded2();
-  Color GetColorAgentFaded3();
 };
 extern cGlobal global;
 
