@@ -21,6 +21,7 @@
 0. Performance
     - Mutlithreading
 0. Code
+    - Check basic controls!!
     - Fade(BLACK, 0.5f) for fadingAgents
     - if (IsSomething()) -> encapsulate instead of using a state-variable, eg. AreAgentsFading()
     - Neighbors dont change!, save neighbor-references in agent
