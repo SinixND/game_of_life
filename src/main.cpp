@@ -13,6 +13,12 @@ int main()
 {
   InitWindow(config.windowWidth, config.windowHeight, "Conway's Game of Life");
   SetTargetFPS(config.targetFPS);
+  //GetRenderWidth();
+  //GetRenderHeight();
+  //GetMonitorHeight()
+  //GetMonitorWidth();
+  //Vector2 GetWindowScaleDPI(); // obsolete due to GetRenderWidth?
+  //int GetMonitorRefreshRate(GetCurrentMonitor());
 
   // MAIN APP LOOP
   //---------------------------------
