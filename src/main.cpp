@@ -2,7 +2,7 @@
 #include <time.h>
 #include <vector>
 
-#include "raylib.h"
+#include <raylib.h>
 
 #include "agents.h"
 #include "configs.h" // provide object "config" for configurable parameters

@@ -3,47 +3,47 @@
 // panel class used to provide an entity derived from Rectangle to get additional values to the rectangle ones
 // also introduces methods to position
 
-#include "raylib.h"
+#include <raylib.h>
 
 class cPanel : Rectangle
 {
   public:
   cPanel(float width, float height, float offsetX, float offsetY, float margin);
 
-  int panelWidth_;
-  int panelHeight_;
-  int panelLeftX_;
-  int panelTopY_;
-  int panelMargin_;
+  float panelWidth_;
+  float panelHeight_;
+  float panelLeftX_;
+  float panelTopY_;
+  float panelMargin_;
 
   private:
-  int panelRightX_;
-  int panelBottoy_;
-  int panelContentLeftX_;
-  int panelContentTopY_;
-  int panelContentRightX_;
-  int panelContentBottomY_;
-  int panelContentWidth_;
-  int panelContentHeight_;
+  float panelRightX_;
+  float panelBottomY_;
+  float panelContentLeftX_;
+  float panelContentTopY_;
+  float panelContentRightX_;
+  float panelContentBottomY_;
+  float panelContentWidth_;
+  float panelContentHeight_;
 
   public:
-  int GetPanelRightX();
-  int GetPanelBottomY();
+  float GetPanelRightX();
+  float GetPanelBottomY();
 
-  int GetPanelContentLeftX();
-  int GetPanelContentTopY();
-  int GetPanelContentRightX();
-  int GetPanelContentBottomY();
-  int GetPanelContentWidth();
-  int GetPanelContentHeight();
+  float GetPanelContentLeftX();
+  float GetPanelContentTopY();
+  float GetPanelContentRightX();
+  float GetPanelContentBottomY();
+  float GetPanelContentWidth();
+  float GetPanelContentHeight();
 };
 
 // Align function to return the position relative to the parent (first argument)
-int AlignHorizontalLeft(cPanel parent, int offset);
-int AlignHorizontalCenter(cPanel parent, int objectWidth, int offset);
-int AlignHorizontalRight(cPanel parent, int objectWidth, int offset);
-int AlignVerticalTop(cPanel parent, int offset);
-int AlignVerticalCenter(cPanel parent, int objectHeight, int offset);
-int AlignVerticalBottom(cPanel parent, int objectHeight, int offset);
+float AlignHorizontalLeft(cPanel parent, float offset);
+float AlignHorizontalCenter(cPanel parent, float objectWidth, float offset);
+float AlignHorizontalRight(cPanel parent, float objectWidth, float offset);
+float AlignVerticalTop(cPanel parent, float offset);
+float AlignVerticalCenter(cPanel parent, float objectHeight, float offset);
+float AlignVerticalBottom(cPanel parent, float objectHeight, float offset);
 
 #endif

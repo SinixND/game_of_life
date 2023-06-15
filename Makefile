@@ -19,7 +19,7 @@ OBJ_DIR := ./build
 
 MAKEFLAGS := -j4
 C_FLAGS := `pkg-config --cflags $(LIBRARIES)`\
--g -Wall -O2 #-Wextra -ggdb -MMD -MP -std=c++17
+-g -O2 -Wall #-ggdb -MMD -MP -std=c++17
 LD_FLAG := $(LIBRARIES)
 
 INC_FLAGS := $(addprefix -I,$(INC_DIR))
@@ -42,13 +42,13 @@ build: $(BIN_DIR)/$(TARGET).$(TARGET_EXT)
 $(OBJ_DIR)/%.o: %.$(SRC_EXT)
 	mkdir -p $(@D)
 	$(CXX) $(C_FLAGS) $(INC_FLAGS) -c $< -o $@
-	$(info --- DEBUG:START --- "pkg-config --cflags [...]" command adds: $(shell pkg-config --cflags $(LIBRARIES)) --- DEBUG:END)
+#	$(info --- DEBUG:START --- "pkg-config --cflags [...]" command adds: $(shell pkg-config --cflags $(LIBRARIES)) --- DEBUG:END)
 
 # link command
 $(BIN_DIR)/$(TARGET).$(TARGET_EXT): $(OBJ_FILES)
 	mkdir -p $(@D)
 	$(CXX) -o $@ $^ $(LIB_FLAGS) $(LD_FLAGS) $(INC_FLAGS)
-	$(info --- DEBUG:START --- "pkg-config --libs [...]" command adds: $(shell pkg-config --libs $(LIBRARIES)) --- DEBUG:END)
+#	$(info --- DEBUG:START --- "pkg-config --libs [...]" command adds: $(shell pkg-config --libs $(LIBRARIES)) --- DEBUG:END)
 
 run: build
 	$(BIN_DIR)/$(TARGET).$(TARGET_EXT)

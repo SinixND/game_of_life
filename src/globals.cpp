@@ -1,11 +1,10 @@
 #include "globals.h" // provide object "global" for not configurable application parameters
 
-#include "raylib.h"
+#include <raylib.h>
 
+#include <iostream>
 cGlobal global; // define extern object
 cGlobal::cGlobal()
-    // Font font = GetFontDefault();
-    // GetFontDefault().baseSize == 10
     : txtSmall{20}
     , txtNormal{30}
     , guiButtonBaseWidth{20}

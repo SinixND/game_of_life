@@ -1,7 +1,7 @@
 #ifndef GLOBALS_H
 #define GLOBALS_H
 
-#include "raylib.h"
+#include <raylib.h>
 
 // NOT CUSTOMIZABLE BY USER
 //---------------------------------
@@ -11,7 +11,6 @@ public:
   cGlobal();
 
   // GUI ELEMENTS
-  Font font;
   float txtSmall;
   float txtNormal;
   float guiButtonBaseWidth;

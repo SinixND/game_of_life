@@ -1,7 +1,7 @@
 #include "screens.h"
 
 #include "raygui.h"
-#include "raylib.h"
+#include <raylib.h>
 
 #include "configs.h" // provide object "config" for configurable parameters
 #include "globals.h" // provide object "global" for not configurable application parameters
@@ -50,6 +50,12 @@ void OutputScreenSettings()
 
   // MENUBAR PANEL
   //---------------------------------
+  int buttonBackWidth = global.guiButtonBaseWidth + MeasureText(txtButtonBackScreenSettings, DEFAULT);
+  if (GuiButton((Rectangle){float(AlignHorizontalLeft(panelMenubarScreenSettings, 0)), float(AlignVerticalCenter(panelMenubarScreenSettings, global.guiButtonBaseHeight, 0)), float(buttonBackWidth), float(global.guiButtonBaseHeight)}, txtButtonBackScreenSettings))
+  {
+    currentScreen = MENU;
+  };
+
   int buttonDarkModeWidth = global.guiButtonBaseWidth + MeasureText("Light", global.txtSmall);
   if (GuiButton((Rectangle){float(AlignHorizontalRight(panelMenubarScreenSettings, buttonDarkModeWidth, 0)), float(AlignVerticalCenter(panelMenubarScreenSettings, global.guiButtonBaseHeight, 0)), float(buttonDarkModeWidth), float(global.guiButtonBaseHeight)}, txtButtonDarkModeScreenSettings))
   {
@@ -58,11 +64,6 @@ void OutputScreenSettings()
 
   // STATUSBAR PANEL
   //---------------------------------
-  int buttonBackWidth = global.guiButtonBaseWidth + MeasureText(txtButtonBackScreenSettings, DEFAULT);
-  if (GuiButton((Rectangle){float(AlignHorizontalRight(panelStatusbarScreenSettings, buttonBackWidth, 0)), float(AlignVerticalCenter(panelStatusbarScreenSettings, global.guiButtonBaseHeight, 0)), float(buttonBackWidth), float(global.guiButtonBaseHeight)}, txtButtonBackScreenSettings))
-  {
-    currentScreen = MENU;
-  };
 
   // MAIN PANEL
   //---------------------------------

@@ -4,7 +4,7 @@
 #include <vector>
 
 #include "raygui.h"
-#include "raylib.h"
+#include <raylib.h>
 
 #include "configs.h" // provide object "config" for configurable parameters
 #include "gameoflife.h"
@@ -138,7 +138,6 @@ void OutputScreenGame()
   //---------------------------------
   const char *txtButtonBackScreenGame = "Back";
   int buttonBackWidth = global.guiButtonBaseWidth + MeasureText(txtButtonBackScreenGame, DEFAULT);
-
   if (GuiButton((Rectangle){float(AlignHorizontalLeft(panelMenubarScreenGame, 0)), float(AlignVerticalTop(panelMenubarScreenGame, 0)), float(buttonBackWidth), float(global.guiButtonBaseHeight)}, txtButtonBackScreenGame))
   {
     gameScreenInitialized = false;
@@ -147,21 +146,18 @@ void OutputScreenGame()
 
   const char *txtButtonResetScreenGame = "Reset";
   int buttonResetWidth = global.guiButtonBaseWidth + MeasureText(txtButtonResetScreenGame, DEFAULT);
-
   if (GuiButton((Rectangle){float(AlignHorizontalLeft(panelMenubarScreenGame, buttonBackWidth + 10)), float(AlignVerticalTop(panelMenubarScreenGame, 0)), float(buttonResetWidth), float(global.guiButtonBaseHeight)}, txtButtonResetScreenGame))
   {
     GameOfLife.ResetGameOfLife();
   };
 
   int buttonPauseWidth = global.guiButtonBaseWidth + MeasureText("Resume", DEFAULT);
-
   if (GuiButton((Rectangle){float(AlignHorizontalCenter(panelMenubarScreenGame, buttonPauseWidth, 0)), float(AlignVerticalTop(panelMenubarScreenGame, 0)), float(buttonPauseWidth), float(global.guiButtonBaseHeight)}, txtButtonPause))
   {
     pauseState = !pauseState;
   };
 
   int buttonDarkModeWidth = global.guiButtonBaseWidth + MeasureText("Light", global.txtSmall);
-
   if (GuiButton((Rectangle){float(AlignHorizontalRight(panelMenubarScreenGame, buttonDarkModeWidth, 0)), float(AlignVerticalTop(panelMenubarScreenGame, 0)), float(buttonDarkModeWidth), float(global.guiButtonBaseHeight)}, txtButtonDarkModeScreenGame))
   {
     global.ToggleDarkMode();

@@ -20,78 +20,78 @@ cPanel::cPanel(float width, float height, float offsetX = 0, float offsetY = 0, 
   panelContentHeight_ = panelHeight_ - (2 * panelMargin_);
 }
 
-int cPanel::GetPanelRightX()
+float cPanel::GetPanelRightX()
 {
   return panelLeftX_ + panelWidth_;
 }
 
-int cPanel::GetPanelBottomY()
+float cPanel::GetPanelBottomY()
 {
   return panelTopY_ + panelHeight_;
 }
 
-int cPanel::GetPanelContentLeftX()
+float cPanel::GetPanelContentLeftX()
 {
   panelContentLeftX_ = panelLeftX_ + panelMargin_;
   return panelContentLeftX_;
 }
 
-int cPanel::GetPanelContentTopY()
+float cPanel::GetPanelContentTopY()
 {
   panelContentTopY_ = panelTopY_ + panelMargin_;
   return panelContentTopY_;
 }
 
-int cPanel::GetPanelContentRightX()
+float cPanel::GetPanelContentRightX()
 {
   panelContentRightX_ = panelLeftX_ + panelWidth_ - panelMargin_;
   return panelContentRightX_;
 }
 
-int cPanel::GetPanelContentBottomY()
+float cPanel::GetPanelContentBottomY()
 {
   panelContentBottomY_ = panelTopY_ + panelHeight_ - panelMargin_;
   return panelContentBottomY_;
 }
 
-int cPanel::GetPanelContentWidth()
+float cPanel::GetPanelContentWidth()
 {
   panelContentWidth_ = panelWidth_ - (2 * panelMargin_);
   return panelContentWidth_;
 }
 
-int cPanel::GetPanelContentHeight()
+float cPanel::GetPanelContentHeight()
 {
   panelContentHeight_ = panelHeight_ - (2 * panelMargin_);
   return panelContentHeight_;
 }
 
-int AlignHorizontalLeft(cPanel parent, int offset)
+float AlignHorizontalLeft(cPanel parent, float offset)
 {
   return parent.GetPanelContentLeftX() + offset;
 }
 
-int AlignHorizontalCenter(cPanel parent, int objectWidth, int offset)
+float AlignHorizontalCenter(cPanel parent, float objectWidth, float offset)
 {
   return parent.GetPanelContentLeftX() + ((parent.GetPanelContentWidth() - objectWidth) / 2) + offset;
 }
 
-int AlignHorizontalRight(cPanel parent, int objectWidth, int offset)
+float AlignHorizontalRight(cPanel parent, float objectWidth, float offset)
 {
   return parent.GetPanelContentLeftX() + parent.GetPanelContentWidth() - objectWidth - offset;
 }
 
-int AlignVerticalTop(cPanel parent, int offset)
+float AlignVerticalTop(cPanel parent, float offset)
 {
   return parent.GetPanelContentTopY() + offset;
 }
 
-int AlignVerticalCenter(cPanel parent, int objectHeight, int offset)
+float AlignVerticalCenter(cPanel parent, float objectHeight, float offset)
 {
   return parent.GetPanelContentTopY() + ((parent.GetPanelContentHeight() - objectHeight) / 2) + offset;
 }
 
-int AlignVerticalBottom(cPanel parent, int objectHeight, int offset)
+float AlignVerticalBottom(cPanel parent, float objectHeight, float offset)
 {
   return parent.GetPanelContentTopY() + (parent.GetPanelContentHeight() - objectHeight - offset);
 }

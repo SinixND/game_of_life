@@ -8,7 +8,7 @@ cConfig::cConfig()
     , agentWidth{20}
     , agentHeight{agentWidth}
     , agentInnerBorderWeight{0}
-    , fadingAgents{true}
+    , fadingAgents{false}
     , agentGap{1}
     , lifeDensity{0.25}
     , tickTime{0.5}
