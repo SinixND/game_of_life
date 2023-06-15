@@ -5,12 +5,12 @@
 cConfig config; // declare extern object
 cConfig::cConfig(){
   // APPLICATION
-  windowWidth = 640;
-  windowHeight = 480;
+  windowWidth = 320;
+  windowHeight = 240;
   targetFPS = 60;
 
   // AGENT
-  agentWidth = 3;
+  agentWidth = 20;
   agentHeight = agentWidth;
   agentInnerBorderWeight = 0;
   fadingAgents = true;
@@ -20,5 +20,5 @@ cConfig::cConfig(){
   lifeDensity = 0.25;
 
   // CONTROLS
-  tickTime = 0.1;
+  tickTime = 0.5;
 }

@@ -1,8 +1,7 @@
 #include "panels.h"
 
 cPanel::cPanel(int width, int height, int offsetX = 0, int offsetY = 0, int margin = 0) 
-  : Rectangle(offsetX, offsetY, width, height)
-  , mPanelMargin{margin}
+  : mPanelMargin{margin}
 {
   //mPanelWidth = width;
   //mPanelHeight = height;

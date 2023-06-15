@@ -1,7 +1,9 @@
 #ifndef PANELS_H
 #define PANELS_H
 
-class cPanel : public Rectangle{
+#include "raylib.h"
+
+class cPanel : Rectangle {
 public:
   cPanel(int width, int height, int offsetX, int offsetY, int margin);
 
