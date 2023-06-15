@@ -3,9 +3,10 @@
 #include <vector>
 #include <iostream>
 
-cAgent::cAgent(int rowY, int colX) {
-  mPosY = rowY;
-  mPosX = colX;
+cAgent::cAgent(int rowY, int colX) 
+  : mPosY{rowY}
+  , mPosX{colX}
+{
   mStatusIs = false;
   mStatusNext = false;
   mStatusChanging = true;

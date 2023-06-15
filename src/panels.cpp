@@ -1,11 +1,14 @@
 #include "panels.h"
 
-cPanel::cPanel(int width, int height, int offsetX = 0, int offsetY = 0, int margin = 0) {
-  mPanelWidth = width;
-  mPanelHeight = height;
-  mPanelLeftX = offsetX;
-  mPanelTopY = offsetY;
-  mPanelMargin = margin;
+cPanel::cPanel(int width, int height, int offsetX = 0, int offsetY = 0, int margin = 0) 
+  : Rectangle(offsetX, offsetY, width, height)
+  , mPanelMargin{margin}
+{
+  //mPanelWidth = width;
+  //mPanelHeight = height;
+  //mPanelLeftX = offsetX;
+  //mPanelTopY = offsetY;
+  //mPanelMargin = margin;
 
   mPanelContentLeftX = mPanelLeftX + mPanelMargin;
   mPanelContentTopY = mPanelTopY + mPanelMargin;

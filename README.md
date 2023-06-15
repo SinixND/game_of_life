@@ -21,8 +21,8 @@
 0. Performance
     - Mutlithreading
 0. Code
+    - initializer list for classes
     - Check basic controls!!
-    - Fade(BLACK, 0.5f) for fadingAgents
     - if (IsSomething()) -> encapsulate instead of using a state-variable, eg. AreAgentsFading()
     - Neighbors dont change!, save neighbor-references in agent
     - introduce board to agents class, no higher-dimension info in agent class?

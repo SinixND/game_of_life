@@ -1,7 +1,7 @@
 #ifndef PANELS_H
 #define PANELS_H
 
-class cPanel {
+class cPanel : public Rectangle{
 public:
   cPanel(int width, int height, int offsetX, int offsetY, int margin);
 
