@@ -7,18 +7,18 @@ class cAgent {
 public:
   cAgent(int rowY, int colX);
 
-  int mPosY;
-  int mPosX;
-  bool mStatusIs;
-  bool mStatusChanging;
-  bool mCheckStatus;
-  int mVitality;
+  int posY_;
+  int posX_;
+  bool statusIs_;
+  bool statusChanging_;
+  bool checkStatus_;
+  int vitality_;
 
   void DecreaseVitality();
 
 private:
-  bool mStatusNext;
-  int mAdjacentAgentsActive;
+  bool statusNext_;
+  int adjacentAgentsActive_;
 
 public:
   void SetStatusNext( bool arg );

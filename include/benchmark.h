@@ -14,13 +14,13 @@ public:
 
   cBenchmark(std::string ID);
 
-  std::string mID = "";
-  chrono_timePoint mStartTime;
-  chrono_timePoint mStopTime;
-  chrono_timeDurationDouble mLatestTime;
+  std::string iD_ = "";
+  chrono_timePoint startTime_;
+  chrono_timePoint stopTime_;
+  chrono_timeDurationDouble latestTime_;
 
-  double mIterations;
-  chrono_timeDurationDouble mAvgTime;
+  double iterations_;
+  chrono_timeDurationDouble avgTime_;
 };
 
 

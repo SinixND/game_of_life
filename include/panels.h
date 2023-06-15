@@ -7,21 +7,21 @@ class cPanel : Rectangle {
 public:
   cPanel(int width, int height, int offsetX, int offsetY, int margin);
 
-  int mPanelWidth;
-  int mPanelHeight;
-  int mPanelLeftX;
-  int mPanelTopY;
-  int mPanelMargin;
+  int panelWidth_;
+  int panelHeight_;
+  int panelLeftX_;
+  int panelTopY_;
+  int panelMargin_;
 
 private:
-  int mPanelRightX;
-  int mPanelBottomY;
-  int mPanelContentLeftX;
-  int mPanelContentTopY;
-  int mPanelContentRightX;
-  int mPanelContentBottomY;
-  int mPanelContentWidth;
-  int mPanelContentHeight;
+  int panelRightX_;
+  int panelBottomY_;
+  int panelContentLeftX_;
+  int panelContentTopY_;
+  int panelContentRightX_;
+  int panelContentBottomY_;
+  int panelContentWidth_;
+  int panelContentHeight_;
 
 public:
   int GetPanelRightX();

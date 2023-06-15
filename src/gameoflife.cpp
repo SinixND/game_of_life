@@ -10,39 +10,39 @@
 typedef std::vector<cAgent> vAgents;
 
 cGameOfLife::cGameOfLife(int rowsY, int colsX){
-  mRowsY = rowsY;
-  mColsX = colsX;
+  rowsY_ = rowsY;
+  colsX_ = colsX;
 
   ResetGameOfLife();
 };
 
 void cGameOfLife::ResetGameOfLife() {
-  mDay = 0;
-  mGrid.clear();
-  mGridState.clear();
-  mGridStates.clear();
+  day_ = 0;
+  grid_.clear();
+  gridState_.clear();
+  gridStates_.clear();
 
   // INITIALIZE AGENTS
   //---------------------------------
-  for (auto rowY = 0; rowY < mRowsY; ++rowY) {
+  for (auto rowY = 0; rowY < rowsY_; ++rowY) {
     vAgents newRow;
-    mGrid.push_back(newRow);
+    grid_.push_back(newRow);
 
-    for (auto colX = 0; colX < mColsX; ++colX) {
-      mGrid[rowY].push_back(cAgent(rowY, colX));
+    for (auto colX = 0; colX < colsX_; ++colX) {
+      grid_[rowY].push_back(cAgent(rowY, colX));
 
-      cAgent& agent = mGrid[rowY][colX];
+      cAgent& agent = grid_[rowY][colX];
 
       if (((rand() % 100) * 0.01) <= config.lifeDensity) {
         agent.mStatusIs = true; // make alive
-        mGridState.push_back(true);
+        gridState_.push_back(true);
       } else {
-        mGridState.push_back(false);
+        gridState_.push_back(false);
       }
     }
   }
-  mGridStates.push_back(mGridState);
-  mGridState.clear();
+  gridStates_.push_back(gridState_);
+  gridState_.clear();
 }
 
 int cGameOfLife::CountAdjacentAgents(cAgent& agent){
@@ -50,10 +50,10 @@ int cGameOfLife::CountAdjacentAgents(cAgent& agent){
   for (auto dy : {-1, 0, 1}) {
     for (auto dx : {-1, 0, 1}) {
       // wraps around matrix
-      int posY = ((agent.mPosY + dy) + mGrid.size()) % mGrid.size();
-      int posX = ((agent.mPosX + dx) + mGrid[posY].size()) % mGrid[posY].size();
+      int posY = ((agent.mPosY + dy) + grid_.size()) % grid_.size();
+      int posX = ((agent.mPosX + dx) + grid_[posY].size()) % grid_[posY].size();
 
-      cAgent& adjacentAgent = mGrid[posY][posX];
+      cAgent& adjacentAgent = grid_[posY][posX];
 
       if ((dy != 0 || dx != 0) && adjacentAgent.mStatusIs == true) {
         cnt += 1;
@@ -66,7 +66,7 @@ int cGameOfLife::CountAdjacentAgents(cAgent& agent){
 void cGameOfLife::ProcessGameOfLife(){
   // DETERMINE NEXT AGENTS STATE
   //---------------------------------
-  for (auto& row : mGrid) {
+  for (auto& row : grid_) {
     for (auto& agent : row) {
       // Default Ruleset:
       // AdjacentAgent count = 2 -> remain.
@@ -100,21 +100,21 @@ void cGameOfLife::PingAdjacentAgents(cAgent& agent){
   for (auto dx : {-1, 0, 1}) {
     for (auto dy : {-1, 0, 1}) {
       // wraps around matrix
-      int posY = ((agent.mPosY + dy) + mGrid.size()) % mGrid.size();
-      int posX = ((agent.mPosX + dx) + mGrid[posY].size()) % mGrid[posY].size();
+      int posY = ((agent.mPosY + dy) + grid_.size()) % grid_.size();
+      int posX = ((agent.mPosX + dx) + grid_[posY].size()) % grid_[posY].size();
 
-      cAgent& adjacentAgent = mGrid[posY][posX];
+      cAgent& adjacentAgent = grid_[posY][posX];
       adjacentAgent.mCheckStatus = true;
     }
   }
 };
 
 void cGameOfLife::UpdateGameOfLife(){
-  mDay += 1;
+  day_ += 1;
 
   // UPDATE AGENTS
   //---------------------------------
-  for (auto& row : mGrid) {
+  for (auto& row : grid_) {
     for (auto& agent : row) {
       if (agent.mStatusChanging == true) {
         PingAdjacentAgents(agent);
@@ -131,15 +131,15 @@ void cGameOfLife::UpdateGameOfLife(){
       }
 
       if (agent.mStatusIs == true) {
-        mGridState.push_back(true);
+        gridState_.push_back(true);
       } else {
-        mGridState.push_back(false);
+        gridState_.push_back(false);
         agent.DecreaseVitality();
       }
     }
   }
-  mGridStates.push_back(mGridState);
-  mGridState.clear();
+  gridStates_.push_back(gridState_);
+  gridState_.clear();
 };
 
 void cGameOfLife::EvolveGrid(){
@@ -148,6 +148,6 @@ void cGameOfLife::EvolveGrid(){
 };
 
 
-vvAgents& cGameOfLife::GetGrid(){ return mGrid; };
+vvAgents& cGameOfLife::GetGrid(){ return grid_; };
 
-int cGameOfLife::GetDay(){ return mDay; };
+int cGameOfLife::GetDay(){ return day_; };

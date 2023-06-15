@@ -4,31 +4,31 @@
 #include <iostream>
 
 cAgent::cAgent(int rowY, int colX) 
-  : mPosY{rowY}
-  , mPosX{colX}
+  : posY_{rowY}
+  , posX_{colX}
 {
-  mStatusIs = false;
-  mStatusNext = false;
-  mStatusChanging = true;
-  mCheckStatus = true;
-  mAdjacentAgentsActive = 0;
-  mVitality = 0;
+  statusIs_ = false;
+  statusNext_ = false;
+  statusChanging_ = true;
+  checkStatus_ = true;
+  adjacentAgentsActive_ = 0;
+  vitality_ = 0;
 }
 
 void cAgent::SetStatusNext(bool arg) {
-  mStatusNext = arg;
-  if (mStatusIs != mStatusNext) {
-    mStatusChanging  = true;
+  statusNext_ = arg;
+  if (statusIs_ != statusNext_) {
+    statusChanging_  = true;
   } else {
-    mStatusChanging = false;
+    statusChanging_ = false;
   }
 }
 bool cAgent::GetStatusNext() {
-  return mStatusNext;
+  return statusNext_;
 }
 
 void cAgent::DecreaseVitality() {
-  if (mVitality > 0) {
-    mVitality -= 1;
+  if (vitality_ > 0) {
+    vitality_ -= 1;
   }
 }

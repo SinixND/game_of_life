@@ -11,8 +11,8 @@ std::vector<cBenchmark> benchmarks = {cBenchmark("NULL")};
 bool benchmarkFound = false;
 
 cBenchmark::cBenchmark(std::string ID) {
-  mID = ID;
-  mIterations = 0;
+  iD_ = ID;
+  iterations_ = 0;
 }
 
 void StartBenchmark(std::string ID) {

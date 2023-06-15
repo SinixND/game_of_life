@@ -11,18 +11,18 @@ class cGameOfLife {
 public:
   cGameOfLife(int rowsY, int colsX);
 
-  std::vector<bool> mGridState;
-  std::vector<std::vector<bool>> mGridStates;
+  std::vector<bool> gridState_;
+  std::vector<std::vector<bool>> gridStates_;
 
   void EvolveGrid();
   void ResetGameOfLife();
 
 private:
-  int mRowsY;
-  int mColsX;
-  int mDay;
+  int rowsY_;
+  int colsX_;
+  int day_;
 
-  vvAgents mGrid;
+  vvAgents grid_;
 
   int CountAdjacentAgents(cAgent& agent);
   void ProcessGameOfLife();

@@ -1,7 +1,7 @@
 #include "panels.h"
 
 cPanel::cPanel(int width, int height, int offsetX = 0, int offsetY = 0, int margin = 0) 
-  : mPanelMargin{margin}
+  : panelMargin_{margin}
 {
   //mPanelWidth = width;
   //mPanelHeight = height;
@@ -9,50 +9,50 @@ cPanel::cPanel(int width, int height, int offsetX = 0, int offsetY = 0, int marg
   //mPanelTopY = offsetY;
   //mPanelMargin = margin;
 
-  mPanelContentLeftX = mPanelLeftX + mPanelMargin;
-  mPanelContentTopY = mPanelTopY + mPanelMargin;
-  mPanelContentRightX = mPanelLeftX + mPanelWidth - mPanelMargin;
-  mPanelContentBottomY = mPanelTopY + mPanelHeight - mPanelMargin;
-  mPanelContentWidth = mPanelWidth - (2 * mPanelMargin);
-  mPanelContentHeight = mPanelHeight - (2 * mPanelMargin);
+  panelContentLeftX_ = panelLeftX_ + panelMargin_;
+  panelContentTopY_ = panelTopY_ + panelMargin_;
+  panelContentRightX_ = panelLeftX_ + panelWidth_ - panelMargin_;
+  panelContentBottomY_ = panelTopY_ + panelHeight_ - panelMargin_;
+  panelContentWidth_ = panelWidth_ - (2 * panelMargin_);
+  panelContentHeight_ = panelHeight_ - (2 * panelMargin_);
 }
 
 int cPanel::GetPanelRightX() {
-  return mPanelLeftX + mPanelWidth;
+  return panelLeftX_ + panelWidth_;
 }
 
 int cPanel::GetPanelBottomY() {
-  return mPanelTopY + mPanelHeight;
+  return panelTopY_ + panelHeight_;
 }
 
 int cPanel::GetPanelContentLeftX() {
-  mPanelContentLeftX = mPanelLeftX + mPanelMargin;
-  return mPanelContentLeftX;
+  panelContentLeftX_ = panelLeftX_ + panelMargin_;
+  return panelContentLeftX_;
 }
 
 int cPanel::GetPanelContentTopY() {
-  mPanelContentTopY = mPanelTopY + mPanelMargin;
-  return mPanelContentTopY;
+  panelContentTopY_ = panelTopY_ + panelMargin_;
+  return panelContentTopY_;
 }
 
 int cPanel::GetPanelContentRightX() {
-  mPanelContentRightX = mPanelLeftX + mPanelWidth - mPanelMargin;
-  return mPanelContentRightX;
+  panelContentRightX_ = panelLeftX_ + panelWidth_ - panelMargin_;
+  return panelContentRightX_;
 }
 
 int cPanel::GetPanelContentBottomY() {
-  mPanelContentBottomY = mPanelTopY + mPanelHeight - mPanelMargin;
-  return mPanelContentBottomY;
+  panelContentBottomY_ = panelTopY_ + panelHeight_ - panelMargin_;
+  return panelContentBottomY_;
 }
 
 int cPanel::GetPanelContentWidth() {
-  mPanelContentWidth = mPanelWidth - (2 * mPanelMargin);
-  return mPanelContentWidth;
+  panelContentWidth_ = panelWidth_ - (2 * panelMargin_);
+  return panelContentWidth_;
 }
 
 int cPanel::GetPanelContentHeight() {
-  mPanelContentHeight = mPanelHeight - (2 * mPanelMargin);
-  return mPanelContentHeight;
+  panelContentHeight_ = panelHeight_ - (2 * panelMargin_);
+  return panelContentHeight_;
 }
 
 int AlignHorizontalLeft(cPanel panel, int offset) {
