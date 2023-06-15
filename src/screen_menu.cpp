@@ -11,7 +11,7 @@
 //---------------------------------
 cPanel panelMenubarScreenMenu(config.windowWidth, (global.guiButtonBaseHeight + 20), 0, 0, 10);
 cPanel panelStatusbarScreenMenu(config.windowWidth, (global.txtSmall + 20), 0, (config.windowHeight - (global.txtSmall + 20)), 10);
-cPanel panelMainScreenMenu(config.windowWidth, config.windowHeight - panelMenubarScreenMenu.mPanelHeight - panelStatusbarScreenMenu.mPanelHeight, 0, panelMenubarScreenMenu.mPanelHeight, 10);
+cPanel panelMainScreenMenu(config.windowWidth, config.windowHeight - panelMenubarScreenMenu.panelHeight_ - panelStatusbarScreenMenu.panelHeight_, 0, panelMenubarScreenMenu.panelHeight_, 10);
 
 const char *txtButtonDarkModeScreenMenu;
 

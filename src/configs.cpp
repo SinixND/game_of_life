@@ -5,8 +5,8 @@
 cConfig config; // declare extern object
 cConfig::cConfig()
   // APPLICATION
-  : windowWidth{320}
-  , windowHeight{240}
+  : windowWidth{640}
+  , windowHeight{480}
   , targetFPS{60}
 
   // AGENT

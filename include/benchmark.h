@@ -12,9 +12,9 @@ extern bool benchmarkFound;
 class cBenchmark{
 public:
 
-  cBenchmark(std::string ID);
+  cBenchmark(std::string id);
 
-  std::string ID_ = "";
+  std::string id_ = "";
   chrono_timePoint startTime_;
   chrono_timePoint stopTime_;
   chrono_timeDurationDouble latestTime_;
@@ -26,8 +26,8 @@ public:
 
 extern std::vector<cBenchmark> benchmarks;
 
-void StartBenchmark(std::string ID);
-void StopBenchmark(std::string ID);
+void StartBenchmark(std::string id);
+void StopBenchmark(std::string id);
 void ShowBenchmark();
 
 #endif

@@ -15,7 +15,7 @@
 //---------------------------------
 cPanel panelMenubarScreenGame(config.windowWidth, (global.guiButtonBaseHeight + 20), 0, 0, 10);
 cPanel panelStatusbarScreenGame(config.windowWidth, (global.txtSmall + 20), 0, (config.windowHeight - (global.txtSmall + 20)), 10);
-cPanel panelMainScreenGame(config.windowWidth, config.windowHeight - panelMenubarScreenGame.mPanelHeight - panelStatusbarScreenGame.mPanelHeight, 0, panelMenubarScreenGame.mPanelHeight, 10);
+cPanel panelMainScreenGame(config.windowWidth, config.windowHeight - panelMenubarScreenGame.panelHeight_ - panelStatusbarScreenGame.panelHeight_, 0, panelMenubarScreenGame.panelHeight_, 10);
 
 const char *txtButtonBackScreenGame = "Back";
 const char *txtButtonResetScreenGame = "Reset";
@@ -108,8 +108,8 @@ void UpdateScreenGame() {
     return;
   }
 
-  int currentState = GameOfLife.mGridStates.size() - 1;
-  if (GameOfLife.mGridStates[currentState] == GameOfLife.mGridStates[currentState - 2]) {
+  int currentState = GameOfLife.gridStates_.size() - 1;
+  if (GameOfLife.gridStates_[currentState] == GameOfLife.gridStates_[currentState - 2]) {
     evolutionState = false;
   }
 }
@@ -151,16 +151,16 @@ void OutputScreenGame() {
   for (auto& row : GameOfLife.GetGrid()) {
     for (auto& agent : row) {
       Rectangle rectAgent{
-        float(AlignHorizontalCenter(panelMainScreenGame, (colsX * (config.agentWidth + config.agentGap) - config.agentGap), 0) + (agent.mPosX * (config.agentWidth + config.agentGap))),
-        float(AlignVerticalCenter(panelMainScreenGame, (rowsY * (config.agentHeight + config.agentGap) - config.agentGap), 0) + (agent.mPosY * (config.agentHeight + config.agentGap))),
+        float(AlignHorizontalCenter(panelMainScreenGame, (colsX * (config.agentWidth + config.agentGap) - config.agentGap), 0) + (agent.posX_ * (config.agentWidth + config.agentGap))),
+        float(AlignVerticalCenter(panelMainScreenGame, (rowsY * (config.agentHeight + config.agentGap) - config.agentGap), 0) + (agent.posY_ * (config.agentHeight + config.agentGap))),
         float(config.agentWidth),
         float(config.agentHeight)};
 
-      if (agent.mStatusIs == true) {
+      if (agent.statusIs_ == true) {
         DrawRectangleRec(rectAgent, global.GetColorForeground());
       } else {
         Color colorAgentVitality;
-        switch (agent.mVitality) {
+        switch (agent.vitality_) {
         case 4:
           colorAgentVitality = global.GetColorForeground();
           DrawRectangleRec(rectAgent, colorAgentVitality);
@@ -200,9 +200,9 @@ void OutputScreenGame() {
   // DRAW PAUSE OVERLAY
   //---------------------------------
   else if (pauseState == true) {
-    Rectangle rectpanelMainScreenGame{float(panelMainScreenGame.mPanelLeftX), float(panelMainScreenGame.mPanelTopY), float(panelMainScreenGame.mPanelWidth), float(panelMainScreenGame.mPanelHeight)};
+    Rectangle rectpanelMainScreenGame{float(panelMainScreenGame.panelLeftX_), float(panelMainScreenGame.panelTopY_), float(panelMainScreenGame.panelWidth_), float(panelMainScreenGame.panelHeight_)};
 
-    DrawRectangleRec((Rectangle){float(panelMainScreenGame.mPanelLeftX), float(panelMainScreenGame.mPanelTopY), float(panelMainScreenGame.mPanelWidth), float(panelMainScreenGame.mPanelHeight)}, CLITERAL(Color){130, 130, 130, 175});
+    DrawRectangleRec((Rectangle){float(panelMainScreenGame.panelLeftX_), float(panelMainScreenGame.panelTopY_), float(panelMainScreenGame.panelWidth_), float(panelMainScreenGame.panelHeight_)}, CLITERAL(Color){130, 130, 130, 175});
 
     DrawRectangleLinesEx(rectpanelMainScreenGame, 10, Fade(global.GetColorForeground(), 0.75f));
 
