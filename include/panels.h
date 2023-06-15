@@ -38,11 +38,11 @@ public:
 };
 
 // Align function to return the position relative to the parent (first argument)
-int AlignHorizontalLeft(Rectangle parent, int offset);
-int AlignHorizontalCenter(Rectangle parent, int objectWidth, int offset);
-int AlignHorizontalRight(Rectangle parent, int objectWidth, int offset);
-int AlignVerticalTop(Rectangle parent, int offset);
-int AlignVerticalCenter(Rectangle parent, int objectHeight, int offset);
-int AlignVerticalBottom(Rectangle parent, int objectHeight, int offset);
+int AlignHorizontalLeft(cPanel parent, int offset);
+int AlignHorizontalCenter(cPanel parent, int objectWidth, int offset);
+int AlignHorizontalRight(cPanel parent, int objectWidth, int offset);
+int AlignVerticalTop(cPanel parent, int offset);
+int AlignVerticalCenter(cPanel parent, int objectHeight, int offset);
+int AlignVerticalBottom(cPanel parent, int objectHeight, int offset);
 
 #endif

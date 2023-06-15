@@ -14,7 +14,7 @@ public:
 
   cBenchmark(std::string ID);
 
-  std::string iD_ = "";
+  std::string ID_ = "";
   chrono_timePoint startTime_;
   chrono_timePoint stopTime_;
   chrono_timeDurationDouble latestTime_;

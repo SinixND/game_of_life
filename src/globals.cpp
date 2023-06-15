@@ -5,22 +5,21 @@
 // NOT CUSTOMIZABLE BY USER
 //---------------------------------
 cGlobal global; // declare extern object
-cGlobal::cGlobal(){
+cGlobal::cGlobal()
   // GUI ELEMENTS
-  Font font = GetFontDefault();
+  //Font font = GetFontDefault();
   //GetFontDefault().baseSize == 10
-  txtSmall = 20;
-  txtNormal = 30;
-  guiButtonBaseWidth = 20;
-  guiButtonBaseHeight = 30;
-
+  : txtSmall{20}
+  , txtNormal{30}
+  , guiButtonBaseWidth{20}
+  , guiButtonBaseHeight{30}
 
   // PRIVATE
   // DARK MODE
-  darkMode = false;
-  colorBackground = WHITE;
-  colorForeground = BLACK;
-};
+  , darkMode{false}
+  , colorBackground{WHITE}
+  , colorForeground{BLACK}
+{};
 
 void cGlobal::ToggleDarkMode(){
   darkMode = !darkMode;

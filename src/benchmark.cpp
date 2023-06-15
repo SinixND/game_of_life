@@ -10,10 +10,10 @@
 std::vector<cBenchmark> benchmarks = {cBenchmark("NULL")};
 bool benchmarkFound = false;
 
-cBenchmark::cBenchmark(std::string ID) {
-  iD_ = ID;
-  iterations_ = 0;
-}
+cBenchmark::cBenchmark(std::string ID) 
+  : ID_{ID}
+  , iterations_{0}
+{}
 
 void StartBenchmark(std::string ID) {
   benchmarkFound = false;

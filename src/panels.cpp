@@ -58,26 +58,26 @@ int cPanel::GetPanelContentHeight() {
   return panelContentHeight_;
 }
 
-int AlignHorizontalLeft(Rectangle parent, int offset) {
+int AlignHorizontalLeft(cPanel parent, int offset) {
   return panel.GetPanelContentLeftX() + offset;
 }
 
-int AlignHorizontalCenter(Rectangle parent, int objectWidth, int offset) {
+int AlignHorizontalCenter(cPanel parent, int objectWidth, int offset) {
   return panel.GetPanelContentLeftX() + ((panel.GetPanelContentWidth() - contentWidth) / 2) + offset;
 }
 
-int AlignHorizontalRight(Rectangle parent, int objectWidth, int offset) {
+int AlignHorizontalRight(cPanel parent, int objectWidth, int offset) {
   return panel.GetPanelContentLeftX() + panel.GetPanelContentWidth() - contentWidth - offset;
 }
 
-int AlignVerticalTop(Rectangle parent, int offset) {
+int AlignVerticalTop(cPanel parent, int offset) {
   return panel.GetPanelContentTopY() + offset;
 }
 
-int AlignVerticalCenter(Rectangle parent, int objectHeight, int offset) {
+int AlignVerticalCenter(cPanel parent, int objectHeight, int offset) {
   return panel.GetPanelContentTopY() + ((panel.GetPanelContentHeight() - contentHeight) / 2) + offset;
 }
 
-int AlignVerticalBottom(Rectangle parent, int objectHeight, int offset) {
+int AlignVerticalBottom(cPanel parent, int objectHeight, int offset) {
   return panel.GetPanelContentTopY() + (panel.GetPanelContentHeight() - contentHeight - offset);
 }

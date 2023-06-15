@@ -9,10 +9,10 @@
 
 typedef std::vector<cAgent> vAgents;
 
-cGameOfLife::cGameOfLife(int rowsY, int colsX){
-  rowsY_ = rowsY;
-  colsX_ = colsX;
-
+cGameOfLife::cGameOfLife(int rowsY, int colsX)
+  : rowsY_{rowsY}
+  , colsX_{colsX}
+{
   ResetGameOfLife();
 };
 
