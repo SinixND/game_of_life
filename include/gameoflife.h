@@ -7,7 +7,8 @@
 
 typedef std::vector<std::vector<cAgent>> vvAgents;
 
-class cGameOfLife {
+class cGameOfLife
+{
 public:
   cGameOfLife(int rowsY, int colsX);
 
@@ -24,15 +25,15 @@ private:
 
   vvAgents grid_;
 
-  int CountAdjacentAgents(cAgent& agent);
+  int CountAdjacentAgents(cAgent &agent);
   void ProcessGameOfLife();
 
-  void PingAdjacentAgents(cAgent& agent);
+  void PingAdjacentAgents(cAgent &agent);
   void UpdateGameOfLife();
 
 public:
   int GetDay();
-  vvAgents& GetGrid();
+  vvAgents &GetGrid();
 };
 
 #endif

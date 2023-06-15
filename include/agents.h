@@ -3,7 +3,8 @@
 
 #include <vector>
 
-class cAgent {
+class cAgent
+{
 public:
   cAgent(int rowY, int colX);
 
@@ -21,7 +22,7 @@ private:
   int adjacentAgentsActive_;
 
 public:
-  void SetStatusNext( bool arg );
+  void SetStatusNext(bool arg);
   bool GetStatusNext();
 };
 

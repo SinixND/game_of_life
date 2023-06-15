@@ -7,11 +7,9 @@ typedef std::chrono::duration<double> chrono_timeDurationDouble;
 #include <string>
 #include <vector>
 
-extern bool benchmarkFound;
-
-class cBenchmark{
+class cBenchmark
+{
 public:
-
   cBenchmark(std::string id);
 
   std::string id_ = "";
@@ -22,7 +20,6 @@ public:
   double iterations_;
   chrono_timeDurationDouble avgTime_;
 };
-
 
 extern std::vector<cBenchmark> benchmarks;
 

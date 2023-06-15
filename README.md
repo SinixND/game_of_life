@@ -21,8 +21,8 @@
 0. Performance
     - Mutlithreading
 0. Code
-    - initializer list for classes
-    - change all int-distances (pos, width) to float
+    - make main panel a gui element
+    - seperate Game-End screen
     - if (IsSomething()) -> encapsulate instead of using a state-variable, eg. AreAgentsFading()
     - Neighbors dont change!, save neighbor-references in agent
     - introduce board to agents class, no higher-dimension info in agent class?

@@ -3,7 +3,8 @@
 
 // CUSTOMIZABLE BY USER
 //---------------------------------
-class cConfig {
+class cConfig
+{
 public:
   cConfig();
 
@@ -25,6 +26,6 @@ public:
   // CONTROLS
   float tickTime;
 };
-extern cConfig config;
+extern cConfig config; // declare extern object
 
 #endif

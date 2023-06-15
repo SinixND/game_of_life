@@ -1,12 +1,13 @@
 #ifndef PANELS_H
 #define PANELS_H
-// panel class used to provide an entity derived from Rectangle to get additional values to the rectangle ones 
-// also introduces methods to position 
+// panel class used to provide an entity derived from Rectangle to get additional values to the rectangle ones
+// also introduces methods to position
 
 #include "raylib.h"
 
-class cPanel : Rectangle {
-public:
+class cPanel : Rectangle
+{
+  public:
   cPanel(float width, float height, float offsetX, float offsetY, float margin);
 
   int panelWidth_;
@@ -15,9 +16,9 @@ public:
   int panelTopY_;
   int panelMargin_;
 
-private:
+  private:
   int panelRightX_;
-  int panelBottomY_;
+  int panelBottoy_;
   int panelContentLeftX_;
   int panelContentTopY_;
   int panelContentRightX_;
@@ -25,7 +26,7 @@ private:
   int panelContentWidth_;
   int panelContentHeight_;
 
-public:
+  public:
   int GetPanelRightX();
   int GetPanelBottomY();
 

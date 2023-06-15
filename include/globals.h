@@ -5,7 +5,8 @@
 
 // NOT CUSTOMIZABLE BY USER
 //---------------------------------
-class cGlobal {
+class cGlobal
+{
 public:
   cGlobal();
 
@@ -29,6 +30,6 @@ public:
   Color GetColorBackground();
   Color GetColorForeground();
 };
-extern cGlobal global;
+extern cGlobal global; // declare extern object
 
 #endif

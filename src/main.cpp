@@ -5,11 +5,12 @@
 #include "raylib.h"
 
 #include "agents.h"
-#include "globals.h" // provide object "global" for not configurable application parameters
 #include "configs.h" // provide object "config" for configurable parameters
+#include "globals.h" // provide object "global" for not configurable application parameters
 #include "screens.h"
 
-int main() {
+int main()
+{
   InitWindow(config.windowWidth, config.windowHeight, "Conway's Game of Life");
   SetTargetFPS(config.targetFPS);
 
@@ -17,7 +18,8 @@ int main() {
   //---------------------------------
   while (!WindowShouldClose()) // Detect window close button or ESC key
   {
-    switch (currentScreen) {
+    switch (currentScreen)
+    {
     case MENU:
       RunScreenMenu();
       break;

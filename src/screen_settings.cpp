@@ -68,10 +68,10 @@ void OutputScreenSettings()
   //---------------------------------
   config.fadingAgents = GuiCheckBox((Rectangle){float(panelMainScreenSettings.GetPanelContentLeftX()), float(panelMainScreenSettings.GetPanelContentTopY()), global.txtSmall, global.txtSmall}, "Fading Agents", config.fadingAgents);
 
-  //Rectangle rectScrollPanelBounds = Rectangle{10, 10, 100, 100};
-  //Rectangle rectScrollPanelContent = Rectangle{10, 10, 100, 500};
-  //Vector2 panelScroll = { 99, -20 };
-  //GuiScrollPanel(rectScrollPanelBounds, "Text", rectScrollPanelContent, &panelScroll);
+  // Rectangle rectScrollPanelBounds = Rectangle{10, 10, 100, 100};
+  // Rectangle rectScrollPanelContent = Rectangle{10, 10, 100, 500};
+  // Vector2 panelScroll = { 99, -20 };
+  // GuiScrollPanel(rectScrollPanelBounds, "Text", rectScrollPanelContent, &panelScroll);
 
   EndDrawing();
 }

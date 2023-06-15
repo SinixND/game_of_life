@@ -1,22 +1,23 @@
 #include "gameoflife.h"
 
+#include <cstdlib>
 #include <iostream>
 #include <vector>
-#include <cstdlib>
 
-#include "configs.h" // provide object "config" for configurable parameters
 #include "agents.h"
+#include "configs.h" // provide object "config" for configurable parameters
 
 typedef std::vector<cAgent> vAgents;
 
 cGameOfLife::cGameOfLife(int rowsY, int colsX)
-  : rowsY_{rowsY}
-  , colsX_{colsX}
+    : rowsY_{rowsY}
+    , colsX_{colsX}
 {
   ResetGameOfLife();
 };
 
-void cGameOfLife::ResetGameOfLife() {
+void cGameOfLife::ResetGameOfLife()
+{
   day_ = 0;
   grid_.clear();
   gridState_.clear();
@@ -24,19 +25,24 @@ void cGameOfLife::ResetGameOfLife() {
 
   // INITIALIZE AGENTS
   //---------------------------------
-  for (auto rowY = 0; rowY < rowsY_; ++rowY) {
+  for (auto rowY = 0; rowY < rowsY_; ++rowY)
+  {
     vAgents newRow;
     grid_.push_back(newRow);
 
-    for (auto colX = 0; colX < colsX_; ++colX) {
+    for (auto colX = 0; colX < colsX_; ++colX)
+    {
       grid_[rowY].push_back(cAgent(rowY, colX));
 
-      cAgent& agent = grid_[rowY][colX];
+      cAgent &agent = grid_[rowY][colX];
 
-      if (((rand() % 100) * 0.01) <= config.lifeDensity) {
+      if (((rand() % 100) * 0.01) <= config.lifeDensity)
+      {
         agent.statusIs_ = true; // make alive
         gridState_.push_back(true);
-      } else {
+      }
+      else
+      {
         gridState_.push_back(false);
       }
     }
@@ -45,17 +51,21 @@ void cGameOfLife::ResetGameOfLife() {
   gridState_.clear();
 }
 
-int cGameOfLife::CountAdjacentAgents(cAgent& agent){
+int cGameOfLife::CountAdjacentAgents(cAgent &agent)
+{
   int cnt = 0;
-  for (auto dy : {-1, 0, 1}) {
-    for (auto dx : {-1, 0, 1}) {
+  for (auto dy : {-1, 0, 1})
+  {
+    for (auto dx : {-1, 0, 1})
+    {
       // wraps around matrix
       int posY = ((agent.posY_ + dy) + grid_.size()) % grid_.size();
       int posX = ((agent.posX_ + dx) + grid_[posY].size()) % grid_[posY].size();
 
-      cAgent& adjacentAgent = grid_[posY][posX];
+      cAgent &adjacentAgent = grid_[posY][posX];
 
-      if ((dy != 0 || dx != 0) && adjacentAgent.statusIs_ == true) {
+      if ((dy != 0 || dx != 0) && adjacentAgent.statusIs_ == true)
+      {
         cnt += 1;
       }
     }
@@ -63,11 +73,14 @@ int cGameOfLife::CountAdjacentAgents(cAgent& agent){
   return cnt;
 };
 
-void cGameOfLife::ProcessGameOfLife(){
+void cGameOfLife::ProcessGameOfLife()
+{
   // DETERMINE NEXT AGENTS STATE
   //---------------------------------
-  for (auto& row : grid_) {
-    for (auto& agent : row) {
+  for (auto &row : grid_)
+  {
+    for (auto &agent : row)
+    {
       // Default Ruleset:
       // AdjacentAgent count = 2 -> remain.
       // AdjacentAgent count = 3 -> alive.
@@ -79,15 +92,16 @@ void cGameOfLife::ProcessGameOfLife(){
       }
       agent.checkStatus_ = false;
 
-      switch (CountAdjacentAgents(agent)){
+      switch (CountAdjacentAgents(agent))
+      {
       case 2:
         agent.SetStatusNext(agent.statusIs_);
         break;
-      
+
       case 3:
         agent.SetStatusNext(true);
         break;
-      
+
       default:
         agent.SetStatusNext(false);
         break;
@@ -96,43 +110,57 @@ void cGameOfLife::ProcessGameOfLife(){
   }
 };
 
-void cGameOfLife::PingAdjacentAgents(cAgent& agent){
-  for (auto dx : {-1, 0, 1}) {
-    for (auto dy : {-1, 0, 1}) {
+void cGameOfLife::PingAdjacentAgents(cAgent &agent)
+{
+  for (auto dx : {-1, 0, 1})
+  {
+    for (auto dy : {-1, 0, 1})
+    {
       // wraps around matrix
       int posY = ((agent.posY_ + dy) + grid_.size()) % grid_.size();
       int posX = ((agent.posX_ + dx) + grid_[posY].size()) % grid_[posY].size();
 
-      cAgent& adjacentAgent = grid_[posY][posX];
+      cAgent &adjacentAgent = grid_[posY][posX];
       adjacentAgent.checkStatus_ = true;
     }
   }
 };
 
-void cGameOfLife::UpdateGameOfLife(){
+void cGameOfLife::UpdateGameOfLife()
+{
   day_ += 1;
 
   // UPDATE AGENTS
   //---------------------------------
-  for (auto& row : grid_) {
-    for (auto& agent : row) {
-      if (agent.statusChanging_ == true) {
+  for (auto &row : grid_)
+  {
+    for (auto &agent : row)
+    {
+      if (agent.statusChanging_ == true)
+      {
         PingAdjacentAgents(agent);
 
-        if (agent.GetStatusNext() == true) {
+        if (agent.GetStatusNext() == true)
+        {
           agent.statusIs_ = true;
 
-          if (config.fadingAgents == true) {
+          if (config.fadingAgents == true)
+          {
             agent.vitality_ = 4;
           }
-        } else {
+        }
+        else
+        {
           agent.statusIs_ = false;
         }
       }
 
-      if (agent.statusIs_ == true) {
+      if (agent.statusIs_ == true)
+      {
         gridState_.push_back(true);
-      } else {
+      }
+      else
+      {
         gridState_.push_back(false);
         agent.DecreaseVitality();
       }
@@ -142,12 +170,12 @@ void cGameOfLife::UpdateGameOfLife(){
   gridState_.clear();
 };
 
-void cGameOfLife::EvolveGrid(){
+void cGameOfLife::EvolveGrid()
+{
   ProcessGameOfLife();
   UpdateGameOfLife();
 };
 
+vvAgents &cGameOfLife::GetGrid() { return grid_; };
 
-vvAgents& cGameOfLife::GetGrid(){ return grid_; };
-
-int cGameOfLife::GetDay(){ return day_; };
+int cGameOfLife::GetDay() { return day_; };
