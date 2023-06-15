@@ -5,7 +5,7 @@
 
 class cPanel : Rectangle {
 public:
-  cPanel(int width, int height, int offsetX, int offsetY, int margin);
+  cPanel(float width, float height, float offsetX, float offsetY, float margin);
 
   int panelWidth_;
   int panelHeight_;

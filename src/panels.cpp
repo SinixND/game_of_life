@@ -1,13 +1,16 @@
 #include "panels.h"
 
-cPanel::cPanel(int width, int height, int offsetX = 0, int offsetY = 0, int margin = 0) 
-  : panelMargin_{margin}
+cPanel::cPanel(float width, float height, float offsetX = 0, float offsetY = 0, float margin = 0) 
+  : panelWidth_{width}
+  , panelHeight_{height}
+  , panelLeftX_{offsetX}
+  , panelTopY_{offsetY}
+  , panelMargin_{margin}
 {
-  //mPanelWidth = width;
-  //mPanelHeight = height;
-  //mPanelLeftX = offsetX;
-  //mPanelTopY = offsetY;
-  //mPanelMargin = margin;
+  width = panelWidth_;
+  height = panelHeight_;
+  x = panelLeftX_;
+  y = panelTopY_;
 
   panelContentLeftX_ = panelLeftX_ + panelMargin_;
   panelContentTopY_ = panelTopY_ + panelMargin_;

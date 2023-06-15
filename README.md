@@ -22,7 +22,7 @@
     - Mutlithreading
 0. Code
     - initializer list for classes
-    - Check basic controls!!
+    - change all int-distances (pos, width) to float
     - if (IsSomething()) -> encapsulate instead of using a state-variable, eg. AreAgentsFading()
     - Neighbors dont change!, save neighbor-references in agent
     - introduce board to agents class, no higher-dimension info in agent class?
