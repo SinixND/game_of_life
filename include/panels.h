@@ -1,5 +1,7 @@
 #ifndef PANELS_H
 #define PANELS_H
+// panel class used to provide an entity derived from Rectangle to get additional values to the rectangle ones 
+// also introduces methods to position 
 
 #include "raylib.h"
 
@@ -35,11 +37,12 @@ public:
   int GetPanelContentHeight();
 };
 
-int AlignHorizontalLeft(cPanel panel, int offset);
-int AlignHorizontalCenter(cPanel panel, int contentWidth, int offset);
-int AlignHorizontalRight(cPanel panel, int contentWidth, int offset);
-int AlignVerticalTop(cPanel panel, int offset);
-int AlignVerticalCenter(cPanel panel, int contentHeight, int offset);
-int AlignVerticalBottom(cPanel panel, int contentHeight, int offset);
+// Align function to return the position relative to the parent (first argument)
+int AlignHorizontalLeft(Rectangle parent, int offset);
+int AlignHorizontalCenter(Rectangle parent, int objectWidth, int offset);
+int AlignHorizontalRight(Rectangle parent, int objectWidth, int offset);
+int AlignVerticalTop(Rectangle parent, int offset);
+int AlignVerticalCenter(Rectangle parent, int objectHeight, int offset);
+int AlignVerticalBottom(Rectangle parent, int objectHeight, int offset);
 
 #endif
