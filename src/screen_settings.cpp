@@ -1,4 +1,5 @@
 #include "screens.h"
+#include <iostream>
 
 #include "raygui.h"
 #include <raylib.h>
@@ -64,11 +65,12 @@ void OutputScreenSettings()
 
   // STATUSBAR PANEL
   //---------------------------------
+  GuiPanel(panelStatusbarScreenSettings, "Panel");
+  //std::cout << panelStatusbarScreenSettings.x << ", " << panelStatusbarScreenSettings.y << ", " << panelStatusbarScreenSettings.width << ", " << panelStatusbarScreenSettings.height << "\n";
 
   // MAIN PANEL
   //---------------------------------
-  GuiPanel(panelMainScreenSettings, "Panel");
-  config.fadingAgents = GuiCheckBox((Rectangle){float(panelMainScreenSettings.GetPanelContentLeftX()), float(panelMainScreenSettings.GetPanelContentTopY()), global.txtSmall, global.txtSmall}, "Fading Agents", config.fadingAgents);
+  //config.fadingAgents = GuiCheckBox((Rectangle){float(panelMainScreenSettings.GetPanelContentLeftX()), float(panelMainScreenSettings.GetPanelContentTopY()), global.txtSmall, global.txtSmall}, "Fading Agents", config.fadingAgents);
 
   // Rectangle rectScrollPanelBounds = Rectangle{10, 10, 100, 100};
   // Rectangle rectScrollPanelContent = Rectangle{10, 10, 100, 500};

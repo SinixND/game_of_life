@@ -1,4 +1,5 @@
 #include "panels.h"
+#include <iostream>
 
 cPanel::cPanel(float width, float height, float offsetX = 0, float offsetY = 0, float margin = 0)
     : panelWidth_(width)
@@ -7,7 +8,7 @@ cPanel::cPanel(float width, float height, float offsetX = 0, float offsetY = 0, 
     , panelTopY_(offsetY)
     , panelMargin_(margin)
 {
-  x = panelLeftX_
+  x = panelLeftX_;
   y = panelTopY_;
   width = panelWidth_;
   height = panelHeight_;
