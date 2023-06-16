@@ -13,9 +13,9 @@
 
 // SET GUI ELEMENTS
 //---------------------------------
-cPanel panelMenubarScreenGame(config.windowWidth, (global.guiButtonBaseHeight + 20), 0, 0, 10);
-cPanel panelStatusbarScreenGame(config.windowWidth, (global.txtSmall + 20), 0, (config.windowHeight - (global.txtSmall + 20)), 10);
-cPanel panelMainScreenGame(config.windowWidth, config.windowHeight - panelMenubarScreenGame.panelHeight_ - panelStatusbarScreenGame.panelHeight_, 0, panelMenubarScreenGame.panelHeight_, 10);
+cPanel panelMenubarScreenGame(0, 0, config.windowWidth, (global.guiButtonBaseHeight + 20), 10);
+cPanel panelStatusbarScreenGame(0, (config.windowHeight - (global.txtSmall + 20)), config.windowWidth, (global.txtSmall + 20), 10);
+cPanel panelMainScreenGame(0, panelMenubarScreenGame.panelHeight_, config.windowWidth, config.windowHeight - panelMenubarScreenGame.panelHeight_ - panelStatusbarScreenGame.panelHeight_, 10);
 
 const char *txtButtonPause = "[P]ause";
 const char *txtButtonDarkModeScreenGame;

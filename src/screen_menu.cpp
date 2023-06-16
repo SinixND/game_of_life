@@ -9,9 +9,9 @@
 
 // SET GUI ELEMENTS
 //---------------------------------
-cPanel panelMenubarScreenMenu(config.windowWidth, (global.guiButtonBaseHeight + 20), 0, 0, 10);
-cPanel panelStatusbarScreenMenu(config.windowWidth, (global.txtSmall + 20), 0, (config.windowHeight - (global.txtSmall + 20)), 10);
-cPanel panelMainScreenMenu(config.windowWidth, config.windowHeight - panelMenubarScreenMenu.panelHeight_ - panelStatusbarScreenMenu.panelHeight_, 0, panelMenubarScreenMenu.panelHeight_, 10);
+cPanel panelMenubarScreenMenu(0, 0, config.windowWidth, (global.guiButtonBaseHeight + 20), 10);
+cPanel panelStatusbarScreenMenu(0, (config.windowHeight - (global.txtSmall + 20)), config.windowWidth, (global.txtSmall + 20), 10);
+cPanel panelMainScreenMenu(0, panelMenubarScreenMenu.panelHeight_, config.windowWidth, config.windowHeight - panelMenubarScreenMenu.panelHeight_ - panelStatusbarScreenMenu.panelHeight_, 10);
 
 const char *txtButtonDarkModeScreenMenu;
 

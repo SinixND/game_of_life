@@ -8,7 +8,7 @@
 class cPanel : public Rectangle
 {
   public:
-  cPanel(float panelWidth, float panelHeight, float offsetX, float offsetY, float margin);
+  cPanel(float offsetX, float offsetY, float panelWidth, float panelHeight, float margin);
 
   float panelWidth_;
   float panelHeight_;
