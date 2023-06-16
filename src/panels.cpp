@@ -1,5 +1,4 @@
 #include "panels.h"
-#include <iostream>
 
 cPanel::cPanel(float offsetX, float offsetY, float panelWidth, float panelHeight, float margin)
     : panelWidth_(panelWidth)
