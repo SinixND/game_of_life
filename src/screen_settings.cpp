@@ -73,6 +73,7 @@ void OutputScreenSettings()
 
   // APP SETTINGS
   // window resolution (width, height)
+
   // target fps
 
   // AGENTS SETTINGS
@@ -81,11 +82,13 @@ void OutputScreenSettings()
   UpdateGuiPos(guiPos, global.textSizeDefault);
 
   // dimension (width, height, borderwidth, gap)
+
   config.fadingAgents = GuiCheckBox((Rectangle){panelMainScreenSettings.GetPanelContentLeftX(), guiPos, global.textSizeDefault, global.textSizeDefault}, "Fading Agents", config.fadingAgents);
   UpdateGuiPos(guiPos, global.textSizeDefault);
 
   // GAME OF LIFE SETTINGS
   // agent gap
+
   // initial life density
 
   // CONTROLS
