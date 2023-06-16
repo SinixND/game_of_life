@@ -66,7 +66,7 @@ void OutputScreenSettings()
   // STATUSBAR PANEL
   //---------------------------------
   GuiPanel(panelStatusbarScreenSettings, "Panel");
-  //std::cout << panelStatusbarScreenSettings.x << ", " << panelStatusbarScreenSettings.y << ", " << panelStatusbarScreenSettings.width << ", " << panelStatusbarScreenSettings.height << "\n";
+  std::cout << panelStatusbarScreenSettings.x << ", " << panelStatusbarScreenSettings.y << ", " << panelStatusbarScreenSettings.width << ", " << panelStatusbarScreenSettings.height << "\n";
 
   // MAIN PANEL
   //---------------------------------
