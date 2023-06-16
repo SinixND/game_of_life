@@ -21,7 +21,8 @@
 0. Performance
     - Mutlithreading
 0. Code
-    - make main panel a gui element
+    - introduce symbols (eg. for stepping or darkmode)
+    - make main panel a gui element?
     - seperate Game-End screen
     - if (IsSomething()) -> encapsulate instead of using a state-variable, eg. AreAgentsFading()
     - Neighbors dont change!, save neighbor-references in agent

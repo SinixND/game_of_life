@@ -1,17 +1,21 @@
 #include "globals.h" // provide object "global" for not configurable application parameters
 
+#include <iostream>
 #include <raylib.h>
 
-#include <iostream>
+#include "raygui.h"
+
+
 cGlobal global; // define extern object
 cGlobal::cGlobal()
-    : txtSmall{20}
-    , txtNormal{30}
-    , guiButtonBaseWidth{20}
-    , guiButtonBaseHeight{30}
-    , darkMode{false}
-    , colorBackground{WHITE}
-    , colorForeground{BLACK} {};
+    : textSizeDefault(20)
+    , guiButtonBaseWidth(20)
+    , guiButtonBaseHeight(30)
+    , darkMode(false)
+    , colorBackground(WHITE)
+    , colorForeground(BLACK) 
+{
+};
 
 void cGlobal::ToggleDarkMode()
 {

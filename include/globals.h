@@ -11,8 +11,7 @@ public:
   cGlobal();
 
   // GUI ELEMENTS
-  float txtSmall;
-  float txtNormal;
+  float textSizeDefault;
   float guiButtonBaseWidth;
   float guiButtonBaseHeight;
 

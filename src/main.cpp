@@ -1,9 +1,9 @@
 #include <iostream>
 #include <time.h>
 #include <vector>
-
 #include <raylib.h>
 
+#include "raygui.h"
 #include "agents.h"
 #include "configs.h" // provide object "config" for configurable parameters
 #include "globals.h" // provide object "global" for not configurable application parameters
@@ -13,6 +13,7 @@ int main()
 {
   InitWindow(config.windowWidth, config.windowHeight, "Conway's Game of Life");
   SetTargetFPS(config.targetFPS);
+  GuiSetStyle(DEFAULT, TEXT_SIZE, 20);
   //GetRenderWidth();
   //GetRenderHeight();
   //GetMonitorHeight()

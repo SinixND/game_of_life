@@ -14,13 +14,13 @@ public:
   int targetFPS;
 
   // AGENT
-  int agentWidth;
-  int agentHeight; // independent height and width possible
-  int agentInnerBorderWeight;
+  float agentWidth;
+  float agentHeight; // independent height and width possible
+  float agentInnerBorderWeight;
   bool fadingAgents;
 
   // AGENTS / ENVIRONMENT
-  int agentGap;
+  float agentGap;
   float lifeDensity;
 
   // CONTROLS

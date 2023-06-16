@@ -51,13 +51,13 @@ void OutputScreenSettings()
 
   // MENUBAR PANEL
   //---------------------------------
-  int buttonBackWidth = global.guiButtonBaseWidth + MeasureText(txtButtonBackScreenSettings, DEFAULT);
+  int buttonBackWidth = global.guiButtonBaseWidth + MeasureText(txtButtonBackScreenSettings, global.textSizeDefault);
   if (GuiButton((Rectangle){float(AlignHorizontalLeft(panelMenubarScreenSettings, 0)), float(AlignVerticalCenter(panelMenubarScreenSettings, global.guiButtonBaseHeight, 0)), float(buttonBackWidth), float(global.guiButtonBaseHeight)}, txtButtonBackScreenSettings))
   {
     currentScreen = MENU;
   };
 
-  int buttonDarkModeWidth = global.guiButtonBaseWidth + MeasureText("Light", global.txtSmall);
+  int buttonDarkModeWidth = global.guiButtonBaseWidth + MeasureText("Light", global.textSizeDefault);
   if (GuiButton((Rectangle){float(AlignHorizontalRight(panelMenubarScreenSettings, buttonDarkModeWidth, 0)), float(AlignVerticalCenter(panelMenubarScreenSettings, global.guiButtonBaseHeight, 0)), float(buttonDarkModeWidth), float(global.guiButtonBaseHeight)}, txtButtonDarkModeScreenSettings))
   {
     global.ToggleDarkMode();
@@ -77,12 +77,12 @@ void OutputScreenSettings()
 
   // AGENTS SETTINGS
   const char *txtLabelAgents = "Agents:";
-  GuiLabel((Rectangle){panelMainScreenSettings.GetPanelContentLeftX(), guiPos, float(MeasureText(txtLabelAgents, global.txtSmall)), global.txtSmall}, txtLabelAgents);
-  UpdateGuiPos(guiPos, global.txtSmall);
+  GuiLabel((Rectangle){panelMainScreenSettings.GetPanelContentLeftX(), guiPos, float(MeasureText(txtLabelAgents, global.textSizeDefault)), global.textSizeDefault}, txtLabelAgents);
+  UpdateGuiPos(guiPos, global.textSizeDefault);
 
   // dimension (width, height, borderwidth, gap)
-  config.fadingAgents = GuiCheckBox((Rectangle){panelMainScreenSettings.GetPanelContentLeftX(), guiPos, global.txtSmall, global.txtSmall}, "Fading Agents", config.fadingAgents);
-  UpdateGuiPos(guiPos, global.txtSmall);
+  config.fadingAgents = GuiCheckBox((Rectangle){panelMainScreenSettings.GetPanelContentLeftX(), guiPos, global.textSizeDefault, global.textSizeDefault}, "Fading Agents", config.fadingAgents);
+  UpdateGuiPos(guiPos, global.textSizeDefault);
 
   // GAME OF LIFE SETTINGS
   // agent gap
