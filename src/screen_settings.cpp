@@ -8,19 +8,6 @@
 #include "globals.h" // provide object "global" for not configurable application parameters
 #include "panels.h"
 
-Vector2 guiPos = {panelMainScreenSettings.GetPanelContentLeftX(), panelMainScreenSettings.GetPanelContentTopY()};
-template <typename T>;
-auto AddGuiElement = [](T element, float inputX, float inputY) 
-{ 
-  element;
-  guiPos.y += inputY + 20.0f;
-
-  if (inputX > (guiPos.x - 20.0f))
-  {
-    guiPos.x = inputX + 20.0f;
-  }
-}
-
 // SET GUI ELEMENTS
 //---------------------------------
 cPanel panelMenubarScreenSettings(0, 0, config.windowWidth, (global.guiButtonBaseHeight + 20), 10);
@@ -81,20 +68,21 @@ void OutputScreenSettings()
 
   // MAIN PANEL
   //---------------------------------
+  float guiPos = panelMainScreenSettings.GetPanelContentTopY();
+  auto UpdateGuiPos = [](float& fGuiPos, float inputY) { fGuiPos += inputY + 2.0f; };
+
   // APP SETTINGS
   // window resolution (width, height)
   // target fps
 
   // AGENTS SETTINGS
   const char *txtLabelAgents = "Agents:";
-  AddGuiElement(
-    GuiLabel((Rectangle){float(panelMainScreenSettings.GetPanelContentLeftX()), float(panelMainScreenSettings.GetPanelContentTopY()), MeasureText(txtLabelAgents, global.txtSmall), global.txtSmall}), 
-    MeasureText(txtLabelAgents, global.txtSmall), 
-    global.txtSmall
-  );
+  GuiLabel((Rectangle){panelMainScreenSettings.GetPanelContentLeftX(), guiPos, float(MeasureText(txtLabelAgents, global.txtSmall)), global.txtSmall}, txtLabelAgents);
+  UpdateGuiPos(guiPos, global.txtSmall);
 
   // dimension (width, height, borderwidth, gap)
-  config.fadingAgents = GuiCheckBox((Rectangle){float(panelMainScreenSettings.GetPanelContentLeftX()), float(panelMainScreenSettings.GetPanelContentTopY()), global.txtSmall, global.txtSmall}, "Fading Agents", config.fadingAgents);
+  config.fadingAgents = GuiCheckBox((Rectangle){panelMainScreenSettings.GetPanelContentLeftX(), guiPos, global.txtSmall, global.txtSmall}, "Fading Agents", config.fadingAgents);
+  UpdateGuiPos(guiPos, global.txtSmall);
 
   // GAME OF LIFE SETTINGS
   // agent gap
