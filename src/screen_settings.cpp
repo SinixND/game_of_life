@@ -8,6 +8,19 @@
 #include "globals.h" // provide object "global" for not configurable application parameters
 #include "panels.h"
 
+Vector2 guiPos = {panelMainScreenSettings.GetPanelContentLeftX(), panelMainScreenSettings.GetPanelContentTopY()};
+template <typename T>;
+auto AddGuiElement = [](T element, float inputX, float inputY) 
+{ 
+  element;
+  guiPos.y += inputY + 20.0f;
+
+  if (inputX > (guiPos.x - 20.0f))
+  {
+    guiPos.x = inputX + 20.0f;
+  }
+}
+
 // SET GUI ELEMENTS
 //---------------------------------
 cPanel panelMenubarScreenSettings(0, 0, config.windowWidth, (global.guiButtonBaseHeight + 20), 10);
@@ -68,19 +81,6 @@ void OutputScreenSettings()
 
   // MAIN PANEL
   //---------------------------------
-  Vector2 guiPos = {panelMainScreenSettings.GetPanelContentLeftX(), panelMainScreenSettings.GetPanelContentTopY()};
-  template <typename T>;
-  void AddGuiElement = [](T element, float inputX, float inputY) 
-  { 
-    element;
-    guiPos.y += inputY + 20.0f;
-
-    if (inputX > (guiPos.x - 20.0f))
-    {
-      guiPos.x = inputX + 20.0f;
-    }
-  };
-
   // APP SETTINGS
   // window resolution (width, height)
   // target fps
@@ -97,7 +97,10 @@ void OutputScreenSettings()
   config.fadingAgents = GuiCheckBox((Rectangle){float(panelMainScreenSettings.GetPanelContentLeftX()), float(panelMainScreenSettings.GetPanelContentTopY()), global.txtSmall, global.txtSmall}, "Fading Agents", config.fadingAgents);
 
   // GAME OF LIFE SETTINGS
+  // agent gap
   // initial life density
+
+  // CONTROLS
   // tick time
 
 
