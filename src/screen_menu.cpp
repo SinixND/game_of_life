@@ -62,7 +62,7 @@ void OutputScreenMenu()
   //---------------------------------
   int buttonMenuWidth = global.guiButtonBaseWidth + MeasureText(" Start Game ", global.textSizeDefault);
 
-  if (GuiButton((Rectangle){float(AlignHorizontalCenter(panelMainScreenMenu, buttonMenuWidth, 0)), float(AlignVerticalTop(panelMainScreenMenu, global.guiButtonBaseHeight)), float(buttonMenuWidth), float(global.guiButtonBaseHeight)}, TextFormat("Start Game")) || IsKeyPressed(KEY_ENTER) || IsKeyPressed(KEY_SPACE))
+  if (GuiButton((Rectangle){float(AlignHorizontalCenter(panelMainScreenMenu, buttonMenuWidth, 0)), float(AlignVerticalCenter(panelMainScreenMenu, global.guiButtonBaseHeight, -50)), float(buttonMenuWidth), float(global.guiButtonBaseHeight)}, TextFormat("Start Game")) || IsKeyPressed(KEY_ENTER) || IsKeyPressed(KEY_SPACE))
   {
     currentScreen = GAME;
   }
@@ -71,6 +71,12 @@ void OutputScreenMenu()
   {
     currentScreen = SETTINGS;
   }
+
+  if (GuiButton((Rectangle){float(AlignHorizontalCenter(panelMainScreenMenu, buttonMenuWidth, 0)), float(AlignVerticalCenter(panelMainScreenMenu, global.guiButtonBaseHeight, 50)), float(buttonMenuWidth), float(global.guiButtonBaseHeight)}, TextFormat("Exit")) || IsKeyPressed(KEY_ESCAPE))
+  {
+    global.exitApp = true;
+  }
+
 
   EndDrawing();
 }

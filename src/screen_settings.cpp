@@ -69,7 +69,7 @@ void OutputScreenSettings()
   // MAIN PANEL
   //---------------------------------
   float guiPos = panelMainScreenSettings.GetPanelContentTopY();
-  auto UpdateGuiPos = [](float& fGuiPos, float inputY) { fGuiPos += inputY + 2.0f; };
+  auto UpdateGuiPos = [](float& fGuiPos, float inputY) { fGuiPos += inputY + 5.0f; };
 
   // APP SETTINGS
   // window resolution (width, height)

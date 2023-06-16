@@ -8,7 +8,8 @@
 
 cGlobal global; // define extern object
 cGlobal::cGlobal()
-    : textSizeDefault(20)
+    : exitApp(false)
+    , textSizeDefault(20)
     , guiButtonBaseWidth(20)
     , guiButtonBaseHeight(30)
     , darkMode(false)

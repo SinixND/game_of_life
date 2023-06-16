@@ -9,6 +9,8 @@ class cGlobal
 {
 public:
   cGlobal();
+  // APPLICATION
+  bool exitApp;
 
   // GUI ELEMENTS
   float textSizeDefault;
