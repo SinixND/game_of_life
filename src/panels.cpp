@@ -1,16 +1,16 @@
 #include "panels.h"
 
 cPanel::cPanel(float width, float height, float offsetX = 0, float offsetY = 0, float margin = 0)
-    : panelWidth_{width}
-    , panelHeight_{height}
-    , panelLeftX_{offsetX}
-    , panelTopY_{offsetY}
-    , panelMargin_{margin}
+    : panelWidth_(width)
+    , panelHeight_(height)
+    , panelLeftX_(offsetX)
+    , panelTopY_(offsetY)
+    , panelMargin_(margin)
 {
+  x = panelLeftX_
+  y = panelTopY_;
   width = panelWidth_;
   height = panelHeight_;
-  x = panelLeftX_;
-  y = panelTopY_;
 
   panelContentLeftX_ = panelLeftX_ + panelMargin_;
   panelContentTopY_ = panelTopY_ + panelMargin_;

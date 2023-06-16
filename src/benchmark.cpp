@@ -10,8 +10,8 @@
 std::vector<cBenchmark> benchmarks = {cBenchmark("NULL")};
 
 cBenchmark::cBenchmark(std::string id)
-    : id_{id}
-    , iterations_{0}
+    : id_(id)
+    , iterations_(0)
 {
 }
 

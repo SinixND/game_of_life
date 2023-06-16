@@ -5,7 +5,7 @@
 
 #include <raylib.h>
 
-class cPanel : Rectangle
+class cPanel : public Rectangle
 {
   public:
   cPanel(float width, float height, float offsetX, float offsetY, float margin);

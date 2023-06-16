@@ -4,8 +4,8 @@
 #include <vector>
 
 cAgent::cAgent(int rowY, int colX)
-    : posY_{rowY}
-    , posX_{colX}
+    : posY_(rowY)
+    , posX_(colX)
 {
   statusIs_ = false;
   statusNext_ = false;
