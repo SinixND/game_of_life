@@ -67,6 +67,7 @@ void OutputScreenSettings()
 
   // MAIN PANEL
   //---------------------------------
+  GuiPanel(panelMainScreenSettings, "Panel");                                            // Panel control, useful to group controls
   config.fadingAgents = GuiCheckBox((Rectangle){float(panelMainScreenSettings.GetPanelContentLeftX()), float(panelMainScreenSettings.GetPanelContentTopY()), global.txtSmall, global.txtSmall}, "Fading Agents", config.fadingAgents);
 
   // Rectangle rectScrollPanelBounds = Rectangle{10, 10, 100, 100};
