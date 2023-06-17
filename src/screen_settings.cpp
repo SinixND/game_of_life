@@ -52,13 +52,13 @@ void OutputScreenSettings()
   // MENUBAR PANEL
   //---------------------------------
   int buttonBackWidth = global.guiButtonBaseWidth + MeasureText(txtButtonBackScreenSettings, global.textSizeDefault);
-  if (GuiButton((Rectangle){float(AlignHorizontalLeft(panelMenubarScreenSettings, 0)), float(AlignVerticalCenter(panelMenubarScreenSettings, global.guiButtonBaseHeight, 0)), float(buttonBackWidth), float(global.guiButtonBaseHeight)}, txtButtonBackScreenSettings))
+  if (GuiButton((Rectangle){(float)AlignHorizontalLeft(panelMenubarScreenSettings, 0), (float)AlignVerticalCenter(panelMenubarScreenSettings, global.guiButtonBaseHeight, 0), (float)buttonBackWidth, (float)global.guiButtonBaseHeight}, txtButtonBackScreenSettings))
   {
     currentScreen = MENU;
   };
 
   int buttonDarkModeWidth = global.guiButtonBaseWidth + MeasureText("Light", global.textSizeDefault);
-  if (GuiButton((Rectangle){float(AlignHorizontalRight(panelMenubarScreenSettings, buttonDarkModeWidth, 0)), float(AlignVerticalCenter(panelMenubarScreenSettings, global.guiButtonBaseHeight, 0)), float(buttonDarkModeWidth), float(global.guiButtonBaseHeight)}, txtButtonDarkModeScreenSettings))
+  if (GuiButton((Rectangle){(float)AlignHorizontalRight(panelMenubarScreenSettings, buttonDarkModeWidth, 0), (float)AlignVerticalCenter(panelMenubarScreenSettings, global.guiButtonBaseHeight, 0), (float)buttonDarkModeWidth, (float)global.guiButtonBaseHeight}, txtButtonDarkModeScreenSettings))
   {
     global.ToggleDarkMode();
   };
@@ -69,24 +69,43 @@ void OutputScreenSettings()
   // MAIN PANEL
   //---------------------------------
   float guiPos = panelMainScreenSettings.GetPanelContentTopY();
-  auto UpdateGuiPos = [](float& fGuiPos, float inputY) { fGuiPos += inputY + 5.0f; };
+  auto UpdateGuiPos = [](float& fGuiPos, float inputY) { fGuiPos += inputY + 10.0f; };
 
-  // APP SETTINGS
+  // APPLICATION
   // window resolution (width, height)
 
   // target fps
 
-  // AGENTS SETTINGS
-  const char *txtLabelAgents = "Agents:";
-  GuiLabel((Rectangle){panelMainScreenSettings.GetPanelContentLeftX(), guiPos, float(MeasureText(txtLabelAgents, global.textSizeDefault)), global.textSizeDefault}, txtLabelAgents);
+  // AGENTS AND ENVIRONMENT
+  const char *txtLabelAgents = "AGENTS AND ENVIRONMENT";
+
+  DrawLine(panelMainScreenSettings.GetPanelContentLeftX(), guiPos, panelMainScreenSettings.GetPanelContentRightX(), guiPos, global.GetColorForeground());
+  UpdateGuiPos(guiPos, 5);
+
+  GuiLabel((Rectangle){panelMainScreenSettings.GetPanelContentLeftX(), guiPos, (float)MeasureText(txtLabelAgents, global.textSizeDefault), global.textSizeDefault}, txtLabelAgents);
   UpdateGuiPos(guiPos, global.textSizeDefault);
 
-  // dimension (width, height, borderwidth, gap)
+  DrawLine(panelMainScreenSettings.GetPanelContentLeftX(), guiPos, panelMainScreenSettings.GetPanelContentRightX(), guiPos, global.GetColorForeground());
+  UpdateGuiPos(guiPos, global.textSizeDefault / 2);
 
-  config.fadingAgents = GuiCheckBox((Rectangle){panelMainScreenSettings.GetPanelContentLeftX(), guiPos, global.textSizeDefault, global.textSizeDefault}, "Fading Agents", config.fadingAgents);
+  const char *txtCheckBoxFadingAgents = "Fading agents: ";
+
+  GuiLabel((Rectangle){panelMainScreenSettings.GetPanelContentLeftX(), guiPos, (float)MeasureText(txtCheckBoxFadingAgents, global.textSizeDefault), global.textSizeDefault}, txtCheckBoxFadingAgents);
+
+  config.fadingAgents = GuiCheckBox((Rectangle){panelMainScreenSettings.GetPanelCenterX(), guiPos, global.textSizeDefault, global.textSizeDefault}, NULL, config.fadingAgents);
   UpdateGuiPos(guiPos, global.textSizeDefault);
+
+  const char *txtSpinnerInitialLifeDensity = "Initial life density: ";
+
+  GuiLabel((Rectangle){panelMainScreenSettings.GetPanelContentLeftX(), guiPos, (float)MeasureText(txtSpinnerInitialLifeDensity, global.textSizeDefault), global.textSizeDefault}, txtSpinnerInitialLifeDensity);
+
+  GuiSpinner((Rectangle){panelMainScreenSettings.GetPanelCenterX(), guiPos, 100, global.textSizeDefault}, NULL, &config.initialLifeDensity, 0, 100, false);
+  UpdateGuiPos(guiPos, global.textSizeDefault);
+
 
   // GAME OF LIFE SETTINGS
+  // dimension (width, height, borderwidth, gap)
+
   // agent gap
 
   // initial life density

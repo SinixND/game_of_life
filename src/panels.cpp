@@ -30,6 +30,16 @@ float cPanel::GetPanelBottomY()
   return panelTopY_ + panelHeight_;
 }
 
+float cPanel::GetPanelCenterX()
+{
+  return panelWidth_ / 2;
+}
+
+float cPanel::GetPanelCenterY()
+{
+  return panelHeight_ / 2;
+}
+
 float cPanel::GetPanelContentLeftX()
 {
   panelContentLeftX_ = panelLeftX_ + panelMargin_;

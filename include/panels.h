@@ -29,6 +29,8 @@ class cPanel : public Rectangle
   public:
   float GetPanelRightX();
   float GetPanelBottomY();
+  float GetPanelCenterX();
+  float GetPanelCenterY();
 
   float GetPanelContentLeftX();
   float GetPanelContentTopY();

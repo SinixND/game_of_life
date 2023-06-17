@@ -13,15 +13,15 @@ public:
   int windowHeight;
   int targetFPS;
 
-  // AGENT
+  // AGENTS AND ENVIRONMENT
+  bool fadingAgents;
+  int initialLifeDensity;
+
+  // DISPLAY
+  float agentGap;
   float agentWidth;
   float agentHeight; // independent height and width possible
   float agentInnerBorderWeight;
-  bool fadingAgents;
-
-  // AGENTS / ENVIRONMENT
-  float agentGap;
-  float lifeDensity;
 
   // CONTROLS
   float tickTime;

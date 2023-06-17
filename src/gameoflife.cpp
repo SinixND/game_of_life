@@ -36,7 +36,7 @@ void cGameOfLife::ResetGameOfLife()
 
       cAgent &agent = grid_[rowY][colX];
 
-      if (((rand() % 100) * 0.01) <= config.lifeDensity)
+      if (((rand() % 100) * 0.01) <= ((float)config.initialLifeDensity / 100))
       {
         agent.statusIs_ = true; // make alive
         gridState_.push_back(true);
