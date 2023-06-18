@@ -77,33 +77,56 @@ void OutputScreenSettings()
   // target fps
 
   // AGENTS AND ENVIRONMENT
-  const char *txtLabelAgents = "AGENTS AND ENVIRONMENT";
-
   DrawLine(panelMainScreenSettings.GetPanelContentLeftX(), guiPos, panelMainScreenSettings.GetPanelContentRightX(), guiPos, global.GetColorForeground());
+
   UpdateGuiPos(guiPos, 5);
 
-  GuiLabel((Rectangle){panelMainScreenSettings.GetPanelContentLeftX(), guiPos, (float)MeasureText(txtLabelAgents, global.textSizeDefault), global.textSizeDefault}, txtLabelAgents);
+  const char *txtLabelGameOfLife = "GAME OF LIFE";
+
+  GuiLabel((Rectangle){AlignHorizontalCenter(panelMainScreenSettings, (float)MeasureText(txtLabelGameOfLife, global.textSizeDefault), 0), guiPos, (float)MeasureText(txtLabelGameOfLife, global.textSizeDefault), global.textSizeDefault}, txtLabelGameOfLife);
   UpdateGuiPos(guiPos, global.textSizeDefault);
 
   DrawLine(panelMainScreenSettings.GetPanelContentLeftX(), guiPos, panelMainScreenSettings.GetPanelContentRightX(), guiPos, global.GetColorForeground());
+
   UpdateGuiPos(guiPos, global.textSizeDefault / 2);
 
-  const char *txtCheckBoxFadingAgents = "Fading agents: ";
+  const char *txtCheckBoxFadingAgents = "Fading agents:";
 
   GuiLabel((Rectangle){panelMainScreenSettings.GetPanelContentLeftX(), guiPos, (float)MeasureText(txtCheckBoxFadingAgents, global.textSizeDefault), global.textSizeDefault}, txtCheckBoxFadingAgents);
 
   config.fadingAgents = GuiCheckBox((Rectangle){panelMainScreenSettings.GetPanelCenterX(), guiPos, global.textSizeDefault, global.textSizeDefault}, NULL, config.fadingAgents);
+
   UpdateGuiPos(guiPos, global.textSizeDefault);
 
-  const char *txtSpinnerInitialLifeDensity = "Initial life density: ";
+  const char *txtSpinnerInitialLifeDensity = "Initial life density:";
 
   GuiLabel((Rectangle){panelMainScreenSettings.GetPanelContentLeftX(), guiPos, (float)MeasureText(txtSpinnerInitialLifeDensity, global.textSizeDefault), global.textSizeDefault}, txtSpinnerInitialLifeDensity);
 
   GuiSpinner((Rectangle){panelMainScreenSettings.GetPanelCenterX(), guiPos, 100, global.textSizeDefault}, NULL, &config.initialLifeDensity, 0, 100, false);
-  UpdateGuiPos(guiPos, global.textSizeDefault);
 
+  UpdateGuiPos(guiPos, global.textSizeDefault * 1.5);
 
   // GAME OF LIFE SETTINGS
+  DrawLine(panelMainScreenSettings.GetPanelContentLeftX(), guiPos, panelMainScreenSettings.GetPanelContentRightX(), guiPos, global.GetColorForeground());
+
+  UpdateGuiPos(guiPos, 5);
+
+  const char *txtLabelDisplay = "DISPLAY";
+
+  GuiLabel((Rectangle){AlignHorizontalCenter(panelMainScreenSettings, (float)MeasureText(txtLabelDisplay, global.textSizeDefault), 0), guiPos, (float)MeasureText(txtLabelDisplay, global.textSizeDefault), global.textSizeDefault}, txtLabelDisplay);
+
+  UpdateGuiPos(guiPos, global.textSizeDefault);
+
+  DrawLine(panelMainScreenSettings.GetPanelContentLeftX(), guiPos, panelMainScreenSettings.GetPanelContentRightX(), guiPos, global.GetColorForeground());
+
+  UpdateGuiPos(guiPos, global.textSizeDefault / 2);
+
+  const char *txtLabelAgentGap = "Gap between agents:";
+
+  GuiLabel((Rectangle){panelMainScreenSettings.GetPanelContentLeftX(), guiPos, (float)MeasureText(txtLabelAgentGap, global.textSizeDefault), global.textSizeDefault}, txtLabelAgentGap);
+
+  GuiSpinner((Rectangle){panelMainScreenSettings.GetPanelCenterX(), guiPos, 100, global.textSizeDefault}, NULL, &config.agentGap, 0, 1000, false);
+
   // dimension (width, height, borderwidth, gap)
 
   // agent gap

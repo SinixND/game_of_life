@@ -18,7 +18,7 @@ public:
   int initialLifeDensity;
 
   // DISPLAY
-  float agentGap;
+  int agentGap;
   float agentWidth;
   float agentHeight; // independent height and width possible
   float agentInnerBorderWeight;
