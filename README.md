@@ -1,4 +1,4 @@
-# TODO
+# TODOs
 - Github pages? (emscripten)
 0. Screens
     - Main [done]
