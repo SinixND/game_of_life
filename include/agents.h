@@ -22,7 +22,7 @@ private:
     int adjacentAgentsActive_;
 
 public:
-    void SetStatusNext(bool arg);
+    void SetStatusNext(bool status);
     bool GetStatusNext();
 };
 

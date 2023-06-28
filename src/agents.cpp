@@ -15,9 +15,9 @@ cAgent::cAgent(int rowY, int colX)
     vitality_ = 0;
 }
 
-void cAgent::SetStatusNext(bool arg)
+void cAgent::SetStatusNext(bool status)
 {
-    statusNext_ = arg;
+    statusNext_ = status;
 
     if (statusIs_ != statusNext_)
     {
