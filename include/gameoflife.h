@@ -10,30 +10,30 @@ typedef std::vector<std::vector<cAgent>> vvAgents;
 class cGameOfLife
 {
 public:
-  cGameOfLife(int rowsY, int colsX);
+    cGameOfLife(int rowsY, int colsX);
 
-  std::vector<bool> gridState_;
-  std::vector<std::vector<bool>> gridStates_;
+    std::vector<bool> gridState_;
+    std::vector<std::vector<bool>> gridStates_;
 
-  void EvolveGrid();
-  void ResetGameOfLife();
+    void EvolveGrid();
+    void ResetGameOfLife();
 
 private:
-  int rowsY_;
-  int colsX_;
-  int day_;
+    int rowsY_;
+    int colsX_;
+    int day_;
 
-  vvAgents grid_;
+    vvAgents grid_;
 
-  int CountAdjacentAgents(cAgent &agent);
-  void ProcessGameOfLife();
+    int CountAdjacentAgents(cAgent& agent);
+    void ProcessGameOfLife();
 
-  void PingAdjacentAgents(cAgent &agent);
-  void UpdateGameOfLife();
+    void PingAdjacentAgents(cAgent& agent);
+    void UpdateGameOfLife();
 
 public:
-  int GetDay();
-  vvAgents &GetGrid();
+    int GetDay();
+    vvAgents& GetGrid();
 };
 
 #endif

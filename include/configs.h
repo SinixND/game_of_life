@@ -6,25 +6,25 @@
 class cConfig
 {
 public:
-  cConfig();
+    cConfig();
 
-  // APPLICATION
-  int windowWidth;
-  int windowHeight;
-  int targetFPS;
+    // APPLICATION
+    int windowWidth;
+    int windowHeight;
+    int targetFPS;
 
-  // AGENTS AND ENVIRONMENT
-  bool fadingAgents;
-  int initialLifeDensity;
+    // AGENTS AND ENVIRONMENT
+    bool fadingAgents;
+    int initialLifeDensity;
 
-  // DISPLAY
-  int agentGap;
-  float agentWidth;
-  float agentHeight; // independent height and width possible
-  float agentInnerBorderWeight;
+    // DISPLAY
+    int agentGap;
+    float agentWidth;
+    float agentHeight; // independent height and width possible
+    float agentInnerBorderWeight;
 
-  // CONTROLS
-  float tickTime;
+    // CONTROLS
+    float tickTime;
 };
 extern cConfig config; // declare extern object
 

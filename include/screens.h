@@ -3,9 +3,9 @@
 
 typedef enum screen
 {
-  MENU,
-  GAME,
-  SETTINGS,
+    MENU,
+    GAME,
+    SETTINGS,
 } screen;
 
 extern screen currentScreen;

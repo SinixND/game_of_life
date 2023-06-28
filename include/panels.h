@@ -7,37 +7,37 @@
 
 class cPanel : public Rectangle
 {
-  public:
-  cPanel(float offsetX, float offsetY, float panelWidth, float panelHeight, float margin);
+public:
+    cPanel(float offsetX, float offsetY, float panelWidth, float panelHeight, float margin);
 
-  float panelWidth_;
-  float panelHeight_;
-  float panelLeftX_;
-  float panelTopY_;
-  float panelMargin_;
+    float panelWidth_;
+    float panelHeight_;
+    float panelLeftX_;
+    float panelTopY_;
+    float panelMargin_;
 
-  private:
-  float panelRightX_;
-  float panelBottomY_;
-  float panelContentLeftX_;
-  float panelContentTopY_;
-  float panelContentRightX_;
-  float panelContentBottomY_;
-  float panelContentWidth_;
-  float panelContentHeight_;
+private:
+    float panelRightX_;
+    float panelBottomY_;
+    float panelContentLeftX_;
+    float panelContentTopY_;
+    float panelContentRightX_;
+    float panelContentBottomY_;
+    float panelContentWidth_;
+    float panelContentHeight_;
 
-  public:
-  float GetPanelRightX();
-  float GetPanelBottomY();
-  float GetPanelCenterX();
-  float GetPanelCenterY();
+public:
+    float GetPanelRightX();
+    float GetPanelBottomY();
+    float GetPanelCenterX();
+    float GetPanelCenterY();
 
-  float GetPanelContentLeftX();
-  float GetPanelContentTopY();
-  float GetPanelContentRightX();
-  float GetPanelContentBottomY();
-  float GetPanelContentWidth();
-  float GetPanelContentHeight();
+    float GetPanelContentLeftX();
+    float GetPanelContentTopY();
+    float GetPanelContentRightX();
+    float GetPanelContentBottomY();
+    float GetPanelContentWidth();
+    float GetPanelContentHeight();
 };
 
 // Align function to return the position relative to the parent (first argument)

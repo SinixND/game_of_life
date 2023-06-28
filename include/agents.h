@@ -6,24 +6,24 @@
 class cAgent
 {
 public:
-  cAgent(int rowY, int colX);
+    cAgent(int rowY, int colX);
 
-  int posY_;
-  int posX_;
-  bool statusIs_;
-  bool statusChanging_;
-  bool checkStatus_;
-  int vitality_;
+    int posY_;
+    int posX_;
+    bool statusIs_;
+    bool statusChanging_;
+    bool checkStatus_;
+    int vitality_;
 
-  void DecreaseVitality();
+    void DecreaseVitality();
 
 private:
-  bool statusNext_;
-  int adjacentAgentsActive_;
+    bool statusNext_;
+    int adjacentAgentsActive_;
 
 public:
-  void SetStatusNext(bool arg);
-  bool GetStatusNext();
+    void SetStatusNext(bool arg);
+    bool GetStatusNext();
 };
 
 #endif

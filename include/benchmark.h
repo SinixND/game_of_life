@@ -10,15 +10,15 @@ typedef std::chrono::duration<double> chrono_timeDurationDouble;
 class cBenchmark
 {
 public:
-  cBenchmark(std::string id);
+    cBenchmark(std::string id);
 
-  std::string id_ = "";
-  chrono_timePoint startTime_;
-  chrono_timePoint stopTime_;
-  chrono_timeDurationDouble latestTime_;
+    std::string id_ = "";
+    chrono_timePoint startTime_;
+    chrono_timePoint stopTime_;
+    chrono_timeDurationDouble latestTime_;
 
-  double iterations_;
-  chrono_timeDurationDouble avgTime_;
+    double iterations_;
+    chrono_timeDurationDouble avgTime_;
 };
 
 extern std::vector<cBenchmark> benchmarks;

@@ -8,27 +8,27 @@
 class cGlobal
 {
 public:
-  cGlobal();
-  // APPLICATION
-  bool exitApp;
+    cGlobal();
+    // APPLICATION
+    bool exitApp;
 
-  // GUI ELEMENTS
-  float textSizeDefault;
-  float guiButtonBaseWidth;
-  float guiButtonBaseHeight;
+    // GUI ELEMENTS
+    float textSizeDefault;
+    float guiButtonBaseWidth;
+    float guiButtonBaseHeight;
 
 private:
-  // DARK MODE
-  bool darkMode;
-  Color colorBackground;
-  Color colorForeground;
+    // DARK MODE
+    bool darkMode;
+    Color colorBackground;
+    Color colorForeground;
 
 public:
-  void ToggleDarkMode();
-  bool GetDarkMode();
+    void ToggleDarkMode();
+    bool GetDarkMode();
 
-  Color GetColorBackground();
-  Color GetColorForeground();
+    Color GetColorBackground();
+    Color GetColorForeground();
 };
 extern cGlobal global; // declare extern object
 

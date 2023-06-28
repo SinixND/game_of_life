@@ -8,38 +8,38 @@
 
 int main()
 {
-  InitWindow(config.windowWidth, config.windowHeight, "Conway's Game of Life");
-  SetTargetFPS(config.targetFPS);
-  GuiSetStyle(DEFAULT, TEXT_SIZE, 20);
-  SetExitKey(0);
+    InitWindow(config.windowWidth, config.windowHeight, "Conway's Game of Life");
+    SetTargetFPS(config.targetFPS);
+    GuiSetStyle(DEFAULT, TEXT_SIZE, 20);
+    SetExitKey(0);
 
-  // MAIN APP LOOP
-  //---------------------------------
-  while (!WindowShouldClose() && !global.exitApp) // Detect window close button or ESC key
-  {
-
-    switch (currentScreen)
+    // MAIN APP LOOP
+    //---------------------------------
+    while (!WindowShouldClose() && !global.exitApp) // Detect window close button or ESC key
     {
-    case MENU:
-      RunScreenMenu();
-      break;
 
-    case GAME:
-      RunScreenGame();
-      break;
+        switch (currentScreen)
+        {
+        case MENU:
+            RunScreenMenu();
+            break;
 
-    case SETTINGS:
-      RunScreenSettings();
-      break;
+        case GAME:
+            RunScreenGame();
+            break;
 
-    default:
-      break;
+        case SETTINGS:
+            RunScreenSettings();
+            break;
+
+        default:
+            break;
+        }
     }
-  }
 
-  // SHUTDOWN APP
-  //---------------------------------
-  CloseWindow(); // Close window and OpenGL context
+    // SHUTDOWN APP
+    //---------------------------------
+    CloseWindow(); // Close window and OpenGL context
 
-  return 0;
+    return 0;
 }

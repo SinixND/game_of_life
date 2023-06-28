@@ -5,7 +5,6 @@
 
 #include "raygui.h"
 
-
 cGlobal global; // define extern object
 cGlobal::cGlobal()
     : exitApp(false)
@@ -14,24 +13,22 @@ cGlobal::cGlobal()
     , guiButtonBaseHeight(30)
     , darkMode(false)
     , colorBackground(WHITE)
-    , colorForeground(BLACK) 
-{
-};
+    , colorForeground(BLACK){};
 
 void cGlobal::ToggleDarkMode()
 {
-  darkMode = !darkMode;
+    darkMode = !darkMode;
 
-  if (darkMode == true)
-  {
-    colorBackground = BLACK;
-    colorForeground = WHITE;
-  }
-  else
-  {
-    colorBackground = WHITE;
-    colorForeground = BLACK;
-  }
+    if (darkMode == true)
+    {
+        colorBackground = BLACK;
+        colorForeground = WHITE;
+    }
+    else
+    {
+        colorBackground = WHITE;
+        colorForeground = BLACK;
+    }
 };
 bool cGlobal::GetDarkMode() { return darkMode; };
 
