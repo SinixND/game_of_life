@@ -44,89 +44,165 @@ void UpdateScreenSettings()
     }
 };
 
+void OutputScreenSettingsMenubar();
+void OutputScreenSettingsMainPanel();
+
 void OutputScreenSettings()
 {
     BeginDrawing();
     ClearBackground(global.GetColorBackground());
 
-    // MENUBAR PANEL
+    OutputScreenSettingsMenubar();
+
+    // STATUSBAR PANEL
     //---------------------------------
+
+    OutputScreenSettingsMainPanel();
+
+    EndDrawing();
+}
+
+void OutputScreenSettingsMenubar()
+{
     int buttonBackWidth = global.guiButtonBaseWidth + MeasureText(txtButtonBackScreenSettings, global.textSizeDefault);
-    if (GuiButton((Rectangle){(float)AlignHorizontalLeft(panelMenubarScreenSettings, 0), (float)AlignVerticalCenter(panelMenubarScreenSettings, global.guiButtonBaseHeight, 0), (float)buttonBackWidth, (float)global.guiButtonBaseHeight}, txtButtonBackScreenSettings))
+    if (GuiButton(
+            (Rectangle){
+                (float)AlignHorizontalLeft(panelMenubarScreenSettings, 0),
+                (float)AlignVerticalCenter(panelMenubarScreenSettings, global.guiButtonBaseHeight, 0),
+                (float)buttonBackWidth,
+                (float)global.guiButtonBaseHeight},
+            txtButtonBackScreenSettings))
     {
         currentScreen = MENU;
     };
 
     int buttonDarkModeWidth = global.guiButtonBaseWidth + MeasureText("Light", global.textSizeDefault);
-    if (GuiButton((Rectangle){(float)AlignHorizontalRight(panelMenubarScreenSettings, buttonDarkModeWidth, 0), (float)AlignVerticalCenter(panelMenubarScreenSettings, global.guiButtonBaseHeight, 0), (float)buttonDarkModeWidth, (float)global.guiButtonBaseHeight}, txtButtonDarkModeScreenSettings))
+    if (GuiButton(
+            (Rectangle){
+                (float)AlignHorizontalRight(panelMenubarScreenSettings, buttonDarkModeWidth, 0),
+                (float)AlignVerticalCenter(panelMenubarScreenSettings, global.guiButtonBaseHeight, 0),
+                (float)buttonDarkModeWidth,
+                (float)global.guiButtonBaseHeight},
+            txtButtonDarkModeScreenSettings))
     {
         global.ToggleDarkMode();
     };
+}
 
-    // STATUSBAR PANEL
-    //---------------------------------
+void OutputScreenSettingsMainPanel()
+{
+    // Helpers for positioning gui elements
+    float guiCursor = panelMainScreenSettings.GetPanelContentTopY();
+    auto UpdateGuiCursor = [](float& refGuiCursor, float inputY)
+    { refGuiCursor += inputY + 10.0f; };
 
-    // MAIN PANEL
-    //---------------------------------
-    float guiPos = panelMainScreenSettings.GetPanelContentTopY();
-    auto UpdateGuiPos = [](float& fGuiPos, float inputY)
-    { fGuiPos += inputY + 10.0f; };
-
-    // APPLICATION
+    // CATEGORY: APPLICATION SETTINGS
     // window resolution (width, height)
 
     // target fps
 
-    // AGENTS AND ENVIRONMENT
-    DrawLine(panelMainScreenSettings.GetPanelContentLeftX(), guiPos, panelMainScreenSettings.GetPanelContentRightX(), guiPos, global.GetColorForeground());
+    // CATEGORY: AGENTS AND ENVIRONMENT
+    DrawLine(panelMainScreenSettings.GetPanelContentLeftX(), guiCursor, panelMainScreenSettings.GetPanelContentRightX(), guiCursor, global.GetColorForeground());
 
-    UpdateGuiPos(guiPos, 5);
+    UpdateGuiCursor(guiCursor, 5);
 
     const char* txtLabelGameOfLife = "GAME OF LIFE";
 
-    GuiLabel((Rectangle){AlignHorizontalCenter(panelMainScreenSettings, (float)MeasureText(txtLabelGameOfLife, global.textSizeDefault), 0), guiPos, (float)MeasureText(txtLabelGameOfLife, global.textSizeDefault), global.textSizeDefault}, txtLabelGameOfLife);
-    UpdateGuiPos(guiPos, global.textSizeDefault);
+    GuiLabel(
+        (Rectangle){
+            AlignHorizontalCenter(panelMainScreenSettings, (float)MeasureText(txtLabelGameOfLife, global.textSizeDefault), 0),
+            guiCursor,
+            (float)MeasureText(txtLabelGameOfLife, global.textSizeDefault),
+            global.textSizeDefault},
+        txtLabelGameOfLife);
 
-    DrawLine(panelMainScreenSettings.GetPanelContentLeftX(), guiPos, panelMainScreenSettings.GetPanelContentRightX(), guiPos, global.GetColorForeground());
+    UpdateGuiCursor(guiCursor, global.textSizeDefault);
 
-    UpdateGuiPos(guiPos, global.textSizeDefault / 2);
+    DrawLine(panelMainScreenSettings.GetPanelContentLeftX(), guiCursor, panelMainScreenSettings.GetPanelContentRightX(), guiCursor, global.GetColorForeground());
 
+    UpdateGuiCursor(guiCursor, global.textSizeDefault / 2);
+
+    // SETTING: FADING AGENTS
     const char* txtCheckBoxFadingAgents = "Fading agents:";
 
-    GuiLabel((Rectangle){panelMainScreenSettings.GetPanelContentLeftX(), guiPos, (float)MeasureText(txtCheckBoxFadingAgents, global.textSizeDefault), global.textSizeDefault}, txtCheckBoxFadingAgents);
+    GuiLabel(
+        (Rectangle){
+            panelMainScreenSettings.GetPanelContentLeftX(),
+            guiCursor,
+            (float)MeasureText(txtCheckBoxFadingAgents, global.textSizeDefault),
+            global.textSizeDefault},
+        txtCheckBoxFadingAgents);
 
-    config.fadingAgents = GuiCheckBox((Rectangle){panelMainScreenSettings.GetPanelCenterX(), guiPos, global.textSizeDefault, global.textSizeDefault}, NULL, config.fadingAgents);
+    config.fadingAgents = GuiCheckBox(
+        (Rectangle){
+            panelMainScreenSettings.GetPanelCenterX(),
+            guiCursor,
+            global.textSizeDefault,
+            global.textSizeDefault},
+        NULL, config.fadingAgents);
 
-    UpdateGuiPos(guiPos, global.textSizeDefault);
+    UpdateGuiCursor(guiCursor, global.textSizeDefault);
 
+    // INITIAL LIFE DENSITY
     const char* txtSpinnerInitialLifeDensity = "Initial life density:";
 
-    GuiLabel((Rectangle){panelMainScreenSettings.GetPanelContentLeftX(), guiPos, (float)MeasureText(txtSpinnerInitialLifeDensity, global.textSizeDefault), global.textSizeDefault}, txtSpinnerInitialLifeDensity);
+    GuiLabel(
+        (Rectangle){
+            panelMainScreenSettings.GetPanelContentLeftX(),
+            guiCursor,
+            (float)MeasureText(txtSpinnerInitialLifeDensity, global.textSizeDefault),
+            global.textSizeDefault},
+        txtSpinnerInitialLifeDensity);
 
-    GuiSpinner((Rectangle){panelMainScreenSettings.GetPanelCenterX(), guiPos, 100, global.textSizeDefault}, NULL, &config.initialLifeDensity, 0, 100, false);
+    GuiSpinner(
+        (Rectangle){
+            panelMainScreenSettings.GetPanelCenterX(),
+            guiCursor,
+            100,
+            global.textSizeDefault},
+        NULL, &config.initialLifeDensity, 0, 100, false);
 
-    UpdateGuiPos(guiPos, global.textSizeDefault * 1.5);
+    UpdateGuiCursor(guiCursor, global.textSizeDefault * 1.5);
 
-    // GAME OF LIFE SETTINGS
-    DrawLine(panelMainScreenSettings.GetPanelContentLeftX(), guiPos, panelMainScreenSettings.GetPanelContentRightX(), guiPos, global.GetColorForeground());
+    // CATEGORY: DISPLAY
+    DrawLine(panelMainScreenSettings.GetPanelContentLeftX(), guiCursor, panelMainScreenSettings.GetPanelContentRightX(), guiCursor, global.GetColorForeground());
 
-    UpdateGuiPos(guiPos, 5);
+    UpdateGuiCursor(guiCursor, 5);
 
     const char* txtLabelDisplay = "DISPLAY";
 
-    GuiLabel((Rectangle){AlignHorizontalCenter(panelMainScreenSettings, (float)MeasureText(txtLabelDisplay, global.textSizeDefault), 0), guiPos, (float)MeasureText(txtLabelDisplay, global.textSizeDefault), global.textSizeDefault}, txtLabelDisplay);
+    GuiLabel(
+        (Rectangle){
+            AlignHorizontalCenter(panelMainScreenSettings, (float)MeasureText(txtLabelDisplay, global.textSizeDefault), 0),
+            guiCursor,
+            (float)MeasureText(txtLabelDisplay, global.textSizeDefault),
+            global.textSizeDefault},
+        txtLabelDisplay);
 
-    UpdateGuiPos(guiPos, global.textSizeDefault);
+    UpdateGuiCursor(guiCursor, global.textSizeDefault);
 
-    DrawLine(panelMainScreenSettings.GetPanelContentLeftX(), guiPos, panelMainScreenSettings.GetPanelContentRightX(), guiPos, global.GetColorForeground());
+    DrawLine(panelMainScreenSettings.GetPanelContentLeftX(), guiCursor, panelMainScreenSettings.GetPanelContentRightX(), guiCursor, global.GetColorForeground());
 
-    UpdateGuiPos(guiPos, global.textSizeDefault / 2);
+    UpdateGuiCursor(guiCursor, global.textSizeDefault / 2);
 
+    // SETTING: GAP BETWEEN AGENTS
     const char* txtLabelAgentGap = "Gap between agents:";
 
-    GuiLabel((Rectangle){panelMainScreenSettings.GetPanelContentLeftX(), guiPos, (float)MeasureText(txtLabelAgentGap, global.textSizeDefault), global.textSizeDefault}, txtLabelAgentGap);
+    GuiLabel(
+        (Rectangle){
+            panelMainScreenSettings.GetPanelContentLeftX(),
+            guiCursor,
+            (float)MeasureText(txtLabelAgentGap, global.textSizeDefault),
+            global.textSizeDefault},
+        txtLabelAgentGap);
 
-    GuiSpinner((Rectangle){panelMainScreenSettings.GetPanelCenterX(), guiPos, 100, global.textSizeDefault}, NULL, &config.agentGap, 0, 1000, false);
+    GuiSpinner(
+        (Rectangle){
+            panelMainScreenSettings.GetPanelCenterX(),
+            guiCursor,
+            100,
+            global.textSizeDefault},
+        NULL, &config.agentGap, 0, 1000, false);
 
     // dimension (width, height, borderwidth, gap)
 
@@ -141,6 +217,4 @@ void OutputScreenSettings()
     // Rectangle rectScrollPanelContent = Rectangle{10, 10, 100, 500};
     // Vector2 panelScroll = { 99, -20 };
     // GuiScrollPanel(rectScrollPanelBounds, "Text", rectScrollPanelContent, &panelScroll);
-
-    EndDrawing();
 }

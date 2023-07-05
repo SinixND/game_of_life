@@ -5,8 +5,6 @@
 
 #include "agents.h"
 
-typedef std::vector<std::vector<cAgent>> vvAgents;
-
 class cGameOfLife
 {
 public:
@@ -23,17 +21,17 @@ private:
     int colsX_;
     int day_;
 
-    vvAgents grid_;
+    std::vector<std::vector<cAgent>> grid_;
 
     int CountAdjacentAgents(cAgent& agent);
     void ProcessGameOfLife();
 
-    void PingAdjacentAgents(cAgent& agent);
+    void NotifyAdjacentAgents(cAgent& agent);
     void UpdateGameOfLife();
 
 public:
     int GetDay();
-    vvAgents& GetGrid();
+    std::vector<std::vector<cAgent>>& GetGrid();
 };
 
 #endif

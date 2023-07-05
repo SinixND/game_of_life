@@ -25,7 +25,7 @@ extern std::vector<cBenchmark> benchmarks;
 
 void StartBenchmark(std::string id);
 void StopBenchmark(std::string id);
-cBenchmark& selectBenchmark(std::vector<cBenchmark>& benchmarks&, std::string id);
+cBenchmark& selectBenchmark(std::string id);
 void ShowBenchmarks();
 
 #endif

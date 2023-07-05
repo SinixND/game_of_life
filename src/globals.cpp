@@ -30,7 +30,18 @@ void cGlobal::ToggleDarkMode()
         colorForeground = BLACK;
     }
 };
-bool cGlobal::GetDarkMode() { return darkMode; };
 
-Color cGlobal::GetColorBackground() { return colorBackground; };
-Color cGlobal::GetColorForeground() { return colorForeground; };
+bool cGlobal::GetDarkMode()
+{
+    return darkMode;
+};
+
+Color cGlobal::GetColorBackground()
+{
+    return colorBackground;
+};
+
+Color cGlobal::GetColorForeground()
+{
+    return colorForeground;
+};
