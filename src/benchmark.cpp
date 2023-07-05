@@ -25,23 +25,29 @@ void StartBenchmark(std::string id)
 
 void StopBenchmark(std::string id)
 {
+    cBenchmark& benchmark = selectBenchmark(id);
+
+    benchmark.stopTime_ = std::chrono::steady_clock::now();
+    benchmark.latestTime_ = std::chrono::duration_cast<std::chrono::nanoseconds>(benchmark.stopTime_ - benchmark.startTime_);
+
+    benchmark.iterations_ += 1;
+    // new_average = (old_average * (n-1) + new_value) / n
+    benchmark.avgTime_ = (benchmark.avgTime_ * (benchmark.iterations_ - 1) + benchmark.latestTime_) / benchmark.iterations_;
+}
+
+cBenchmark& selectBenchmark(std::vector<cBenchmark>& benchmarks&, std::string id)
+{
     for (auto& benchmark : benchmarks)
     {
         if (benchmark.id_ == id)
         {
-            benchmark.stopTime_ = std::chrono::steady_clock::now();
-            benchmark.latestTime_ = std::chrono::duration_cast<std::chrono::nanoseconds>(benchmark.stopTime_ - benchmark.startTime_);
-
-            benchmark.iterations_ += 1;
-            // new_average = (old_average * (n-1) + new_value) / n
-            benchmark.avgTime_ = (benchmark.avgTime_ * (benchmark.iterations_ - 1) + benchmark.latestTime_) / benchmark.iterations_;
-            break;
+            return benchmark;
         }
     }
     std::cout << "No benchmark " << id << " found!\n";
 }
 
-void ShowBenchmarks()
+void ShowBenchmarks(std::vector<cBenchmark>& benchmarks)
 {
     for (auto& benchmark : benchmarks)
     {
