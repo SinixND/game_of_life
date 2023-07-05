@@ -17,36 +17,11 @@ cBenchmark::cBenchmark(std::string id)
 
 void StartBenchmark(std::string id)
 {
-  if (!isBenchmarkExisting(id))
-  {
-    createNewBenchmark();
-  }
-
-  for (auto &benchmark : benchmarks)
-  {
-    if (benchmark.id_ == id)
-    {
-      benchmark.startTime_ = std::chrono::steady_clock::now();
-      break;
-    }
-  }
-}
-
-bool isBenchmarkExisting(std::string id)
-{
-  for (auto &benchmark : benchmarks)
-  {
-    if (benchmark.id_ == id)
-    {
-      return true;
-    }
-  }
-}
-
-void createNewBenchmark()
-{
     benchmarks.push_back(cBenchmark(id));
+
+    benchmarks.back().startTime_ = std::chrono::steady_clock::now();
 }
+
 
 void StopBenchmark(std::string id)
 {
