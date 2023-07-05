@@ -38,9 +38,10 @@ void StopBenchmark(std::string id)
             break;
         }
     }
+    std::cout << "No benchmark " << id << " found!\n";
 }
 
-void ShowBenchmark()
+void ShowBenchmarks()
 {
     for (auto& benchmark : benchmarks)
     {
