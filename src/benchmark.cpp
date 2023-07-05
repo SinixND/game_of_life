@@ -17,30 +17,35 @@ cBenchmark::cBenchmark(std::string id)
 
 void StartBenchmark(std::string id)
 {
-    bool benchmarkFound = false;
+  if (!isBenchmarkExisting(id))
+  {
+    createNewBenchmark();
+  }
 
-    for (auto& benchmark : benchmarks)
+  for (auto &benchmark : benchmarks)
+  {
+    if (benchmark.id_ == id)
     {
-        if (benchmark.id_ == id)
-        {
-            benchmarkFound = true;
-            break;
-        }
+      benchmark.startTime_ = std::chrono::steady_clock::now();
+      break;
     }
+  }
+}
 
-    if (benchmarkFound == false)
+bool isBenchmarkExisting(std::string id)
+{
+  for (auto &benchmark : benchmarks)
+  {
+    if (benchmark.id_ == id)
     {
-        benchmarks.push_back(cBenchmark(id));
+      return true;
     }
+  }
+}
 
-    for (auto& benchmark : benchmarks)
-    {
-        if (benchmark.id_ == id)
-        {
-            benchmark.startTime_ = std::chrono::steady_clock::now();
-            break;
-        }
-    }
+void createNewBenchmark()
+{
+    benchmarks.push_back(cBenchmark(id));
 }
 
 void StopBenchmark(std::string id)
