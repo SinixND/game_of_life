@@ -32,7 +32,7 @@ cGameOfLife GameOfLife(rowsY, colsX);
 
 // GAME END OVERLAY
 //---------------------------------
-bool gameEndOverlayVisible = true;
+bool gameEndOverlayVisible = false;
 Rectangle rectGameEndBackground{0, 0, (float)config.windowWidth, (float)config.windowHeight};
 
 // FUNCTIONS
@@ -52,22 +52,21 @@ void RunScreenGame()
 //---------------------------------
 void ProcessScreenGame()
 {
-    if (IsKeyPressed(KEY_P))
-    {
-        pauseState = !pauseState;
-    }
-
-    if (pauseState == true)
-    {
-        return;
-    }
-
-    if ((evolutionState == false) && (gameEndOverlayVisible == true))
+    if (gameEndOverlayVisible == true)
     {
         if ((IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), rectGameEndBackground)) || IsKeyPressed(KEY_ENTER))
         {
             gameEndOverlayVisible = false;
         }
+    }
+
+    if (IsKeyPressed(KEY_P))
+    {
+        pauseState = !pauseState;
+    }
+
+    if ((pauseState == true) || (evolutionState == false))
+    {
         return;
     }
 
@@ -115,6 +114,7 @@ void UpdateScreenGame()
     if (GameOfLife.gridStates_[currentState] == GameOfLife.gridStates_[currentState - 2])
     {
         evolutionState = false;
+        gameEndOverlayVisible = true;
     }
 }
 
@@ -133,7 +133,7 @@ void OutputScreenGame()
     OutputScreenGameStatusbar();
     OutputScreenGameMainPanel();
 
-    if ((evolutionState == false) && (gameEndOverlayVisible == true))
+    if (gameEndOverlayVisible == true)
     {
         OutputGameEndOverlay();
     }
@@ -160,7 +160,7 @@ void OutputScreenGameMenubar()
     {
         gameScreenInitialized = false;
         currentScreen = MENU;
-    };
+    }
 
     const char* txtButtonResetScreenGame = "Reset";
     int buttonResetWidth = global.guiButtonBaseWidth + MeasureText(txtButtonResetScreenGame, global.textSizeDefault);
@@ -173,7 +173,8 @@ void OutputScreenGameMenubar()
             txtButtonResetScreenGame))
     {
         GameOfLife.ResetGameOfLife();
-    };
+        evolutionState = true;
+    }
 
     int buttonPauseWidth = global.guiButtonBaseWidth + MeasureText("Resume", global.textSizeDefault);
     if (GuiButton(
@@ -185,7 +186,7 @@ void OutputScreenGameMenubar()
             txtButtonPause))
     {
         pauseState = !pauseState;
-    };
+    }
 
     int buttonDarkModeWidth = global.guiButtonBaseWidth + MeasureText("Light", global.textSizeDefault);
     if (GuiButton(
@@ -197,7 +198,7 @@ void OutputScreenGameMenubar()
             txtButtonDarkModeScreenGame))
     {
         global.ToggleDarkMode();
-    };
+    }
 }
 
 void OutputScreenGameStatusbar()

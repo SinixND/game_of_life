@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <vector>
+#include <time.h>
 
 #include "agents.h"
 #include "configs.h" // provide object "config" for configurable parameters
@@ -16,6 +17,7 @@ cGameOfLife::cGameOfLife(int rowsY, int colsX)
 
 void cGameOfLife::ResetGameOfLife()
 {
+    srand(time(0));
     day_ = 0;
     grid_.clear();
     gridState_.clear();
@@ -121,7 +123,7 @@ void cGameOfLife::UpdateGameOfLife()
 {
     day_ += 1;
 
-    // UPDATE AGENTS
+    // UPDATE AGENTS IN GRID
     //---------------------------------
     for (auto& row : grid_)
     {
