@@ -213,7 +213,8 @@ Color GetAgentColor(cAgent agent);
 void OutputScreenGameMainPanel()
 {
     // draw agents
-    for (auto& row : GameOfLife.GetGrid())
+    std::vector<std::vector<cAgent>> grid = GameOfLife.GetGrid();
+    for (auto& row : grid)
     {
         for (auto& agent : row)
         {
