@@ -6,7 +6,7 @@
   --bWeightTemp: 5px;
 
   /* min panel size */
-  --widthMin: calc(280 * var(--tpx));
+  /*--widthMin: calc(280 * var(--tpx));*/
   --widthMinLayout: calc(300 * var(--tpx));
   --heightMin: calc(var(--widthMin) * .618); /* proportio divina */
 
@@ -20,7 +20,7 @@
   /* text sizes */
   --txtLabel: calc(.75 * var(--txtSmall));
   --txtSmall: calc(.75 * var(--txtBase));
-  --txtBase: calc(16 * 1vmin);
+  --txtBase: calc(2 * 1vmin);
   --txtBig: calc(1.25 * var(--txtBase));
 
   /* rarity colors */
