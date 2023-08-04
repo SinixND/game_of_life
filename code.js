@@ -118,7 +118,7 @@ for (let i = 0; i < panels.length; i++) {
 //============================
 /* CONSISTANT PIXEL VARIABLE {*/
 
-document.documentElement.style.setProperty('--tpx', `calc(1px * ${window.devicePixelRatio})`);
+document.documentElement.style.setProperty('--tpx', `min(calc(1px * ${window.devicePixelRatio}), .5vmin)`);
 
 /*} CONSISTANT PIXEL VARIABLE  */
 //============================
