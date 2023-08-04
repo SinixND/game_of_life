@@ -309,6 +309,7 @@ function hideOtherDropdowns(target) {
     if (dropdown !== target && !(dropdown.classList.contains('hide'))) {
       dropdown.classList.add('hide');
       dropdown.parentElement.previousElementSibling.getElementsByClassName('symbol-toggle')[0].innerHTML = "&#9660"; //hidden
+      return false;
     }
   }
 }
@@ -318,6 +319,7 @@ function showPopup(equipmentTypeName, gearTypeName) {
   // reset scroll state to top
   document.getElementById(`list--select-${equipmentTypeName}--${gearTypeName}`).scrollTop = 0;
   document.body.style.overflow = "hidden"; //prevent backgroundscrolling
+  return false;
 }
 
 function hidePopups() {
@@ -326,6 +328,7 @@ function hidePopups() {
     element.classList.add("hide");
   }
   document.body.style.overflow = "";
+  return false;
 }
 
 function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName) {
@@ -621,6 +624,7 @@ function applySelection(equipmentTypeName, gearTypeName, gearItem, gearItemName)
 
   /*} CLONE GEAR SLOT  */
   //============================
+  return false;
 }
 /*} FUNCTIONS  */
 //==============================
