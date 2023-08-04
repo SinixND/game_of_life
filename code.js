@@ -1,6 +1,5 @@
 //============================
 /* IMPORT DATA {*/
-
 import { db } from "./data/database.js";
 let mltpc = db['setboni'];
 
