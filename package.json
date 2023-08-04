@@ -1,0 +1,21 @@
+{
+  "name": "sinixnd.github.io",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "--",
+  "main": "code.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SinixND/sinixnd.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SinixND/sinixnd.github.io/issues"
+  },
+  "homepage": "https://github.com/SinixND/sinixnd.github.io#readme"
+}

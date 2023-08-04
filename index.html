@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!--
+    DEBUG CONSOLE
+  <script id="script--mobile-console" defer src="./include/hnl.mobileconsole.js"></script>
+  -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="#"><!-- for favicon error -->
+  <title>Div2 build calculator</title>
+  <!--
+    .css - files
+  -->
+  <link rel="stylesheet" href="./style.css">
+  <!--
+    .js - files
+    defer -> don't wait for DOM to load script, but execute only when DOM loaded (?!)
+  -->
+  <script defer src="./code.js" type="module"></script>
+</head>
+
+
+<body>
+  <div id="frame-main" class="panel">
+    <!--
+      MENU BAR
+    -->
+    <div id="panel--menubar" class="panel--border">
+      <div class="container">
+        The Division 2 Build Calculator - menu bar
+      </div>
+    </div>
+
+    <div id="panel--build" class="panel flex-p--h">
+      <div id="panel--equipment" class="panel flex-c--left">
+
+        <!--
+          SPECIALISATION SELECTION AREA
+        -->
+        <div id="panel--specialisation" class="panel--border flex-c">
+          <div class="container empty">
+            Choose specialisation
+          </div>
+        </div>
+
+        <!--
+          WEAPON SELECTION AREA
+        -->
+        <div id="panel--weapons" class="panel flex-c flex-p--h">
+          <div id="panel--main-weapon-1" class="panel--border flex-c">
+            <div class="container empty">
+              Choose weapon
+            </div>
+          </div>
+          <div id="panel--main-weapon-2" class="panel--border flex-c">
+            <div class="container empty">
+              Choose weapon
+            </div>
+          </div>
+          <div id="panel--sidearm" class="panel--border flex-c">
+            <div class="container empty">
+              Choose sidearm
+            </div>
+          </div>
+        </div>
+
+        <!--
+          ARMOR SELECTION AREA
+        -->
+        <div id="panel--armor" class="panel flex-c grid-p--2x">
+            <div id="panel--mask" class="panel--border flex-c">
+              <div class="container empty">
+                Choose mask
+              </div>
+            </div>
+            <div id="panel--backpack" class="panel--border flex-c">
+              <div class="container empty">
+                Choose backpack
+              </div>
+            </div>
+            <div id="panel--chest" class="panel--border flex-c">
+              <div class="container empty">
+                Choose chest
+              </div>
+            </div>
+            <div id="panel--gloves" class="panel--border flex-c">
+              <div class="container empty">
+                Choose gloves
+              </div>
+            </div>
+            <div id="panel--holster" class="panel--border flex-c">
+              <div class="container empty">
+                Choose holster
+              </div>
+            </div>
+            <div id="panel--kneepads" class="panel--border flex-c">
+              <div class="container empty">
+                Choose kneepads
+              </div>
+            </div>
+        </div>
+
+        <!--
+          SKILL SELECTION AREA
+        -->
+        <div id="panel--skills" class="panel flex-c flex-p--h">
+          <div id="panel--skill-1" class="panel--border flex-c">
+            <div class="container empty">
+              Choose skill
+            </div>
+          </div>
+          <div id="panel--skill-2" class="panel--border flex-c">
+            <div class="container empty">
+              Choose skill
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--
+        STATS AREA
+      -->
+      <div id="panel--stats" class="panel flex-c--right flex-p--v">
+      <!--
+        WEAPON STATS AREA
+      -->
+        <div id="panel--stats--weapons" class="panel flex-c flex-p--h">
+          <div id="panel--stats--main-weapon-1" class="panel--border flex-c">
+            <div class="container">
+              stats weapon 1
+            </div>
+          </div>
+          <div id="panel--stats--main-weapon-2" class="panel--border flex-c">
+            <div class="container">
+              stats weapon 2
+            </div>
+          </div>
+          <div id="panel--stats--sidearm" class="panel--border flex-c sidearm">
+            <div class="container">
+              stats sidearm
+            </div>
+          </div>
+        </div>
+
+        <!--
+          SKILL STATS AREA
+        -->
+        <div id="panel--stats--skills" class="panel flex-c flex-p--h">
+          <div id="panel--stats--skill-1" class="panel--border flex-c skill">
+            <div class="container">
+              stats skill 1
+            </div>
+          </div>
+          <div id="panel--stats--skill-2" class="panel--border flex-c skill">
+            <div class="container">
+              stats skill 2
+            </div>
+          </div>
+        </div>
+
+        <!--
+          TALENT / MLTPC AREA
+        -->
+        <div id="panel--talent-mltpc-boni" class="panel flex-c">
+          <div class="container">
+            talent / mltpc boni
+          </div>
+        </div>
+
+        <!--
+          PLAYER STATS AREA
+        -->
+        <div id="panel--stats--player" class="panel flex-c">
+          <div class="container">
+            stats player
+          </div>
+        </div>
+
+        <!--
+          SET SHD AREA
+        -->
+        <div id="panel--SHD" class="panel flex-c">
+          <div class="container">
+            SHD
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--
+    POPUP MENU
+  -->
+  <div id="popup--frame-main" class="panel flex-p hide"></div>
+
+  <!--
+    TEMPLATE ARMOR SELECTION POPUP
+  -->
+  <template id="template--popup--select-armor">
+    <div id="popup--select-armor-" class="panel popup flex-p--v hide">
+      <div class="panel--border" onclick="event.stopPropagation()">
+        <div class="container popup--title"></div>
+      </div>
+      <div id="list--select-armor-" class="panel grid-p--list">
+        <!-- PLACEHOLDER LIST ENTRIES -->
+      </div>
+    </div>
+  </template>
+
+  <!--
+    TEMPLATE SELECTION LIST ENTRY
+  -->
+  <template id="template--selection-list-entry">
+    <div id="panel--list-entry-" class="panel--border grid-c">
+      <div class="container flex-p--v">
+        <div class="entry--name"></div>
+        <div class="entry--rarity"></div>
+        <div class="entry--mltpc-attributes">
+          <ol class="ol"></ol>
+        </div>
+        <div class="entry--talent-name"></div>
+        <div class="flex-c entry--talent-text"></div>
+      </div>
+    </div>
+  </template>
+
+  <!--
+    TEMPLATE GEAR SLOT
+  -->
+  <template id="template--gearslot">
+      <div id="gearslot-" class="container flex-p--v">
+        <div class="gearslot--name">
+          Itemname
+          <div class="symbol-menu">&#8801</div>
+        </div>
+        <!-- PLACEHOLDER DROPDOWN SELECTOR -->
+        <div class="flex-c gearslot--talent-text"></div>
+      </div>
+  </template>
+
+  <!--
+    TEMPLATE DROPDOWN SELECTOR
+  -->
+  <template id="template--dropdown">
+    <div id="dropdown--selector-" class="flex-p dropdown--selector">
+      <span class="dropdown--selector--text"></span>
+      <span class="dropdown--selector--value"></span>
+      <span class="symbol-toggle"></span>
+    </div>
+    <div id="dropdown--options-" class="overlay-anchor">
+      <div class="dropdown--options hide">
+        <!-- PLACEHOLDER DROPDOWN OPTION-->
+      </div>
+    </div>
+  </template>
+
+  <!--
+    TEMPLATE DROPDOWN OPTION
+  -->
+  <template id="template--dropdown--option">
+    <div id="dropdown--option-" class="flex-p dropdown--option">
+      <span class="dropdown--option--name"></span>
+      <span class="dropdown--option--value"></span>
+    </div>
+  </template>
+</body>
+
+</html>
