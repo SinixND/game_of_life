@@ -91,7 +91,7 @@ let icons = [
 //============================
 /* DEBUG {*/
 
-alert( 'Res: (W)' + screen.width + 'x(H)' + screen.height + '  ratio: ' + window.devicePixelRatio + ' 1px ' + 1px + ' vmin ' + 1vmin); // LapHD: 1920x1080 Lap: 1280x720; Mob: 432x896
+alert( 'Res: (W)' + screen.width + 'x(H)' + screen.height + '  ratio: ' + window.devicePixelRatio + ' 1px '); // LapHD: 1920x1080 Lap: 1280x720; Mob: 432x896
 
 /*} DEBUG  */
 //============================
