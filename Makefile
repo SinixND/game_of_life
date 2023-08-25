@@ -80,7 +80,6 @@ LD_FLAGS := $(addprefix -l,$(LIBRARIES)) $(shell pkg-config --libs $(LIBRARIES))
 
 ### list all source files found in (all subfolders of root directory | source file directory);
 SRCS := $(shell find $(SRC_DIR) -type f)
-$(info SRC is $(SRCS))
 SRC_NAMES := $(shell find $(SRC_DIRS) -type f -printf "%f\n")
 ### strip file extensions to get a list of sourcefile names
 SRC_NAMES := $(patsubst %.$(SRC_EXT),%,$(SRC_NAMES))
