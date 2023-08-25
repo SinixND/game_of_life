@@ -1,3 +1,8 @@
+# REQUIREMENTS
+- raylib
+- raygui
+- emscripten
+
 # TODOs
 - Github pages? (emscripten)
 0. Screens

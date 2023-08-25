@@ -33,8 +33,6 @@ SRC_DIRS := $(shell find $(SRC_DIR) -type d)
 OBJ_DIR := ./build
 ### here the binary file will be outputted
 BIN_DIR := ./bin
-### here the web files will be outputted
-WEB_DIR := ./web
 ### set the locations of header files
 SYS_INC_DIR := /usr/local/include /usr/include 
 ifeq ($(TPF),termux)
@@ -95,7 +93,7 @@ DEPS := $(patsubst $(OBJ_DIR)/%.$(OBJ_EXT),$(OBJ_DIR)/%.$(DEP_EXT),$(OBJS))
 .PHONY: all build clean rebuild run web
 
 ### default rule by convention
-all: build
+all: build web
 
 ### rule for native build process with binary as prerequisite
 build: $(BIN_DIR)/$(TARGET).$(TARGET_EXT)
@@ -122,12 +120,11 @@ $(OBJ_DIR)/%.$(OBJ_EXT): %.$(SRC_EXT)
 
 ### rule for web build proces
 web:
-	mkdir -p $(WEB_DIR)
-	emcc -o web/index.html $(SRCS) -Os -Wall $(RAYLIB_SRC_DIR)/libraylib.a $(LOC_INC_FLAGS) -I$(RAYLIB_SRC_DIR) -L$(RAYLIB_SRC_DIR) -s USE_GLFW=3 -s ASYNCIFY --shell-file $(RAYLIB_SRC_DIR)/shell.html -DPLATFORM_WEB
+	emcc -o index.html $(SRCS) -Os -Wall $(RAYLIB_SRC_DIR)/libraylib.a $(LOC_INC_FLAGS) -I$(RAYLIB_SRC_DIR) -L$(RAYLIB_SRC_DIR) -s USE_GLFW=3 -s ASYNCIFY --shell-file $(RAYLIB_SRC_DIR)/minshell.html -DPLATFORM_WEB
 
 ### clear dynamically created directories
 clean:
-	@rm -rf $(BIN_DIR) $(OBJ_DIR) $(WEB_DIR)
+	@rm -rf $(BIN_DIR) $(OBJ_DIR)
 
 ### clean dynamically created directories before building fresh
 rebuild: clean 
