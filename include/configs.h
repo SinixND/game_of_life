@@ -15,6 +15,7 @@ public:
 
     // AGENTS AND ENVIRONMENT
     bool fadingAgents;
+    bool agentColorDebug;
     int initialLifeDensity;
 
     // DISPLAY

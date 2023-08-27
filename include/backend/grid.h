@@ -15,6 +15,7 @@ public:
 
     void Evolve();
     void Reset();
+    void Clear();
 
 private:
     int rowsY_;
@@ -31,6 +32,7 @@ private:
 
 public:
     int GetDay();
+    void SetDay(int day);
     std::vector<std::vector<Agent>>& GetGrid();
 };
 

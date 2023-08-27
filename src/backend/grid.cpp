@@ -52,6 +52,20 @@ void Grid::Reset()
     gridState_.clear();
 }
 
+void Grid::Clear()
+{
+    for (auto& row : grid_)
+    {
+        for (auto& agent : row)
+        {
+            agent.SetStatusCurrent(false);
+            agent.SetStatusNext(false);
+            agent.SetStatusOutdated(true);
+            agent.EreaseVitality();
+        }
+    }
+}
+
 void Grid::Evolve()
 {
     PrepareNext();
@@ -104,8 +118,8 @@ int Grid::CountAdjacentAgents(Agent& agent)
         for (auto dx : {-1, 0, 1})
         {
             // set adjacent position, wrapping around matrix
-            int posY = ((agent.GetPosY() + dy) + grid_.size()) % grid_.size();
-            int posX = ((agent.GetPosY() + dx) + grid_[posY].size()) % grid_[posY].size();
+            int posY = ((agent.GetRowY() + dy) + grid_.size()) % grid_.size();
+            int posX = ((agent.GetColX() + dx) + grid_[posY].size()) % grid_[posY].size();
 
             Agent& adjacentAgent = grid_[posY][posX];
 
@@ -162,8 +176,8 @@ void Grid::NotifyAdjacentAgents(Agent& agent)
         for (auto dy : {-1, 0, 1})
         {
             // wraps around matrix
-            int posY = ((agent.GetPosY() + dy) + grid_.size()) % grid_.size();
-            int posX = ((agent.GetPosY() + dx) + grid_[posY].size()) % grid_[posY].size();
+            int posY = ((agent.GetRowY() + dy) + grid_.size()) % grid_.size();
+            int posX = ((agent.GetColX() + dx) + grid_[posY].size()) % grid_[posY].size();
 
             Agent& adjacentAgent = grid_[posY][posX];
             adjacentAgent.SetStatusOutdated(true);
@@ -179,4 +193,9 @@ std::vector<std::vector<Agent>>& Grid::GetGrid()
 int Grid::GetDay()
 {
     return day_;
+};
+
+void Grid::SetDay(int day)
+{
+    day_ = day;
 };

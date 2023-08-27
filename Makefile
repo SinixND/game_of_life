@@ -33,6 +33,8 @@ SRC_DIRS := $(shell find $(SRC_DIR) -type d)
 OBJ_DIR := ./build
 ### here the binary file will be outputted
 BIN_DIR := ./bin
+### define folder for web content to export
+WEB_DIR := ./web
 ### set the locations of header files
 SYS_INC_DIR := /usr/local/include /usr/include 
 ifeq ($(TPF),termux)
@@ -59,7 +61,7 @@ MAKEFLAGS := -j4
 # -W(all/extra): 		enable warnings
 # -std=c++17:	force c++ standard
 # -MMD			provides dependency information (header files) for make in .d files
-CXX_FLAGS := `pkg-config --cflags $(LIBRARIES)` -g -Wall -Wextra -Wpedantic -MMD -O2 #-std=c++17
+CXX_FLAGS := `pkg-config --cflags $(LIBRARIES)` -g -Wall -Wextra -MMD -O0 #-Wpedantic 
 
 #######################
 ### DONT EDIT BELOW ###
@@ -90,10 +92,10 @@ OBJS := $(patsubst %,$(OBJ_DIR)/%.$(OBJ_EXT),$(SRC_NAMES))
 DEPS := $(patsubst $(OBJ_DIR)/%.$(OBJ_EXT),$(OBJ_DIR)/%.$(DEP_EXT),$(OBJS))
 
 ### Non-file (.phony)targets (or rules)
-.PHONY: all build clean rebuild run web
+.PHONY: all build web clean rebuild deploy run
 
 ### default rule by convention
-all: build web
+all: build
 
 ### rule for native build process with binary as prerequisite
 build: $(BIN_DIR)/$(TARGET).$(TARGET_EXT)
@@ -120,15 +122,20 @@ $(OBJ_DIR)/%.$(OBJ_EXT): %.$(SRC_EXT)
 
 ### rule for web build proces
 web:
-	emcc -o index.html $(SRCS) -Os -Wall $(RAYLIB_SRC_DIR)/libraylib.a $(LOC_INC_FLAGS) -I$(RAYLIB_SRC_DIR) -L$(RAYLIB_SRC_DIR) -s USE_GLFW=3 -s ASYNCIFY --shell-file $(RAYLIB_SRC_DIR)/minshell.html -DPLATFORM_WEB
+	@emcc -o index.html $(SRCS) -Os -Wall $(RAYLIB_SRC_DIR)/libraylib.a $(LOC_INC_FLAGS) -I$(RAYLIB_SRC_DIR) -L$(RAYLIB_SRC_DIR) -s USE_GLFW=3 -s ASYNCIFY --shell-file $(RAYLIB_SRC_DIR)/minshell.html -DPLATFORM_WEB
+	@mkdir -p $(WEB_DIR)
+	@emcc -o web/game.html $(SRCS) -Os -Wall $(RAYLIB_SRC_DIR)/libraylib.a $(LOC_INC_FLAGS) -I$(RAYLIB_SRC_DIR) -L$(RAYLIB_SRC_DIR) -s USE_GLFW=3 -s ASYNCIFY --shell-file $(RAYLIB_SRC_DIR)/minshell.html -DPLATFORM_WEB
 
 ### clear dynamically created directories
 clean:
-	@rm -rf $(BIN_DIR) $(OBJ_DIR)
+	@rm -rf $(OBJ_DIR) $(WEB_DIR)
 
 ### clean dynamically created directories before building fresh
 rebuild: clean 
 	@$(MAKE) build
+
+deploy: clean 
+	@$(MAKE) build web
 
 ### run binary file after building
 run: build

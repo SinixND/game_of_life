@@ -12,7 +12,7 @@
 //---------------------------------
 Panel panelMenubarScreenSettings(0, 0, config.windowWidth, (global.guiButtonBaseHeight + 20), 10);
 Panel panelStatusbarScreenSettings(0, (config.windowHeight - (global.guiButtonBaseHeight + 20)), config.windowWidth, (global.guiButtonBaseHeight + 20), 10);
-Panel panelMainScreenSettings(0, panelMenubarScreenSettings.Height_, config.windowWidth, config.windowHeight - panelMenubarScreenSettings.Height_ - panelStatusbarScreenSettings.Height_, 10);
+Panel panelMainScreenSettings(0, panelMenubarScreenSettings.height_, config.windowWidth, config.windowHeight - panelMenubarScreenSettings.height_ - panelStatusbarScreenSettings.height_, 10);
 
 const char* txtButtonBackScreenSettings = "Back";
 const char* txtButtonDarkModeScreenSettings;

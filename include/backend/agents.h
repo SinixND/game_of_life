@@ -8,11 +8,11 @@ class Agent
 public:
     Agent(int rowY, int colX);
 
-    void SetPosY(int posY);
-    int GetPosY();
+    void SetRowY(int posY);
+    int GetRowY();
     
-    void SetPosX(int posX);
-    int GetPosX();
+    void SetColX(int posX);
+    int GetColX();
     
     void SetStatusCurrent(bool statusCurrent);
     bool GetStatusCurrent();
@@ -25,12 +25,14 @@ public:
     
     void RefreshVitality();
     void DecreaseVitality();
+    void EreaseVitality();
     int GetVitality();
+    void SetMaxVitality(int maxVitality);
     int GetMaxVitality();
 
 private:
-    int posY_;
-    int posX_;
+    int rowY_;
+    int colX_;
     bool statusCurrent_;
     bool statusNext_;
     bool statusOutdated_;

@@ -4,21 +4,21 @@
 #include <vector>
 
 Agent::Agent(int rowY, int colX)
-    : posY_(rowY)
-    , posX_(colX)
+    : rowY_(rowY)
+    , colX_(colX)
 {
     statusCurrent_ = false;
     statusNext_ = false;
     statusOutdated_ = true;
     vitality_ = 0;
-    maxVitality_ = 3;
+    maxVitality_ = 4;
 }
 
-void Agent::SetPosY(int posY){ posY_ = posY; }
-int Agent::GetPosY(){ return posY_; };
+void Agent::SetRowY(int posY){ rowY_ = posY; }
+int Agent::GetRowY(){ return rowY_; };
 
-void Agent::SetPosX(int posX){ posX_ = posX; }
-int Agent::GetPosX(){ return posX_; };
+void Agent::SetColX(int posX){ colX_ = posX; }
+int Agent::GetColX(){ return colX_; };
 
 void Agent::SetStatusCurrent(bool statusCurrent){ statusCurrent_ = statusCurrent; };
 bool Agent::GetStatusCurrent(){ return statusCurrent_; };
@@ -43,12 +43,12 @@ void Agent::DecreaseVitality()
     }
 }
 
-int Agent::GetVitality()
+void Agent::EreaseVitality()
 {
-    return vitality_;
+    vitality_ = 0;
 }
 
-int Agent::GetMaxVitality()
-{
-    return maxVitality_;
-}
+int Agent::GetVitality(){ return vitality_; }
+
+void Agent::SetMaxVitality(int maxVitality){ maxVitality_ = maxVitality; }
+int Agent::GetMaxVitality(){ return maxVitality_; }

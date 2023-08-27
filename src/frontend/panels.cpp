@@ -1,79 +1,79 @@
 #include "panels.h"
 
 Panel::Panel(float offsetX, float offsetY, float width, float height, float margin)
-    : Width_(width)
-    , Height_(height)
-    , LeftX_(offsetX)
-    , TopY_(offsetY)
-    , Margin_(margin)
+    : width_(width)
+    , height_(height)
+    , leftX_(offsetX)
+    , topY_(offsetY)
+    , margin_(margin)
 {
-    x = LeftX_;
-    y = TopY_;
-    width = Width_;
-    height = Height_;
+    x = leftX_;
+    y = topY_;
+    width = width_;
+    height = height_;
 
-    ContentLeftX_ = LeftX_ + Margin_;
-    ContentTopY_ = TopY_ + Margin_;
-    ContentRightX_ = LeftX_ + Width_ - Margin_;
-    ContentBottomY_ = TopY_ + Height_ - Margin_;
-    ContentWidth_ = Width_ - (2 * Margin_);
-    ContentHeight_ = Height_ - (2 * Margin_);
+    contentLeftX_ = leftX_ + margin_;
+    contentTopY_ = topY_ + margin_;
+    contentRightX_ = leftX_ + width_ - margin_;
+    contentBottomY_ = topY_ + height_ - margin_;
+    contentWidth_ = width_ - (2 * margin_);
+    contentHeight_ = height_ - (2 * margin_);
 }
 
 float Panel::GetRightX()
 {
-    return LeftX_ + Width_;
+    return leftX_ + width_;
 }
 
 float Panel::GetBottomY()
 {
-    return TopY_ + Height_;
+    return topY_ + height_;
 }
 
 float Panel::GetCenterX()
 {
-    return Width_ / 2;
+    return width_ / 2;
 }
 
 float Panel::GetCenterY()
 {
-    return Height_ / 2;
+    return height_ / 2;
 }
 
 float Panel::GetContentLeftX()
 {
-    ContentLeftX_ = LeftX_ + Margin_;
-    return ContentLeftX_;
+    contentLeftX_ = leftX_ + margin_;
+    return contentLeftX_;
 }
 
 float Panel::GetContentTopY()
 {
-    ContentTopY_ = TopY_ + Margin_;
-    return ContentTopY_;
+    contentTopY_ = topY_ + margin_;
+    return contentTopY_;
 }
 
 float Panel::GetContentRightX()
 {
-    ContentRightX_ = LeftX_ + Width_ - Margin_;
-    return ContentRightX_;
+    contentRightX_ = leftX_ + width_ - margin_;
+    return contentRightX_;
 }
 
 float Panel::GetContentBottomY()
 {
-    ContentBottomY_ = TopY_ + Height_ - Margin_;
-    return ContentBottomY_;
+    contentBottomY_ = topY_ + height_ - margin_;
+    return contentBottomY_;
 }
 
 float Panel::GetContentWidth()
 {
-    ContentWidth_ = Width_ - (2 * Margin_);
-    return ContentWidth_;
+    contentWidth_ = width_ - (2 * margin_);
+    return contentWidth_;
 }
 
 float Panel::GetContentHeight()
 {
-    ContentHeight_ = Height_ - (2 * Margin_);
-    return ContentHeight_;
+    contentHeight_ = height_ - (2 * margin_);
+    return contentHeight_;
 }
 
 float AlignHorizontalLeft(Panel parent, float offset)

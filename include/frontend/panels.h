@@ -10,21 +10,21 @@ class Panel : public Rectangle
 public:
     Panel(float offsetX, float offsetY, float width, float height, float margin);
 
-    float Width_;
-    float Height_;
-    float LeftX_;
-    float TopY_;
-    float Margin_;
+    float width_;
+    float height_;
+    float leftX_;
+    float topY_;
+    float margin_;
 
 private:
-    float RightX_;
-    float BottomY_;
-    float ContentLeftX_;
-    float ContentTopY_;
-    float ContentRightX_;
-    float ContentBottomY_;
-    float ContentWidth_;
-    float ContentHeight_;
+    float rightX_;
+    float bottomY_;
+    float contentLeftX_;
+    float contentTopY_;
+    float contentRightX_;
+    float contentBottomY_;
+    float contentWidth_;
+    float contentHeight_;
 
 public:
     float GetRightX();
