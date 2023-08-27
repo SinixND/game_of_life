@@ -10,9 +10,9 @@
 
 // SET GUI ELEMENTS
 //---------------------------------
-Panel panelMenubarScreenSettings(0, 0, config.windowWidth, (global.guiButtonBaseHeight + 20), 10);
-Panel panelStatusbarScreenSettings(0, (config.windowHeight - (global.guiButtonBaseHeight + 20)), config.windowWidth, (global.guiButtonBaseHeight + 20), 10);
-Panel panelMainScreenSettings(0, panelMenubarScreenSettings.height_, config.windowWidth, config.windowHeight - panelMenubarScreenSettings.height_ - panelStatusbarScreenSettings.height_, 10);
+Panel menubarScreenSettings(0, 0, config.windowWidth, (global.guiButtonBaseHeight + 20), 10);
+Panel statusbarScreenSettings(0, (config.windowHeight - (global.guiButtonBaseHeight + 20)), config.windowWidth, (global.guiButtonBaseHeight + 20), 10);
+Panel mainScreenSettings(0, menubarScreenSettings.height_, config.windowWidth, config.windowHeight - menubarScreenSettings.height_ - statusbarScreenSettings.height_, 10);
 
 const char* txtButtonBackScreenSettings = "Back";
 const char* txtButtonDarkModeScreenSettings;
@@ -66,8 +66,8 @@ void RenderScreenSettingsMenubar()
 {
     int buttonBackWidth = global.guiButtonBaseWidth + MeasureText(txtButtonBackScreenSettings, global.textSizeDefault);
     Rectangle backButtonRec{
-            (float)AlignHorizontalLeft(panelMenubarScreenSettings, 0),
-            (float)AlignVerticalCenter(panelMenubarScreenSettings, global.guiButtonBaseHeight, 0),
+            (float)AlignHorizontalLeft(menubarScreenSettings, 0),
+            (float)AlignVerticalCenter(menubarScreenSettings, global.guiButtonBaseHeight, 0),
             (float)buttonBackWidth,
             (float)global.guiButtonBaseHeight};
 
@@ -79,8 +79,8 @@ void RenderScreenSettingsMenubar()
     int buttonDarkModeWidth = global.guiButtonBaseWidth + MeasureText("Light", global.textSizeDefault);
     if (GuiButton(
             (Rectangle){
-                (float)AlignHorizontalRight(panelMenubarScreenSettings, buttonDarkModeWidth, 0),
-                (float)AlignVerticalCenter(panelMenubarScreenSettings, global.guiButtonBaseHeight, 0),
+                (float)AlignHorizontalRight(menubarScreenSettings, buttonDarkModeWidth, 0),
+                (float)AlignVerticalCenter(menubarScreenSettings, global.guiButtonBaseHeight, 0),
                 (float)buttonDarkModeWidth,
                 (float)global.guiButtonBaseHeight},
             txtButtonDarkModeScreenSettings))
@@ -92,7 +92,7 @@ void RenderScreenSettingsMenubar()
 void RenderScreenSettingsMainPanel()
 {
     // Helpers for positioning gui elements
-    float guiCursor = panelMainScreenSettings.GetContentTopY();
+    float guiCursor = mainScreenSettings.GetContentTopY();
     auto UpdateGuiCursor = [](float& refGuiCursor, float inputY)
     { refGuiCursor += inputY + 10.0f; };
 
@@ -102,7 +102,7 @@ void RenderScreenSettingsMainPanel()
     // target fps
 
     // CATEGORY: AGENTS AND ENVIRONMENT
-    DrawLine(panelMainScreenSettings.GetContentLeftX(), guiCursor, panelMainScreenSettings.GetContentRightX(), guiCursor, global.GetColorForeground());
+    DrawLine(mainScreenSettings.GetContentLeftX(), guiCursor, mainScreenSettings.GetContentRightX(), guiCursor, global.GetColorForeground());
 
     UpdateGuiCursor(guiCursor, 5);
 
@@ -110,7 +110,7 @@ void RenderScreenSettingsMainPanel()
 
     GuiLabel(
         (Rectangle){
-            AlignHorizontalCenter(panelMainScreenSettings, (float)MeasureText(txtLabelGrid, global.textSizeDefault), 0),
+            AlignHorizontalCenter(mainScreenSettings, (float)MeasureText(txtLabelGrid, global.textSizeDefault), 0),
             guiCursor,
             (float)MeasureText(txtLabelGrid, global.textSizeDefault),
             global.textSizeDefault},
@@ -118,7 +118,7 @@ void RenderScreenSettingsMainPanel()
 
     UpdateGuiCursor(guiCursor, global.textSizeDefault);
 
-    DrawLine(panelMainScreenSettings.GetContentLeftX(), guiCursor, panelMainScreenSettings.GetContentRightX(), guiCursor, global.GetColorForeground());
+    DrawLine(mainScreenSettings.GetContentLeftX(), guiCursor, mainScreenSettings.GetContentRightX(), guiCursor, global.GetColorForeground());
 
     UpdateGuiCursor(guiCursor, global.textSizeDefault / 2);
 
@@ -127,7 +127,7 @@ void RenderScreenSettingsMainPanel()
 
     GuiLabel(
         (Rectangle){
-            panelMainScreenSettings.GetContentLeftX(),
+            mainScreenSettings.GetContentLeftX(),
             guiCursor,
             (float)MeasureText(txtCheckBoxFadingAgents, global.textSizeDefault),
             global.textSizeDefault},
@@ -135,7 +135,7 @@ void RenderScreenSettingsMainPanel()
 
     config.fadingAgents = GuiCheckBox(
         (Rectangle){
-            panelMainScreenSettings.GetCenterX(),
+            mainScreenSettings.GetCenterX(),
             guiCursor,
             global.textSizeDefault,
             global.textSizeDefault},
@@ -148,7 +148,7 @@ void RenderScreenSettingsMainPanel()
 
     GuiLabel(
         (Rectangle){
-            panelMainScreenSettings.GetContentLeftX(),
+            mainScreenSettings.GetContentLeftX(),
             guiCursor,
             (float)MeasureText(txtSpinnerInitialLifeDensity, global.textSizeDefault),
             global.textSizeDefault},
@@ -156,7 +156,7 @@ void RenderScreenSettingsMainPanel()
 
     GuiSpinner(
         (Rectangle){
-            panelMainScreenSettings.GetCenterX(),
+            mainScreenSettings.GetCenterX(),
             guiCursor,
             100,
             global.textSizeDefault},
@@ -165,7 +165,7 @@ void RenderScreenSettingsMainPanel()
     UpdateGuiCursor(guiCursor, global.textSizeDefault * 1.5);
 
     // CATEGORY: DISPLAY
-    DrawLine(panelMainScreenSettings.GetContentLeftX(), guiCursor, panelMainScreenSettings.GetContentRightX(), guiCursor, global.GetColorForeground());
+    DrawLine(mainScreenSettings.GetContentLeftX(), guiCursor, mainScreenSettings.GetContentRightX(), guiCursor, global.GetColorForeground());
 
     UpdateGuiCursor(guiCursor, 5);
 
@@ -173,7 +173,7 @@ void RenderScreenSettingsMainPanel()
 
     GuiLabel(
         (Rectangle){
-            AlignHorizontalCenter(panelMainScreenSettings, (float)MeasureText(txtLabelDisplay, global.textSizeDefault), 0),
+            AlignHorizontalCenter(mainScreenSettings, (float)MeasureText(txtLabelDisplay, global.textSizeDefault), 0),
             guiCursor,
             (float)MeasureText(txtLabelDisplay, global.textSizeDefault),
             global.textSizeDefault},
@@ -181,7 +181,7 @@ void RenderScreenSettingsMainPanel()
 
     UpdateGuiCursor(guiCursor, global.textSizeDefault);
 
-    DrawLine(panelMainScreenSettings.GetContentLeftX(), guiCursor, panelMainScreenSettings.GetContentRightX(), guiCursor, global.GetColorForeground());
+    DrawLine(mainScreenSettings.GetContentLeftX(), guiCursor, mainScreenSettings.GetContentRightX(), guiCursor, global.GetColorForeground());
 
     UpdateGuiCursor(guiCursor, global.textSizeDefault / 2);
 
@@ -190,7 +190,7 @@ void RenderScreenSettingsMainPanel()
 
     GuiLabel(
         (Rectangle){
-            panelMainScreenSettings.GetContentLeftX(),
+            mainScreenSettings.GetContentLeftX(),
             guiCursor,
             (float)MeasureText(txtLabelAgentGap, global.textSizeDefault),
             global.textSizeDefault},
@@ -198,7 +198,7 @@ void RenderScreenSettingsMainPanel()
 
     GuiSpinner(
         (Rectangle){
-            panelMainScreenSettings.GetCenterX(),
+            mainScreenSettings.GetCenterX(),
             guiCursor,
             100,
             global.textSizeDefault},
@@ -215,6 +215,6 @@ void RenderScreenSettingsMainPanel()
 
     // Rectangle rectScrollPanelBounds = Rectangle{10, 10, 100, 100};
     // Rectangle rectScrollPanelContent = Rectangle{10, 10, 100, 500};
-    // Vector2 panelScroll = { 99, -20 };
-    // GuiScrollPanel(rectScrollPanelBounds, "Text", rectScrollPanelContent, &panelScroll);
+    // Vector2 scroll = { 99, -20 };
+    // GuiScrollPanel(rectScrollPanelBounds, "Text", rectScrollPanelContent, &scroll);
 }

@@ -9,9 +9,9 @@
 
 // SET GUI ELEMENTS
 //---------------------------------
-Panel panelMenubarScreenMenu(0, 0, config.windowWidth, (global.guiButtonBaseHeight + 20), 10);
-Panel panelStatusbarScreenMenu(0, (config.windowHeight - (global.textSizeDefault + 20)), config.windowWidth, (global.textSizeDefault + 20), 10);
-Panel panelMainScreenMenu(0, panelMenubarScreenMenu.height_, config.windowWidth, config.windowHeight - panelMenubarScreenMenu.height_ - panelStatusbarScreenMenu.height_, 10);
+Panel menubarScreenMenu(0, 0, config.windowWidth, (global.guiButtonBaseHeight + 20), 10);
+Panel statusbarScreenMenu(0, (config.windowHeight - (global.textSizeDefault + 20)), config.windowWidth, (global.textSizeDefault + 20), 10);
+Panel mainScreenMenu(0, menubarScreenMenu.height_, config.windowWidth, config.windowHeight - menubarScreenMenu.height_ - statusbarScreenMenu.height_, 10);
 
 const char* txtButtonDarkModeScreenMenu;
 
@@ -65,8 +65,8 @@ void RenderScreenMenuMenubar()
     int buttonDarkModeWidth = global.guiButtonBaseWidth + MeasureText("Light", global.textSizeDefault);
     if (GuiButton(
             (Rectangle){
-                (float)AlignHorizontalRight(panelMenubarScreenMenu, buttonDarkModeWidth, 0),
-                (float)AlignVerticalCenter(panelMenubarScreenMenu, global.guiButtonBaseHeight, 0),
+                (float)AlignHorizontalRight(menubarScreenMenu, buttonDarkModeWidth, 0),
+                (float)AlignVerticalCenter(menubarScreenMenu, global.guiButtonBaseHeight, 0),
                 (float)buttonDarkModeWidth,
                 (float)global.guiButtonBaseHeight},
             txtButtonDarkModeScreenMenu))
@@ -81,8 +81,8 @@ void RenderScreenMenuMainPanel()
 
     if (GuiButton(
             (Rectangle){
-                (float)AlignHorizontalCenter(panelMainScreenMenu, buttonMenuWidth, 0),
-                (float)AlignVerticalCenter(panelMainScreenMenu, global.guiButtonBaseHeight, -50),
+                (float)AlignHorizontalCenter(mainScreenMenu, buttonMenuWidth, 0),
+                (float)AlignVerticalCenter(mainScreenMenu, global.guiButtonBaseHeight, -50),
                 (float)buttonMenuWidth,
                 (float)global.guiButtonBaseHeight},
             TextFormat("Start Game")) ||
@@ -93,20 +93,19 @@ void RenderScreenMenuMainPanel()
 
     if (GuiButton(
             (Rectangle){
-                (float)AlignHorizontalCenter(panelMainScreenMenu, buttonMenuWidth, 0),
-                (float)AlignVerticalCenter(panelMainScreenMenu, global.guiButtonBaseHeight, 0),
+                (float)AlignHorizontalCenter(mainScreenMenu, buttonMenuWidth, 0),
+                (float)AlignVerticalCenter(mainScreenMenu, global.guiButtonBaseHeight, 0),
                 (float)buttonMenuWidth,
                 (float)global.guiButtonBaseHeight},
-            TextFormat("Settings")) ||
-        IsKeyPressed(KEY_ENTER) || IsKeyPressed(KEY_SPACE))
+            TextFormat("Settings")))
     {
         currentScreen = SETTINGS;
     }
 
     if (GuiButton(
             (Rectangle){
-                (float)AlignHorizontalCenter(panelMainScreenMenu, buttonMenuWidth, 0),
-                (float)AlignVerticalCenter(panelMainScreenMenu, global.guiButtonBaseHeight, 50),
+                (float)AlignHorizontalCenter(mainScreenMenu, buttonMenuWidth, 0),
+                (float)AlignVerticalCenter(mainScreenMenu, global.guiButtonBaseHeight, 50),
                 (float)buttonMenuWidth,
                 (float)global.guiButtonBaseHeight},
             TextFormat("Exit")) ||

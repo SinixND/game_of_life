@@ -4,11 +4,12 @@
 - emscripten
 
 # TODOs
-- Github pages? (emscripten)
+- Github pages? (emscripten) [done]
 0. Screens
     - Main [done]
       - Start [done]
       - Settings
+      - Load (examples? from db)
       - About
       - Exit
 0. Settings
@@ -40,12 +41,12 @@
     - doA(), doB(), f(call doA() & doB()) for core gamesteps (eg. determine next agents[] state)
     - Structure EVA 
 0. Features
-    - LMB / RMB set alive/dead
+    - LMB / RMB set alive/dead [done]
     - Seeding (seed[1-99999] * fieldSize; srand(seed*fieldSize)-fieldSize + fieldNumber)
     - Pausing [done]
     - Stepping FW/BW
     - Darkmode (switch) [done]
-    - spontaneous/probability alive, percentage dependent on neighbors, like 3ngb(50%) - 8ngb(100%) maybe
+    - spontaneous/probability alive, percentage dependent on neighbors, like 3nbrs(50%) - 8nbrs(100%) maybe
     - Colors
     - 3D
     - different agent shape

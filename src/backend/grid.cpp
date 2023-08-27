@@ -96,6 +96,7 @@ void Grid::PrepareNext()
             switch (CountAdjacentAgents(agent))
             {
             case 2:
+                agent.SetStatusNext(agent.GetStatusCurrent());
                 break;
 
             case 3:
