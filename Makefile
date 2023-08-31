@@ -136,15 +136,12 @@ web:
 	@emcc -o web/game.html $(SRCS) -Os -Wall $(RAYLIB_SRC_DIR)/libraylib.a $(LOC_INC_FLAGS) -I$(RAYLIB_SRC_DIR) -L$(RAYLIB_SRC_DIR) -s USE_GLFW=3 -s ASYNCIFY --shell-file $(RAYLIB_SRC_DIR)/minshell.html -DPLATFORM_WEB
 
 ### rule for unit testing
-test:
-# linker command
-test/test.exe: test/test.cpp
-	@$(CXX) -o $@ $^ $(CXX_FLAGS) $(INC_FLAGS) $(LIB_FLAGS) $(LD_LIBS) $(INC_FLAGS)
-	@test/test.exe
+test: $(TEST_DIR)/test.exe
 
-//# compiler command
-//test.o: test.cpp
-	//$(CXX) -o $@ -c $< $(CXX_FLAGS) $(INC_FLAGS)
+$(TEST_DIR)/%.$(TARGET_EXT): $(TEST_DIR)/%.$(SRC_EXT)
+	$(CXX) -o $@ $< $(LIB_FLAGS) $(LD_LIBS) $(INC_FLAGS)
+	$(TEST_DIR)/test.exe
+	rm $(TEST_DIR)/*.d
 
 ### clear dynamically created directories
 clean:
