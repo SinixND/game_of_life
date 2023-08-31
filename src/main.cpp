@@ -22,15 +22,15 @@ int main()
         switch (currentScreen)
         {
         case MENU:
-            RunScreenMenu();
+            menu.Run();
             break;
 
         case GAME:
-            RunScreenGame();
+            //RunGame();
             break;
 
         case SETTINGS:
-            RunScreenSettings();
+            //RunSettings();
             break;
 
         default:

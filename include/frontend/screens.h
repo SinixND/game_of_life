@@ -1,22 +1,20 @@
 #ifndef SCREENS_H
 #define SCREENS_H
 
-typedef enum screen
+typedef enum screens
 {
     MENU,
     GAME,
     SETTINGS,
-} screen;
+} screens;
 
-extern screen currentScreen;
+extern screens currentScreen;
 
-// SCREENS
-//---------------------------------
-void RunScreenMenu();
-void RunScreenGame();
-void RunScreenSettings();
+class Screen
+{
+public:
+    void Initialize();
+    void Run();
+};
 
 #endif
-/*
-As comented, you can use GetFontDefault() with MeasureTetEx() but default raylib font is 10 pixels height, actually you can access the default height of any font with font.baseSize. i.e. GetFontDefault().baseSize.
-*/
