@@ -1,8 +1,8 @@
 #include "screens.h"
 #include <iostream>
 
-#include "raygui.h"
 #include <raylib.h>
+#include <raygui.h>
 
 #include "configs.h" // provide object "config" for configurable parameters
 #include "globals.h" // provide object "global" for not configurable application parameters

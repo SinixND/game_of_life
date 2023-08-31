@@ -2,8 +2,7 @@
 
 #include <iostream>
 #include <raylib.h>
-
-#include "raygui.h"
+#include <raygui.h>
 
 cGlobal global; // define extern object
 cGlobal::cGlobal()
