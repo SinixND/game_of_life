@@ -149,10 +149,10 @@ web:
 	@emcc -o web/game.html $(SRCS) -Os -Wall $(RAYLIB_SRC_DIR)/libraylib.a $(LOC_INC_FLAGS) -I$(RAYLIB_SRC_DIR) -L$(RAYLIB_SRC_DIR) -s USE_GLFW=3 -s ASYNCIFY --shell-file $(RAYLIB_SRC_DIR)/minshell.html -DPLATFORM_WEB
 
 ### rule for unit testing
-test:
+test: $(BIN_DIR)/test_$(TARGET).$(TARGET_EXT)
 # linker command
 ### MAKE binary file FROM object files
-$(BIN_DIR)/TEST_$(TARGET).$(TARGET_EXT): $(TEST_OBJS)
+$(BIN_DIR)/test_$(TARGET).$(TARGET_EXT): $(TEST_OBJS)
 ### make folder for binary file
 	@mkdir -p $(BIN_DIR)
 ### $@ (target, left of ":")
