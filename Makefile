@@ -35,6 +35,8 @@ OBJ_DIR := ./build
 BIN_DIR := ./bin
 ### define folder for web content to export
 WEB_DIR := ./web
+### define folder for test content
+TEST_SRC_DIR := ./test
 ### set the locations of header files
 SYS_INC_DIR := /usr/local/include /usr/include 
 ifeq ($(TPF),termux)
@@ -44,7 +46,12 @@ LOC_INC_DIR := ./include
 LOC_INC_DIRS := $(shell find $(LOC_INC_DIR) -type d) 
 
 ### set the locations of all possible libraries used
-LIB_DIR := /usr/local/lib /usr/lib 
+SYS_LIB_DIR := /usr/local/lib /usr/lib 
+ifeq ($(TPF),termux)
+	SYS_LIB_DIR := $(PREFIX)/usr/lib 
+endif
+LOC_LIB_DIR := ./lib 
+LOC_LIB_DIRS := $(shell find $(LOC_LIB_DIR) -type d) 
 
 ### set raylib and emscripten directory as needed
 RAYLIB_SRC_DIR := /usr/lib/raylib/src
@@ -73,12 +80,14 @@ LOC_INC_FLAGS := $(addprefix -I,$(LOC_INC_DIRS))
 INC_FLAGS := $(SYS_INC_FLAGS) $(LOC_INC_FLAGS)
 
 ### make library flags by prefixing every provided path with -L; this might take a while for the first time, but will NOT be repeated every time
-LIB_FLAGS := $(addprefix -L,$(LIB_DIR))
+SYS_LIB_FLAGS := $(addprefix -L,$(SYS_LIB_DIR))
+LOC_LIB_FLAGS := $(addprefix -L,$(LOC_LIB_DIRS))
+LIB_FLAGS := $(SYS_LIB_FLAGS) $(LOC_LIB_FLAGS)
 
 ### make linker flags by prefixing every provided library with -l (should work for most libraries due to convention); probably pkg-config makes duplicates...
 LD_FLAGS := $(addprefix -l,$(LIBRARIES)) $(shell pkg-config --libs $(LIBRARIES))
 
-### list all source files found in (all subfolders of root directory | source file directory);
+### list all source files found in source file directory;
 SRCS := $(shell find $(SRC_DIR) -type f)
 SRC_NAMES := $(shell find $(SRC_DIRS) -type f -printf "%f\n")
 ### strip file extensions to get a list of sourcefile names
@@ -91,8 +100,21 @@ OBJS := $(patsubst %,$(OBJ_DIR)/%.$(OBJ_EXT),$(SRC_NAMES))
 ### make list of dependency files
 DEPS := $(patsubst $(OBJ_DIR)/%.$(OBJ_EXT),$(OBJ_DIR)/%.$(DEP_EXT),$(OBJS))
 
+### list all test files found in source file directory;
+TEST_SRCS := $(shell find $(TEST_SRC_DIR) -type f)
+TEST_SRC_NAMES := $(shell find $(TEST_SRC_DIR) -type f -printf "%f\n")
+### strip file extensions to get a list of testfile names
+TEST_SRC_NAMES := $(patsubst %.$(SRC_EXT),%,$(TEST_SRC_NAMES))
+
+### make list of object files need for linker command by changing ending of all test files to .o;
+### (patsubst pattern,replacement, target)
+### IMPORTANT for linker prerequesite, so they are found as compile rule
+TEST_OBJS := $(patsubst %,$(OBJ_DIR)/%.$(OBJ_EXT),$(TEST_SRC_NAMES))
+### make list of dependency files
+TEST_DEPS := $(patsubst $(OBJ_DIR)/%.$(OBJ_EXT),$(OBJ_DIR)/%.$(DEP_EXT),$(TEST_OBJS))
+
 ### Non-file (.phony)targets (or rules)
-.PHONY: all build web clean rebuild deploy run
+.PHONY: all build web clean rebuild deploy run test
 
 ### default rule by convention
 all: build
@@ -125,6 +147,28 @@ web:
 	@emcc -o index.html $(SRCS) -Os -Wall $(RAYLIB_SRC_DIR)/libraylib.a $(LOC_INC_FLAGS) -I$(RAYLIB_SRC_DIR) -L$(RAYLIB_SRC_DIR) -s USE_GLFW=3 -s ASYNCIFY --shell-file $(RAYLIB_SRC_DIR)/minshell.html -DPLATFORM_WEB
 	@mkdir -p $(WEB_DIR)
 	@emcc -o web/game.html $(SRCS) -Os -Wall $(RAYLIB_SRC_DIR)/libraylib.a $(LOC_INC_FLAGS) -I$(RAYLIB_SRC_DIR) -L$(RAYLIB_SRC_DIR) -s USE_GLFW=3 -s ASYNCIFY --shell-file $(RAYLIB_SRC_DIR)/minshell.html -DPLATFORM_WEB
+
+### rule for unit testing
+test:
+# linker command
+### MAKE binary file FROM object files
+$(BIN_DIR)/TEST_$(TARGET).$(TARGET_EXT): $(TEST_OBJS)
+### make folder for binary file
+	@mkdir -p $(BIN_DIR)
+### $@ (target, left of ":")
+### $^ (all prerequesites, all right of ":")
+	@$(CXX) -o $@ $^ $(LIB_FLAGS) $(LD_FLAGS) $(INC_FLAGS)
+
+# compiler command
+### set VPATH as std dir to look for compile targets
+VPATH := $(TEST_SRC_DIRS)
+### MAKE object files FROM source files; "%" pattern-matches (need pair of)
+$(OBJ_DIR)/%.$(OBJ_EXT): %.$(SRC_EXT)
+### copy source structure for object file directory
+	@mkdir -p $(OBJ_DIR)
+### $< (first prerequesite, first right of ":")
+### $@ (target, left of ":")
+	@$(CXX) -o $@ -c $< $(CXX_FLAGS) $(INC_FLAGS)
 
 ### clear dynamically created directories
 clean:
