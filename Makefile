@@ -3,8 +3,8 @@
 ### make looks for a rule to build $(OBJS)
 ### @ (as a prefix to a cli command): suppress cli output; use make -n to debug commands
 
-### option for termux platform  make: "make TPF=termux"
-TPF := linux
+### option for termux platform  make: "make OS=termux"
+OS := linux
 
 ### set the used compiler to g++ or clang++
 CXX := g++ 
@@ -26,6 +26,8 @@ OBJ_EXT := o
 DEP_EXT := d
 
 ### set the respective folders from structure
+### set VPATH as std dir to look for compile targets
+VPATH := $(shell find . -type d) 
 ### here go all source files (with the $(SRC_EXT) extension)
 SRC_DIR := ./src
 SRC_DIRS := $(shell find $(SRC_DIR) -type d) 
@@ -39,7 +41,7 @@ WEB_DIR := ./web
 TEST_SRC_DIR := ./test
 ### set the locations of header files
 SYS_INC_DIR := /usr/local/include /usr/include 
-ifeq ($(TPF),termux)
+ifeq ($(OS),termux)
 	SYS_INC_DIR := $(PREFIX)/usr/include 
 endif
 LOC_INC_DIR := ./include
@@ -47,7 +49,7 @@ LOC_INC_DIRS := $(shell find $(LOC_INC_DIR) -type d)
 
 ### set the locations of all possible libraries used
 SYS_LIB_DIR := /usr/local/lib /usr/lib 
-ifeq ($(TPF),termux)
+ifeq ($(OS),termux)
 	SYS_LIB_DIR := $(PREFIX)/usr/lib 
 endif
 LOC_LIB_DIR := ./lib 
@@ -55,7 +57,7 @@ LOC_LIB_DIRS := $(shell find $(LOC_LIB_DIR) -type d)
 
 ### set raylib and emscripten directory as needed
 RAYLIB_SRC_DIR := /usr/lib/raylib/src
-ifeq ($(TPF),termux)
+ifeq ($(OS),termux)
 	RAYLIB_SRC_DIR := $(PREFIX)/lib/raylib/src
 endif
 ### automatically added flags to make command
@@ -74,18 +76,18 @@ CXX_FLAGS := `pkg-config --cflags $(LIBRARIES)` -g -Wall -Wextra -MMD -O0 #-Wped
 ### DONT EDIT BELOW ###
 #######################
 
-### make include flags by prefixing every provided path with -I
-SYS_INC_FLAGS := $(addprefix -I,$(SYS_INC_DIR))
-LOC_INC_FLAGS := $(addprefix -I,$(LOC_INC_DIRS))
-INC_FLAGS := $(SYS_INC_FLAGS) $(LOC_INC_FLAGS)
+### make linker flags by prefixing every provided library with -l (should work for most libraries due to convention); probably pkg-config makes duplicates...
+LD_LIBS := $(addprefix -l,$(LIBRARIES)) $(shell pkg-config --libs $(LIBRARIES))
 
 ### make library flags by prefixing every provided path with -L; this might take a while for the first time, but will NOT be repeated every time
 SYS_LIB_FLAGS := $(addprefix -L,$(SYS_LIB_DIR))
 LOC_LIB_FLAGS := $(addprefix -L,$(LOC_LIB_DIRS))
 LIB_FLAGS := $(SYS_LIB_FLAGS) $(LOC_LIB_FLAGS)
 
-### make linker flags by prefixing every provided library with -l (should work for most libraries due to convention); probably pkg-config makes duplicates...
-LD_FLAGS := $(addprefix -l,$(LIBRARIES)) $(shell pkg-config --libs $(LIBRARIES))
+### make include flags by prefixing every provided path with -I
+SYS_INC_FLAGS := $(addprefix -I,$(SYS_INC_DIR))
+LOC_INC_FLAGS := $(addprefix -I,$(LOC_INC_DIRS))
+INC_FLAGS := $(SYS_INC_FLAGS) $(LOC_INC_FLAGS)
 
 ### list all source files found in source file directory;
 SRCS := $(shell find $(SRC_DIR) -type f)
@@ -129,11 +131,9 @@ $(BIN_DIR)/$(TARGET).$(TARGET_EXT): $(OBJS)
 	@mkdir -p $(BIN_DIR)
 ### $@ (target, left of ":")
 ### $^ (all prerequesites, all right of ":")
-	@$(CXX) -o $@ $^ $(LIB_FLAGS) $(LD_FLAGS) $(INC_FLAGS)
+	@$(CXX) -o $@ $^ $(LIB_FLAGS) $(LD_LIBS) #$(INC_FLAGS)
 
 # compiler command
-### set VPATH as std dir to look for compile targets
-VPATH := $(SRC_DIRS)
 ### MAKE object files FROM source files; "%" pattern-matches (need pair of)
 $(OBJ_DIR)/%.$(OBJ_EXT): %.$(SRC_EXT)
 ### copy source structure for object file directory
@@ -157,18 +157,16 @@ $(BIN_DIR)/test_$(TARGET).$(TARGET_EXT): $(TEST_OBJS)
 	@mkdir -p $(BIN_DIR)
 ### $@ (target, left of ":")
 ### $^ (all prerequesites, all right of ":")
-	@$(CXX) -o $@ $^ $(LIB_FLAGS) $(LD_FLAGS) $(INC_FLAGS)
+	@$(CXX) -o $@ $^ $(LIB_FLAGS) $(LD_LIBS) $(INC_FLAGS)
 
 # compiler command
-### set VPATH as std dir to look for compile targets
-VPATH := $(TEST_SRC_DIRS)
 ### MAKE object files FROM source files; "%" pattern-matches (need pair of)
-$(OBJ_DIR)/%.$(OBJ_EXT): %.$(SRC_EXT)
+#$(OBJ_DIR)/%.$(OBJ_EXT): %.$(SRC_EXT)
 ### copy source structure for object file directory
-	@mkdir -p $(OBJ_DIR)
+#	mkdir -p $(OBJ_DIR)
 ### $< (first prerequesite, first right of ":")
 ### $@ (target, left of ":")
-	@$(CXX) -o $@ -c $< $(CXX_FLAGS) $(INC_FLAGS)
+#	$(CXX) -o $@ -c $< $(CXX_FLAGS) $(INC_FLAGS)
 
 ### clear dynamically created directories
 clean:
