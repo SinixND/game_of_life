@@ -38,7 +38,7 @@ BIN_DIR := ./bin
 ### define folder for web content to export
 WEB_DIR := ./web
 ### define folder for test content
-TEST_SRC_DIR := ./test
+TEST_DIR := ./test
 ### set the locations of header files
 SYS_INC_DIR := /usr/local/include /usr/include 
 ifeq ($(OS),termux)
@@ -102,19 +102,6 @@ OBJS := $(patsubst %,$(OBJ_DIR)/%.$(OBJ_EXT),$(SRC_NAMES))
 ### make list of dependency files
 DEPS := $(patsubst $(OBJ_DIR)/%.$(OBJ_EXT),$(OBJ_DIR)/%.$(DEP_EXT),$(OBJS))
 
-### list all test files found in source file directory;
-TEST_SRCS := $(shell find $(TEST_SRC_DIR) -type f)
-TEST_SRC_NAMES := $(shell find $(TEST_SRC_DIR) -type f -printf "%f\n")
-### strip file extensions to get a list of testfile names
-TEST_SRC_NAMES := $(patsubst %.$(SRC_EXT),%,$(TEST_SRC_NAMES))
-
-### make list of object files need for linker command by changing ending of all test files to .o;
-### (patsubst pattern,replacement, target)
-### IMPORTANT for linker prerequesite, so they are found as compile rule
-TEST_OBJS := $(patsubst %,$(OBJ_DIR)/%.$(OBJ_EXT),$(TEST_SRC_NAMES))
-### make list of dependency files
-TEST_DEPS := $(patsubst $(OBJ_DIR)/%.$(OBJ_EXT),$(OBJ_DIR)/%.$(DEP_EXT),$(TEST_OBJS))
-
 ### Non-file (.phony)targets (or rules)
 .PHONY: all build web clean rebuild deploy run test
 
@@ -149,24 +136,15 @@ web:
 	@emcc -o web/game.html $(SRCS) -Os -Wall $(RAYLIB_SRC_DIR)/libraylib.a $(LOC_INC_FLAGS) -I$(RAYLIB_SRC_DIR) -L$(RAYLIB_SRC_DIR) -s USE_GLFW=3 -s ASYNCIFY --shell-file $(RAYLIB_SRC_DIR)/minshell.html -DPLATFORM_WEB
 
 ### rule for unit testing
-test: $(BIN_DIR)/test_$(TARGET).$(TARGET_EXT)
+test:
 # linker command
-### MAKE binary file FROM object files
-$(BIN_DIR)/test_$(TARGET).$(TARGET_EXT): $(TEST_OBJS)
-### make folder for binary file
-	@mkdir -p $(BIN_DIR)
-### $@ (target, left of ":")
-### $^ (all prerequesites, all right of ":")
-	@$(CXX) -o $@ $^ $(LIB_FLAGS) $(LD_LIBS) $(INC_FLAGS)
+test/test.exe: test/test.cpp
+	@$(CXX) -o $@ $^ $(CXX_FLAGS) $(INC_FLAGS) $(LIB_FLAGS) $(LD_LIBS) $(INC_FLAGS)
+	@test/test.exe
 
-# compiler command
-### MAKE object files FROM source files; "%" pattern-matches (need pair of)
-#$(OBJ_DIR)/%.$(OBJ_EXT): %.$(SRC_EXT)
-### copy source structure for object file directory
-#	mkdir -p $(OBJ_DIR)
-### $< (first prerequesite, first right of ":")
-### $@ (target, left of ":")
-#	$(CXX) -o $@ -c $< $(CXX_FLAGS) $(INC_FLAGS)
+//# compiler command
+//test.o: test.cpp
+	//$(CXX) -o $@ -c $< $(CXX_FLAGS) $(INC_FLAGS)
 
 ### clear dynamically created directories
 clean:
