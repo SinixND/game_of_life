@@ -106,7 +106,7 @@ DEPS := $(patsubst $(OBJ_DIR)/%.$(OBJ_EXT),$(OBJ_DIR)/%.$(DEP_EXT),$(OBJS))
 .PHONY: all build web clean rebuild deploy run test
 
 ### default rule by convention
-all: build
+all: test build
 
 ### rule for native build process with binary as prerequisite
 build: $(BIN_DIR)/$(TARGET).$(TARGET_EXT)
@@ -139,9 +139,9 @@ web:
 test: $(TEST_DIR)/test.exe
 
 $(TEST_DIR)/%.$(TARGET_EXT): $(TEST_DIR)/%.$(SRC_EXT)
-	$(CXX) -o $@ $< $(LIB_FLAGS) $(LD_LIBS) $(INC_FLAGS)
-	$(TEST_DIR)/test.exe
-	rm $(TEST_DIR)/*.d
+	@$(CXX) -o $@ $< $(LIB_FLAGS) $(LD_LIBS) $(INC_FLAGS)
+	@$(TEST_DIR)/test.exe
+	@rm $(TEST_DIR)/*.exe
 
 ### clear dynamically created directories
 clean:
