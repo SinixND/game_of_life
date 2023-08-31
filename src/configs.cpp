@@ -1,7 +1,7 @@
 #include "configs.h" // provide object "config" for configurable parameters
 
-cConfig config; // define extern object
-cConfig::cConfig()
+Config config; // define extern object
+Config::Config()
     : windowWidth(640)
     , windowHeight(480)
     , targetFPS(60)

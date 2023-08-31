@@ -4,20 +4,27 @@
 #include <raylib.h>
 #include <raygui.h>
 
-cGlobal global; // define extern object
-cGlobal::cGlobal()
+Global global; // define extern object
+Global::Global()
     : exitApp(false)
     , textSizeDefault(20)
     , guiButtonBaseWidth(20)
     , guiButtonBaseHeight(30)
-    , darkMode(false)
+    , darkMode(true)
     , colorBackground(WHITE)
-    , colorForeground(BLACK){};
+    , colorForeground(BLACK)
+{
+    SetColors();
+};
 
-void cGlobal::ToggleDarkMode()
+void Global::ToggleDarkMode()
 {
     darkMode = !darkMode;
+    SetColors();
+};
 
+void Global::SetColors()
+{
     if (darkMode == true)
     {
         colorBackground = BLACK;
@@ -28,19 +35,19 @@ void cGlobal::ToggleDarkMode()
         colorBackground = WHITE;
         colorForeground = BLACK;
     }
-};
+}
 
-bool cGlobal::GetDarkMode()
+bool Global::GetDarkMode()
 {
     return darkMode;
 };
 
-Color cGlobal::GetColorBackground()
+Color Global::GetColorBackground()
 {
     return colorBackground;
 };
 
-Color cGlobal::GetColorForeground()
+Color Global::GetColorForeground()
 {
     return colorForeground;
 };

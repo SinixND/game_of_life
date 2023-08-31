@@ -3,10 +3,10 @@
 
 // CUSTOMIZABLE BY USER
 //---------------------------------
-class cConfig
+class Config
 {
 public:
-    cConfig();
+    Config();
 
     // APPLICATION
     int windowWidth;
@@ -27,6 +27,6 @@ public:
     // CONTROLS
     float tickTime;
 };
-extern cConfig config; // declare extern object
+extern Config config; // declare extern object
 
 #endif

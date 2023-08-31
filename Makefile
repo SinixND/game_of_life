@@ -31,20 +31,21 @@ VPATH := $(shell find . -type d)
 ### here go all source files (with the $(SRC_EXT) extension)
 SRC_DIR := ./src
 SRC_DIRS := $(shell find $(SRC_DIR) -type d) 
+### here go local include files
+LOC_INC_DIR := ./include
+### here go local library files
+LOC_LIB_DIR := 
 ### here the object files will be outputted
 OBJ_DIR := ./build
 ### here the binary file will be outputted
 BIN_DIR := ./bin
 ### define folder for web content to export
 WEB_DIR := ./web
-### define folder for test content
-TEST_DIR := ./test
 ### set the locations of header files
 SYS_INC_DIR := /usr/local/include /usr/include 
 ifeq ($(OS),termux)
 	SYS_INC_DIR := $(PREFIX)/usr/include 
 endif
-LOC_INC_DIR := ./include
 LOC_INC_DIRS := $(shell find $(LOC_INC_DIR) -type d) 
 
 ### set the locations of all possible libraries used
@@ -52,13 +53,12 @@ SYS_LIB_DIR := /usr/local/lib /usr/lib
 ifeq ($(OS),termux)
 	SYS_LIB_DIR := $(PREFIX)/usr/lib 
 endif
-LOC_LIB_DIR := ./lib 
 LOC_LIB_DIRS := $(shell find $(LOC_LIB_DIR) -type d) 
 
 ### set raylib and emscripten directory as needed
-RAYLIB_SRC_DIR := /usr/lib/raylib/src
+RAYLIB_DIR := /usr/lib/raylib
 ifeq ($(OS),termux)
-	RAYLIB_SRC_DIR := $(PREFIX)/lib/raylib/src
+	RAYLIB_DIR := $(PREFIX)/lib/raylib
 endif
 ### automatically added flags to make command
 MAKEFLAGS := -j4
@@ -103,10 +103,10 @@ OBJS := $(patsubst %,$(OBJ_DIR)/%.$(OBJ_EXT),$(SRC_NAMES))
 DEPS := $(patsubst $(OBJ_DIR)/%.$(OBJ_EXT),$(OBJ_DIR)/%.$(DEP_EXT),$(OBJS))
 
 ### Non-file (.phony)targets (or rules)
-.PHONY: all build web clean rebuild deploy run test
+.PHONY: all build web clean rebuild deploy run
 
 ### default rule by convention
-all: test build
+all: build
 
 ### rule for native build process with binary as prerequisite
 build: $(BIN_DIR)/$(TARGET).$(TARGET_EXT)
@@ -131,17 +131,9 @@ $(OBJ_DIR)/%.$(OBJ_EXT): %.$(SRC_EXT)
 
 ### rule for web build proces
 web:
-	@emcc -o index.html $(SRCS) -Os -Wall $(RAYLIB_SRC_DIR)/libraylib.a $(LOC_INC_FLAGS) -I$(RAYLIB_SRC_DIR) -L$(RAYLIB_SRC_DIR) -s USE_GLFW=3 -s ASYNCIFY --shell-file $(RAYLIB_SRC_DIR)/minshell.html -DPLATFORM_WEB
+	@emcc -o index.html $(SRCS) -Os -Wall $(RAYLIB_DIR)/libraylib.a $(LOC_INC_FLAGS) -I$(RAYLIB_DIR) -L$(RAYLIB_DIR) -s USE_GLFW=3 -s ASYNCIFY --shell-file $(RAYLIB_DIR)/minshell.html -DPLATFORM_WEB
 	@mkdir -p $(WEB_DIR)
-	@emcc -o web/game.html $(SRCS) -Os -Wall $(RAYLIB_SRC_DIR)/libraylib.a $(LOC_INC_FLAGS) -I$(RAYLIB_SRC_DIR) -L$(RAYLIB_SRC_DIR) -s USE_GLFW=3 -s ASYNCIFY --shell-file $(RAYLIB_SRC_DIR)/minshell.html -DPLATFORM_WEB
-
-### rule for unit testing
-test: buildtest
-	$(TEST_DIR)/test.exe
-
-buildtest: $(TEST_DIR)/test.exe
-$(TEST_DIR)/%.$(TARGET_EXT): $(TEST_DIR)/%.$(SRC_EXT)
-	@$(CXX) -o $@ $< $(LIB_FLAGS) $(LD_LIBS) $(INC_FLAGS)
+	@emcc -o web/game.html $(SRCS) -Os -Wall $(RAYLIB_DIR)/libraylib.a $(LOC_INC_FLAGS) -I$(RAYLIB_DIR) -L$(RAYLIB_DIR) -s USE_GLFW=3 -s ASYNCIFY --shell-file $(RAYLIB_DIR)/minshell.html -DPLATFORM_WEB
 
 ### clear dynamically created directories
 clean:
@@ -151,8 +143,8 @@ clean:
 rebuild: clean 
 	@$(MAKE) build
 
-deploy: clean 
-	@$(MAKE) build web
+deploy: rebuild 
+	@$(MAKE) web
 
 ### run binary file after building
 run: build

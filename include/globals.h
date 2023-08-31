@@ -5,10 +5,10 @@
 
 // NOT CUSTOMIZABLE BY USER
 //---------------------------------
-class cGlobal
+class Global
 {
 public:
-    cGlobal();
+    Global();
     // APPLICATION
     bool exitApp;
 
@@ -22,12 +22,15 @@ public:
 
     Color GetColorBackground();
     Color GetColorForeground();
+    
 private:
     // DARK MODE
     bool darkMode;
     Color colorBackground;
     Color colorForeground;
+
+    void SetColors();
 };
-extern cGlobal global; // declare extern object
+extern Global global; // declare extern object
 
 #endif

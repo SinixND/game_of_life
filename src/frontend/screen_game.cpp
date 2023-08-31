@@ -23,7 +23,7 @@ const char* txtButtonDarkModeScreenGame;
 // GAME OF LIFE / GRID
 //---------------------------------
 bool pauseState = false;
-bool gridEvolving = true;
+
 // no check for game end
 bool sandboxMode = false;
 bool gameScreenInitialized = false;
@@ -102,7 +102,7 @@ void ProcessScreenGame()
         }
     }
 
-    if ((pauseState == true) || (gridEvolving == false))
+    if ((pauseState == true) /*|| (gridEvolving == false)*/)
     {
         return;
     }
@@ -142,10 +142,12 @@ void UpdateScreenGame()
 
     // GAME END CONDITION
     //---------------------------------
+    /*
     if (gridEvolving == false)
     {
         return;
     }
+    */
 
     if (sandboxMode == true)
     {
@@ -155,7 +157,7 @@ void UpdateScreenGame()
     int currentState = grid.gridStates_.size() - 1;
     if (grid.gridStates_[currentState] == grid.gridStates_[currentState - 2])
     {
-        gridEvolving = false;
+        pauseState = true;
         gameEndOverlayVisible = true;
     }
 }
@@ -215,7 +217,6 @@ void RenderScreenGameMenubar()
             txtButtonResetScreenGame))
     {
         grid.Reset();
-        gridEvolving = true;
     }
 
     const char* txtButtonClearScreenGame = "Clear";
@@ -229,7 +230,6 @@ void RenderScreenGameMenubar()
             txtButtonClearScreenGame))
     {
         grid.Clear();
-        gridEvolving = true;
         sandboxMode = true;
     }
 

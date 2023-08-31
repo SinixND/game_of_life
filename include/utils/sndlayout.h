@@ -12,7 +12,7 @@ namespace snd {
 
 class Frame : public Rectangle
 {
-
+    Frame()
 };
 
 } // namespace snd
