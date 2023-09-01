@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include "agent.h"
+#include "sndAgent.h"
 
 class Grid
 {

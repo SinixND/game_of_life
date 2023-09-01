@@ -1,12 +1,12 @@
-#include "grid.h"
+#include "sndGrid.h"
 
 #include <cstdlib>
 #include <iostream>
 #include <vector>
 #include <time.h>
 
-#include "agent.h"
-#include "configs.h" // provide object "config" for configurable parameters
+#include "sndAgent.h"
+#include "sndConfigs.h" // provide object "config" for configurable parameters
 
 Grid::Grid(int rowsY, int colsX)
     : rowsY_(rowsY)

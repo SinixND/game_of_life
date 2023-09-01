@@ -3,11 +3,11 @@
 #define RAYGUI_IMPLEMENTATION //only define once
 #include <raygui.h>
 
-#include "configs.h" // provide object "config" for configurable parameters
-#include "globals.h" // provide object "global" for not configurable application parameters
+#include "sndConfigs.h" // provide object "config" for configurable parameters
+#include "sndGlobals.h" // provide object "global" for not configurable application parameters
 
-#include "screen.h"
-#include "menu.h"
+#include "sndScreen.h"
+#include "sndMenu.h"
 
 int main()
 {

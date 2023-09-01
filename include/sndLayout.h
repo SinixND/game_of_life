@@ -5,8 +5,8 @@
 #ifndef SNDLAYOUT_H
 #define SNDLAYOUT_H
 
-#include "raylib.h"
-#include "raygui.h"
+#include <raylib.h>
+#include <raygui.h>
 
 class Frame : public Rectangle
 {

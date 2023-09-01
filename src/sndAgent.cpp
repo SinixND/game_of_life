@@ -1,4 +1,4 @@
-#include "agent.h"
+#include "sndAgent.h"
 
 #include <iostream>
 #include <vector>

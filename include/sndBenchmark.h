@@ -1,4 +1,4 @@
-// sndbenchmark.h
+// sndBenchmark.h
 
 #ifndef SNDBENCHMARK_H
 #define SNDBENCHMARK_H
@@ -31,7 +31,7 @@ Benchmark& selectBenchmark(std::string id);
 void ShowBenchmarks();
 
 
-// sndbenchmark.cpp
+// sndBenchmark.cpp
 
 #include <iostream>
 

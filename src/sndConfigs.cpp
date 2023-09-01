@@ -1,4 +1,4 @@
-#include "configs.h" // provide object "config" for configurable parameters
+#include "sndConfigs.h" // provide object "config" for configurable parameters
 
 Config config; // define extern object
 Config::Config()

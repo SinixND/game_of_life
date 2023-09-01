@@ -1,4 +1,4 @@
-#include "globals.h" // provide object "global" for not configurable application parameters
+#include "sndGlobals.h" // provide object "global" for not configurable application parameters
 
 #include <iostream>
 #include <raylib.h>
