@@ -8,11 +8,7 @@
 #include "raylib.h"
 #include "raygui.h"
 
-namespace snd {
-
 class Frame : public Rectangle
 {
 };
-
-} // namespace snd
 #endif

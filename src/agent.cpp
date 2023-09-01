@@ -1,4 +1,4 @@
-#include "agents.h"
+#include "agent.h"
 
 #include <iostream>
 #include <vector>
@@ -15,19 +15,19 @@ Agent::Agent(int rowY, int colX)
 }
 
 void Agent::SetRowY(int posY){ rowY_ = posY; }
-int Agent::GetRowY(){ return rowY_; };
+int Agent::GetRowY(){ return rowY_; }
 
 void Agent::SetColX(int posX){ colX_ = posX; }
-int Agent::GetColX(){ return colX_; };
+int Agent::GetColX(){ return colX_; }
 
-void Agent::SetStatusCurrent(bool statusCurrent){ statusCurrent_ = statusCurrent; };
-bool Agent::GetStatusCurrent(){ return statusCurrent_; };
+void Agent::SetStatusCurrent(bool statusCurrent){ statusCurrent_ = statusCurrent; }
+bool Agent::GetStatusCurrent(){ return statusCurrent_; }
 
-void Agent::SetStatusNext(bool statusNext){ statusNext_ = statusNext; };
-bool Agent::GetStatusNext(){ return statusNext_; };
+void Agent::SetStatusNext(bool statusNext){ statusNext_ = statusNext; }
+bool Agent::GetStatusNext(){ return statusNext_; }
 
-void Agent::SetStatusOutdated(bool statusOutdated){ statusOutdated_ = statusOutdated; };
-bool Agent::GetStatusOutdated(){ return statusOutdated_; };
+void Agent::SetStatusOutdated(bool statusOutdated){ statusOutdated_ = statusOutdated; }
+bool Agent::GetStatusOutdated(){ return statusOutdated_; }
 
 void Agent::RefreshVitality()
 {
@@ -51,4 +51,5 @@ void Agent::EreaseVitality()
 int Agent::GetVitality(){ return vitality_; }
 
 void Agent::SetMaxVitality(int maxVitality){ maxVitality_ = maxVitality; }
+
 int Agent::GetMaxVitality(){ return maxVitality_; }

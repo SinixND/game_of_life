@@ -1,5 +1,5 @@
-#ifndef AGENTS_H
-#define AGENTS_H
+#ifndef AGENT_H
+#define AGENT_H
 
 #include <vector>
 
@@ -10,19 +10,19 @@ public:
 
     void SetRowY(int posY);
     int GetRowY();
-    
+
     void SetColX(int posX);
     int GetColX();
-    
+
     void SetStatusCurrent(bool statusCurrent);
     bool GetStatusCurrent();
-    
+
     void SetStatusNext(bool statusNext);
     bool GetStatusNext();
-    
+
     void SetStatusOutdated(bool statusOutdated);
     bool GetStatusOutdated();
-    
+
     void RefreshVitality();
     void DecreaseVitality();
     void EreaseVitality();
@@ -39,5 +39,4 @@ private:
     int maxVitality_;
     int vitality_;
 };
-
 #endif

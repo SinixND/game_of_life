@@ -1,5 +1,5 @@
-#ifndef SCREENS_H
-#define SCREENS_H
+#ifndef SCREEN_H
+#define SCREEN_H
 
 typedef enum screens
 {
@@ -13,8 +13,6 @@ extern screens currentScreen;
 class Screen
 {
 public:
-    virtual void Initialize();
-    virtual void Run();
+    void Run();
 };
-
 #endif

@@ -28,5 +28,4 @@ public:
     float tickTime;
 };
 extern Config config; // declare extern object
-
 #endif

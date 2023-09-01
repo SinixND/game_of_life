@@ -5,7 +5,7 @@
 #include <vector>
 #include <time.h>
 
-#include "agents.h"
+#include "agent.h"
 #include "configs.h" // provide object "config" for configurable parameters
 
 Grid::Grid(int rowsY, int colsX)

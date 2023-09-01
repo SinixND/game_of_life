@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include "agents.h"
+#include "agent.h"
 
 class Grid
 {

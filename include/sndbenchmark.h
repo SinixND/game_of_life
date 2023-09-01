@@ -9,8 +9,6 @@ typedef std::chrono::duration<double> chrono_timeDurationDouble;
 #include <string>
 #include <vector>
 
-namespace snd {
-
 class Benchmark
 {
 public:
@@ -86,5 +84,4 @@ void ShowBenchmarks()
     std::cout << "\n";
 }
 
-} // namespace snd
 #endif

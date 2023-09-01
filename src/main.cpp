@@ -1,11 +1,13 @@
 #include <iostream>
 #include <raylib.h>
+#define RAYGUI_IMPLEMENTATION //only define once
 #include <raygui.h>
 
 #include "configs.h" // provide object "config" for configurable parameters
 #include "globals.h" // provide object "global" for not configurable application parameters
 
-#include "screens.h"
+#include "screen.h"
+#include "menu.h"
 
 int main()
 {
@@ -14,6 +16,9 @@ int main()
     SetTargetFPS(config.targetFPS);
     GuiSetStyle(DEFAULT, TEXT_SIZE, 20);
     SetExitKey(0);
+
+    // Initialize screens
+    Menu menu;
 
     // MAIN APP LOOP
     //---------------------------------

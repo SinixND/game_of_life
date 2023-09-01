@@ -22,7 +22,7 @@ public:
 
     Color GetColorBackground();
     Color GetColorForeground();
-    
+
 private:
     // DARK MODE
     bool darkMode;
@@ -32,5 +32,4 @@ private:
     void SetColors();
 };
 extern Global global; // declare extern object
-
 #endif
