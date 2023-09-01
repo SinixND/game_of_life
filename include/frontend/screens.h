@@ -13,8 +13,8 @@ extern screens currentScreen;
 class Screen
 {
 public:
-    void Initialize();
-    void Run();
+    virtual void Initialize();
+    virtual void Run();
 };
 
 #endif

@@ -8,34 +8,35 @@
 #include "globals.h" // provide object "global" for not configurable application parameters
 
 
-Screen menu;
-
-menu.Initialize()
+class Menu : public Screen
 {
-    snd::Frame main;
-};
+    Initialize()
+    {
+        snd::Frame main;
+    };
 
-void ProcessMenu();
-void UpdateMenu();
-void RenderMenu();
+    void ProcessMenu();
+    void UpdateMenu();
+    void RenderMenu();
 
-void Screen::Run()
-{
-    ProcessMenu();
-    UpdateMenu();
-    RenderMenu();
-}
+    void Screen::Run()
+    {
+        ProcessMenu();
+        UpdateMenu();
+        RenderMenu();
+    }
 
-void ProcessMenu(){};
+    void ProcessMenu(){};
 
-void UpdateMenu()
-{
-};
+    void UpdateMenu()
+    {
+    };
 
-void RenderMenu()
-{
-    BeginDrawing();
-    ClearBackground(global.GetColorBackground());
+    void RenderMenu()
+    {
+        BeginDrawing();
+        ClearBackground(global.GetColorBackground());
 
-    EndDrawing();
+        EndDrawing();
+    }
 }
