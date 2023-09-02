@@ -17,16 +17,6 @@ int main()
     GuiSetStyle(DEFAULT, TEXT_SIZE, 20);
     SetExitKey(0);
 
-    // Initialize screens
-    typedef enum screens
-    {
-        MENU,
-        GAME,
-        SETTINGS,
-    } screens;
-
-    screens currentScreen = MENU;
-
     Menu menu;
     
     // MAIN APP LOOP
