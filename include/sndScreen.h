@@ -3,14 +3,14 @@
 
 #include <vector>
 
-typedef enum screens
-{
-    MENU,
-    GAME,
-    SETTINGS,
-} screens;
+//typedef enum screens
+//{
+    //MENU,
+    //GAME,
+    //SETTINGS,
+//} screens;
 
-extern screens currentScreen;
+//extern screens currentScreen;
 
 class Screen
 {

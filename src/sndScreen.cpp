@@ -4,7 +4,7 @@
 
 #include "sndGlobals.h"
 
-screens currentScreen = MENU;
+//screens currentScreen = MENU;
 
 void Screen::Run(){
     Process();

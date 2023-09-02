@@ -18,6 +18,15 @@ int main()
     SetExitKey(0);
 
     // Initialize screens
+    typedef enum screens
+    {
+        MENU,
+        GAME,
+        SETTINGS,
+    } screens;
+
+    screens currentScreen = MENU;
+
     Menu menu;
     
     // MAIN APP LOOP
