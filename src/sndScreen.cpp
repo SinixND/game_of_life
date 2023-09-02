@@ -16,8 +16,8 @@ void Screen::Run(){
     Render();
 
     EndDrawing();
-};
+}
 
-void Screen::Process(){};
-void Screen::Update(){};
-void Screen::Render(){};
+void Screen::Process(){}
+void Screen::Update(){}
+void Screen::Render(){}
