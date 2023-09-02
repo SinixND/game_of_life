@@ -19,10 +19,10 @@ int main()
 
     // Initialize screens
     Menu menu;
-
+    
     // MAIN APP LOOP
     //---------------------------------
-    while (!WindowShouldClose() && !global.exitApp) // Detect window close button or ESC key
+    while (!WindowShouldClose()) // Detect window close button or ESC key
     {
         switch (currentScreen)
         {

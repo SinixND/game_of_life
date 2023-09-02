@@ -9,8 +9,6 @@ class Global
 {
 public:
     Global();
-    // APPLICATION
-    bool exitApp;
 
     // GUI ELEMENTS
     float textSizeDefault;

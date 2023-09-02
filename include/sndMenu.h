@@ -1,13 +1,14 @@
 #include "sndScreen.h"
-
 #include "sndLayout.h"
+
+#include "sndConfigs.h"
 
 class Menu : public Screen
 {
 public:
-    Frame main_;
+    Menu();
 
-    void Run();
+    Frame mainframe;
 
 private:
     void Process();

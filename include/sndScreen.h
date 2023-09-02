@@ -1,6 +1,8 @@
 #ifndef SCREEN_H
 #define SCREEN_H
 
+#include <vector>
+
 typedef enum screens
 {
     MENU,
@@ -14,5 +16,10 @@ class Screen
 {
 public:
     void Run();
+
+private:
+    virtual void Process();
+    virtual void Update();
+    virtual void Render();
 };
 #endif
