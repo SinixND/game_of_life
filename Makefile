@@ -39,6 +39,8 @@ LOC_LIB_DIR :=
 OBJ_DIR := ./build
 ### here the binary file will be outputted
 BIN_DIR := ./bin
+### define folder for test files
+TEST_DIR := ./test
 ### define folder for web content to export
 WEB_DIR := ./web
 ### set the locations of header files
@@ -61,7 +63,7 @@ ifeq ($(OS),termux)
 	RAYLIB_DIR := $(PREFIX)/lib/raylib
 endif
 ### automatically added flags to make command
-MAKEFLAGS := -j4
+MAKEFLAGS := 
 
 ### set compile flags
 # `pkg-config --cflags $(LIBRARIES)`: 	add the compile flags for the provided libraries with external program
@@ -103,10 +105,10 @@ OBJS := $(patsubst %,$(OBJ_DIR)/%.$(OBJ_EXT),$(SRC_NAMES))
 DEPS := $(patsubst $(OBJ_DIR)/%.$(OBJ_EXT),$(OBJ_DIR)/%.$(DEP_EXT),$(OBJS))
 
 ### Non-file (.phony)targets (or rules)
-.PHONY: all build web clean rebuild deploy run
+.PHONY: all build web clean rebuild deploy run test
 
 ### default rule by convention
-all: build
+all: build test 
 
 ### rule for native build process with binary as prerequisite
 build: $(BIN_DIR)/$(TARGET).$(TARGET_EXT)
@@ -118,7 +120,8 @@ $(BIN_DIR)/$(TARGET).$(TARGET_EXT): $(OBJS)
 	@mkdir -p $(BIN_DIR)
 ### $@ (target, left of ":")
 ### $^ (all prerequesites, all right of ":")
-	@$(CXX) -o $@ $^ $(LIB_FLAGS) $(LD_LIBS) #$(INC_FLAGS)
+	@$(CXX) -o $@ $^ $(LIB_FLAGS) $(LD_LIBS) 
+#$(INC_FLAGS)
 
 # compiler command
 ### MAKE object files FROM source files; "%" pattern-matches (need pair of)
@@ -129,7 +132,18 @@ $(OBJ_DIR)/%.$(OBJ_EXT): %.$(SRC_EXT)
 ### $@ (target, left of ":")
 	@$(CXX) -o $@ -c $< $(CXX_FLAGS) $(INC_FLAGS)
 
-### rule for web build proces
+### rule for test process
+test: test_build
+	$(TEST_DIR)/test.$(TARGET_EXT)
+
+test_build:
+$(TEST_DIR)/test.$(TARGET_EXT): test.$(OBJ_EXT)
+	@$(CXX) -o $@ $^ $(LIB_FLAGS) $(LD_LIBS) 
+
+$(OBJ_DIR)/test.$(OBJ_EXT): test.$(SRC_EXT)
+	@$(CXX) -o $@ -c $< $(CXX_FLAGS) $(INC_FLAGS)
+
+### rule for web build process
 web:
 	@emcc -o index.html $(SRCS) -Os -Wall $(RAYLIB_DIR)/libraylib.a $(LOC_INC_FLAGS) -I$(RAYLIB_DIR) -L$(RAYLIB_DIR) -s USE_GLFW=3 -s ASYNCIFY --shell-file $(RAYLIB_DIR)/minshell.html -DPLATFORM_WEB
 	@mkdir -p $(WEB_DIR)
@@ -141,7 +155,7 @@ clean:
 
 ### clean dynamically created directories before building fresh
 rebuild: clean 
-	@$(MAKE) build
+	@$(MAKE)
 
 deploy: rebuild 
 	@$(MAKE) web
