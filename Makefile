@@ -34,7 +34,7 @@ SRC_DIRS := $(shell find $(SRC_DIR) -type d)
 ### here go local include files
 LOC_INC_DIR := ./include
 ### here go local library files
-LOC_LIB_DIR := 
+LOC_LIB_DIR := ./lib
 ### here the object files will be outputted
 OBJ_DIR := ./build
 ### here the binary file will be outputted
@@ -43,6 +43,7 @@ BIN_DIR := ./bin
 TEST_DIR := ./test
 ### define folder for web content to export
 WEB_DIR := ./web
+
 ### set the locations of header files
 SYS_INC_DIR := /usr/local/include /usr/include 
 ifeq ($(OS),termux)
@@ -98,7 +99,7 @@ SRC_NAMES := $(shell find $(SRC_DIRS) -type f -printf "%f\n")
 SRC_NAMES := $(patsubst %.$(SRC_EXT),%,$(SRC_NAMES))
 
 ### make list of object files need for linker command by changing ending of all source files to .o;
-### (patsubst pattern,replacement, target)
+### (patsubst pattern,replacement,target)
 ### IMPORTANT for linker prerequesite, so they are found as compile rule
 OBJS := $(patsubst %,$(OBJ_DIR)/%.$(OBJ_EXT),$(SRC_NAMES))
 ### make list of dependency files
@@ -133,15 +134,20 @@ $(OBJ_DIR)/%.$(OBJ_EXT): %.$(SRC_EXT)
 	@$(CXX) -o $@ -c $< $(CXX_FLAGS) $(INC_FLAGS)
 
 ### rule for test process
-test: test_build
+test: build_test
 	$(TEST_DIR)/test.$(TARGET_EXT)
 
-test_build:
-$(TEST_DIR)/test.$(TARGET_EXT): test.$(OBJ_EXT)
-	@$(CXX) -o $@ $^ $(LIB_FLAGS) $(LD_LIBS) 
+build_test: $(TEST_DIR)/test.$(TARGET_EXT)
+### exclude main object file to avoid multiple definitions of main
+TEST_OBJS := $(patsubst ./build/$(TARGET).o,,$(OBJS))
+$(info PRINT $(TEST_OBJS))
 
-$(OBJ_DIR)/test.$(OBJ_EXT): test.$(SRC_EXT)
-	@$(CXX) -o $@ -c $< $(CXX_FLAGS) $(INC_FLAGS)
+stop:
+$(TEST_DIR)/test.$(TARGET_EXT): $(TEST_DIR)/test.$(OBJ_EXT) $(TEST_OBJS)
+	$(CXX) -o $@ $^ $(LIB_FLAGS) $(LD_LIBS)
+
+$(TEST_DIR)/test.$(OBJ_EXT): test.$(SRC_EXT)
+	$(CXX) -o $@ -c $< $(CXX_FLAGS) $(INC_FLAGS)
 
 ### rule for web build process
 web:
@@ -151,7 +157,7 @@ web:
 
 ### clear dynamically created directories
 clean:
-	@rm -rf $(OBJ_DIR) $(WEB_DIR)
+	rm -rf $(shell find . -type f -wholename "*.d") $(shell find . -type f -wholename "*.o") 
 
 ### clean dynamically created directories before building fresh
 rebuild: clean 
