@@ -5,9 +5,12 @@
 
 TEST_CASE("Agent methods", "[Agent]")
 {
-    //Agent agent(0, 0);
+    Agent agent = Agent(0, 0);
+
     SECTION("Decrease Vitality")
     {
-        REQUIRE((1) == 1);
+        agent.DecreaseVitality();
+        REQUIRE(agent.GetVitality() >= 0);
+        REQUIRE(agent.GetVitality() < agent.GetMaxVitality());
     }
 }
