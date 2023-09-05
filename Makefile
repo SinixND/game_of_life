@@ -43,6 +43,7 @@ BIN_DIR := ./bin
 TEST_DIR := ./test
 ### define folder for web content to export
 WEB_DIR := ./web
+
 ### set the locations of header files
 SYS_INC_DIR := /usr/local/include /usr/include 
 ifeq ($(OS),termux)
@@ -137,11 +138,11 @@ test: build_test
 	$(TEST_DIR)/test.$(TARGET_EXT)
 
 build_test: $(TEST_DIR)/test.$(TARGET_EXT)
-$(TEST_DIR)/test.$(TARGET_EXT): test.$(OBJ_EXT)
-	@$(CXX) -o $@ $^ $(LIB_FLAGS) $(LD_LIBS)
+$(TEST_DIR)/test.$(TARGET_EXT): $(TEST_DIR)/test.$(OBJ_EXT)
+	$(CXX) -o $@ $^ $(LIB_FLAGS) $(LD_LIBS)
 
-$(OBJ_DIR)/test.$(OBJ_EXT): test.$(SRC_EXT)
-	@$(CXX) -o $@ -c $< $(CXX_FLAGS) $(INC_FLAGS)
+$(TEST_DIR)/test.$(OBJ_EXT): test.$(SRC_EXT)
+	$(CXX) -o $@ -c $< $(CXX_FLAGS) $(INC_FLAGS)
 
 ### rule for web build process
 web:
