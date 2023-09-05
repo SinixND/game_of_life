@@ -1,7 +1,6 @@
 {
   "version": "0.2.0",
   "configurations": [
-
     {
       "name": "make project",
       "type": "cppdbg",
@@ -26,7 +25,8 @@
         }
       ],
       "preLaunchTask": "make project",
-      "miDebuggerPath": "/usr/bin/gdb"
+      "miDebuggerPath": "/usr/bin/gdb",
+      "internalConsoleOptions": "neverOpen"
     }
   ]
 }
