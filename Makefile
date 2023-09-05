@@ -34,7 +34,7 @@ SRC_DIRS := $(shell find $(SRC_DIR) -type d)
 ### here go local include files
 LOC_INC_DIR := ./include
 ### here go local library files
-LOC_LIB_DIR := 
+LOC_LIB_DIR := ./lib
 ### here the object files will be outputted
 OBJ_DIR := ./build
 ### here the binary file will be outputted
@@ -133,12 +133,12 @@ $(OBJ_DIR)/%.$(OBJ_EXT): %.$(SRC_EXT)
 	@$(CXX) -o $@ -c $< $(CXX_FLAGS) $(INC_FLAGS)
 
 ### rule for test process
-test: test_build
+test: build_test
 	$(TEST_DIR)/test.$(TARGET_EXT)
 
-test_build:
+build_test: $(TEST_DIR)/test.$(TARGET_EXT)
 $(TEST_DIR)/test.$(TARGET_EXT): test.$(OBJ_EXT)
-	@$(CXX) -o $@ $^ $(LIB_FLAGS) $(LD_LIBS) 
+	@$(CXX) -o $@ $^ $(LIB_FLAGS) $(LD_LIBS)
 
 $(OBJ_DIR)/test.$(OBJ_EXT): test.$(SRC_EXT)
 	@$(CXX) -o $@ -c $< $(CXX_FLAGS) $(INC_FLAGS)
