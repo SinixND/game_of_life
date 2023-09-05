@@ -135,19 +135,16 @@ $(OBJ_DIR)/%.$(OBJ_EXT): %.$(SRC_EXT)
 
 ### rule for test process
 test: build_test
-	$(TEST_DIR)/test.$(TARGET_EXT)
+	@$(TEST_DIR)/test.$(TARGET_EXT)
 
 build_test: $(TEST_DIR)/test.$(TARGET_EXT)
 ### exclude main object file to avoid multiple definitions of main
 TEST_OBJS := $(patsubst ./build/$(TARGET).o,,$(OBJS))
-$(info PRINT $(TEST_OBJS))
-
-stop:
 $(TEST_DIR)/test.$(TARGET_EXT): $(TEST_DIR)/test.$(OBJ_EXT) $(TEST_OBJS)
-	$(CXX) -o $@ $^ $(LIB_FLAGS) $(LD_LIBS)
+	@$(CXX) -o $@ $^ $(LIB_FLAGS) $(LD_LIBS)
 
 $(TEST_DIR)/test.$(OBJ_EXT): test.$(SRC_EXT)
-	$(CXX) -o $@ -c $< $(CXX_FLAGS) $(INC_FLAGS)
+	@$(CXX) -o $@ -c $< $(CXX_FLAGS) $(INC_FLAGS)
 
 ### rule for web build process
 web:
@@ -157,7 +154,7 @@ web:
 
 ### clear dynamically created directories
 clean:
-	rm -rf $(shell find . -type f -wholename "*.d") $(shell find . -type f -wholename "*.o") 
+	@rm -rf $(OBJ_DIR) $(shell find . -type f -wholename "*.d") $(shell find . -type f -wholename "*.o") 
 
 ### clean dynamically created directories before building fresh
 rebuild: clean 
@@ -165,10 +162,11 @@ rebuild: clean
 
 deploy: rebuild 
 	@$(MAKE) web
+	@$(MAKE) clean
 
 ### run binary file after building
 run: build
-	$(BIN_DIR)/$(TARGET).$(TARGET_EXT)
+	@$(BIN_DIR)/$(TARGET).$(TARGET_EXT)
 
 ### "-" surpresses error for initial missing .d files
 -include $(DEPS)
