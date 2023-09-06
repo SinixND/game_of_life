@@ -3,9 +3,6 @@
 ### make looks for a rule to build $(OBJS)
 ### @ (as a prefix to a cli command): suppress cli output; use make -n to debug commands
 
-### option for termux platform  make: "make OS=termux"
-OS := linux
-
 ### set the used compiler to g++ or clang++
 CXX := g++ 
 
@@ -17,6 +14,9 @@ TARGET_EXT := exe
 
 ### name used libraries so the respective -l flags (eg. -lraylib)
 LIBRARIES := raylib
+ifdef TERMUX_VERSION
+	LIBRARIES += log
+endif
 
 ### set the used file extension for c-files, usually either .c or .cpp
 SRC_EXT := cpp
@@ -46,21 +46,21 @@ WEB_DIR := ./web
 
 ### set the locations of header files
 SYS_INC_DIR := /usr/local/include /usr/include 
-ifeq ($(OS),termux)
+ifdef TERMUX_VERSIONyy
 	SYS_INC_DIR := $(PREFIX)/usr/include 
 endif
 LOC_INC_DIRS := $(shell find $(LOC_INC_DIR) -type d) 
 
 ### set the locations of all possible libraries used
 SYS_LIB_DIR := /usr/local/lib /usr/lib 
-ifeq ($(OS),termux)
+ifdef TERMUX_VERSION
 	SYS_LIB_DIR := $(PREFIX)/usr/lib 
 endif
 LOC_LIB_DIRS := $(shell find $(LOC_LIB_DIR) -type d) 
 
 ### set raylib and emscripten directory as needed
 RAYLIB_DIR := /usr/lib/raylib
-ifeq ($(OS),termux)
+ifdef TERMUX_VERSION
 	RAYLIB_DIR := $(PREFIX)/lib/raylib
 endif
 ### automatically added flags to make command
