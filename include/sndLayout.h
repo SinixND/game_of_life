@@ -10,34 +10,41 @@
 class Frame
 {
 public:
-    Frame(float x, float y, float width, float height)
+    template < typename T > // for an arbitraty type
+    Frame(T&& x, T&& y, T&& width, T&& height)
     {
-        anchor_ = {x, y};
-        dimensions_ = {width, height};
-        frame_ = {anchor_.x, anchor_.y, width, height};
-        content_ = {frame_.x, frame_.y, frame_.width, frame_.height};
+        frame_ = {x, y, width, height};
+        content_ = {x, y, width, height};
     };
 
-    void SetMargin(int margin)
+    int& GetMargin() { return margin_; };
+    template < typename T > // for an arbitraty type
+    void SetMargin(T&& margin)
     {
         margin_ = margin;
-        frame_.x = margin_;
-        frame_.y = margin_;
-        frame_.width -= 2 * (float)margin_;
-        frame_.height -= 2 * (float)margin_;
+
+        UpdateFrame();
+        UpdateContent();
     };
 
-    int GetMargin() { return margin_; };
-
-    void SetBorder(int border)
+    int& GetBorder() { return border_; };
+    template < typename T > // for an arbitraty type
+    void SetBorder(T&& border)
     {
         border_ = border;
+
+        UpdateContent();
     };
 
-    int GetBorder() { return border_; };
+    int& GetPadding() { return padding_; };
+    template < typename T > // for an arbitraty type
+    void SetPadding(T&& padding)
+    {
+        padding_ = padding;
+        UpdateContent();
+    };
 
-    void SetPadding(int padding) { padding_ = padding; };
-    int GetPadding() { return padding_; };
+    Rectangle& GetContentRectangle() { return content_; };
 
     void RenderFrame()
     {
@@ -47,13 +54,43 @@ public:
         }
     }
 
-private:
-    Vector2 anchor_ = {0, 0};
-    Vector2 dimensions_ = {0, 0};
-    Rectangle frame_ = {0, 0, 0, 0};
-    Rectangle content_ = {0, 0, 0, 0};
+protected:
     int margin_ = 0;
     int border_ = 0;
     int padding_ = 0;
+
+    Rectangle frame_ = {0, 0, 0, 0};
+    void UpdateFrame()
+    {
+        frame_.x = margin_;
+        frame_.y = margin_;
+        frame_.width -= 2 * (float)margin_;
+        frame_.height -= 2 * (float)margin_;
+    };
+
+    Rectangle content_ = {0, 0, 0, 0};
+    void UpdateContent()
+    {
+        content_.x = margin_ + border_ + padding_;
+        content_.y = margin_ + border_ + padding_;
+        content_.width -= 2 * (float)(margin_ + border_ + padding_);
+        content_.height -= 2 * (float)(margin_ + border_ + padding_);
+    };
+};
+
+class Panel : public Frame
+{
+public:
+    Panel(Rectangle& parent)
+        : Frame(parent.x, parent.y, parent.width, parent.height){};
+
+    void RenderFrame()
+    {
+        UpdateContent();
+        if (border_ > 0)
+        {
+            DrawRectangleLinesEx(frame_, border_, RED);
+        }
+    };
 };
 #endif

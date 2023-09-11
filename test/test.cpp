@@ -1,5 +1,8 @@
 #define CATCH_CONFIG_MAIN // This tells Catch to provide a main() - only do this in one cpp file
 #include "catch.hpp"
+#define private public
+
+#include <vector>
 
 #include "sndAgent.h"
 #include "sndGrid.h"
@@ -18,10 +21,10 @@ TEST_CASE("Agent methods", "[Agent]")
 
 TEST_CASE("Grid methods", "[Grid]")
 {
-    Grid grid(1,1);
+    Grid grid(2,2);
 
     SECTION("Initialize Grid")
     {
-        grid.Reset();
+        REQUIRE(grid.grid_[0][0].statusCurrent_ == grid.gridState_[0]);
     }
 }
