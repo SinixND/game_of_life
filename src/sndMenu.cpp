@@ -11,10 +11,10 @@ Menu::Menu()
     : mainframe(0.0f, 0.0f, static_cast<float>(GetRenderWidth()), static_cast<float>(GetRenderHeight()))
     , mainpanel(mainframe.x_, mainframe.y_, mainframe.width_, mainframe.height_)
 {
-    mainframe.SetMargin(10);
-    mainframe.SetBorder(10);
+    mainframe.SetMargin(20);
+    mainframe.SetBorder(15);
 
-    mainpanel.SetMargin(5);
+    mainpanel.SetMargin(10);
     mainpanel.SetBorder(5);
 };
 
@@ -22,6 +22,6 @@ Menu::Menu()
 void Menu::Process() {}
 void Menu::Update() {}
 void Menu::Render() {
-    mainframe.RenderBox();
-    mainpanel.RenderBox();
+    mainframe.Render();
+    mainpanel.Render();
 };

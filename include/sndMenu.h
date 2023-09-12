@@ -8,8 +8,8 @@ class Menu : public Screen
 public:
     Menu();
 
-    Box mainframe;
-    Box mainpanel;
+    WrapperStatic mainframe;
+    WrapperDynamic mainpanel;
 
 private:
     void Process();
