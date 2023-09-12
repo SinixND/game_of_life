@@ -64,7 +64,7 @@ public:
     {
         if (border_ > 0)
         {
-            DrawRectangleLinesEx((Rectangle){margin_x_, margin_y_, margin_width_, margin_height_}, border_, GRAY);
+            DrawRectangleLinesEx((Rectangle){static_cast<float>(margin_x_), static_cast<float>(margin_y_), static_cast<float>(margin_width_), static_cast<float>(margin_height_)}, border_, GRAY);
         };
     };
 
