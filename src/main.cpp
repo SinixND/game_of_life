@@ -17,12 +17,18 @@ int main()
     GuiSetStyle(DEFAULT, TEXT_SIZE, 20);
     SetExitKey(0);
 
-    Menu menu;
-    
     // MAIN APP LOOP
     //---------------------------------
     while (!WindowShouldClose()) // Detect window close button or ESC key
     {
+        if (IsWindowResized())
+        {
+            config.windowWidth = GetRenderWidth();
+            config.windowHeight = GetRenderHeight();
+        }
+
+        Menu menu;
+    
         switch (currentScreen)
         {
         case MENU:

@@ -9,6 +9,7 @@ public:
     Menu();
 
     Frame mainframe;
+    Panel mainpanel;
 
 private:
     void Process();

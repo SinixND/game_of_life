@@ -3,9 +3,6 @@
 ### make looks for a rule to build $(OBJS)
 ### @ (as a prefix to a cli command): suppress cli output; use make -n to debug commands
 
-### option for termux platform  make: "make OS=termux"
-OS := linux
-
 ### set the used compiler to g++ or clang++
 CXX := g++ 
 
@@ -17,6 +14,9 @@ TARGET_EXT := exe
 
 ### name used libraries so the respective -l flags (eg. -lraylib)
 LIBRARIES := raylib
+ifdef TERMUX_VERSION
+	LIBRARIES += log
+endif
 
 ### set the used file extension for c-files, usually either .c or .cpp
 SRC_EXT := cpp
@@ -46,21 +46,21 @@ WEB_DIR := ./web
 
 ### set the locations of header files
 SYS_INC_DIR := /usr/local/include /usr/include 
-ifeq ($(OS),termux)
+ifdef TERMUX_VERSION
 	SYS_INC_DIR := $(PREFIX)/usr/include 
 endif
 LOC_INC_DIRS := $(shell find $(LOC_INC_DIR) -type d) 
 
 ### set the locations of all possible libraries used
 SYS_LIB_DIR := /usr/local/lib /usr/lib 
-ifeq ($(OS),termux)
+ifdef TERMUX_VERSION
 	SYS_LIB_DIR := $(PREFIX)/usr/lib 
 endif
 LOC_LIB_DIRS := $(shell find $(LOC_LIB_DIR) -type d) 
 
 ### set raylib and emscripten directory as needed
 RAYLIB_DIR := /usr/lib/raylib
-ifeq ($(OS),termux)
+ifdef TERMUX_VERSION
 	RAYLIB_DIR := $(PREFIX)/lib/raylib
 endif
 ### automatically added flags to make command
@@ -135,19 +135,16 @@ $(OBJ_DIR)/%.$(OBJ_EXT): %.$(SRC_EXT)
 
 ### rule for test process
 test: build_test
-	$(TEST_DIR)/test.$(TARGET_EXT)
+	@$(TEST_DIR)/test.$(TARGET_EXT)
 
 build_test: $(TEST_DIR)/test.$(TARGET_EXT)
 ### exclude main object file to avoid multiple definitions of main
 TEST_OBJS := $(patsubst ./build/$(TARGET).o,,$(OBJS))
-$(info PRINT $(TEST_OBJS))
-
-stop:
 $(TEST_DIR)/test.$(TARGET_EXT): $(TEST_DIR)/test.$(OBJ_EXT) $(TEST_OBJS)
-	$(CXX) -o $@ $^ $(LIB_FLAGS) $(LD_LIBS)
+	@$(CXX) -o $@ $^ $(LIB_FLAGS) $(LD_LIBS)
 
 $(TEST_DIR)/test.$(OBJ_EXT): test.$(SRC_EXT)
-	$(CXX) -o $@ -c $< $(CXX_FLAGS) $(INC_FLAGS)
+	@$(CXX) -o $@ -c $< $(CXX_FLAGS) $(INC_FLAGS)
 
 ### rule for web build process
 web:
@@ -157,7 +154,7 @@ web:
 
 ### clear dynamically created directories
 clean:
-	rm -rf $(shell find . -type f -wholename "*.d") $(shell find . -type f -wholename "*.o") 
+	@rm -rf $(OBJ_DIR) $(shell find . -type f -wholename "*.d") $(shell find . -type f -wholename "*.o") 
 
 ### clean dynamically created directories before building fresh
 rebuild: clean 
@@ -165,10 +162,11 @@ rebuild: clean
 
 deploy: rebuild 
 	@$(MAKE) web
+	@$(MAKE) clean
 
 ### run binary file after building
 run: build
-	$(BIN_DIR)/$(TARGET).$(TARGET_EXT)
+	@$(BIN_DIR)/$(TARGET).$(TARGET_EXT)
 
 ### "-" surpresses error for initial missing .d files
 -include $(DEPS)
