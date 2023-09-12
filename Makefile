@@ -46,7 +46,7 @@ WEB_DIR := ./web
 
 ### set the locations of header files
 SYS_INC_DIR := /usr/local/include /usr/include 
-ifdef TERMUX_VERSIONyy
+ifdef TERMUX_VERSION
 	SYS_INC_DIR := $(PREFIX)/usr/include 
 endif
 LOC_INC_DIRS := $(shell find $(LOC_INC_DIR) -type d) 

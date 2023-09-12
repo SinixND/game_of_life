@@ -10,16 +10,14 @@
 class Frame
 {
 public:
-    template < typename T > // for an arbitraty type
-    Frame(T&& x, T&& y, T&& width, T&& height)
+    Frame(float x, float y, float width, float height)
     {
         frame_ = {x, y, width, height};
         content_ = {x, y, width, height};
     };
 
-    int& GetMargin() { return margin_; };
-    template < typename T > // for an arbitraty type
-    void SetMargin(T&& margin)
+    int GetMargin() { return margin_; };
+    void SetMargin(int margin)
     {
         margin_ = margin;
 
@@ -27,24 +25,22 @@ public:
         UpdateContent();
     };
 
-    int& GetBorder() { return border_; };
-    template < typename T > // for an arbitraty type
-    void SetBorder(T&& border)
+    int GetBorder() { return border_; };
+    void SetBorder(int border)
     {
         border_ = border;
 
         UpdateContent();
     };
 
-    int& GetPadding() { return padding_; };
-    template < typename T > // for an arbitraty type
-    void SetPadding(T&& padding)
+    int GetPadding() { return padding_; };
+    void SetPadding(int padding)
     {
         padding_ = padding;
         UpdateContent();
     };
 
-    Rectangle& GetContentRectangle() { return content_; };
+    Rectangle GetContentRectangle() { return content_; };
 
     void RenderFrame()
     {
@@ -82,7 +78,10 @@ class Panel : public Frame
 {
 public:
     Panel(Rectangle& parent)
-        : Frame(parent.x, parent.y, parent.width, parent.height){};
+        : Frame(parent.x, parent.y, parent.width, parent.height)
+    {
+        Rectangle& content_ = parent;
+    };
 
     void RenderFrame()
     {
