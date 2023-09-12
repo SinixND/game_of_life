@@ -30,7 +30,7 @@ public:
         , margin_width_(width)
         , margin_height_(height)
     {
-    }
+    };
 
     int GetMargin() { return margin_; };
     void SetMargin(int margin)
@@ -38,7 +38,7 @@ public:
         margin_ = margin;
 
         UpdateContent();
-    }
+    };
 
     int GetBorder() { return border_; };
     void SetBorder(int border)
@@ -46,27 +46,27 @@ public:
         border_ = border;
 
         UpdateContent();
-    }
+    };
 
     int GetPadding() { return padding_; };
     void SetPadding(int padding)
     {
         padding_ = padding;
         UpdateContent();
-    }
+    };
 
     //Rectangle GetContentRectangle()
     //{
         //return (Rectangle){x_, y_, width_, height_};
-    //}
+    //};
 
     void RenderBox()
     {
         if (border_ > 0)
         {
             DrawRectangleLinesEx((Rectangle){margin_x_, margin_y_, margin_width_, margin_height_}, border_, GRAY);
-        }
-    }
+        };
+    };
 
 //protected:
     int& margin_x_;

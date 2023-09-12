@@ -24,4 +24,4 @@ void Menu::Update() {}
 void Menu::Render() {
     mainframe.RenderBox();
     mainpanel.RenderBox();
-}
+};
