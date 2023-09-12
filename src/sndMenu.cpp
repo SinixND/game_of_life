@@ -8,7 +8,7 @@
 #include "sndGlobals.h" // provide object "global" for not configurable application parameters
 
 Menu::Menu()
-    : mainframe((float)0, (float)0, (float)config.windowWidth, (float)config.windowHeight)
+    : mainframe(0.0f, 0.0f, static_cast<float>(config.windowWidth), static_cast<float>(config.windowHeight))
     , mainpanel(mainframe.x_, mainframe.y_, mainframe.width_, mainframe.height_)
 {
     mainframe.SetMargin(10);

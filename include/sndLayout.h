@@ -9,15 +9,14 @@
 
 /* LAYOUT BOX STRUCTURE
 
-margin   # # # # # # # # # # # #
-margin  #                     #
-border  #   - - - - - - - -   #
-padding #   -             -   #
-content #   -  "Content"  -   #
-padding #   -             -   #
-border  #   - - - - - - - -   #
-margin  #                     #
-margin   # # # # # # # # # # # #
+margin    m m m m m m m m m m  
+border    m b b b b b b b b m  
+padding   m b p p p p p p b m  
+content   m b p"Content"p b m  
+padding   m b p p p p p p b m  
+border    m b b b b b b b b m  
+margin    m m m m m m m m m m  
+
 */
 
 class Box
@@ -32,24 +31,24 @@ public:
     {
     };
 
-    int GetMargin() { return margin_; };
-    void SetMargin(int margin)
+    float GetMargin() { return margin_; };
+    void SetMargin(float margin)
     {
         margin_ = margin;
 
         UpdateContent();
     };
 
-    int GetBorder() { return border_; };
-    void SetBorder(int border)
+    float GetBorder() { return border_; };
+    void SetBorder(float border)
     {
         border_ = border;
 
         UpdateContent();
     };
 
-    int GetPadding() { return padding_; };
-    void SetPadding(int padding)
+    float GetPadding() { return padding_; };
+    void SetPadding(float padding)
     {
         padding_ = padding;
         UpdateContent();
@@ -64,30 +63,30 @@ public:
     {
         if (border_ > 0)
         {
-            DrawRectangleLinesEx((Rectangle){static_cast<float>(margin_x_), static_cast<float>(margin_y_), static_cast<float>(margin_width_), static_cast<float>(margin_height_)}, border_, GRAY);
+            DrawRectangleLinesEx((Rectangle){margin_x_, margin_y_, margin_width_, margin_height_}, border_, GRAY);
         };
     };
 
 //protected:
-    int& margin_x_;
-    int& margin_y_;
-    int& margin_width_;
-    int& margin_height_;
+    float& margin_x_;
+    float& margin_y_;
+    float& margin_width_;
+    float& margin_height_;
 
-    int margin_ = 0;
+    float margin_ = 0;
 
-    int border_x_;
-    int border_y_;
-    int border_width_;
-    int border_height_;
+    float border_x_;
+    float border_y_;
+    float border_width_;
+    float border_height_;
 
-    int border_ = 0;
-    int padding_ = 0;
+    float border_ = 0;
+    float padding_ = 0;
 
-    int x_;
-    int y_;
-    int width_;
-    int height_;
+    float x_;
+    float y_;
+    float width_;
+    float height_;
 
 
     void UpdateBorder()
