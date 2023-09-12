@@ -8,8 +8,8 @@ class Menu : public Screen
 public:
     Menu();
 
-    Frame mainframe;
-    Panel mainpanel;
+    Box mainframe;
+    Box mainpanel;
 
 private:
     void Process();

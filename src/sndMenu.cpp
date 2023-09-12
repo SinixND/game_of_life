@@ -9,7 +9,7 @@
 
 Menu::Menu()
     : mainframe((float)0, (float)0, (float)config.windowWidth, (float)config.windowHeight)
-    , mainpanel(mainframe.GetContentRectangle())
+    , mainpanel(mainframe.x_, mainframe.y_, mainframe.width_, mainframe.height_)
 {
     mainframe.SetMargin(10);
     mainframe.SetBorder(10);
@@ -22,6 +22,6 @@ Menu::Menu()
 void Menu::Process() {}
 void Menu::Update() {}
 void Menu::Render() {
-    mainframe.RenderFrame();
-    mainpanel.RenderFrame();
+    mainframe.RenderBox();
+    mainpanel.RenderBox();
 }
