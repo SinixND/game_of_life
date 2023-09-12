@@ -12,7 +12,7 @@
 int main()
 {
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
-    InitWindow(config.windowWidth, config.windowHeight, "Conway's Game of Life");
+    InitWindow(640, 480, "Conway's Game of Life");
     SetTargetFPS(config.targetFPS);
     GuiSetStyle(DEFAULT, TEXT_SIZE, 20);
     SetExitKey(0);
@@ -21,12 +21,6 @@ int main()
     //---------------------------------
     while (!WindowShouldClose()) // Detect window close button or ESC key
     {
-        if (IsWindowResized())
-        {
-            config.windowWidth = GetRenderWidth();
-            config.windowHeight = GetRenderHeight();
-        }
-
         Menu menu;
     
         switch (currentScreen)

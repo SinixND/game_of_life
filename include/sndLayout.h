@@ -6,6 +6,7 @@
 #define SNDLAYOUT_H
 
 #include <raylib.h>
+#include <iostream>
 
 /* LAYOUT BOX STRUCTURE
 
@@ -29,6 +30,15 @@ public:
         , margin_width_(width)
         , margin_height_(height)
     {
+        x_ = x;
+        y_ = y;
+        width_ = width;
+        height_ = height;
+
+        border_x_ = x;
+        border_y_ = y;
+        border_width_ = width;
+        border_height_ = height;
     };
 
     float GetMargin() { return margin_; };
@@ -36,6 +46,7 @@ public:
     {
         margin_ = margin;
 
+        UpdateBorder();
         UpdateContent();
     };
 
@@ -44,6 +55,7 @@ public:
     {
         border_ = border;
 
+        UpdateBorder();
         UpdateContent();
     };
 
@@ -51,6 +63,8 @@ public:
     void SetPadding(float padding)
     {
         padding_ = padding;
+
+        UpdateBorder();
         UpdateContent();
     };
 

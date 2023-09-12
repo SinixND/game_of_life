@@ -2,9 +2,7 @@
 
 Config config; // define extern object
 Config::Config()
-    : windowWidth(640)
-    , windowHeight(480)
-    , targetFPS(60)
+    : targetFPS(60)
     , fadingAgents(false)
     , debugMode(false)
     , initialLifeDensity(25)

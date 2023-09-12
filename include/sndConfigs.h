@@ -9,8 +9,6 @@ public:
     Config();
 
     // APPLICATION
-    int windowWidth;
-    int windowHeight;
     int targetFPS;
 
     // AGENTS AND ENVIRONMENT
