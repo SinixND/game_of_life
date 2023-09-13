@@ -1,12 +1,11 @@
 // SNDLayout - A header only library to enable responsive layouts based on raylib and raygui
 
-// sndLayout.h
-
 #ifndef SNDLAYOUT_H
 #define SNDLAYOUT_H
 
+// sndLayout.h
+
 #include <raylib.h>
-#include <iostream>
 
 /* LAYOUT BOX STRUCTURE
 
@@ -26,54 +25,69 @@ public:
     template <typename T>
     Box(T&& x, T&& y, T&& width, T&& height)
     {
-        x_ = x;
-        y_ = y;
-        width_ = width;
-        height_ = height;
+        content_x_ = x;
+        content_y_ = y;
+        content_width_ = width;
+        content_height_ = height;
 
         border_x_ = x;
         border_y_ = y;
         border_width_ = width;
         border_height_ = height;
+
+        padding_x_ = x;
+        padding_y_ = y;
+        padding_width_ = width;
+        padding_height_ = height;
     };
 
-    float x_;
-    float y_;
-    float width_;
-    float height_;
+    void Render()
+    {
+        DrawRectangleLinesEx((Rectangle){GetMarginX(), GetMarginY(), GetMarginWidth(), GetMarginHeight()}, margin_, BLUE);
+        DrawRectangleLinesEx((Rectangle){border_x_, border_y_, border_width_, border_height_}, border_, GRAY);
+        DrawRectangleLinesEx((Rectangle){padding_x_, padding_y_, padding_width_, padding_height_}, padding_, GREEN);
+    };
 
+    virtual float& GetMarginX() = 0;
+    virtual float& GetMarginY() = 0;
+    virtual float& GetMarginWidth() = 0;
+    virtual float& GetMarginHeight() = 0;
     float GetMargin() { return margin_; };
     void SetMargin(float margin)
     {
         margin_ = margin;
 
         UpdateBorder();
-        UpdateContent();
     };
 
+    float& GetBorderX(){return border_x_;};
+    float& GetBorderY(){return border_y_;};
+    float& GetBorderWidth(){return border_width_;};
+    float& GetBorderHeight(){return border_height_;};
     float GetBorder() { return border_; };
     void SetBorder(float border)
     {
         border_ = border;
 
-        UpdateBorder();
-        UpdateContent();
+        UpdatePadding();
     };
 
+    float& GetPaddingX(){return padding_x_;};
+    float& GetPaddingY(){return padding_y_;};
+    float& GetPaddingWidth(){return padding_width_;};
+    float& GetPaddingHeight(){return padding_height_;};
     float GetPadding() { return padding_; };
     void SetPadding(float padding)
     {
         padding_ = padding;
 
-        UpdateBorder();
         UpdateContent();
     };
 
-    void Render()
-    {
-        DrawRectangleLinesEx((Rectangle){GetMarginX(), GetMarginY(), GetMarginWidth(), GetMarginHeight()}, 1, BLUE);
-        DrawRectangleLinesEx((Rectangle){border_x_, border_y_, border_width_, border_height_}, 1, GRAY);
-    };
+    float& GetContentX(){return content_x_;};
+    float& GetContentY(){return content_y_;};
+    float& GetContentWidth(){return content_width_;};
+    float& GetContentHeight(){return content_height_;};
 
 protected:
     float margin_ = 0;
@@ -84,12 +98,18 @@ protected:
     float border_height_;
 
     float border_ = 0;
+
+    float padding_x_;
+    float padding_y_;
+    float padding_width_;
+    float padding_height_;
+
     float padding_ = 0;
 
-    virtual float& GetMarginX() = 0;
-    virtual float& GetMarginY() = 0;
-    virtual float& GetMarginWidth() = 0;
-    virtual float& GetMarginHeight() = 0;
+    float content_x_;
+    float content_y_;
+    float content_width_;
+    float content_height_;
 
     void UpdateBorder()
     {
@@ -97,14 +117,26 @@ protected:
         border_y_ = GetMarginY() + margin_;
         border_width_ = GetMarginWidth() - 2 * margin_;
         border_height_ = GetMarginHeight() - 2 * margin_;
+
+        UpdatePadding();
+    };
+
+    void UpdatePadding()
+    {
+        padding_x_ = GetMarginX() + margin_ + border_;
+        padding_y_ = GetMarginY() + margin_ + border_;
+        padding_width_ = GetMarginWidth() - 2 * (margin_ + border_);
+        padding_height_ = GetMarginHeight() - 2 * (margin_ + border_);
+
+        UpdateContent();
     };
 
     void UpdateContent()
     {
-        x_ = GetMarginX() + margin_ + border_ + padding_;
-        y_ = GetMarginY() + margin_ + border_ + padding_;
-        width_ = GetMarginWidth() - 2 * (margin_ + border_ + padding_);
-        height_ = GetMarginHeight() - 2 * (margin_ + border_ + padding_);
+        content_x_ = GetMarginX() + margin_ + border_ + padding_;
+        content_y_ = GetMarginY() + margin_ + border_ + padding_;
+        content_width_ = GetMarginWidth() - 2 * (margin_ + border_ + padding_);
+        content_height_ = GetMarginHeight() - 2 * (margin_ + border_ + padding_);
     };
 };
 

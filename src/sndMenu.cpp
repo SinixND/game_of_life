@@ -9,13 +9,15 @@
 
 Menu::Menu()
     : mainframe(0.0f, 0.0f, static_cast<float>(GetRenderWidth()), static_cast<float>(GetRenderHeight()))
-    , mainpanel(mainframe.x_, mainframe.y_, mainframe.width_, mainframe.height_)
+    , mainpanel(mainframe.GetContentX(), mainframe.GetContentY(), mainframe.GetContentWidth(), mainframe.GetContentHeight())
 {
-    mainframe.SetMargin(20);
-    mainframe.SetBorder(15);
+    mainframe.SetMargin(15);
+    mainframe.SetBorder(10);
+    mainframe.SetPadding(5);
 
-    mainpanel.SetMargin(10);
-    mainpanel.SetBorder(5);
+    mainpanel.SetMargin(15);
+    mainpanel.SetBorder(10);
+    mainpanel.SetPadding(5);
 };
 
 
