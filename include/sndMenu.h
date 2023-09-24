@@ -8,7 +8,8 @@ class Menu : public Screen
 public:
     Menu();
 
-    Wrapper mainframe;
+    Wrapper main;
+    Wrapper menubar;
 
 private:
     void Process();
