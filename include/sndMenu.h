@@ -9,7 +9,6 @@ public:
     Menu();
 
     Wrapper mainframe;
-    Wrapper mainpanel;
 
 private:
     void Process();

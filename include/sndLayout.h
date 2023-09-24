@@ -4,6 +4,7 @@
 #define SNDLAYOUT_H
 
 // sndLayout.h
+#include <vector>
 
 #include <raylib.h>
 
@@ -24,26 +25,12 @@ class Wrapper
 public:
     template <typename T>
     Wrapper(T&& x, T&& y, T&& width, T&& height)
-        // WrapperDynamic(float& x, float& y, float& width, float& height) : Box(x, y, width, height)
         : margin_x_(x)
         , margin_y_(y)
         , margin_width_(width)
         , margin_height_(height)
     {
-        content_x_ = x;
-        content_y_ = y;
-        content_width_ = width;
-        content_height_ = height;
-
-        border_x_ = x;
-        border_y_ = y;
-        border_width_ = width;
-        border_height_ = height;
-
-        padding_x_ = x;
-        padding_y_ = y;
-        padding_width_ = width;
-        padding_height_ = height;
+        UpdateBorder();
     };
 
     void Render()
@@ -58,7 +45,7 @@ public:
     float& GetMarginWidth() { return margin_width_; };
     float& GetMarginHeight() { return margin_height_; };
     float GetMargin() { return margin_; };
-    void SetMargin(float margin)
+    void SetMargin(float& margin)
     {
         margin_ = margin;
 
@@ -70,7 +57,7 @@ public:
     float& GetBorderWidth() { return border_width_; };
     float& GetBorderHeight() { return border_height_; };
     float GetBorder() { return border_; };
-    void SetBorder(float border)
+    void SetBorder(float& border)
     {
         border_ = border;
 
@@ -82,7 +69,7 @@ public:
     float& GetPaddingWidth() { return padding_width_; };
     float& GetPaddingHeight() { return padding_height_; };
     float GetPadding() { return padding_; };
-    void SetPadding(float padding)
+    void SetPadding(float& padding)
     {
         padding_ = padding;
 
@@ -95,26 +82,24 @@ public:
     float& GetContentHeight() { return content_height_; };
 
 protected:
-    float& margin_x_;
-    float& margin_y_;
-    float& margin_width_;
-    float& margin_height_;
+    float margin_ = 2;
+    float border_ = 5;
+    float padding_ = 2;
 
-    float margin_ = 0;
+    float margin_x_;
+    float margin_y_;
+    float margin_width_;
+    float margin_height_;
 
     float border_x_;
     float border_y_;
     float border_width_;
     float border_height_;
 
-    float border_ = 0;
-
     float padding_x_;
     float padding_y_;
     float padding_width_;
     float padding_height_;
-
-    float padding_ = 0;
 
     float content_x_;
     float content_y_;
