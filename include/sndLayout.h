@@ -4,6 +4,9 @@
 #define SNDLAYOUT_H
 
 // sndLayout.h
+
+#define DEBUG
+
 #include <vector>
 
 #include <raylib.h>
@@ -47,102 +50,136 @@ public:
 
     void Render()
     {
-        DrawRectangleLinesEx((Rectangle){GetMarginLeft(), GetMarginTop(), GetMarginRight(), GetMarginBottom()}, margin_, BLUE);
-        DrawRectangleLinesEx((Rectangle){border_left_, border_top_, border_right_, border_bottom_}, border_, GRAY);
-        DrawRectangleLinesEx((Rectangle){padding_left_, padding_top_, padding_right_, padding_bottom_}, padding_, GREEN);
+        Rectangle marginRect{static_cast<float>(GetMarginLeft()), static_cast<float>(GetMarginTop()), static_cast<float>(GetMarginWidth()), static_cast<float>(GetMarginHeight())};
+        DrawRectangleLinesEx(marginRect, GetMargin(), margin);
+
+        Rectangle borderRect{static_cast<float>(GetBorderLeft()), static_cast<float>(GetBorderTop()), static_cast<float>(GetBorderWidth()), static_cast<float>(GetBorderHeight())};
+        DrawRectangleLinesEx(borderRect, GetBorder(), border);
+
+        Rectangle paddingRect{static_cast<float>(GetPaddingLeft()), static_cast<float>(GetPaddingTop()), static_cast<float>(GetPaddingWidth()), static_cast<float>(GetPaddingHeight())};
+        DrawRectangleLinesEx(paddingRect, GetPadding(), padding);
+
+        if (wrapper_.size() == 0)
+        {
+            return;
+        }
+
+        for (auto wrapper : wrapper_)
+        {
+            wrapper.Render();
+        }
     };
 
-    float& GetMarginLeft() { return margin_left_; };
-    float& GetMarginTop() { return margin_top_; };
-    float& GetMarginRight() { return margin_right_; };
-    float& GetMarginBottom() { return margin_bottom_; };
-    float& GetMarginWidth() { return margin_width_; };
-    float& GetMarginHeight() { return margin_height_; };
-    float GetMargin() { return margin_; };
-    void SetMargin(float& margin)
+    void AddWrapper(Wrapper wrapper)
+    {
+        wrapper_.push_back(wrapper);
+    };
+
+    int& GetMarginLeft() { return margin_left_; };
+    int& GetMarginTop() { return margin_top_; };
+    int& GetMarginRight() { return margin_right_; };
+    int& GetMarginBottom() { return margin_bottom_; };
+    int& GetMarginWidth() { return margin_width_; };
+    int& GetMarginHeight() { return margin_height_; };
+    int GetMargin() { return margin_; };
+    void SetMargin(int& margin)
     {
         margin_ = margin;
 
         UpdateBorder();
     };
 
-    float& GetBorderLeft() { return border_left_; };
-    float& GetBorderTop() { return border_top_; };
-    float& GetBorderRight() { return border_right_; };
-    float& GetBorderBottom() { return border_bottom_; };
-    float& GetBorderWidth() { return border_width_; };
-    float& GetBorderHeight() { return border_height_; };
-    float GetBorder() { return border_; };
-    void SetBorder(float& border)
+    int& GetBorderLeft() { return border_left_; };
+    int& GetBorderTop() { return border_top_; };
+    int& GetBorderRight() { return border_right_; };
+    int& GetBorderBottom() { return border_bottom_; };
+    int& GetBorderWidth() { return border_width_; };
+    int& GetBorderHeight() { return border_height_; };
+    int GetBorder() { return border_; };
+    void SetBorder(int& border)
     {
         border_ = border;
 
         UpdatePadding();
     };
 
-    float& GetPaddingLeft() { return padding_left_; };
-    float& GetPaddingTop() { return padding_top_; };
-    float& GetPaddingRight() { return padding_right_; };
-    float& GetPaddingBottom() { return padding_bottom_; };
-    float& GetPaddingWidth() { return padding_width_; };
-    float& GetPaddingHeight() { return padding_height_; };
-    float GetPadding() { return padding_; };
-    void SetPadding(float& padding)
+    int& GetPaddingLeft() { return padding_left_; };
+    int& GetPaddingTop() { return padding_top_; };
+    int& GetPaddingRight() { return padding_right_; };
+    int& GetPaddingBottom() { return padding_bottom_; };
+    int& GetPaddingWidth() { return padding_width_; };
+    int& GetPaddingHeight() { return padding_height_; };
+    int GetPadding() { return padding_; };
+    void SetPadding(int& padding)
     {
         padding_ = padding;
 
         UpdateContent();
     };
 
-    float GetFrameWeight() { return frameWeight_; };
+    int GetFrameWeight() { return frameWeight_; };
 
-    float& GetContentLeft() { return content_left_; };
-    float& GetContentTop() { return content_top_; };
-    float& GetContentRight() { return content_right_; };
-    float& GetContentBottom() { return content_bottom_; };
-    float& GetContentWidth() { return content_width_; };
-    float& GetContentHeight() { return content_height_; };
+    int& GetContentLeft() { return content_left_; };
+    int& GetContentTop() { return content_top_; };
+    int& GetContentRight() { return content_right_; };
+    int& GetContentBottom() { return content_bottom_; };
+    int& GetContentWidth() { return content_width_; };
+    int& GetContentHeight() { return content_height_; };
 
 protected:
-    float margin_ = 1;
-    float border_ = 1;
-    float padding_ = 1;
-    float frameWeight_ = margin_ + border_ + padding_;
+    int margin_ = 10;
+    int border_ = 10;
+    int padding_ = 10;
+    int frameWeight_ = margin_ + border_ + padding_;
 
-    float margin_left_;
-    float margin_top_;
-    float margin_right_;
-    float margin_bottom_;
-    float margin_width_ = margin_right_ - margin_left_;
-    float margin_height_ = margin_bottom_ - margin_top_;
+    int margin_left_;
+    int margin_top_;
+    int margin_right_;
+    int margin_bottom_;
+    int margin_width_ = margin_right_ - margin_left_;
+    int margin_height_ = margin_bottom_ - margin_top_;
 
-    float border_left_;
-    float border_top_;
-    float border_right_;
-    float border_bottom_;
-    float border_width_ = border_right_ - border_left_;
-    float border_height_ = border_bottom_ - border_top_;
+    int border_left_;
+    int border_top_;
+    int border_right_;
+    int border_bottom_;
+    int border_width_ = border_right_ - border_left_;
+    int border_height_ = border_bottom_ - border_top_;
 
-    float padding_left_;
-    float padding_top_;
-    float padding_right_;
-    float padding_bottom_;
-    float padding_width_ = padding_right_ - padding_left_;
-    float padding_height_ = padding_bottom_ - padding_top_;
+    int padding_left_;
+    int padding_top_;
+    int padding_right_;
+    int padding_bottom_;
+    int padding_width_ = padding_right_ - padding_left_;
+    int padding_height_ = padding_bottom_ - padding_top_;
 
-    float content_left_;
-    float content_top_;
-    float content_right_;
-    float content_bottom_;
-    float content_width_ = content_right_ - content_left_;
-    float content_height_ = content_bottom_ - content_top_;
+    int content_left_;
+    int content_top_;
+    int content_right_;
+    int content_bottom_;
+    int content_width_ = content_right_ - content_left_;
+    int content_height_ = content_bottom_ - content_top_;
+
+    std::vector<Wrapper> wrapper_;
+
+#ifndef DEBUG
+    Color margin = BLANK;
+    Color border = GRAY;
+    Color padding = BLANK;
+#endif
+
+#ifdef DEBUG
+    Color margin = BLUE;
+    Color border = YELLOW;
+    Color padding = GREEN;
+#endif
 
     void UpdateBorder()
     {
         border_left_ = GetMarginLeft() + margin_;
         border_top_ = GetMarginTop() + margin_;
-        border_right_ = GetMarginRight() - 2 * margin_;
-        border_bottom_ = GetMarginBottom() - 2 * margin_;
+        border_right_ = GetMarginRight() -  margin_;
+        border_bottom_ = GetMarginBottom() -  margin_;
         border_width_ = border_right_ - border_left_;
         border_height_ = border_bottom_ - border_top_;
 
@@ -153,8 +190,8 @@ protected:
     {
         padding_left_ = GetMarginLeft() + margin_ + border_;
         padding_top_ = GetMarginTop() + margin_ + border_;
-        padding_right_ = GetMarginRight() - 2 * (margin_ + border_);
-        padding_bottom_ = GetMarginBottom() - 2 * (margin_ + border_);
+        padding_right_ = GetMarginRight() -  (margin_ + border_);
+        padding_bottom_ = GetMarginBottom() -  (margin_ + border_);
         padding_width_ = padding_right_ - padding_left_;
         padding_height_ = padding_bottom_ - padding_top_;
 
@@ -165,8 +202,8 @@ protected:
     {
         content_left_ = GetMarginLeft() + margin_ + border_ + padding_;
         content_top_ = GetMarginTop() + margin_ + border_ + padding_;
-        content_right_ = GetMarginRight() - 2 * (margin_ + border_ + padding_);
-        content_bottom_ = GetMarginBottom() - 2 * (margin_ + border_ + padding_);
+        content_right_ = GetMarginRight() -  (margin_ + border_ + padding_);
+        content_bottom_ = GetMarginBottom() -  (margin_ + border_ + padding_);
         content_width_ = content_right_ - content_left_;
         content_height_ = content_bottom_ - content_top_;
 

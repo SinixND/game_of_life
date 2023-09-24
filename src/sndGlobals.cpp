@@ -10,8 +10,8 @@ Global::Global()
     , guiButtonBaseWidth(20)
     , guiButtonBaseHeight(30)
     , darkMode(true)
-    , colorBackground(WHITE)
-    , colorForeground(BLACK)
+    , background(WHITE)
+    , foreground(BLACK)
 {
     SetColors();
 };
@@ -26,13 +26,13 @@ void Global::SetColors()
 {
     if (darkMode == true)
     {
-        colorBackground = BLACK;
-        colorForeground = WHITE;
+        background = BLANK;
+        foreground = WHITE;
     }
     else
     {
-        colorBackground = WHITE;
-        colorForeground = BLACK;
+        background = WHITE;
+        foreground = BLACK;
     }
 }
 
@@ -41,12 +41,12 @@ bool Global::GetDarkMode()
     return darkMode;
 };
 
-Color Global::GetColorBackground()
+Color Global::Getbackground()
 {
-    return colorBackground;
+    return background;
 };
 
-Color Global::GetColorForeground()
+Color Global::Getforeground()
 {
-    return colorForeground;
+    return foreground;
 };

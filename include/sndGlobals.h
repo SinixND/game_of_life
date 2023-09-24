@@ -18,14 +18,14 @@ public:
     void ToggleDarkMode();
     bool GetDarkMode();
 
-    Color GetColorBackground();
-    Color GetColorForeground();
+    Color Getbackground();
+    Color Getforeground();
 
 private:
     // DARK MODE
     bool darkMode;
-    Color colorBackground;
-    Color colorForeground;
+    Color background;
+    Color foreground;
 
     void SetColors();
 };

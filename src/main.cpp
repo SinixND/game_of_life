@@ -12,7 +12,8 @@
 int main()
 {
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
-    InitWindow(640, 480, "Conway's Game of Life");
+    SetConfigFlags(FLAG_WINDOW_TRANSPARENT);
+    InitWindow(500, 500, "Conway's Game of Life");
     SetTargetFPS(config.targetFPS);
     GuiSetStyle(DEFAULT, TEXT_SIZE, 20);
     SetExitKey(0);

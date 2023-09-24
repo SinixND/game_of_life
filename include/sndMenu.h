@@ -1,7 +1,7 @@
 #include "sndScreen.h"
-#include "sndLayout.h"
 
 #include "sndConfigs.h"
+#include "sndLayout.h"
 
 class Menu : public Screen
 {
@@ -10,6 +10,8 @@ public:
 
     Wrapper main;
     Wrapper menubar;
+    Wrapper statusbar;
+    Wrapper content;
 
 private:
     void Process();

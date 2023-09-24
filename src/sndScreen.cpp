@@ -11,7 +11,7 @@ void Screen::Run(){
     Update();
 
     BeginDrawing();
-    ClearBackground(global.GetColorBackground());
+    ClearBackground(global.Getbackground());
 
     Render();
 
