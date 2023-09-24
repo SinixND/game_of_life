@@ -9,21 +9,26 @@
 
 /* LAYOUT BOX STRUCTURE
 
-margin    m m m m m m m m m m  
-border    m B B B B B B B B m  
-padding   m B p p p p p p B m  
-content   m B p"Content"p B m  
-padding   m B p p p p p p B m  
-border    m B B B B B B B B m  
-margin    m m m m m m m m m m  
+margin    m m m m m m m m m m
+border    m B B B B B B B B m
+padding   m B p p p p p p B m
+content   m B p"Content"p B m
+padding   m B p p p p p p B m
+border    m B B B B B B B B m
+margin    m m m m m m m m m m
 
 */
 
-class Box
+class Wrapper
 {
 public:
     template <typename T>
-    Box(T&& x, T&& y, T&& width, T&& height)
+    Wrapper(T&& x, T&& y, T&& width, T&& height)
+        // WrapperDynamic(float& x, float& y, float& width, float& height) : Box(x, y, width, height)
+        : margin_x_(x)
+        , margin_y_(y)
+        , margin_width_(width)
+        , margin_height_(height)
     {
         content_x_ = x;
         content_y_ = y;
@@ -48,10 +53,10 @@ public:
         DrawRectangleLinesEx((Rectangle){padding_x_, padding_y_, padding_width_, padding_height_}, padding_, GREEN);
     };
 
-    virtual float& GetMarginX() = 0;
-    virtual float& GetMarginY() = 0;
-    virtual float& GetMarginWidth() = 0;
-    virtual float& GetMarginHeight() = 0;
+    float& GetMarginX() { return margin_x_; };
+    float& GetMarginY() { return margin_y_; };
+    float& GetMarginWidth() { return margin_width_; };
+    float& GetMarginHeight() { return margin_height_; };
     float GetMargin() { return margin_; };
     void SetMargin(float margin)
     {
@@ -60,10 +65,10 @@ public:
         UpdateBorder();
     };
 
-    float& GetBorderX(){return border_x_;};
-    float& GetBorderY(){return border_y_;};
-    float& GetBorderWidth(){return border_width_;};
-    float& GetBorderHeight(){return border_height_;};
+    float& GetBorderX() { return border_x_; };
+    float& GetBorderY() { return border_y_; };
+    float& GetBorderWidth() { return border_width_; };
+    float& GetBorderHeight() { return border_height_; };
     float GetBorder() { return border_; };
     void SetBorder(float border)
     {
@@ -72,10 +77,10 @@ public:
         UpdatePadding();
     };
 
-    float& GetPaddingX(){return padding_x_;};
-    float& GetPaddingY(){return padding_y_;};
-    float& GetPaddingWidth(){return padding_width_;};
-    float& GetPaddingHeight(){return padding_height_;};
+    float& GetPaddingX() { return padding_x_; };
+    float& GetPaddingY() { return padding_y_; };
+    float& GetPaddingWidth() { return padding_width_; };
+    float& GetPaddingHeight() { return padding_height_; };
     float GetPadding() { return padding_; };
     void SetPadding(float padding)
     {
@@ -84,12 +89,17 @@ public:
         UpdateContent();
     };
 
-    float& GetContentX(){return content_x_;};
-    float& GetContentY(){return content_y_;};
-    float& GetContentWidth(){return content_width_;};
-    float& GetContentHeight(){return content_height_;};
+    float& GetContentX() { return content_x_; };
+    float& GetContentY() { return content_y_; };
+    float& GetContentWidth() { return content_width_; };
+    float& GetContentHeight() { return content_height_; };
 
 protected:
+    float& margin_x_;
+    float& margin_y_;
+    float& margin_width_;
+    float& margin_height_;
+
     float margin_ = 0;
 
     float border_x_;
@@ -138,51 +148,5 @@ protected:
         content_width_ = GetMarginWidth() - 2 * (margin_ + border_ + padding_);
         content_height_ = GetMarginHeight() - 2 * (margin_ + border_ + padding_);
     };
-};
-
-class WrapperStatic : public Box
-{
-public:
-    WrapperStatic(float x, float y, float width, float height) : Box(x, y, width, height)
-        , margin_x_(x)
-        , margin_y_(y)
-        , margin_width_(width)
-        , margin_height_(height)
-    {
-    };
-
-protected:
-    float margin_x_;
-    float margin_y_;
-    float margin_width_;
-    float margin_height_;
-
-    float& GetMarginX() override {return margin_x_;};
-    float& GetMarginY() override {return margin_y_;};
-    float& GetMarginWidth() override {return margin_width_;};
-    float& GetMarginHeight() override {return margin_height_;};
-};
-
-class WrapperDynamic : public Box
-{
-public:
-    WrapperDynamic(float& x, float& y, float& width, float& height) : Box(x, y, width, height)
-        , margin_x_(x)
-        , margin_y_(y)
-        , margin_width_(width)
-        , margin_height_(height)
-    {
-    };
-
-protected:
-    float& margin_x_;
-    float& margin_y_;
-    float& margin_width_;
-    float& margin_height_;
-
-    float& GetMarginX() override {return margin_x_;};
-    float& GetMarginY() override {return margin_y_;};
-    float& GetMarginWidth() override {return margin_width_;};
-    float& GetMarginHeight() override {return margin_height_;};
 };
 #endif
