@@ -114,37 +114,37 @@ all: build test
 ### rule for native build process with binary as prerequisite
 build: $(BIN_DIR)/$(TARGET).$(TARGET_EXT)
 
-# linker command
+test: $(TEST_DIR)/test.$(TARGET_EXT)
+
+# LINKER COMMANDS
+
 ### MAKE binary file FROM object files
 $(BIN_DIR)/$(TARGET).$(TARGET_EXT): $(OBJS)
 ### make folder for binary file
 	@mkdir -p $(BIN_DIR)
 ### $@ (target, left of ":")
 ### $^ (all prerequesites, all right of ":")
-	@$(CXX) -o $@ $^ $(LIB_FLAGS) $(LD_LIBS) 
-#$(INC_FLAGS)
+	$(CXX) -o $@ $^ $(LIB_FLAGS) $(LD_LIBS) 
 
-# compiler command
+### exclude main object file to avoid multiple definitions of main
+TEST_OBJS := $(patsubst ./build/$(TARGET).o,,$(OBJS))
+$(TEST_DIR)/test.$(TARGET_EXT): $(TEST_DIR)/test.$(OBJ_EXT) $(TEST_OBJS)
+	@mkdir -p $(BIN_DIR)
+	$(CXX) -o $@ $^ $(LIB_FLAGS) $(LD_LIBS)
+
+# COMPILER COMMANDS
+
 ### MAKE object files FROM source files; "%" pattern-matches (need pair of)
 $(OBJ_DIR)/%.$(OBJ_EXT): %.$(SRC_EXT)
 ### copy source structure for object file directory
 	@mkdir -p $(OBJ_DIR)
 ### $< (first prerequesite, first right of ":")
 ### $@ (target, left of ":")
-	@$(CXX) -o $@ -c $< $(CXX_FLAGS) $(INC_FLAGS)
-
-### rule for test process
-test: build_test
-	@$(TEST_DIR)/test.$(TARGET_EXT)
-
-build_test: $(TEST_DIR)/test.$(TARGET_EXT)
-### exclude main object file to avoid multiple definitions of main
-TEST_OBJS := $(patsubst ./build/$(TARGET).o,,$(OBJS))
-$(TEST_DIR)/test.$(TARGET_EXT): $(TEST_DIR)/test.$(OBJ_EXT) $(TEST_OBJS)
-	@$(CXX) -o $@ $^ $(LIB_FLAGS) $(LD_LIBS)
+	$(CXX) -o $@ -c $< $(CXX_FLAGS) $(INC_FLAGS)
 
 $(TEST_DIR)/test.$(OBJ_EXT): test.$(SRC_EXT)
-	@$(CXX) -o $@ -c $< $(CXX_FLAGS) $(INC_FLAGS)
+	@mkdir -p $(OBJ_DIR)
+	$(CXX) -o $@ -c $< $(CXX_FLAGS) $(INC_FLAGS)
 
 ### rule for web build process
 web:

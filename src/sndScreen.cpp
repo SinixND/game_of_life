@@ -1,7 +1,5 @@
 #include "sndScreen.h"
 
-#include <raygui.h>
-
 #include "sndGlobals.h"
 
 screens currentScreen = MENU;

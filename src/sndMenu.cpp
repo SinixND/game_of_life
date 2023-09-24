@@ -34,20 +34,12 @@ Menu::Menu()
     main.AddWrapper(menubar);
     main.AddWrapper(statusbar);
     main.AddWrapper(content);
-};
+}
 
 void Menu::Process() {}
-void Menu::Update() {
-    if (global.GetDarkMode() == true)
-    {
-        textDarkMode = "Light";
-    }
-    else
-    {
-        textDarkMode = "Dark";
-    }
-}
+void Menu::Update() {}
 void Menu::Render()
 {
     main.Render();
-};
+    menubar.AddButton("DarkMode", global.textSizeDefault);
+}

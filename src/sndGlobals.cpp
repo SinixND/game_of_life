@@ -2,7 +2,6 @@
 
 #include <iostream>
 #include <raylib.h>
-#include <raygui.h>
 
 Global global; // define extern object
 Global::Global()
@@ -26,7 +25,7 @@ void Global::SetColors()
 {
     if (darkMode == true)
     {
-        background = BLANK;
+        background = BLACK;
         foreground = WHITE;
     }
     else

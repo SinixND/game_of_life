@@ -4,6 +4,9 @@
 
 #include <vector>
 
+#define RAYGUI_IMPLEMENTATION //only define once
+#include <raygui.h>
+
 #include "sndAgent.h"
 #include "sndGrid.h"
 
