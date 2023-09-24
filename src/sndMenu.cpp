@@ -7,6 +7,8 @@
 #include "sndConfigs.h" // provide object "config" for configurable parameters
 #include "sndGlobals.h" // provide object "global" for not configurable application parameters
 
+const char* textDarkMode;
+
 Menu::Menu()
     : main(
           0.0f,
@@ -35,7 +37,16 @@ Menu::Menu()
 };
 
 void Menu::Process() {}
-void Menu::Update() {}
+void Menu::Update() {
+    if (global.GetDarkMode() == true)
+    {
+        textDarkMode = "Light";
+    }
+    else
+    {
+        textDarkMode = "Dark";
+    }
+}
 void Menu::Render()
 {
     main.Render();
