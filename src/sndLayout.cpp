@@ -28,13 +28,31 @@ margin    m m m m m m m m m m m m m m m m
 
 */
 
-void Wrapper::AddButton(const char* text, float textSize)
+void Wrapper::AddButton(const char* text, float textSize, AlignFlags flags, int offset)
 {
     int textWidth = MeasureText(text, textSize);
+
+    float positionLeft = 0;
+    float positionTop = 0;
+
+    if (flags & LEFT)
+    {
+        positionLeft = AlignHorizontalLeft(this, offset);
+    }
+    else if (flags & CENTER_HORIZONTAL)
+    {
+
+    }
+
+    if (flags & AlignFlags::TOP)
+    {
+
+    }
+
     if ( GuiButton(
             (Rectangle){
-                static_cast<float>(AlignHorizontalRight(this, textWidth, 0)),
-                static_cast<float>(AlignVerticalCenter(this, global.guiButtonBaseHeight, 0)),
+                positionLeft,
+                positionTop,
                 static_cast<float>(textWidth),
                 static_cast<float>(global.guiButtonBaseHeight)},
             text) )
@@ -89,7 +107,7 @@ int& Wrapper::GetMarginBottom() { return margin_bottom_; };
 int& Wrapper::GetMarginWidth() { return margin_width_; };
 int& Wrapper::GetMarginHeight() { return margin_height_; };
 int Wrapper::GetMargin() { return margin_; };
-void Wrapper::SetMargin(int& margin)
+void Wrapper::SetMargin(int margin)
 {
     margin_ = margin;
 
@@ -103,7 +121,7 @@ int& Wrapper::GetBorderBottom() { return border_bottom_; };
 int& Wrapper::GetBorderWidth() { return border_width_; };
 int& Wrapper::GetBorderHeight() { return border_height_; };
 int Wrapper::GetBorder() { return border_; };
-void Wrapper::SetBorder(int& border)
+void Wrapper::SetBorder(int border)
 {
     border_ = border;
 
@@ -117,7 +135,7 @@ int& Wrapper::GetPaddingBottom() { return padding_bottom_; };
 int& Wrapper::GetPaddingWidth() { return padding_width_; };
 int& Wrapper::GetPaddingHeight() { return padding_height_; };
 int Wrapper::GetPadding() { return padding_; };
-void Wrapper::SetPadding(int& padding)
+void Wrapper::SetPadding(int padding)
 {
     padding_ = padding;
 
@@ -132,36 +150,6 @@ int& Wrapper::GetContentRight() { return content_right_; };
 int& Wrapper::GetContentBottom() { return content_bottom_; };
 int& Wrapper::GetContentWidth() { return content_width_; };
 int& Wrapper::GetContentHeight() { return content_height_; };
-
-int Wrapper::AlignHorizontalLeft(Wrapper* parent, int offset)
-{
-    return parent->GetContentLeft() + offset;
-};
-
-int Wrapper::AlignHorizontalCenter(Wrapper* parent, int objectWidth, int offset)
-{
-    return parent->GetContentLeft() + ((parent->GetContentWidth() - objectWidth) / 2) + offset;
-};
-
-int Wrapper::AlignHorizontalRight(Wrapper* parent, int objectWidth, int offset)
-{
-    return parent->GetContentLeft() + parent->GetContentWidth() - objectWidth - offset;
-};
-
-int Wrapper::AlignVerticalTop(Wrapper* parent, int offset)
-{
-    return parent->GetContentTop() + offset;
-};
-
-int Wrapper::AlignVerticalCenter(Wrapper* parent, int objectHeight, int offset)
-{
-    return parent->GetContentTop() + ((parent->GetContentHeight() - objectHeight) / 2) + offset;
-};
-
-int Wrapper::AlignVerticalBottom(Wrapper* parent, int objectHeight, int offset)
-{
-    return parent->GetContentTop() + (parent->GetContentHeight() - objectHeight - offset);
-};
 
 void Wrapper::UpdateBorder()
 {
@@ -202,4 +190,34 @@ void Wrapper::UpdateContent()
 void Wrapper::UpdateFrameWeight()
 {
     frameWeight_ = margin_ + border_ + padding_;
+};
+
+int AlignHorizontalLeft(Wrapper* parent, int offset)
+{
+    return parent->GetContentLeft() + offset;
+};
+
+int AlignHorizontalCenter(Wrapper* parent, int objectWidth, int offset)
+{
+    return parent->GetContentLeft() + ((parent->GetContentWidth() - objectWidth) / 2) + offset;
+};
+
+int AlignHorizontalRight(Wrapper* parent, int objectWidth, int offset)
+{
+    return parent->GetContentLeft() + parent->GetContentWidth() - objectWidth - offset;
+};
+
+int AlignVerticalTop(Wrapper* parent, int offset)
+{
+    return parent->GetContentTop() + offset;
+};
+
+int AlignVerticalCenter(Wrapper* parent, int objectHeight, int offset)
+{
+    return parent->GetContentTop() + ((parent->GetContentHeight() - objectHeight) / 2) + offset;
+};
+
+int AlignVerticalBottom(Wrapper* parent, int objectHeight, int offset)
+{
+    return parent->GetContentTop() + (parent->GetContentHeight() - objectHeight - offset);
 };

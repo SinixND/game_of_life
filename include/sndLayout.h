@@ -6,6 +6,16 @@
 #include <raylib.h>
 #include <vector>
 
+typedef enum AlignFlags
+{
+    LEFT                = 0x01,
+    CENTER_HORIZONTAL   = 0x02,
+    RIGHT               = 0x04,
+    TOP                 = 0x08,
+    CENTER_VERTICAL     = 0x16,
+    BOTTOM              = 0x32
+} AlignFlags;
+
 class Wrapper
 {
 public:
@@ -31,7 +41,7 @@ public:
         UpdateBorder();
     };
 
-    void AddButton(const char* text, float textSize);
+    void AddButton(const char* text, float textSize, AlignFlags flags, int offset);
     void Render();
     void AddWrapper(Wrapper wrapper);
 
@@ -42,7 +52,7 @@ public:
     int& GetMarginWidth();
     int& GetMarginHeight();
     int GetMargin();
-    void SetMargin(int& margin);
+    void SetMargin(int margin);
 
     int& GetBorderLeft();
     int& GetBorderTop();
@@ -51,7 +61,7 @@ public:
     int& GetBorderWidth();
     int& GetBorderHeight();
     int GetBorder();
-    void SetBorder(int& border);
+    void SetBorder(int border);
 
     int& GetPaddingLeft();
     int& GetPaddingTop();
@@ -60,7 +70,7 @@ public:
     int& GetPaddingWidth();
     int& GetPaddingHeight();
     int GetPadding();
-    void SetPadding(int& padding);
+    void SetPadding(int padding);
 
     int GetFrameWeight();
 
@@ -119,17 +129,17 @@ private:
     Color padding = GREEN;
 #endif
 
-    int AlignHorizontalLeft(Wrapper* parent, int offset);
-    int AlignHorizontalCenter(Wrapper* parent, int objectWidth, int offset);
-    int AlignHorizontalRight(Wrapper* parent, int objectWidth, int offset);
-    int AlignVerticalTop(Wrapper* parent, int offset);
-    int AlignVerticalCenter(Wrapper* parent, int objectHeight, int offset);
-    int AlignVerticalBottom(Wrapper* parent, int objectHeight, int offset);
-
     void UpdateBorder();
     void UpdatePadding();
     void UpdateContent();
     void UpdateFrameWeight();
 };
+
+int AlignHorizontalLeft(Wrapper* parent, int offset);
+int AlignHorizontalCenter(Wrapper* parent, int objectWidth, int offset);
+int AlignHorizontalRight(Wrapper* parent, int objectWidth, int offset);
+int AlignVerticalTop(Wrapper* parent, int offset);
+int AlignVerticalCenter(Wrapper* parent, int objectHeight, int offset);
+int AlignVerticalBottom(Wrapper* parent, int objectHeight, int offset);
 
 #endif

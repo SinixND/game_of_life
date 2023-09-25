@@ -34,6 +34,15 @@ Menu::Menu()
     main.AddWrapper(menubar);
     main.AddWrapper(statusbar);
     main.AddWrapper(content);
+    menubar.SetMargin(2);
+    menubar.SetBorder(2);
+    menubar.SetPadding(2);
+    statusbar.SetMargin(2);
+    statusbar.SetBorder(2);
+    statusbar.SetPadding(2);
+    content.SetMargin(2);
+    content.SetBorder(2);
+    content.SetPadding(2);
 }
 
 void Menu::Process() {}
@@ -41,5 +50,5 @@ void Menu::Update() {}
 void Menu::Render()
 {
     main.Render();
-    menubar.AddButton("DarkMode", global.textSizeDefault);
+    menubar.AddButton("DarkMode", global.textSizeDefault, (AlignFlags)(LEFT | TOP), 0);
 }
