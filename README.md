@@ -42,7 +42,7 @@
     - Structure EVA 
 0. Features
     - LMB / RMB set alive/dead [done]
-    - Seeding (#include <random>, yt: javidx9 - Procedural Generation: Programming The Universe, 12:00)
+    - Seeding (Lemma, yt: javidx9 - Procedural Generation: Programming The Universe, 15:20)
     - Pausing [done]
     - Stepping FW/BW
     - Darkmode (switch) [done]
