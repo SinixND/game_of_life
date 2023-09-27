@@ -10113,8 +10113,8 @@ namespace {
     public:
         Win32ColourImpl() : stdoutHandle( GetStdHandle(STD_OUTPUT_HANDLE) )
         {
-            CONSOLE_SCREEN_BUFFER_INFO csbiInfo;
-            GetConsoleScreenBufferInfo( stdoutHandle, &csbiInfo );
+            CONSOLE_SCENE_BUFFER_INFO csbiInfo;
+            GetConsoleSceneBufferInfo( stdoutHandle, &csbiInfo );
             originalForegroundAttributes = csbiInfo.wAttributes & ~( BACKGROUND_GREEN | BACKGROUND_RED | BACKGROUND_BLUE | BACKGROUND_INTENSITY );
             originalBackgroundAttributes = csbiInfo.wAttributes & ~( FOREGROUND_GREEN | FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_INTENSITY );
         }

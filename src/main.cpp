@@ -6,14 +6,14 @@
 #include "sndConfigs.h" // provide object "config" for configurable parameters
 #include "sndGlobals.h" // provide object "global" for not configurable application parameters
 
-#include "sndScreen.h"
+#include "sndScene.h"
 #include "sndMenu.h"
 
 int main()
 {
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     SetConfigFlags(FLAG_WINDOW_TRANSPARENT);
-    InitWindow(500, 500, "Conway's Game of Life");
+    InitWindow(620, 480, "Conway's Game of Life");
     SetTargetFPS(config.targetFPS);
     GuiSetStyle(DEFAULT, TEXT_SIZE, 20);
     SetExitKey(0);
@@ -24,7 +24,7 @@ int main()
     {
         Menu menu;
     
-        switch (currentScreen)
+        switch (currentScene)
         {
         case MENU:
             menu.Run();

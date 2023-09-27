@@ -1,10 +1,10 @@
-#include "sndScreen.h"
+#include "sndScene.h"
 
 #include "sndGlobals.h"
 
-screens currentScreen = MENU;
+scenes currentScene = MENU;
 
-void Screen::Run(){
+void Scene::Run(){
     Process();
     Update();
 
@@ -16,6 +16,6 @@ void Screen::Run(){
     EndDrawing();
 }
 
-void Screen::Process(){}
-void Screen::Update(){}
-void Screen::Render(){}
+void Scene::Process(){}
+void Scene::Update(){}
+void Scene::Render(){}

@@ -1,17 +1,20 @@
-#include "sndScreen.h"
+#include "sndScene.h"
 
 #include "sndConfigs.h"
 #include "sndLayout.h"
 
-class Menu : public Screen
+class Menu : public Scene
 {
 public:
     Menu();
 
-    Wrapper main;
-    Wrapper menubar;
-    Wrapper statusbar;
-    Wrapper content;
+    sndWrapper main;
+    sndWrapper menubar;
+    sndWrapper statusbar;
+    sndWrapper title;
+    sndWrapper menu;
+
+    sndButton darkMode;
 
 private:
     void Process();

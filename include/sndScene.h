@@ -1,18 +1,18 @@
-#ifndef SCREEN_H
-#define SCREEN_H
+#ifndef SCENE_H
+#define SCENE_H
 
 #include <vector>
 
-typedef enum screens
+typedef enum scenes
 {
     MENU,
     GAME,
     SETTINGS,
-} screens;
+} scenes;
 
-extern screens currentScreen;
+extern scenes currentScene;
 
-class Screen
+class Scene
 {
 public:
     void Run();

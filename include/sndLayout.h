@@ -1,26 +1,63 @@
 #ifndef SNDLAYOUT_H
 #define SNDLAYOUT_H
 
-//#define DEBUGGING
+// #define DEBUGGING
 
 #include <raylib.h>
 #include <vector>
 
-typedef enum AlignFlags
+typedef enum sndAlign
 {
-    LEFT                = 0x01,
-    CENTER_HORIZONTAL   = 0x02,
-    RIGHT               = 0x04,
-    TOP                 = 0x08,
-    CENTER_VERTICAL     = 0x16,
-    BOTTOM              = 0x32
-} AlignFlags;
+    LEFT = 0x01,
+    CENTER_HORIZONTAL = 0x02,
+    RIGHT = 0x04,
+    TOP = 0x08,
+    CENTER_VERTICAL = 0x10,
+    BOTTOM = 0x20
+} sndAlign;
 
-class Wrapper
+class sndElement
 {
 public:
     template <typename T1, typename T2, typename T3, typename T4>
-    Wrapper(T1&& left, T2&& top, T3&& right, T4&& bottom)
+    sndElement(T1&& left, T2&& top, T3&& right, T4&& bottom)
+        : left_(left)
+        , top_(top)
+        , right_(right)
+        , bottom_(bottom)
+    {
+        width_ = right_ - left_;
+        height_ = bottom_ - top_;
+    };
+
+    int GetLeft();
+    void SetLeft(int left);
+    int GetTop();
+    void SetTop(int top);
+    int GetRight();
+    void SetRight(int right);
+    int GetBottom();
+    void SetBottom(int bottom);
+    int GetWidth();
+    void SetWidth(int width);
+    int GetHeight();
+    void SetHeight(int height);
+    
+
+protected:
+    int left_;
+    int top_;
+    int right_;
+    int bottom_;
+    int width_;
+    int height_;
+};
+
+class sndWrapper
+{
+public:
+    template <typename T1, typename T2, typename T3, typename T4>
+    sndWrapper(T1&& left, T2&& top, T3&& right, T4&& bottom)
         : margin_left_(left)
         , margin_top_(top)
         , margin_right_(right)
@@ -41,9 +78,9 @@ public:
         UpdateBorder();
     };
 
-    void AddButton(const char* text, float textSize, AlignFlags flags, int offset);
+    void Append(sndElement& element, sndAlign flags, int offset);
     void Render();
-    void AddWrapper(Wrapper wrapper);
+    void AddWrapper(sndWrapper wrapper);
 
     int& GetMarginLeft();
     int& GetMarginTop();
@@ -115,7 +152,7 @@ private:
     int content_width_ = content_right_ - content_left_;
     int content_height_ = content_bottom_ - content_top_;
 
-    std::vector<Wrapper> wrapper_;
+    std::vector<sndWrapper> wrapper_;
 
 #ifndef DEBUGGING
     Color margin = BLANK;
@@ -135,11 +172,21 @@ private:
     void UpdateFrameWeight();
 };
 
-int AlignHorizontalLeft(Wrapper* parent, int offset);
-int AlignHorizontalCenter(Wrapper* parent, int objectWidth, int offset);
-int AlignHorizontalRight(Wrapper* parent, int objectWidth, int offset);
-int AlignVerticalTop(Wrapper* parent, int offset);
-int AlignVerticalCenter(Wrapper* parent, int objectHeight, int offset);
-int AlignVerticalBottom(Wrapper* parent, int objectHeight, int offset);
+class sndButton : public sndElement
+{
+public:
+    sndButton(const char* text, int fontSize)
+        : sndElement(0, 0, MeasureText(text, fontSize), fontSize)
+    {
+
+    };
+};
+
+int AlignHorizontalLeft(sndWrapper* parent, int offset);
+int AlignHorizontalCenter(sndWrapper* parent, int objectWidth, int offset);
+int AlignHorizontalRight(sndWrapper* parent, int objectWidth, int offset);
+int AlignVerticalTop(sndWrapper* parent, int offset);
+int AlignVerticalCenter(sndWrapper* parent, int objectHeight, int offset);
+int AlignVerticalBottom(sndWrapper* parent, int objectHeight, int offset);
 
 #endif

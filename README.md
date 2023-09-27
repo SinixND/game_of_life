@@ -42,7 +42,7 @@
     - Structure EVA 
 0. Features
     - LMB / RMB set alive/dead [done]
-    - Seeding (seed[1-99999] * fieldSize; srand(seed*fieldSize)-fieldSize + fieldNumber)
+    - Seeding (Lemma, yt: javidx9 - Procedural Generation: Programming The Universe, 15:20)
     - Pausing [done]
     - Stepping FW/BW
     - Darkmode (switch) [done]
