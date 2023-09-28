@@ -13,7 +13,7 @@
 [2] check dynamic behaviour
 
 # Longterm
-[1] Rework Gui (responsive)
+[0] Rework Gui (responsive)
 [1] website containing program (include working emscripten into flask page?)
 [1] Release as CS50 project
 [2] Save settings (.ini)
