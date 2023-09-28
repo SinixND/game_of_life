@@ -5,7 +5,7 @@
 
 # TODOs
 # Current 
-- make margin, border, padding a wrapper with outer, inner and strength
+- make margin, border, padding a wrapper with outer, inner and weight
 
 # Shortterm
 [1] Function to add an element 
