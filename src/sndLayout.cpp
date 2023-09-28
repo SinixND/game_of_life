@@ -28,7 +28,7 @@ margin    m m m m m m m m m m m m m m m m
 
 */
 
-void sndWrapper::Append(sndElement& element, sndAlign flags, int offset)
+void sndWrapper::Append(sndWrapper& element, sndAlign flags, int offset)
 {
     int positionLeft = 0;
     int positionTop = 0;
@@ -39,11 +39,11 @@ void sndWrapper::Append(sndElement& element, sndAlign flags, int offset)
     }
     else if (flags & CENTER_HORIZONTAL)
     {
-        positionLeft = AlignHorizontalCenter(this, element.GetWidth(), offset);
+        positionLeft = AlignHorizontalCenter(this, element.GetOuterWidth(), offset);
     }
     else if (flags & RIGHT)
     {
-        positionLeft = AlignHorizontalRight(this, element.GetWidth(), offset);
+        positionLeft = AlignHorizontalRight(this, element.GetOuterWidth(), offset);
     }
 
     if (flags & TOP)
@@ -52,39 +52,25 @@ void sndWrapper::Append(sndElement& element, sndAlign flags, int offset)
     }
     else if (flags & CENTER_VERTICAL)
     {
-        positionTop = AlignVerticalCenter(this, element.GetHeight(), offset);
+        positionTop = AlignVerticalCenter(this, element.GetOuterHeight(), offset);
     }
     else if (flags & BOTTOM)
     {
-        positionTop = AlignVerticalBottom(this, element.GetHeight(), offset);
+        positionTop = AlignVerticalBottom(this, element.GetOuterHeight(), offset);
     };
 
-    element.SetLeft(positionLeft);
-    element.SetTop(positionTop);
-};
+    element.SetOuterLeft(positionLeft);
+    element.SetOuterTop(positionTop);
+}
 
 void sndWrapper::Render()
 {
-    Rectangle marginRect{
-        static_cast<float>(GetMarginLeft()),
-        static_cast<float>(GetMarginTop()),
-        static_cast<float>(GetMarginWidth()),
-        static_cast<float>(GetMarginHeight())};
-    DrawRectangleLinesEx(marginRect, GetMargin(), margin);
-
-    Rectangle borderRect{
-        static_cast<float>(GetBorderLeft()),
-        static_cast<float>(GetBorderTop()),
-        static_cast<float>(GetBorderWidth()),
-        static_cast<float>(GetBorderHeight())};
-    DrawRectangleLinesEx(borderRect, GetBorder(), border);
-
-    Rectangle paddingRect{
-        static_cast<float>(GetPaddingLeft()),
-        static_cast<float>(GetPaddingTop()),
-        static_cast<float>(GetPaddingWidth()),
-        static_cast<float>(GetPaddingHeight())};
-    DrawRectangleLinesEx(paddingRect, GetPadding(), padding);
+    Rectangle frameRect{
+        static_cast<float>(GetOuterLeft()),
+        static_cast<float>(GetOuterTop()),
+        static_cast<float>(GetOuterWidth()),
+        static_cast<float>(GetOuterHeight())};
+    DrawRectangleLinesEx(frameRect, GetFrameWeight(), GRAY);
 
     if (wrapper_.size() == 0)
     {
@@ -95,176 +81,83 @@ void sndWrapper::Render()
     {
         wrapper.Render();
     }
-};
+}
 
 void sndWrapper::AddWrapper(sndWrapper wrapper)
 {
     wrapper_.push_back(wrapper);
-};
-
-int& sndWrapper::GetMarginLeft() { return margin_left_; };
-int& sndWrapper::GetMarginTop() { return margin_top_; };
-int& sndWrapper::GetMarginRight() { return margin_right_; };
-int& sndWrapper::GetMarginBottom() { return margin_bottom_; };
-int& sndWrapper::GetMarginWidth() { return margin_width_; };
-int& sndWrapper::GetMarginHeight() { return margin_height_; };
-int sndWrapper::GetMargin() { return margin_; };
-void sndWrapper::SetMargin(int margin)
-{
-    margin_ = margin;
-
-    UpdateBorder();
-};
-
-int& sndWrapper::GetBorderLeft() { return border_left_; };
-int& sndWrapper::GetBorderTop() { return border_top_; };
-int& sndWrapper::GetBorderRight() { return border_right_; };
-int& sndWrapper::GetBorderBottom() { return border_bottom_; };
-int& sndWrapper::GetBorderWidth() { return border_width_; };
-int& sndWrapper::GetBorderHeight() { return border_height_; };
-int sndWrapper::GetBorder() { return border_; };
-void sndWrapper::SetBorder(int border)
-{
-    border_ = border;
-
-    UpdatePadding();
-};
-
-int& sndWrapper::GetPaddingLeft() { return padding_left_; };
-int& sndWrapper::GetPaddingTop() { return padding_top_; };
-int& sndWrapper::GetPaddingRight() { return padding_right_; };
-int& sndWrapper::GetPaddingBottom() { return padding_bottom_; };
-int& sndWrapper::GetPaddingWidth() { return padding_width_; };
-int& sndWrapper::GetPaddingHeight() { return padding_height_; };
-int sndWrapper::GetPadding() { return padding_; };
-void sndWrapper::SetPadding(int padding)
-{
-    padding_ = padding;
-
-    UpdateContent();
-};
-
-int sndWrapper::GetFrameWeight() { return frameWeight_; };
-
-int& sndWrapper::GetContentLeft() { return content_left_; };
-int& sndWrapper::GetContentTop() { return content_top_; };
-int& sndWrapper::GetContentRight() { return content_right_; };
-int& sndWrapper::GetContentBottom() { return content_bottom_; };
-int& sndWrapper::GetContentWidth() { return content_width_; };
-int& sndWrapper::GetContentHeight() { return content_height_; };
-
-void sndWrapper::UpdateBorder()
-{
-    border_left_ = GetMarginLeft() + margin_;
-    border_top_ = GetMarginTop() + margin_;
-    border_right_ = GetMarginRight() - margin_;
-    border_bottom_ = GetMarginBottom() - margin_;
-    border_width_ = border_right_ - border_left_;
-    border_height_ = border_bottom_ - border_top_;
-
-    UpdatePadding();
-};
-
-void sndWrapper::UpdatePadding()
-{
-    padding_left_ = GetMarginLeft() + margin_ + border_;
-    padding_top_ = GetMarginTop() + margin_ + border_;
-    padding_right_ = GetMarginRight() - (margin_ + border_);
-    padding_bottom_ = GetMarginBottom() - (margin_ + border_);
-    padding_width_ = padding_right_ - padding_left_;
-    padding_height_ = padding_bottom_ - padding_top_;
-
-    UpdateContent();
-};
-
-void sndWrapper::UpdateContent()
-{
-    content_left_ = GetMarginLeft() + margin_ + border_ + padding_;
-    content_top_ = GetMarginTop() + margin_ + border_ + padding_;
-    content_right_ = GetMarginRight() - (margin_ + border_ + padding_);
-    content_bottom_ = GetMarginBottom() - (margin_ + border_ + padding_);
-    content_width_ = content_right_ - content_left_;
-    content_height_ = content_bottom_ - content_top_;
-
-    UpdateFrameWeight();
-};
-
-void sndWrapper::UpdateFrameWeight()
-{
-    frameWeight_ = margin_ + border_ + padding_;
-};
-
-int sndElement::GetLeft() { return left_; }
-void sndElement::SetLeft(int left)
-{
-    left_ = left;
 }
 
-int sndElement::GetTop() { return top_; }
-void sndElement::SetTop(int top)
+int& sndWrapper::GetOuterLeft(){ return outerLeft_; }
+void sndWrapper::SetOuterLeft(int& outerLeft){ outerLeft_ = outerLeft; }
+int& sndWrapper::GetOuterTop(){ return outerTop_; }
+void sndWrapper::SetOuterTop(int& outerTop){ outerTop_ = outerTop; }
+int& sndWrapper::GetOuterRight(){ return outerRight_; }
+void sndWrapper::SetOuterRight(int& outerRight){ outerRight_ = outerRight; }
+int& sndWrapper::GetOuterBottom(){ return outerBottom_; }
+void sndWrapper::SetOuterBottom(int& outerBottom){ outerBottom_ = outerBottom; }
+int& sndWrapper::GetOuterWidth(){ return outerWidth_; }
+void sndWrapper::SetOuterWidth(int& outerWidth){ outerWidth_ = outerWidth; }
+int& sndWrapper::GetOuterHeight(){ return outerHeight_; }
+void sndWrapper::SetOuterHeight(int& outerHeight){ outerHeight_ = outerHeight; }
+
+int& sndWrapper::GetFrameWeight(){ return frameWeight_; }
+void sndWrapper::SetFrameWeight(int& frameWeight){ frameWeight_ = frameWeight; }
+
+int& sndWrapper::GetInnerLeft(){ return innerLeft_; }
+void sndWrapper::SetInnerLeft(int& innerLeft){ innerLeft_ = innerLeft; }
+int& sndWrapper::GetInnerTop(){ return innerTop_; }
+void sndWrapper::SetInnerTop(int& innerTop){ innerTop_ = innerTop; }
+int& sndWrapper::GetInnerRight(){ return innerRight_; }
+void sndWrapper::SetInnerRight(int& innerRight){ innerRight_ = innerRight; }
+int& sndWrapper::GetInnerBottom(){ return innerBottom_; }
+void sndWrapper::SetInnerBottom(int& innerBottom){ innerBottom_ = innerBottom; }
+int& sndWrapper::GetInnerWidth(){ return innerWidth_; }
+void sndWrapper::SetInnerWidth(int& innerWidth){ innerWidth_ = innerWidth; }
+int& sndWrapper::GetInnerHeight(){ return innerHeight_; }
+void sndWrapper::SetInnerHeight(int& innerHeight){ innerHeight_ = innerHeight; }
+
+void sndWrapper::Update()
 {
-    top_ = top;
+    innerLeft_ = GetOuterLeft() + frameWeight_;
+    innerTop_ = GetOuterTop() + frameWeight_;
+    innerRight_ = GetOuterRight() - frameWeight_;
+    innerBottom_ = GetOuterBottom() - frameWeight_;
+    innerWidth_ = innerRight_ - innerLeft_;
+    innerHeight_ = innerBottom_ - innerTop_;
 }
 
-int sndElement::GetRight() { return right_; }
-void sndElement::SetRight(int right)
-{
-    right_ = right;
-    width_ = right_ - left_;
-}
+//sndButton::sndButton(const char* text, int fontSize)
+//{
 
-int sndElement::GetBottom() { return bottom_; }
-void sndElement::SetBottom(int bottom)
-{
-    bottom_ = bottom;
-    height_ = bottom_ - top_;
-}
-
-int sndElement::GetWidth() { return width_; }
-void sndElement::SetWidth(int width)
-{
-    width_ = width;
-    right_ = left_ + width_;
-}
-
-int sndElement::GetHeight() { return height_; }
-void sndElement::SetHeight(int height)
-{
-    height_ = height;
-    bottom_ = top_ + height_;
-}
-
-sndButton::sndButton(const char* text, int fontSize)
-{
-
-};
+//}
 
 int AlignHorizontalLeft(sndWrapper* parent, int offset)
 {
-    return parent->GetContentLeft() + offset;
-};
+    return parent->GetInnerLeft() + offset;
+}
 
 int AlignHorizontalCenter(sndWrapper* parent, int objectWidth, int offset)
 {
-    return parent->GetContentLeft() + ((parent->GetContentWidth() - objectWidth) / 2) + offset;
-};
+    return parent->GetInnerLeft() + ((parent->GetInnerWidth() - objectWidth) / 2) + offset;
+}
 
 int AlignHorizontalRight(sndWrapper* parent, int objectWidth, int offset)
 {
-    return parent->GetContentLeft() + parent->GetContentWidth() - objectWidth - offset;
-};
+    return parent->GetInnerLeft() + parent->GetInnerWidth() - objectWidth - offset;
+}
 
 int AlignVerticalTop(sndWrapper* parent, int offset)
 {
-    return parent->GetContentTop() + offset;
-};
+    return parent->GetInnerTop() + offset;
+}
 
 int AlignVerticalCenter(sndWrapper* parent, int objectHeight, int offset)
 {
-    return parent->GetContentTop() + ((parent->GetContentHeight() - objectHeight) / 2) + offset;
-};
+    return parent->GetInnerTop() + ((parent->GetInnerHeight() - objectHeight) / 2) + offset;
+}
 
 int AlignVerticalBottom(sndWrapper* parent, int objectHeight, int offset)
 {
-    return parent->GetContentTop() + (parent->GetContentHeight() - objectHeight - offset);
-};
+    return parent->GetInnerTop() + (parent->GetInnerHeight() - objectHeight - offset);
+}

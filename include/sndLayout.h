@@ -16,142 +16,69 @@ typedef enum sndAlign
     BOTTOM = 0x20
 } sndAlign;
 
-class sndElement
-{
-public:
-    template <typename T1, typename T2, typename T3, typename T4>
-    sndElement(T1&& left, T2&& top, T3&& right, T4&& bottom)
-        : left_(left)
-        , top_(top)
-        , right_(right)
-        , bottom_(bottom)
-    {
-        width_ = right_ - left_;
-        height_ = bottom_ - top_;
-    };
-
-    int GetLeft();
-    void SetLeft(int left);
-    int GetTop();
-    void SetTop(int top);
-    int GetRight();
-    void SetRight(int right);
-    int GetBottom();
-    void SetBottom(int bottom);
-    int GetWidth();
-    void SetWidth(int width);
-    int GetHeight();
-    void SetHeight(int height);
-    
-
-protected:
-    int left_;
-    int top_;
-    int right_;
-    int bottom_;
-    int width_;
-    int height_;
-};
-
 class sndWrapper
 {
 public:
     template <typename T1, typename T2, typename T3, typename T4>
     sndWrapper(T1&& left, T2&& top, T3&& right, T4&& bottom)
-        : margin_left_(left)
-        , margin_top_(top)
-        , margin_right_(right)
-        , margin_bottom_(bottom)
-        , border_left_(left)
-        , border_top_(top)
-        , border_right_(right)
-        , border_bottom_(bottom)
-        , padding_left_(left)
-        , padding_top_(top)
-        , padding_right_(right)
-        , padding_bottom_(bottom)
-        , content_left_(left)
-        , content_top_(top)
-        , content_right_(right)
-        , content_bottom_(bottom)
+    : outerLeft_(left)
+    , outerTop_(top)
+    , outerRight_(right)
+    , outerBottom_(bottom)
     {
-        UpdateBorder();
+        Update();
     };
 
-    void Append(sndElement& element, sndAlign flags, int offset);
+    void Append(sndWrapper& element, sndAlign flags, int offset);
     void Render();
     void AddWrapper(sndWrapper wrapper);
 
-    int& GetMarginLeft();
-    int& GetMarginTop();
-    int& GetMarginRight();
-    int& GetMarginBottom();
-    int& GetMarginWidth();
-    int& GetMarginHeight();
-    int GetMargin();
-    void SetMargin(int margin);
+    int& GetOuterLeft();
+    void SetOuterLeft(int& outerLeft);
+    int& GetOuterTop();
+    void SetOuterTop(int& outerTop);
+    int& GetOuterRight();
+    void SetOuterRight(int& outerRight);
+    int& GetOuterBottom();
+    void SetOuterBottom(int& outerBottom);
+    int& GetOuterWidth();
+    void SetOuterWidth(int& outerWidth);
+    int& GetOuterHeight();
+    void SetOuterHeight(int& outerHeight);
 
-    int& GetBorderLeft();
-    int& GetBorderTop();
-    int& GetBorderRight();
-    int& GetBorderBottom();
-    int& GetBorderWidth();
-    int& GetBorderHeight();
-    int GetBorder();
-    void SetBorder(int border);
+    int& GetFrameWeight();
+    void SetFrameWeight(int& frameWeight);
 
-    int& GetPaddingLeft();
-    int& GetPaddingTop();
-    int& GetPaddingRight();
-    int& GetPaddingBottom();
-    int& GetPaddingWidth();
-    int& GetPaddingHeight();
-    int GetPadding();
-    void SetPadding(int padding);
-
-    int GetFrameWeight();
-
-    int& GetContentLeft();
-    int& GetContentTop();
-    int& GetContentRight();
-    int& GetContentBottom();
-    int& GetContentWidth();
-    int& GetContentHeight();
+    int& GetInnerLeft();
+    void SetInnerLeft(int& innerLeft);
+    int& GetInnerTop();
+    void SetInnerTop(int& innerTop);
+    int& GetInnerRight();
+    void SetInnerRight(int& innerRight);
+    int& GetInnerBottom();
+    void SetInnerBottom(int& innerBottom);
+    int& GetInnerWidth();
+    void SetInnerWidth(int& innerWidth);
+    int& GetInnerHeight();
+    void SetInnerHeight(int& innerHeight);
 
 private:
-    int margin_ = 1;
-    int border_ = 1;
-    int padding_ = 1;
-    int frameWeight_ = margin_ + border_ + padding_;
+    int outerLeft_;
+    int outerTop_;
+    int outerRight_;
+    int outerBottom_;
+    int outerWidth_;
+    int outerHeight_;
 
-    int margin_left_;
-    int margin_top_;
-    int margin_right_;
-    int margin_bottom_;
-    int margin_width_ = margin_right_ - margin_left_;
-    int margin_height_ = margin_bottom_ - margin_top_;
+    int frameWeight_ = 1;
 
-    int border_left_;
-    int border_top_;
-    int border_right_;
-    int border_bottom_;
-    int border_width_ = border_right_ - border_left_;
-    int border_height_ = border_bottom_ - border_top_;
-
-    int padding_left_;
-    int padding_top_;
-    int padding_right_;
-    int padding_bottom_;
-    int padding_width_ = padding_right_ - padding_left_;
-    int padding_height_ = padding_bottom_ - padding_top_;
-
-    int content_left_;
-    int content_top_;
-    int content_right_;
-    int content_bottom_;
-    int content_width_ = content_right_ - content_left_;
-    int content_height_ = content_bottom_ - content_top_;
-
+    int innerLeft_ = outerLeft_ + frameWeight_;
+    int innerTop_ = outerTop_ + frameWeight_;
+    int innerRight_ = outerRight_ - frameWeight_;
+    int innerBottom_ = outerBottom_ - frameWeight_;
+    int innerWidth_ = innerRight_ - innerLeft_;
+    int innerHeight_ = innerBottom_ - innerTop_;
+    
     std::vector<sndWrapper> wrapper_;
 
 #ifndef DEBUGGING
@@ -166,17 +93,15 @@ private:
     Color padding = GREEN;
 #endif
 
-    void UpdateBorder();
-    void UpdatePadding();
-    void UpdateContent();
-    void UpdateFrameWeight();
+    void Update();
+
 };
 
-class sndButton : public sndElement
+class sndButton : public sndWrapper
 {
 public:
     sndButton(const char* text, int fontSize)
-        : sndElement(0, 0, MeasureText(text, fontSize), fontSize)
+        : sndWrapper(0, 0, MeasureText(text, fontSize), fontSize)
     {
 
     };

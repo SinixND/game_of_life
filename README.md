@@ -5,7 +5,8 @@
 
 # TODOs
 # Current 
-- make margin, border, padding a wrapper with outer, inner and weight
+[0] make margin, border, padding a wrapper with outer, inner and weight
+    [0] update sndWrapper (setters etc.)
 
 # Shortterm
 [1] Function to add an element 

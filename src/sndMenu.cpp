@@ -16,25 +16,25 @@ Menu::Menu()
           static_cast<float>(GetRenderWidth()),
           static_cast<float>(GetRenderHeight()))
     , menubar(
-          main.GetContentLeft(),
-          main.GetContentTop(),
-          main.GetContentRight(),
-          main.GetContentTop() + global.guiButtonBaseHeight + 2 * main.GetFrameWeight())
+          main.GetInnerLeft(),
+          main.GetInnerTop(),
+          main.GetInnerRight(),
+          main.GetInnerTop() + global.guiButtonBaseHeight + 2 * main.GetFrameWeight())
     , statusbar(
-          main.GetContentLeft(),
-          main.GetContentBottom() - (global.guiButtonBaseHeight + 2 * main.GetFrameWeight()),
-          main.GetContentRight(),
-          main.GetContentBottom())
+          main.GetInnerLeft(),
+          main.GetInnerBottom() - (global.guiButtonBaseHeight + 2 * main.GetFrameWeight()),
+          main.GetInnerRight(),
+          main.GetInnerBottom())
     , title(
-          main.GetContentLeft(),
-          menubar.GetMarginBottom(),
-          main.GetContentRight(),
-          0.5 * statusbar.GetMarginTop())
+          main.GetInnerLeft(),
+          menubar.GetOuterBottom(),
+          main.GetInnerRight(),
+          0.5 * statusbar.GetOuterTop())
     , menu(
-          main.GetContentLeft(),
-          title.GetMarginBottom(),
-          main.GetContentRight(),
-          statusbar.GetMarginTop())
+          main.GetInnerLeft(),
+          title.GetOuterBottom(),
+          main.GetInnerRight(),
+          statusbar.GetOuterTop())
 {
     main.AddWrapper(menubar);
     main.AddWrapper(statusbar);
