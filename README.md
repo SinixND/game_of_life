@@ -9,6 +9,7 @@
 
 # Shortterm
 [1] Function to add an element 
+[2] check dynamic behaviour
 
 # Longterm
 [1] Rework Gui (responsive)
