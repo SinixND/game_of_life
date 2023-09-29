@@ -1,32 +1,13 @@
 #include "sndLayout.h"
 
-#define DEBUG
+// #define DEBUGGING
+
 
 #include <raygui.h>
 #include <raylib.h>
 #include <vector>
 
 #include "sndGlobals.h"
-
-/* LAYOUT BOX STRUCTURE
-
-margin    m m m m m m m m m m m m m m m m
-          m m m m m m m m m m m m m m m m
-border    m m B B B B B B B B B B B B m m
-          m m B B B B B B B B B B B B m m
-padding   m m B B p p p p p p p p B B m m
-          m m B B p p p p p p p p B B m m
-content   m m B B p p CONTENT p p B B m m
-          m m B B p p CONTENT p p B B m m
-content   m m B B p p CONTENT p p B B m m
-          m m B B p p p p p p p p B B m m
-padding   m m B B p p p p p p p p B B m m
-          m m B B B B B B B B B B B B m m
-border    m m B B B B B B B B B B B B m m
-          m m m m m m m m m m m m m m m m
-margin    m m m m m m m m m m m m m m m m
-
-*/
 
 void sndWrapper::Append(sndWrapper& element, sndAlign flags, int offset)
 {
@@ -72,10 +53,7 @@ void sndWrapper::Render()
         static_cast<float>(GetOuterHeight())};
     DrawRectangleLinesEx(frameRect, GetFrameWeight(), GRAY);
 
-    if (wrapper_.size() == 0)
-    {
-        return;
-    }
+    if (wrapper_.size() == 0) return;
 
     for (auto wrapper : wrapper_)
     {
@@ -93,16 +71,67 @@ void sndWrapper::SetOuterLeft(int& outerLeft){ outerLeft_ = outerLeft; }
 int& sndWrapper::GetOuterTop(){ return outerTop_; }
 void sndWrapper::SetOuterTop(int& outerTop){ outerTop_ = outerTop; }
 int& sndWrapper::GetOuterRight(){ return outerRight_; }
-void sndWrapper::SetOuterRight(int& outerRight){ outerRight_ = outerRight; }
+void sndWrapper::SetOuterRight(int& outerRight)
+{ 
+    outerRight_ = outerRight;
+    Update();
+}
+
 int& sndWrapper::GetOuterBottom(){ return outerBottom_; }
-void sndWrapper::SetOuterBottom(int& outerBottom){ outerBottom_ = outerBottom; }
+void sndWrapper::SetOuterBottom(int& outerBottom)
+{ 
+    outerBottom_ = outerBottom;
+    Update();
+}
+
 int& sndWrapper::GetOuterWidth(){ return outerWidth_; }
-void sndWrapper::SetOuterWidth(int& outerWidth){ outerWidth_ = outerWidth; }
+void sndWrapper::SetOuterWidth(int& outerWidth)
+{ 
+    outerWidth_ = outerWidth;
+    Update();
+}
+
 int& sndWrapper::GetOuterHeight(){ return outerHeight_; }
-void sndWrapper::SetOuterHeight(int& outerHeight){ outerHeight_ = outerHeight; }
+void sndWrapper::SetOuterHeight(int& outerHeight)
+{ 
+    outerHeight_ = outerHeight;
+    Update();
+}
+
+int& sndWrapper::GetMargin(){ return margin_; }
+void sndWrapper::SetMargin(int& margin)
+{
+    margin_ = margin;
+
+    sndWrapper margin(this->GetOuterLeft(), this->GetOuterTop(), this->GetOuterRight(), this->GetOuterBottom());
+    margin.SetFrameWeight(margin);
+
+#ifdef DEBUGGING
+    margin.SetFrameColor(BLUE);
+    //Color border = YELLOW;
+    //Color padding = GREEN;
+#endif
+
+    AddWrapper(margin);
+}
+
+int& sndWrapper::GetBorder(){ return border_; }
+void sndWrapper::SetBorder(int& border)
+{
+    border_ = border;
+}
+
+int& sndWrapper::GetPadding(){ return padding_; }
+void sndWrapper::SetPadding(int& padding)
+{
+    padding_ = padding;
+}
 
 int& sndWrapper::GetFrameWeight(){ return frameWeight_; }
 void sndWrapper::SetFrameWeight(int& frameWeight){ frameWeight_ = frameWeight; }
+Color sndWrapp::GetFrameColor(){ return frameColor_; }
+void sndWrapp::SetFrameColor(Color frameColor){ frameColor_ = frameColor; }
+
 
 int& sndWrapper::GetInnerLeft(){ return innerLeft_; }
 void sndWrapper::SetInnerLeft(int& innerLeft){ innerLeft_ = innerLeft; }

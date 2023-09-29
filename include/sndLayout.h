@@ -1,10 +1,20 @@
 #ifndef SNDLAYOUT_H
 #define SNDLAYOUT_H
 
-// #define DEBUGGING
-
 #include <raylib.h>
 #include <vector>
+
+/* LAYOUT BOX STRUCTURE
+
+margin    m m m m m m m m m m   frame
+border    m B B B B B B B B m   frame
+padding   m B p p p p p p B m   frame
+content   m B p CONTENT p B m 
+padding   m B p p p p p p B m   frame
+border    m B B B B B B B B m   frame
+margin    m m m m m m m m m m   frame
+
+*/
 
 typedef enum sndAlign
 {
@@ -46,6 +56,13 @@ public:
     int& GetOuterHeight();
     void SetOuterHeight(int& outerHeight);
 
+    int& GetSetMargin();
+    void SetSetMargin(int& setMargin);
+    int& GetSetBorder();
+    void SetSetBorder(int& setBorder);
+    int& GetSetPadding();
+    void SetSetPadding(int& setPadding);
+    
     int& GetFrameWeight();
     void SetFrameWeight(int& frameWeight);
 
@@ -70,7 +87,11 @@ private:
     int outerWidth_;
     int outerHeight_;
 
-    int frameWeight_ = 1;
+    int margin_ = 0;
+    int border_ = 0;
+    int padding_ = 0;
+    int frameWeight_ = 0;
+    Color frameColor_ = BLANK; 
 
     int innerLeft_ = outerLeft_ + frameWeight_;
     int innerTop_ = outerTop_ + frameWeight_;
@@ -80,18 +101,6 @@ private:
     int innerHeight_ = innerBottom_ - innerTop_;
     
     std::vector<sndWrapper> wrapper_;
-
-#ifndef DEBUGGING
-    Color margin = BLANK;
-    Color border = GRAY;
-    Color padding = BLANK;
-#endif
-
-#ifdef DEBUGGING
-    Color margin = BLUE;
-    Color border = YELLOW;
-    Color padding = GREEN;
-#endif
 
     void Update();
 
