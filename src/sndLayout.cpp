@@ -1,6 +1,6 @@
 #include "sndLayout.h"
 
-// #define DEBUGGING
+#define DEBUGGING
 
 
 #include <raygui.h>
@@ -51,7 +51,7 @@ void sndWrapper::Render()
         static_cast<float>(GetOuterTop()),
         static_cast<float>(GetOuterWidth()),
         static_cast<float>(GetOuterHeight())};
-    DrawRectangleLinesEx(frameRect, GetFrameWeight(), GRAY);
+    DrawRectangleLinesEx(frameRect, this->GetFrameWeight(), this->GetFrameColor());
 
     if (wrapper_.size() == 0) return;
 
@@ -61,93 +61,131 @@ void sndWrapper::Render()
     }
 }
 
-void sndWrapper::AddWrapper(sndWrapper wrapper)
+void sndWrapper::AddWrapper(sndWrapper& wrapper)
 {
     wrapper_.push_back(wrapper);
 }
 
-int& sndWrapper::GetOuterLeft(){ return outerLeft_; }
-void sndWrapper::SetOuterLeft(int& outerLeft){ outerLeft_ = outerLeft; }
-int& sndWrapper::GetOuterTop(){ return outerTop_; }
-void sndWrapper::SetOuterTop(int& outerTop){ outerTop_ = outerTop; }
-int& sndWrapper::GetOuterRight(){ return outerRight_; }
-void sndWrapper::SetOuterRight(int& outerRight)
+int sndWrapper::GetOuterLeft(){ return outerLeft_; }
+void sndWrapper::SetOuterLeft(int outerLeft){ outerLeft_ = outerLeft; }
+int sndWrapper::GetOuterTop(){ return outerTop_; }
+void sndWrapper::SetOuterTop(int outerTop){ outerTop_ = outerTop; }
+int sndWrapper::GetOuterRight(){ return outerRight_; }
+void sndWrapper::SetOuterRight(int outerRight)
 { 
     outerRight_ = outerRight;
+    outerWidth_ = outerRight_ - outerLeft_;
     Update();
 }
 
-int& sndWrapper::GetOuterBottom(){ return outerBottom_; }
-void sndWrapper::SetOuterBottom(int& outerBottom)
+int sndWrapper::GetOuterBottom(){ return outerBottom_; }
+void sndWrapper::SetOuterBottom(int outerBottom)
 { 
     outerBottom_ = outerBottom;
+    outerHeight_ = outerBottom_ - outerTop_;
     Update();
 }
 
-int& sndWrapper::GetOuterWidth(){ return outerWidth_; }
-void sndWrapper::SetOuterWidth(int& outerWidth)
+int sndWrapper::GetOuterWidth(){ return outerWidth_; }
+void sndWrapper::SetOuterWidth(int outerWidth)
 { 
     outerWidth_ = outerWidth;
+    outerRight_ = outerLeft_ + outerWidth_;
     Update();
 }
 
-int& sndWrapper::GetOuterHeight(){ return outerHeight_; }
-void sndWrapper::SetOuterHeight(int& outerHeight)
+int sndWrapper::GetOuterHeight(){ return outerHeight_; }
+void sndWrapper::SetOuterHeight(int outerHeight)
 { 
     outerHeight_ = outerHeight;
+    outerBottom_ = outerTop_ + outerHeight_;
     Update();
 }
 
-int& sndWrapper::GetMargin(){ return margin_; }
-void sndWrapper::SetMargin(int& margin)
+int sndWrapper::GetMargin(){ return margin_; }
+void sndWrapper::SetMargin(int marginWeight)
 {
-    margin_ = margin;
+    margin_ = marginWeight;
 
-    sndWrapper margin(this->GetOuterLeft(), this->GetOuterTop(), this->GetOuterRight(), this->GetOuterBottom());
-    margin.SetFrameWeight(margin);
+    sndWrapper margin(
+        "margin",
+        this->GetOuterLeft(),
+        this->GetOuterTop(),
+        this->GetOuterRight(),
+        this->GetOuterBottom());
+    margin.SetFrameWeight(marginWeight);
 
 #ifdef DEBUGGING
     margin.SetFrameColor(BLUE);
-    //Color border = YELLOW;
-    //Color padding = GREEN;
 #endif
 
     AddWrapper(margin);
 }
 
-int& sndWrapper::GetBorder(){ return border_; }
-void sndWrapper::SetBorder(int& border)
+int sndWrapper::GetBorder(){ return border_; }
+void sndWrapper::SetBorder(int borderWeight)
 {
-    border_ = border;
+    border_ = borderWeight;
+
+    sndWrapper border(
+        "border",
+        this->GetOuterLeft() + this->GetMargin(),
+        this->GetOuterTop() + this->GetMargin(),
+        this->GetOuterRight() - this->GetMargin(),
+        this->GetOuterBottom() - this->GetMargin());
+    border.SetFrameWeight(borderWeight);
+
+#ifdef DEBUGGING
+    border.SetFrameColor(YELLOW);
+    //Color padding = GREEN;
+#endif
+
+    AddWrapper(border);
 }
 
-int& sndWrapper::GetPadding(){ return padding_; }
-void sndWrapper::SetPadding(int& padding)
+int sndWrapper::GetPadding(){ return padding_; }
+void sndWrapper::SetPadding(int paddingWeight)
 {
-    padding_ = padding;
+    padding_ = paddingWeight;
+
+    sndWrapper padding(
+        "padding",
+        this->GetOuterLeft() + this->GetMargin() + this->GetBorder(),
+        this->GetOuterTop() + this->GetMargin() + this->GetBorder(),
+        this->GetOuterRight() - this->GetMargin() - this->GetBorder(),
+        this->GetOuterBottom() - this->GetMargin() - this->GetBorder());
+    padding.SetFrameWeight(paddingWeight);
+
+#ifdef DEBUGGING
+    padding.SetFrameColor(GREEN);
+#endif
+
+    AddWrapper(padding);
 }
 
-int& sndWrapper::GetFrameWeight(){ return frameWeight_; }
-void sndWrapper::SetFrameWeight(int& frameWeight){ frameWeight_ = frameWeight; }
-Color sndWrapp::GetFrameColor(){ return frameColor_; }
-void sndWrapp::SetFrameColor(Color frameColor){ frameColor_ = frameColor; }
+int sndWrapper::GetFrameWeight(){ return frameWeight_; }
+void sndWrapper::SetFrameWeight(int frameWeight){ frameWeight_ = frameWeight; }
+Color sndWrapper::GetFrameColor(){ return frameColor_; }
+void sndWrapper::SetFrameColor(Color frameColor){ frameColor_ = frameColor; }
 
 
-int& sndWrapper::GetInnerLeft(){ return innerLeft_; }
-void sndWrapper::SetInnerLeft(int& innerLeft){ innerLeft_ = innerLeft; }
-int& sndWrapper::GetInnerTop(){ return innerTop_; }
-void sndWrapper::SetInnerTop(int& innerTop){ innerTop_ = innerTop; }
-int& sndWrapper::GetInnerRight(){ return innerRight_; }
-void sndWrapper::SetInnerRight(int& innerRight){ innerRight_ = innerRight; }
-int& sndWrapper::GetInnerBottom(){ return innerBottom_; }
-void sndWrapper::SetInnerBottom(int& innerBottom){ innerBottom_ = innerBottom; }
-int& sndWrapper::GetInnerWidth(){ return innerWidth_; }
-void sndWrapper::SetInnerWidth(int& innerWidth){ innerWidth_ = innerWidth; }
-int& sndWrapper::GetInnerHeight(){ return innerHeight_; }
-void sndWrapper::SetInnerHeight(int& innerHeight){ innerHeight_ = innerHeight; }
+int sndWrapper::GetInnerLeft(){ return innerLeft_; }
+//void sndWrapper::SetInnerLeft(int innerLeft){ innerLeft_ = innerLeft; }
+int sndWrapper::GetInnerTop(){ return innerTop_; }
+//void sndWrapper::SetInnerTop(int innerTop){ innerTop_ = innerTop; }
+int sndWrapper::GetInnerRight(){ return innerRight_; }
+//void sndWrapper::SetInnerRight(int innerRight){ innerRight_ = innerRight; }
+int sndWrapper::GetInnerBottom(){ return innerBottom_; }
+//void sndWrapper::SetInnerBottom(int innerBottom){ innerBottom_ = innerBottom; }
+int sndWrapper::GetInnerWidth(){ return innerWidth_; }
+//void sndWrapper::SetInnerWidth(int innerWidth){ innerWidth_ = innerWidth; }
+int sndWrapper::GetInnerHeight(){ return innerHeight_; }
+//void sndWrapper::SetInnerHeight(int innerHeight){ innerHeight_ = innerHeight; }
 
 void sndWrapper::Update()
 {
+    frameWeight_ = margin_ + border_ + padding_;
+
     innerLeft_ = GetOuterLeft() + frameWeight_;
     innerTop_ = GetOuterTop() + frameWeight_;
     innerRight_ = GetOuterRight() - frameWeight_;

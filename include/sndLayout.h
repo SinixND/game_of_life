@@ -29,55 +29,63 @@ typedef enum sndAlign
 class sndWrapper
 {
 public:
-    template <typename T1, typename T2, typename T3, typename T4>
-    sndWrapper(T1&& left, T2&& top, T3&& right, T4&& bottom)
+    //template <typename T1, typename T2, typename T3, typename T4>
+    //sndWrapper(T1&& left, T2&& top, T3&& right, T4&& bottom)
+    sndWrapper(char* name, int left, int top, int right, int bottom)
     : outerLeft_(left)
     , outerTop_(top)
     , outerRight_(right)
     , outerBottom_(bottom)
+    , outerWidth_(right - left)
+    , outerHeight_(bottom - top)
+    , name_(name)
     {
         Update();
     };
 
+    char* name_;
+
     void Append(sndWrapper& element, sndAlign flags, int offset);
     void Render();
-    void AddWrapper(sndWrapper wrapper);
+    void AddWrapper(sndWrapper& wrapper);
 
-    int& GetOuterLeft();
-    void SetOuterLeft(int& outerLeft);
-    int& GetOuterTop();
-    void SetOuterTop(int& outerTop);
-    int& GetOuterRight();
-    void SetOuterRight(int& outerRight);
-    int& GetOuterBottom();
-    void SetOuterBottom(int& outerBottom);
-    int& GetOuterWidth();
-    void SetOuterWidth(int& outerWidth);
-    int& GetOuterHeight();
-    void SetOuterHeight(int& outerHeight);
+    int GetOuterLeft();
+    void SetOuterLeft(int outerLeft);
+    int GetOuterTop();
+    void SetOuterTop(int outerTop);
+    int GetOuterRight();
+    void SetOuterRight(int outerRight);
+    int GetOuterBottom();
+    void SetOuterBottom(int outerBottom);
+    int GetOuterWidth();
+    void SetOuterWidth(int outerWidth);
+    int GetOuterHeight();
+    void SetOuterHeight(int outerHeight);
 
-    int& GetSetMargin();
-    void SetSetMargin(int& setMargin);
-    int& GetSetBorder();
-    void SetSetBorder(int& setBorder);
-    int& GetSetPadding();
-    void SetSetPadding(int& setPadding);
+    int GetMargin();
+    void SetMargin(int setMargin);
+    int GetBorder();
+    void SetBorder(int setBorder);
+    int GetPadding();
+    void SetPadding(int setPadding);
     
-    int& GetFrameWeight();
-    void SetFrameWeight(int& frameWeight);
+    int GetFrameWeight();
+    void SetFrameWeight(int frameWeight);
+    Color GetFrameColor();
+    void SetFrameColor(Color frameColor);
 
-    int& GetInnerLeft();
-    void SetInnerLeft(int& innerLeft);
-    int& GetInnerTop();
-    void SetInnerTop(int& innerTop);
-    int& GetInnerRight();
-    void SetInnerRight(int& innerRight);
-    int& GetInnerBottom();
-    void SetInnerBottom(int& innerBottom);
-    int& GetInnerWidth();
-    void SetInnerWidth(int& innerWidth);
-    int& GetInnerHeight();
-    void SetInnerHeight(int& innerHeight);
+    int GetInnerLeft();
+    //void SetInnerLeft(int innerLeft);
+    int GetInnerTop();
+    //void SetInnerTop(int innerTop);
+    int GetInnerRight();
+    //void SetInnerRight(int innerRight);
+    int GetInnerBottom();
+    //void SetInnerBottom(int innerBottom);
+    int GetInnerWidth();
+    //void SetInnerWidth(int innerWidth);
+    int GetInnerHeight();
+    //void SetInnerHeight(int innerHeight);
 
 private:
     int outerLeft_;
@@ -91,7 +99,8 @@ private:
     int border_ = 0;
     int padding_ = 0;
     int frameWeight_ = 0;
-    Color frameColor_ = BLANK; 
+    //Color frameColor_ = BLANK; 
+    Color frameColor_ = GRAY; 
 
     int innerLeft_ = outerLeft_ + frameWeight_;
     int innerTop_ = outerTop_ + frameWeight_;
@@ -106,15 +115,15 @@ private:
 
 };
 
-class sndButton : public sndWrapper
-{
-public:
-    sndButton(const char* text, int fontSize)
-        : sndWrapper(0, 0, MeasureText(text, fontSize), fontSize)
-    {
+//class sndButton : public sndWrapper
+//{
+//public:
+    //sndButton(const char* text, int fontSize)
+        //: sndWrapper(0, 0, MeasureText(text, fontSize), fontSize)
+    //{
 
-    };
-};
+    //};
+//};
 
 int AlignHorizontalLeft(sndWrapper* parent, int offset);
 int AlignHorizontalCenter(sndWrapper* parent, int objectWidth, int offset);

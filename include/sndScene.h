@@ -15,11 +15,11 @@ extern scenes currentScene;
 class Scene
 {
 public:
-    void Run();
+    void Update();
 
 private:
+    virtual void Input();
     virtual void Process();
-    virtual void Update();
-    virtual void Render();
+    virtual void Output();
 };
 #endif

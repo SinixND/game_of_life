@@ -27,7 +27,7 @@ int main()
         switch (currentScene)
         {
         case MENU:
-            menu.Run();
+            menu.Update();
             break;
 
         case GAME:

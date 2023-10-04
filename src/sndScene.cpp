@@ -4,18 +4,18 @@
 
 scenes currentScene = MENU;
 
-void Scene::Run(){
+void Scene::Update(){
+    Input();
     Process();
-    Update();
 
     BeginDrawing();
     ClearBackground(global.Getbackground());
 
-    Render();
+    Output();
 
     EndDrawing();
 }
 
+void Scene::Input(){}
 void Scene::Process(){}
-void Scene::Update(){}
-void Scene::Render(){}
+void Scene::Output(){}

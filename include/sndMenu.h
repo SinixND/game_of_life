@@ -14,10 +14,10 @@ public:
     sndWrapper title;
     sndWrapper menu;
 
-    sndButton darkMode;
+    //sndButton darkMode;
 
 private:
+    void Input();
     void Process();
-    void Update();
-    void Render();
+    void Output();
 };
