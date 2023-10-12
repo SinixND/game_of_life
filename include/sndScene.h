@@ -3,6 +3,8 @@
 
 #include <vector>
 
+#include "sndLayout.h"
+
 typedef enum scenes
 {
     MENU,
@@ -15,6 +17,10 @@ extern scenes currentScene;
 class Scene
 {
 public:
+    Scene();
+
+    sndWrapper main;
+
     void Update();
 
 private:

@@ -2,7 +2,17 @@
 
 #include "sndGlobals.h"
 
+#include "sndLayout.h"
+
 scenes currentScene = MENU;
+
+Scene::Scene()
+    : main(
+          0,
+          0,
+          GetRenderWidth(),
+          GetRenderHeight())
+{}
 
 void Scene::Update(){
     Input();

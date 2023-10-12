@@ -108,7 +108,6 @@ void sndWrapper::SetMargin(int marginWeight)
     margin_ = marginWeight;
 
     sndWrapper margin(
-        "margin",
         this->GetOuterLeft(),
         this->GetOuterTop(),
         this->GetOuterRight(),
@@ -128,7 +127,6 @@ void sndWrapper::SetBorder(int borderWeight)
     border_ = borderWeight;
 
     sndWrapper border(
-        "border",
         this->GetOuterLeft() + this->GetMargin(),
         this->GetOuterTop() + this->GetMargin(),
         this->GetOuterRight() - this->GetMargin(),
@@ -149,7 +147,6 @@ void sndWrapper::SetPadding(int paddingWeight)
     padding_ = paddingWeight;
 
     sndWrapper padding(
-        "padding",
         this->GetOuterLeft() + this->GetMargin() + this->GetBorder(),
         this->GetOuterTop() + this->GetMargin() + this->GetBorder(),
         this->GetOuterRight() - this->GetMargin() - this->GetBorder(),

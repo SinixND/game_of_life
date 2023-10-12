@@ -7,49 +7,37 @@
 #include "sndConfigs.h" // provide object "config" for configurable parameters
 #include "sndGlobals.h" // provide object "global" for not configurable application parameters
 
-const char* textDarkMode;
-
 Menu::Menu()
-    : main(
-      "main",
-          0,
-          0,
-          GetRenderWidth(),
-          GetRenderHeight())
-    , menubar(
-      "menubar",
+    : menubar(
           main.GetInnerLeft(),
           main.GetInnerTop(),
           main.GetInnerRight(),
           static_cast<int>(main.GetInnerTop() + global.guiButtonBaseHeight + 2 * main.GetFrameWeight()))
     , statusbar(
-      "statusbar",
           main.GetInnerLeft(),
           static_cast<int>(main.GetInnerBottom() - (global.guiButtonBaseHeight + 2 * main.GetFrameWeight())),
           main.GetInnerRight(),
           main.GetInnerBottom())
     , title(
-      "title",
           main.GetInnerLeft(),
           menubar.GetOuterBottom(),
           main.GetInnerRight(),
           statusbar.GetOuterTop() / 2)
     , menu(
-      "menu",
           main.GetInnerLeft(),
           title.GetOuterBottom(),
           main.GetInnerRight(),
           statusbar.GetOuterTop())
 {
-    menubar.SetMargin(2);
-    menubar.SetBorder(2);
-    menubar.SetPadding(2);
-    statusbar.SetMargin(2);
-    statusbar.SetBorder(2);
-    statusbar.SetPadding(2);
-    title.SetMargin(2);
-    title.SetBorder(2);
-    title.SetPadding(2);
+    menubar.SetMargin(1);
+    menubar.SetBorder(3);
+    menubar.SetPadding(1);
+    statusbar.SetMargin(1);
+    statusbar.SetBorder(3);
+    statusbar.SetPadding(1);
+    title.SetMargin(1);
+    title.SetBorder(3);
+    title.SetPadding(1);
 
     main.AddWrapper(menubar);
     main.AddWrapper(statusbar);

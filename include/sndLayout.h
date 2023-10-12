@@ -31,19 +31,16 @@ class sndWrapper
 public:
     //template <typename T1, typename T2, typename T3, typename T4>
     //sndWrapper(T1&& left, T2&& top, T3&& right, T4&& bottom)
-    sndWrapper(char* name, int left, int top, int right, int bottom)
+    sndWrapper(int left, int top, int right, int bottom)
     : outerLeft_(left)
     , outerTop_(top)
     , outerRight_(right)
     , outerBottom_(bottom)
     , outerWidth_(right - left)
     , outerHeight_(bottom - top)
-    , name_(name)
     {
         Update();
     };
-
-    char* name_;
 
     void Append(sndWrapper& element, sndAlign flags, int offset);
     void Render();
@@ -75,17 +72,11 @@ public:
     void SetFrameColor(Color frameColor);
 
     int GetInnerLeft();
-    //void SetInnerLeft(int innerLeft);
     int GetInnerTop();
-    //void SetInnerTop(int innerTop);
     int GetInnerRight();
-    //void SetInnerRight(int innerRight);
     int GetInnerBottom();
-    //void SetInnerBottom(int innerBottom);
     int GetInnerWidth();
-    //void SetInnerWidth(int innerWidth);
     int GetInnerHeight();
-    //void SetInnerHeight(int innerHeight);
 
 private:
     int outerLeft_;

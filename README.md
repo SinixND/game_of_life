@@ -5,11 +5,9 @@
 
 # TODOs
 # Current 
-[0] make margin, border, padding a wrapper with outer, inner and weight
-    [0] update sndWrapper (setters etc.)
+[1] Function to add an element 
 
 # Shortterm
-[1] Function to add an element 
 [2] check dynamic behaviour
 
 # Longterm

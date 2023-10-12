@@ -8,7 +8,6 @@ class Menu : public Scene
 public:
     Menu();
 
-    sndWrapper main;
     sndWrapper menubar;
     sndWrapper statusbar;
     sndWrapper title;
