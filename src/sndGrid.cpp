@@ -1,10 +1,8 @@
 #include "sndGrid.h"
-
 #include <cstdlib>
 #include <iostream>
 #include <vector>
 #include <time.h>
-
 #include "sndAgent.h"
 #include "sndConfigs.h" // provide object "config" for configurable parameters
 

@@ -39,8 +39,6 @@ LOC_LIB_DIR := ./lib
 OBJ_DIR := ./build
 ### here the binary file will be outputted
 BIN_DIR := ./bin
-### define folder for test files
-TEST_DIR := ./test
 ### define folder for web content to export
 WEB_DIR := ./web
 
@@ -73,7 +71,7 @@ MAKEFLAGS :=
 # -W(all/extra): 		enable warnings
 # -std=c++17:	force c++ standard
 # -MMD			provides dependency information (header files) for make in .d files
-CXX_FLAGS := `pkg-config --cflags $(LIBRARIES)` -g -Wall -Wextra -MMD -O0 #-Wpedantic 
+CXX_FLAGS := `pkg-config --cflags $(LIBRARIES)` -g -Wall -Wextra -MMD -O2 #-Wpedantic 
 
 #######################
 ### DONT EDIT BELOW ###
@@ -106,15 +104,13 @@ OBJS := $(patsubst %,$(OBJ_DIR)/%.$(OBJ_EXT),$(SRC_NAMES))
 DEPS := $(patsubst $(OBJ_DIR)/%.$(OBJ_EXT),$(OBJ_DIR)/%.$(DEP_EXT),$(OBJS))
 
 ### Non-file (.phony)targets (or rules)
-.PHONY: all build web clean rebuild deploy run test
+.PHONY: all build web clean rebuild deploy run
 
 ### default rule by convention
-all: build test 
+all: build 
 
 ### rule for native build process with binary as prerequisite
 build: $(BIN_DIR)/$(TARGET).$(TARGET_EXT)
-
-test: $(TEST_DIR)/test.$(TARGET_EXT)
 
 # LINKER COMMANDS
 
@@ -126,12 +122,6 @@ $(BIN_DIR)/$(TARGET).$(TARGET_EXT): $(OBJS)
 ### $^ (all prerequesites, all right of ":")
 	$(CXX) -o $@ $^ $(LIB_FLAGS) $(LD_LIBS) 
 
-### exclude main object file to avoid multiple definitions of main
-TEST_OBJS := $(patsubst ./build/$(TARGET).o,,$(OBJS))
-$(TEST_DIR)/test.$(TARGET_EXT): $(TEST_DIR)/test.$(OBJ_EXT) $(TEST_OBJS)
-	@mkdir -p $(BIN_DIR)
-	$(CXX) -o $@ $^ $(LIB_FLAGS) $(LD_LIBS)
-
 # COMPILER COMMANDS
 
 ### MAKE object files FROM source files; "%" pattern-matches (need pair of)
@@ -140,10 +130,6 @@ $(OBJ_DIR)/%.$(OBJ_EXT): %.$(SRC_EXT)
 	@mkdir -p $(OBJ_DIR)
 ### $< (first prerequesite, first right of ":")
 ### $@ (target, left of ":")
-	$(CXX) -o $@ -c $< $(CXX_FLAGS) $(INC_FLAGS)
-
-$(TEST_DIR)/test.$(OBJ_EXT): test.$(SRC_EXT)
-	@mkdir -p $(OBJ_DIR)
 	$(CXX) -o $@ -c $< $(CXX_FLAGS) $(INC_FLAGS)
 
 ### rule for web build process

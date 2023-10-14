@@ -1,11 +1,29 @@
-#include "sndMenu.h"
-
+#include "sndScenes.h"
+#include "sndGlobals.h"
 #include "sndLayout.h"
-#include <raygui.h>
-#include <raylib.h>
 
-#include "sndConfigs.h" // provide object "config" for configurable parameters
-#include "sndGlobals.h" // provide object "global" for not configurable application parameters
+scenes currentScene = MENU;
+
+void Scene::Initialize(){}
+void Scene::Update()
+{
+    Input();
+    Process();
+
+    BeginDrawing();
+    ClearBackground(global.Getbackground());
+
+    Output();
+
+    EndDrawing();
+}
+
+void Scene::Input() {}
+void Scene::Process() {}
+void Scene::Output() {}
+
+// SCENES
+//-------------------------------------
 
 Menu::Menu()
 {

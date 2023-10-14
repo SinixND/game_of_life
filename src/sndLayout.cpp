@@ -5,7 +5,6 @@
 #include <raygui.h>
 #include <raylib.h>
 #include <vector>
-
 #include "sndGlobals.h"
 
 sndWrapper::sndWrapper()

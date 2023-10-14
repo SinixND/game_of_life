@@ -2,11 +2,9 @@
 #include <raylib.h>
 #define RAYGUI_IMPLEMENTATION //only define once
 #include <raygui.h>
-
 #include "sndConfigs.h" // provide object "config" for configurable parameters
 #include "sndGlobals.h" // provide object "global" for not configurable application parameters
-
-#include "sndMenu.h"
+#include "sndScenes.h"
 
 int main()
 {

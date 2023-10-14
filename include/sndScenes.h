@@ -2,9 +2,7 @@
 #define SCENE_H
 
 #include <vector>
-
 #include <raylib.h>
-
 #include "sndLayout.h"
 
 typedef enum scenes
@@ -19,8 +17,6 @@ extern scenes currentScene;
 class Scene
 {
 public:
-    Scene();
-
     sndWrapper main;
 
     virtual void Initialize();
@@ -30,5 +26,27 @@ private:
     virtual void Input();
     virtual void Process();
     virtual void Output();
+};
+
+// SCENES
+//-------------------------------------
+
+class Menu : public Scene
+{
+public:
+    Menu();
+
+    sndWrapper menubar;
+    sndWrapper statusbar;
+    sndWrapper title;
+    sndWrapper content;
+
+    //sndButton darkMode;
+    void Initialize();
+
+private:
+    void Input();
+    void Process();
+    void Output();
 };
 #endif
