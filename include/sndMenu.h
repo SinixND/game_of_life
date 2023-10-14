@@ -1,6 +1,5 @@
 #include "sndScene.h"
 
-#include "sndConfigs.h"
 #include "sndLayout.h"
 
 class Menu : public Scene
@@ -11,9 +10,10 @@ public:
     sndWrapper menubar;
     sndWrapper statusbar;
     sndWrapper title;
-    sndWrapper menu;
+    sndWrapper content;
 
     //sndButton darkMode;
+    void Initialize();
 
 private:
     void Input();

@@ -2,12 +2,36 @@
 
 #define DEBUGGING
 
-
 #include <raygui.h>
 #include <raylib.h>
 #include <vector>
 
 #include "sndGlobals.h"
+
+sndWrapper::sndWrapper()
+{
+    Update();
+};
+
+sndWrapper::sndWrapper(int left, int top, int right, int bottom)
+{
+    SetOuterLeft(left);
+    SetOuterTop(top);
+    SetOuterRight(right);
+    SetOuterBottom(bottom);
+};
+
+void sndWrapper::Update()
+{
+    frameWeight_ = margin_ + border_ + padding_;
+
+    innerLeft_ = GetOuterLeft() + frameWeight_;
+    innerTop_ = GetOuterTop() + frameWeight_;
+    innerRight_ = GetOuterRight() - frameWeight_;
+    innerBottom_ = GetOuterBottom() - frameWeight_;
+    innerWidth_ = innerRight_ - innerLeft_;
+    innerHeight_ = innerBottom_ - innerTop_;
+}
 
 void sndWrapper::Append(sndWrapper& element, sndAlign flags, int offset)
 {
@@ -53,17 +77,22 @@ void sndWrapper::Render()
         static_cast<float>(GetOuterHeight())};
     DrawRectangleLinesEx(frameRect, this->GetFrameWeight(), this->GetFrameColor());
 
-    if (wrapper_.size() == 0) return;
+    if (wrappers_.size() == 0) return;
 
-    for (auto wrapper : wrapper_)
+    for (auto wrapper : wrappers_)
     {
         wrapper.Render();
     }
 }
 
-void sndWrapper::AddWrapper(sndWrapper& wrapper)
+void sndWrapper::AddWrapper(sndWrapper wrapper)
 {
-    wrapper_.push_back(wrapper);
+    wrappers_.push_back(wrapper);
+}
+
+void sndWrapper::ClearWrappers()
+{
+    wrappers_.clear();
 }
 
 int sndWrapper::GetOuterLeft(){ return outerLeft_; }
@@ -179,16 +208,9 @@ int sndWrapper::GetInnerWidth(){ return innerWidth_; }
 int sndWrapper::GetInnerHeight(){ return innerHeight_; }
 //void sndWrapper::SetInnerHeight(int innerHeight){ innerHeight_ = innerHeight; }
 
-void sndWrapper::Update()
+std::vector<sndWrapper> sndWrapper::GetWrappers()
 {
-    frameWeight_ = margin_ + border_ + padding_;
-
-    innerLeft_ = GetOuterLeft() + frameWeight_;
-    innerTop_ = GetOuterTop() + frameWeight_;
-    innerRight_ = GetOuterRight() - frameWeight_;
-    innerBottom_ = GetOuterBottom() - frameWeight_;
-    innerWidth_ = innerRight_ - innerLeft_;
-    innerHeight_ = innerBottom_ - innerTop_;
+    return wrappers_;
 }
 
 //sndButton::sndButton(const char* text, int fontSize)

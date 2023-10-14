@@ -7,14 +7,18 @@
 scenes currentScene = MENU;
 
 Scene::Scene()
-    : main(
-          0,
-          0,
-          GetRenderWidth(),
-          GetRenderHeight())
-{}
+{
+    //Initialize();
+}
 
-void Scene::Update(){
+void Scene::Initialize() {
+    //main.SetOuterLeft(0);
+    //main.SetOuterTop(0);
+    //main.SetOuterRight(GetRenderWidth());
+    //main.SetOuterBottom(GetRenderHeight());
+}
+void Scene::Update()
+{
     Input();
     Process();
 
@@ -26,6 +30,6 @@ void Scene::Update(){
     EndDrawing();
 }
 
-void Scene::Input(){}
-void Scene::Process(){}
-void Scene::Output(){}
+void Scene::Input() {}
+void Scene::Process() {}
+void Scene::Output() {}

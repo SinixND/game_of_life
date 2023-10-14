@@ -31,20 +31,13 @@ class sndWrapper
 public:
     //template <typename T1, typename T2, typename T3, typename T4>
     //sndWrapper(T1&& left, T2&& top, T3&& right, T4&& bottom)
-    sndWrapper(int left, int top, int right, int bottom)
-    : outerLeft_(left)
-    , outerTop_(top)
-    , outerRight_(right)
-    , outerBottom_(bottom)
-    , outerWidth_(right - left)
-    , outerHeight_(bottom - top)
-    {
-        Update();
-    };
+    sndWrapper();
+    sndWrapper(int left, int top, int right, int bottom);
 
     void Append(sndWrapper& element, sndAlign flags, int offset);
     void Render();
-    void AddWrapper(sndWrapper& wrapper);
+    void AddWrapper(sndWrapper wrapper);
+    void ClearWrappers();
 
     int GetOuterLeft();
     void SetOuterLeft(int outerLeft);
@@ -78,13 +71,15 @@ public:
     int GetInnerWidth();
     int GetInnerHeight();
 
+    std::vector<sndWrapper> GetWrappers();
+
 private:
-    int outerLeft_;
-    int outerTop_;
-    int outerRight_;
-    int outerBottom_;
-    int outerWidth_;
-    int outerHeight_;
+    int outerLeft_ = 0;
+    int outerTop_ = 0;
+    int outerRight_ = 0;
+    int outerBottom_ = 0;
+    int outerWidth_ = 0;
+    int outerHeight_ = 0;
 
     int margin_ = 0;
     int border_ = 0;
@@ -100,7 +95,7 @@ private:
     int innerWidth_ = innerRight_ - innerLeft_;
     int innerHeight_ = innerBottom_ - innerTop_;
     
-    std::vector<sndWrapper> wrapper_;
+    std::vector<sndWrapper> wrappers_;
 
     void Update();
 

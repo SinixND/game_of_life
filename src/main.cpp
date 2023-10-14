@@ -6,7 +6,6 @@
 #include "sndConfigs.h" // provide object "config" for configurable parameters
 #include "sndGlobals.h" // provide object "global" for not configurable application parameters
 
-#include "sndScene.h"
 #include "sndMenu.h"
 
 int main()
@@ -18,11 +17,16 @@ int main()
     GuiSetStyle(DEFAULT, TEXT_SIZE, 20);
     SetExitKey(0);
 
+    Menu menu;
+
     // MAIN APP LOOP
     //---------------------------------
     while (!WindowShouldClose()) // Detect window close button or ESC key
     {
-        Menu menu;
+        if(IsWindowResized())
+        {
+            menu.Initialize();
+        }
     
         switch (currentScene)
         {

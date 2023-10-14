@@ -3,6 +3,8 @@
 
 #include <vector>
 
+#include <raylib.h>
+
 #include "sndLayout.h"
 
 typedef enum scenes
@@ -21,6 +23,7 @@ public:
 
     sndWrapper main;
 
+    virtual void Initialize();
     void Update();
 
 private:
