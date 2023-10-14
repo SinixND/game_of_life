@@ -10,7 +10,7 @@ int main()
 {
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     SetConfigFlags(FLAG_WINDOW_TRANSPARENT);
-    InitWindow(620, 480, "Conway's Game of Life");
+    InitWindow(640, 480, "Conway's Game of Life");
     SetTargetFPS(config.targetFPS);
     GuiSetStyle(DEFAULT, TEXT_SIZE, 20);
     SetExitKey(0);
@@ -21,14 +21,14 @@ int main()
     //---------------------------------
     while (!WindowShouldClose()) // Detect window close button or ESC key
     {
-        if(IsWindowResized())
-        {
-            menu.Initialize();
-        }
-    
         switch (currentScene)
         {
         case MENU:
+            if(IsWindowResized())
+            {
+                menu.Initialize();
+            }
+    
             menu.Update();
             break;
 

@@ -38,6 +38,7 @@ public:
     void Render();
     void AddWrapper(sndWrapper wrapper);
     void ClearWrappers();
+    void AddButton(int x, int y, const char* text, void (*function)());
 
     int GetOuterLeft();
     void SetOuterLeft(int outerLeft);
@@ -100,16 +101,6 @@ private:
     void Update();
 
 };
-
-//class sndButton : public sndWrapper
-//{
-//public:
-    //sndButton(const char* text, int fontSize)
-        //: sndWrapper(0, 0, MeasureText(text, fontSize), fontSize)
-    //{
-
-    //};
-//};
 
 int AlignHorizontalLeft(sndWrapper* parent, int offset);
 int AlignHorizontalCenter(sndWrapper* parent, int objectWidth, int offset);

@@ -20,18 +20,6 @@ sndWrapper::sndWrapper(int left, int top, int right, int bottom)
     SetOuterBottom(bottom);
 };
 
-void sndWrapper::Update()
-{
-    frameWeight_ = margin_ + border_ + padding_;
-
-    innerLeft_ = GetOuterLeft() + frameWeight_;
-    innerTop_ = GetOuterTop() + frameWeight_;
-    innerRight_ = GetOuterRight() - frameWeight_;
-    innerBottom_ = GetOuterBottom() - frameWeight_;
-    innerWidth_ = innerRight_ - innerLeft_;
-    innerHeight_ = innerBottom_ - innerTop_;
-}
-
 void sndWrapper::Append(sndWrapper& element, sndAlign flags, int offset)
 {
     int positionLeft = 0;
@@ -143,7 +131,7 @@ void sndWrapper::SetMargin(int marginWeight)
     margin.SetFrameWeight(marginWeight);
 
 #ifdef DEBUGGING
-    margin.SetFrameColor(BLUE);
+    margin.SetFrameColor(RED);
 #endif
 
     AddWrapper(margin);
@@ -162,8 +150,7 @@ void sndWrapper::SetBorder(int borderWeight)
     border.SetFrameWeight(borderWeight);
 
 #ifdef DEBUGGING
-    border.SetFrameColor(YELLOW);
-    //Color padding = GREEN;
+    border.SetFrameColor(GRAY);
 #endif
 
     AddWrapper(border);
@@ -195,27 +182,28 @@ void sndWrapper::SetFrameColor(Color frameColor){ frameColor_ = frameColor; }
 
 
 int sndWrapper::GetInnerLeft(){ return innerLeft_; }
-//void sndWrapper::SetInnerLeft(int innerLeft){ innerLeft_ = innerLeft; }
 int sndWrapper::GetInnerTop(){ return innerTop_; }
-//void sndWrapper::SetInnerTop(int innerTop){ innerTop_ = innerTop; }
 int sndWrapper::GetInnerRight(){ return innerRight_; }
-//void sndWrapper::SetInnerRight(int innerRight){ innerRight_ = innerRight; }
 int sndWrapper::GetInnerBottom(){ return innerBottom_; }
-//void sndWrapper::SetInnerBottom(int innerBottom){ innerBottom_ = innerBottom; }
 int sndWrapper::GetInnerWidth(){ return innerWidth_; }
-//void sndWrapper::SetInnerWidth(int innerWidth){ innerWidth_ = innerWidth; }
 int sndWrapper::GetInnerHeight(){ return innerHeight_; }
-//void sndWrapper::SetInnerHeight(int innerHeight){ innerHeight_ = innerHeight; }
 
 std::vector<sndWrapper> sndWrapper::GetWrappers()
 {
     return wrappers_;
 }
 
-//sndButton::sndButton(const char* text, int fontSize)
-//{
+void sndWrapper::Update()
+{
+    frameWeight_ = margin_ + border_ + padding_;
 
-//}
+    innerLeft_ = GetOuterLeft() + frameWeight_;
+    innerTop_ = GetOuterTop() + frameWeight_;
+    innerRight_ = GetOuterRight() - frameWeight_;
+    innerBottom_ = GetOuterBottom() - frameWeight_;
+    innerWidth_ = innerRight_ - innerLeft_;
+    innerHeight_ = innerBottom_ - innerTop_;
+}
 
 int AlignHorizontalLeft(sndWrapper* parent, int offset)
 {
