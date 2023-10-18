@@ -38,7 +38,7 @@ public:
     void Render();
     void AddWrapper(sndWrapper wrapper);
     void ClearWrappers();
-    void AddButton(int x, int y, const char* text, void (*function)());
+    void AddButton(const char* text, function<auto()> f, int x, int y, sndAlign flags, int offset);
 
     int GetOuterLeft();
     void SetOuterLeft(int outerLeft);

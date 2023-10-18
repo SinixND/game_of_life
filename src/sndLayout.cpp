@@ -82,6 +82,24 @@ void sndWrapper::ClearWrappers()
     wrappers_.clear();
 }
 
+void sndWrapper::AddButton(const char* text, function<auto()> f, int x, int y, sndAlign flags, int offset)
+{
+    sndWrapper element(x, y, MeasureText(text, global.textSizeDefault), global.textSizeDefault);
+
+    this->Append(element, flags, offset);
+
+    if (GuiButton(
+            (Rectangle){
+                static_cast<float>(element.GetOuterLeft()),
+                static_cast<float>(element.GetOuterTop()),
+                static_cast<float>(element.GetOuterWidth()),
+                static_cast<float>(element.GetOuterHeight())},
+            text))
+    {
+        f;
+    };
+}
+
 int sndWrapper::GetOuterLeft(){ return outerLeft_; }
 void sndWrapper::SetOuterLeft(int outerLeft){ outerLeft_ = outerLeft; }
 int sndWrapper::GetOuterTop(){ return outerTop_; }
