@@ -53,6 +53,8 @@ void sndWrapper::Append(sndWrapper& element, sndAlign flags, int offset)
 
     element.SetOuterLeft(positionLeft);
     element.SetOuterTop(positionTop);
+
+    this->wrappers_.push_back(element);
 }
 
 void sndWrapper::Render()
@@ -82,12 +84,13 @@ void sndWrapper::ClearWrappers()
     wrappers_.clear();
 }
 
-void sndWrapper::AddButton(const char* text, function<auto()> f, int x, int y, sndAlign flags, int offset)
+void sndWrapper::AddButton(const char* text, void (*f)(), int x, int y, sndAlign flags, int offset)
 {
     sndWrapper element(x, y, MeasureText(text, global.textSizeDefault), global.textSizeDefault);
 
     this->Append(element, flags, offset);
 
+    // ADD THIS CALLABLE FROM OBJECT
     if (GuiButton(
             (Rectangle){
                 static_cast<float>(element.GetOuterLeft()),

@@ -59,17 +59,7 @@ void Menu::Initialize()
 
     // GUI-Elements
     //---------------------------------
-    menubar.AddButton(menubar.GetInnerLeft(), menubar.GetInnerTop(), "Darkmode", []()->void{global.ToggleDarkMode();});
-    //if (GuiButton(
-            //(Rectangle){
-                //(float)AlignHorizontalRight(menubar, buttonDarkModeWidth, 0),
-                //(float)AlignVerticalCenter(menubarScreenMenu, global.guiButtonBaseHeight, 0),
-                //(float)buttonDarkModeWidth,
-                //(float)global.guiButtonBaseHeight},
-            //txtButtonDarkModeScreenMenu))
-    //{
-        //global.ToggleDarkMode();
-    //};
+    menubar.AddButton("Darkmode", [](){global.ToggleDarkMode();}, menubar.GetInnerLeft(), menubar.GetInnerTop(), (sndAlign)(RIGHT | CENTER_VERTICAL), 0);
     //---------------------------------
 }
 

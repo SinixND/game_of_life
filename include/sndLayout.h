@@ -38,7 +38,7 @@ public:
     void Render();
     void AddWrapper(sndWrapper wrapper);
     void ClearWrappers();
-    void AddButton(const char* text, function<auto()> f, int x, int y, sndAlign flags, int offset);
+    void AddButton(const char* text, void (*f)(), int x, int y, sndAlign flags, int offset);
 
     int GetOuterLeft();
     void SetOuterLeft(int outerLeft);
@@ -95,9 +95,9 @@ private:
     int innerBottom_ = outerBottom_ - frameWeight_;
     int innerWidth_ = innerRight_ - innerLeft_;
     int innerHeight_ = innerBottom_ - innerTop_;
-    
-    std::vector<sndWrapper> wrappers_;
 
+    std::vector<sndWrapper> wrappers_;
+    
     void Update();
 
 };
