@@ -35,24 +35,30 @@ public:
     sndWrapper();
     sndWrapper(int left, int top, int right, int bottom);
 
-    void Append(sndWrapper& element, sndAlign flags, int offset);
+    void Append(sndWrapper element, sndAlign flags, int offset);
     void Render();
     void AddWrapper(sndWrapper wrapper);
     void ClearWrappers();
-    void AddButton(const char* text, std::function<void()> fn, int x, int y, sndAlign flags, int offset);
+    void AddButton(const char* text, std::function<void()> fn, sndAlign flags, int offset);
 
     int GetOuterLeft();
-    void SetOuterLeft(int outerLeft);
+    void ResizeOuterLeft(int outerLeft);
+    void MoveOuterLeft(int outerLeft);
     int GetOuterTop();
-    void SetOuterTop(int outerTop);
+    void ResizeOuterTop(int outerTop);
+    void MoveOuterTop(int outerTop);
     int GetOuterRight();
-    void SetOuterRight(int outerRight);
+    void ResizeOuterRight(int outerRight);
+    void MoveOuterRight(int outerRight);
     int GetOuterBottom();
-    void SetOuterBottom(int outerBottom);
+    void ResizeOuterBottom(int outerBottom);
+    void MoveOuterBottom(int outerBottom);
     int GetOuterWidth();
-    void SetOuterWidth(int outerWidth);
+    void ResizeOuterWidth(int outerWidth);
+    void MoveOuterWidth(int outerWidth);
     int GetOuterHeight();
-    void SetOuterHeight(int outerHeight);
+    void ResizeOuterHeight(int outerHeight);
+    void MoveOuterHeight(int outerHeight);
 
     int GetMargin();
     void SetMargin(int setMargin);
@@ -62,9 +68,7 @@ public:
     void SetPadding(int setPadding);
     
     int GetFrameWeight();
-    void SetFrameWeight(int frameWeight);
     Color GetFrameColor();
-    void SetFrameColor(Color frameColor);
 
     int GetInnerLeft();
     int GetInnerTop();
@@ -83,10 +87,10 @@ private:
     int outerWidth_ = 0;
     int outerHeight_ = 0;
 
-    int margin_ = 0;
-    int border_ = 0;
-    int padding_ = 0;
-    int frameWeight_ = 0;
+    int margin_{0};
+    int border_{0};
+    int padding_{0};
+    int frameWeight_{0};
     //Color frameColor_ = BLANK; 
     Color frameColor_ = GRAY; 
 
@@ -101,11 +105,16 @@ private:
     
     void Update();
 
+    void SetFrameWeight(int frameWeight);
+    void SetFrameColor(Color frameColor);
 };
 
 class sndButton : public sndWrapper
 {
 public:
+    sndButton();
+    sndButton(int left, int top, int right, int bottom);
+
     void Render();
 
     void SetText(const char* text);

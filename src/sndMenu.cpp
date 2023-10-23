@@ -11,20 +11,22 @@ void Menu::Initialize()
 {
     // Wrappers
     //---------------------------------
-    main.SetOuterLeft(0);
-    main.SetOuterTop(0);
-    main.SetOuterRight(GetRenderWidth());
-    main.SetOuterBottom(GetRenderHeight());
+    main.ClearWrappers();
+
+    main.ResizeOuterLeft(0);
+    main.ResizeOuterTop(0);
+    main.ResizeOuterRight(GetRenderWidth());
+    main.ResizeOuterBottom(GetRenderHeight());
 
     sndWrapper menubar(
         main.GetInnerLeft(),
         main.GetInnerTop(),
         main.GetInnerRight(),
-        static_cast<int>(main.GetInnerTop() + global.guiButtonBaseHeight + 2 * main.GetFrameWeight()));
+        static_cast<int>(main.GetInnerTop() + 2 * global.guiButtonBaseHeight + 2 * main.GetFrameWeight()));
 
     sndWrapper statusbar(
         main.GetInnerLeft(),
-        static_cast<int>(main.GetInnerBottom() - (global.guiButtonBaseHeight + 2 * main.GetFrameWeight())),
+        static_cast<int>(main.GetInnerBottom() - (2 * global.guiButtonBaseHeight + 2 * main.GetFrameWeight())),
         main.GetInnerRight(),
         main.GetInnerBottom());
 
@@ -49,18 +51,28 @@ void Menu::Initialize()
     title.SetMargin(2);
     title.SetBorder(6);
     title.SetPadding(2);
+    //---------------------------------
 
-    main.ClearWrappers();
+    // GUI-Elements
+    //---------------------------------
+    menubar.AddButton(
+        "Darkmode",
+        []()
+        {
+            global.ToggleDarkMode();
+        },
+        (sndAlign)(RIGHT | CENTER_VERTICAL),
+        0);
+    //---------------------------------
+
+    // LAST STEP: ADD WRAPPERS
+    //---------------------------------
     main.AddWrapper(menubar);
     main.AddWrapper(statusbar);
     main.AddWrapper(title);
     main.AddWrapper(content);
     //---------------------------------
 
-    // GUI-Elements
-    //---------------------------------
-    menubar.AddButton("Darkmode", [](){global.ToggleDarkMode();}, menubar.GetInnerLeft(), menubar.GetInnerTop(), (sndAlign)(RIGHT | CENTER_VERTICAL), 0);
-    //---------------------------------
 }
 
 void Menu::Input() {}
@@ -68,6 +80,4 @@ void Menu::Process() {}
 void Menu::Output()
 {
     main.Render();
-    // sndButton darkMode("DarkMode", global.textSizeDefault);
-    // menubar.Append(darkMode, (sndAlign)(CENTER_HORIZONTAL | CENTER_VERTICAL), 0);
 }

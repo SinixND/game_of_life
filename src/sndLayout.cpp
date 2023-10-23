@@ -2,11 +2,11 @@
 
 #define DEBUGGING
 
+#include "sndGlobals.h"
+#include <functional>
 #include <raygui.h>
 #include <raylib.h>
 #include <vector>
-#include <functional>
-#include "sndGlobals.h"
 
 sndWrapper::sndWrapper()
 {
@@ -15,13 +15,15 @@ sndWrapper::sndWrapper()
 
 sndWrapper::sndWrapper(int left, int top, int right, int bottom)
 {
-    SetOuterLeft(left);
-    SetOuterTop(top);
-    SetOuterRight(right);
-    SetOuterBottom(bottom);
+    ResizeOuterLeft(left);
+    ResizeOuterTop(top);
+    ResizeOuterRight(right);
+    ResizeOuterBottom(bottom);
+
+    Update();
 };
 
-void sndWrapper::Append(sndWrapper& element, sndAlign flags, int offset)
+void sndWrapper::Append(sndWrapper element, sndAlign flags, int offset)
 {
     int positionLeft = 0;
     int positionTop = 0;
@@ -52,10 +54,10 @@ void sndWrapper::Append(sndWrapper& element, sndAlign flags, int offset)
         positionTop = AlignVerticalBottom(this, element.GetOuterHeight(), offset);
     };
 
-    element.SetOuterLeft(positionLeft);
-    element.SetOuterTop(positionTop);
+    element.MoveOuterLeft(positionLeft);
+    element.MoveOuterTop(positionTop);
 
-    this->wrappers_.push_back(element);
+    this->AddWrapper(element);
 }
 
 void sndWrapper::Render()
@@ -67,7 +69,8 @@ void sndWrapper::Render()
         static_cast<float>(GetOuterHeight())};
     DrawRectangleLinesEx(frameRect, this->GetFrameWeight(), this->GetFrameColor());
 
-    if (wrappers_.size() == 0) return;
+    if (wrappers_.size() == 0)
+        return;
 
     for (auto wrapper : wrappers_)
     {
@@ -85,52 +88,79 @@ void sndWrapper::ClearWrappers()
     wrappers_.clear();
 }
 
-void sndWrapper::AddButton(const char* text, std::function<void()> fn, int x, int y, sndAlign flags, int offset)
+void sndWrapper::AddButton(const char* text, std::function<void()> fn, sndAlign flags, int offset)
 {
-    sndButton element(x, y, MeasureText(text, global.textSizeDefault), global.textSizeDefault);
+    sndButton element(0, 0, MeasureText(text, global.textSizeDefault), global.textSizeDefault);
+    element.SetText(text);
     element.SetFunction(fn);
 
     this->Append(element, flags, offset);
-
 }
 
-int sndWrapper::GetOuterLeft(){ return outerLeft_; }
-void sndWrapper::SetOuterLeft(int outerLeft){ outerLeft_ = outerLeft; }
-int sndWrapper::GetOuterTop(){ return outerTop_; }
-void sndWrapper::SetOuterTop(int outerTop){ outerTop_ = outerTop; }
-int sndWrapper::GetOuterRight(){ return outerRight_; }
-void sndWrapper::SetOuterRight(int outerRight)
-{ 
+int sndWrapper::GetOuterLeft() { return outerLeft_; }
+void sndWrapper::ResizeOuterLeft(int outerLeft)
+{
+    outerLeft_ = outerLeft;
+    outerWidth_ = outerRight_ - outerLeft_;
+    Update();
+}
+
+void sndWrapper::MoveOuterLeft(int outerLeft)
+{
+    outerLeft_ = outerLeft;
+    outerRight_ = outerLeft_ + outerWidth_;
+    Update();
+}
+
+int sndWrapper::GetOuterTop() { return outerTop_; }
+void sndWrapper::ResizeOuterTop(int outerTop)
+{
+    outerTop_ = outerTop;
+    outerHeight_ = outerBottom_ - outerTop_;
+    Update();
+}
+
+void sndWrapper::MoveOuterTop(int outerTop)
+{
+    outerTop_ = outerTop;
+    outerBottom_ = outerTop_ + outerHeight_;
+    Update();
+}
+
+int sndWrapper::GetOuterRight() { return outerRight_; }
+void sndWrapper::ResizeOuterRight(int outerRight)
+{
     outerRight_ = outerRight;
     outerWidth_ = outerRight_ - outerLeft_;
     Update();
 }
 
-int sndWrapper::GetOuterBottom(){ return outerBottom_; }
-void sndWrapper::SetOuterBottom(int outerBottom)
-{ 
+void sndWrapper::MoveOuterRight(int outerRight)
+{
+    outerRight_ = outerRight;
+    outerLeft_ = outerRight_ - outerWidth_;
+    Update();
+}
+
+int sndWrapper::GetOuterBottom() { return outerBottom_; }
+void sndWrapper::ResizeOuterBottom(int outerBottom)
+{
     outerBottom_ = outerBottom;
     outerHeight_ = outerBottom_ - outerTop_;
     Update();
 }
 
-int sndWrapper::GetOuterWidth(){ return outerWidth_; }
-void sndWrapper::SetOuterWidth(int outerWidth)
-{ 
-    outerWidth_ = outerWidth;
-    outerRight_ = outerLeft_ + outerWidth_;
+void sndWrapper::MoveOuterBottom(int outerBottom)
+{
+    outerBottom_ = outerBottom;
+    outerTop_ = outerBottom_ - outerHeight_;
     Update();
 }
 
-int sndWrapper::GetOuterHeight(){ return outerHeight_; }
-void sndWrapper::SetOuterHeight(int outerHeight)
-{ 
-    outerHeight_ = outerHeight;
-    outerBottom_ = outerTop_ + outerHeight_;
-    Update();
-}
+int sndWrapper::GetOuterWidth() { return outerWidth_; }
+int sndWrapper::GetOuterHeight() { return outerHeight_; }
 
-int sndWrapper::GetMargin(){ return margin_; }
+int sndWrapper::GetMargin() { return margin_; }
 void sndWrapper::SetMargin(int marginWeight)
 {
     margin_ = marginWeight;
@@ -147,9 +177,10 @@ void sndWrapper::SetMargin(int marginWeight)
 #endif
 
     AddWrapper(margin);
+    Update();
 }
 
-int sndWrapper::GetBorder(){ return border_; }
+int sndWrapper::GetBorder() { return border_; }
 void sndWrapper::SetBorder(int borderWeight)
 {
     border_ = borderWeight;
@@ -166,9 +197,10 @@ void sndWrapper::SetBorder(int borderWeight)
 #endif
 
     AddWrapper(border);
+    Update();
 }
 
-int sndWrapper::GetPadding(){ return padding_; }
+int sndWrapper::GetPadding() { return padding_; }
 void sndWrapper::SetPadding(int paddingWeight)
 {
     padding_ = paddingWeight;
@@ -185,20 +217,20 @@ void sndWrapper::SetPadding(int paddingWeight)
 #endif
 
     AddWrapper(padding);
+    Update();
 }
 
-int sndWrapper::GetFrameWeight(){ return frameWeight_; }
-void sndWrapper::SetFrameWeight(int frameWeight){ frameWeight_ = frameWeight; }
-Color sndWrapper::GetFrameColor(){ return frameColor_; }
-void sndWrapper::SetFrameColor(Color frameColor){ frameColor_ = frameColor; }
+int sndWrapper::GetFrameWeight() { return frameWeight_; }
+void sndWrapper::SetFrameWeight(int frameWeight) { frameWeight_ = frameWeight; }
+Color sndWrapper::GetFrameColor() { return frameColor_; }
+void sndWrapper::SetFrameColor(Color frameColor) { frameColor_ = frameColor; }
 
-
-int sndWrapper::GetInnerLeft(){ return innerLeft_; }
-int sndWrapper::GetInnerTop(){ return innerTop_; }
-int sndWrapper::GetInnerRight(){ return innerRight_; }
-int sndWrapper::GetInnerBottom(){ return innerBottom_; }
-int sndWrapper::GetInnerWidth(){ return innerWidth_; }
-int sndWrapper::GetInnerHeight(){ return innerHeight_; }
+int sndWrapper::GetInnerLeft() { return innerLeft_; }
+int sndWrapper::GetInnerTop() { return innerTop_; }
+int sndWrapper::GetInnerRight() { return innerRight_; }
+int sndWrapper::GetInnerBottom() { return innerBottom_; }
+int sndWrapper::GetInnerWidth() { return innerWidth_; }
+int sndWrapper::GetInnerHeight() { return innerHeight_; }
 
 std::vector<sndWrapper> sndWrapper::GetWrappers()
 {
@@ -209,13 +241,18 @@ void sndWrapper::Update()
 {
     frameWeight_ = margin_ + border_ + padding_;
 
-    innerLeft_ = GetOuterLeft() + frameWeight_;
-    innerTop_ = GetOuterTop() + frameWeight_;
-    innerRight_ = GetOuterRight() - frameWeight_;
-    innerBottom_ = GetOuterBottom() - frameWeight_;
+    innerLeft_ = outerLeft_ + frameWeight_;
+    innerTop_ = outerTop_ + frameWeight_;
+    innerRight_ = outerRight_ - frameWeight_;
+    innerBottom_ = outerBottom_ - frameWeight_;
     innerWidth_ = innerRight_ - innerLeft_;
     innerHeight_ = innerBottom_ - innerTop_;
 }
+
+sndButton::sndButton()
+    : sndWrapper(){};
+sndButton::sndButton(int left, int top, int right, int bottom)
+    : sndWrapper(left, top, right, bottom){};
 
 void sndButton::Render()
 {
@@ -223,16 +260,14 @@ void sndButton::Render()
 
     if (GuiButton(
             (Rectangle){
-                static_cast<float>(element.GetOuterLeft()),
-                static_cast<float>(element.GetOuterTop()),
-                static_cast<float>(element.GetOuterWidth()),
-                static_cast<float>(element.GetOuterHeight())},
+                static_cast<float>(GetOuterLeft()),
+                static_cast<float>(GetOuterTop()),
+                static_cast<float>(GetOuterWidth()),
+                static_cast<float>(GetOuterHeight())},
             GetText()))
     {
         GetFunction();
     };
-
-
 }
 
 void sndButton::SetText(const char* text)

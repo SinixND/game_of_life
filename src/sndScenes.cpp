@@ -6,10 +6,10 @@ scenes currentScene = MENU;
 
 void Scene::Initialize()
 {
-    main.SetOuterLeft(0);
-    main.SetOuterTop(0);
-    main.SetOuterRight(GetRenderWidth());
-    main.SetOuterBottom(GetRenderHeight());
+    main.ResizeOuterLeft(0);
+    main.ResizeOuterTop(0);
+    main.ResizeOuterRight(GetRenderWidth());
+    main.ResizeOuterBottom(GetRenderHeight());
 }
 
 void Scene::Update()
