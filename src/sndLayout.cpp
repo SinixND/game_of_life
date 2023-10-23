@@ -84,23 +84,13 @@ void sndWrapper::ClearWrappers()
     wrappers_.clear();
 }
 
-void sndWrapper::AddButton(const char* text, void (*f)(), int x, int y, sndAlign flags, int offset)
+void sndWrapper::AddButton(const char* text, void (*function)(), int x, int y, sndAlign flags, int offset)
 {
-    sndWrapper element(x, y, MeasureText(text, global.textSizeDefault), global.textSizeDefault);
+    sndButton element(x, y, MeasureText(text, global.textSizeDefault), global.textSizeDefault);
+    element.SetFunction(function);
 
     this->Append(element, flags, offset);
 
-    // ADD THIS CALLABLE FROM OBJECT
-    if (GuiButton(
-            (Rectangle){
-                static_cast<float>(element.GetOuterLeft()),
-                static_cast<float>(element.GetOuterTop()),
-                static_cast<float>(element.GetOuterWidth()),
-                static_cast<float>(element.GetOuterHeight())},
-            text))
-    {
-        f;
-    };
 }
 
 int sndWrapper::GetOuterLeft(){ return outerLeft_; }
@@ -225,6 +215,29 @@ void sndWrapper::Update()
     innerWidth_ = innerRight_ - innerLeft_;
     innerHeight_ = innerBottom_ - innerTop_;
 }
+
+void sndButton::Render()
+{
+    sndWrapper::Render();
+
+    if (GuiButton(
+            (Rectangle){
+                static_cast<float>(element.GetOuterLeft()),
+                static_cast<float>(element.GetOuterTop()),
+                static_cast<float>(element.GetOuterWidth()),
+                static_cast<float>(element.GetOuterHeight())},
+            GetText()))
+    {
+        GetFunction();
+    };
+
+
+}
+
+void sndButton::SetText(const char* text){}
+const char* sndButton::GetText(){}
+std::function<void> sndButton::GetFunction(){}
+void sndButton::SetFunction(void (*function)()){}
 
 int AlignHorizontalLeft(sndWrapper* parent, int offset)
 {

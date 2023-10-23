@@ -38,7 +38,7 @@ public:
     void Render();
     void AddWrapper(sndWrapper wrapper);
     void ClearWrappers();
-    void AddButton(const char* text, void (*f)(), int x, int y, sndAlign flags, int offset);
+    void AddButton(const char* text, void (*function)(), int x, int y, sndAlign flags, int offset);
 
     int GetOuterLeft();
     void SetOuterLeft(int outerLeft);
@@ -100,6 +100,19 @@ private:
     
     void Update();
 
+};
+
+class sndButton : public sndWrapper
+{
+public:
+    void SetText(const char* text);
+    const char* GetText();
+    std::function<void> GetFunction();
+    void SetFunction(void (*function)());
+
+private:
+    const char* text_;
+    std::function<void> function_;
 };
 
 int AlignHorizontalLeft(sndWrapper* parent, int offset);
