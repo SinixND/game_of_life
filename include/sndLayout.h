@@ -3,6 +3,7 @@
 
 #include <raylib.h>
 #include <vector>
+#include <functional>
 
 /* LAYOUT BOX STRUCTURE
 
@@ -38,7 +39,7 @@ public:
     void Render();
     void AddWrapper(sndWrapper wrapper);
     void ClearWrappers();
-    void AddButton(const char* text, void (*function)(), int x, int y, sndAlign flags, int offset);
+    void AddButton(const char* text, std::function<void()> fn, int x, int y, sndAlign flags, int offset);
 
     int GetOuterLeft();
     void SetOuterLeft(int outerLeft);
@@ -105,14 +106,16 @@ private:
 class sndButton : public sndWrapper
 {
 public:
+    void Render();
+
     void SetText(const char* text);
     const char* GetText();
-    std::function<void> GetFunction();
-    void SetFunction(void (*function)());
+    std::function<void()> GetFunction();
+    void SetFunction(std::function<void()> fn);
 
 private:
     const char* text_;
-    std::function<void> function_;
+    std::function<void()> fn_;
 };
 
 int AlignHorizontalLeft(sndWrapper* parent, int offset);

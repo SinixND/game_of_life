@@ -5,6 +5,7 @@
 #include <raygui.h>
 #include <raylib.h>
 #include <vector>
+#include <functional>
 #include "sndGlobals.h"
 
 sndWrapper::sndWrapper()
@@ -84,10 +85,10 @@ void sndWrapper::ClearWrappers()
     wrappers_.clear();
 }
 
-void sndWrapper::AddButton(const char* text, void (*function)(), int x, int y, sndAlign flags, int offset)
+void sndWrapper::AddButton(const char* text, std::function<void()> fn, int x, int y, sndAlign flags, int offset)
 {
     sndButton element(x, y, MeasureText(text, global.textSizeDefault), global.textSizeDefault);
-    element.SetFunction(function);
+    element.SetFunction(fn);
 
     this->Append(element, flags, offset);
 
@@ -234,10 +235,25 @@ void sndButton::Render()
 
 }
 
-void sndButton::SetText(const char* text){}
-const char* sndButton::GetText(){}
-std::function<void> sndButton::GetFunction(){}
-void sndButton::SetFunction(void (*function)()){}
+void sndButton::SetText(const char* text)
+{
+    text_ = text;
+}
+
+const char* sndButton::GetText()
+{
+    return text_;
+}
+
+void sndButton::SetFunction(std::function<void()> fn)
+{
+    fn_ = fn;
+}
+
+std::function<void()> sndButton::GetFunction()
+{
+    return fn_;
+}
 
 int AlignHorizontalLeft(sndWrapper* parent, int offset)
 {
