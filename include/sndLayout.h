@@ -122,12 +122,12 @@ public:
 
     void SetText(const char* text);
     const char* GetText();
-    std::function<void()> GetFunction();
-    void SetFunction(std::function<void()> fn);
+    std::function<void()> GetAction();
+    void SetAction(std::function<void()> action);
 
 private:
     const char* text_;
-    std::function<void()> fn_;
+    std::function<void()> action_;
 };
 
 int AlignHorizontalLeft(sndWrapper* parent, int offset);

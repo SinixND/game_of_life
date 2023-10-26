@@ -104,7 +104,7 @@ void sndWrapper::AddButton(const char* text, std::function<void()> fn, sndAlign 
     std::shared_ptr<sndButton> button(new sndButton("button", 0, 0, MeasureText(text, global.textSizeDefault), global.textSizeDefault));
 
     button->SetText(text);
-    button->SetFunction(fn);
+    button->SetAction(fn);
 
     Append(button, flags, offset);
 }
@@ -148,7 +148,7 @@ void sndButton::Render()
                 static_cast<float>(GetOuterHeight())},
             GetText()))
     {
-        GetFunction()();
+        GetAction()();
     };
 }
 
@@ -303,14 +303,14 @@ const char* sndButton::GetText()
     return text_;
 }
 
-void sndButton::SetFunction(std::function<void()> fn)
+void sndButton::SetAction(std::function<void()> action)
 {
-    fn_ = fn;
+    action_ = action;
 }
 
-std::function<void()> sndButton::GetFunction()
+std::function<void()> sndButton::GetAction()
 {
-    return fn_;
+    return action_;
 }
 //-------------------------------------
 
