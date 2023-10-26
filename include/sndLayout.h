@@ -35,10 +35,10 @@ public:
     sndWrapper();
     sndWrapper(int left, int top, int right, int bottom);
 
-    void Append(sndWrapper element, sndAlign flags, int offset);
     void Render();
     void AddWrapper(sndWrapper wrapper);
     void ClearWrappers();
+    void Append(sndWrapper element, sndAlign flags, int offset);
     void AddButton(const char* text, std::function<void()> fn, sndAlign flags, int offset);
 
     int GetOuterLeft();

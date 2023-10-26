@@ -71,7 +71,7 @@ MAKEFLAGS :=
 # -W(all/extra): 		enable warnings
 # -std=c++17:	force c++ standard
 # -MMD			provides dependency information (header files) for make in .d files
-CXX_FLAGS := `pkg-config --cflags $(LIBRARIES)` -g -Wall -Wextra -MMD -O2 #-Wpedantic 
+CXX_FLAGS := `pkg-config --cflags $(LIBRARIES)` -g -Wall -Wextra -MMD -Og #-Wpedantic 
 
 #######################
 ### DONT EDIT BELOW ###
@@ -146,6 +146,7 @@ clean:
 rebuild: clean 
 	@$(MAKE)
 
+deploy: CXX_FLAGS += -O3 
 deploy: rebuild 
 	@$(MAKE) web
 	@$(MAKE) clean

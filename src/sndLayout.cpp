@@ -23,6 +23,34 @@ sndWrapper::sndWrapper(int left, int top, int right, int bottom)
     Update();
 };
 
+void sndWrapper::Render()
+{
+    Rectangle frameRect{
+        static_cast<float>(GetOuterLeft()),
+        static_cast<float>(GetOuterTop()),
+        static_cast<float>(GetOuterWidth()),
+        static_cast<float>(GetOuterHeight())};
+    DrawRectangleLinesEx(frameRect, this->GetFrameWeight(), this->GetFrameColor());
+
+    if (wrappers_.size() == 0)
+        return;
+
+    for (auto wrapper : wrappers_)
+    {
+        wrapper.Render();
+    }
+}
+
+void sndWrapper::AddWrapper(sndWrapper wrapper)
+{
+    wrappers_.push_back(wrapper);
+}
+
+void sndWrapper::ClearWrappers()
+{
+    wrappers_.clear();
+}
+
 void sndWrapper::Append(sndWrapper element, sndAlign flags, int offset)
 {
     int positionLeft = 0;
@@ -57,35 +85,8 @@ void sndWrapper::Append(sndWrapper element, sndAlign flags, int offset)
     element.MoveOuterLeft(positionLeft);
     element.MoveOuterTop(positionTop);
 
-    this->AddWrapper(element);
-}
-
-void sndWrapper::Render()
-{
-    Rectangle frameRect{
-        static_cast<float>(GetOuterLeft()),
-        static_cast<float>(GetOuterTop()),
-        static_cast<float>(GetOuterWidth()),
-        static_cast<float>(GetOuterHeight())};
-    DrawRectangleLinesEx(frameRect, this->GetFrameWeight(), this->GetFrameColor());
-
-    if (wrappers_.size() == 0)
-        return;
-
-    for (auto wrapper : wrappers_)
-    {
-        wrapper.Render();
-    }
-}
-
-void sndWrapper::AddWrapper(sndWrapper wrapper)
-{
-    wrappers_.push_back(wrapper);
-}
-
-void sndWrapper::ClearWrappers()
-{
-    wrappers_.clear();
+    //this->AddWrapper(element);
+    AddWrapper(element);
 }
 
 void sndWrapper::AddButton(const char* text, std::function<void()> fn, sndAlign flags, int offset)
@@ -96,6 +97,43 @@ void sndWrapper::AddButton(const char* text, std::function<void()> fn, sndAlign 
 
     this->Append(element, flags, offset);
 }
+
+void sndWrapper::Update()
+{
+    frameWeight_ = margin_ + border_ + padding_;
+
+    innerLeft_ = outerLeft_ + frameWeight_;
+    innerTop_ = outerTop_ + frameWeight_;
+    innerRight_ = outerRight_ - frameWeight_;
+    innerBottom_ = outerBottom_ - frameWeight_;
+    innerWidth_ = innerRight_ - innerLeft_;
+    innerHeight_ = innerBottom_ - innerTop_;
+}
+
+sndButton::sndButton()
+    : sndWrapper(){};
+
+sndButton::sndButton(int left, int top, int right, int bottom)
+    : sndWrapper(left, top, right, bottom){};
+
+void sndButton::Render()
+{
+    sndWrapper::Render();
+
+    if (GuiButton(
+            (Rectangle){
+                static_cast<float>(GetOuterLeft()),
+                static_cast<float>(GetOuterTop()),
+                static_cast<float>(GetOuterWidth()),
+                static_cast<float>(GetOuterHeight())},
+            GetText()))
+    {
+        GetFunction();
+    };
+}
+
+// SETTERS AND GETTERS
+//-------------------------------------
 
 int sndWrapper::GetOuterLeft() { return outerLeft_; }
 void sndWrapper::ResizeOuterLeft(int outerLeft)
@@ -237,39 +275,6 @@ std::vector<sndWrapper> sndWrapper::GetWrappers()
     return wrappers_;
 }
 
-void sndWrapper::Update()
-{
-    frameWeight_ = margin_ + border_ + padding_;
-
-    innerLeft_ = outerLeft_ + frameWeight_;
-    innerTop_ = outerTop_ + frameWeight_;
-    innerRight_ = outerRight_ - frameWeight_;
-    innerBottom_ = outerBottom_ - frameWeight_;
-    innerWidth_ = innerRight_ - innerLeft_;
-    innerHeight_ = innerBottom_ - innerTop_;
-}
-
-sndButton::sndButton()
-    : sndWrapper(){};
-sndButton::sndButton(int left, int top, int right, int bottom)
-    : sndWrapper(left, top, right, bottom){};
-
-void sndButton::Render()
-{
-    sndWrapper::Render();
-
-    if (GuiButton(
-            (Rectangle){
-                static_cast<float>(GetOuterLeft()),
-                static_cast<float>(GetOuterTop()),
-                static_cast<float>(GetOuterWidth()),
-                static_cast<float>(GetOuterHeight())},
-            GetText()))
-    {
-        GetFunction();
-    };
-}
-
 void sndButton::SetText(const char* text)
 {
     text_ = text;
@@ -289,6 +294,7 @@ std::function<void()> sndButton::GetFunction()
 {
     return fn_;
 }
+//-------------------------------------
 
 int AlignHorizontalLeft(sndWrapper* parent, int offset)
 {
