@@ -4,6 +4,7 @@
 #include <raylib.h>
 #include <vector>
 #include <functional>
+#include <memory>
 
 /* LAYOUT BOX STRUCTURE
 
@@ -33,12 +34,15 @@ public:
     //template <typename T1, typename T2, typename T3, typename T4>
     //sndWrapper(T1&& left, T2&& top, T3&& right, T4&& bottom)
     sndWrapper();
-    sndWrapper(int left, int top, int right, int bottom);
+    sndWrapper(char* name);
+    sndWrapper(char* name, int left, int top, int right, int bottom);
 
-    void Render();
-    void AddWrapper(sndWrapper wrapper);
+    const char* name_;
+
+    virtual void Render();
+    void AddWrapper(std::shared_ptr<sndWrapper> wrapper);
     void ClearWrappers();
-    void Append(sndWrapper element, sndAlign flags, int offset);
+    void Append(std::shared_ptr<sndWrapper> element, sndAlign flags, int offset);
     void AddButton(const char* text, std::function<void()> fn, sndAlign flags, int offset);
 
     int GetOuterLeft();
@@ -77,8 +81,6 @@ public:
     int GetInnerWidth();
     int GetInnerHeight();
 
-    std::vector<sndWrapper> GetWrappers();
-
 private:
     int outerLeft_ = 0;
     int outerTop_ = 0;
@@ -101,7 +103,7 @@ private:
     int innerWidth_ = innerRight_ - innerLeft_;
     int innerHeight_ = innerBottom_ - innerTop_;
 
-    std::vector<sndWrapper> wrappers_;
+    std::vector<std::shared_ptr<sndWrapper>> wrappers_;
     
     void Update();
 
@@ -113,7 +115,8 @@ class sndButton : public sndWrapper
 {
 public:
     sndButton();
-    sndButton(int left, int top, int right, int bottom);
+    sndButton(char* name);
+    sndButton(char* name, int left, int top, int right, int bottom);
 
     void Render();
 

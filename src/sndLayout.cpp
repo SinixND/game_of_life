@@ -7,14 +7,22 @@
 #include <raygui.h>
 #include <raylib.h>
 #include <vector>
+#include <memory>
 
 sndWrapper::sndWrapper()
 {
     Update();
 };
 
-sndWrapper::sndWrapper(int left, int top, int right, int bottom)
+sndWrapper::sndWrapper(char* name)
 {
+    name_ = name;
+    Update();
+};
+
+sndWrapper::sndWrapper(char* name, int left, int top, int right, int bottom)
+{
+    name_ = name;
     ResizeOuterLeft(left);
     ResizeOuterTop(top);
     ResizeOuterRight(right);
@@ -33,15 +41,17 @@ void sndWrapper::Render()
     DrawRectangleLinesEx(frameRect, this->GetFrameWeight(), this->GetFrameColor());
 
     if (wrappers_.size() == 0)
+    {
         return;
+    }
 
     for (auto wrapper : wrappers_)
     {
-        wrapper.Render();
+        wrapper->Render();
     }
 }
 
-void sndWrapper::AddWrapper(sndWrapper wrapper)
+void sndWrapper::AddWrapper(std::shared_ptr<sndWrapper> wrapper)
 {
     wrappers_.push_back(wrapper);
 }
@@ -51,7 +61,7 @@ void sndWrapper::ClearWrappers()
     wrappers_.clear();
 }
 
-void sndWrapper::Append(sndWrapper element, sndAlign flags, int offset)
+void sndWrapper::Append(std::shared_ptr<sndWrapper> element, sndAlign flags, int offset)
 {
     int positionLeft = 0;
     int positionTop = 0;
@@ -62,11 +72,11 @@ void sndWrapper::Append(sndWrapper element, sndAlign flags, int offset)
     }
     else if (flags & CENTER_HORIZONTAL)
     {
-        positionLeft = AlignHorizontalCenter(this, element.GetOuterWidth(), offset);
+        positionLeft = AlignHorizontalCenter(this, element->GetOuterWidth(), offset);
     }
     else if (flags & RIGHT)
     {
-        positionLeft = AlignHorizontalRight(this, element.GetOuterWidth(), offset);
+        positionLeft = AlignHorizontalRight(this, element->GetOuterWidth(), offset);
     }
 
     if (flags & TOP)
@@ -75,27 +85,28 @@ void sndWrapper::Append(sndWrapper element, sndAlign flags, int offset)
     }
     else if (flags & CENTER_VERTICAL)
     {
-        positionTop = AlignVerticalCenter(this, element.GetOuterHeight(), offset);
+        positionTop = AlignVerticalCenter(this, element->GetOuterHeight(), offset);
     }
     else if (flags & BOTTOM)
     {
-        positionTop = AlignVerticalBottom(this, element.GetOuterHeight(), offset);
+        positionTop = AlignVerticalBottom(this, element->GetOuterHeight(), offset);
     };
 
-    element.MoveOuterLeft(positionLeft);
-    element.MoveOuterTop(positionTop);
+    element->MoveOuterLeft(positionLeft);
+    element->MoveOuterTop(positionTop);
 
     //this->AddWrapper(element);
-    AddWrapper(element);
+    wrappers_.push_back(element);
 }
 
 void sndWrapper::AddButton(const char* text, std::function<void()> fn, sndAlign flags, int offset)
 {
-    sndButton element(0, 0, MeasureText(text, global.textSizeDefault), global.textSizeDefault);
-    element.SetText(text);
-    element.SetFunction(fn);
+    std::shared_ptr<sndButton> button(new sndButton("button", 0, 0, MeasureText(text, global.textSizeDefault), global.textSizeDefault));
 
-    this->Append(element, flags, offset);
+    button->SetText(text);
+    button->SetFunction(fn);
+
+    Append(button, flags, offset);
 }
 
 void sndWrapper::Update()
@@ -113,8 +124,17 @@ void sndWrapper::Update()
 sndButton::sndButton()
     : sndWrapper(){};
 
-sndButton::sndButton(int left, int top, int right, int bottom)
-    : sndWrapper(left, top, right, bottom){};
+sndButton::sndButton(char* name)
+    : sndWrapper(name)
+{
+    name_ = name;
+};
+
+sndButton::sndButton(char* name, int left, int top, int right, int bottom)
+    : sndWrapper(name, left, top, right, bottom)
+{
+    name_ = name;
+};
 
 void sndButton::Render()
 {
@@ -128,7 +148,7 @@ void sndButton::Render()
                 static_cast<float>(GetOuterHeight())},
             GetText()))
     {
-        GetFunction();
+        GetFunction()();
     };
 }
 
@@ -203,15 +223,16 @@ void sndWrapper::SetMargin(int marginWeight)
 {
     margin_ = marginWeight;
 
-    sndWrapper margin(
+    std::shared_ptr<sndWrapper> margin(new sndWrapper(
+        "margin",
         this->GetOuterLeft(),
         this->GetOuterTop(),
         this->GetOuterRight(),
-        this->GetOuterBottom());
-    margin.SetFrameWeight(marginWeight);
+        this->GetOuterBottom()));
+    margin->SetFrameWeight(marginWeight);
 
 #ifdef DEBUGGING
-    margin.SetFrameColor(RED);
+    margin->SetFrameColor(RED);
 #endif
 
     AddWrapper(margin);
@@ -223,15 +244,16 @@ void sndWrapper::SetBorder(int borderWeight)
 {
     border_ = borderWeight;
 
-    sndWrapper border(
+    std::shared_ptr<sndWrapper> border(new sndWrapper(
+        "border",
         this->GetOuterLeft() + this->GetMargin(),
         this->GetOuterTop() + this->GetMargin(),
         this->GetOuterRight() - this->GetMargin(),
-        this->GetOuterBottom() - this->GetMargin());
-    border.SetFrameWeight(borderWeight);
+        this->GetOuterBottom() - this->GetMargin()));
+    border->SetFrameWeight(borderWeight);
 
 #ifdef DEBUGGING
-    border.SetFrameColor(GRAY);
+    border->SetFrameColor(GRAY);
 #endif
 
     AddWrapper(border);
@@ -243,15 +265,16 @@ void sndWrapper::SetPadding(int paddingWeight)
 {
     padding_ = paddingWeight;
 
-    sndWrapper padding(
+    std::shared_ptr<sndWrapper> padding(new sndWrapper(
+        "padding",
         this->GetOuterLeft() + this->GetMargin() + this->GetBorder(),
         this->GetOuterTop() + this->GetMargin() + this->GetBorder(),
         this->GetOuterRight() - this->GetMargin() - this->GetBorder(),
-        this->GetOuterBottom() - this->GetMargin() - this->GetBorder());
-    padding.SetFrameWeight(paddingWeight);
+        this->GetOuterBottom() - this->GetMargin() - this->GetBorder()));
+    padding->SetFrameWeight(paddingWeight);
 
 #ifdef DEBUGGING
-    padding.SetFrameColor(GREEN);
+    padding->SetFrameColor(GREEN);
 #endif
 
     AddWrapper(padding);
@@ -269,11 +292,6 @@ int sndWrapper::GetInnerRight() { return innerRight_; }
 int sndWrapper::GetInnerBottom() { return innerBottom_; }
 int sndWrapper::GetInnerWidth() { return innerWidth_; }
 int sndWrapper::GetInnerHeight() { return innerHeight_; }
-
-std::vector<sndWrapper> sndWrapper::GetWrappers()
-{
-    return wrappers_;
-}
 
 void sndButton::SetText(const char* text)
 {
