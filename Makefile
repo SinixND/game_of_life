@@ -104,7 +104,7 @@ OBJS := $(patsubst %,$(OBJ_DIR)/%.$(OBJ_EXT),$(SRC_NAMES))
 DEPS := $(patsubst $(OBJ_DIR)/%.$(OBJ_EXT),$(OBJ_DIR)/%.$(DEP_EXT),$(OBJS))
 
 ### Non-file (.phony)targets (or rules)
-.PHONY: all build web clean rebuild deploy run
+.PHONY: all build web clean rebuild release run
 
 ### default rule by convention
 all: build 
@@ -146,8 +146,8 @@ clean:
 rebuild: clean 
 	@$(MAKE)
 
-deploy: CXX_FLAGS += -O3 
-deploy: rebuild 
+release: CXX_FLAGS += -O3 
+release: rebuild 
 	@$(MAKE) web
 	@$(MAKE) clean
 
