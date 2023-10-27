@@ -71,7 +71,9 @@ MAKEFLAGS :=
 # -W(all/extra): 		enable warnings
 # -std=c++17:	force c++ standard
 # -MMD			provides dependency information (header files) for make in .d files
-CXX_FLAGS := `pkg-config --cflags $(LIBRARIES)` -g -Wall -Wextra -MMD -Og #-Wpedantic 
+CXX_FLAGS := `pkg-config --cflags $(LIBRARIES)`
+DEBUG_FLAGS := -g -Wall -Wextra -MMD -Og #-Wpedantic 
+RELEASE_FLAGS := -MMD -O3
 
 #######################
 ### DONT EDIT BELOW ###
@@ -112,8 +114,7 @@ all: build
 ### rule for native build process with binary as prerequisite
 build: $(BIN_DIR)/$(TARGET).$(TARGET_EXT)
 
-# LINKER COMMANDS
-
+# === LINKER COMMANDS ===
 ### MAKE binary file FROM object files
 $(BIN_DIR)/$(TARGET).$(TARGET_EXT): $(OBJS)
 ### make folder for binary file
@@ -122,15 +123,38 @@ $(BIN_DIR)/$(TARGET).$(TARGET_EXT): $(OBJS)
 ### $^ (all prerequesites, all right of ":")
 	$(CXX) -o $@ $^ $(LIB_FLAGS) $(LD_LIBS) 
 
-# COMPILER COMMANDS
-
+# === COMPILER COMMANDS ===
 ### MAKE object files FROM source files; "%" pattern-matches (need pair of)
 $(OBJ_DIR)/%.$(OBJ_EXT): %.$(SRC_EXT)
 ### copy source structure for object file directory
 	@mkdir -p $(OBJ_DIR)
 ### $< (first prerequesite, first right of ":")
 ### $@ (target, left of ":")
-	$(CXX) -o $@ -c $< $(CXX_FLAGS) $(INC_FLAGS)
+	$(CXX) -o $@ -c $< $(CXX_FLAGS) $(DEBUG_FLAGS) $(INC_FLAGS)
+
+release: $(BIN_DIR)/$(TARGET).$(TARGET_EXT)
+	@$(MAKE) clean
+
+# === LINKER COMMANDS ===
+### MAKE binary file FROM object files
+$(BIN_DIR)/$(TARGET).$(TARGET_EXT): $(OBJS)
+### make folder for binary file
+	@mkdir -p $(BIN_DIR)
+### $@ (target, left of ":")
+### $^ (all prerequesites, all right of ":")
+	$(CXX) -o $@ $^ $(LIB_FLAGS) $(LD_LIBS) 
+
+# === COMPILER COMMANDS ===
+### MAKE object files FROM source files; "%" pattern-matches (need pair of)
+$(OBJ_DIR)/%.$(OBJ_EXT): %.$(SRC_EXT)
+### copy source structure for object file directory
+	@mkdir -p $(OBJ_DIR)
+### $< (first prerequesite, first right of ":")
+### $@ (target, left of ":")
+	$(CXX) -o $@ -c $< $(CXX_FLAGS) $(RELEASE_FLAGS) $(INC_FLAGS)
+
+	@$(MAKE) web
+	@$(MAKE) clean
 
 ### rule for web build process
 web:
@@ -145,11 +169,6 @@ clean:
 ### clean dynamically created directories before building fresh
 rebuild: clean 
 	@$(MAKE)
-
-release: CXX_FLAGS += -O3 
-release: rebuild 
-	@$(MAKE) web
-	@$(MAKE) clean
 
 ### run binary file after building
 run: build
