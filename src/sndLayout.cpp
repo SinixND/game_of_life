@@ -286,7 +286,15 @@ sndButton::sndButton(const char* text, std::function<void()> fn,  std::shared_pt
     AdjustPosition(parent, flags, offset);
 }
 
-sndButton::~sndButton(){};
+sndButton::sndButton(const char* text, std::function<void()> fn, int left, int top, int right, int bottom)
+    : sndWrapper(text, left, top, right, bottom)
+{
+    name_ = text;
+    SetText(text);
+    SetAction(fn);
+}
+
+sndButton::~sndButton(){}
 
 void sndButton::Render()
 {

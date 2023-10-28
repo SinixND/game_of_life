@@ -89,9 +89,10 @@ void Menu::Initialize()
         {
             currentScene = SETTINGS;
         },
-        content,
-        (sndAlign)(CENTER_HORIZONTAL | TOP),
-        0));
+        start->GetOuterLeft(),
+        start->GetOuterTop(),
+        start->GetOuterRight(),
+        start->GetOuterBottom()));
     settings->AttachToBottom(start);
     content->AddWrapper(settings);
 

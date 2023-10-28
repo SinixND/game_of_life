@@ -120,6 +120,7 @@ public:
     sndButton();
     sndButton(const char* text);
     sndButton(const char* text, std::function<void()> fn, std::shared_ptr<sndWrapper> parent, sndAlign flags, int offset);
+    sndButton(const char* text, std::function<void()> fn, int left, int top, int right, int bottom);
     ~sndButton();
 
     void Render();
