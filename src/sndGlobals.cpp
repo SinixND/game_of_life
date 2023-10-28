@@ -10,6 +10,7 @@ Global::Global()
     , darkMode(true)
     , background(WHITE)
     , foreground(BLACK)
+    , exitApp(false)
 {
     SetColors();
 };

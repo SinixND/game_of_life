@@ -19,7 +19,7 @@ int main()
 
     // MAIN APP LOOP
     //---------------------------------
-    while (!WindowShouldClose()) // Detect window close button or ESC key
+    while (!WindowShouldClose() && !global.exitApp) // Detect window close button or ESC key
     {
         switch (currentScene)
         {

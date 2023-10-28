@@ -31,19 +31,21 @@ typedef enum sndAlign
 class sndWrapper
 {
 public:
-    //template <typename T1, typename T2, typename T3, typename T4>
-    //sndWrapper(T1&& left, T2&& top, T3&& right, T4&& bottom)
     sndWrapper();
-    sndWrapper(char* name);
-    sndWrapper(char* name, int left, int top, int right, int bottom);
+    sndWrapper(const char* name);
+    sndWrapper(const char* name, int left, int top, int right, int bottom);
+    ~sndWrapper();
 
     const char* name_;
 
     virtual void Render();
     void AddWrapper(std::shared_ptr<sndWrapper> wrapper);
     void ClearWrappers();
-    void Append(std::shared_ptr<sndWrapper> element, sndAlign flags, int offset);
-    void AddButton(const char* text, std::function<void()> fn, sndAlign flags, int offset);
+    void AdjustPosition(std::shared_ptr<sndWrapper> element, sndAlign flags, int offset);
+    void AttachToLeft(std::shared_ptr<sndWrapper> parent);
+    void AttachToTop(std::shared_ptr<sndWrapper> parent);
+    void AttachToRight(std::shared_ptr<sndWrapper> parent);
+    void AttachToBottom(std::shared_ptr<sndWrapper> parent);
 
     int GetOuterLeft();
     void ResizeOuterLeft(int outerLeft);
@@ -89,12 +91,13 @@ private:
     int outerWidth_ = 0;
     int outerHeight_ = 0;
 
-    int margin_{0};
+    int margin_{1};
     int border_{0};
-    int padding_{0};
+    int padding_{1};
+
     int frameWeight_{0};
-    //Color frameColor_ = BLANK; 
-    Color frameColor_ = GRAY; 
+
+    Color frameColor_ = BLANK; 
 
     int innerLeft_ = outerLeft_ + frameWeight_;
     int innerTop_ = outerTop_ + frameWeight_;
@@ -115,8 +118,9 @@ class sndButton : public sndWrapper
 {
 public:
     sndButton();
-    sndButton(char* name);
-    sndButton(char* name, int left, int top, int right, int bottom);
+    sndButton(const char* text);
+    sndButton(const char* text, std::function<void()> fn, std::shared_ptr<sndWrapper> parent, sndAlign flags, int offset);
+    ~sndButton();
 
     void Render();
 

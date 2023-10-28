@@ -10,6 +10,7 @@ class Global
 public:
     Global();
 
+    bool exitApp;
     // GUI ELEMENTS
     float textSizeDefault;
     float guiButtonBaseWidth;

@@ -71,9 +71,7 @@ MAKEFLAGS :=
 # -W(all/extra): 		enable warnings
 # -std=c++17:	force c++ standard
 # -MMD			provides dependency information (header files) for make in .d files
-CXX_FLAGS := `pkg-config --cflags $(LIBRARIES)`
-DEBUG_FLAGS := -g -Wall -Wextra -MMD -Og #-Wpedantic 
-RELEASE_FLAGS := -MMD -O3
+CXX_FLAGS := `pkg-config --cflags $(LIBRARIES)` -g -Wall -Wextra -MMD -Og #-Wpedantic 
 
 #######################
 ### DONT EDIT BELOW ###
@@ -108,8 +106,16 @@ DEPS := $(patsubst $(OBJ_DIR)/%.$(OBJ_EXT),$(OBJ_DIR)/%.$(DEP_EXT),$(OBJS))
 ### Non-file (.phony)targets (or rules)
 .PHONY: all build web clean rebuild release run
 
+
 ### default rule by convention
 all: build 
+
+
+### rule for release build process with binary as prerequisite
+release: rebuild
+	@$(MAKE) web
+	@$(MAKE) clean
+
 
 ### rule for native build process with binary as prerequisite
 build: $(BIN_DIR)/$(TARGET).$(TARGET_EXT)
@@ -130,31 +136,8 @@ $(OBJ_DIR)/%.$(OBJ_EXT): %.$(SRC_EXT)
 	@mkdir -p $(OBJ_DIR)
 ### $< (first prerequesite, first right of ":")
 ### $@ (target, left of ":")
-	$(CXX) -o $@ -c $< $(CXX_FLAGS) $(DEBUG_FLAGS) $(INC_FLAGS)
+	$(CXX) -o $@ -c $< $(CXX_FLAGS) $(INC_FLAGS)
 
-release: $(BIN_DIR)/$(TARGET).$(TARGET_EXT)
-	@$(MAKE) clean
-
-# === LINKER COMMANDS ===
-### MAKE binary file FROM object files
-$(BIN_DIR)/$(TARGET).$(TARGET_EXT): $(OBJS)
-### make folder for binary file
-	@mkdir -p $(BIN_DIR)
-### $@ (target, left of ":")
-### $^ (all prerequesites, all right of ":")
-	$(CXX) -o $@ $^ $(LIB_FLAGS) $(LD_LIBS) 
-
-# === COMPILER COMMANDS ===
-### MAKE object files FROM source files; "%" pattern-matches (need pair of)
-$(OBJ_DIR)/%.$(OBJ_EXT): %.$(SRC_EXT)
-### copy source structure for object file directory
-	@mkdir -p $(OBJ_DIR)
-### $< (first prerequesite, first right of ":")
-### $@ (target, left of ":")
-	$(CXX) -o $@ -c $< $(CXX_FLAGS) $(RELEASE_FLAGS) $(INC_FLAGS)
-
-	@$(MAKE) web
-	@$(MAKE) clean
 
 ### rule for web build process
 web:
@@ -162,17 +145,21 @@ web:
 	@mkdir -p $(WEB_DIR)
 	@emcc -o web/game.html $(SRCS) -Os -Wall $(RAYLIB_DIR)/libraylib.a $(LOC_INC_FLAGS) -I$(RAYLIB_DIR) -L$(RAYLIB_DIR) -s USE_GLFW=3 -s ASYNCIFY --shell-file $(RAYLIB_DIR)/minshell.html -DPLATFORM_WEB
 
+
 ### clear dynamically created directories
 clean:
 	@rm -rf $(OBJ_DIR) $(shell find . -type f -wholename "*.d") $(shell find . -type f -wholename "*.o") 
+
 
 ### clean dynamically created directories before building fresh
 rebuild: clean 
 	@$(MAKE)
 
+
 ### run binary file after building
 run: build
 	@$(BIN_DIR)/$(TARGET).$(TARGET_EXT)
+
 
 ### "-" surpresses error for initial missing .d files
 -include $(DEPS)
