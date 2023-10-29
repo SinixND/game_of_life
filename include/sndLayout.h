@@ -128,10 +128,10 @@ public:
     std::function<void()> GetAction();
     void SetAction(std::function<void()> action);
 
-    void AttachToLeft(std::shared_ptr<sndWrapper> parent);
-    void AttachToTop(std::shared_ptr<sndWrapper> parent);
-    void AttachToRight(std::shared_ptr<sndWrapper> parent);
-    void AttachToBottom(std::shared_ptr<sndWrapper> parent);
+    void AttachToLeft(std::shared_ptr<sndButton> parent);
+    void AttachToTop(std::shared_ptr<sndButton> parent);
+    void AttachToRight(std::shared_ptr<sndButton> parent);
+    void AttachToBottom(std::shared_ptr<sndButton> parent);
 
 private:
     std::function<void()> action_;

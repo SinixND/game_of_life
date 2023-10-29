@@ -315,13 +315,13 @@ std::function<void()> sndButton::GetAction()
     return action_;
 }
 
-void sndButton::AttachToLeft(std::shared_ptr<sndWrapper> parent)
+void sndButton::AttachToLeft(std::shared_ptr<sndButton> parent)
 {
     parent_ = parent.get();
 
     if (alignedHorizontal == CENTER_HORIZONTAL)
     {
-        sndWrapper* nextParent = parent.get();
+        sndButton* nextParent = parent.get();
 
         do
         {
@@ -333,13 +333,13 @@ void sndButton::AttachToLeft(std::shared_ptr<sndWrapper> parent)
     MoveOuterRight(parent.get()->GetOuterLeft());
 }
 
-void sndButton::AttachToTop(std::shared_ptr<sndWrapper> parent)
+void sndButton::AttachToTop(std::shared_ptr<sndButton> parent)
 {
     parent_ = parent.get();
 
     if (alignedVertical == CENTER_VERTICAL)
     {
-        sndWrapper* nextParent = parent.get();
+        sndButton* nextParent = parent.get();
 
         do
         {
@@ -362,13 +362,13 @@ void sndButton::AttachToTop(std::shared_ptr<sndWrapper> parent)
     }
 }
 
-void sndButton::AttachToRight(std::shared_ptr<sndWrapper> parent)
+void sndButton::AttachToRight(std::shared_ptr<sndButton> parent)
 {
     parent_ = parent.get();
 
     if (alignedHorizontal == CENTER_HORIZONTAL)
     {
-        sndWrapper* nextParent = parent.get();
+        sndButton* nextParent = parent.get();
 
         do
         {
@@ -380,13 +380,13 @@ void sndButton::AttachToRight(std::shared_ptr<sndWrapper> parent)
     MoveOuterLeft(parent.get()->GetOuterRight());
 }
 
-void sndButton::AttachToBottom(std::shared_ptr<sndWrapper> parent)
+void sndButton::AttachToBottom(std::shared_ptr<sndButton> parent)
 {
     parent_ = parent.get();
 
     if (alignedVertical == CENTER_VERTICAL)
     {
-        sndWrapper* nextParent = parent.get();
+        sndButton* nextParent = parent.get();
 
         do
         {
