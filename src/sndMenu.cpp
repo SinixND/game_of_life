@@ -22,7 +22,6 @@ void Menu::Initialize()
         static_cast<int>(main->GetInnerTop() + 2 * global.guiButtonBaseHeight + 2 * main->GetFrameWeight()));
 
     main->AddWrapper(menubar);
-    menubar->SetBorder(1);
 
     auto title = std::make_shared<sndWrapper>(
         "title",
@@ -32,7 +31,6 @@ void Menu::Initialize()
         (main->GetInnerBottom() - menubar->GetOuterBottom()) / 3);
 
     main->AddWrapper(title);
-    title->SetBorder(1);
 
     auto content = std::make_shared<sndWrapper>(
         "content",
@@ -42,7 +40,6 @@ void Menu::Initialize()
         main->GetInnerBottom());
 
     main->AddWrapper(content);
-    content->SetBorder(1);
     //---------------------------------
 
     // GUI-Elements

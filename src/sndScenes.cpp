@@ -5,7 +5,7 @@
 scenes currentScene = MENU;
 
 Scene::Scene()
-    : main(new sndWrapper("main"))
+    : main(std::make_shared<sndWrapper>("main"))
 {
 }
 

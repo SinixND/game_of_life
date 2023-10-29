@@ -22,7 +22,6 @@ public:
     void Update();
 
 protected:
-    //sndWrapper main;
     std::shared_ptr<sndWrapper> main;
 
     void Input();
