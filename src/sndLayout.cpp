@@ -258,14 +258,12 @@ sndButton::sndButton()
 sndButton::sndButton(const char* label)
     : sndWrapper(label)
 {
-    label_ = label;
 }
 
 sndButton::sndButton(const char* label, std::function<void()> fn, std::shared_ptr<sndWrapper> parent, sndAlign flags, int offset)
     : sndWrapper(label, 0, 0, MeasureText(label, global.textSizeDefault) + global.guiButtonBaseWidth, global.textSizeDefault + global.guiButtonBaseHeight)
 {
-    label_ = label;
-    SetLabel(label);
+    //SetLabel(label);
     SetAction(fn);
 
     AdjustPosition(parent, flags, offset);
@@ -274,8 +272,7 @@ sndButton::sndButton(const char* label, std::function<void()> fn, std::shared_pt
 sndButton::sndButton(const char* label, std::function<void()> fn, int left, int top, int right, int bottom)
     : sndWrapper(label, left, top, right, bottom)
 {
-    label_ = label;
-    SetLabel(label);
+    //SetLabel(label);
     SetAction(fn);
 }
 
@@ -293,11 +290,6 @@ void sndButton::Render()
     {
         GetAction()();
     };
-}
-
-void sndButton::SetLabel(const char* text)
-{
-    label_ = text;
 }
 
 const char* sndButton::GetLabel()

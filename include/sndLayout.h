@@ -123,7 +123,6 @@ public:
 
     void Render();
 
-    void SetLabel(const char* label);
     const char* GetLabel();
     std::function<void()> GetAction();
     void SetAction(std::function<void()> action);
