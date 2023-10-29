@@ -20,6 +20,7 @@ margin    m m m m m m m m m m   frame
 
 typedef enum sndAlign
 {
+    NONE = 0x00,
     LEFT = 0x01,
     CENTER_HORIZONTAL = 0x02,
     RIGHT = 0x04,
@@ -32,20 +33,14 @@ class sndWrapper
 {
 public:
     sndWrapper();
-    sndWrapper(const char* name);
-    sndWrapper(const char* name, int left, int top, int right, int bottom);
+    sndWrapper(const char* label);
+    sndWrapper(const char* label, int left, int top, int right, int bottom);
     ~sndWrapper();
-
-    const char* name_;
 
     virtual void Render();
     void AddWrapper(std::shared_ptr<sndWrapper> wrapper);
     void ClearWrappers();
     void AdjustPosition(std::shared_ptr<sndWrapper> element, sndAlign flags, int offset);
-    void AttachToLeft(std::shared_ptr<sndWrapper> parent);
-    void AttachToTop(std::shared_ptr<sndWrapper> parent);
-    void AttachToRight(std::shared_ptr<sndWrapper> parent);
-    void AttachToBottom(std::shared_ptr<sndWrapper> parent);
 
     int GetOuterLeft();
     void ResizeOuterLeft(int outerLeft);
@@ -83,7 +78,7 @@ public:
     int GetInnerWidth();
     int GetInnerHeight();
 
-private:
+protected:
     int outerLeft_ = 0;
     int outerTop_ = 0;
     int outerRight_ = 0;
@@ -108,6 +103,11 @@ private:
 
     std::vector<std::shared_ptr<sndWrapper>> wrappers_;
     
+    const char* label_;
+
+    sndAlign alignedHorizontal = NONE;
+    sndAlign alignedVertical = NONE;
+
     void Update();
 
     void SetFrameWeight(int frameWeight);
@@ -118,21 +118,26 @@ class sndButton : public sndWrapper
 {
 public:
     sndButton();
-    sndButton(const char* text);
-    sndButton(const char* text, std::function<void()> fn, std::shared_ptr<sndWrapper> parent, sndAlign flags, int offset);
-    sndButton(const char* text, std::function<void()> fn, int left, int top, int right, int bottom);
+    sndButton(const char* label);
+    sndButton(const char* label, std::function<void()> fn, std::shared_ptr<sndWrapper> parent, sndAlign flags, int offset);
+    sndButton(const char* label, std::function<void()> fn, int left, int top, int right, int bottom);
     ~sndButton();
 
     void Render();
 
-    void SetText(const char* text);
-    const char* GetText();
+    void SetLabel(const char* label);
+    const char* GetLabel();
     std::function<void()> GetAction();
     void SetAction(std::function<void()> action);
 
+    void AttachToLeft(std::shared_ptr<sndButton> parent);
+    void AttachToTop(std::shared_ptr<sndButton> parent);
+    void AttachToRight(std::shared_ptr<sndButton> parent);
+    void AttachToBottom(std::shared_ptr<sndButton> parent);
+
 private:
-    const char* text_;
     std::function<void()> action_;
+    sndButton* parent_ = nullptr;
 };
 
 int AlignHorizontalLeft(sndWrapper* parent, int offset);

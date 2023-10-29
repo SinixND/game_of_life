@@ -6,13 +6,13 @@
 ### set the used compiler to g++ or clang++
 CXX := g++ 
 
-### set the projects name, used for the targeted cpp file (eg. main.cpp) and the binary (eg. main.exe)
+### set the projects label, used for the targeted cpp file (eg. main.cpp) and the binary (eg. main.exe)
 TARGET := main
 
 ### set the binary file extension
 TARGET_EXT := exe
 
-### name used libraries so the respective -l flags (eg. -lraylib)
+### label used libraries so the respective -l flags (eg. -lraylib)
 LIBRARIES := raylib
 ifdef TERMUX_VERSION
 	LIBRARIES += log
@@ -93,7 +93,7 @@ INC_FLAGS := $(SYS_INC_FLAGS) $(LOC_INC_FLAGS)
 ### list all source files found in source file directory;
 SRCS := $(shell find $(SRC_DIR) -type f)
 SRC_NAMES := $(shell find $(SRC_DIRS) -type f -printf "%f\n")
-### strip file extensions to get a list of sourcefile names
+### strip file extensions to get a list of sourcefile labels
 SRC_NAMES := $(patsubst %.$(SRC_EXT),%,$(SRC_NAMES))
 
 ### make list of object files need for linker command by changing ending of all source files to .o;
@@ -148,7 +148,7 @@ web:
 
 ### clear dynamically created directories
 clean:
-	@rm -rf $(OBJ_DIR) $(shell find . -type f -wholename "*.d") $(shell find . -type f -wholename "*.o") 
+	@rm -rf $(OBJ_DIR) $(shell find . -type f -wholelabel "*.d") $(shell find . -type f -wholelabel "*.o") 
 
 
 ### clean dynamically created directories before building fresh

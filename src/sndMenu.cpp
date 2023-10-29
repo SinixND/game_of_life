@@ -25,9 +25,9 @@ void Menu::Initialize()
         main.GetInnerRight(),
         static_cast<int>(main.GetInnerTop() + 2 * global.guiButtonBaseHeight + 2 * main.GetFrameWeight())));
 
-    menubar->SetMargin(2);
-    menubar->SetBorder(6);
-    menubar->SetPadding(2);
+    //menubar->SetMargin(2);
+    //menubar->SetBorder(6);
+    //menubar->SetPadding(2);
 
     std::shared_ptr<sndWrapper> statusbar(new sndWrapper(
         "statusbar",
@@ -36,9 +36,9 @@ void Menu::Initialize()
         main.GetInnerRight(),
         main.GetInnerBottom()));
 
-    statusbar->SetMargin(2);
-    statusbar->SetBorder(6);
-    statusbar->SetPadding(2);
+    //statusbar->SetMargin(2);
+    //statusbar->SetBorder(6);
+    //statusbar->SetPadding(2);
 
     std::shared_ptr<sndWrapper> title(new sndWrapper(
         "title",
@@ -47,9 +47,9 @@ void Menu::Initialize()
         main.GetInnerRight(),
         statusbar->GetOuterTop() / 3));
 
-    title->SetMargin(2);
-    title->SetBorder(6);
-    title->SetPadding(2);
+    //title->SetMargin(2);
+    //title->SetBorder(6);
+    //title->SetPadding(2);
 
     std::shared_ptr<sndWrapper> content(new sndWrapper(
         "content",
@@ -57,6 +57,8 @@ void Menu::Initialize()
         title->GetOuterBottom(),
         main.GetInnerRight(),
         statusbar->GetOuterTop()));
+
+    content->SetBorder(3);
     //---------------------------------
 
     // GUI-Elements
@@ -79,7 +81,7 @@ void Menu::Initialize()
             currentScene = GAME;
         },
         content,
-        (sndAlign)(CENTER_HORIZONTAL | TOP),
+        (sndAlign)(CENTER_HORIZONTAL | CENTER_VERTICAL),
         0));
     content->AddWrapper(start);
 
@@ -89,12 +91,11 @@ void Menu::Initialize()
         {
             currentScene = SETTINGS;
         },
-        start->GetOuterLeft(),
-        start->GetOuterTop(),
-        start->GetOuterRight(),
-        start->GetOuterBottom()));
+        content,
+        (sndAlign)(CENTER_HORIZONTAL | CENTER_VERTICAL),
+        0));
     settings->AttachToBottom(start);
-    content->AddWrapper(settings);
+    start->AddWrapper(settings);
 
     std::shared_ptr<sndButton> exit(new sndButton(
         "Exit",
@@ -103,7 +104,7 @@ void Menu::Initialize()
             global.exitApp = true;
         },
         content,
-        (sndAlign)(CENTER_HORIZONTAL | TOP),
+        (sndAlign)(CENTER_HORIZONTAL | CENTER_VERTICAL),
         0));
     exit->AttachToBottom(settings);
     content->AddWrapper(exit);
