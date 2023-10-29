@@ -31,8 +31,6 @@ sndWrapper::sndWrapper(const char* label, int left, int top, int right, int bott
     Update();
 };
 
-sndWrapper::~sndWrapper(){};
-
 void sndWrapper::Render()
 {
     Rectangle frameRect{
@@ -281,8 +279,6 @@ sndButton::sndButton(const char* label, std::function<void()> fn, int left, int 
     SetAction(fn);
 }
 
-sndButton::~sndButton() {}
-
 void sndButton::Render()
 {
     sndWrapper::Render();
@@ -319,13 +315,13 @@ std::function<void()> sndButton::GetAction()
     return action_;
 }
 
-void sndButton::AttachToLeft(std::shared_ptr<sndButton> parent)
+void sndButton::AttachToLeft(std::shared_ptr<sndWrapper> parent)
 {
     parent_ = parent.get();
 
     if (alignedHorizontal == CENTER_HORIZONTAL)
     {
-        sndButton* nextParent = parent.get();
+        sndWrapper* nextParent = parent.get();
 
         do
         {
@@ -337,13 +333,13 @@ void sndButton::AttachToLeft(std::shared_ptr<sndButton> parent)
     MoveOuterRight(parent.get()->GetOuterLeft());
 }
 
-void sndButton::AttachToTop(std::shared_ptr<sndButton> parent)
+void sndButton::AttachToTop(std::shared_ptr<sndWrapper> parent)
 {
     parent_ = parent.get();
 
     if (alignedVertical == CENTER_VERTICAL)
     {
-        sndButton* nextParent = parent.get();
+        sndWrapper* nextParent = parent.get();
 
         do
         {
@@ -366,13 +362,13 @@ void sndButton::AttachToTop(std::shared_ptr<sndButton> parent)
     }
 }
 
-void sndButton::AttachToRight(std::shared_ptr<sndButton> parent)
+void sndButton::AttachToRight(std::shared_ptr<sndWrapper> parent)
 {
     parent_ = parent.get();
 
     if (alignedHorizontal == CENTER_HORIZONTAL)
     {
-        sndButton* nextParent = parent.get();
+        sndWrapper* nextParent = parent.get();
 
         do
         {
@@ -384,13 +380,13 @@ void sndButton::AttachToRight(std::shared_ptr<sndButton> parent)
     MoveOuterLeft(parent.get()->GetOuterRight());
 }
 
-void sndButton::AttachToBottom(std::shared_ptr<sndButton> parent)
+void sndButton::AttachToBottom(std::shared_ptr<sndWrapper> parent)
 {
     parent_ = parent.get();
 
     if (alignedVertical == CENTER_VERTICAL)
     {
-        sndButton* nextParent = parent.get();
+        sndWrapper* nextParent = parent.get();
 
         do
         {
