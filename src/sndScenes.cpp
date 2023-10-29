@@ -4,12 +4,19 @@
 
 scenes currentScene = MENU;
 
+Scene::Scene()
+    : main(new sndWrapper("main"))
+{
+}
+
 void Scene::Initialize()
 {
-    main.ResizeOuterLeft(0);
-    main.ResizeOuterTop(0);
-    main.ResizeOuterRight(GetRenderWidth());
-    main.ResizeOuterBottom(GetRenderHeight());
+    main->ClearWrappers();
+
+    main->ResizeOuterLeft(0);
+    main->ResizeOuterTop(0);
+    main->ResizeOuterRight(GetRenderWidth());
+    main->ResizeOuterBottom(GetRenderHeight());
 }
 
 void Scene::Update()
@@ -27,4 +34,7 @@ void Scene::Update()
 
 void Scene::Input() {}
 void Scene::Process() {}
-void Scene::Output() {}
+void Scene::Output()
+{
+    main->Render();
+}

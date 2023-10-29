@@ -17,20 +17,21 @@ extern scenes currentScene;
 class Scene
 {
 public:
-    sndWrapper main;
-
+    Scene();
     virtual void Initialize();
     void Update();
 
-private:
-    virtual void Input();
-    virtual void Process();
-    virtual void Output();
+protected:
+    //sndWrapper main;
+    std::shared_ptr<sndWrapper> main;
+
+    void Input();
+    void Process();
+    void Output();
 };
 
 // SCENES
 //-------------------------------------
-
 class Menu : public Scene
 {
 public:
@@ -43,4 +44,18 @@ private:
     void Process();
     void Output();
 };
+
+class Settings : public Scene
+{
+public:
+    Settings();
+
+    void Initialize();
+
+private:
+    void Input();
+    void Process();
+    void Output();
+};
+//-------------------------------------
 #endif

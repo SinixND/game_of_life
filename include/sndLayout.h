@@ -39,7 +39,6 @@ public:
     virtual void Render();
     void AddWrapper(std::shared_ptr<sndWrapper> wrapper);
     void ClearWrappers();
-    void AdjustPosition(std::shared_ptr<sndWrapper> element, sndAlign flags, int offset);
 
     int GetOuterLeft();
     void ResizeOuterLeft(int outerLeft);
@@ -78,6 +77,8 @@ public:
     int GetInnerHeight();
 
 protected:
+    const char* label_;
+
     int outerLeft_ = 0;
     int outerTop_ = 0;
     int outerRight_ = 0;
@@ -102,8 +103,6 @@ protected:
 
     std::vector<std::shared_ptr<sndWrapper>> wrappers_;
     
-    const char* label_;
-
     sndAlign alignedHorizontal = NONE;
     sndAlign alignedVertical = NONE;
 
@@ -118,8 +117,8 @@ class sndButton : public sndWrapper
 public:
     sndButton();
     sndButton(const char* label);
-    sndButton(const char* label, std::function<void()> fn, std::shared_ptr<sndWrapper> parent, sndAlign flags, int offset);
     sndButton(const char* label, std::function<void()> fn, int left, int top, int right, int bottom);
+    sndButton(const char* label, std::function<void()> fn, sndWrapper* parent, sndAlign flags, int offset);
 
     void Render();
 
@@ -127,10 +126,12 @@ public:
     std::function<void()> GetAction();
     void SetAction(std::function<void()> action);
 
-    void AttachToLeft(std::shared_ptr<sndButton> parent);
-    void AttachToTop(std::shared_ptr<sndButton> parent);
-    void AttachToRight(std::shared_ptr<sndButton> parent);
-    void AttachToBottom(std::shared_ptr<sndButton> parent);
+    void AlignToParent(sndWrapper* element, sndAlign flags, int offset);
+
+    void AttachToLeft(sndButton* parent);
+    void AttachToTop(sndButton* parent);
+    void AttachToRight(sndButton* parent);
+    void AttachToBottom(sndButton* parent);
 
 private:
     std::function<void()> action_;

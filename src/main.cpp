@@ -16,19 +16,21 @@ int main()
     SetExitKey(0);
 
     Menu menu;
+    Settings settings;
 
     // MAIN APP LOOP
     //---------------------------------
     while (!WindowShouldClose() && !global.exitApp) // Detect window close button or ESC key
     {
+        if(IsWindowResized())
+        {
+            menu.Initialize();
+            settings.Initialize();
+        }
+    
         switch (currentScene)
         {
         case MENU:
-            if(IsWindowResized())
-            {
-                menu.Initialize();
-            }
-    
             menu.Update();
             break;
 
@@ -37,7 +39,7 @@ int main()
             break;
 
         case SETTINGS:
-            //RunSettings();
+            settings.Update();
             break;
 
         default:

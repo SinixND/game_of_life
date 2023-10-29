@@ -17,12 +17,14 @@ sndWrapper::sndWrapper()
 sndWrapper::sndWrapper(const char* label)
 {
     label_ = label;
+
     Update();
 };
 
 sndWrapper::sndWrapper(const char* label, int left, int top, int right, int bottom)
 {
     label_ = label;
+
     ResizeOuterLeft(left);
     ResizeOuterTop(top);
     ResizeOuterRight(right);
@@ -59,47 +61,6 @@ void sndWrapper::AddWrapper(std::shared_ptr<sndWrapper> wrapper)
 void sndWrapper::ClearWrappers()
 {
     wrappers_.clear();
-}
-
-void sndWrapper::AdjustPosition(std::shared_ptr<sndWrapper> parent, sndAlign flags, int offset)
-{
-    int positionLeft = 0;
-    int positionTop = 0;
-
-    if (flags & LEFT)
-    {
-        positionLeft = AlignHorizontalLeft(parent.get(), offset);
-        alignedHorizontal = LEFT;
-    }
-    else if (flags & CENTER_HORIZONTAL)
-    {
-        positionLeft = AlignHorizontalCenter(parent.get(), GetOuterWidth(), offset);
-        alignedHorizontal = CENTER_HORIZONTAL;
-    }
-    else if (flags & RIGHT)
-    {
-        positionLeft = AlignHorizontalRight(parent.get(), GetOuterWidth(), offset);
-        alignedHorizontal = RIGHT;
-    }
-
-    if (flags & TOP)
-    {
-        positionTop = AlignVerticalTop(parent.get(), offset);
-        alignedVertical = TOP;
-    }
-    else if (flags & CENTER_VERTICAL)
-    {
-        positionTop = AlignVerticalCenter(parent.get(), GetOuterHeight(), offset);
-        alignedVertical = CENTER_VERTICAL;
-    }
-    else if (flags & BOTTOM)
-    {
-        positionTop = AlignVerticalBottom(parent.get(), GetOuterHeight(), offset);
-        alignedVertical = BOTTOM;
-    };
-
-    MoveOuterLeft(positionLeft);
-    MoveOuterTop(positionTop);
 }
 
 void sndWrapper::Update()
@@ -182,12 +143,12 @@ void sndWrapper::SetMargin(int marginWeight)
 {
     margin_ = marginWeight;
 
-    std::shared_ptr<sndWrapper> margin(new sndWrapper(
+    auto margin = std::make_shared<sndWrapper>(
         "margin",
         this->GetOuterLeft(),
         this->GetOuterTop(),
         this->GetOuterRight(),
-        this->GetOuterBottom()));
+        this->GetOuterBottom());
     margin->SetFrameWeight(marginWeight);
 
 #ifdef DEBUGGING
@@ -203,12 +164,12 @@ void sndWrapper::SetBorder(int borderWeight)
 {
     border_ = borderWeight;
 
-    std::shared_ptr<sndWrapper> border(new sndWrapper(
+    auto border = std::make_shared<sndWrapper>(
         "border",
         this->GetOuterLeft() + this->GetMargin(),
         this->GetOuterTop() + this->GetMargin(),
         this->GetOuterRight() - this->GetMargin(),
-        this->GetOuterBottom() - this->GetMargin()));
+        this->GetOuterBottom() - this->GetMargin());
     border->SetFrameWeight(borderWeight);
 
 #ifdef DEBUGGING
@@ -224,12 +185,12 @@ void sndWrapper::SetPadding(int paddingWeight)
 {
     padding_ = paddingWeight;
 
-    std::shared_ptr<sndWrapper> padding(new sndWrapper(
+    auto padding = std::make_shared<sndWrapper>(
         "padding",
         this->GetOuterLeft() + this->GetMargin() + this->GetBorder(),
         this->GetOuterTop() + this->GetMargin() + this->GetBorder(),
         this->GetOuterRight() - this->GetMargin() - this->GetBorder(),
-        this->GetOuterBottom() - this->GetMargin() - this->GetBorder()));
+        this->GetOuterBottom() - this->GetMargin() - this->GetBorder());
     padding->SetFrameWeight(paddingWeight);
 
 #ifdef DEBUGGING
@@ -253,25 +214,23 @@ int sndWrapper::GetInnerWidth() { return innerWidth_; }
 int sndWrapper::GetInnerHeight() { return innerHeight_; }
 
 sndButton::sndButton()
-    : sndWrapper(){};
+    : sndWrapper() {}
 
 sndButton::sndButton(const char* label)
-    : sndWrapper(label)
-{
-}
-
-sndButton::sndButton(const char* label, std::function<void()> fn, std::shared_ptr<sndWrapper> parent, sndAlign flags, int offset)
-    : sndWrapper(label, 0, 0, MeasureText(label, global.textSizeDefault) + global.guiButtonBaseWidth, global.textSizeDefault + global.guiButtonBaseHeight)
-{
-    SetAction(fn);
-
-    AdjustPosition(parent, flags, offset);
-}
+    : sndWrapper(label) {}
 
 sndButton::sndButton(const char* label, std::function<void()> fn, int left, int top, int right, int bottom)
     : sndWrapper(label, left, top, right, bottom)
 {
     SetAction(fn);
+}
+
+sndButton::sndButton(const char* label, std::function<void()> fn, sndWrapper* parent, sndAlign flags, int offset)
+    : sndWrapper(label, 0, 0, MeasureText(label, global.textSizeDefault) + global.guiButtonBaseWidth, global.textSizeDefault + global.guiButtonBaseHeight)
+{
+    SetAction(fn);
+
+    AlignToParent(parent, flags, offset);
 }
 
 void sndButton::Render()
@@ -295,23 +254,64 @@ const char* sndButton::GetLabel()
     return label_;
 }
 
-void sndButton::SetAction(std::function<void()> action)
-{
-    action_ = action;
-}
-
 std::function<void()> sndButton::GetAction()
 {
     return action_;
 }
 
-void sndButton::AttachToLeft(std::shared_ptr<sndButton> parent)
+void sndButton::SetAction(std::function<void()> action)
 {
-    parent_ = parent.get();
+    action_ = action;
+}
+
+void sndButton::AlignToParent(sndWrapper* parent, sndAlign flags, int offset)
+{
+    int positionLeft = 0;
+    int positionTop = 0;
+
+    if (flags & LEFT)
+    {
+        positionLeft = AlignHorizontalLeft(parent, offset);
+        alignedHorizontal = LEFT;
+    }
+    else if (flags & CENTER_HORIZONTAL)
+    {
+        positionLeft = AlignHorizontalCenter(parent, GetOuterWidth(), offset);
+        alignedHorizontal = CENTER_HORIZONTAL;
+    }
+    else if (flags & RIGHT)
+    {
+        positionLeft = AlignHorizontalRight(parent, GetOuterWidth(), offset);
+        alignedHorizontal = RIGHT;
+    }
+
+    if (flags & TOP)
+    {
+        positionTop = AlignVerticalTop(parent, offset);
+        alignedVertical = TOP;
+    }
+    else if (flags & CENTER_VERTICAL)
+    {
+        positionTop = AlignVerticalCenter(parent, GetOuterHeight(), offset);
+        alignedVertical = CENTER_VERTICAL;
+    }
+    else if (flags & BOTTOM)
+    {
+        positionTop = AlignVerticalBottom(parent, GetOuterHeight(), offset);
+        alignedVertical = BOTTOM;
+    };
+
+    MoveOuterLeft(positionLeft);
+    MoveOuterTop(positionTop);
+}
+
+void sndButton::AttachToLeft(sndButton* parent)
+{
+    parent_ = parent;
 
     if (alignedHorizontal == CENTER_HORIZONTAL)
     {
-        sndButton* nextParent = parent.get();
+        sndButton* nextParent = parent;
 
         do
         {
@@ -320,16 +320,16 @@ void sndButton::AttachToLeft(std::shared_ptr<sndButton> parent)
         } while (nextParent != nullptr);
     }
 
-    MoveOuterRight(parent.get()->GetOuterLeft());
+    MoveOuterRight(parent->GetOuterLeft());
 }
 
-void sndButton::AttachToTop(std::shared_ptr<sndButton> parent)
+void sndButton::AttachToTop(sndButton* parent)
 {
-    parent_ = parent.get();
+    parent_ = parent;
 
     if (alignedVertical == CENTER_VERTICAL)
     {
-        sndButton* nextParent = parent.get();
+        sndButton* nextParent = parent;
 
         do
         {
@@ -338,27 +338,27 @@ void sndButton::AttachToTop(std::shared_ptr<sndButton> parent)
         } while (nextParent != nullptr);
     }
 
-    MoveOuterBottom(parent.get()->GetOuterTop());
+    MoveOuterBottom(parent->GetOuterTop());
 
-    if (parent.get()->GetInnerWidth() < (MeasureText(GetLabel(), global.textSizeDefault) + global.guiButtonBaseWidth))
+    if (parent->GetInnerWidth() < (MeasureText(GetLabel(), global.textSizeDefault) + global.guiButtonBaseWidth))
     {
-        parent.get()->ResizeOuterLeft(GetOuterLeft());
-        parent.get()->ResizeOuterRight(GetOuterRight());
+        parent->ResizeOuterLeft(GetOuterLeft());
+        parent->ResizeOuterRight(GetOuterRight());
     }
     else
     {
-        ResizeOuterLeft(parent.get()->GetOuterLeft());
-        ResizeOuterRight(parent.get()->GetOuterRight());
+        ResizeOuterLeft(parent->GetOuterLeft());
+        ResizeOuterRight(parent->GetOuterRight());
     }
 }
 
-void sndButton::AttachToRight(std::shared_ptr<sndButton> parent)
+void sndButton::AttachToRight(sndButton* parent)
 {
-    parent_ = parent.get();
+    parent_ = parent;
 
     if (alignedHorizontal == CENTER_HORIZONTAL)
     {
-        sndButton* nextParent = parent.get();
+        sndButton* nextParent = parent;
 
         do
         {
@@ -367,16 +367,16 @@ void sndButton::AttachToRight(std::shared_ptr<sndButton> parent)
         } while (nextParent != nullptr);
     }
 
-    MoveOuterLeft(parent.get()->GetOuterRight());
+    MoveOuterLeft(parent->GetOuterRight());
 }
 
-void sndButton::AttachToBottom(std::shared_ptr<sndButton> parent)
+void sndButton::AttachToBottom(sndButton* parent)
 {
-    parent_ = parent.get();
+    parent_ = parent;
 
     if (alignedVertical == CENTER_VERTICAL)
     {
-        sndButton* nextParent = parent.get();
+        sndButton* nextParent = parent;
 
         do
         {
@@ -385,17 +385,17 @@ void sndButton::AttachToBottom(std::shared_ptr<sndButton> parent)
         } while (nextParent != nullptr);
     }
 
-    MoveOuterTop(parent.get()->GetOuterBottom());
+    MoveOuterTop(parent->GetOuterBottom());
 
-    if (parent.get()->GetInnerWidth() < (MeasureText(GetLabel(), global.textSizeDefault) + global.guiButtonBaseWidth))
+    if (parent->GetInnerWidth() < (MeasureText(GetLabel(), global.textSizeDefault) + global.guiButtonBaseWidth))
     {
-        parent.get()->ResizeOuterLeft(GetOuterLeft());
-        parent.get()->ResizeOuterRight(GetOuterRight());
+        parent->ResizeOuterLeft(GetOuterLeft());
+        parent->ResizeOuterRight(GetOuterRight());
     }
     else
     {
-        ResizeOuterLeft(parent.get()->GetOuterLeft());
-        ResizeOuterRight(parent.get()->GetOuterRight());
+        ResizeOuterLeft(parent->GetOuterLeft());
+        ResizeOuterRight(parent->GetOuterRight());
     }
 }
 
