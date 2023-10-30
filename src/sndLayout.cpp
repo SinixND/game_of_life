@@ -2,11 +2,11 @@
 
 #include "sndGlobals.h"
 #include <functional>
+#include <iostream>
 #include <memory>
 #include <raygui.h>
 #include <raylib.h>
 #include <vector>
-#include <stdarg.h>
 
 #define DEBUGGING
 
@@ -31,7 +31,7 @@ sndWrapper::sndWrapper(const char* label, int left, int top, int right, int bott
     Update();
 };
 
-sndWrapper::~sndWrapper() = default;
+sndWrapper::~sndWrapper() { std::cout << "Dtor: " << label_ << "\n"; };
 
 void sndWrapper::Render()
 {
@@ -225,14 +225,15 @@ sndElement::sndElement(const char* label)
 sndElement::sndElement(const char* label, int left, int top, int right, int bottom)
     : sndWrapper(label, left, top, right, bottom)
 {
-    padding_ = 2; }
+    padding_ = 2;
+}
 
 const char* sndElement::GetLabel()
 {
     return label_;
 }
 
-sndElement::~sndElement() = default;
+sndElement::~sndElement() { std::cout << "Dtor: " << label_ << "\n"; };
 
 void sndElement::AlignToParent(sndWrapper* parent, sndAlign flags, int offset)
 {
@@ -375,7 +376,7 @@ sndButton::sndButton(const char* label, std::function<void()> fn, sndWrapper* pa
     AlignToParent(parent, flags, offset);
 }
 
-sndButton::~sndButton() = default;
+sndButton::~sndButton() { std::cout << "Dtor: " << label_ << "\n"; };
 
 void sndButton::Render()
 {
@@ -412,7 +413,7 @@ sndSeparator::sndSeparator(const char* label, int left, int right, sndWrapper* p
     AlignToParent(parent, flags, offset);
 }
 
-sndSeparator::~sndSeparator() = default;
+sndSeparator::~sndSeparator() { std::cout << "Dtor: " << label_ << "\n"; };
 
 void sndSeparator::Render()
 {
@@ -428,7 +429,7 @@ sndLabel::sndLabel(const char* label, sndWrapper* parent, sndAlign flags, int of
     AlignToParent(parent, flags, offset);
 }
 
-sndLabel::~sndLabel() = default;
+sndLabel::~sndLabel() { std::cout << "Dtor: " << label_ << "\n"; };
 
 void sndLabel::Render()
 {
@@ -451,11 +452,11 @@ sndText::sndText(const char* label, int fontSize, sndWrapper* parent, sndAlign f
     AlignToParent(parent, flags, offset);
 }
 
-sndText::~sndText() = default;
+sndText::~sndText() { std::cout << "Dtor: " << label_ << "\n"; };
 
 void sndText::Render()
 {
-      DrawText(TextFormat(label_), GetInnerLeft(), GetInnerTop(), fontSize_, global.GetForeground());
+    DrawText(TextFormat(label_), GetInnerLeft(), GetInnerTop(), fontSize_, global.GetForeground());
 }
 //-------------------------------------
 

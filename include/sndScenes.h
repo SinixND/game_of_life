@@ -24,9 +24,9 @@ public:
 protected:
     std::shared_ptr<sndWrapper> main;
 
-    void Input();
-    void Process();
-    void Output();
+    virtual void Input();
+    virtual void Process();
+    virtual void Output();
 };
 
 // SCENES
@@ -53,6 +53,9 @@ class Settings : public Scene
 {
 public:
     Settings();
+
+    std::shared_ptr<sndWrapper> menubar;
+    std::shared_ptr<sndWrapper> body;
 
     void Initialize();
     void Update();

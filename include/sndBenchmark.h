@@ -3,7 +3,7 @@
 #ifndef SNDBENCHMARK_H
 #define SNDBENCHMARK_H
 
-#define ACTIVATE_BENCHMARKING
+//#define ACTIVATE_BENCHMARKING
 
 #include <chrono>
 typedef std::chrono::steady_clock::time_point chrono_timePoint;
@@ -33,7 +33,6 @@ void ShowBenchmarks();
 
 
 // sndBenchmark.cpp
-#ifdef ACTIVATE_BENCHMARKING
 
 #include <iostream>
 
@@ -47,6 +46,7 @@ Benchmark::Benchmark(std::string id)
 
 void StartBenchmark(std::string id)
 {
+#ifdef ACTIVATE_BENCHMARKING
     for (auto& benchmark : benchmarks)
     {
         if (benchmark.id_ == id)
@@ -58,10 +58,12 @@ void StartBenchmark(std::string id)
 
     benchmarks.push_back(Benchmark(id));
     benchmarks.back().startTime_ = std::chrono::steady_clock::now();
+#endif
 }
 
 void StopBenchmark(std::string id)
 {
+#ifdef ACTIVATE_BENCHMARKING
     for (auto& benchmark : benchmarks)
     {
         if (benchmark.id_ != id)
@@ -77,10 +79,12 @@ void StopBenchmark(std::string id)
         benchmark.avgTime_ = (benchmark.avgTime_ * (benchmark.iterations_ - 1) + benchmark.latestTime_) / benchmark.iterations_;
         return;
     }
+#endif
 }
 
 void ShowBenchmarks()
 {
+#ifdef ACTIVATE_BENCHMARKING
     for (auto& benchmark : benchmarks)
     {
         if (benchmark.id_ == "NULL")
@@ -91,7 +95,7 @@ void ShowBenchmarks()
         std::cout << benchmark.id_ << " (Lst|Avg|Itr): " << benchmark.latestTime_.count() << " ns | " << benchmark.avgTime_.count() << " ns | " << benchmark.iterations_ << "\n";
     }
     std::cout << "\n";
+#endif
 }
 
-#endif
 #endif

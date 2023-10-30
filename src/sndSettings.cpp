@@ -13,7 +13,7 @@ void Settings::Initialize()
 
     // Wrappers
     //---------------------------------
-    auto menubar = std::make_shared<sndWrapper>(
+    menubar = std::make_shared<sndWrapper>(
         "menubar",
         main->GetInnerLeft(),
         main->GetInnerTop(),
@@ -22,20 +22,21 @@ void Settings::Initialize()
 
     main->AddWrapper(menubar);
 
-    auto content = std::make_shared<sndWrapper>(
-        "content",
+    body = std::make_shared<sndWrapper>(
+        "body",
         main->GetInnerLeft(),
         menubar->GetOuterBottom(),
         main->GetInnerRight(),
         main->GetInnerBottom());
 
-    main->AddWrapper(content);
+    main->AddWrapper(body);
     //---------------------------------
 
     // GUI-Elements
     //---------------------------------
-    auto settings = std::make_shared<sndLabel>(
+    auto settings = std::make_shared<sndText>(
         "Settings",
+        4 * GetFontDefault().baseSize,
         menubar.get(),
         (sndAlign)(CENTER_HORIZONTAL | CENTER_VERTICAL),
         0);
@@ -68,33 +69,33 @@ void Settings::Initialize()
 
     auto category1ST = std::make_shared<sndSeparator>(
         "Separator",
-        content->GetInnerLeft(),
-        content->GetInnerRight(),
-        content.get(),
+        body->GetInnerLeft(),
+        body->GetInnerRight(),
+        body.get(),
         (sndAlign)(TOP | CENTER_VERTICAL),
         0);
 
-    content->AddWrapper(category1ST);
+    body->AddWrapper(category1ST);
 
     auto category1 = std::make_shared<sndLabel>(
         "Category 1",
-        content.get(),
+        body.get(),
         (sndAlign)(CENTER_HORIZONTAL | CENTER_VERTICAL),
         0);
 
     category1->AttachToBottom(category1ST.get());
-    content->AddWrapper(category1);
+    body->AddWrapper(category1);
 
     auto category1SB = std::make_shared<sndSeparator>(
         "Separator",
-        content->GetInnerLeft(),
-        content->GetInnerRight(),
-        content.get(),
+        body->GetInnerLeft(),
+        body->GetInnerRight(),
+        body.get(),
         (sndAlign)(TOP | CENTER_VERTICAL),
         0);
 
     category1SB->AttachToBottom(category1.get());
-    content->AddWrapper(category1SB);
+    body->AddWrapper(category1SB);
     //---------------------------------
 }
 
