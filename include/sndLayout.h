@@ -5,6 +5,7 @@
 #include <vector>
 #include <functional>
 #include <memory>
+#include <stdarg.h>
 
 /* LAYOUT BOX STRUCTURE
 
@@ -34,6 +35,7 @@ class sndWrapper
 public:
     sndWrapper(const char* label);
     sndWrapper(const char* label, int left, int top, int right, int bottom);
+    virtual ~sndWrapper();
 
     virtual void Render();
     void AddWrapper(std::shared_ptr<sndWrapper> wrapper);
@@ -102,8 +104,8 @@ protected:
 
     std::vector<std::shared_ptr<sndWrapper>> wrappers_;
     
-    sndAlign alignedHorizontal = NONE;
-    sndAlign alignedVertical = NONE;
+    sndAlign alignedHorizontal_ = NONE;
+    sndAlign alignedVertical_ = NONE;
 
     void Update();
 
@@ -116,6 +118,7 @@ class sndElement : public sndWrapper
 public:
     sndElement(const char* label);
     sndElement(const char* label, int left, int top, int right, int bottom);
+    virtual ~sndElement();
 
     const char* GetLabel();
 
@@ -139,6 +142,7 @@ public:
     sndButton(const char* label);
     sndButton(const char* label, std::function<void()> fn, int left, int top, int right, int bottom);
     sndButton(const char* label, std::function<void()> fn, sndWrapper* parent, sndAlign flags, int offset);
+    ~sndButton();
 
     void Render();
 
@@ -153,6 +157,8 @@ class sndSeparator : public sndElement
 {
 public:
     sndSeparator(const char* label, int left, int right, sndWrapper* parent, sndAlign flags, int offset);
+    ~sndSeparator();
+
     void Render();
 };
 
@@ -160,7 +166,21 @@ class sndLabel : public sndElement
 {
 public:
     sndLabel(const char* label, sndWrapper* parent, sndAlign flags, int offset);
+    ~sndLabel();
+
     void Render();
+};
+
+class sndText : public sndElement
+{
+public:
+    sndText(const char* label, int fontSize, sndWrapper* parent, sndAlign flags, int offset);
+    ~sndText();
+
+    void Render();
+
+private:
+    int fontSize_;
 };
 
 int AlignHorizontalLeft(sndWrapper* parent, int offset);

@@ -21,20 +21,20 @@ void Scene::Initialize()
 
 void Scene::Update()
 {
-    Input();
-    Process();
+    //Input();
+    //Process();
 
-    BeginDrawing();
-    ClearBackground(global.GetBackground());
+    //BeginDrawing();
+    //ClearBackground(global.GetBackground());
 
-    Output();
+    //Output();
 
-    EndDrawing();
+    //EndDrawing();
 }
 
 void Scene::Input() {}
 void Scene::Process() {}
 void Scene::Output()
 {
-    main->Render();
+    //main->Render();
 }

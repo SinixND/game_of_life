@@ -11,8 +11,8 @@ public:
     Global();
 
     bool exitApp;
+
     // GUI ELEMENTS
-    float textSizeDefault;
     float guiButtonBaseWidth;
     float guiButtonBaseHeight;
 

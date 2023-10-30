@@ -14,7 +14,7 @@ void Menu::Initialize()
 
     // Wrappers
     //---------------------------------
-    auto menubar = std::make_shared<sndWrapper>(
+    menubar = std::make_shared<sndWrapper>(
         "menubar",
         main->GetInnerLeft(),
         main->GetInnerTop(),
@@ -23,23 +23,23 @@ void Menu::Initialize()
 
     main->AddWrapper(menubar);
 
-    auto title = std::make_shared<sndWrapper>(
-        "title",
+    head = std::make_shared<sndWrapper>(
+        "head",
         main->GetInnerLeft(),
         menubar->GetOuterBottom(),
         main->GetInnerRight(),
         (main->GetInnerBottom() - menubar->GetOuterBottom()) / 3);
 
-    main->AddWrapper(title);
+    main->AddWrapper(head);
 
-    auto content = std::make_shared<sndWrapper>(
-        "content",
+    body = std::make_shared<sndWrapper>(
+        "body",
         main->GetInnerLeft(),
-        title->GetOuterBottom(),
+        head->GetOuterBottom(),
         main->GetInnerRight(),
         main->GetInnerBottom());
 
-    main->AddWrapper(content);
+    main->AddWrapper(body);
     //---------------------------------
 
     // GUI-Elements
@@ -56,17 +56,36 @@ void Menu::Initialize()
 
     menubar->AddWrapper(darkMode);
 
+    auto jhconway = std::make_shared<sndText>(
+        "J. H. Conway",
+        2 * GetFontDefault().baseSize,
+        head.get(),
+        (sndAlign)(CENTER_HORIZONTAL | CENTER_VERTICAL),
+        0);
+
+    head->AddWrapper(jhconway);
+
+    auto gameoflife = std::make_shared<sndText>(
+        "Game Of Life",
+        4 * GetFontDefault().baseSize,
+        head.get(),
+        (sndAlign)(CENTER_HORIZONTAL | CENTER_VERTICAL),
+        0);
+
+    gameoflife->AttachToBottom(jhconway.get());
+    head->AddWrapper(gameoflife);
+
     auto start = std::make_shared<sndButton>(
         "Start",
         []()
         {
             currentScene = GAME;
         },
-        content.get(),
+        body.get(),
         (sndAlign)(CENTER_HORIZONTAL | CENTER_VERTICAL),
         0);
 
-    content->AddWrapper(start);
+    body->AddWrapper(start);
 
     auto settings = std::make_shared<sndButton>(
         "Settings",
@@ -74,7 +93,7 @@ void Menu::Initialize()
         {
             currentScene = SETTINGS;
         },
-        content.get(),
+        body.get(),
         (sndAlign)(CENTER_HORIZONTAL | CENTER_VERTICAL),
         0);
 
@@ -87,15 +106,31 @@ void Menu::Initialize()
         {
             global.exitApp = true;
         },
-        content.get(),
+        body.get(),
         (sndAlign)(CENTER_HORIZONTAL | CENTER_VERTICAL),
         0);
 
-    content->AddWrapper(exit);
+    body->AddWrapper(exit);
     exit->AttachToBottomAndAlign(settings.get());
     //---------------------------------
 }
 
+void Menu::Update()
+{
+    Input();
+    Process();
+
+    BeginDrawing();
+    ClearBackground(global.GetBackground());
+
+    Output();
+
+    EndDrawing();
+}
+
 void Menu::Input() {}
 void Menu::Process() {}
-void Menu::Output() {}
+void Menu::Output()
+{
+    main->Render();
+}

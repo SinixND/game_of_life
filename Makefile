@@ -4,7 +4,7 @@
 ### @ (as a prefix to a cli command): suppress cli output; use make -n to debug commands
 
 ### set the used compiler to g++ or clang++
-CXX := g++ 
+CXX := clang++ 
 
 ### set the projects label, used for the targeted cpp file (eg. main.cpp) and the binary (eg. main.exe)
 TARGET := main
