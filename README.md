@@ -5,7 +5,7 @@
 
 # TODOs
 # Current 
-[1] Function to add an element 
+[1] Virtual destructor and value initialize variables
 
 # Shortterm
 [2] check dynamic behaviour

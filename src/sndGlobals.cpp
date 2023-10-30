@@ -4,13 +4,13 @@
 
 Global global; // define extern object
 Global::Global()
-    : textSizeDefault(20)
+    : exitApp(false)
+    , textSizeDefault(20)
     , guiButtonBaseWidth(20)
     , guiButtonBaseHeight(30)
     , darkMode(true)
     , background(WHITE)
     , foreground(BLACK)
-    , exitApp(false)
 {
     SetColors();
 };
