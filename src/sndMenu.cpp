@@ -79,7 +79,7 @@ void Menu::Initialize()
         0);
 
     start->AddWrapper(settings);
-    settings->AttachToBottom(start.get());
+    settings->AttachToBottomAndAlign(start.get());
 
     auto exit = std::make_shared<sndButton>(
         "Exit",
@@ -92,7 +92,7 @@ void Menu::Initialize()
         0);
 
     content->AddWrapper(exit);
-    exit->AttachToBottom(settings.get());
+    exit->AttachToBottomAndAlign(settings.get());
     //---------------------------------
 }
 

@@ -5,6 +5,7 @@
 #include "sndConfigs.h" // provide object "config" for configurable parameters
 #include "sndGlobals.h" // provide object "global" for not configurable application parameters
 #include "sndScenes.h"
+#include "sndBenchmark.h"
 
 int main()
 {
@@ -31,7 +32,9 @@ int main()
         switch (currentScene)
         {
         case MENU:
+            StartBenchmark("menu.Update()");
             menu.Update();
+            StopBenchmark("menu.Update()");
             break;
 
         case GAME:
@@ -39,12 +42,15 @@ int main()
             break;
 
         case SETTINGS:
+            StartBenchmark("settings.Update()");
             settings.Update();
+            StopBenchmark("settings.Update()");
             break;
 
         default:
             break;
         }
+        ShowBenchmarks();
     }
 
     // SHUTDOWN APP

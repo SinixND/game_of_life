@@ -25,7 +25,7 @@ void Scene::Update()
     Process();
 
     BeginDrawing();
-    ClearBackground(global.Getbackground());
+    ClearBackground(global.GetBackground());
 
     Output();
 

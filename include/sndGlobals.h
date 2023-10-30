@@ -19,8 +19,8 @@ public:
     void ToggleDarkMode();
     bool GetDarkMode();
 
-    Color Getbackground();
-    Color Getforeground();
+    Color GetBackground();
+    Color GetForeground();
 
 private:
     // DARK MODE

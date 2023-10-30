@@ -9,11 +9,8 @@
 
 #define DEBUGGING
 
-sndWrapper::sndWrapper()
-{
-    Update();
-};
-
+// Wrapper
+//-------------------------------------
 sndWrapper::sndWrapper(const char* label)
 {
     label_ = label;
@@ -212,59 +209,26 @@ int sndWrapper::GetInnerRight() { return innerRight_; }
 int sndWrapper::GetInnerBottom() { return innerBottom_; }
 int sndWrapper::GetInnerWidth() { return innerWidth_; }
 int sndWrapper::GetInnerHeight() { return innerHeight_; }
+//-------------------------------------
 
-sndButton::sndButton()
-    : sndWrapper() {}
+// Element
+//-------------------------------------
+sndElement::sndElement(const char* label)
+    : sndWrapper(label)
+{
+}
 
-sndButton::sndButton(const char* label)
-    : sndWrapper(label) {}
-
-sndButton::sndButton(const char* label, std::function<void()> fn, int left, int top, int right, int bottom)
+sndElement::sndElement(const char* label, int left, int top, int right, int bottom)
     : sndWrapper(label, left, top, right, bottom)
 {
-    SetAction(fn);
 }
 
-sndButton::sndButton(const char* label, std::function<void()> fn, sndWrapper* parent, sndAlign flags, int offset)
-    : sndWrapper(label, 0, 0, MeasureText(label, global.textSizeDefault) + global.guiButtonBaseWidth, global.textSizeDefault + global.guiButtonBaseHeight)
-{
-    SetAction(fn);
-
-    AlignToParent(parent, flags, offset);
-}
-
-void sndButton::Render()
-{
-    sndWrapper::Render();
-
-    if (GuiButton(
-            (Rectangle){
-                static_cast<float>(GetInnerLeft()),
-                static_cast<float>(GetInnerTop()),
-                static_cast<float>(GetInnerWidth()),
-                static_cast<float>(GetInnerHeight())},
-            GetLabel()))
-    {
-        GetAction()();
-    };
-}
-
-const char* sndButton::GetLabel()
+const char* sndElement::GetLabel()
 {
     return label_;
 }
 
-std::function<void()> sndButton::GetAction()
-{
-    return action_;
-}
-
-void sndButton::SetAction(std::function<void()> action)
-{
-    action_ = action;
-}
-
-void sndButton::AlignToParent(sndWrapper* parent, sndAlign flags, int offset)
+void sndElement::AlignToParent(sndWrapper* parent, sndAlign flags, int offset)
 {
     int positionLeft = 0;
     int positionTop = 0;
@@ -305,31 +269,33 @@ void sndButton::AlignToParent(sndWrapper* parent, sndAlign flags, int offset)
     MoveOuterTop(positionTop);
 }
 
-void sndButton::AttachToLeft(sndButton* parent)
+void sndElement::AttachToLeft(sndElement* parent)
 {
-    parent_ = parent;
-
-    if (alignedHorizontal == CENTER_HORIZONTAL)
-    {
-        sndButton* nextParent = parent;
-
-        do
-        {
-            nextParent->MoveOuterLeft(nextParent->GetOuterLeft() + GetOuterWidth() / 2);
-            nextParent = nextParent->parent_;
-        } while (nextParent != nullptr);
-    }
-
     MoveOuterRight(parent->GetOuterLeft());
 }
 
-void sndButton::AttachToTop(sndButton* parent)
+void sndElement::AttachToTop(sndElement* parent)
+{
+    MoveOuterBottom(parent->GetOuterTop());
+}
+
+void sndElement::AttachToRight(sndElement* parent)
+{
+    MoveOuterLeft(parent->GetOuterRight());
+}
+
+void sndElement::AttachToBottom(sndElement* parent)
+{
+    MoveOuterTop(parent->GetOuterBottom());
+}
+
+void sndElement::AttachToTopAndAlign(sndElement* parent)
 {
     parent_ = parent;
 
     if (alignedVertical == CENTER_VERTICAL)
     {
-        sndButton* nextParent = parent;
+        sndElement* nextParent = parent;
 
         do
         {
@@ -338,7 +304,7 @@ void sndButton::AttachToTop(sndButton* parent)
         } while (nextParent != nullptr);
     }
 
-    MoveOuterBottom(parent->GetOuterTop());
+    sndElement::AttachToTop(parent);
 
     if (parent->GetInnerWidth() < (MeasureText(GetLabel(), global.textSizeDefault) + global.guiButtonBaseWidth))
     {
@@ -352,31 +318,13 @@ void sndButton::AttachToTop(sndButton* parent)
     }
 }
 
-void sndButton::AttachToRight(sndButton* parent)
-{
-    parent_ = parent;
-
-    if (alignedHorizontal == CENTER_HORIZONTAL)
-    {
-        sndButton* nextParent = parent;
-
-        do
-        {
-            nextParent->MoveOuterRight(nextParent->GetOuterRight() - (GetOuterWidth() / 2));
-            nextParent = nextParent->parent_;
-        } while (nextParent != nullptr);
-    }
-
-    MoveOuterLeft(parent->GetOuterRight());
-}
-
-void sndButton::AttachToBottom(sndButton* parent)
+void sndElement::AttachToBottomAndAlign(sndElement* parent)
 {
     parent_ = parent;
 
     if (alignedVertical == CENTER_VERTICAL)
     {
-        sndButton* nextParent = parent;
+        sndElement* nextParent = parent;
 
         do
         {
@@ -385,7 +333,7 @@ void sndButton::AttachToBottom(sndButton* parent)
         } while (nextParent != nullptr);
     }
 
-    MoveOuterTop(parent->GetOuterBottom());
+    sndElement::AttachToBottom(parent);
 
     if (parent->GetInnerWidth() < (MeasureText(GetLabel(), global.textSizeDefault) + global.guiButtonBaseWidth))
     {
@@ -398,6 +346,92 @@ void sndButton::AttachToBottom(sndButton* parent)
         ResizeOuterRight(parent->GetOuterRight());
     }
 }
+//-------------------------------------
+
+// Button
+//-------------------------------------
+sndButton::sndButton(const char* label)
+    : sndElement(label)
+{
+    padding_ = 2;
+}
+
+sndButton::sndButton(const char* label, std::function<void()> fn, int left, int top, int right, int bottom)
+    : sndElement(label, left, top, right, bottom)
+{
+    padding_ = 2;
+    SetAction(fn);
+}
+
+sndButton::sndButton(const char* label, std::function<void()> fn, sndWrapper* parent, sndAlign flags, int offset)
+    : sndElement(label, 0, 0, MeasureText(label, global.textSizeDefault) + global.guiButtonBaseWidth, global.textSizeDefault + global.guiButtonBaseHeight)
+{
+    padding_ = 2;
+    SetAction(fn);
+
+    AlignToParent(parent, flags, offset);
+}
+
+void sndButton::Render()
+{
+    sndWrapper::Render();
+
+    if (GuiButton(
+            (Rectangle){
+                static_cast<float>(GetInnerLeft()),
+                static_cast<float>(GetInnerTop()),
+                static_cast<float>(GetInnerWidth()),
+                static_cast<float>(GetInnerHeight())},
+            GetLabel()))
+    {
+        GetAction()();
+    };
+}
+
+std::function<void()> sndButton::GetAction()
+{
+    return action_;
+}
+
+void sndButton::SetAction(std::function<void()> action)
+{
+    action_ = action;
+}
+//-------------------------------------
+
+// Separator
+//-------------------------------------
+sndSeparator::sndSeparator(const char* label, int left, int right, sndWrapper* parent, sndAlign flags, int offset)
+    : sndElement(label, left, 0, right, 0)
+{
+    AlignToParent(parent, flags, offset);
+}
+
+void sndSeparator::Render()
+{
+    DrawLine(GetInnerLeft(), GetInnerTop(), GetInnerRight(), GetInnerTop(), global.GetForeground());
+}
+//-------------------------------------
+
+// Label
+//-------------------------------------
+sndLabel::sndLabel(const char* label, sndWrapper* parent, sndAlign flags, int offset)
+    : sndElement(label, 0, 0, MeasureText(label, global.textSizeDefault) + global.guiButtonBaseWidth, global.textSizeDefault + global.guiButtonBaseHeight)
+{
+    AlignToParent(parent, flags, offset);
+}
+
+void sndLabel::Render()
+{
+    GuiLabel(
+        (Rectangle){
+            static_cast<float>(GetInnerLeft()),
+            static_cast<float>(GetInnerTop()),
+            static_cast<float>(GetInnerWidth()),
+            static_cast<float>(GetInnerHeight())},
+        GetLabel());
+}
+//-------------------------------------
 
 int AlignHorizontalLeft(sndWrapper* parent, int offset)
 {

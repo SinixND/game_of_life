@@ -32,7 +32,6 @@ typedef enum sndAlign
 class sndWrapper
 {
 public:
-    sndWrapper();
     sndWrapper(const char* label);
     sndWrapper(const char* label, int left, int top, int right, int bottom);
 
@@ -112,30 +111,56 @@ protected:
     void SetFrameColor(Color frameColor);
 };
 
-class sndButton : public sndWrapper
+class sndElement : public sndWrapper
 {
 public:
-    sndButton();
+    sndElement(const char* label);
+    sndElement(const char* label, int left, int top, int right, int bottom);
+
+    const char* GetLabel();
+
+    void AlignToParent(sndWrapper* element, sndAlign flags, int offset);
+
+    void AttachToLeft(sndElement* parent);
+    void AttachToTop(sndElement* parent);
+    void AttachToRight(sndElement* parent);
+    void AttachToBottom(sndElement* parent);
+
+    void AttachToTopAndAlign(sndElement* parent);
+    void AttachToBottomAndAlign(sndElement* parent);
+
+protected:
+    sndElement* parent_ = nullptr;
+};
+
+class sndButton : public sndElement
+{
+public:
     sndButton(const char* label);
     sndButton(const char* label, std::function<void()> fn, int left, int top, int right, int bottom);
     sndButton(const char* label, std::function<void()> fn, sndWrapper* parent, sndAlign flags, int offset);
 
     void Render();
 
-    const char* GetLabel();
     std::function<void()> GetAction();
     void SetAction(std::function<void()> action);
 
-    void AlignToParent(sndWrapper* element, sndAlign flags, int offset);
-
-    void AttachToLeft(sndButton* parent);
-    void AttachToTop(sndButton* parent);
-    void AttachToRight(sndButton* parent);
-    void AttachToBottom(sndButton* parent);
-
 private:
     std::function<void()> action_;
-    sndButton* parent_ = nullptr;
+};
+
+class sndSeparator : public sndElement
+{
+public:
+    sndSeparator(const char* label, int left, int right, sndWrapper* parent, sndAlign flags, int offset);
+    void Render();
+};
+
+class sndLabel : public sndElement
+{
+public:
+    sndLabel(const char* label, sndWrapper* parent, sndAlign flags, int offset);
+    void Render();
 };
 
 int AlignHorizontalLeft(sndWrapper* parent, int offset);

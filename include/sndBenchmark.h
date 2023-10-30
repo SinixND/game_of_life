@@ -3,6 +3,8 @@
 #ifndef SNDBENCHMARK_H
 #define SNDBENCHMARK_H
 
+#define ACTIVATE_BENCHMARKING
+
 #include <chrono>
 typedef std::chrono::steady_clock::time_point chrono_timePoint;
 typedef std::chrono::duration<double> chrono_timeDurationDouble;
@@ -14,7 +16,7 @@ class Benchmark
 public:
     Benchmark(std::string id);
 
-    std::string id_ = "";
+    std::string id_;
     chrono_timePoint startTime_;
     chrono_timePoint stopTime_;
     chrono_timeDurationDouble latestTime_;
@@ -27,11 +29,11 @@ extern std::vector<Benchmark> benchmarks;
 
 void StartBenchmark(std::string id);
 void StopBenchmark(std::string id);
-Benchmark& selectBenchmark(std::string id);
 void ShowBenchmarks();
 
 
 // sndBenchmark.cpp
+#ifdef ACTIVATE_BENCHMARKING
 
 #include <iostream>
 
@@ -45,11 +47,18 @@ Benchmark::Benchmark(std::string id)
 
 void StartBenchmark(std::string id)
 {
-    benchmarks.push_back(Benchmark(id));
+    for (auto& benchmark : benchmarks)
+    {
+        if (benchmark.id_ == id)
+        {
+            benchmark.startTime_ = std::chrono::steady_clock::now();
+            return;
+        }
+    }
 
+    benchmarks.push_back(Benchmark(id));
     benchmarks.back().startTime_ = std::chrono::steady_clock::now();
 }
-
 
 void StopBenchmark(std::string id)
 {
@@ -84,4 +93,5 @@ void ShowBenchmarks()
     std::cout << "\n";
 }
 
+#endif
 #endif

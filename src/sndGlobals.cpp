@@ -40,12 +40,12 @@ bool Global::GetDarkMode()
     return darkMode;
 };
 
-Color Global::Getbackground()
+Color Global::GetBackground()
 {
     return background;
 };
 
-Color Global::Getforeground()
+Color Global::GetForeground()
 {
     return foreground;
 };
