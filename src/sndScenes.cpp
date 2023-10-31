@@ -19,22 +19,8 @@ void Scene::Initialize()
     main->ResizeOuterBottom(GetRenderHeight());
 }
 
-void Scene::Update()
-{
-    //Input();
-    //Process();
-
-    //BeginDrawing();
-    //ClearBackground(global.GetBackground());
-
-    //Output();
-
-    //EndDrawing();
-}
+void Scene::Update() {}
 
 void Scene::Input() {}
 void Scene::Process() {}
-void Scene::Output()
-{
-    //main->Render();
-}
+void Scene::Output() {}
