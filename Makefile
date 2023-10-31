@@ -71,7 +71,10 @@ MAKEFLAGS :=
 # -W(all/extra): 		enable warnings
 # -std=c++17:	force c++ standard
 # -MMD			provides dependency information (header files) for make in .d files
-CXX_FLAGS := `pkg-config --cflags $(LIBRARIES)` -g -Wall -Wextra -MMD -Og #-Wpedantic 
+CXX_FLAGS := `pkg-config --cflags $(LIBRARIES)` -g -Wall -Wextra -MMD -Og -fsanitize=address #-Wpedantic 
+
+### set linker flags
+LD_FLAGS := -fsanitize=address
 
 #######################
 ### DONT EDIT BELOW ###
@@ -127,7 +130,7 @@ $(BIN_DIR)/$(TARGET).$(TARGET_EXT): $(OBJS)
 	@mkdir -p $(BIN_DIR)
 ### $@ (target, left of ":")
 ### $^ (all prerequesites, all right of ":")
-	$(CXX) -o $@ $^ $(LIB_FLAGS) $(LD_LIBS) 
+	$(CXX) -o $@ $^ $(LD_FLAGS) $(LIB_FLAGS) $(LD_LIBS) 
 
 # === COMPILER COMMANDS ===
 ### MAKE object files FROM source files; "%" pattern-matches (need pair of)
