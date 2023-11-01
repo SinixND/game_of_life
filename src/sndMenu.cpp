@@ -1,7 +1,8 @@
+#include <iostream>
+#include <raygui.h>
 #include "sndGlobals.h"
 #include "sndLayout.h"
 #include "sndScenes.h"
-#include <iostream>
 
 Menu::Menu()
 {
@@ -46,6 +47,7 @@ void Menu::Initialize()
     //---------------------------------
     auto darkMode = std::make_shared<sndButton>(
         "Darkmode",
+        GuiGetStyle(DEFAULT, TEXT_SIZE),
         []()
         {
             global.ToggleDarkMode();
@@ -58,7 +60,7 @@ void Menu::Initialize()
 
     auto jhconway = std::make_shared<sndText>(
         "J. H. Conway",
-        2 * GetFontDefault().baseSize,
+        GuiGetStyle(DEFAULT, TEXT_SIZE),
         head.get(),
         (sndAlign)(CENTER_HORIZONTAL | CENTER_VERTICAL),
         0);
@@ -67,7 +69,7 @@ void Menu::Initialize()
 
     auto gameoflife = std::make_shared<sndText>(
         "Game Of Life",
-        4 * GetFontDefault().baseSize,
+        2 * GuiGetStyle(DEFAULT, TEXT_SIZE),
         head.get(),
         (sndAlign)(CENTER_HORIZONTAL | CENTER_VERTICAL),
         0);
@@ -77,6 +79,7 @@ void Menu::Initialize()
 
     auto start = std::make_shared<sndButton>(
         "Start",
+        GuiGetStyle(DEFAULT, TEXT_SIZE),
         []()
         {
             currentScene = GAME;
@@ -89,6 +92,7 @@ void Menu::Initialize()
 
     auto settings = std::make_shared<sndButton>(
         "Settings",
+        GuiGetStyle(DEFAULT, TEXT_SIZE),
         []()
         {
             currentScene = SETTINGS;
@@ -102,6 +106,7 @@ void Menu::Initialize()
 
     auto exit = std::make_shared<sndButton>(
         "Exit",
+        GuiGetStyle(DEFAULT, TEXT_SIZE),
         []()
         {
             global.exitApp = true;

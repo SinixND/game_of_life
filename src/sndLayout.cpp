@@ -1,11 +1,12 @@
 #include "sndLayout.h"
 
+#include "sndConfigs.h"
 #include "sndGlobals.h"
 #include <functional>
 #include <iostream>
 #include <memory>
-#include <raygui.h>
 #include <raylib.h>
+#include <raygui.h>
 #include <vector>
 
 #define DEBUGGING
@@ -19,6 +20,16 @@ sndWrapper::sndWrapper(const char* label)
     Update();
 };
 
+sndWrapper::sndWrapper(int left, int top, int right, int bottom)
+{
+    ResizeOuterLeft(left);
+    ResizeOuterTop(top);
+    ResizeOuterRight(right);
+    ResizeOuterBottom(bottom);
+
+    Update();
+};
+
 sndWrapper::sndWrapper(const char* label, int left, int top, int right, int bottom)
 {
     label_ = label;
@@ -28,10 +39,13 @@ sndWrapper::sndWrapper(const char* label, int left, int top, int right, int bott
     ResizeOuterRight(right);
     ResizeOuterBottom(bottom);
 
+    SetMargin(3);
+    SetPadding(2);
+
     Update();
 };
 
-sndWrapper::~sndWrapper() { std::cout << "Dtor: " << label_ << "\n"; };
+sndWrapper::~sndWrapper(){};
 
 void sndWrapper::Render()
 {
@@ -144,7 +158,6 @@ void sndWrapper::SetMargin(int marginWeight)
     margin_ = marginWeight;
 
     auto margin = std::make_shared<sndWrapper>(
-        "margin",
         this->GetOuterLeft(),
         this->GetOuterTop(),
         this->GetOuterRight(),
@@ -165,7 +178,6 @@ void sndWrapper::SetBorder(int borderWeight)
     border_ = borderWeight;
 
     auto border = std::make_shared<sndWrapper>(
-        "border",
         this->GetOuterLeft() + this->GetMargin(),
         this->GetOuterTop() + this->GetMargin(),
         this->GetOuterRight() - this->GetMargin(),
@@ -186,7 +198,6 @@ void sndWrapper::SetPadding(int paddingWeight)
     padding_ = paddingWeight;
 
     auto padding = std::make_shared<sndWrapper>(
-        "padding",
         this->GetOuterLeft() + this->GetMargin() + this->GetBorder(),
         this->GetOuterTop() + this->GetMargin() + this->GetBorder(),
         this->GetOuterRight() - this->GetMargin() - this->GetBorder(),
@@ -219,18 +230,12 @@ int sndWrapper::GetInnerHeight() { return innerHeight_; }
 sndElement::sndElement(const char* label)
     : sndWrapper(label)
 {
-    padding_ = 2;
 }
 
-sndElement::sndElement(const char* label, int left, int top, int right, int bottom)
+sndElement::sndElement(const char* label, int fontSize, int left, int top, int right, int bottom)
     : sndWrapper(label, left, top, right, bottom)
 {
-    padding_ = 2;
-}
-
-const char* sndElement::GetLabel()
-{
-    return label_;
+    fontSize_ = fontSize;
 }
 
 sndElement::~sndElement() { std::cout << "Dtor: " << label_ << "\n"; };
@@ -313,7 +318,7 @@ void sndElement::AttachToTopAndAlign(sndElement* parent)
 
     sndElement::AttachToTop(parent);
 
-    if (parent->GetInnerWidth() < (MeasureText(GetLabel(), 2 * GetFontDefault().baseSize) + global.guiButtonBaseWidth))
+    if (parent->GetOuterWidth() < GetOuterWidth())
     {
         parent->ResizeOuterLeft(GetOuterLeft());
         parent->ResizeOuterRight(GetOuterRight());
@@ -342,7 +347,7 @@ void sndElement::AttachToBottomAndAlign(sndElement* parent)
 
     sndElement::AttachToBottom(parent);
 
-    if (parent->GetInnerWidth() < (MeasureText(GetLabel(), 2 * GetFontDefault().baseSize) + global.guiButtonBaseWidth))
+    if (parent->GetOuterWidth() < GetOuterWidth())
     {
         parent->ResizeOuterLeft(GetOuterLeft());
         parent->ResizeOuterRight(GetOuterRight());
@@ -362,14 +367,14 @@ sndButton::sndButton(const char* label)
 {
 }
 
-sndButton::sndButton(const char* label, std::function<void()> fn, int left, int top, int right, int bottom)
-    : sndElement(label, left, top, right, bottom)
+sndButton::sndButton(const char* label, int fontSize, std::function<void()> fn, int left, int top, int right, int bottom)
+    : sndElement(label, fontSize, left, top, right, bottom)
 {
     SetAction(fn);
 }
 
-sndButton::sndButton(const char* label, std::function<void()> fn, sndWrapper* parent, sndAlign flags, int offset)
-    : sndElement(label, 0, 0, MeasureText(label, 2 * GetFontDefault().baseSize) + global.guiButtonBaseWidth, 2 * GetFontDefault().baseSize + global.guiButtonBaseHeight)
+sndButton::sndButton(const char* label, int fontSize, std::function<void()> fn, sndWrapper* parent, sndAlign flags, int offset)
+    : sndElement(label, fontSize, 0, 0, MeasureText(label, fontSize) + global.guiButtonBaseWidth, fontSize + global.guiButtonBaseHeight)
 {
     SetAction(fn);
 
@@ -388,7 +393,7 @@ void sndButton::Render()
                 static_cast<float>(GetInnerTop()),
                 static_cast<float>(GetInnerWidth()),
                 static_cast<float>(GetInnerHeight())},
-            GetLabel()))
+            label_))
     {
         GetAction()();
     };
@@ -408,7 +413,7 @@ void sndButton::SetAction(std::function<void()> action)
 // sndSeparator
 //-------------------------------------
 sndSeparator::sndSeparator(const char* label, int left, int right, sndWrapper* parent, sndAlign flags, int offset)
-    : sndElement(label, left, 0, right, 0)
+    : sndElement(label, 0, left, 0, right, 10)
 {
     AlignToParent(parent, flags, offset);
 }
@@ -423,8 +428,8 @@ void sndSeparator::Render()
 
 // sndLabel
 //-------------------------------------
-sndLabel::sndLabel(const char* label, sndWrapper* parent, sndAlign flags, int offset)
-    : sndElement(label, 0, 0, MeasureText(label, 2 * GetFontDefault().baseSize) + global.guiButtonBaseWidth, 2 * GetFontDefault().baseSize + global.guiButtonBaseHeight)
+sndLabel::sndLabel(const char* label, int fontSize, sndWrapper* parent, sndAlign flags, int offset)
+    : sndElement(label, fontSize, 0, 0, MeasureText(label, fontSize) + global.guiButtonBaseWidth, fontSize + global.guiButtonBaseHeight)
 {
     AlignToParent(parent, flags, offset);
 }
@@ -439,16 +444,17 @@ void sndLabel::Render()
             static_cast<float>(GetInnerTop()),
             static_cast<float>(GetInnerWidth()),
             static_cast<float>(GetInnerHeight())},
-        GetLabel());
+        label_);
 }
 //-------------------------------------
 
 // sndText
 //-------------------------------------
 sndText::sndText(const char* label, int fontSize, sndWrapper* parent, sndAlign flags, int offset)
-    : sndElement(label, 0, 0, MeasureText(label, fontSize) + global.guiButtonBaseWidth, fontSize + global.guiButtonBaseHeight)
+    : sndElement(label, fontSize, 0, 0, MeasureText(label, fontSize) + global.guiButtonBaseWidth, fontSize + global.guiButtonBaseHeight)
 {
     fontSize_ = fontSize;
+
     AlignToParent(parent, flags, offset);
 }
 
@@ -457,6 +463,31 @@ sndText::~sndText() { std::cout << "Dtor: " << label_ << "\n"; };
 void sndText::Render()
 {
     DrawText(TextFormat(label_), GetInnerLeft(), GetInnerTop(), fontSize_, global.GetForeground());
+}
+//-------------------------------------
+
+// sndCheckBox
+//-------------------------------------
+sndCheckBox::sndCheckBox(const char* label, int fontSize, sndWrapper* parent, sndAlign flags, int offset)
+    : sndElement(label, fontSize, 0, 0, MeasureText(label, fontSize) + fontSize, fontSize)
+{
+    fontSize_ = fontSize;
+
+    AlignToParent(parent, flags, offset);
+}
+
+sndCheckBox::~sndCheckBox() {}
+
+void sndCheckBox::Render()
+{
+    GuiCheckBox(
+        (Rectangle){
+            static_cast<float>(GetInnerLeft()),
+            static_cast<float>(GetInnerTop()),
+            static_cast<float>(fontSize_),
+            static_cast<float>(fontSize_)},
+        label_,
+        &config.fadingAgents);
 }
 //-------------------------------------
 

@@ -71,7 +71,7 @@ MAKEFLAGS :=
 # -W(all/extra): 		enable warnings
 # -std=c++17:	force c++ standard
 # -MMD			provides dependency information (header files) for make in .d files
-CXX_FLAGS := `pkg-config --cflags $(LIBRARIES)` -g -Wall -Wextra -MMD -Og -fsanitize=address #-Wpedantic 
+CXX_FLAGS := `pkg-config --cflags $(LIBRARIES)` -g -Wall -Wextra -MMD -O0 -fsanitize=address #-Wpedantic 
 
 ### set linker flags
 LD_FLAGS := -fsanitize=address

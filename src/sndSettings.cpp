@@ -1,3 +1,4 @@
+#include <raygui.h>
 #include "sndGlobals.h"
 #include "sndLayout.h"
 #include "sndScenes.h"
@@ -36,27 +37,16 @@ void Settings::Initialize()
     //---------------------------------
     auto settings = std::make_shared<sndText>(
         "Settings",
-        4 * GetFontDefault().baseSize,
+        2 * GuiGetStyle(DEFAULT, TEXT_SIZE),
         menubar.get(),
         (sndAlign)(CENTER_HORIZONTAL | CENTER_VERTICAL),
         0);
 
     menubar->AddWrapper(settings);
 
-    auto darkMode = std::make_shared<sndButton>(
-        "Darkmode",
-        []()
-        {
-            global.ToggleDarkMode();
-        },
-        menubar.get(),
-        (sndAlign)(RIGHT | CENTER_VERTICAL),
-        0);
-
-    menubar->AddWrapper(darkMode);
-
     auto back = std::make_shared<sndButton>(
         "Back",
+        GuiGetStyle(DEFAULT, TEXT_SIZE),
         []()
         {
             currentScene = MENU;
@@ -66,6 +56,19 @@ void Settings::Initialize()
         0);
 
     menubar->AddWrapper(back);
+
+    auto darkMode = std::make_shared<sndButton>(
+        "Darkmode",
+        GuiGetStyle(DEFAULT, TEXT_SIZE),
+        []()
+        {
+            global.ToggleDarkMode();
+        },
+        menubar.get(),
+        (sndAlign)(RIGHT | CENTER_VERTICAL),
+        0);
+
+    menubar->AddWrapper(darkMode);
 
     auto category1ST = std::make_shared<sndSeparator>(
         "Separator",
@@ -79,6 +82,7 @@ void Settings::Initialize()
 
     auto category1 = std::make_shared<sndLabel>(
         "Category 1",
+        GuiGetStyle(DEFAULT, TEXT_SIZE),
         body.get(),
         (sndAlign)(CENTER_HORIZONTAL | CENTER_VERTICAL),
         0);
@@ -96,6 +100,16 @@ void Settings::Initialize()
 
     category1SB->AttachToBottom(category1.get());
     body->AddWrapper(category1SB);
+
+    auto fadingAgents = std::make_shared<sndCheckBox>(
+        "Fading agents",
+        GuiGetStyle(DEFAULT, TEXT_SIZE),
+        body.get(),
+        (sndAlign)(TOP | CENTER_VERTICAL),
+        2);
+
+    fadingAgents->AttachToBottom(category1SB.get());
+    body->AddWrapper(fadingAgents);
     //---------------------------------
 }
 

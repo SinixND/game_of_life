@@ -34,6 +34,7 @@ class sndWrapper
 {
 public:
     sndWrapper(const char* label);
+    sndWrapper(int left, int top, int right, int bottom);
     sndWrapper(const char* label, int left, int top, int right, int bottom);
     virtual ~sndWrapper();
 
@@ -78,7 +79,7 @@ public:
     int GetInnerHeight();
 
 protected:
-    const char* label_;
+    const char* label_{};
 
     int outerLeft_ = 0;
     int outerTop_ = 0;
@@ -87,9 +88,9 @@ protected:
     int outerWidth_ = 0;
     int outerHeight_ = 0;
 
-    int margin_{1};
+    int margin_{0};
     int border_{0};
-    int padding_{1};
+    int padding_{0};
 
     int frameWeight_{0};
 
@@ -117,10 +118,8 @@ class sndElement : public sndWrapper
 {
 public:
     sndElement(const char* label);
-    sndElement(const char* label, int left, int top, int right, int bottom);
+    sndElement(const char* label, int fontSize, int left, int top, int right, int bottom);
     virtual ~sndElement();
-
-    const char* GetLabel();
 
     void AlignToParent(sndWrapper* element, sndAlign flags, int offset);
 
@@ -133,6 +132,7 @@ public:
     void AttachToBottomAndAlign(sndElement* parent);
 
 protected:
+    int fontSize_;
     sndElement* parent_ = nullptr;
 };
 
@@ -140,8 +140,8 @@ class sndButton : public sndElement
 {
 public:
     sndButton(const char* label);
-    sndButton(const char* label, std::function<void()> fn, int left, int top, int right, int bottom);
-    sndButton(const char* label, std::function<void()> fn, sndWrapper* parent, sndAlign flags, int offset);
+    sndButton(const char* label, int fontSize, std::function<void()> fn, int left, int top, int right, int bottom);
+    sndButton(const char* label, int fontSize, std::function<void()> fn, sndWrapper* parent, sndAlign flags, int offset);
     ~sndButton();
 
     void Render();
@@ -165,7 +165,7 @@ public:
 class sndLabel : public sndElement
 {
 public:
-    sndLabel(const char* label, sndWrapper* parent, sndAlign flags, int offset);
+    sndLabel(const char* label, int fontSize, sndWrapper* parent, sndAlign flags, int offset);
     ~sndLabel();
 
     void Render();
@@ -180,7 +180,17 @@ public:
     void Render();
 
 private:
-    int fontSize_;
+};
+
+class sndCheckBox : public sndElement
+{
+public:
+    sndCheckBox(const char* label, int fontSize, sndWrapper* parent, sndAlign flags, int offset);
+    ~sndCheckBox();
+
+    void Render();
+
+private:
 };
 
 int AlignHorizontalLeft(sndWrapper* parent, int offset);
