@@ -19,7 +19,7 @@ void Settings::Initialize()
         main->GetInnerLeft(),
         main->GetInnerTop(),
         main->GetInnerRight(),
-        static_cast<int>(main->GetInnerTop() + 2 * global.guiButtonBaseHeight + 2 * main->GetFrameWeight()));
+        static_cast<int>(main->GetInnerTop() + 4 * GuiGetStyle(DEFAULT, TEXT_SIZE)));
 
     main->AddWrapper(menubar);
 
@@ -75,7 +75,7 @@ void Settings::Initialize()
         body->GetInnerLeft(),
         body->GetInnerRight(),
         body.get(),
-        (sndAlign)(TOP | CENTER_VERTICAL),
+        (sndAlign)(CENTER_HORIZONTAL | TOP),
         0);
 
     body->AddWrapper(category1ST);
@@ -95,7 +95,7 @@ void Settings::Initialize()
         body->GetInnerLeft(),
         body->GetInnerRight(),
         body.get(),
-        (sndAlign)(TOP | CENTER_VERTICAL),
+        (sndAlign)(CENTER_HORIZONTAL | TOP),
         0);
 
     category1SB->AttachToBottom(category1.get());
@@ -105,7 +105,7 @@ void Settings::Initialize()
         "Fading agents",
         GuiGetStyle(DEFAULT, TEXT_SIZE),
         body.get(),
-        (sndAlign)(TOP | CENTER_VERTICAL),
+        (sndAlign)(LEFT | TOP),
         2);
 
     fadingAgents->AttachToBottom(category1SB.get());

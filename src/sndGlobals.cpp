@@ -5,8 +5,6 @@
 Global global; // define extern object
 Global::Global()
     : exitApp(false)
-    , guiButtonBaseWidth(20)
-    , guiButtonBaseHeight(30)
     , darkMode(true)
     , background(WHITE)
     , foreground(BLACK)

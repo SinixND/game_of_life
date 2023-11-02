@@ -13,9 +13,6 @@ public:
     bool exitApp;
 
     // GUI ELEMENTS
-    float guiButtonBaseWidth;
-    float guiButtonBaseHeight;
-
     void ToggleDarkMode();
     bool GetDarkMode();
 

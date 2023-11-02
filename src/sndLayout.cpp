@@ -5,11 +5,11 @@
 #include <functional>
 #include <iostream>
 #include <memory>
-#include <raylib.h>
 #include <raygui.h>
+#include <raylib.h>
 #include <vector>
 
-#define DEBUGGING
+//#define DEBUGGING
 
 // sndWrapper
 //-------------------------------------
@@ -17,7 +17,11 @@ sndWrapper::sndWrapper(const char* label)
 {
     label_ = label;
 
-    Update();
+    SetMargin(1);
+    SetBorder(1);
+    SetPadding(1);
+
+    UpdateFrame();
 };
 
 sndWrapper::sndWrapper(int left, int top, int right, int bottom)
@@ -27,7 +31,7 @@ sndWrapper::sndWrapper(int left, int top, int right, int bottom)
     ResizeOuterRight(right);
     ResizeOuterBottom(bottom);
 
-    Update();
+    UpdateFrame();
 };
 
 sndWrapper::sndWrapper(const char* label, int left, int top, int right, int bottom)
@@ -39,10 +43,11 @@ sndWrapper::sndWrapper(const char* label, int left, int top, int right, int bott
     ResizeOuterRight(right);
     ResizeOuterBottom(bottom);
 
-    SetMargin(3);
-    SetPadding(2);
+    SetMargin(1);
+    SetBorder(1);
+    SetPadding(1);
 
-    Update();
+    UpdateFrame();
 };
 
 sndWrapper::~sndWrapper(){};
@@ -54,6 +59,7 @@ void sndWrapper::Render()
         static_cast<float>(GetOuterTop()),
         static_cast<float>(GetOuterWidth()),
         static_cast<float>(GetOuterHeight())};
+
     DrawRectangleLinesEx(frameRect, this->GetFrameWeight(), this->GetFrameColor());
 
     if (wrappers_.size() == 0)
@@ -77,7 +83,7 @@ void sndWrapper::ClearWrappers()
     wrappers_.clear();
 }
 
-void sndWrapper::Update()
+void sndWrapper::UpdateFrame()
 {
     frameWeight_ = margin_ + border_ + padding_;
 
@@ -94,14 +100,14 @@ void sndWrapper::ResizeOuterLeft(int outerLeft)
 {
     outerLeft_ = outerLeft;
     outerWidth_ = outerRight_ - outerLeft_;
-    Update();
+    UpdateFrame();
 }
 
 void sndWrapper::MoveOuterLeft(int outerLeft)
 {
     outerLeft_ = outerLeft;
     outerRight_ = outerLeft_ + outerWidth_;
-    Update();
+    UpdateFrame();
 }
 
 int sndWrapper::GetOuterTop() { return outerTop_; }
@@ -109,14 +115,14 @@ void sndWrapper::ResizeOuterTop(int outerTop)
 {
     outerTop_ = outerTop;
     outerHeight_ = outerBottom_ - outerTop_;
-    Update();
+    UpdateFrame();
 }
 
 void sndWrapper::MoveOuterTop(int outerTop)
 {
     outerTop_ = outerTop;
     outerBottom_ = outerTop_ + outerHeight_;
-    Update();
+    UpdateFrame();
 }
 
 int sndWrapper::GetOuterRight() { return outerRight_; }
@@ -124,14 +130,14 @@ void sndWrapper::ResizeOuterRight(int outerRight)
 {
     outerRight_ = outerRight;
     outerWidth_ = outerRight_ - outerLeft_;
-    Update();
+    UpdateFrame();
 }
 
 void sndWrapper::MoveOuterRight(int outerRight)
 {
     outerRight_ = outerRight;
     outerLeft_ = outerRight_ - outerWidth_;
-    Update();
+    UpdateFrame();
 }
 
 int sndWrapper::GetOuterBottom() { return outerBottom_; }
@@ -139,14 +145,14 @@ void sndWrapper::ResizeOuterBottom(int outerBottom)
 {
     outerBottom_ = outerBottom;
     outerHeight_ = outerBottom_ - outerTop_;
-    Update();
+    UpdateFrame();
 }
 
 void sndWrapper::MoveOuterBottom(int outerBottom)
 {
     outerBottom_ = outerBottom;
     outerTop_ = outerBottom_ - outerHeight_;
-    Update();
+    UpdateFrame();
 }
 
 int sndWrapper::GetOuterWidth() { return outerWidth_; }
@@ -169,7 +175,7 @@ void sndWrapper::SetMargin(int marginWeight)
 #endif
 
     AddWrapper(margin);
-    Update();
+    UpdateFrame();
 }
 
 int sndWrapper::GetBorder() { return border_; }
@@ -189,7 +195,7 @@ void sndWrapper::SetBorder(int borderWeight)
 #endif
 
     AddWrapper(border);
-    Update();
+    UpdateFrame();
 }
 
 int sndWrapper::GetPadding() { return padding_; }
@@ -209,7 +215,7 @@ void sndWrapper::SetPadding(int paddingWeight)
 #endif
 
     AddWrapper(padding);
-    Update();
+    UpdateFrame();
 }
 
 int sndWrapper::GetFrameWeight() { return frameWeight_; }
@@ -238,7 +244,7 @@ sndElement::sndElement(const char* label, int fontSize, int left, int top, int r
     fontSize_ = fontSize;
 }
 
-sndElement::~sndElement() { std::cout << "Dtor: " << label_ << "\n"; };
+sndElement::~sndElement() {};
 
 void sndElement::AlignToParent(sndWrapper* parent, sndAlign flags, int offset)
 {
@@ -275,7 +281,11 @@ void sndElement::AlignToParent(sndWrapper* parent, sndAlign flags, int offset)
     {
         positionTop = AlignVerticalBottom(parent, GetOuterHeight(), offset);
         alignedVertical_ = BOTTOM;
-    };
+    }
+
+    if (positionLeft < 0 || positionTop < 0) {
+        throw std::invalid_argument("Negative value. Check if parent size is big enough!");
+    }
 
     MoveOuterLeft(positionLeft);
     MoveOuterTop(positionTop);
@@ -374,14 +384,14 @@ sndButton::sndButton(const char* label, int fontSize, std::function<void()> fn, 
 }
 
 sndButton::sndButton(const char* label, int fontSize, std::function<void()> fn, sndWrapper* parent, sndAlign flags, int offset)
-    : sndElement(label, fontSize, 0, 0, MeasureText(label, fontSize) + global.guiButtonBaseWidth, fontSize + global.guiButtonBaseHeight)
+    : sndElement(label, fontSize, 0, 0, static_cast<int>(1.5 * MeasureTextEx(GetFontDefault(), label, fontSize, 0).x), static_cast<int>(2 * MeasureTextEx(GetFontDefault(), label, fontSize, 0).y))
 {
     SetAction(fn);
 
     AlignToParent(parent, flags, offset);
 }
 
-sndButton::~sndButton() { std::cout << "Dtor: " << label_ << "\n"; };
+sndButton::~sndButton() {};
 
 void sndButton::Render()
 {
@@ -418,26 +428,67 @@ sndSeparator::sndSeparator(const char* label, int left, int right, sndWrapper* p
     AlignToParent(parent, flags, offset);
 }
 
-sndSeparator::~sndSeparator() { std::cout << "Dtor: " << label_ << "\n"; };
+sndSeparator::~sndSeparator() {};
 
 void sndSeparator::Render()
 {
-    DrawLine(GetInnerLeft(), GetInnerTop(), GetInnerRight(), GetInnerTop(), global.GetForeground());
+    sndWrapper::Render();
+
+    DrawLine(
+        GetInnerLeft(), 
+        static_cast<int>(GetOuterTop() + (GetOuterBottom() - GetOuterTop()) / 2), 
+        GetInnerRight(), 
+        static_cast<int>(GetOuterTop() + (GetOuterBottom() - GetOuterTop()) / 2), 
+        global.GetForeground());
+}
+//-------------------------------------
+
+// sndVSpacer
+//-------------------------------------
+sndVSpacer::sndVSpacer(const char* label, int vSpace, sndWrapper* parent, sndAlign flags, int offset)
+    : sndElement(label, 0, 0, 0, 0, vSpace)
+{
+    AlignToParent(parent, flags, offset);
+}
+
+sndVSpacer::~sndVSpacer() {};
+
+void sndVSpacer::Render()
+{
+    sndWrapper::Render();
+}
+//-------------------------------------
+
+// sndHSpacer
+//-------------------------------------
+sndHSpacer::sndHSpacer(const char* label, int hSpace, sndWrapper* parent, sndAlign flags, int offset)
+    : sndElement(label, 0, 0, 0, hSpace, 0)
+{
+    AlignToParent(parent, flags, offset);
+}
+
+sndHSpacer::~sndHSpacer() {};
+
+void sndHSpacer::Render()
+{
+    sndWrapper::Render();
 }
 //-------------------------------------
 
 // sndLabel
 //-------------------------------------
 sndLabel::sndLabel(const char* label, int fontSize, sndWrapper* parent, sndAlign flags, int offset)
-    : sndElement(label, fontSize, 0, 0, MeasureText(label, fontSize) + global.guiButtonBaseWidth, fontSize + global.guiButtonBaseHeight)
+    : sndElement(label, fontSize, 0, 0, MeasureTextEx(GetFontDefault(), label, fontSize, 0).x, static_cast<int>(2 * MeasureTextEx(GetFontDefault(), label, fontSize, 0).y))
 {
     AlignToParent(parent, flags, offset);
 }
 
-sndLabel::~sndLabel() { std::cout << "Dtor: " << label_ << "\n"; };
+sndLabel::~sndLabel() {};
 
 void sndLabel::Render()
 {
+    sndWrapper::Render();
+
     GuiLabel(
         (Rectangle){
             static_cast<float>(GetInnerLeft()),
@@ -451,17 +502,20 @@ void sndLabel::Render()
 // sndText
 //-------------------------------------
 sndText::sndText(const char* label, int fontSize, sndWrapper* parent, sndAlign flags, int offset)
-    : sndElement(label, fontSize, 0, 0, MeasureText(label, fontSize) + global.guiButtonBaseWidth, fontSize + global.guiButtonBaseHeight)
+    : sndElement(label, fontSize, 0, 0, MeasureTextEx(GetFontDefault(), label, fontSize, 0).x, MeasureTextEx(GetFontDefault(), label, fontSize, 0).y)
+
 {
     fontSize_ = fontSize;
 
     AlignToParent(parent, flags, offset);
 }
 
-sndText::~sndText() { std::cout << "Dtor: " << label_ << "\n"; };
+sndText::~sndText() {};
 
 void sndText::Render()
 {
+    sndWrapper::Render();
+
     DrawText(TextFormat(label_), GetInnerLeft(), GetInnerTop(), fontSize_, global.GetForeground());
 }
 //-------------------------------------
@@ -469,9 +523,10 @@ void sndText::Render()
 // sndCheckBox
 //-------------------------------------
 sndCheckBox::sndCheckBox(const char* label, int fontSize, sndWrapper* parent, sndAlign flags, int offset)
-    : sndElement(label, fontSize, 0, 0, MeasureText(label, fontSize) + fontSize, fontSize)
+    : sndElement(label, fontSize, 0, 0, MeasureTextEx(GetFontDefault(), label, fontSize, 0).x, MeasureTextEx(GetFontDefault(), label, fontSize, 0).y)
+
 {
-    fontSize_ = fontSize;
+    //fontSize_ = fontSize;
 
     AlignToParent(parent, flags, offset);
 }
@@ -480,6 +535,8 @@ sndCheckBox::~sndCheckBox() {}
 
 void sndCheckBox::Render()
 {
+    sndWrapper::Render();
+
     GuiCheckBox(
         (Rectangle){
             static_cast<float>(GetInnerLeft()),

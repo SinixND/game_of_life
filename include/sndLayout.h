@@ -55,18 +55,14 @@ public:
     void ResizeOuterBottom(int outerBottom);
     void MoveOuterBottom(int outerBottom);
     int GetOuterWidth();
-    void ResizeOuterWidth(int outerWidth);
-    void MoveOuterWidth(int outerWidth);
     int GetOuterHeight();
-    void ResizeOuterHeight(int outerHeight);
-    void MoveOuterHeight(int outerHeight);
 
     int GetMargin();
-    void SetMargin(int setMargin);
+    void SetMargin(int marginWeight);
     int GetBorder();
-    void SetBorder(int setBorder);
+    void SetBorder(int borderWeight);
     int GetPadding();
-    void SetPadding(int setPadding);
+    void SetPadding(int paddingWeight);
     
     int GetFrameWeight();
     Color GetFrameColor();
@@ -88,11 +84,11 @@ protected:
     int outerWidth_ = 0;
     int outerHeight_ = 0;
 
-    int margin_{0};
-    int border_{0};
-    int padding_{0};
+    int margin_{1};
+    int border_{1};
+    int padding_{1};
 
-    int frameWeight_{0};
+    int frameWeight_ = margin_ + border_ + padding_;
 
     Color frameColor_ = BLANK; 
 
@@ -108,7 +104,7 @@ protected:
     sndAlign alignedHorizontal_ = NONE;
     sndAlign alignedVertical_ = NONE;
 
-    void Update();
+    void UpdateFrame();
 
     void SetFrameWeight(int frameWeight);
     void SetFrameColor(Color frameColor);
@@ -158,6 +154,24 @@ class sndSeparator : public sndElement
 public:
     sndSeparator(const char* label, int left, int right, sndWrapper* parent, sndAlign flags, int offset);
     ~sndSeparator();
+
+    void Render();
+};
+
+class sndVSpacer : public sndElement
+{
+public:
+    sndVSpacer(const char* label, int vSpace, sndWrapper* parent, sndAlign flags, int offset);
+    ~sndVSpacer();
+
+    void Render();
+};
+
+class sndHSpacer : public sndElement
+{
+public:
+    sndHSpacer(const char* label, int hSpace, sndWrapper* parent, sndAlign flags, int offset);
+    ~sndHSpacer();
 
     void Render();
 };
