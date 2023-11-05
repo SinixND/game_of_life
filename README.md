@@ -5,13 +5,12 @@
 
 # TODOs
 # Current 
-[1] Virtual destructor and value initialize variables
+[0] Rework Gui (responsive)
 
 # Shortterm
-[2] check dynamic behaviour
 
 # Longterm
-[0] Rework Gui (responsive)
+[0] implement custom symbols (darkmode) locally!
 [1] website containing program (include working emscripten into flask page?)
 [1] Release as CS50 project
 [2] Save settings (.ini)
@@ -38,3 +37,8 @@
 [5] zoom/pan/live grid change
 
 [x] LMB / RMB set alive/dead
+
+# Done
+
+[-] Virtual destructor and value initialize variables
+[-] check dynamic behaviour

@@ -31,7 +31,7 @@ int main()
 
     Menu menu;
     Settings settings;
-    //Game game;
+    Game game;
 
     // Main app loop
     //---------------------------------
@@ -41,7 +41,7 @@ int main()
         {
             menu.Initialize();
             settings.Initialize();
-            //game.Initialize();
+            game.Initialize();
         }
     
         switch (currentScene)
@@ -54,7 +54,7 @@ int main()
 
         case GAME:
             StartBenchmark("game.Update()");
-            //game.Update();
+            game.Update();
             StopBenchmark("game.Update()");
             break;
 

@@ -19,15 +19,15 @@ class Scene
 {
 public:
     Scene();
-    virtual void Initialize();
+    void Initialize();
     virtual void Update();
 
 protected:
     std::shared_ptr<sndWrapper> main;
 
-    virtual void Input();
-    virtual void Process();
-    virtual void Output();
+    void Input();
+    void Process();
+    void Output();
 };
 
 // SCENES
@@ -42,7 +42,7 @@ public:
     std::shared_ptr<sndWrapper> body;
 
     void Initialize();
-    void Update();
+    void Update() override;
 
 private:
     void Input();
@@ -59,7 +59,7 @@ public:
     std::shared_ptr<sndWrapper> body;
 
     void Initialize();
-    void Update();
+    void Update() override;
 
 private:
     void Input();
@@ -77,7 +77,7 @@ public:
     std::shared_ptr<sndWrapper> body;
 
     void Initialize();
-    void Update();
+    void Update() override;
 
 private:
     void Input();
