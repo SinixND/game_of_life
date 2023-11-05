@@ -1,10 +1,10 @@
-#include <raygui.h>
-#include <cmath>
 #include "sndConfigs.h"
 #include "sndGlobals.h"
 #include "sndGrid.h"
 #include "sndLayout.h"
 #include "sndScenes.h"
+#include <cmath>
+#include <raygui.h>
 
 // GAME OF LIFE / GRID
 //---------------------------------
@@ -221,11 +221,27 @@ void Game::Output()
 {
     main->Render();
 
-    //RenderScreenGameStatusbar();
-    //RenderScreenGameMainPanel();
+    // RenderScreenGameStatusbar();
+    // RenderScreenGameMainPanel();
 
     if (pauseState == true)
     {
-        //RenderPauseOverlay();
+        RenderPauseOverlay();
     }
+}
+
+void Game::RenderPauseOverlay()
+{
+    // Draw overlay Frame
+    Rectangle rectpanelMainScreenGame{
+        static_cast<float>(body->GetOuterLeft()),
+        static_cast<float>(body->GetOuterTop()),
+        static_cast<float>(body->GetOuterWidth()),
+        static_cast<float>(body->GetOuterHeight())};
+
+    DrawRectangleLinesEx(rectpanelMainScreenGame, 10, Fade(global.GetForeground(), 0.75f));
+
+    const char* txtPaused = TextFormat("[P]aused...");
+
+    DrawText(txtPaused, AlignHorizontalRight(statusbar.get(), MeasureText(txtPaused, GuiGetStyle(DEFAULT, TEXT_SIZE)), 0), AlignVerticalCenter(statusbar.get(), GuiGetStyle(DEFAULT, TEXT_SIZE), 0), GuiGetStyle(DEFAULT, TEXT_SIZE), global.GetForeground());
 }

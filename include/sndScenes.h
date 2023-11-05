@@ -83,6 +83,8 @@ private:
     void Input();
     void Process();
     void Output();
+
+    void RenderPauseOverlay();
 };
 //-------------------------------------
 #endif

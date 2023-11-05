@@ -16,10 +16,12 @@ int main()
     const int screenWidth = 640;
     const int screenHeight = 480;
 
-    InitWindow(screenWidth, screenHeight, "Conway's Game of Life");
 
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     SetConfigFlags(FLAG_WINDOW_TRANSPARENT);
+
+    InitWindow(screenWidth, screenHeight, "Conway's Game of Life");
+
     SetTargetFPS(config.targetFPS);
     GuiSetStyle(DEFAULT, TEXT_SIZE, 20);
     SetExitKey(0);
