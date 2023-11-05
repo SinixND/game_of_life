@@ -7,6 +7,7 @@
 class Grid
 {
 public:
+    Grid();
     Grid(int rowsY, int colsX);
 
     std::vector<bool> gridState_;
@@ -21,6 +22,9 @@ public:
 
     void NotifyAdjacentAgents(Agent& agent);
     void Update();
+
+    void SetRowsY(int rows);
+    void SetColsX(int cols);
 
     int GetDay();
     void SetDay(int day);

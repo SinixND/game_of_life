@@ -6,12 +6,20 @@
 #include "sndAgent.h"
 #include "sndConfigs.h" // provide object "config" for configurable parameters
 
+Grid::Grid(){};
+
 Grid::Grid(int rowsY, int colsX)
     : rowsY_(rowsY)
     , colsX_(colsX)
 {
     Reset();
-};
+}
+
+void Grid::Evolve()
+{
+    PrepareNext();
+    Update();
+}
 
 void Grid::Reset()
 {
@@ -64,11 +72,27 @@ void Grid::Clear()
     }
 }
 
-void Grid::Evolve()
+int Grid::CountAdjacentAgents(Agent& agent)
 {
-    PrepareNext();
-    Update();
-};
+    int cnt = 0;
+    for (auto dy : {-1, 0, 1})
+    {
+        for (auto dx : {-1, 0, 1})
+        {
+            // set adjacent position, wrapping around matrix
+            int posY = ((agent.GetRowY() + dy) + grid_.size()) % grid_.size();
+            int posX = ((agent.GetColX() + dx) + grid_[posY].size()) % grid_[posY].size();
+
+            Agent& adjacentAgent = grid_[posY][posX];
+
+            if (adjacentAgent.GetStatusCurrent() == true && (dy != 0 || dx != 0))
+            {
+                cnt += 1;
+            }
+        }
+    }
+    return cnt;
+}
 
 void Grid::PrepareNext()
 {
@@ -107,29 +131,23 @@ void Grid::PrepareNext()
             }
         }
     }
-};
+}
 
-int Grid::CountAdjacentAgents(Agent& agent)
+void Grid::NotifyAdjacentAgents(Agent& agent)
 {
-    int cnt = 0;
-    for (auto dy : {-1, 0, 1})
+    for (auto dx : {-1, 0, 1})
     {
-        for (auto dx : {-1, 0, 1})
+        for (auto dy : {-1, 0, 1})
         {
-            // set adjacent position, wrapping around matrix
+            // wraps around matrix
             int posY = ((agent.GetRowY() + dy) + grid_.size()) % grid_.size();
             int posX = ((agent.GetColX() + dx) + grid_[posY].size()) % grid_[posY].size();
 
             Agent& adjacentAgent = grid_[posY][posX];
-
-            if (adjacentAgent.GetStatusCurrent() == true && (dy != 0 || dx != 0))
-            {
-                cnt += 1;
-            }
+            adjacentAgent.SetStatusOutdated(true);
         }
     }
-    return cnt;
-};
+}
 
 void Grid::Update()
 {
@@ -166,35 +184,29 @@ void Grid::Update()
     }
     gridStates_.push_back(gridState_);
     gridState_.clear();
-};
+}
 
-void Grid::NotifyAdjacentAgents(Agent& agent)
+void Grid::SetRowsY(int rows)
 {
-    for (auto dx : {-1, 0, 1})
-    {
-        for (auto dy : {-1, 0, 1})
-        {
-            // wraps around matrix
-            int posY = ((agent.GetRowY() + dy) + grid_.size()) % grid_.size();
-            int posX = ((agent.GetColX() + dx) + grid_[posY].size()) % grid_[posY].size();
+    rowsY_ = rows;
+}
 
-            Agent& adjacentAgent = grid_[posY][posX];
-            adjacentAgent.SetStatusOutdated(true);
-        }
-    }
-};
-
-std::vector<std::vector<Agent>>& Grid::GetGrid()
+void Grid::SetColsX(int cols)
 {
-    return grid_;
-};
+    colsX_ = cols;
+}
 
 int Grid::GetDay()
 {
     return day_;
-};
+}
 
 void Grid::SetDay(int day)
 {
     day_ = day;
-};
+}
+
+std::vector<std::vector<Agent>>& Grid::GetGrid()
+{
+    return grid_;
+}

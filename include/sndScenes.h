@@ -12,6 +12,7 @@ typedef enum scenes
     SETTINGS,
 } scenes;
 
+
 extern scenes currentScene;
 
 class Scene
@@ -55,6 +56,24 @@ public:
     Settings();
 
     std::shared_ptr<sndWrapper> menubar;
+    std::shared_ptr<sndWrapper> body;
+
+    void Initialize();
+    void Update();
+
+private:
+    void Input();
+    void Process();
+    void Output();
+};
+
+class Game : public Scene
+{
+public:
+    Game();
+
+    std::shared_ptr<sndWrapper> menubar;
+    std::shared_ptr<sndWrapper> statusbar;
     std::shared_ptr<sndWrapper> body;
 
     void Initialize();

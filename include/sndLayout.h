@@ -5,7 +5,6 @@
 #include <vector>
 #include <functional>
 #include <memory>
-#include <stdarg.h>
 
 /* LAYOUT BOX STRUCTURE
 
@@ -84,9 +83,9 @@ protected:
     int outerWidth_ = 0;
     int outerHeight_ = 0;
 
-    int margin_{1};
+    int margin_{3};
     int border_{1};
-    int padding_{1};
+    int padding_{2};
 
     int frameWeight_ = margin_ + border_ + padding_;
 

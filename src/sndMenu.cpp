@@ -46,7 +46,7 @@ void Menu::Initialize()
     // GUI-Elements
     //---------------------------------
     auto darkMode = std::make_shared<sndButton>(
-        "Darkmode",
+        GuiIconText(ICON_DARK_MODE, ""),
         GuiGetStyle(DEFAULT, TEXT_SIZE),
         []()
         {

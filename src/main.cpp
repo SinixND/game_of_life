@@ -1,6 +1,8 @@
 #include <iostream>
 #include <raylib.h>
 #define RAYGUI_IMPLEMENTATION //only define once
+//#define RAYGUI_CUSTOM_ICONS     // Custom icons set required 
+//#include "../resources/sndSinixND.rgi.h"  
 #include <raygui.h>
 #include "sndConfigs.h" // provide object "config" for configurable parameters
 #include "sndGlobals.h" // provide object "global" for not configurable application parameters
@@ -9,17 +11,29 @@
 
 int main()
 {
+    // Initialization
+    //---------------------------------
+    const int screenWidth = 640;
+    const int screenHeight = 480;
+
+    InitWindow(screenWidth, screenHeight, "Conway's Game of Life");
+
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     SetConfigFlags(FLAG_WINDOW_TRANSPARENT);
-    InitWindow(640, 480, "Conway's Game of Life");
     SetTargetFPS(config.targetFPS);
     GuiSetStyle(DEFAULT, TEXT_SIZE, 20);
     SetExitKey(0);
 
+    Image icon = LoadImage("resources/favicon.ico");
+    ImageFormat(&icon, PIXELFORMAT_UNCOMPRESSED_R8G8B8A8);
+    SetWindowIcon(icon);
+    //---------------------------------
+
     Menu menu;
     Settings settings;
+    //Game game;
 
-    // MAIN APP LOOP
+    // Main app loop
     //---------------------------------
     while (!WindowShouldClose() && !global.exitApp) // Detect window close button or ESC key
     {
@@ -27,6 +41,7 @@ int main()
         {
             menu.Initialize();
             settings.Initialize();
+            //game.Initialize();
         }
     
         switch (currentScene)
@@ -38,7 +53,9 @@ int main()
             break;
 
         case GAME:
-            //RunGame();
+            StartBenchmark("game.Update()");
+            //game.Update();
+            StopBenchmark("game.Update()");
             break;
 
         case SETTINGS:
@@ -52,10 +69,14 @@ int main()
         }
         ShowBenchmarks();
     }
-
-    // SHUTDOWN APP
     //---------------------------------
+
+    // De-Initialization
+    //---------------------------------
+    UnloadImage(icon);
+
     CloseWindow(); // Close window and OpenGL context
+    //---------------------------------
 
     return 0;
 }

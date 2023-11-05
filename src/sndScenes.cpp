@@ -1,3 +1,4 @@
+#include <raygui.h>
 #include "sndScenes.h"
 #include "sndGlobals.h"
 #include "sndLayout.h"

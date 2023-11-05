@@ -58,7 +58,7 @@ void Settings::Initialize()
     menubar->AddWrapper(back);
 
     auto darkMode = std::make_shared<sndButton>(
-        "Darkmode",
+        GuiIconText(ICON_DARK_MODE, ""),
         GuiGetStyle(DEFAULT, TEXT_SIZE),
         []()
         {
@@ -70,36 +70,15 @@ void Settings::Initialize()
 
     menubar->AddWrapper(darkMode);
 
-    auto category1ST = std::make_shared<sndSeparator>(
-        "Separator",
+    auto category1 = std::make_shared<sndSeparator>(
+        "Category",
         body->GetInnerLeft(),
         body->GetInnerRight(),
         body.get(),
         (sndAlign)(CENTER_HORIZONTAL | TOP),
         0);
 
-    body->AddWrapper(category1ST);
-
-    auto category1 = std::make_shared<sndLabel>(
-        "Category 1",
-        GuiGetStyle(DEFAULT, TEXT_SIZE),
-        body.get(),
-        (sndAlign)(CENTER_HORIZONTAL | CENTER_VERTICAL),
-        0);
-
-    category1->AttachToBottom(category1ST.get());
     body->AddWrapper(category1);
-
-    auto category1SB = std::make_shared<sndSeparator>(
-        "Separator",
-        body->GetInnerLeft(),
-        body->GetInnerRight(),
-        body.get(),
-        (sndAlign)(CENTER_HORIZONTAL | TOP),
-        0);
-
-    category1SB->AttachToBottom(category1.get());
-    body->AddWrapper(category1SB);
 
     auto spacer1 = std::make_shared<sndVSpacer>(
         "Spacer",
@@ -108,7 +87,7 @@ void Settings::Initialize()
         (sndAlign)(LEFT | CENTER_VERTICAL),
         0);
 
-    spacer1->AttachToBottom(category1SB.get());
+    spacer1->AttachToBottom(category1.get());
     body->AddWrapper(spacer1);
 
     auto fadingAgents = std::make_shared<sndCheckBox>(

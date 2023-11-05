@@ -8,6 +8,9 @@
 #include <raygui.h>
 #include <raylib.h>
 #include <vector>
+#include "string.h"
+
+#include <iostream>
 
 //#define DEBUGGING
 
@@ -17,9 +20,9 @@ sndWrapper::sndWrapper(const char* label)
 {
     label_ = label;
 
-    SetMargin(1);
-    SetBorder(1);
-    SetPadding(1);
+    SetMargin(margin_);
+    SetBorder(border_);
+    SetPadding(padding_);
 
     UpdateFrame();
 };
@@ -43,9 +46,9 @@ sndWrapper::sndWrapper(const char* label, int left, int top, int right, int bott
     ResizeOuterRight(right);
     ResizeOuterBottom(bottom);
 
-    SetMargin(1);
-    SetBorder(1);
-    SetPadding(1);
+    SetMargin(margin_);
+    SetBorder(border_);
+    SetPadding(padding_);
 
     UpdateFrame();
 };
@@ -62,10 +65,10 @@ void sndWrapper::Render()
 
     DrawRectangleLinesEx(frameRect, this->GetFrameWeight(), this->GetFrameColor());
 
-    if (wrappers_.size() == 0)
-    {
-        return;
-    }
+    //if (wrappers_.size() == 0)
+    //{
+        //return;
+    //}
 
     for (auto wrapper : wrappers_)
     {
@@ -85,6 +88,33 @@ void sndWrapper::ClearWrappers()
 
 void sndWrapper::UpdateFrame()
 {
+    for (auto wrapper : wrappers_)
+    {
+        if (strcmp(wrapper->label_, "Margin") == 0)
+        {
+            wrapper->MoveOuterLeft(GetOuterLeft());
+            wrapper->MoveOuterTop(GetOuterTop());
+            wrapper->ResizeOuterRight(GetOuterRight());
+            wrapper->ResizeOuterBottom(GetOuterBottom());
+        }
+        
+        else if (strcmp(wrapper->label_, "Border") == 0)
+        {
+            wrapper->MoveOuterLeft(GetOuterLeft() + margin_);
+            wrapper->MoveOuterTop(GetOuterTop() + margin_);
+            wrapper->ResizeOuterRight(GetOuterRight() - margin_);
+            wrapper->ResizeOuterBottom(GetOuterBottom() - margin_);
+        }
+        
+        else if (strcmp(wrapper->label_, "Padding") == 0)
+        {
+            wrapper->MoveOuterLeft(GetOuterLeft() + margin_ + border_);
+            wrapper->MoveOuterTop(GetOuterTop() + margin_ + border_);
+            wrapper->ResizeOuterRight(GetOuterRight() - margin_ - border_);
+            wrapper->ResizeOuterBottom(GetOuterBottom() - margin_ - border_);
+        }
+    }
+
     frameWeight_ = margin_ + border_ + padding_;
 
     innerLeft_ = outerLeft_ + frameWeight_;
@@ -168,13 +198,24 @@ void sndWrapper::SetMargin(int marginWeight)
         this->GetOuterTop(),
         this->GetOuterRight(),
         this->GetOuterBottom());
+
     margin->SetFrameWeight(marginWeight);
+    margin->label_ = "Margin";
 
 #ifdef DEBUGGING
     margin->SetFrameColor(RED);
 #endif
 
+    for (std::size_t i = 0; i < wrappers_.size(); ++i)
+    {
+        if (strcmp(wrappers_[i]->label_, "Margin") == 0)
+        {
+            wrappers_.erase(wrappers_.begin()+i);
+        }
+    }
+
     AddWrapper(margin);
+
     UpdateFrame();
 }
 
@@ -188,11 +229,21 @@ void sndWrapper::SetBorder(int borderWeight)
         this->GetOuterTop() + this->GetMargin(),
         this->GetOuterRight() - this->GetMargin(),
         this->GetOuterBottom() - this->GetMargin());
+
     border->SetFrameWeight(borderWeight);
+    border->label_ = "Border";
 
 #ifdef DEBUGGING
     border->SetFrameColor(GRAY);
 #endif
+
+    for (std::size_t i = 0; i < wrappers_.size(); ++i)
+    {
+        if (strcmp(wrappers_[i]->label_, "Border") == 0)
+        {
+            wrappers_.erase(wrappers_.begin()+i);
+        }
+    }
 
     AddWrapper(border);
     UpdateFrame();
@@ -208,11 +259,21 @@ void sndWrapper::SetPadding(int paddingWeight)
         this->GetOuterTop() + this->GetMargin() + this->GetBorder(),
         this->GetOuterRight() - this->GetMargin() - this->GetBorder(),
         this->GetOuterBottom() - this->GetMargin() - this->GetBorder());
+
     padding->SetFrameWeight(paddingWeight);
+    padding->label_ = "Padding";
 
 #ifdef DEBUGGING
     padding->SetFrameColor(GREEN);
 #endif
+
+    for (std::size_t i = 0; i < wrappers_.size(); ++i)
+    {
+        if (strcmp(wrappers_[i]->label_, "Padding") == 0)
+        {
+            wrappers_.erase(wrappers_.begin()+i);
+        }
+    }
 
     AddWrapper(padding);
     UpdateFrame();
@@ -434,12 +495,13 @@ void sndSeparator::Render()
 {
     sndWrapper::Render();
 
-    DrawLine(
-        GetInnerLeft(), 
-        static_cast<int>(GetOuterTop() + (GetOuterBottom() - GetOuterTop()) / 2), 
-        GetInnerRight(), 
-        static_cast<int>(GetOuterTop() + (GetOuterBottom() - GetOuterTop()) / 2), 
-        global.GetForeground());
+    GuiLine(
+        (Rectangle){
+            static_cast<float>(GetInnerLeft()),
+            static_cast<float>(GetOuterTop()), 
+            static_cast<float>(GetInnerRight() - GetInnerLeft()), 
+            static_cast<float>(GetOuterTop() + (GetOuterBottom() - GetOuterTop()) / 2)},
+label_);
 }
 //-------------------------------------
 
