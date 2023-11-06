@@ -505,33 +505,17 @@ label_);
 }
 //-------------------------------------
 
-// sndVSpacer
+// sndSpacer
 //-------------------------------------
-sndVSpacer::sndVSpacer(const char* label, int vSpace, sndWrapper* parent, sndAlign flags, int offset)
-    : sndElement(label, 0, 0, 0, 0, vSpace)
+sndSpacer::sndSpacer(const char* label, int vSpace, int hSpace, sndWrapper* parent, sndAlign flags, int offset)
+    : sndElement(label, 0, 0, 0, hSpace, vSpace)
 {
     AlignToParent(parent, flags, offset);
 }
 
-sndVSpacer::~sndVSpacer() {};
+sndSpacer::~sndSpacer() {};
 
-void sndVSpacer::Render()
-{
-    sndWrapper::Render();
-}
-//-------------------------------------
-
-// sndHSpacer
-//-------------------------------------
-sndHSpacer::sndHSpacer(const char* label, int hSpace, sndWrapper* parent, sndAlign flags, int offset)
-    : sndElement(label, 0, 0, 0, hSpace, 0)
-{
-    AlignToParent(parent, flags, offset);
-}
-
-sndHSpacer::~sndHSpacer() {};
-
-void sndHSpacer::Render()
+void sndSpacer::Render()
 {
     sndWrapper::Render();
 }

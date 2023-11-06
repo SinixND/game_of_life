@@ -80,16 +80,6 @@ void Settings::Initialize()
 
     body->AddWrapper(category1);
 
-    auto spacer1 = std::make_shared<sndVSpacer>(
-        "Spacer",
-        10,
-        body.get(),
-        (sndAlign)(LEFT | CENTER_VERTICAL),
-        0);
-
-    spacer1->AttachToBottom(category1.get());
-    body->AddWrapper(spacer1);
-
     auto fadingAgents = std::make_shared<sndCheckBox>(
         "Fading agents",
         GuiGetStyle(DEFAULT, TEXT_SIZE),
@@ -97,7 +87,7 @@ void Settings::Initialize()
         (sndAlign)(LEFT | TOP),
         2);
 
-    fadingAgents->AttachToBottom(spacer1.get());
+    fadingAgents->AttachToBottom(category1.get());
     body->AddWrapper(fadingAgents);
     //---------------------------------
 }

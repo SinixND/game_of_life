@@ -157,20 +157,11 @@ public:
     void Render();
 };
 
-class sndVSpacer : public sndElement
+class sndSpacer : public sndElement
 {
 public:
-    sndVSpacer(const char* label, int vSpace, sndWrapper* parent, sndAlign flags, int offset);
-    ~sndVSpacer();
-
-    void Render();
-};
-
-class sndHSpacer : public sndElement
-{
-public:
-    sndHSpacer(const char* label, int hSpace, sndWrapper* parent, sndAlign flags, int offset);
-    ~sndHSpacer();
+    sndSpacer(const char* label, int vSpace, int hSpace, sndWrapper* parent, sndAlign flags, int offset);
+    ~sndSpacer();
 
     void Render();
 };
