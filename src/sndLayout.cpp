@@ -484,7 +484,7 @@ void sndButton::SetAction(std::function<void()> action)
 // sndSeparator
 //-------------------------------------
 sndSeparator::sndSeparator(const char* label, int left, int right, sndWrapper* parent, sndAlign flags, int offset)
-    : sndElement(label, 0, left, 0, right, 0)
+    : sndElement(label, 0, left, 0, right, 2 * GuiGetStyle(DEFAULT, TEXT_SIZE))
 {
     AlignToParent(parent, flags, offset);
 }
@@ -498,9 +498,9 @@ void sndSeparator::Render()
     GuiLine(
         (Rectangle){
             static_cast<float>(GetInnerLeft()),
-            static_cast<float>(GetOuterTop()), 
-            static_cast<float>(GetInnerRight() - GetInnerLeft()), 
-            static_cast<float>(GetOuterTop() + (GetOuterBottom() - GetOuterTop()) / 2)},
+            static_cast<float>(GetInnerTop()), 
+            static_cast<float>(GetInnerWidth()), 
+            static_cast<float>(GetInnerHeight())},
 label_);
 }
 //-------------------------------------
