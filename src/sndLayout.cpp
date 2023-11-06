@@ -12,7 +12,7 @@
 
 #include <iostream>
 
-//#define DEBUGGING
+#define DEBUGGING
 
 // sndWrapper
 //-------------------------------------
@@ -484,7 +484,7 @@ void sndButton::SetAction(std::function<void()> action)
 // sndSeparator
 //-------------------------------------
 sndSeparator::sndSeparator(const char* label, int left, int right, sndWrapper* parent, sndAlign flags, int offset)
-    : sndElement(label, 0, left, 0, right, 10)
+    : sndElement(label, 0, left, 0, right, 0)
 {
     AlignToParent(parent, flags, offset);
 }
