@@ -135,16 +135,19 @@ class sndButton : public sndElement
 {
 public:
     sndButton(const char* label);
-    sndButton(const char* label, int fontSize, std::function<void()> fn, int left, int top, int right, int bottom);
-    sndButton(const char* label, int fontSize, std::function<void()> fn, sndWrapper* parent, sndAlign flags, int offset);
+    sndButton(const char* label, int fontSize, std::function<bool()> inputs, std::function<void()> action, int left, int top, int right, int bottom);
+    sndButton(const char* label, int fontSize, std::function<bool()> inputs, std::function<void()> action, sndWrapper* parent, sndAlign flags, int offset);
     ~sndButton();
 
     void Render();
 
+    std::function<bool()> GetInputs();
+    void SetInputs(std::function<bool()> inputs);
     std::function<void()> GetAction();
     void SetAction(std::function<void()> action);
 
 private:
+    std::function<bool()> inputs_;
     std::function<void()> action_;
 };
 

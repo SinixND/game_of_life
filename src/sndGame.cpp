@@ -1,10 +1,13 @@
+#include <cmath>
+#define RAYGUI_CUSTOM_ICONS     // Custom icons set required 
+#include "../resources/sndIcons.rgi.h"  
+#include <raygui.h>
+
 #include "sndConfigs.h"
 #include "sndGlobals.h"
 #include "sndGrid.h"
 #include "sndLayout.h"
 #include "sndScenes.h"
-#include <cmath>
-#include <raygui.h>
 
 // GAME OF LIFE / GRID
 //---------------------------------
@@ -35,14 +38,14 @@ void Game::Initialize()
         main->GetInnerLeft(),
         main->GetInnerTop(),
         main->GetInnerRight(),
-        static_cast<int>(main->GetInnerTop() + 4 * GuiGetStyle(DEFAULT, TEXT_SIZE)));
+        static_cast<int>(main->GetInnerTop() + 2 * GuiGetStyle(DEFAULT, TEXT_SIZE)));
 
     main->AddWrapper(menubar);
 
     statusbar = std::make_shared<sndWrapper>(
         "statusbar",
         main->GetInnerLeft(),
-        static_cast<int>(main->GetInnerBottom() - 4 * GuiGetStyle(DEFAULT, TEXT_SIZE)),
+        static_cast<int>(main->GetInnerBottom() - 2 * GuiGetStyle(DEFAULT, TEXT_SIZE)),
         main->GetInnerRight(),
         main->GetInnerBottom());
 
@@ -61,8 +64,10 @@ void Game::Initialize()
     // GUI-Elements
     //---------------------------------
     auto darkMode = std::make_shared<sndButton>(
-        GuiIconText(ICON_DARK_MODE, ""),
+        //GuiIconText(ICON_DARK_MODE, ""),
+        "Mode",
         GuiGetStyle(DEFAULT, TEXT_SIZE),
+        [](){return false;},
         []()
         {
             global.ToggleDarkMode();
@@ -76,6 +81,7 @@ void Game::Initialize()
     auto back = std::make_shared<sndButton>(
         "Back",
         GuiGetStyle(DEFAULT, TEXT_SIZE),
+        [](){return IsKeyPressed(KEY_BACK) || IsKeyPressed(KEY_BACKSPACE);},
         []()
         {
             gameScreenInitialized = false;
@@ -90,6 +96,7 @@ void Game::Initialize()
     auto reset = std::make_shared<sndButton>(
         "Reset",
         GuiGetStyle(DEFAULT, TEXT_SIZE),
+        [](){return false;},
         []()
         {
             grid.Reset();
@@ -104,6 +111,7 @@ void Game::Initialize()
     auto clear = std::make_shared<sndButton>(
         "Clear",
         GuiGetStyle(DEFAULT, TEXT_SIZE),
+        [](){return false;},
         []()
         {
             grid.Clear();
@@ -119,6 +127,7 @@ void Game::Initialize()
     auto pause = std::make_shared<sndButton>(
         "Pause",
         GuiGetStyle(DEFAULT, TEXT_SIZE),
+        [](){return IsKeyPressed(KEY_P);},
         []()
         {
             pauseState = !pauseState;
@@ -241,7 +250,15 @@ void Game::RenderPauseOverlay()
 
     DrawRectangleLinesEx(rectpanelMainScreenGame, 10, Fade(global.GetForeground(), 0.75f));
 
-    const char* txtPaused = TextFormat("[P]aused...");
+    auto pause = std::make_shared<sndText>(
+        "[P]aused...",
+        2 * GuiGetStyle(DEFAULT, TEXT_SIZE),
+        statusbar.get(),
+        (sndAlign)(RIGHT | CENTER_VERTICAL),
+        0);
 
-    DrawText(txtPaused, AlignHorizontalRight(statusbar.get(), MeasureText(txtPaused, GuiGetStyle(DEFAULT, TEXT_SIZE)), 0), AlignVerticalCenter(statusbar.get(), GuiGetStyle(DEFAULT, TEXT_SIZE), 0), GuiGetStyle(DEFAULT, TEXT_SIZE), global.GetForeground());
+    main->AddWrapper(pause);
+
+    //const char* txtPaused = TextFormat("[P]aused...");
+    //DrawText(txtPaused, AlignHorizontalRight(statusbar.get(), MeasureText(txtPaused, GuiGetStyle(DEFAULT, TEXT_SIZE)), 0), AlignVerticalCenter(statusbar.get(), GuiGetStyle(DEFAULT, TEXT_SIZE), 0), GuiGetStyle(DEFAULT, TEXT_SIZE), global.GetForeground());
 }

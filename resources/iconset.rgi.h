@@ -246,7 +246,7 @@ typedef enum {
     ICON_FOLDER                   = 217,
     ICON_FILE                     = 218,
     ICON_TEMPO                    = 219,
-    ICON_darkmode                 = 220,
+    ICON_DARK_MODE                = 220,
     ICON_221                      = 221,
     ICON_222                      = 222,
     ICON_223                      = 223,
@@ -508,7 +508,7 @@ static unsigned int guiIcons[RAYGUI_ICON_MAX_ICONS*RAYGUI_ICON_DATA_ELEMENTS] = 
     0x00000000, 0x0042007e, 0x40027fc2, 0x40024002, 0x40024002, 0x40024002, 0x7ffe4002, 0x00000000,      // ICON_FOLDER
     0x3ff00000, 0x201c2010, 0x20042004, 0x20042004, 0x20042004, 0x20042004, 0x20042004, 0x00003ffc,      // ICON_FILE
     0x1ff00000, 0x20082008, 0x17d02fe8, 0x05400ba0, 0x09200540, 0x23881010, 0x2fe827c8, 0x00001ff0,      // ICON_TEMPO
-    0x03c00000, 0x10f80cf0, 0x20fc20fc, 0x40fe40fe, 0x40fe40fe, 0x20fc20fc, 0x0cf010f8, 0x000003c0,      // ICON_darkmode
+    0x03c00000, 0x10f80cf0, 0x20fc20fc, 0x40fe40fe, 0x40fe40fe, 0x20fc20fc, 0x0cf010f8, 0x000003c0,      // ICON_DARK_MODE
     0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000,      // ICON_221
     0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000,      // ICON_222
     0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000,      // ICON_223

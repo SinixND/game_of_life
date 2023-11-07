@@ -1,5 +1,8 @@
 #include <iostream>
-#include "raygui.h"
+#define RAYGUI_CUSTOM_ICONS     // Custom icons set required 
+#include "../resources/sndIcons.rgi.h"  
+#include <raygui.h>
+
 #include "sndGlobals.h"
 #include "sndLayout.h"
 #include "sndScenes.h"
@@ -20,7 +23,7 @@ void Menu::Initialize()
         main->GetInnerLeft(),
         main->GetInnerTop(),
         main->GetInnerRight(),
-        static_cast<int>(main->GetInnerTop() + 4 * GuiGetStyle(DEFAULT, TEXT_SIZE)));
+        static_cast<int>(main->GetInnerTop() + 2 * GuiGetStyle(DEFAULT, TEXT_SIZE)));
 
     main->AddWrapper(menubar);
 
@@ -48,6 +51,7 @@ void Menu::Initialize()
     auto darkMode = std::make_shared<sndButton>(
         GuiIconText(ICON_DARK_MODE, ""),
         GuiGetStyle(DEFAULT, TEXT_SIZE),
+        [](){return false;},
         []()
         {
             global.ToggleDarkMode();
@@ -80,6 +84,7 @@ void Menu::Initialize()
     auto start = std::make_shared<sndButton>(
         "Start",
         GuiGetStyle(DEFAULT, TEXT_SIZE),
+        [](){return IsKeyPressed(KEY_ENTER);},
         []()
         {
             currentScene = GAME;
@@ -93,6 +98,7 @@ void Menu::Initialize()
     auto settings = std::make_shared<sndButton>(
         "Settings",
         GuiGetStyle(DEFAULT, TEXT_SIZE),
+        [](){return false;},
         []()
         {
             currentScene = SETTINGS;
@@ -107,6 +113,7 @@ void Menu::Initialize()
     auto exit = std::make_shared<sndButton>(
         "Exit",
         GuiGetStyle(DEFAULT, TEXT_SIZE),
+        [](){return false;},
         []()
         {
             global.exitApp = true;

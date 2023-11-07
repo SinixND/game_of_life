@@ -1,4 +1,7 @@
+#define RAYGUI_CUSTOM_ICONS     // Custom icons set required 
+#include "../resources/sndIcons.rgi.h"  
 #include <raygui.h>
+
 #include "sndGlobals.h"
 #include "sndLayout.h"
 #include "sndScenes.h"
@@ -19,7 +22,7 @@ void Settings::Initialize()
         main->GetInnerLeft(),
         main->GetInnerTop(),
         main->GetInnerRight(),
-        static_cast<int>(main->GetInnerTop() + 4 * GuiGetStyle(DEFAULT, TEXT_SIZE)));
+        static_cast<int>(main->GetInnerTop() + 2 * GuiGetStyle(DEFAULT, TEXT_SIZE)));
 
     main->AddWrapper(menubar);
 
@@ -47,6 +50,7 @@ void Settings::Initialize()
     auto back = std::make_shared<sndButton>(
         "Back",
         GuiGetStyle(DEFAULT, TEXT_SIZE),
+        [](){return false;},
         []()
         {
             currentScene = MENU;
@@ -58,8 +62,10 @@ void Settings::Initialize()
     menubar->AddWrapper(back);
 
     auto darkMode = std::make_shared<sndButton>(
-        GuiIconText(ICON_DARK_MODE, ""),
+        //GuiIconText(ICON_DARK_MODE, ""),
+        "Mode",
         GuiGetStyle(DEFAULT, TEXT_SIZE),
+        [](){return false;},
         []()
         {
             global.ToggleDarkMode();

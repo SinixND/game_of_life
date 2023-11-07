@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <raylib.h>
+
 #include "sndLayout.h"
 
 typedef enum scenes
@@ -11,7 +12,6 @@ typedef enum scenes
     GAME,
     SETTINGS,
 } scenes;
-
 
 extern scenes currentScene;
 

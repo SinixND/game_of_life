@@ -1,9 +1,9 @@
 #include <iostream>
 #include <raylib.h>
+
 #define RAYGUI_IMPLEMENTATION //only define once
-//#define RAYGUI_CUSTOM_ICONS     // Custom icons set required 
-//#include "../resources/sndSinixND.rgi.h"  
 #include <raygui.h>
+
 #include "sndConfigs.h" // provide object "config" for configurable parameters
 #include "sndGlobals.h" // provide object "global" for not configurable application parameters
 #include "sndScenes.h"

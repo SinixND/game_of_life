@@ -438,16 +438,18 @@ sndButton::sndButton(const char* label)
 {
 }
 
-sndButton::sndButton(const char* label, int fontSize, std::function<void()> fn, int left, int top, int right, int bottom)
+sndButton::sndButton(const char* label, int fontSize, std::function<bool()> inputs, std::function<void()> action, int left, int top, int right, int bottom)
     : sndElement(label, fontSize, left, top, right, bottom)
 {
-    SetAction(fn);
+    SetInputs(inputs);
+    SetAction(action);
 }
 
-sndButton::sndButton(const char* label, int fontSize, std::function<void()> fn, sndWrapper* parent, sndAlign flags, int offset)
-    : sndElement(label, fontSize, 0, 0, static_cast<int>(1.5 * MeasureTextEx(GetFontDefault(), label, fontSize, 0).x), static_cast<int>(2 * MeasureTextEx(GetFontDefault(), label, fontSize, 0).y))
+sndButton::sndButton(const char* label, int fontSize, std::function<bool()> inputs, std::function<void()> action, sndWrapper* parent, sndAlign flags, int offset)
+    : sndElement(label, fontSize, 0, 0, static_cast<int>(1.5 * MeasureText(label, fontSize)), static_cast<int>(2 * fontSize))
 {
-    SetAction(fn);
+    SetInputs(inputs);
+    SetAction(action);
 
     AlignToParent(parent, flags, offset);
 }
@@ -458,7 +460,7 @@ void sndButton::Render()
 {
     sndWrapper::Render();
 
-    if (GuiButton(
+    if (GetInputs()() || GuiButton(
             (Rectangle){
                 static_cast<float>(GetInnerLeft()),
                 static_cast<float>(GetInnerTop()),
@@ -468,6 +470,16 @@ void sndButton::Render()
     {
         GetAction()();
     };
+}
+
+std::function<bool()> sndButton::GetInputs()
+{
+    return inputs_;
+}
+
+void sndButton::SetInputs(std::function<bool()> inputs)
+{
+    inputs_ = inputs;
 }
 
 std::function<void()> sndButton::GetAction()
@@ -524,7 +536,7 @@ void sndSpacer::Render()
 // sndLabel
 //-------------------------------------
 sndLabel::sndLabel(const char* label, int fontSize, sndWrapper* parent, sndAlign flags, int offset)
-    : sndElement(label, fontSize, 0, 0, MeasureTextEx(GetFontDefault(), label, fontSize, 0).x, static_cast<int>(2 * MeasureTextEx(GetFontDefault(), label, fontSize, 0).y))
+    : sndElement(label, fontSize, 0, 0, MeasureText(label, fontSize), static_cast<int>(2 * MeasureText(label, fontSize)))
 {
     AlignToParent(parent, flags, offset);
 }
@@ -572,7 +584,7 @@ sndCheckBox::sndCheckBox(const char* label, int fontSize, sndWrapper* parent, sn
     : sndElement(label, fontSize, 0, 0, MeasureTextEx(GetFontDefault(), label, fontSize, 0).x, MeasureTextEx(GetFontDefault(), label, fontSize, 0).y)
 
 {
-    //fontSize_ = fontSize;
+    fontSize_ = fontSize;
 
     AlignToParent(parent, flags, offset);
 }
