@@ -65,11 +65,6 @@ void sndWrapper::Render()
 
     DrawRectangleLinesEx(frameRect, this->GetFrameWeight(), this->GetFrameColor());
 
-    //if (wrappers_.size() == 0)
-    //{
-        //return;
-    //}
-
     for (auto wrapper : wrappers_)
     {
         wrapper->Render();

@@ -62,8 +62,7 @@ void Settings::Initialize()
     menubar->AddWrapper(back);
 
     auto darkMode = std::make_shared<sndButton>(
-        //GuiIconText(ICON_DARK_MODE, ""),
-        "Mode",
+        GuiIconText(ICON_DARK_MODE, ""),
         GuiGetStyle(DEFAULT, TEXT_SIZE),
         [](){return false;},
         []()
