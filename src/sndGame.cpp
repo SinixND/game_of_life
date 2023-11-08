@@ -249,15 +249,12 @@ void Game::RenderPauseOverlay()
 
     DrawRectangleLinesEx(rectpanelMainScreenGame, 10, Fade(global.GetForeground(), 0.75f));
 
-    auto pause = std::make_shared<sndText>(
-        "[P]aused...",
-        2 * GuiGetStyle(DEFAULT, TEXT_SIZE),
-        statusbar.get(),
-        (sndAlign)(RIGHT | CENTER_VERTICAL),
-        0);
 
-    main->AddWrapper(pause);
-
-    //const char* txtPaused = TextFormat("[P]aused...");
-    //DrawText(txtPaused, AlignHorizontalRight(statusbar.get(), MeasureText(txtPaused, GuiGetStyle(DEFAULT, TEXT_SIZE)), 0), AlignVerticalCenter(statusbar.get(), GuiGetStyle(DEFAULT, TEXT_SIZE), 0), GuiGetStyle(DEFAULT, TEXT_SIZE), global.GetForeground());
+    const char* txtPaused = TextFormat("[P]aused...");
+    DrawText(
+        txtPaused, 
+        AlignHorizontalRight(statusbar.get(), MeasureText(txtPaused, GuiGetStyle(DEFAULT, TEXT_SIZE)), 0), 
+        AlignVerticalCenter(statusbar.get(), GuiGetStyle(DEFAULT, TEXT_SIZE), 0), 
+        GuiGetStyle(DEFAULT, TEXT_SIZE), 
+        global.GetForeground());
 }
