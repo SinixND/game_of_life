@@ -5,9 +5,10 @@
 
 # TODOs
 # Current 
-[0] Rework Gui (responsive)
+[0] Rework wrapper design, eg.: parent-method (call from Initialize()): AddButtonWrapper(label, ~~parent~~, align, ~~referenceElement~~, AttachTo(reference, bottom))
 
 # Shortterm
+[0] Rework Gui (responsive)
 
 # Longterm
 [0] implement custom symbols (darkmode) locally!
