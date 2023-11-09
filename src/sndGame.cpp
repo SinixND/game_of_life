@@ -149,18 +149,18 @@ void Game::Initialize()
 
 void Game::Update()
 {
-    Input();
-    Process();
+    ProcessInput();
+    UpdateState();
 
     BeginDrawing();
     ClearBackground(global.GetBackground());
 
-    Output();
+    RenderOutput\();
 
     EndDrawing();
 }
 
-void Game::Input()
+void Game::ProcessInput()
 {
     if (IsKeyPressed(KEY_P))
     {
@@ -215,7 +215,7 @@ void Game::Input()
     grid.Evolve();
 }
 
-void Game::Process()
+void Game::UpdateState()
 {
     if (sandboxMode == true)
     {
@@ -225,7 +225,7 @@ void Game::Process()
     int currentState = grid.gridStates_.size() - 1;
 }
 
-void Game::Output()
+void Game::RenderOutput\()
 {
     main->Render();
 

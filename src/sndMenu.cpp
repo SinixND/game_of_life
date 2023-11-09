@@ -129,20 +129,20 @@ void Menu::Initialize()
 
 void Menu::Update()
 {
-    Input();
-    Process();
+    ProcessInput();
+    UpdateState();
 
     BeginDrawing();
     ClearBackground(global.GetBackground());
 
-    Output();
+    RenderOutput\();
 
     EndDrawing();
 }
 
-void Menu::Input() {}
-void Menu::Process() {}
-void Menu::Output()
+void Menu::ProcessInput() {}
+void Menu::UpdateState() {}
+void Menu::RenderOutput\()
 {
     main->Render();
 }

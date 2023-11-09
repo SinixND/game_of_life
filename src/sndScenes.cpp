@@ -22,6 +22,6 @@ void Scene::Initialize()
 
 void Scene::Update() {}
 
-void Scene::Input() {}
-void Scene::Process() {}
-void Scene::Output() {}
+void Scene::ProcessInput() {}
+void Scene::UpdateState() {}
+void Scene::RenderOutput\() {}

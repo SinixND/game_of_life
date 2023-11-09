@@ -25,9 +25,9 @@ public:
 protected:
     std::shared_ptr<sndWrapper> main;
 
-    void Input();
-    void Process();
-    void Output();
+    void ProcessInput();
+    void UpdateState();
+    void RenderOutput\();
 };
 
 // SCENES
@@ -45,9 +45,9 @@ public:
     void Update() override;
 
 private:
-    void Input();
-    void Process();
-    void Output();
+    void ProcessInput();
+    void UpdateState();
+    void RenderOutput\();
 };
 
 class Settings : public Scene
@@ -62,9 +62,9 @@ public:
     void Update() override;
 
 private:
-    void Input();
-    void Process();
-    void Output();
+    void ProcessInput();
+    void UpdateState();
+    void RenderOutput\();
 };
 
 class Game : public Scene
@@ -80,9 +80,9 @@ public:
     void Update() override;
 
 private:
-    void Input();
-    void Process();
-    void Output();
+    void ProcessInput();
+    void UpdateState();
+    void RenderOutput\();
 
     void RenderPauseOverlay();
 };

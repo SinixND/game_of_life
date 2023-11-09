@@ -99,20 +99,20 @@ void Settings::Initialize()
 
 void Settings::Update()
 {
-    Input();
-    Process();
+    ProcessInput();
+    UpdateState();
 
     BeginDrawing();
     ClearBackground(global.GetBackground());
 
-    Output();
+    RenderOutput\();
 
     EndDrawing();
 }
 
-void Settings::Input() {}
-void Settings::Process() {}
-void Settings::Output()
+void Settings::ProcessInput() {}
+void Settings::UpdateState() {}
+void Settings::RenderOutput\()
 {
     main->Render();
 }
