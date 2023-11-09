@@ -186,14 +186,11 @@ void Grid::Update()
     gridState_.clear();
 }
 
-void Grid::SetRowsY(int rows)
+void Grid::SetGridSize(int colsX, int rowsY)
 {
-    rowsY_ = rows;
-}
-
-void Grid::SetColsX(int cols)
-{
-    colsX_ = cols;
+    colsX_ = colsX;
+    rowsY_ = rowsY;
+    Reset();
 }
 
 int Grid::GetDay()

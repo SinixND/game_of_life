@@ -23,8 +23,7 @@ public:
     void NotifyAdjacentAgents(Agent& agent);
     void Update();
 
-    void SetRowsY(int rows);
-    void SetColsX(int cols);
+    void SetGridSize(int colsX, int rowsY);
 
     int GetDay();
     void SetDay(int day);

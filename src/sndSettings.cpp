@@ -22,7 +22,7 @@ void Settings::Initialize()
         main->GetInnerLeft(),
         main->GetInnerTop(),
         main->GetInnerRight(),
-        static_cast<int>(main->GetInnerTop() + 2 * GuiGetStyle(DEFAULT, TEXT_SIZE)));
+        static_cast<int>(main->GetInnerTop() + 4 * GuiGetStyle(DEFAULT, TEXT_SIZE)));
 
     main->AddWrapper(menubar);
 
@@ -105,14 +105,14 @@ void Settings::Update()
     BeginDrawing();
     ClearBackground(global.GetBackground());
 
-    RenderOutput\();
+    RenderOutput();
 
     EndDrawing();
 }
 
 void Settings::ProcessInput() {}
 void Settings::UpdateState() {}
-void Settings::RenderOutput\()
+void Settings::RenderOutput()
 {
     main->Render();
 }

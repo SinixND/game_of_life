@@ -23,7 +23,7 @@ void Menu::Initialize()
         main->GetInnerLeft(),
         main->GetInnerTop(),
         main->GetInnerRight(),
-        static_cast<int>(main->GetInnerTop() + 2 * GuiGetStyle(DEFAULT, TEXT_SIZE)));
+        static_cast<int>(main->GetInnerTop() + 3 * GuiGetStyle(DEFAULT, TEXT_SIZE)));
 
     main->AddWrapper(menubar);
 
@@ -32,7 +32,7 @@ void Menu::Initialize()
         main->GetInnerLeft(),
         menubar->GetOuterBottom(),
         main->GetInnerRight(),
-        (main->GetInnerBottom() - menubar->GetOuterBottom()) / 3);
+        (main->GetInnerBottom() - menubar->GetOuterBottom()) / 2);
 
     main->AddWrapper(head);
 
@@ -84,7 +84,7 @@ void Menu::Initialize()
     auto start = std::make_shared<sndButton>(
         "Start",
         GuiGetStyle(DEFAULT, TEXT_SIZE),
-        [](){return IsKeyPressed(KEY_ENTER);},
+        [](){return IsKeyPressed(KEY_ENTER) || IsKeyPressed(KEY_KP_ENTER);},
         []()
         {
             currentScene = GAME;
@@ -113,7 +113,7 @@ void Menu::Initialize()
     auto exit = std::make_shared<sndButton>(
         "Exit",
         GuiGetStyle(DEFAULT, TEXT_SIZE),
-        [](){return false;},
+        [](){return IsKeyPressed(KEY_ESCAPE);},
         []()
         {
             global.exitApp = true;
@@ -135,14 +135,14 @@ void Menu::Update()
     BeginDrawing();
     ClearBackground(global.GetBackground());
 
-    RenderOutput\();
+    RenderOutput();
 
     EndDrawing();
 }
 
 void Menu::ProcessInput() {}
 void Menu::UpdateState() {}
-void Menu::RenderOutput\()
+void Menu::RenderOutput()
 {
     main->Render();
 }

@@ -14,7 +14,6 @@
 bool pauseState = false;
 
 // no check for game end
-bool sandboxMode = false;
 bool gameScreenInitialized = false;
 float timePassed = 0;
 
@@ -38,14 +37,14 @@ void Game::Initialize()
         main->GetInnerLeft(),
         main->GetInnerTop(),
         main->GetInnerRight(),
-        static_cast<int>(main->GetInnerTop() + 2 * GuiGetStyle(DEFAULT, TEXT_SIZE)));
+        static_cast<int>(main->GetInnerTop() + 3 * GuiGetStyle(DEFAULT, TEXT_SIZE)));
 
     main->AddWrapper(menubar);
 
     statusbar = std::make_shared<sndWrapper>(
         "statusbar",
         main->GetInnerLeft(),
-        static_cast<int>(main->GetInnerBottom() - 2 * GuiGetStyle(DEFAULT, TEXT_SIZE)),
+        static_cast<int>(main->GetInnerBottom() - 3 * GuiGetStyle(DEFAULT, TEXT_SIZE)),
         main->GetInnerRight(),
         main->GetInnerBottom());
 
@@ -114,7 +113,6 @@ void Game::Initialize()
         []()
         {
             grid.Clear();
-            sandboxMode = true;
         },
         menubar.get(),
         (sndAlign)(LEFT | CENTER_VERTICAL),
@@ -142,8 +140,7 @@ void Game::Initialize()
     //---------------------------------
     rowsY = body->GetInnerHeight() / (config.agentHeight + config.agentGap);
     colsX = body->GetInnerWidth() / (config.agentWidth + config.agentGap);
-    grid.SetRowsY(rowsY);
-    grid.SetColsX(colsX);
+    grid.SetGridSize(colsX, rowsY);
     //---------------------------------
 }
 
@@ -155,18 +152,13 @@ void Game::Update()
     BeginDrawing();
     ClearBackground(global.GetBackground());
 
-    RenderOutput\();
+    RenderOutput();
 
     EndDrawing();
 }
 
 void Game::ProcessInput()
 {
-    if (IsKeyPressed(KEY_P))
-    {
-        pauseState = !pauseState;
-    }
-
     // Draw agents manually
     if (IsMouseButtonDown(MOUSE_BUTTON_LEFT) || IsMouseButtonDown(MOUSE_BUTTON_RIGHT))
     {
@@ -199,7 +191,10 @@ void Game::ProcessInput()
             agent.EreaseVitality();
         }
     }
+}
 
+void Game::UpdateState()
+{
     if (pauseState == true)
     {
         return;
@@ -213,29 +208,83 @@ void Game::ProcessInput()
 
     timePassed = 0;
     grid.Evolve();
-}
-
-void Game::UpdateState()
-{
-    if (sandboxMode == true)
-    {
-        return;
-    }
-
     int currentState = grid.gridStates_.size() - 1;
 }
 
-void Game::RenderOutput\()
+void Game::RenderOutput()
 {
     main->Render();
 
-    // RenderScreenGameStatusbar();
-    // RenderScreenGameMainPanel();
+    RenderScreenGameStatusbar();
+    RenderScreenGameMainPanel();
 
     if (pauseState == true)
     {
         RenderPauseOverlay();
     }
+}
+
+void Game::RenderScreenGameStatusbar()
+{
+    auto status = std::make_shared<sndText>(
+        TextFormat("TickTime: %.0f ms; Day: %i", config.tickTime * 1000, grid.GetDay()),
+        GuiGetStyle(DEFAULT, TEXT_SIZE),
+        statusbar.get(),
+        (sndAlign)(LEFT | CENTER_VERTICAL),
+        0);
+    status->Render();
+}
+
+Color GetAgentColor(Agent agent);
+
+void Game::RenderScreenGameMainPanel()
+{
+    // draw agents
+    for (auto& row : grid.GetGrid())
+    {
+        for (auto& agent : row)
+        {
+            int anchorX = AlignHorizontalCenter(body.get(), (colsX * (config.agentWidth + config.agentGap) - config.agentGap), 0) + (agent.GetColX() * (config.agentWidth + config.agentGap));
+            int anchorY = AlignVerticalCenter(body.get(), (rowsY * (config.agentHeight + config.agentGap) - config.agentGap), 0) + (agent.GetRowY() * (config.agentHeight + config.agentGap));
+
+            Rectangle rectAgent{
+                (float)anchorX,
+                (float)anchorY,
+                (float)config.agentWidth,
+                (float)config.agentHeight};
+
+            if (agent.GetStatusCurrent() == true)
+            {
+                DrawRectangleRec(rectAgent, global.GetForeground());
+            }
+            else if (agent.GetVitality() > 0)
+            {
+                DrawRectangleRec(rectAgent, GetAgentColor(agent));
+            }
+            else
+            {
+                DrawRectangleLinesEx(rectAgent, config.agentInnerBorderWeight, Fade(global.GetForeground(), 0.50f));
+            }
+
+            if (config.debugMode == true && CheckCollisionPointRec(GetMousePosition(), rectAgent))
+            {
+                DrawText(TextFormat("%i/%i\nC:%i N:%i O:%i\nV:%i",
+                    agent.GetColX(),
+                    agent.GetRowY(),
+                    agent.GetStatusCurrent(),
+                    agent.GetStatusNext(),
+                    agent.GetStatusOutdated(),
+                    agent.GetVitality()
+                ), anchorX + 5, anchorY, 10, RED);
+            }
+        }
+    }
+}
+
+Color GetAgentColor(Agent agent)
+{
+    Color AgentColor = Fade(global.GetForeground(), (agent.GetVitality() * (1.0f / agent.GetMaxVitality())));
+    return AgentColor;
 }
 
 void Game::RenderPauseOverlay()
@@ -249,12 +298,12 @@ void Game::RenderPauseOverlay()
 
     DrawRectangleLinesEx(rectpanelMainScreenGame, 10, Fade(global.GetForeground(), 0.75f));
 
+    auto paused = std::make_shared<sndText>(
+        "[P]aused...",
+        GuiGetStyle(DEFAULT, TEXT_SIZE),
+        statusbar.get(),
+        (sndAlign)(RIGHT | CENTER_VERTICAL),
+        0);
 
-    const char* txtPaused = TextFormat("[P]aused...");
-    DrawText(
-        txtPaused, 
-        AlignHorizontalRight(statusbar.get(), MeasureText(txtPaused, GuiGetStyle(DEFAULT, TEXT_SIZE)), 0), 
-        AlignVerticalCenter(statusbar.get(), GuiGetStyle(DEFAULT, TEXT_SIZE), 0), 
-        GuiGetStyle(DEFAULT, TEXT_SIZE), 
-        global.GetForeground());
+    paused->Render();
 }

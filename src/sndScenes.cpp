@@ -24,4 +24,4 @@ void Scene::Update() {}
 
 void Scene::ProcessInput() {}
 void Scene::UpdateState() {}
-void Scene::RenderOutput\() {}
+void Scene::RenderOutput() {}

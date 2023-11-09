@@ -27,7 +27,7 @@ protected:
 
     void ProcessInput();
     void UpdateState();
-    void RenderOutput\();
+    void RenderOutput();
 };
 
 // SCENES
@@ -47,7 +47,7 @@ public:
 private:
     void ProcessInput();
     void UpdateState();
-    void RenderOutput\();
+    void RenderOutput();
 };
 
 class Settings : public Scene
@@ -64,7 +64,7 @@ public:
 private:
     void ProcessInput();
     void UpdateState();
-    void RenderOutput\();
+    void RenderOutput();
 };
 
 class Game : public Scene
@@ -82,8 +82,10 @@ public:
 private:
     void ProcessInput();
     void UpdateState();
-    void RenderOutput\();
+    void RenderOutput();
 
+    void RenderScreenGameStatusbar();
+    void RenderScreenGameMainPanel();
     void RenderPauseOverlay();
 };
 //-------------------------------------
