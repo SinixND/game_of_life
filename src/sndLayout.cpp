@@ -12,7 +12,7 @@
 
 #include <iostream>
 
-//#define DEBUGGING
+#define DEBUGGING
 
 // sndWrapper
 //-------------------------------------
@@ -25,7 +25,7 @@ sndWrapper::sndWrapper(const char* label)
     SetPadding(padding_);
 
     UpdateFrame();
-};
+}
 
 sndWrapper::sndWrapper(int left, int top, int right, int bottom)
 {
@@ -35,7 +35,7 @@ sndWrapper::sndWrapper(int left, int top, int right, int bottom)
     ResizeOuterBottom(bottom);
 
     UpdateFrame();
-};
+}
 
 sndWrapper::sndWrapper(const char* label, int left, int top, int right, int bottom)
 {
@@ -51,9 +51,9 @@ sndWrapper::sndWrapper(const char* label, int left, int top, int right, int bott
     SetPadding(padding_);
 
     UpdateFrame();
-};
+}
 
-sndWrapper::~sndWrapper(){};
+sndWrapper::~sndWrapper(){}
 
 void sndWrapper::Render()
 {
@@ -306,7 +306,7 @@ sndElement::sndElement(const char* label, int fontSize, int left, int top, int r
     fontSize_ = fontSize;
 }
 
-sndElement::~sndElement(){};
+sndElement::~sndElement(){}
 
 void sndElement::AlignToParent(sndWrapper* parent, sndAlign flags, int offset)
 {
@@ -456,7 +456,7 @@ sndButton::sndButton(const char* label, int fontSize, std::function<bool()> inpu
     AlignToParent(parent, flags, offset);
 }
 
-sndButton::~sndButton(){};
+sndButton::~sndButton(){}
 
 void sndButton::Render()
 {
@@ -503,7 +503,7 @@ sndSeparator::sndSeparator(const char* label, int left, int right, sndWrapper* p
     AlignToParent(parent, flags, offset);
 }
 
-sndSeparator::~sndSeparator(){};
+sndSeparator::~sndSeparator(){}
 
 void sndSeparator::Render()
 {
@@ -527,7 +527,7 @@ sndSpacer::sndSpacer(const char* label, int vSpace, int hSpace, sndWrapper* pare
     AlignToParent(parent, flags, offset);
 }
 
-sndSpacer::~sndSpacer(){};
+sndSpacer::~sndSpacer(){}
 
 void sndSpacer::Render()
 {
@@ -543,7 +543,7 @@ sndLabel::sndLabel(const char* label, int fontSize, sndWrapper* parent, sndAlign
     AlignToParent(parent, flags, offset);
 }
 
-sndLabel::~sndLabel(){};
+sndLabel::~sndLabel(){}
 
 void sndLabel::Render()
 {
@@ -570,7 +570,7 @@ sndText::sndText(const char* label, int fontSize, sndWrapper* parent, sndAlign f
     AlignToParent(parent, flags, offset);
 }
 
-sndText::~sndText(){};
+sndText::~sndText(){}
 
 void sndText::Render()
 {
@@ -582,11 +582,12 @@ void sndText::Render()
 
 // sndCheckBox
 //-------------------------------------
-sndCheckBox::sndCheckBox(const char* label, int fontSize, sndWrapper* parent, sndAlign flags, int offset)
+sndCheckBox::sndCheckBox(const char* label, int fontSize, bool* value, sndWrapper* parent, sndAlign flags, int offset)
     : sndElement(label, fontSize, 0, 0, 1.5 * MeasureText(label, fontSize), 2 * fontSize)
 
 {
     fontSize_ = fontSize;
+    value_ = value;
 
     AlignToParent(parent, flags, offset);
 }
@@ -604,7 +605,40 @@ void sndCheckBox::Render()
             static_cast<float>(fontSize_),
             static_cast<float>(fontSize_)},
         label_,
-        &config.fadingAgents);
+        value_);
+}
+//-------------------------------------
+
+// sndSpinner
+//-------------------------------------
+sndSpinner::sndSpinner(const char* label, int fontSize, int* value, int minValue, int maxValue, bool editMode, sndWrapper* parent, sndAlign flags, int offset)
+    : sndElement(label, fontSize, 0, 0, 3 * MeasureText("IOO", fontSize), 2 * fontSize)
+{
+    value_ = value;
+    minValue_ = minValue;
+    maxValue_ = maxValue;
+    editMode_ = editMode;
+
+    AlignToParent(parent, flags, offset);
+}
+
+sndSpinner::~sndSpinner(){}
+
+void sndSpinner::Render()
+{
+    sndWrapper::Render();
+
+    GuiSpinner(
+        (Rectangle){
+            static_cast<float>(MeasureText(label_, fontSize_) + GetInnerLeft()),
+            static_cast<float>(GetInnerTop()),
+            static_cast<float>(GetInnerWidth()),
+            static_cast<float>(GetInnerHeight())},
+        label_, 
+        value_, 
+        minValue_, 
+        maxValue_, 
+        editMode_);
 }
 //-------------------------------------
 

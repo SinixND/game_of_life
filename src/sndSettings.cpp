@@ -3,6 +3,7 @@
 #include <raygui.h>
 
 #include "sndGlobals.h"
+#include "sndConfigs.h"
 #include "sndLayout.h"
 #include "sndScenes.h"
 
@@ -88,12 +89,27 @@ void Settings::Initialize()
     auto fadingAgents = std::make_shared<sndCheckBox>(
         "Fading agents",
         GuiGetStyle(DEFAULT, TEXT_SIZE),
+        &config.fadingAgents,
         body.get(),
         (sndAlign)(LEFT | TOP),
         2);
 
     fadingAgents->AttachToBottom(category1.get());
     body->AddWrapper(fadingAgents);
+
+    auto initialLifeDensity = std::make_shared<sndSpinner>(
+        "Life density",
+        GuiGetStyle(DEFAULT, TEXT_SIZE),
+        &config.initialLifeDensity,
+        0,
+        100,
+        true,
+        body.get(),
+        (sndAlign)(LEFT | TOP),
+        2);
+
+    initialLifeDensity->AttachToBottom(fadingAgents.get());
+    body->AddWrapper(initialLifeDensity);
     //---------------------------------
 }
 

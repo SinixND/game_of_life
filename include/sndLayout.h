@@ -192,12 +192,28 @@ private:
 class sndCheckBox : public sndElement
 {
 public:
-    sndCheckBox(const char* label, int fontSize, sndWrapper* parent, sndAlign flags, int offset);
+    sndCheckBox(const char* label, int fontSize, bool* value, sndWrapper* parent, sndAlign flags, int offset);
     ~sndCheckBox();
 
     void Render();
 
 private:
+    bool* value_;
+};
+
+class sndSpinner : public sndElement
+{
+public:
+    sndSpinner(const char* label, int fontSize, int* value, int minValue, int maxValue, bool editMode, sndWrapper* parent, sndAlign flags, int offset);
+    ~sndSpinner();
+
+    void Render();
+
+private:
+    int* value_;
+    int minValue_;
+    int maxValue_;
+    bool editMode_;
 };
 
 int AlignHorizontalLeft(sndWrapper* parent, int offset);
