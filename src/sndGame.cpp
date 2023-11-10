@@ -13,7 +13,6 @@
 //---------------------------------
 bool pauseState = false;
 
-// no check for game end
 bool gameScreenInitialized = false;
 float timePassed = 0;
 
@@ -141,6 +140,8 @@ void Game::Initialize()
     rowsY = body->GetInnerHeight() / (config.agentHeight + config.agentGap);
     colsX = body->GetInnerWidth() / (config.agentWidth + config.agentGap);
     grid.SetGridSize(colsX, rowsY);
+    grid.Reset();
+    gameScreenInitialized = true;
     //---------------------------------
 }
 
@@ -195,6 +196,11 @@ void Game::ProcessInput()
 
 void Game::UpdateState()
 {
+    if (gameScreenInitialized == false)
+    {
+        Initialize();
+    }
+
     if (pauseState == true)
     {
         return;

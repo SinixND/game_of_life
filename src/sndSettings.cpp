@@ -92,7 +92,7 @@ void Settings::Initialize()
         &config.fadingAgents,
         body.get(),
         (sndAlign)(LEFT | TOP),
-        2);
+        0);
 
     fadingAgents->AttachToBottom(category1.get());
     body->AddWrapper(fadingAgents);
@@ -106,10 +106,24 @@ void Settings::Initialize()
         true,
         body.get(),
         (sndAlign)(LEFT | TOP),
-        2);
+        0);
 
     initialLifeDensity->AttachToBottom(fadingAgents.get());
     body->AddWrapper(initialLifeDensity);
+
+    auto agentGap = std::make_shared<sndSpinner>(
+        "Agent gap",
+        GuiGetStyle(DEFAULT, TEXT_SIZE),
+        &config.agentGap,
+        0,
+        1000,
+        true,
+        body.get(),
+        (sndAlign)(LEFT | TOP),
+        0);
+
+    agentGap->AttachToBottom(initialLifeDensity.get());
+    body->AddWrapper(agentGap);
     //---------------------------------
 }
 

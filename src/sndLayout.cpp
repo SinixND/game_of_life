@@ -12,7 +12,7 @@
 
 #include <iostream>
 
-#define DEBUGGING
+//#define DEBUGGING
 
 // sndWrapper
 //-------------------------------------
@@ -598,13 +598,21 @@ void sndCheckBox::Render()
 {
     sndWrapper::Render();
 
-    GuiCheckBox(
+    GuiLabel(
         (Rectangle){
             static_cast<float>(GetInnerLeft()),
             static_cast<float>(GetInnerTop()),
+            static_cast<float>(GetInnerLeft() + MeasureText(label_, fontSize_)),
+            static_cast<float>(GetInnerHeight())},
+        label_);
+
+    GuiCheckBox(
+        (Rectangle){
+            static_cast<float>(GetInnerLeft() + MeasureText(label_, fontSize_)),
+            static_cast<float>(GetInnerTop()),
             static_cast<float>(fontSize_),
             static_cast<float>(fontSize_)},
-        label_,
+        NULL,
         value_);
 }
 //-------------------------------------
@@ -612,7 +620,7 @@ void sndCheckBox::Render()
 // sndSpinner
 //-------------------------------------
 sndSpinner::sndSpinner(const char* label, int fontSize, int* value, int minValue, int maxValue, bool editMode, sndWrapper* parent, sndAlign flags, int offset)
-    : sndElement(label, fontSize, 0, 0, 3 * MeasureText("IOO", fontSize), 2 * fontSize)
+    : sndElement(label, fontSize, 0, 0, 75 + MeasureText("IOO", fontSize), 2 * fontSize)
 {
     value_ = value;
     minValue_ = minValue;
@@ -628,13 +636,21 @@ void sndSpinner::Render()
 {
     sndWrapper::Render();
 
+    GuiLabel(
+        (Rectangle){
+            static_cast<float>(GetInnerLeft()),
+            static_cast<float>(GetInnerTop()),
+            static_cast<float>(GetInnerLeft() + MeasureText(label_, fontSize_)),
+            static_cast<float>(GetInnerHeight())},
+        label_);
+
     GuiSpinner(
         (Rectangle){
-            static_cast<float>(MeasureText(label_, fontSize_) + GetInnerLeft()),
+            static_cast<float>(GetInnerLeft() + MeasureText(label_, fontSize_)),
             static_cast<float>(GetInnerTop()),
             static_cast<float>(GetInnerWidth()),
             static_cast<float>(GetInnerHeight())},
-        label_, 
+        NULL, 
         value_, 
         minValue_, 
         maxValue_, 
