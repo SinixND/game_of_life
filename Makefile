@@ -39,6 +39,8 @@ LOC_LIB_DIR := ./lib
 OBJ_DIR := ./build
 ### here the binary file will be outputted
 BIN_DIR := ./bin
+### define folder for test files
+TEST_DIR := ./test
 ### define folder for web content to export
 WEB_DIR := ./web
 
@@ -119,7 +121,6 @@ release: rebuild
 	@$(MAKE) web
 	@$(MAKE) clean
 
-
 ### rule for native build process with binary as prerequisite
 build: $(BIN_DIR)/$(TARGET).$(TARGET_EXT)
 
@@ -140,7 +141,6 @@ $(OBJ_DIR)/%.$(OBJ_EXT): %.$(SRC_EXT)
 ### $< (first prerequesite, first right of ":")
 ### $@ (target, left of ":")
 	$(CXX) -o $@ -c $< $(CXX_FLAGS) $(INC_FLAGS)
-
 
 ### rule for web build process
 web:
