@@ -3,20 +3,20 @@
 ### make looks for a rule to build $(OBJS)
 ### @ (as a prefix to a cli command): suppress cli output; use make -n to debug commands
 
-### option for termux platform  make: "make OS=termux"
-OS := linux
-
 ### set the used compiler to g++ or clang++
-CXX := g++ 
+CXX := clang++ 
 
-### set the projects name, used for the targeted cpp file (eg. main.cpp) and the binary (eg. main.exe)
+### set the projects label, used for the targeted cpp file (eg. main.cpp) and the binary (eg. main.exe)
 TARGET := main
 
 ### set the binary file extension
 TARGET_EXT := exe
 
-### name used libraries so the respective -l flags (eg. -lraylib)
+### label used libraries so the respective -l flags (eg. -lraylib)
 LIBRARIES := raylib
+ifdef TERMUX_VERSION
+	LIBRARIES += log
+endif
 
 ### set the used file extension for c-files, usually either .c or .cpp
 SRC_EXT := cpp
@@ -34,7 +34,7 @@ SRC_DIRS := $(shell find $(SRC_DIR) -type d)
 ### here go local include files
 LOC_INC_DIR := ./include
 ### here go local library files
-LOC_LIB_DIR := 
+LOC_LIB_DIR := ./lib
 ### here the object files will be outputted
 OBJ_DIR := ./build
 ### here the binary file will be outputted
@@ -43,23 +43,24 @@ BIN_DIR := ./bin
 TEST_DIR := ./test
 ### define folder for web content to export
 WEB_DIR := ./web
+
 ### set the locations of header files
 SYS_INC_DIR := /usr/local/include /usr/include 
-ifeq ($(OS),termux)
+ifdef TERMUX_VERSION
 	SYS_INC_DIR := $(PREFIX)/usr/include 
 endif
 LOC_INC_DIRS := $(shell find $(LOC_INC_DIR) -type d) 
 
 ### set the locations of all possible libraries used
 SYS_LIB_DIR := /usr/local/lib /usr/lib 
-ifeq ($(OS),termux)
+ifdef TERMUX_VERSION
 	SYS_LIB_DIR := $(PREFIX)/usr/lib 
 endif
 LOC_LIB_DIRS := $(shell find $(LOC_LIB_DIR) -type d) 
 
 ### set raylib and emscripten directory as needed
 RAYLIB_DIR := /usr/lib/raylib
-ifeq ($(OS),termux)
+ifdef TERMUX_VERSION
 	RAYLIB_DIR := $(PREFIX)/lib/raylib
 endif
 ### automatically added flags to make command
@@ -72,7 +73,10 @@ MAKEFLAGS :=
 # -W(all/extra): 		enable warnings
 # -std=c++17:	force c++ standard
 # -MMD			provides dependency information (header files) for make in .d files
-CXX_FLAGS := `pkg-config --cflags $(LIBRARIES)` -g -Wall -Wextra -MMD -O0 #-Wpedantic 
+CXX_FLAGS := `pkg-config --cflags $(LIBRARIES)` -g -Wall -Wextra -MMD -O0 -fsanitize=address #-Wpedantic 
+
+### set linker flags
+LD_FLAGS := -fsanitize=address
 
 #######################
 ### DONT EDIT BELOW ###
@@ -94,54 +98,49 @@ INC_FLAGS := $(SYS_INC_FLAGS) $(LOC_INC_FLAGS)
 ### list all source files found in source file directory;
 SRCS := $(shell find $(SRC_DIR) -type f)
 SRC_NAMES := $(shell find $(SRC_DIRS) -type f -printf "%f\n")
-### strip file extensions to get a list of sourcefile names
+### strip file extensions to get a list of sourcefile labels
 SRC_NAMES := $(patsubst %.$(SRC_EXT),%,$(SRC_NAMES))
 
 ### make list of object files need for linker command by changing ending of all source files to .o;
-### (patsubst pattern,replacement, target)
+### (patsubst pattern,replacement,target)
 ### IMPORTANT for linker prerequesite, so they are found as compile rule
 OBJS := $(patsubst %,$(OBJ_DIR)/%.$(OBJ_EXT),$(SRC_NAMES))
 ### make list of dependency files
 DEPS := $(patsubst $(OBJ_DIR)/%.$(OBJ_EXT),$(OBJ_DIR)/%.$(DEP_EXT),$(OBJS))
 
 ### Non-file (.phony)targets (or rules)
-.PHONY: all build web clean rebuild deploy run test
+.PHONY: all build web clean rebuild release run
+
 
 ### default rule by convention
-all: build test 
+all: build 
+
+
+### rule for release build process with binary as prerequisite
+release: rebuild
+	@$(MAKE) web
+	@$(MAKE) clean
 
 ### rule for native build process with binary as prerequisite
 build: $(BIN_DIR)/$(TARGET).$(TARGET_EXT)
 
-# linker command
+# === LINKER COMMANDS ===
 ### MAKE binary file FROM object files
 $(BIN_DIR)/$(TARGET).$(TARGET_EXT): $(OBJS)
 ### make folder for binary file
 	@mkdir -p $(BIN_DIR)
 ### $@ (target, left of ":")
 ### $^ (all prerequesites, all right of ":")
-	@$(CXX) -o $@ $^ $(LIB_FLAGS) $(LD_LIBS) 
-#$(INC_FLAGS)
+	$(CXX) -o $@ $^ $(LD_FLAGS) $(LIB_FLAGS) $(LD_LIBS) 
 
-# compiler command
+# === COMPILER COMMANDS ===
 ### MAKE object files FROM source files; "%" pattern-matches (need pair of)
 $(OBJ_DIR)/%.$(OBJ_EXT): %.$(SRC_EXT)
 ### copy source structure for object file directory
 	@mkdir -p $(OBJ_DIR)
 ### $< (first prerequesite, first right of ":")
 ### $@ (target, left of ":")
-	@$(CXX) -o $@ -c $< $(CXX_FLAGS) $(INC_FLAGS)
-
-### rule for test process
-test: test_build
-	$(TEST_DIR)/test.$(TARGET_EXT)
-
-test_build:
-$(TEST_DIR)/test.$(TARGET_EXT): test.$(OBJ_EXT)
-	@$(CXX) -o $@ $^ $(LIB_FLAGS) $(LD_LIBS) 
-
-$(OBJ_DIR)/test.$(OBJ_EXT): test.$(SRC_EXT)
-	@$(CXX) -o $@ -c $< $(CXX_FLAGS) $(INC_FLAGS)
+	$(CXX) -o $@ -c $< $(CXX_FLAGS) $(INC_FLAGS)
 
 ### rule for web build process
 web:
@@ -149,20 +148,21 @@ web:
 	@mkdir -p $(WEB_DIR)
 	@emcc -o web/game.html $(SRCS) -Os -Wall $(RAYLIB_DIR)/libraylib.a $(LOC_INC_FLAGS) -I$(RAYLIB_DIR) -L$(RAYLIB_DIR) -s USE_GLFW=3 -s ASYNCIFY --shell-file $(RAYLIB_DIR)/minshell.html -DPLATFORM_WEB
 
+
 ### clear dynamically created directories
 clean:
-	@rm -rf $(OBJ_DIR) $(WEB_DIR)
+	@rm -rf $(OBJ_DIR) $(shell find . -type f -wholelabel "*.d") $(shell find . -type f -wholelabel "*.o") 
+
 
 ### clean dynamically created directories before building fresh
 rebuild: clean 
 	@$(MAKE)
 
-deploy: rebuild 
-	@$(MAKE) web
 
 ### run binary file after building
 run: build
-	$(BIN_DIR)/$(TARGET).$(TARGET_EXT)
+	@$(BIN_DIR)/$(TARGET).$(TARGET_EXT)
+
 
 ### "-" surpresses error for initial missing .d files
 -include $(DEPS)

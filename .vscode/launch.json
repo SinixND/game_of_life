@@ -1,7 +1,6 @@
 {
   "version": "0.2.0",
   "configurations": [
-
     {
       "name": "make project",
       "type": "cppdbg",
@@ -26,7 +25,35 @@
         }
       ],
       "preLaunchTask": "make project",
-      "miDebuggerPath": "/usr/bin/gdb"
+      "miDebuggerPath": "/usr/bin/gdb",
+      "internalConsoleOptions": "neverOpen"
+    },
+    {
+      "name": "make test",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/test/test.exe",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        },
+        {
+          "description": "Set Disassembly Flavor to Intel",
+          "text": "-gdb-set disassembly-flavor intel",
+          "ignoreFailures": true
+        }
+      ],
+      "preLaunchTask": "make test",
+      "miDebuggerPath": "/usr/bin/gdb",
+      "internalConsoleOptions": "neverOpen"
     }
   ]
 }

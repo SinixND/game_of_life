@@ -4,52 +4,42 @@
 - emscripten
 
 # TODOs
-- Github pages? (emscripten) [done]
-0. Screens
-    - Main [done]
-      - Start [done]
-      - Settings
-      - Load (examples? from db)
-      - About
-      - Exit
-0. Settings
-    - Keybindings
-    - Gamesettings
-        0. start empty
-        0. start paused
-    - Save settings (.ini)
-0. Menubar
-    - Reset [done]
-    - Pause [done]
-    - live settings (eg. speed)
-0. Overlay
-    - Quit
-0. Performance
-    - Mutlithreading
-0. Code
-    - introduce symbols (eg. for stepping (fw, bw)or darkmode)
-    - make main panel(frame) a gui element?
-        - In java canvas is area used to draw something by java graphics. For ex. drawing an image or rectangle.
-        - Frame is used as JFrame(swing), a top level container which can contain canvas, panels, pane(DesktopPane, ScrollPane) etc..
-        - Panel or JPanel is a subcontainer used to contain textboxes, buttons, canvas etc.
-        - Jframe can contain multiple panels, but panel can't contain JFrame.
+# Current 
+[0] Rework wrapper design, eg.: parent-method (call from Initialize()): AddButtonWrapper(label, ~~parent~~, align, ~~referenceElement~~, AttachTo(reference, bottom))
 
-    - separate Game-End screen
-    - if (IsSomething()) -> encapsulate instead of using a state-variable, eg. AreAgentsFading()
-    - Neighbors dont change!, save neighbor-references in agent
-    - introduce board to agents class, no higher-dimension info in agent class?
-    - doA(), doB(), f(call doA() & doB()) for core gamesteps (eg. determine next agents[] state)
-    - Structure EVA 
-0. Features
-    - LMB / RMB set alive/dead [done]
-    - Seeding (Lemma, yt: javidx9 - Procedural Generation: Programming The Universe, 15:20)
-    - Pausing [done]
-    - Stepping FW/BW
-    - Darkmode (switch) [done]
-    - spontaneous/probability alive, percentage dependent on neighbors, like 3nbrs(50%) - 8nbrs(100%) maybe
-    - Colors
-    - 3D
-    - different agent shape
-    - agent age/fading [done]
-    - strong/weak cells
-    - zoom/pan/live grid change
+# Shortterm
+[0] Rework Gui (responsive)
+
+# Longterm
+[0] implement custom symbols (darkmode) locally!
+[1] website containing program (include working emscripten into flask page?)
+[1] Release as CS50 project
+[2] Save settings (.ini)
+[2] Mutlithreading
+[2] setting: change resolution
+[2] setting: change cell/agent size
+[2] separate Game-End screen
+[3] setting: start empty
+[3] load (examples/patterns? from db)
+[3] setting: start paused
+[3] live settings (eg. speed)
+[3] introduce symbols (eg. for stepping (fw, bw)or darkmode)
+[3] Neighbors dont change!, save neighbor-references in agent
+[3] Seeding (Lemma, yt: javidx9 - Procedural Generation: Programming The Universe, 15:20)
+[3] Stepping FW/BW
+[4] screen: about
+[4] option: change keybindings
+[4] if (IsSomething()) -> encapsulate instead of using a state-variable, eg. AreAgentsFading()
+[4] Colors
+[4] spontaneous/probability alive, percentage dependent on neighbors, like 3nbrs(50%) - 8nbrs(100%) maybe
+    [5] strong/weak cells
+[5] 3D
+[5] different agent shape
+[5] zoom/pan/live grid change
+
+[x] LMB / RMB set alive/dead
+
+# Done
+
+[-] Virtual destructor and value initialize variables
+[-] check dynamic behaviour
