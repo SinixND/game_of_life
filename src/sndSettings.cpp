@@ -103,7 +103,7 @@ void Settings::Initialize()
         &config.initialLifeDensity,
         0,
         100,
-        true,
+        false,
         body.get(),
         (sndAlign)(LEFT | TOP),
         0);
@@ -117,7 +117,7 @@ void Settings::Initialize()
         &config.agentGap,
         0,
         1000,
-        true,
+        false,
         body.get(),
         (sndAlign)(LEFT | TOP),
         0);
