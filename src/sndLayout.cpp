@@ -661,47 +661,6 @@ void sndSpinner::Render()
 }
 //-------------------------------------
 
-// sndDropdownBox
-//-------------------------------------
-sndDropdownBox::sndDropdownBox(const char* label, int fontSize, const char* options, int* active, bool editMode, sndWrapper* parent, sndAlign flags, int offset)
-    : sndElement(label, fontSize, 0, 0, MeasureText(label, fontSize), 2 * fontSize)
-{
-    label_ = label;
-    fontSize_ = fontSize;
-    options_ = options;
-    active_ = active;
-    editMode_ = editMode;
-    
-    AlignToParent(parent, flags, offset);
-}
-
-sndDropdownBox::~sndDropdownBox()
-{
-
-}
-
-void sndDropdownBox::Render()
-{
-    GuiDropdownBox(
-        (Rectangle){
-            static_cast<float>(GetInnerLeft()),
-            static_cast<float>(GetInnerTop()),
-            static_cast<float>(GetInnerWidth()),
-            static_cast<float>(GetInnerHeight())},
-        options_, 
-        active_, 
-        editMode_);
-
-    GuiLabel(
-        (Rectangle){
-            static_cast<float>(GetInnerLeft() + controlWidth + controlGap),
-            static_cast<float>(GetInnerTop()),
-            static_cast<float>(GetInnerWidth()),
-            static_cast<float>(GetInnerHeight())},
-        label_);
-}
-//-------------------------------------
-
 int AlignHorizontalLeft(sndWrapper* parent, int offset)
 {
     return parent->GetInnerLeft() + offset;

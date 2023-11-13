@@ -88,25 +88,13 @@ void Settings::Initialize()
 
     body->AddWrapper(displaySettings);
 
-    auto windowSize = std::make_shared<sndDropdownBox>(
-        "Dropdown",
+    auto drawFPS = std::make_shared<sndCheckBox>(
+        "Draw FPS",
         GuiGetStyle(DEFAULT, TEXT_SIZE),
-        "one;two;three",
-        &config.windowSize,
-        false,
+        &config.drawFPS,
         body.get(),
-        (sndAlign)(BOTTOM | RIGHT),
+        (sndAlign)(LEFT | TOP),
         0);
-
-    body->AddWrapper(windowSize);
-
-        auto drawFPS = std::make_shared<sndCheckBox>(
-            "Draw FPS",
-            GuiGetStyle(DEFAULT, TEXT_SIZE),
-            &config.drawFPS,
-            body.get(),
-            (sndAlign)(LEFT | TOP),
-            0);
 
     drawFPS->AttachToBottom(displaySettings.get());
     body->AddWrapper(drawFPS);

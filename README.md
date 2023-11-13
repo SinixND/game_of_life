@@ -5,11 +5,9 @@
 
 # TODOs
 # Current 
-[0] setting: change cell/agent size
+[0] setting: tick time
 
 # Shortterm
-[0] setting: tick time
-[0] setting: change resolution
 [0] Mutlithreading
 
 # Longterm
