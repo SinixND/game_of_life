@@ -18,7 +18,7 @@ public:
     void Clear();
 
     int CountAdjacentAgents(Agent& agent);
-    void PrepareNext();
+    void PrepareNext(int begin, int end);
 
     void NotifyAdjacentAgents(Agent& agent);
     void Update();

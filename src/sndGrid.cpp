@@ -2,7 +2,9 @@
 #include <cstdlib>
 #include <iostream>
 #include <vector>
+#include <thread>
 #include <time.h>
+#include <math.h>
 #include "sndAgent.h"
 #include "sndConfigs.h" // provide object "config" for configurable parameters
 
@@ -15,9 +17,27 @@ Grid::Grid(int rowsY, int colsX)
     Reset();
 }
 
+
 void Grid::Evolve()
 {
-    PrepareNext();
+    int nThreads = std::thread::hardware_concurrency();
+    std::vector<std::thread> threads;
+    int gridSize = grid_.size();
+    int interval = ceil(gridSize / nThreads);
+
+    for (int i = 0, begin = 0, end = interval; i < nThreads; ++i, begin += interval, end += interval)
+    {
+        if (end > gridSize) end = gridSize;
+        std::thread thread(&Grid::PrepareNext, begin, end);
+        threads.push_back(std::move(thread));
+    }
+
+    for (auto& th : threads)
+    {
+        th.join();
+    }
+
+    //PrepareNext();
     Update();
 }
 
@@ -94,12 +114,14 @@ int Grid::CountAdjacentAgents(Agent& agent)
     return cnt;
 }
 
-void Grid::PrepareNext()
+void Grid::PrepareNext(int begin, int end)
 {
     // DETERMINE NEXT AGENTS STATE
     //---------------------------------
-    for (auto& row : grid_)
+     for (int i = begin; i < end; ++i)
+    //for (auto& row : grid_)
     {
+        auto row = grid_[i];
         for (auto& agent : row)
         {
             // Default Ruleset:
