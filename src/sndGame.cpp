@@ -141,7 +141,6 @@ void Game::Initialize()
     colsX = body->GetInnerWidth() / (config.agentWidth + config.agentGap);
     grid.SetGridSize(colsX, rowsY);
     grid.Reset();
-    gameScreenInitialized = true;
     //---------------------------------
 }
 
@@ -199,6 +198,7 @@ void Game::UpdateState()
     if (gameScreenInitialized == false)
     {
         Initialize();
+        gameScreenInitialized = true;
     }
 
     if (pauseState == true)
@@ -228,6 +228,8 @@ void Game::RenderOutput()
     {
         RenderPauseOverlay();
     }
+
+    Scene::RenderOutput();
 }
 
 void Game::RenderScreenGameStatusbar()

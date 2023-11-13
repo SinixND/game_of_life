@@ -8,6 +8,7 @@
 [0] setting: change cell/agent size
 
 # Shortterm
+[0] setting: tick time
 [0] setting: change resolution
 [0] Mutlithreading
 

@@ -2,6 +2,7 @@
 #include "sndScenes.h"
 #include "sndGlobals.h"
 #include "sndLayout.h"
+#include "sndConfigs.h"
 
 scenes currentScene = MENU;
 
@@ -24,4 +25,10 @@ void Scene::Update() {}
 
 void Scene::ProcessInput() {}
 void Scene::UpdateState() {}
-void Scene::RenderOutput() {}
+void Scene::RenderOutput()
+{
+    if (config.drawFPS == true)
+    {
+        DrawFPS(main->GetInnerLeft() + 10, main->GetInnerTop() + 10);
+    }
+}

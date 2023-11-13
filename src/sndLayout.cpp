@@ -14,6 +14,9 @@
 
 //#define DEBUGGING
 
+int controlWidth = 100;
+int controlGap = 20;
+
 // sndWrapper
 //-------------------------------------
 sndWrapper::sndWrapper(const char* label)
@@ -583,7 +586,7 @@ void sndText::Render()
 // sndCheckBox
 //-------------------------------------
 sndCheckBox::sndCheckBox(const char* label, int fontSize, bool* value, sndWrapper* parent, sndAlign flags, int offset)
-    : sndElement(label, fontSize, 0, 0, 1.5 * MeasureText(label, fontSize), 2 * fontSize)
+    : sndElement(label, fontSize, 0, 0, controlWidth + controlGap + MeasureText(label, fontSize), (2 * fontSize))
 
 {
     fontSize_ = fontSize;
@@ -598,29 +601,29 @@ void sndCheckBox::Render()
 {
     sndWrapper::Render();
 
-    GuiLabel(
-        (Rectangle){
-            static_cast<float>(GetInnerLeft()),
-            static_cast<float>(GetInnerTop()),
-            static_cast<float>(GetInnerLeft() + MeasureText(label_, fontSize_)),
-            static_cast<float>(GetInnerHeight())},
-        label_);
-
     GuiCheckBox(
         (Rectangle){
-            static_cast<float>(GetInnerLeft() + MeasureText(label_, fontSize_)),
-            static_cast<float>(GetInnerTop()),
+            static_cast<float>(GetInnerLeft() + ((controlWidth - fontSize_) / 2)),
+            static_cast<float>(GetInnerTop() + ((GetInnerHeight() - fontSize_) / 2)),
             static_cast<float>(fontSize_),
             static_cast<float>(fontSize_)},
         NULL,
         value_);
+
+    GuiLabel(
+        (Rectangle){
+            static_cast<float>(GetInnerLeft() + controlWidth + controlGap),
+            static_cast<float>(GetInnerTop()),
+            static_cast<float>(GetInnerLeft() + MeasureText(label_, fontSize_)),
+            static_cast<float>(GetInnerHeight())},
+        label_);
 }
 //-------------------------------------
 
 // sndSpinner
 //-------------------------------------
 sndSpinner::sndSpinner(const char* label, int fontSize, int* value, int minValue, int maxValue, bool editMode, sndWrapper* parent, sndAlign flags, int offset)
-    : sndElement(label, fontSize, 0, 0, 75 + MeasureText("IOO", fontSize), 2 * fontSize)
+    : sndElement(label, fontSize, 0, 0, controlWidth + controlGap + MeasureText(label, fontSize), 2 * fontSize)
 {
     value_ = value;
     minValue_ = minValue;
@@ -636,25 +639,66 @@ void sndSpinner::Render()
 {
     sndWrapper::Render();
 
-    GuiLabel(
+    GuiSpinner(
         (Rectangle){
             static_cast<float>(GetInnerLeft()),
             static_cast<float>(GetInnerTop()),
-            static_cast<float>(GetInnerLeft() + MeasureText(label_, fontSize_)),
-            static_cast<float>(GetInnerHeight())},
-        label_);
-
-    GuiSpinner(
-        (Rectangle){
-            static_cast<float>(GetInnerLeft() + MeasureText(label_, fontSize_)),
-            static_cast<float>(GetInnerTop()),
-            static_cast<float>(GetInnerWidth()),
+            static_cast<float>(controlWidth),
             static_cast<float>(GetInnerHeight())},
         NULL, 
         value_, 
         minValue_, 
         maxValue_, 
         editMode_);
+
+    GuiLabel(
+        (Rectangle){
+            static_cast<float>(GetInnerLeft() + controlWidth + controlGap),
+            static_cast<float>(GetInnerTop()),
+            static_cast<float>(GetInnerWidth()),
+            static_cast<float>(GetInnerHeight())},
+        label_);
+}
+//-------------------------------------
+
+// sndDropdownBox
+//-------------------------------------
+sndDropdownBox::sndDropdownBox(const char* label, int fontSize, const char* options, int* active, bool editMode, sndWrapper* parent, sndAlign flags, int offset)
+    : sndElement(label, fontSize, 0, 0, MeasureText(label, fontSize), 2 * fontSize)
+{
+    label_ = label;
+    fontSize_ = fontSize;
+    options_ = options;
+    active_ = active;
+    editMode_ = editMode;
+    
+    AlignToParent(parent, flags, offset);
+}
+
+sndDropdownBox::~sndDropdownBox()
+{
+
+}
+
+void sndDropdownBox::Render()
+{
+    GuiDropdownBox(
+        (Rectangle){
+            static_cast<float>(GetInnerLeft()),
+            static_cast<float>(GetInnerTop()),
+            static_cast<float>(GetInnerWidth()),
+            static_cast<float>(GetInnerHeight())},
+        options_, 
+        active_, 
+        editMode_);
+
+    GuiLabel(
+        (Rectangle){
+            static_cast<float>(GetInnerLeft() + controlWidth + controlGap),
+            static_cast<float>(GetInnerTop()),
+            static_cast<float>(GetInnerWidth()),
+            static_cast<float>(GetInnerHeight())},
+        label_);
 }
 //-------------------------------------
 

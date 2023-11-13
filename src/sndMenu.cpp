@@ -145,4 +145,5 @@ void Menu::UpdateState() {}
 void Menu::RenderOutput()
 {
     main->Render();
+    Scene::RenderOutput();
 }

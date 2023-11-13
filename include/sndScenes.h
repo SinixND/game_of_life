@@ -24,6 +24,7 @@ public:
 
 protected:
     std::shared_ptr<sndWrapper> main;
+    sndWrapper* currentWrapper;
 
     void ProcessInput();
     void UpdateState();

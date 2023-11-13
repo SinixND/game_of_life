@@ -1,6 +1,8 @@
 #ifndef CONFIGS_H
 #define CONFIGS_H
 
+#include <raylib.h>
+
 // CUSTOMIZABLE BY USER
 //---------------------------------
 class Config
@@ -9,21 +11,23 @@ public:
     Config();
 
     // APPLICATION
-    int targetFPS;
-
-    // AGENTS AND ENVIRONMENT
-    bool fadingAgents;
     bool debugMode;
-    int initialLifeDensity;
+    float tickTime;
 
     // DISPLAY
-    int agentGap;
-    float agentWidth;
-    float agentHeight; // independent height and width possible
-    float agentInnerBorderWeight;
+    int targetFPS;
+    bool drawFPS;
+    int windowSize;
 
-    // CONTROLS
-    float tickTime;
+    // GRID
+    int initialLifeDensity;
+
+    // AGENTS
+    bool fadingAgents;
+    int agentWidth;
+    int agentHeight; // independent height and width possible
+    int agentGap;
+    float agentInnerBorderWeight;
 };
 extern Config config; // declare extern object
 #endif

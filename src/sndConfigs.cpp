@@ -2,14 +2,16 @@
 
 Config config; // define extern object
 Config::Config()
-    : targetFPS(60)
-    , fadingAgents(false)
-    , debugMode(false)
+    : debugMode(false)
+    , tickTime(0.5)
+    , targetFPS(60)
+    , drawFPS(false)
+    , windowSize(0)
     , initialLifeDensity(25)
-    , agentGap(1)
+    , fadingAgents(false)
     , agentWidth(10)
     , agentHeight(agentWidth)
+    , agentGap(1)
     , agentInnerBorderWeight(1)
-    , tickTime(0.5)
 {
 }

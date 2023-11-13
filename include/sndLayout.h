@@ -216,6 +216,20 @@ private:
     bool editMode_;
 };
 
+class sndDropdownBox : public sndElement
+{
+public:
+    sndDropdownBox(const char* label, int fontSize, const char* options, int* active, bool editMode, sndWrapper* parent, sndAlign flags, int offset);
+    ~sndDropdownBox();
+
+    void Render();
+
+private:
+const char* options_;
+    int* active_;
+    bool editMode_;
+};
+
 int AlignHorizontalLeft(sndWrapper* parent, int offset);
 int AlignHorizontalCenter(sndWrapper* parent, int objectWidth, int offset);
 int AlignHorizontalRight(sndWrapper* parent, int objectWidth, int offset);

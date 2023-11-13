@@ -1,9 +1,9 @@
-#define RAYGUI_CUSTOM_ICONS     // Custom icons set required 
-#include "../resources/sndIcons.rgi.h"  
+#define RAYGUI_CUSTOM_ICONS // Custom icons set required
+#include "../resources/sndIcons.rgi.h"
 #include <raygui.h>
 
-#include "sndGlobals.h"
 #include "sndConfigs.h"
+#include "sndGlobals.h"
 #include "sndLayout.h"
 #include "sndScenes.h"
 
@@ -51,7 +51,8 @@ void Settings::Initialize()
     auto back = std::make_shared<sndButton>(
         "Back",
         GuiGetStyle(DEFAULT, TEXT_SIZE),
-        [](){return false;},
+        []()
+        { return false; },
         []()
         {
             currentScene = MENU;
@@ -65,7 +66,8 @@ void Settings::Initialize()
     auto darkMode = std::make_shared<sndButton>(
         GuiIconText(ICON_DARK_MODE, ""),
         GuiGetStyle(DEFAULT, TEXT_SIZE),
-        [](){return false;},
+        []()
+        { return false; },
         []()
         {
             global.ToggleDarkMode();
@@ -76,26 +78,49 @@ void Settings::Initialize()
 
     menubar->AddWrapper(darkMode);
 
-    auto category1 = std::make_shared<sndSeparator>(
-        "Category",
+    auto displaySettings = std::make_shared<sndSeparator>(
+        "Display",
         body->GetInnerLeft(),
         body->GetInnerRight(),
         body.get(),
         (sndAlign)(CENTER_HORIZONTAL | TOP),
         0);
 
-    body->AddWrapper(category1);
+    body->AddWrapper(displaySettings);
 
-    auto fadingAgents = std::make_shared<sndCheckBox>(
-        "Fading agents",
+    auto windowSize = std::make_shared<sndDropdownBox>(
+        "Dropdown",
         GuiGetStyle(DEFAULT, TEXT_SIZE),
-        &config.fadingAgents,
+        "one;two;three",
+        &config.windowSize,
+        false,
         body.get(),
-        (sndAlign)(LEFT | TOP),
+        (sndAlign)(BOTTOM | RIGHT),
         0);
 
-    fadingAgents->AttachToBottom(category1.get());
-    body->AddWrapper(fadingAgents);
+    body->AddWrapper(windowSize);
+
+        auto drawFPS = std::make_shared<sndCheckBox>(
+            "Draw FPS",
+            GuiGetStyle(DEFAULT, TEXT_SIZE),
+            &config.drawFPS,
+            body.get(),
+            (sndAlign)(LEFT | TOP),
+            0);
+
+    drawFPS->AttachToBottom(displaySettings.get());
+    body->AddWrapper(drawFPS);
+
+    auto gridSettings = std::make_shared<sndSeparator>(
+        "Grid",
+        body->GetInnerLeft(),
+        body->GetInnerRight(),
+        body.get(),
+        (sndAlign)(CENTER_HORIZONTAL | TOP),
+        0);
+
+    gridSettings->AttachToBottom(drawFPS.get());
+    body->AddWrapper(gridSettings);
 
     auto initialLifeDensity = std::make_shared<sndSpinner>(
         "Life density",
@@ -108,11 +133,61 @@ void Settings::Initialize()
         (sndAlign)(LEFT | TOP),
         0);
 
-    initialLifeDensity->AttachToBottom(fadingAgents.get());
+    initialLifeDensity->AttachToBottom(gridSettings.get());
     body->AddWrapper(initialLifeDensity);
 
+    auto agentSettings = std::make_shared<sndSeparator>(
+        "Cells",
+        body->GetInnerLeft(),
+        body->GetInnerRight(),
+        body.get(),
+        (sndAlign)(CENTER_HORIZONTAL | TOP),
+        0);
+
+    agentSettings->AttachToBottom(initialLifeDensity.get());
+    body->AddWrapper(agentSettings);
+
+    auto fadingAgents = std::make_shared<sndCheckBox>(
+        "Fading cells",
+        GuiGetStyle(DEFAULT, TEXT_SIZE),
+        &config.fadingAgents,
+        body.get(),
+        (sndAlign)(LEFT | TOP),
+        0);
+
+    fadingAgents->AttachToBottom(agentSettings.get());
+    body->AddWrapper(fadingAgents);
+
+    auto agentWidth = std::make_shared<sndSpinner>(
+        "Cell width",
+        GuiGetStyle(DEFAULT, TEXT_SIZE),
+        &config.agentWidth,
+        2 * config.agentInnerBorderWeight + 1,
+        100,
+        false,
+        body.get(),
+        (sndAlign)(LEFT | TOP),
+        0);
+
+    agentWidth->AttachToBottom(fadingAgents.get());
+    body->AddWrapper(agentWidth);
+
+    auto agentHeight = std::make_shared<sndSpinner>(
+        "Cell height",
+        GuiGetStyle(DEFAULT, TEXT_SIZE),
+        &config.agentHeight,
+        2 * config.agentInnerBorderWeight + 1,
+        100,
+        false,
+        body.get(),
+        (sndAlign)(LEFT | TOP),
+        0);
+
+    agentHeight->AttachToBottom(agentWidth.get());
+    body->AddWrapper(agentHeight);
+
     auto agentGap = std::make_shared<sndSpinner>(
-        "Agent gap",
+        "Cell gap",
         GuiGetStyle(DEFAULT, TEXT_SIZE),
         &config.agentGap,
         0,
@@ -122,7 +197,7 @@ void Settings::Initialize()
         (sndAlign)(LEFT | TOP),
         0);
 
-    agentGap->AttachToBottom(initialLifeDensity.get());
+    agentGap->AttachToBottom(agentHeight.get());
     body->AddWrapper(agentGap);
     //---------------------------------
 }
@@ -141,8 +216,11 @@ void Settings::Update()
 }
 
 void Settings::ProcessInput() {}
-void Settings::UpdateState() {}
+void Settings::UpdateState()
+{
+}
 void Settings::RenderOutput()
 {
     main->Render();
+    Scene::RenderOutput();
 }
