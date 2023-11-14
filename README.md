@@ -8,6 +8,7 @@
 [0] setting: tick time faster/slower
 
 # Shortterm
+[0] tick time rework: provide as ticks/s instead of ms
 [0] setting: multithread on/off
 [0] if paused: undo
 [0] if paused: proceed one step

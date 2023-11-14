@@ -2,6 +2,7 @@
 #define RAYGUI_CUSTOM_ICONS     // Custom icons set required 
 #include "../resources/sndIcons.rgi.h"  
 #include <raygui.h>
+#include <iostream>
 
 #include "sndConfigs.h"
 #include "sndGlobals.h"
@@ -133,6 +134,64 @@ void Game::Initialize()
         0);
 
     menubar->AddWrapper(pause);
+
+    auto increaseTick = std::make_shared<sndButton>(
+        GuiIconText(ICON_ARROW_UP_FILL, ""),
+        GuiGetStyle(DEFAULT, TEXT_SIZE),
+        [](){return IsKeyPressed(KEY_UP);},
+        []()
+        {
+            config.tickTime--;
+        },
+        statusbar.get(),
+        (sndAlign)(RIGHT | CENTER_VERTICAL),
+        0);
+
+    statusbar->AddWrapper(increaseTick);
+
+    auto decreaseTick = std::make_shared<sndButton>(
+        GuiIconText(ICON_ARROW_DOWN_FILL, ""),
+        GuiGetStyle(DEFAULT, TEXT_SIZE),
+        [](){return IsKeyPressed(KEY_DOWN);},
+        []()
+        {
+            config.tickTime++;
+        },
+        statusbar.get(),
+        (sndAlign)(RIGHT | CENTER_VERTICAL),
+        0);
+
+    decreaseTick->AttachToLeft(increaseTick.get());
+    statusbar->AddWrapper(decreaseTick);
+
+    auto undo = std::make_shared<sndButton>(
+        GuiIconText(ICON_UNDO_FILL, ""),
+        GuiGetStyle(DEFAULT, TEXT_SIZE),
+        [](){return (IsKeyPressed(KEY_CTRL) && IsKeyPressed(KEY_Z));},
+        []()
+        {
+            std::cout << "Implement undo!\n";
+        },
+        statusbar.get(),
+        (sndAlign)(CENTER_HORIZONTAL | CENTER_VERTICAL),
+        0);
+
+    statusbar->AddWrapper(undo);
+
+    auto step = std::make_shared<sndButton>(
+        GuiIconText(ICON_PLAYER_NEXT, ""),
+        GuiGetStyle(DEFAULT, TEXT_SIZE),
+        [](){return IsKeyPressed(KEY_RIGHT);},
+        []()
+        {
+            std::cout << "Implement step!\n";
+        },
+        statusbar.get(),
+        (sndAlign)(CENTER_HORIZONTAL | CENTER_VERTICAL),
+        0);
+
+    step->AttachToLeft(undo.get());
+    statusbar->AddWrapper(step);
     //---------------------------------
 
     // Variables
