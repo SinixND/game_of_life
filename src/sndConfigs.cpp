@@ -4,7 +4,7 @@ Config config; // define extern object
 Config::Config()
     : debugMode(false)
     , multiThread(true)
-    , tickTime(0.2)
+    , tickTime(1) // in s
     , targetFPS(60)
     , drawFPS(false)
     , windowSize(0)

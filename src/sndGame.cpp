@@ -135,34 +135,38 @@ void Game::Initialize()
 
     menubar->AddWrapper(pause);
 
-    auto increaseTick = std::make_shared<sndButton>(
+    auto increaseTicks = std::make_shared<sndButton>(
         GuiIconText(ICON_ARROW_UP_FILL, ""),
         GuiGetStyle(DEFAULT, TEXT_SIZE),
         [](){return IsKeyPressed(KEY_UP);},
         []()
         {
-            config.tickTime--;
+            config.tickTime /= 2;
+            if (config.tickTime < (static_cast<float>(1) / 128)) // max FPS supported as per tick time
+            {
+                config.tickTime = (static_cast<float>(1) / 128); // = 1s / 2^7
+            }
         },
         statusbar.get(),
         (sndAlign)(RIGHT | CENTER_VERTICAL),
         0);
 
-    statusbar->AddWrapper(increaseTick);
+    statusbar->AddWrapper(increaseTicks);
 
-    auto decreaseTick = std::make_shared<sndButton>(
+    auto decreaseTicks = std::make_shared<sndButton>(
         GuiIconText(ICON_ARROW_DOWN_FILL, ""),
         GuiGetStyle(DEFAULT, TEXT_SIZE),
         [](){return IsKeyPressed(KEY_DOWN);},
         []()
         {
-            config.tickTime++;
+            config.tickTime *= 2;
         },
         statusbar.get(),
         (sndAlign)(RIGHT | CENTER_VERTICAL),
         0);
 
-    decreaseTick->AttachToLeft(increaseTick.get());
-    statusbar->AddWrapper(decreaseTick);
+    decreaseTicks->AttachToLeft(increaseTicks.get());
+    statusbar->AddWrapper(decreaseTicks);
 
     auto undo = std::make_shared<sndButton>(
         GuiIconText(ICON_UNDO_FILL, ""),
@@ -294,7 +298,7 @@ void Game::RenderOutput()
 void Game::RenderScreenGameStatusbar()
 {
     auto status = std::make_shared<sndText>(
-        TextFormat("TickTime: %.0f ms; Day: %i", config.tickTime * 1000, grid.GetDay()),
+        TextFormat("%.0f(%0.f)ms; Day: %i",(static_cast<float>(1000)/GetFPS()), config.tickTime * 1000,  grid.GetDay()),
         GuiGetStyle(DEFAULT, TEXT_SIZE),
         statusbar.get(),
         (sndAlign)(LEFT | CENTER_VERTICAL),
