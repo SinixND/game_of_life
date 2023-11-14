@@ -167,7 +167,7 @@ void Game::Initialize()
     auto undo = std::make_shared<sndButton>(
         GuiIconText(ICON_UNDO_FILL, ""),
         GuiGetStyle(DEFAULT, TEXT_SIZE),
-        [](){return (IsKeyPressed(KEY_CTRL) && IsKeyPressed(KEY_Z));},
+        [](){return ((IsKeyPressed(KEY_LEFT_CONTROL) || IsKeyPressed(KEY_RIGHT_CONTROL)) && IsKeyPressed(KEY_Z));},
         []()
         {
             std::cout << "Implement undo!\n";
