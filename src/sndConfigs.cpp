@@ -3,6 +3,7 @@
 Config config; // define extern object
 Config::Config()
     : debugMode(false)
+    , multiThread(true)
     , tickTime(0.2)
     , targetFPS(60)
     , drawFPS(false)

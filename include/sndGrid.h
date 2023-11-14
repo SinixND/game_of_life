@@ -16,7 +16,8 @@ public:
     void Reset();
     void Evolve();
 
-    void PrepareNext(int begin, int end);
+    void PrepareNext();
+    void PrepareNextMT(int begin, int end);
     int CountAdjacentAgents(Agent& agent);
 
     void Clear();

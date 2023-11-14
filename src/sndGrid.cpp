@@ -56,37 +56,43 @@ void Grid::Reset()
 
 void Grid::Evolve()
 {
-    int nThreads = std::thread::hardware_concurrency();
-    std::vector<std::thread> threads;
-    int gridRows = grid_.size();
-    float interval = gridRows / static_cast<float>(nThreads);
 
-    for (int i = 0; i < nThreads; ++i)
+    if (config.multiThread == true)
     {
-        int begin = round(i * interval);
-        int end = round((i + 1) * interval) - 1;
-        if (end > gridRows) end = gridRows;
-        std::thread thread(&Grid::PrepareNext, this, begin, end);
-        threads.push_back(std::move(thread));
+        int nThreads = std::thread::hardware_concurrency();
+        std::vector<std::thread> threads;
+        int gridRows = grid_.size();
+        float interval = gridRows / static_cast<float>(nThreads);
+
+        for (int i = 0; i < nThreads; ++i)
+        {
+            int begin = round(i * interval);
+            int end = round((i + 1) * interval) - 1;
+            if (end > gridRows) end = gridRows;
+            std::thread thread(&Grid::PrepareNextMT, this, begin, end);
+            threads.push_back(std::move(thread));
+        }
+
+        for (auto& th : threads)
+        {
+            th.join();
+        }
+        threads.clear();
+    }
+    else
+    {
+        PrepareNext();
     }
 
-    for (auto& th : threads)
-    {
-        th.join();
-    }
-
-    //PrepareNext();
     Update();
 }
 
-void Grid::PrepareNext(int begin, int end)
+void Grid::PrepareNext()
 {
     // DETERMINE NEXT AGENTS STATE
     //---------------------------------
-    for (int i = begin; i < end; ++i)
-    //for (auto& row : grid_)
+    for (auto& row : grid_)
     {
-        auto& row = grid_[i];
         for (auto& agent : row)
         {
             // Default Ruleset:
@@ -118,7 +124,47 @@ void Grid::PrepareNext(int begin, int end)
             }
         }
     }
-    std::cout << "Preparation between " << begin << " and " << end << " done\n";
+}
+
+void Grid::PrepareNextMT(int begin, int end)
+{
+    // DETERMINE NEXT AGENTS STATE
+    //---------------------------------
+    for (int i = begin; i < end; ++i)
+    //for (auto& row : grid_)
+    {
+        auto& row = grid_[i];
+        for (auto& agent : row)
+        {
+            // Default Ruleset:
+            // AdjacentAgent count = 2 -> remain.
+            // AdjacentAgent count = 3 -> alive.
+            // All other die.
+
+            // skip iteration if statusOutdated is false
+//            if (agent.GetStatusOutdated() == false)
+//            {
+//                continue;
+//            }
+
+            agent.SetStatusOutdated(false);
+
+            switch (CountAdjacentAgents(agent))
+            {
+            case 2:
+                agent.SetStatusNext(agent.GetStatusCurrent());
+                break;
+
+            case 3:
+                agent.SetStatusNext(true);
+                break;
+
+            default:
+                agent.SetStatusNext(false);
+                break;
+            }
+        }
+    }
 }
 
 int Grid::CountAdjacentAgents(Agent& agent)

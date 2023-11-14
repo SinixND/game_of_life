@@ -12,6 +12,7 @@ public:
 
     // APPLICATION
     bool debugMode;
+    bool multiThread;
     float tickTime;
 
     // DISPLAY

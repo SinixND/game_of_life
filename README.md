@@ -5,10 +5,12 @@
 
 # TODOs
 # Current 
-[0] setting: tick time
+[0] setting: tick time faster/slower
 
 # Shortterm
-[0] Mutlithreading
+[0] setting: multithread on/off
+[0] if paused: undo
+[0] if paused: proceed one step
 
 # Longterm
 [1] live settings (eg. speed)
@@ -40,3 +42,4 @@
 [x] Rework Gui (responsive)
 [x] implement custom symbols (darkmode) locally!
 [x] LMB / RMB set alive/dead
+[x] Mutlithreading
