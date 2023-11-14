@@ -78,6 +78,27 @@ void Settings::Initialize()
 
     menubar->AddWrapper(darkMode);
 
+    auto appSettings = std::make_shared<sndSeparator>(
+        "Application",
+        body->GetInnerLeft(),
+        body->GetInnerRight(),
+        body.get(),
+        (sndAlign)(CENTER_HORIZONTAL | TOP),
+        0);
+
+    body->AddWrapper(appSettings);
+
+    auto multithreading = std::make_shared<sndCheckBox>(
+        "Multithreading",
+        GuiGetStyle(DEFAULT, TEXT_SIZE),
+        &config.multiThread,
+        body.get(),
+        (sndAlign)(LEFT | TOP),
+        0);
+
+    multithreading->AttachToBottom(appSettings.get());
+    body->AddWrapper(multithreading);
+
     auto displaySettings = std::make_shared<sndSeparator>(
         "Display",
         body->GetInnerLeft(),
@@ -86,6 +107,7 @@ void Settings::Initialize()
         (sndAlign)(CENTER_HORIZONTAL | TOP),
         0);
 
+    displaySettings->AttachToBottom(multithreading.get());
     body->AddWrapper(displaySettings);
 
     auto drawFPS = std::make_shared<sndCheckBox>(

@@ -160,6 +160,10 @@ void Game::Initialize()
         []()
         {
             config.tickTime *= 2;
+            if (config.tickTime > 8)
+            {
+                config.tickTime = 8;
+            }
         },
         statusbar.get(),
         (sndAlign)(RIGHT | CENTER_VERTICAL),
