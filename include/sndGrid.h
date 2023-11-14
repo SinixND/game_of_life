@@ -13,12 +13,13 @@ public:
     std::vector<bool> gridState_;
     std::vector<std::vector<bool>> gridStates_;
 
-    void Evolve();
     void Reset();
-    void Clear();
+    void Evolve();
 
-    int CountAdjacentAgents(Agent& agent);
     void PrepareNext(int begin, int end);
+    int CountAdjacentAgents(Agent& agent);
+
+    void Clear();
 
     void NotifyAdjacentAgents(Agent& agent);
     void Update();

@@ -17,31 +17,6 @@ Grid::Grid(int rowsY, int colsX)
     Reset();
 }
 
-void Grid::Evolve()
-{
-    int nThreads = std::thread::hardware_concurrency();
-    std::vector<std::thread> threads;
-    int gridRows = grid_.size();
-    float interval = gridRows / static_cast<float>(nThreads);
-
-    for (int i = 0; i < nThreads; ++i)
-    {
-        int begin = round(i * interval);
-        int end = round((i + 1) * interval) - 1;
-        if (end > gridRows) end = gridRows;
-        std::thread thread(&Grid::PrepareNext, this, begin, end);
-        threads.push_back(std::move(thread));
-    }
-
-    for (auto& th : threads)
-    {
-        th.join();
-    }
-
-    //PrepareNext();
-    Update();
-}
-
 void Grid::Reset()
 {
     srand(time(0));
@@ -79,40 +54,29 @@ void Grid::Reset()
     gridState_.clear();
 }
 
-void Grid::Clear()
+void Grid::Evolve()
 {
-    for (auto& row : grid_)
+    int nThreads = std::thread::hardware_concurrency();
+    std::vector<std::thread> threads;
+    int gridRows = grid_.size();
+    float interval = gridRows / static_cast<float>(nThreads);
+
+    for (int i = 0; i < nThreads; ++i)
     {
-        for (auto& agent : row)
-        {
-            agent.SetStatusCurrent(false);
-            agent.SetStatusNext(false);
-            agent.SetStatusOutdated(true);
-            agent.EreaseVitality();
-        }
+        int begin = round(i * interval);
+        int end = round((i + 1) * interval) - 1;
+        if (end > gridRows) end = gridRows;
+        std::thread thread(&Grid::PrepareNext, this, begin, end);
+        threads.push_back(std::move(thread));
     }
-}
 
-int Grid::CountAdjacentAgents(Agent& agent)
-{
-    int cnt = 0;
-    for (auto dy : {-1, 0, 1})
+    for (auto& th : threads)
     {
-        for (auto dx : {-1, 0, 1})
-        {
-            // set adjacent position, wrapping around matrix
-            int posY = ((agent.GetRowY() + dy) + grid_.size()) % grid_.size();
-            int posX = ((agent.GetColX() + dx) + grid_[posY].size()) % grid_[posY].size();
-
-            Agent& adjacentAgent = grid_[posY][posX];
-
-            if (adjacentAgent.GetStatusCurrent() == true && (dy != 0 || dx != 0))
-            {
-                cnt += 1;
-            }
-        }
+        th.join();
     }
-    return cnt;
+
+    //PrepareNext();
+    Update();
 }
 
 void Grid::PrepareNext(int begin, int end)
@@ -154,21 +118,41 @@ void Grid::PrepareNext(int begin, int end)
             }
         }
     }
-std::cout << "Preparation between " << begin << " and " << end << " done\n";
+    std::cout << "Preparation between " << begin << " and " << end << " done\n";
 }
 
-void Grid::NotifyAdjacentAgents(Agent& agent)
+int Grid::CountAdjacentAgents(Agent& agent)
 {
-    for (auto dx : {-1, 0, 1})
+    int cnt = 0;
+    for (auto dy : {-1, 0, 1})
     {
-        for (auto dy : {-1, 0, 1})
+        for (auto dx : {-1, 0, 1})
         {
-            // wraps around matrix
+            // set adjacent position, wrapping around matrix
             int posY = ((agent.GetRowY() + dy) + grid_.size()) % grid_.size();
             int posX = ((agent.GetColX() + dx) + grid_[posY].size()) % grid_[posY].size();
 
             Agent& adjacentAgent = grid_[posY][posX];
-            adjacentAgent.SetStatusOutdated(true);
+
+            if (adjacentAgent.GetStatusCurrent() == true && (dy != 0 || dx != 0))
+            {
+                cnt += 1;
+            }
+        }
+    }
+    return cnt;
+}
+
+void Grid::Clear()
+{
+    for (auto& row : grid_)
+    {
+        for (auto& agent : row)
+        {
+            agent.SetStatusCurrent(false);
+            agent.SetStatusNext(false);
+            agent.SetStatusOutdated(true);
+            agent.EreaseVitality();
         }
     }
 }
@@ -183,11 +167,11 @@ void Grid::Update()
     {
         for (auto& agent : row)
         {
-            if (agent.GetStatusCurrent() != agent.GetStatusNext())
-            {
-                NotifyAdjacentAgents(agent);
-            }
-
+//            if (agent.GetStatusCurrent() != agent.GetStatusNext())
+//            {
+//                NotifyAdjacentAgents(agent);
+//            }
+//
             if (agent.GetStatusNext() == true)
             {
                 agent.SetStatusCurrent(true);
@@ -208,6 +192,22 @@ void Grid::Update()
     }
     gridStates_.push_back(gridState_);
     gridState_.clear();
+}
+
+void Grid::NotifyAdjacentAgents(Agent& agent)
+{
+    for (auto dx : {-1, 0, 1})
+    {
+        for (auto dy : {-1, 0, 1})
+        {
+            // wraps around matrix
+            int posY = ((agent.GetRowY() + dy) + grid_.size()) % grid_.size();
+            int posX = ((agent.GetColX() + dx) + grid_[posY].size()) % grid_[posY].size();
+
+            Agent& adjacentAgent = grid_[posY][posX];
+            adjacentAgent.SetStatusOutdated(true);
+        }
+    }
 }
 
 void Grid::SetGridSize(int colsX, int rowsY)
