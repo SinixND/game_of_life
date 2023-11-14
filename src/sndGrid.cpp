@@ -4,7 +4,7 @@
 #include <vector>
 #include <thread>
 #include <time.h>
-#include <math.h>
+#include <cmath>
 #include "sndAgent.h"
 #include "sndConfigs.h" // provide object "config" for configurable parameters
 
@@ -17,18 +17,19 @@ Grid::Grid(int rowsY, int colsX)
     Reset();
 }
 
-
 void Grid::Evolve()
 {
     int nThreads = std::thread::hardware_concurrency();
     std::vector<std::thread> threads;
-    int gridSize = grid_.size();
-    int interval = ceil(gridSize / nThreads);
+    int gridRows = grid_.size();
+    float interval = gridRows / static_cast<float>(nThreads);
 
-    for (int i = 0, begin = 0, end = interval; i < nThreads; ++i, begin += interval, end += interval)
+    for (int i = 0; i < nThreads; ++i)
     {
-        if (end > gridSize) end = gridSize;
-        std::thread thread(&Grid::PrepareNext, begin, end);
+        int begin = round(i * interval);
+        int end = round((i + 1) * interval) - 1;
+        if (end > gridRows) end = gridRows;
+        std::thread thread(&Grid::PrepareNext, this, begin, end);
         threads.push_back(std::move(thread));
     }
 
@@ -118,10 +119,10 @@ void Grid::PrepareNext(int begin, int end)
 {
     // DETERMINE NEXT AGENTS STATE
     //---------------------------------
-     for (int i = begin; i < end; ++i)
+    for (int i = begin; i < end; ++i)
     //for (auto& row : grid_)
     {
-        auto row = grid_[i];
+        auto& row = grid_[i];
         for (auto& agent : row)
         {
             // Default Ruleset:
@@ -153,6 +154,7 @@ void Grid::PrepareNext(int begin, int end)
             }
         }
     }
+std::cout << "Preparation between " << begin << " and " << end << " done\n";
 }
 
 void Grid::NotifyAdjacentAgents(Agent& agent)
