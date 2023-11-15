@@ -11,9 +11,6 @@ public:
     Grid();
     Grid(int rowsY, int colsX);
 
-    std::vector<bool> gridState_;
-    std::vector<std::vector<bool>> gridStates_;
-
     void Reset();
     void Evolve();
 
@@ -38,6 +35,7 @@ private:
     int day_;
 
     std::vector<std::vector<Agent>> grid_;
+    std::vector<std::vector<Agent>> previousGrid_;
 };
 
 #endif

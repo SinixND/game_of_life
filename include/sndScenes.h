@@ -74,6 +74,7 @@ public:
     Game();
 
     std::shared_ptr<sndWrapper> menubar;
+    std::shared_ptr<sndWrapper> controlbar;
     std::shared_ptr<sndWrapper> statusbar;
     std::shared_ptr<sndWrapper> body;
 

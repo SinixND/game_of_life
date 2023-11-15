@@ -42,8 +42,8 @@ void Game::Initialize()
 
     main->AddWrapper(menubar);
 
-    statusbar = std::make_shared<sndWrapper>(
-        "statusbar",
+    controlbar = std::make_shared<sndWrapper>(
+        "controlbar",
         main->GetInnerLeft(),
         static_cast<int>(main->GetInnerBottom() - 3 * GuiGetStyle(DEFAULT, TEXT_SIZE)),
         main->GetInnerRight(),
@@ -51,12 +51,22 @@ void Game::Initialize()
 
     main->AddWrapper(statusbar);
 
+    statusbar = std::make_shared<sndWrapper>(
+        "statusbar",
+        main->GetInnerLeft(),
+        static_cast<int>(main->GetInnerBottom() - 3 * GuiGetStyle(DEFAULT, TEXT_SIZE)),
+        main->GetInnerRight(),
+        main->GetInnerBottom());
+
+    statusbar->AttachToTop(controlbar);
+    main->AddWrapper(statusbar);
+
     body = std::make_shared<sndWrapper>(
         "body",
         main->GetInnerLeft(),
         menubar->GetOuterBottom(),
         main->GetInnerRight(),
-        statusbar->GetOuterTop());
+        controlbar->GetOuterTop());
 
     main->AddWrapper(body);
     //---------------------------------
@@ -148,11 +158,11 @@ void Game::Initialize()
                 config.tickTime = (static_cast<float>(1) / 128); // = 1s / 2^7
             }
         },
-        statusbar.get(),
+        controlbar.get(),
         (sndAlign)(RIGHT | CENTER_VERTICAL),
         0);
 
-    statusbar->AddWrapper(increaseTicks);
+    controlbar->AddWrapper(increaseTicks);
 
     auto decreaseTicks = std::make_shared<sndButton>(
         GuiIconText(ICON_ARROW_DOWN_FILL, ""),
@@ -166,12 +176,12 @@ void Game::Initialize()
                 config.tickTime = 8;
             }
         },
-        statusbar.get(),
+        controlbar.get(),
         (sndAlign)(RIGHT | CENTER_VERTICAL),
         0);
 
     decreaseTicks->AttachToLeft(increaseTicks.get());
-    statusbar->AddWrapper(decreaseTicks);
+    controlbar->AddWrapper(decreaseTicks);
 
     auto undo = std::make_shared<sndButton>(
         GuiIconText(ICON_UNDO_FILL, ""),
@@ -179,13 +189,18 @@ void Game::Initialize()
         [](){return ((IsKeyPressed(KEY_LEFT_CONTROL) || IsKeyPressed(KEY_RIGHT_CONTROL)) && IsKeyPressed(KEY_Z));},
         []()
         {
-            std::cout << "Implement undo!\n";
+            if (pauseState == true)
+            {
+                auto temp = grid.grid_;;
+                grid.grid_ = grid.previousGrid_;
+                grid.previousGrid_ = temp;
+            }
         },
-        statusbar.get(),
-        (sndAlign)(CENTER_HORIZONTAL | CENTER_VERTICAL),
+        controlbar.get(),
+        (sndAlign)(LEFT | CENTER_VERTICAL),
         0);
 
-    statusbar->AddWrapper(undo);
+    controlbar->AddWrapper(undo);
 
     auto step = std::make_shared<sndButton>(
         GuiIconText(ICON_PLAYER_NEXT, ""),
@@ -195,12 +210,12 @@ void Game::Initialize()
         {
             singleIteration = true;
         },
-        statusbar.get(),
-        (sndAlign)(CENTER_HORIZONTAL | CENTER_VERTICAL),
+        controlbar.get(),
+        (sndAlign)(LEFT | CENTER_VERTICAL),
         0);
 
     step->AttachToRight(undo.get());
-    statusbar->AddWrapper(step);
+    controlbar->AddWrapper(step);
     //---------------------------------
 
     // Variables
@@ -282,7 +297,6 @@ void Game::UpdateState()
 
     timePassed = 0;
     grid.Evolve();
-    int currentState = grid.gridStates_.size() - 1;
     singleIteration = false;
 }
 

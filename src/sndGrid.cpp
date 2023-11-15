@@ -23,8 +23,7 @@ void Grid::Reset()
     srand(time(0));
     day_ = 0;
     grid_.clear();
-    gridState_.clear();
-    gridStates_.clear();
+    previousGrid_.clear();
 
     // INITIALIZE GRID OF AGENTS
     //---------------------------------
@@ -43,16 +42,11 @@ void Grid::Reset()
             if (((rand() % 100) * 0.01) <= (config.initialLifeDensity / (float)100.0))
             {
                 agent.SetStatusCurrent(true); // make alive
-                gridState_.push_back(true);
-            }
-            else
-            {
-                gridState_.push_back(false);
             }
         }
     }
-    gridStates_.push_back(gridState_);
-    gridState_.clear();
+            
+    previousGrid_ = grid_;
 }
 
 void Grid::Evolve()
@@ -222,7 +216,6 @@ void Grid::Update()
             if (agent.GetStatusNext() == true)
             {
                 agent.SetStatusCurrent(true);
-                gridState_.push_back(true);
 
                 if (config.fadingAgents == true)
                 {
@@ -232,13 +225,11 @@ void Grid::Update()
             else
             {
                 agent.SetStatusCurrent(false);
-                gridState_.push_back(false);
                 agent.DecreaseVitality();
             }
         }
     }
-    gridStates_.push_back(gridState_);
-    gridState_.clear();
+    previousGrid_ = grid_;
 }
 
 void Grid::NotifyAdjacentAgents(Agent& agent)
