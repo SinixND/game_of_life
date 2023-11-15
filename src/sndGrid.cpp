@@ -45,12 +45,11 @@ void Grid::Reset()
             }
         }
     }
-            
-    previousGrid_ = grid_;
 }
 
 void Grid::Evolve()
 {
+    previousGrid_ = grid_;
 
     if (config.multiThread == true)
     {
@@ -229,7 +228,6 @@ void Grid::Update()
             }
         }
     }
-    previousGrid_ = grid_;
 }
 
 void Grid::NotifyAdjacentAgents(Agent& agent)
@@ -268,4 +266,19 @@ void Grid::SetDay(int day)
 std::vector<std::vector<Agent>>& Grid::GetGrid()
 {
     return grid_;
+}
+
+void Grid::SetGrid(std::vector<std::vector<Agent>> grid)
+{
+    grid_ = grid;
+}
+
+std::vector<std::vector<Agent>> Grid::GetPreviousGrid()
+{
+    return previousGrid_;
+}
+
+void Grid::SetPreviousGrid(std::vector<std::vector<Agent>> grid)
+{
+    previousGrid_ = grid;
 }

@@ -27,7 +27,12 @@ public:
 
     int GetDay();
     void SetDay(int day);
+
     std::vector<std::vector<Agent>>& GetGrid();
+    void SetGrid(std::vector<std::vector<Agent>> grid);
+
+    std::vector<std::vector<Agent>> GetPreviousGrid();
+    void SetPreviousGrid(std::vector<std::vector<Agent>> grid);
 
 private:
     int rowsY_;

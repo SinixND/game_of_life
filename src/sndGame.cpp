@@ -49,16 +49,15 @@ void Game::Initialize()
         main->GetInnerRight(),
         main->GetInnerBottom());
 
-    main->AddWrapper(statusbar);
+    main->AddWrapper(controlbar);
 
     statusbar = std::make_shared<sndWrapper>(
         "statusbar",
         main->GetInnerLeft(),
-        static_cast<int>(main->GetInnerBottom() - 3 * GuiGetStyle(DEFAULT, TEXT_SIZE)),
+        static_cast<int>(controlbar->GetOuterTop() - 3 * GuiGetStyle(DEFAULT, TEXT_SIZE)),
         main->GetInnerRight(),
-        main->GetInnerBottom());
+        controlbar->GetOuterTop());
 
-    statusbar->AttachToTop(controlbar);
     main->AddWrapper(statusbar);
 
     body = std::make_shared<sndWrapper>(
@@ -66,7 +65,7 @@ void Game::Initialize()
         main->GetInnerLeft(),
         menubar->GetOuterBottom(),
         main->GetInnerRight(),
-        controlbar->GetOuterTop());
+        statusbar->GetOuterTop());
 
     main->AddWrapper(body);
     //---------------------------------
@@ -191,9 +190,9 @@ void Game::Initialize()
         {
             if (pauseState == true)
             {
-                auto temp = grid.grid_;;
-                grid.grid_ = grid.previousGrid_;
-                grid.previousGrid_ = temp;
+                auto temp = grid.GetGrid();
+                grid.SetGrid(grid.GetPreviousGrid());
+                grid.SetPreviousGrid(temp);
             }
         },
         controlbar.get(),
@@ -307,7 +306,7 @@ void Game::RenderOutput()
     RenderScreenGameStatusbar();
     RenderScreenGameMainPanel();
 
-    if (pauseState == true && singleIteration == false)
+    if (pauseState == true)
     {
         RenderPauseOverlay();
     }
