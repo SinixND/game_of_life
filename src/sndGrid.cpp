@@ -63,8 +63,9 @@ void Grid::Evolve()
             int begin = round(i * interval);
             int end = round((i + 1) * interval) - 1;
             if (end > gridRows) end = gridRows;
-            std::thread thread(&Grid::PrepareNextMT, this, begin, end);
-            threads.push_back(std::move(thread));
+            //std::thread thread(&Grid::PrepareNextMT, this, begin, end);
+            //threads.push_back(std::move(thread));
+            threads.push_back(std::thread(&Grid::PrepareNextMT, this, begin, end));
         }
 
         for (auto& th : threads)
@@ -134,12 +135,6 @@ void Grid::PrepareNextMT(int begin, int end)
             // Adjacent alive agents count = 2 -> remain.
             // Adjacent alive agent count = 3 -> alive.
             // All other die.
-
-            // skip iteration if statusOutdated is false
-//            if (agent.GetStatusOutdated() == false)
-//            {
-//                continue;
-//            }
 
             agent.SetStatusOutdated(true);
 
