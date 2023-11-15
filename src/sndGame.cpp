@@ -13,6 +13,7 @@
 // GAME OF LIFE / GRID
 //---------------------------------
 bool pauseState = false;
+bool singleIteration = false;
 
 bool gameScreenInitialized = false;
 float timePassed = 0;
@@ -192,13 +193,13 @@ void Game::Initialize()
         [](){return IsKeyPressed(KEY_RIGHT);},
         []()
         {
-            std::cout << "Implement step!\n";
+            singleIteration = true;
         },
         statusbar.get(),
         (sndAlign)(CENTER_HORIZONTAL | CENTER_VERTICAL),
         0);
 
-    step->AttachToLeft(undo.get());
+    step->AttachToRight(undo.get());
     statusbar->AddWrapper(step);
     //---------------------------------
 
@@ -268,7 +269,7 @@ void Game::UpdateState()
         gameScreenInitialized = true;
     }
 
-    if (pauseState == true)
+    if (pauseState == true && singleIteration == false)
     {
         return;
     }
@@ -282,6 +283,7 @@ void Game::UpdateState()
     timePassed = 0;
     grid.Evolve();
     int currentState = grid.gridStates_.size() - 1;
+    singleIteration = false;
 }
 
 void Game::RenderOutput()
@@ -291,7 +293,7 @@ void Game::RenderOutput()
     RenderScreenGameStatusbar();
     RenderScreenGameMainPanel();
 
-    if (pauseState == true)
+    if (pauseState == true && singleIteration == false)
     {
         RenderPauseOverlay();
     }

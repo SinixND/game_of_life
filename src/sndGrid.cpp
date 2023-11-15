@@ -96,9 +96,9 @@ void Grid::PrepareNext()
     {
         for (auto& agent : row)
         {
-            // Default Ruleset:
-            // AdjacentAgent count = 2 -> remain.
-            // AdjacentAgent count = 3 -> alive.
+            // Default ruleset:
+            // Adjacent alive agents count = 2 -> remain.
+            // Adjacent alive agent count = 3 -> alive.
             // All other die.
 
             // skip iteration if statusOutdated is false
@@ -137,9 +137,9 @@ void Grid::PrepareNextMT(int begin, int end)
         auto& row = grid_[i];
         for (auto& agent : row)
         {
-            // Default Ruleset:
-            // AdjacentAgent count = 2 -> remain.
-            // AdjacentAgent count = 3 -> alive.
+            // Default ruleset:
+            // Adjacent alive agents count = 2 -> remain.
+            // Adjacent alive agent count = 3 -> alive.
             // All other die.
 
             // skip iteration if statusOutdated is false
@@ -148,7 +148,7 @@ void Grid::PrepareNextMT(int begin, int end)
 //                continue;
 //            }
 
-            agent.SetStatusOutdated(false);
+            agent.SetStatusOutdated(true);
 
             switch (CountAdjacentAgents(agent))
             {
@@ -214,11 +214,11 @@ void Grid::Update()
     {
         for (auto& agent : row)
         {
-//            if (agent.GetStatusCurrent() != agent.GetStatusNext())
-//            {
-//                NotifyAdjacentAgents(agent);
-//            }
-//
+            if (agent.GetStatusCurrent() != agent.GetStatusNext() && config.multiThread == false)
+            {
+                NotifyAdjacentAgents(agent);
+            }
+
             if (agent.GetStatusNext() == true)
             {
                 agent.SetStatusCurrent(true);
