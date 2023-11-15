@@ -99,6 +99,17 @@ void Settings::Initialize()
     multithreading->AttachToBottom(appSettings.get());
     body->AddWrapper(multithreading);
 
+    auto debugMode = std::make_shared<sndCheckBox>(
+        "Random start",
+        GuiGetStyle(DEFAULT, TEXT_SIZE),
+        &config.debugMode,
+        body.get(),
+        (sndAlign)(LEFT | TOP),
+        0);
+
+    debugMode->AttachToBottom(multithreading.get());
+    body->AddWrapper(debugMode);
+
     auto displaySettings = std::make_shared<sndSeparator>(
         "Display",
         body->GetInnerLeft(),
@@ -107,7 +118,7 @@ void Settings::Initialize()
         (sndAlign)(CENTER_HORIZONTAL | TOP),
         0);
 
-    displaySettings->AttachToBottom(multithreading.get());
+    displaySettings->AttachToBottom(debugMode.get());
     body->AddWrapper(displaySettings);
 
     auto drawFPS = std::make_shared<sndCheckBox>(

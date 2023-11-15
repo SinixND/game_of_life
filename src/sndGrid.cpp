@@ -13,10 +13,19 @@ Grid::Grid(){};
 
 Grid::Grid(int rowsY, int colsX)
     : rowsY_(rowsY)
-    , colsX_(colsX)
+      , colsX_(colsX)
 {
     Reset();
 }
+
+std::vector<std::vector<int>> debugGrid =
+{
+    {0,0,0,0,0},
+    {0,0,1,0,0},
+    {0,0,1,0,0},
+    {0,0,1,0,0},
+    {0,0,0,0,0}
+};
 
 void Grid::Reset()
 {
@@ -27,25 +36,30 @@ void Grid::Reset()
 
     // INITIALIZE GRID OF AGENTS
     //---------------------------------
-    for (auto rowY = 0; rowY < rowsY_; ++rowY)
+    if (config.debugMode == true)
     {
-        std::vector<Agent> newRow;
-        grid_.push_back(newRow);
 
-        for (auto colX = 0; colX < colsX_; ++colX)
+        return;
+    }
+        for (auto rowY = 0; rowY < rowsY_; ++rowY)
         {
-            // add new agent to grid
-            grid_[rowY].push_back(Agent(rowY, colX));
-            Agent& agent = grid_[rowY][colX];
+            std::vector<Agent> newRow;
+            grid_.push_back(newRow);
 
-            // randomize initial agent state
-            if (((rand() % 100) * 0.01) <= (config.initialLifeDensity / (float)100.0))
+            for (auto colX = 0; colX < colsX_; ++colX)
             {
-                agent.SetStatusCurrent(true); // make alive
+                // add new agent to grid
+                grid_[rowY].push_back(Agent(rowY, colX));
+                Agent& agent = grid_[rowY][colX];
+
+                // randomize initial agent state
+                if (((rand() % 100) * 0.01) <= (config.initialLifeDensity / (float)100.0))
+                {
+                    agent.SetStatusCurrent(true); // make alive
+                }
             }
         }
-    }
-}
+}/
 
 void Grid::Evolve()
 {
@@ -105,17 +119,17 @@ void Grid::PrepareNext()
 
             switch (CountAdjacentAgents(agent))
             {
-            case 2:
-                agent.SetStatusNext(agent.GetStatusCurrent());
-                break;
+                case 2:
+                    agent.SetStatusNext(agent.GetStatusCurrent());
+                    break;
 
-            case 3:
-                agent.SetStatusNext(true);
-                break;
+                case 3:
+                    agent.SetStatusNext(true);
+                    break;
 
-            default:
-                agent.SetStatusNext(false);
-                break;
+                default:
+                    agent.SetStatusNext(false);
+                    break;
             }
         }
     }
@@ -126,7 +140,7 @@ void Grid::PrepareNextMT(int begin, int end)
     // DETERMINE NEXT AGENTS STATE
     //---------------------------------
     for (int i = begin; i < end; ++i)
-    //for (auto& row : grid_)
+        //for (auto& row : grid_)
     {
         auto& row = grid_[i];
         for (auto& agent : row)
@@ -140,17 +154,17 @@ void Grid::PrepareNextMT(int begin, int end)
 
             switch (CountAdjacentAgents(agent))
             {
-            case 2:
-                agent.SetStatusNext(agent.GetStatusCurrent());
-                break;
+                case 2:
+                    agent.SetStatusNext(agent.GetStatusCurrent());
+                    break;
 
-            case 3:
-                agent.SetStatusNext(true);
-                break;
+                case 3:
+                    agent.SetStatusNext(true);
+                    break;
 
-            default:
-                agent.SetStatusNext(false);
-                break;
+                default:
+                    agent.SetStatusNext(false);
+                    break;
             }
         }
     }
