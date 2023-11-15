@@ -152,9 +152,9 @@ void Game::Initialize()
         []()
         {
             config.tickTime /= 2;
-            if (config.tickTime < (static_cast<float>(1) / 128)) // max FPS supported as per tick time
+            if (config.tickTime < (static_cast<float>(1) / 1024))
             {
-                config.tickTime = (static_cast<float>(1) / 128); // = 1s / 2^7
+                config.tickTime = (static_cast<float>(1) / 1024);
             }
         },
         controlbar.get(),
@@ -316,8 +316,19 @@ void Game::RenderOutput()
 
 void Game::RenderScreenGameStatusbar()
 {
+    float FPS = (static_cast<float>(1) / config.tickTime);
+    const char* statusText;
+    if (FPS < 1)
+    {
+        statusText = TextFormat("FPS: %0.2f; Day: %i", FPS,  grid.GetDay());
+    }
+    else
+    {
+        statusText = TextFormat("FPS: %0.f; Day: %i", FPS,  grid.GetDay());
+    }
+
     auto status = std::make_shared<sndText>(
-        TextFormat("%.0f(%0.f)ms; Day: %i",(static_cast<float>(1000)/GetFPS()), config.tickTime * 1000,  grid.GetDay()),
+        statusText,
         GuiGetStyle(DEFAULT, TEXT_SIZE),
         statusbar.get(),
         (sndAlign)(LEFT | CENTER_VERTICAL),
@@ -343,22 +354,22 @@ void Game::RenderScreenGameMainPanel()
                 (float)config.agentWidth,
                 (float)config.agentHeight};
 
-            if (agent.GetStatusCurrent() == true)
+            if (agent.GetStatusCurrent() == true) // alive cell
             {
                 DrawRectangleRec(rectAgent, global.GetForeground());
             }
-            else if (agent.GetVitality() > 0)
+            else if (agent.GetVitality() > 0) // decaying cell
             {
                 DrawRectangleRec(rectAgent, GetAgentColor(agent));
             }
-            else
+            else // dead cell
             {
                 DrawRectangleLinesEx(rectAgent, config.agentInnerBorderWeight, Fade(global.GetForeground(), 0.50f));
             }
 
             if (config.debugMode == true && CheckCollisionPointRec(GetMousePosition(), rectAgent))
             {
-                DrawText(TextFormat("%i/%i\nC:%i N:%i O:%i\nV:%i",
+                DrawText(TextFormat("X:%i Y:%i\nCurrent:%i\nNext:%i\nOutdated:%i\nVitality:%i",
                     agent.GetColX(),
                     agent.GetRowY(),
                     agent.GetStatusCurrent(),

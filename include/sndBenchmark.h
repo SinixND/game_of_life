@@ -3,7 +3,7 @@
 #ifndef SNDBENCHMARK_H
 #define SNDBENCHMARK_H
 
-//#define ACTIVATE_BENCHMARKING
+#define ACTIVATE_BENCHMARKING
 
 #include <chrono>
 typedef std::chrono::steady_clock::time_point chrono_timePoint;
@@ -31,8 +31,10 @@ void StartBenchmark(std::string id);
 void StopBenchmark(std::string id);
 void ShowBenchmarks();
 
+#endif // SNDBENCHMARK_H
 
 // sndBenchmark.cpp
+#if defined(BENCHMARK_IMPLEMENTATION)
 
 #include <iostream>
 
@@ -94,7 +96,7 @@ void ShowBenchmarks()
 
         std::cout << benchmark.id_ << " (Lst|Avg|Itr): " << benchmark.latestTime_.count() << " ns | " << benchmark.avgTime_.count() << " ns | " << benchmark.iterations_ << "\n";
     }
-    std::cout << "\n";
+    if (benchmarks.size() > 1) std::cout << "\n";
 #endif
 }
 

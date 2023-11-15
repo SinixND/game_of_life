@@ -4,10 +4,10 @@
 #include <vector>
 #include <thread>
 #include <time.h>
-#include <cmath>
 
 #include "sndAgent.h"
 #include "sndConfigs.h" // provide object "config" for configurable parameters
+#include "sndBenchmark.h"
 
 Grid::Grid(){};
 
@@ -20,11 +20,29 @@ Grid::Grid(int rowsY, int colsX)
 
 std::vector<std::vector<int>> debugGrid =
 {
-    {0,0,0,0,0},
-    {0,0,1,0,0},
-    {0,0,1,0,0},
-    {0,0,1,0,0},
-    {0,0,0,0,0}
+    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+    {0,0,1,0,0,0,0,0,0,0,0,0,1,1,0,0,0},
+    {0,0,1,0,0,0,0,1,1,1,0,0,1,1,0,0,0},
+    {0,0,1,0,0,0,1,1,1,0,0,0,0,0,1,1,0},
+    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0},
+    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,1,1,1,0,0,0,1,1,1,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+    {0,0,1,0,0,0,0,1,0,1,0,0,0,0,1,0,0},
+    {0,0,1,0,0,0,0,1,0,1,0,0,0,0,1,0,0},
+    {0,0,1,0,0,0,0,1,0,1,0,0,0,0,1,0,0},
+    {0,0,0,0,1,1,1,0,0,0,1,1,1,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,1,1,1,0,0,0,1,1,1,0,0,0,0},
+    {0,0,1,0,0,0,0,1,0,1,0,0,0,0,1,0,0},
+    {0,0,1,0,0,0,0,1,0,1,0,0,0,0,1,0,0},
+    {0,0,1,0,0,0,0,1,0,1,0,0,0,0,1,0,0},
+    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,1,1,1,0,0,0,1,1,1,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
 };
 
 void Grid::Reset()
@@ -38,9 +56,32 @@ void Grid::Reset()
     //---------------------------------
     if (config.debugMode == true)
     {
+        int debugRowsY = debugGrid.size();
+        int debugColsX = debugGrid[0].size();
 
-        return;
+        for (auto rowY = 0; rowY < rowsY_; ++rowY)
+        {
+            std::vector<Agent> newRow;
+            grid_.push_back(newRow);
+
+            for (auto colX = 0; colX < colsX_; ++colX)
+            {
+                // add new agent to grid
+                grid_[rowY].push_back(Agent(rowY, colX));
+                Agent& agent = grid_[rowY][colX];
+
+                if (rowY < (debugRowsY - 1) && colX < (debugColsX - 1))
+                {
+                    agent.SetStatusCurrent(debugGrid[rowY][colX]);
+                }
+                else{
+                    agent.SetStatusCurrent(false);
+                }            
+            }
+        }
     }
+    else
+    {
         for (auto rowY = 0; rowY < rowsY_; ++rowY)
         {
             std::vector<Agent> newRow;
@@ -55,11 +96,12 @@ void Grid::Reset()
                 // randomize initial agent state
                 if (((rand() % 100) * 0.01) <= (config.initialLifeDensity / (float)100.0))
                 {
-                    agent.SetStatusCurrent(true); // make alive
+                    agent.SetStatusCurrent(true);
                 }
             }
         }
-}/
+    }
+}
 
 void Grid::Evolve()
 {
@@ -70,16 +112,23 @@ void Grid::Evolve()
         int nThreads = std::thread::hardware_concurrency();
         std::vector<std::thread> threads;
         int gridRows = grid_.size();
-        float interval = gridRows / static_cast<float>(nThreads);
 
-        for (int i = 0; i < nThreads; ++i)
+        int threadRange = gridRows / nThreads; // amount of rows processed by one thread
+        int threadRangeExcess = gridRows % nThreads; // remaing rows
+
+        int i = 0;
+        int threadRangeBegin = 0; // including
+        int threadRangeEnd = threadRange; // excluding
+
+        while (i < nThreads)
         {
-            int begin = round(i * interval);
-            int end = round((i + 1) * interval) - 1;
-            if (end > gridRows) end = gridRows;
-            //std::thread thread(&Grid::PrepareNextMT, this, begin, end);
-            //threads.push_back(std::move(thread));
-            threads.push_back(std::thread(&Grid::PrepareNextMT, this, begin, end));
+            if (i < (threadRangeExcess + 1)) ++threadRangeEnd; // distribute excessive rows onto first threads
+
+            threads.push_back(std::thread(&Grid::PrepareNextMT, this, threadRangeBegin, threadRangeEnd));
+
+            threadRangeBegin = threadRangeEnd;
+            threadRangeEnd += threadRange;
+            ++i;
         }
 
         for (auto& th : threads)
@@ -135,11 +184,11 @@ void Grid::PrepareNext()
     }
 }
 
-void Grid::PrepareNextMT(int begin, int end)
+void Grid::PrepareNextMT(int threadRangeBegin, int threadRangeEnd)
 {
     // DETERMINE NEXT AGENTS STATE
     //---------------------------------
-    for (int i = begin; i < end; ++i)
+    for (int i = threadRangeBegin; i < threadRangeEnd; ++i)
         //for (auto& row : grid_)
     {
         auto& row = grid_[i];
@@ -149,8 +198,6 @@ void Grid::PrepareNextMT(int begin, int end)
             // Adjacent alive agents count = 2 -> remain.
             // Adjacent alive agent count = 3 -> alive.
             // All other die.
-
-            agent.SetStatusOutdated(true);
 
             switch (CountAdjacentAgents(agent))
             {
@@ -183,7 +230,7 @@ int Grid::CountAdjacentAgents(Agent& agent)
 
             Agent& adjacentAgent = grid_[posY][posX];
 
-            if (adjacentAgent.GetStatusCurrent() == true && (dy != 0 || dx != 0))
+            if ((dy != 0 || dx != 0) && adjacentAgent.GetStatusCurrent() == true)
             {
                 cnt += 1;
             }

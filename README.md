@@ -5,12 +5,11 @@
 
 # TODOs
 # Current 
+[0] Check correct symbols
 
 # Shortterm
-[0] Mutlithreading
 
-# Longterm
-[1] live settings (eg. speed)
+# Longterm (probably wont develop further)
 [1] website containing program (include working emscripten into flask page?)
 [1] Release as CS50 project
 [2] Save settings (.ini)
@@ -39,8 +38,5 @@
 [x] Rework Gui (responsive)
 [x] implement custom symbols (darkmode) locally!
 [x] LMB / RMB set alive/dead
-[x] setting: tick time faster/slower
-[x] tick time rework: provide as ticks/s instead of ms
-[x] setting: multithread on/off
-[x] if paused: undo
-[x] if paused: proceed one step
+[x] implement example (debug) grid
+[x] Mutlithreading (address sanitizer states error: leak if window size is reduced); Setting disabled, logic kept
