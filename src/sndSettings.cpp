@@ -1,5 +1,5 @@
 #define RAYGUI_CUSTOM_ICONS // Custom icons set required
-#include "../resources/sndIcons.rgi.h"
+#include "../resources/iconset.rgi.h"
 #include <raygui.h>
 
 #include "sndConfigs.h"
