@@ -16,8 +16,8 @@ int main()
 {
     // Initialization
     //---------------------------------
-    const int screenWidth = 800;
-    const int screenHeight = 650;
+    const int screenWidth = 450;
+    const int screenHeight = 550;
 
 
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
@@ -28,6 +28,7 @@ int main()
     SetTargetFPS(config.targetFPS);
     GuiSetStyle(DEFAULT, TEXT_SIZE, 20);
     SetExitKey(0);
+    GuiSetIconScale(2);
 
     Image icon = LoadImage("resources/favicon.ico");
     ImageFormat(&icon, PIXELFORMAT_UNCOMPRESSED_R8G8B8A8);

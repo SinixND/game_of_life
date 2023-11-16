@@ -38,14 +38,14 @@ void Game::Initialize()
         main->GetInnerLeft(),
         main->GetInnerTop(),
         main->GetInnerRight(),
-        static_cast<int>(main->GetInnerTop() + 3 * GuiGetStyle(DEFAULT, TEXT_SIZE)));
+        static_cast<int>(main->GetInnerTop() + 4 * GuiGetStyle(DEFAULT, TEXT_SIZE)));
 
     main->AddWrapper(menubar);
 
     controlbar = std::make_shared<sndWrapper>(
         "controlbar",
         main->GetInnerLeft(),
-        static_cast<int>(main->GetInnerBottom() - 3 * GuiGetStyle(DEFAULT, TEXT_SIZE)),
+        static_cast<int>(main->GetInnerBottom() - 4 * GuiGetStyle(DEFAULT, TEXT_SIZE)),
         main->GetInnerRight(),
         main->GetInnerBottom());
 
@@ -87,7 +87,7 @@ void Game::Initialize()
     menubar->AddWrapper(darkMode);
 
     auto back = std::make_shared<sndButton>(
-        "Back",
+        GuiIconText(ICON_RETURN, NULL),
         GuiGetStyle(DEFAULT, TEXT_SIZE),
         [](){return IsKeyPressed(KEY_BACK) || IsKeyPressed(KEY_BACKSPACE);},
         []()
@@ -102,7 +102,7 @@ void Game::Initialize()
     menubar->AddWrapper(back);
 
     auto reset = std::make_shared<sndButton>(
-        "Reset",
+        GuiIconText(ICON_RESTART, NULL),
         GuiGetStyle(DEFAULT, TEXT_SIZE),
         [](){return false;},
         []()
@@ -117,7 +117,7 @@ void Game::Initialize()
     menubar->AddWrapper(reset);
 
     auto clear = std::make_shared<sndButton>(
-        "Clear",
+        GuiIconText(ICON_ZOOM_CENTER, NULL),
         GuiGetStyle(DEFAULT, TEXT_SIZE),
         [](){return false;},
         []()
@@ -132,7 +132,7 @@ void Game::Initialize()
     menubar->AddWrapper(clear);
 
     auto pause = std::make_shared<sndButton>(
-        "Pause",
+        GuiIconText(ICON_TOGGLE_PAUSE, NULL),
         GuiGetStyle(DEFAULT, TEXT_SIZE),
         [](){return IsKeyPressed(KEY_P);},
         []()

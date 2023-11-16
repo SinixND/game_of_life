@@ -4,10 +4,10 @@
 
 Global global; // define extern object
 Global::Global()
-    : exitApp(false)
-    , darkMode(true)
-    , background(WHITE)
-    , foreground(BLACK)
+    : exitApp {false}
+    , darkMode {true}
+    , background {WHITE}
+    , foreground {BLACK}
 {
     SetColors();
 };

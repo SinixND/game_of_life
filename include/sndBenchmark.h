@@ -41,8 +41,8 @@ void ShowBenchmarks();
 std::vector<Benchmark> benchmarks = {Benchmark("NULL")};
 
 Benchmark::Benchmark(std::string id)
-    : id_(id)
-    , iterations_(0)
+    : id_ {id}
+    , iterations_ {0}
 {
 }
 

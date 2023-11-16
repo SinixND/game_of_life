@@ -3,8 +3,8 @@
 #include <vector>
 
 Agent::Agent(int rowY, int colX)
-    : rowY_(rowY)
-    , colX_(colX)
+    : rowY_ {rowY}
+    , colX_ {colX}
 {
     statusCurrent_ = false;
     statusNext_ = false;

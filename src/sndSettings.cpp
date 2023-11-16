@@ -23,7 +23,7 @@ void Settings::Initialize()
         main->GetInnerLeft(),
         main->GetInnerTop(),
         main->GetInnerRight(),
-        static_cast<int>(main->GetInnerTop() + 4 * GuiGetStyle(DEFAULT, TEXT_SIZE)));
+        static_cast<int>(main->GetInnerTop() + 3 * GuiGetStyle(DEFAULT, TEXT_SIZE)));
 
     main->AddWrapper(menubar);
 
@@ -49,7 +49,7 @@ void Settings::Initialize()
     menubar->AddWrapper(settings);
 
     auto back = std::make_shared<sndButton>(
-        "Back",
+        GuiIconText(ICON_RETURN, NULL),
         GuiGetStyle(DEFAULT, TEXT_SIZE),
         []()
         { return false; },

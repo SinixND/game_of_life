@@ -5,6 +5,7 @@
 #include <vector>
 #include <functional>
 #include <memory>
+#include <string>
 
 /* LAYOUT BOX STRUCTURE
 
@@ -74,7 +75,7 @@ public:
     int GetInnerHeight();
 
 protected:
-    const char* label_{};
+    std::string label_{};
 
     int outerLeft_ = 0;
     int outerTop_ = 0;
