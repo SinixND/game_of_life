@@ -7,7 +7,7 @@
 scenes currentScene = MENU;
 
 Scene::Scene()
-    : main {std::make_shared<sndWrapper>("main", 0, 0, GetRenderWidth(), GetRenderHeight())}
+    : main {std::make_shared<sxd::Wrapper>("main", 0, 0, GetRenderWidth(), GetRenderHeight())}
 {
 }
 

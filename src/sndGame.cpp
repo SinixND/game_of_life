@@ -33,7 +33,7 @@ void Game::Initialize()
 
     // Wrappers
     //---------------------------------
-    menubar = std::make_shared<sndWrapper>(
+    menubar = std::make_shared<sxd::Wrapper>(
         "menubar",
         main->GetInnerLeft(),
         main->GetInnerTop(),
@@ -42,7 +42,7 @@ void Game::Initialize()
 
     main->AddWrapper(menubar);
 
-    controlbar = std::make_shared<sndWrapper>(
+    controlbar = std::make_shared<sxd::Wrapper>(
         "controlbar",
         main->GetInnerLeft(),
         static_cast<int>(main->GetInnerBottom() - 4 * GuiGetStyle(DEFAULT, TEXT_SIZE)),
@@ -51,7 +51,7 @@ void Game::Initialize()
 
     main->AddWrapper(controlbar);
 
-    statusbar = std::make_shared<sndWrapper>(
+    statusbar = std::make_shared<sxd::Wrapper>(
         "statusbar",
         main->GetInnerLeft(),
         static_cast<int>(controlbar->GetOuterTop() - 3 * GuiGetStyle(DEFAULT, TEXT_SIZE)),
@@ -60,7 +60,7 @@ void Game::Initialize()
 
     main->AddWrapper(statusbar);
 
-    body = std::make_shared<sndWrapper>(
+    body = std::make_shared<sxd::Wrapper>(
         "body",
         main->GetInnerLeft(),
         menubar->GetOuterBottom(),
@@ -72,7 +72,7 @@ void Game::Initialize()
 
     // GUI-Elements
     //---------------------------------
-    auto darkMode = std::make_shared<sndButton>(
+    auto darkMode = std::make_shared<sxd::Button>(
         GuiIconText(ICON_DARK_MODE, ""),
         GuiGetStyle(DEFAULT, TEXT_SIZE),
         [](){return false;},
@@ -81,12 +81,12 @@ void Game::Initialize()
             global.ToggleDarkMode();
         },
         menubar.get(),
-        (sndAlign)(RIGHT | CENTER_VERTICAL),
+        (sxd::Align)(sxd::RIGHT | sxd::CENTER_VERTICAL),
         0);
 
     menubar->AddWrapper(darkMode);
 
-    auto back = std::make_shared<sndButton>(
+    auto back = std::make_shared<sxd::Button>(
         GuiIconText(ICON_RETURN, NULL),
         GuiGetStyle(DEFAULT, TEXT_SIZE),
         [](){return IsKeyPressed(KEY_BACK) || IsKeyPressed(KEY_BACKSPACE);},
@@ -96,12 +96,12 @@ void Game::Initialize()
             currentScene = MENU;
         },
         menubar.get(),
-        (sndAlign)(LEFT | CENTER_VERTICAL),
+        (sxd::Align)(sxd::LEFT | sxd::CENTER_VERTICAL),
         0);
 
     menubar->AddWrapper(back);
 
-    auto reset = std::make_shared<sndButton>(
+    auto reset = std::make_shared<sxd::Button>(
         GuiIconText(ICON_RESTART, NULL),
         GuiGetStyle(DEFAULT, TEXT_SIZE),
         [](){return false;},
@@ -110,13 +110,13 @@ void Game::Initialize()
             grid.Reset();
         },
         menubar.get(),
-        (sndAlign)(LEFT | CENTER_VERTICAL),
+        (sxd::Align)(sxd::LEFT | sxd::CENTER_VERTICAL),
         0);
 
     reset->AttachToRight(back.get());
     menubar->AddWrapper(reset);
 
-    auto clear = std::make_shared<sndButton>(
+    auto clear = std::make_shared<sxd::Button>(
         GuiIconText(ICON_ZOOM_CENTER, NULL),
         GuiGetStyle(DEFAULT, TEXT_SIZE),
         [](){return false;},
@@ -125,13 +125,13 @@ void Game::Initialize()
             grid.Clear();
         },
         menubar.get(),
-        (sndAlign)(LEFT | CENTER_VERTICAL),
+        (sxd::Align)(sxd::LEFT | sxd::CENTER_VERTICAL),
         0);
 
     clear->AttachToRight(reset.get());
     menubar->AddWrapper(clear);
 
-    auto pause = std::make_shared<sndButton>(
+    auto pause = std::make_shared<sxd::Button>(
         GuiIconText(ICON_TOGGLE_PAUSE, NULL),
         GuiGetStyle(DEFAULT, TEXT_SIZE),
         [](){return IsKeyPressed(KEY_P);},
@@ -140,12 +140,12 @@ void Game::Initialize()
             pauseState = !pauseState;
         },
         menubar.get(),
-        (sndAlign)(CENTER_HORIZONTAL | CENTER_VERTICAL),
+        (sxd::Align)(sxd::CENTER_HORIZONTAL | sxd::CENTER_VERTICAL),
         0);
 
     menubar->AddWrapper(pause);
 
-    auto increaseTicks = std::make_shared<sndButton>(
+    auto increaseTicks = std::make_shared<sxd::Button>(
         GuiIconText(ICON_ARROW_UP_FILL, ""),
         GuiGetStyle(DEFAULT, TEXT_SIZE),
         [](){return IsKeyPressed(KEY_UP);},
@@ -158,12 +158,12 @@ void Game::Initialize()
             }
         },
         controlbar.get(),
-        (sndAlign)(RIGHT | CENTER_VERTICAL),
+        (sxd::Align)(sxd::RIGHT | sxd::CENTER_VERTICAL),
         0);
 
     controlbar->AddWrapper(increaseTicks);
 
-    auto decreaseTicks = std::make_shared<sndButton>(
+    auto decreaseTicks = std::make_shared<sxd::Button>(
         GuiIconText(ICON_ARROW_DOWN_FILL, ""),
         GuiGetStyle(DEFAULT, TEXT_SIZE),
         [](){return IsKeyPressed(KEY_DOWN);},
@@ -176,13 +176,13 @@ void Game::Initialize()
             }
         },
         controlbar.get(),
-        (sndAlign)(RIGHT | CENTER_VERTICAL),
+        (sxd::Align)(sxd::RIGHT | sxd::CENTER_VERTICAL),
         0);
 
     decreaseTicks->AttachToLeft(increaseTicks.get());
     controlbar->AddWrapper(decreaseTicks);
 
-    auto undo = std::make_shared<sndButton>(
+    auto undo = std::make_shared<sxd::Button>(
         GuiIconText(ICON_UNDO_FILL, ""),
         GuiGetStyle(DEFAULT, TEXT_SIZE),
         [](){return ((IsKeyPressed(KEY_LEFT_CONTROL) || IsKeyPressed(KEY_RIGHT_CONTROL)) && IsKeyPressed(KEY_Z));},
@@ -196,12 +196,12 @@ void Game::Initialize()
             }
         },
         controlbar.get(),
-        (sndAlign)(LEFT | CENTER_VERTICAL),
+        (sxd::Align)(sxd::LEFT | sxd::CENTER_VERTICAL),
         0);
 
     controlbar->AddWrapper(undo);
 
-    auto step = std::make_shared<sndButton>(
+    auto step = std::make_shared<sxd::Button>(
         GuiIconText(ICON_PLAYER_NEXT, ""),
         GuiGetStyle(DEFAULT, TEXT_SIZE),
         [](){return IsKeyPressed(KEY_RIGHT);},
@@ -210,7 +210,7 @@ void Game::Initialize()
             singleIteration = true;
         },
         controlbar.get(),
-        (sndAlign)(LEFT | CENTER_VERTICAL),
+        (sxd::Align)(sxd::LEFT | sxd::CENTER_VERTICAL),
         0);
 
     step->AttachToRight(undo.get());
@@ -246,8 +246,8 @@ void Game::ProcessInput()
     {
         Vector2 mousePosition = GetMousePosition();
 
-        int targetRowY = floor((mousePosition.y - AlignVerticalCenter(body.get(), (rowsY * (config.agentHeight + config.agentGap) - config.agentGap), 0)) / (config.agentHeight + config.agentGap));
-        int targetColX = floor((mousePosition.x - AlignHorizontalCenter(body.get(), (colsX * (config.agentWidth + config.agentGap) - config.agentGap), 0)) / (config.agentWidth + config.agentGap));
+        int targetRowY = floor((mousePosition.y - sxd::AlignVerticalCenter(body.get(), (rowsY * (config.agentHeight + config.agentGap) - config.agentGap), 0)) / (config.agentHeight + config.agentGap));
+        int targetColX = floor((mousePosition.x - sxd::AlignHorizontalCenter(body.get(), (colsX * (config.agentWidth + config.agentGap) - config.agentGap), 0)) / (config.agentWidth + config.agentGap));
 
         if ((targetRowY < 0 || targetRowY >= rowsY) || (targetColX < 0 || targetColX >= colsX))
         {
@@ -327,11 +327,11 @@ void Game::RenderScreenGameStatusbar()
         statusText = TextFormat("FPS: %0.f; Day: %i", FPS,  grid.GetDay());
     }
 
-    auto status = std::make_shared<sndText>(
+    auto status = std::make_shared<sxd::Text>(
         statusText,
         GuiGetStyle(DEFAULT, TEXT_SIZE),
         statusbar.get(),
-        (sndAlign)(LEFT | CENTER_VERTICAL),
+        (sxd::Align)(sxd::LEFT | sxd::CENTER_VERTICAL),
         0);
     status->Render();
 }
@@ -345,8 +345,8 @@ void Game::RenderScreenGameMainPanel()
     {
         for (auto& agent : row)
         {
-            int anchorX = AlignHorizontalCenter(body.get(), (colsX * (config.agentWidth + config.agentGap) - config.agentGap), 0) + (agent.GetColX() * (config.agentWidth + config.agentGap));
-            int anchorY = AlignVerticalCenter(body.get(), (rowsY * (config.agentHeight + config.agentGap) - config.agentGap), 0) + (agent.GetRowY() * (config.agentHeight + config.agentGap));
+            int anchorX = sxd::AlignHorizontalCenter(body.get(), (colsX * (config.agentWidth + config.agentGap) - config.agentGap), 0) + (agent.GetColX() * (config.agentWidth + config.agentGap));
+            int anchorY = sxd::AlignVerticalCenter(body.get(), (rowsY * (config.agentHeight + config.agentGap) - config.agentGap), 0) + (agent.GetRowY() * (config.agentHeight + config.agentGap));
 
             Rectangle rectAgent{
                 (float)anchorX,
@@ -399,11 +399,11 @@ void Game::RenderPauseOverlay()
 
     DrawRectangleLinesEx(rectpanelMainScreenGame, 10, Fade(global.GetForeground(), 0.75f));
 
-    auto paused = std::make_shared<sndText>(
+    auto paused = std::make_shared<sxd::Text>(
         "[P]aused...",
         GuiGetStyle(DEFAULT, TEXT_SIZE),
         statusbar.get(),
-        (sndAlign)(RIGHT | CENTER_VERTICAL),
+        (sxd::Align)(sxd::RIGHT | sxd::CENTER_VERTICAL),
         0);
 
     paused->Render();

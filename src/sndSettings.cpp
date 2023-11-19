@@ -18,7 +18,7 @@ void Settings::Initialize()
 
     // Wrappers
     //---------------------------------
-    menubar = std::make_shared<sndWrapper>(
+    menubar = std::make_shared<sxd::Wrapper>(
         "menubar",
         main->GetInnerLeft(),
         main->GetInnerTop(),
@@ -27,7 +27,7 @@ void Settings::Initialize()
 
     main->AddWrapper(menubar);
 
-    body = std::make_shared<sndWrapper>(
+    body = std::make_shared<sxd::Wrapper>(
         "body",
         main->GetInnerLeft(),
         menubar->GetOuterBottom(),
@@ -39,16 +39,16 @@ void Settings::Initialize()
 
     // GUI-Elements
     //---------------------------------
-    auto settings = std::make_shared<sndText>(
+    auto settings = std::make_shared<sxd::Text>(
         "Settings",
         2 * GuiGetStyle(DEFAULT, TEXT_SIZE),
         menubar.get(),
-        (sndAlign)(CENTER_HORIZONTAL | CENTER_VERTICAL),
+        (sxd::Align)(sxd::CENTER_HORIZONTAL | sxd::CENTER_VERTICAL),
         0);
 
     menubar->AddWrapper(settings);
 
-    auto back = std::make_shared<sndButton>(
+    auto back = std::make_shared<sxd::Button>(
         GuiIconText(ICON_RETURN, NULL),
         GuiGetStyle(DEFAULT, TEXT_SIZE),
         []()
@@ -58,12 +58,12 @@ void Settings::Initialize()
             currentScene = MENU;
         },
         menubar.get(),
-        (sndAlign)(LEFT | CENTER_VERTICAL),
+        (sxd::Align)(sxd::LEFT | sxd::CENTER_VERTICAL),
         0);
 
     menubar->AddWrapper(back);
 
-    auto darkMode = std::make_shared<sndButton>(
+    auto darkMode = std::make_shared<sxd::Button>(
         GuiIconText(ICON_DARK_MODE, ""),
         GuiGetStyle(DEFAULT, TEXT_SIZE),
         []()
@@ -73,77 +73,77 @@ void Settings::Initialize()
             global.ToggleDarkMode();
         },
         menubar.get(),
-        (sndAlign)(RIGHT | CENTER_VERTICAL),
+        (sxd::Align)(sxd::RIGHT | sxd::CENTER_VERTICAL),
         0);
 
     menubar->AddWrapper(darkMode);
 
-    auto appSettings = std::make_shared<sndSeparator>(
+    auto appSettings = std::make_shared<sxd::Separator>(
         "Application",
         body->GetInnerLeft(),
         body->GetInnerRight(),
         body.get(),
-        (sndAlign)(CENTER_HORIZONTAL | TOP),
+        (sxd::Align)(sxd::CENTER_HORIZONTAL | sxd::TOP),
         0);
 
     body->AddWrapper(appSettings);
 
-    //auto multithreading = std::make_shared<sndCheckBox>(
+    //auto multithreading = std::make_shared<sxd::CheckBox>(
         //"Multithreading",
         //GuiGetStyle(DEFAULT, TEXT_SIZE),
         //&config.multiThread,
         //body.get(),
-        //(sndAlign)(LEFT | TOP),
+        //(sxd::Align)(sxd::LEFT | sxd::TOP),
         //0);
 
     //multithreading->AttachToBottom(appSettings.get());
     //body->AddWrapper(multithreading);
 
-    auto debugMode = std::make_shared<sndCheckBox>(
+    auto debugMode = std::make_shared<sxd::CheckBox>(
         "Example grid",
         GuiGetStyle(DEFAULT, TEXT_SIZE),
         &config.debugMode,
         body.get(),
-        (sndAlign)(LEFT | TOP),
+        (sxd::Align)(sxd::LEFT | sxd::TOP),
         0);
 
     debugMode->AttachToBottom(appSettings.get());
     body->AddWrapper(debugMode);
 
-    auto displaySettings = std::make_shared<sndSeparator>(
+    auto displaySettings = std::make_shared<sxd::Separator>(
         "Display",
         body->GetInnerLeft(),
         body->GetInnerRight(),
         body.get(),
-        (sndAlign)(CENTER_HORIZONTAL | TOP),
+        (sxd::Align)(sxd::CENTER_HORIZONTAL | sxd::TOP),
         0);
 
     displaySettings->AttachToBottom(debugMode.get());
     body->AddWrapper(displaySettings);
 
-    auto drawFPS = std::make_shared<sndCheckBox>(
+    auto drawFPS = std::make_shared<sxd::CheckBox>(
         "Draw FPS",
         GuiGetStyle(DEFAULT, TEXT_SIZE),
         &config.drawFPS,
         body.get(),
-        (sndAlign)(LEFT | TOP),
+        (sxd::Align)(sxd::LEFT | sxd::TOP),
         0);
 
     drawFPS->AttachToBottom(displaySettings.get());
     body->AddWrapper(drawFPS);
 
-    auto gridSettings = std::make_shared<sndSeparator>(
+    auto gridSettings = std::make_shared<sxd::Separator>(
         "Grid",
         body->GetInnerLeft(),
         body->GetInnerRight(),
         body.get(),
-        (sndAlign)(CENTER_HORIZONTAL | TOP),
+        (sxd::Align)(sxd::CENTER_HORIZONTAL | sxd::TOP),
         0);
 
     gridSettings->AttachToBottom(drawFPS.get());
     body->AddWrapper(gridSettings);
 
-    auto initialLifeDensity = std::make_shared<sndSpinner>(
+    auto initialLifeDensity = std::make_shared<sxd::Spinner>(
         "Life density",
         GuiGetStyle(DEFAULT, TEXT_SIZE),
         &config.initialLifeDensity,
@@ -151,35 +151,35 @@ void Settings::Initialize()
         100,
         false,
         body.get(),
-        (sndAlign)(LEFT | TOP),
+        (sxd::Align)(sxd::LEFT | sxd::TOP),
         0);
 
     initialLifeDensity->AttachToBottom(gridSettings.get());
     body->AddWrapper(initialLifeDensity);
 
-    auto agentSettings = std::make_shared<sndSeparator>(
+    auto agentSettings = std::make_shared<sxd::Separator>(
         "Cells",
         body->GetInnerLeft(),
         body->GetInnerRight(),
         body.get(),
-        (sndAlign)(CENTER_HORIZONTAL | TOP),
+        (sxd::Align)(sxd::CENTER_HORIZONTAL | sxd::TOP),
         0);
 
     agentSettings->AttachToBottom(initialLifeDensity.get());
     body->AddWrapper(agentSettings);
 
-    auto fadingAgents = std::make_shared<sndCheckBox>(
+    auto fadingAgents = std::make_shared<sxd::CheckBox>(
         "Fading cells",
         GuiGetStyle(DEFAULT, TEXT_SIZE),
         &config.fadingAgents,
         body.get(),
-        (sndAlign)(LEFT | TOP),
+        (sxd::Align)(sxd::LEFT | sxd::TOP),
         0);
 
     fadingAgents->AttachToBottom(agentSettings.get());
     body->AddWrapper(fadingAgents);
 
-    auto agentWidth = std::make_shared<sndSpinner>(
+    auto agentWidth = std::make_shared<sxd::Spinner>(
         "Cell width",
         GuiGetStyle(DEFAULT, TEXT_SIZE),
         &config.agentWidth,
@@ -187,13 +187,13 @@ void Settings::Initialize()
         100,
         false,
         body.get(),
-        (sndAlign)(LEFT | TOP),
+        (sxd::Align)(sxd::LEFT | sxd::TOP),
         0);
 
     agentWidth->AttachToBottom(fadingAgents.get());
     body->AddWrapper(agentWidth);
 
-    auto agentHeight = std::make_shared<sndSpinner>(
+    auto agentHeight = std::make_shared<sxd::Spinner>(
         "Cell height",
         GuiGetStyle(DEFAULT, TEXT_SIZE),
         &config.agentHeight,
@@ -201,13 +201,13 @@ void Settings::Initialize()
         100,
         false,
         body.get(),
-        (sndAlign)(LEFT | TOP),
+        (sxd::Align)(sxd::LEFT | sxd::TOP),
         0);
 
     agentHeight->AttachToBottom(agentWidth.get());
     body->AddWrapper(agentHeight);
 
-    auto agentGap = std::make_shared<sndSpinner>(
+    auto agentGap = std::make_shared<sxd::Spinner>(
         "Cell gap",
         GuiGetStyle(DEFAULT, TEXT_SIZE),
         &config.agentGap,
@@ -215,7 +215,7 @@ void Settings::Initialize()
         1000,
         false,
         body.get(),
-        (sndAlign)(LEFT | TOP),
+        (sxd::Align)(sxd::LEFT | sxd::TOP),
         0);
 
     agentGap->AttachToBottom(agentHeight.get());

@@ -139,7 +139,7 @@ namespace Catch {
 // mask themselves as GCC should be ignored.
 #if defined(__GNUC__) && !defined(__clang__) && !defined(__ICC) && !defined(__CUDACC__) && !defined(__LCC__)
 #    define CATCH_INTERNAL_START_WARNINGS_SUPPRESSION _Pragma( "GCC diagnostic push" )
-#    define CATCH_INTERNAL_STOP_WARNINGS_SUPPRESSION  _Pragma( "GCC diagnostic pop" )
+#    define CATCH_INTERNAL_Ssxd::TOP_WARNINGS_SUPPRESSION  _Pragma( "GCC diagnostic pop" )
 
 #    define CATCH_INTERNAL_IGNORE_BUT_WARN(...) (void)__builtin_constant_p(__VA_ARGS__)
 
@@ -148,7 +148,7 @@ namespace Catch {
 #if defined(__clang__)
 
 #    define CATCH_INTERNAL_START_WARNINGS_SUPPRESSION _Pragma( "clang diagnostic push" )
-#    define CATCH_INTERNAL_STOP_WARNINGS_SUPPRESSION  _Pragma( "clang diagnostic pop" )
+#    define CATCH_INTERNAL_Ssxd::TOP_WARNINGS_SUPPRESSION  _Pragma( "clang diagnostic pop" )
 
 // As of this writing, IBM XL's implementation of __builtin_constant_p has a bug
 // which results in calls to destructors being emitted for each temporary,
@@ -259,7 +259,7 @@ namespace Catch {
 
 // Only do this if we're not using clang on Windows, which uses `diagnostic push` & `diagnostic pop`
 #    define CATCH_INTERNAL_START_WARNINGS_SUPPRESSION __pragma( warning(push) )
-#    define CATCH_INTERNAL_STOP_WARNINGS_SUPPRESSION  __pragma( warning(pop) )
+#    define CATCH_INTERNAL_Ssxd::TOP_WARNINGS_SUPPRESSION  __pragma( warning(pop) )
 #  endif // __clang__
 
 #endif // _MSC_VER
@@ -418,8 +418,8 @@ namespace Catch {
 #if !defined(CATCH_INTERNAL_START_WARNINGS_SUPPRESSION)
 #   define CATCH_INTERNAL_START_WARNINGS_SUPPRESSION
 #endif
-#if !defined(CATCH_INTERNAL_STOP_WARNINGS_SUPPRESSION)
-#   define CATCH_INTERNAL_STOP_WARNINGS_SUPPRESSION
+#if !defined(CATCH_INTERNAL_Ssxd::TOP_WARNINGS_SUPPRESSION)
+#   define CATCH_INTERNAL_Ssxd::TOP_WARNINGS_SUPPRESSION
 #endif
 #if !defined(CATCH_INTERNAL_SUPPRESS_PARENTHESES_WARNINGS)
 #   define CATCH_INTERNAL_SUPPRESS_PARENTHESES_WARNINGS
@@ -556,7 +556,7 @@ namespace Catch {
     CATCH_INTERNAL_START_WARNINGS_SUPPRESSION \
     CATCH_INTERNAL_SUPPRESS_GLOBALS_WARNINGS \
     namespace{ Catch::RegistrarForTagAliases INTERNAL_CATCH_UNIQUE_NAME( AutoRegisterTagAlias )( alias, spec, CATCH_INTERNAL_LINEINFO ); } \
-    CATCH_INTERNAL_STOP_WARNINGS_SUPPRESSION
+    CATCH_INTERNAL_Ssxd::TOP_WARNINGS_SUPPRESSION
 
 // end catch_tag_alias_autoregistrar.h
 // start catch_test_registry.h
@@ -1049,7 +1049,7 @@ struct AutoReg : NonCopyable {
         CATCH_INTERNAL_START_WARNINGS_SUPPRESSION \
         CATCH_INTERNAL_SUPPRESS_GLOBALS_WARNINGS \
         namespace{ Catch::AutoReg INTERNAL_CATCH_UNIQUE_NAME( autoRegistrar )( Catch::makeTestInvoker( &TestName ), CATCH_INTERNAL_LINEINFO, Catch::StringRef(), Catch::NameAndTags{ __VA_ARGS__ } ); } /* NOLINT */ \
-        CATCH_INTERNAL_STOP_WARNINGS_SUPPRESSION \
+        CATCH_INTERNAL_Ssxd::TOP_WARNINGS_SUPPRESSION \
         static void TestName()
     #define INTERNAL_CATCH_TESTCASE( ... ) \
         INTERNAL_CATCH_TESTCASE2( INTERNAL_CATCH_UNIQUE_NAME( C_A_T_C_H_T_E_S_T_ ), __VA_ARGS__ )
@@ -1059,7 +1059,7 @@ struct AutoReg : NonCopyable {
         CATCH_INTERNAL_START_WARNINGS_SUPPRESSION \
         CATCH_INTERNAL_SUPPRESS_GLOBALS_WARNINGS \
         namespace{ Catch::AutoReg INTERNAL_CATCH_UNIQUE_NAME( autoRegistrar )( Catch::makeTestInvoker( &QualifiedMethod ), CATCH_INTERNAL_LINEINFO, "&" #QualifiedMethod, Catch::NameAndTags{ __VA_ARGS__ } ); } /* NOLINT */ \
-        CATCH_INTERNAL_STOP_WARNINGS_SUPPRESSION
+        CATCH_INTERNAL_Ssxd::TOP_WARNINGS_SUPPRESSION
 
     ///////////////////////////////////////////////////////////////////////////////
     #define INTERNAL_CATCH_TEST_CASE_METHOD2( TestName, ClassName, ... )\
@@ -1071,7 +1071,7 @@ struct AutoReg : NonCopyable {
             }; \
             Catch::AutoReg INTERNAL_CATCH_UNIQUE_NAME( autoRegistrar ) ( Catch::makeTestInvoker( &TestName::test ), CATCH_INTERNAL_LINEINFO, #ClassName, Catch::NameAndTags{ __VA_ARGS__ } ); /* NOLINT */ \
         } \
-        CATCH_INTERNAL_STOP_WARNINGS_SUPPRESSION \
+        CATCH_INTERNAL_Ssxd::TOP_WARNINGS_SUPPRESSION \
         void TestName::test()
     #define INTERNAL_CATCH_TEST_CASE_METHOD( ClassName, ... ) \
         INTERNAL_CATCH_TEST_CASE_METHOD2( INTERNAL_CATCH_UNIQUE_NAME( C_A_T_C_H_T_E_S_T_ ), ClassName, __VA_ARGS__ )
@@ -1081,7 +1081,7 @@ struct AutoReg : NonCopyable {
         CATCH_INTERNAL_START_WARNINGS_SUPPRESSION \
         CATCH_INTERNAL_SUPPRESS_GLOBALS_WARNINGS \
         Catch::AutoReg INTERNAL_CATCH_UNIQUE_NAME( autoRegistrar )( Catch::makeTestInvoker( Function ), CATCH_INTERNAL_LINEINFO, Catch::StringRef(), Catch::NameAndTags{ __VA_ARGS__ } ); /* NOLINT */ \
-        CATCH_INTERNAL_STOP_WARNINGS_SUPPRESSION
+        CATCH_INTERNAL_Ssxd::TOP_WARNINGS_SUPPRESSION
 
     ///////////////////////////////////////////////////////////////////////////////
     #define INTERNAL_CATCH_TEMPLATE_TEST_CASE_2(TestName, TestFunc, Name, Tags, Signature, ... )\
@@ -1110,7 +1110,7 @@ struct AutoReg : NonCopyable {
         }();\
         }\
         }\
-        CATCH_INTERNAL_STOP_WARNINGS_SUPPRESSION \
+        CATCH_INTERNAL_Ssxd::TOP_WARNINGS_SUPPRESSION \
         INTERNAL_CATCH_DEFINE_SIG_TEST(TestFunc,INTERNAL_CATCH_REMOVE_PARENS(Signature))
 
 #ifndef CATCH_CONFIG_TRADITIONAL_MSVC_PREPROCESSOR
@@ -1158,7 +1158,7 @@ struct AutoReg : NonCopyable {
             }();                                                      \
         }                                                             \
         }                                                             \
-        CATCH_INTERNAL_STOP_WARNINGS_SUPPRESSION                       \
+        CATCH_INTERNAL_Ssxd::TOP_WARNINGS_SUPPRESSION                       \
         template<typename TestType>                                   \
         static void TestFuncName()
 
@@ -1201,7 +1201,7 @@ struct AutoReg : NonCopyable {
                 return 0;                                             \
             }();                                                      \
         }}\
-        CATCH_INTERNAL_STOP_WARNINGS_SUPPRESSION                       \
+        CATCH_INTERNAL_Ssxd::TOP_WARNINGS_SUPPRESSION                       \
         template<typename TestType>                                   \
         static void TestFunc()
 
@@ -1234,7 +1234,7 @@ struct AutoReg : NonCopyable {
         }();\
         }\
         }\
-        CATCH_INTERNAL_STOP_WARNINGS_SUPPRESSION \
+        CATCH_INTERNAL_Ssxd::TOP_WARNINGS_SUPPRESSION \
         INTERNAL_CATCH_DEFINE_SIG_TEST_METHOD(TestName, INTERNAL_CATCH_REMOVE_PARENS(Signature))
 
 #ifndef CATCH_CONFIG_TRADITIONAL_MSVC_PREPROCESSOR
@@ -1285,7 +1285,7 @@ struct AutoReg : NonCopyable {
             }(); \
         }\
         }\
-        CATCH_INTERNAL_STOP_WARNINGS_SUPPRESSION \
+        CATCH_INTERNAL_Ssxd::TOP_WARNINGS_SUPPRESSION \
         template<typename TestType> \
         void TestName<TestType>::test()
 
@@ -1331,7 +1331,7 @@ struct AutoReg : NonCopyable {
                 return 0;\
             }(); \
         }}\
-        CATCH_INTERNAL_STOP_WARNINGS_SUPPRESSION \
+        CATCH_INTERNAL_Ssxd::TOP_WARNINGS_SUPPRESSION \
         template<typename TestType> \
         void TestName<TestType>::test()
 
@@ -2708,7 +2708,7 @@ namespace Catch {
             CATCH_INTERNAL_START_WARNINGS_SUPPRESSION \
             CATCH_INTERNAL_SUPPRESS_PARENTHESES_WARNINGS \
             catchAssertionHandler.handleExpr( Catch::Decomposer() <= __VA_ARGS__ ); \
-            CATCH_INTERNAL_STOP_WARNINGS_SUPPRESSION \
+            CATCH_INTERNAL_Ssxd::TOP_WARNINGS_SUPPRESSION \
         } INTERNAL_CATCH_CATCH( catchAssertionHandler ) \
         INTERNAL_CATCH_REACT( catchAssertionHandler ) \
     } while( (void)0, (false) && static_cast<bool>( !!(__VA_ARGS__) ) )
@@ -2931,13 +2931,13 @@ namespace Catch {
     CATCH_INTERNAL_START_WARNINGS_SUPPRESSION \
     CATCH_INTERNAL_SUPPRESS_UNUSED_WARNINGS \
     if( Catch::Section const& INTERNAL_CATCH_UNIQUE_NAME( catch_internal_Section ) = Catch::SectionInfo( CATCH_INTERNAL_LINEINFO, __VA_ARGS__ ) ) \
-    CATCH_INTERNAL_STOP_WARNINGS_SUPPRESSION
+    CATCH_INTERNAL_Ssxd::TOP_WARNINGS_SUPPRESSION
 
 #define INTERNAL_CATCH_DYNAMIC_SECTION( ... ) \
     CATCH_INTERNAL_START_WARNINGS_SUPPRESSION \
     CATCH_INTERNAL_SUPPRESS_UNUSED_WARNINGS \
     if( Catch::Section const& INTERNAL_CATCH_UNIQUE_NAME( catch_internal_Section ) = Catch::SectionInfo( CATCH_INTERNAL_LINEINFO, (Catch::ReusableStringStream() << __VA_ARGS__).str() ) ) \
-    CATCH_INTERNAL_STOP_WARNINGS_SUPPRESSION
+    CATCH_INTERNAL_Ssxd::TOP_WARNINGS_SUPPRESSION
 
 // end catch_section.h
 // start catch_interfaces_exception.h
@@ -3062,7 +3062,7 @@ namespace Catch {
     CATCH_INTERNAL_START_WARNINGS_SUPPRESSION \
     CATCH_INTERNAL_SUPPRESS_GLOBALS_WARNINGS \
     namespace{ Catch::ExceptionTranslatorRegistrar INTERNAL_CATCH_UNIQUE_NAME( catch_internal_ExceptionRegistrar )( &translatorName ); } \
-    CATCH_INTERNAL_STOP_WARNINGS_SUPPRESSION \
+    CATCH_INTERNAL_Ssxd::TOP_WARNINGS_SUPPRESSION \
     static std::string translatorName( signature )
 
 #define INTERNAL_CATCH_TRANSLATE_EXCEPTION( signature ) INTERNAL_CATCH_TRANSLATE_EXCEPTION2( INTERNAL_CATCH_UNIQUE_NAME( catch_internal_ExceptionTranslator ), signature )
@@ -6095,13 +6095,13 @@ namespace Catch {
     CATCH_INTERNAL_START_WARNINGS_SUPPRESSION         \
     CATCH_INTERNAL_SUPPRESS_GLOBALS_WARNINGS          \
     namespace{ Catch::ReporterRegistrar<reporterType> catch_internal_RegistrarFor##reporterType( name ); } \
-    CATCH_INTERNAL_STOP_WARNINGS_SUPPRESSION
+    CATCH_INTERNAL_Ssxd::TOP_WARNINGS_SUPPRESSION
 
 #define CATCH_REGISTER_LISTENER( listenerType ) \
     CATCH_INTERNAL_START_WARNINGS_SUPPRESSION   \
     CATCH_INTERNAL_SUPPRESS_GLOBALS_WARNINGS    \
     namespace{ Catch::ListenerRegistrar<listenerType> catch_internal_RegistrarFor##listenerType; } \
-    CATCH_INTERNAL_STOP_WARNINGS_SUPPRESSION
+    CATCH_INTERNAL_Ssxd::TOP_WARNINGS_SUPPRESSION
 #else // CATCH_CONFIG_DISABLE
 
 #define CATCH_REGISTER_REPORTER(name, reporterType)
@@ -7811,7 +7811,7 @@ namespace Catch {
                 CATCH_INTERNAL_START_WARNINGS_SUPPRESSION
                 CATCH_INTERNAL_SUPPRESS_GLOBALS_WARNINGS
                 static std::random_device entropy;
-                CATCH_INTERNAL_STOP_WARNINGS_SUPPRESSION
+                CATCH_INTERNAL_Ssxd::TOP_WARNINGS_SUPPRESSION
 
                 auto n = static_cast<int>(last - first); // seriously, one can't use integral types without hell in C++
 

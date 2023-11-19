@@ -18,7 +18,7 @@ void Menu::Initialize()
 
     // Wrappers
     //---------------------------------
-    menubar = std::make_shared<sndWrapper>(
+    menubar = std::make_shared<sxd::Wrapper>(
         "menubar",
         main->GetInnerLeft(),
         main->GetInnerTop(),
@@ -27,7 +27,7 @@ void Menu::Initialize()
 
     main->AddWrapper(menubar);
 
-    head = std::make_shared<sndWrapper>(
+    head = std::make_shared<sxd::Wrapper>(
         "head",
         main->GetInnerLeft(),
         menubar->GetOuterBottom(),
@@ -36,7 +36,7 @@ void Menu::Initialize()
 
     main->AddWrapper(head);
 
-    body = std::make_shared<sndWrapper>(
+    body = std::make_shared<sxd::Wrapper>(
         "body",
         main->GetInnerLeft(),
         head->GetOuterBottom(),
@@ -48,7 +48,7 @@ void Menu::Initialize()
 
     // GUI-Elements
     //---------------------------------
-    auto darkMode = std::make_shared<sndButton>(
+    auto darkMode = std::make_shared<sxd::Button>(
         GuiIconText(ICON_DARK_MODE, ""),
         GuiGetStyle(DEFAULT, TEXT_SIZE),
         [](){return false;},
@@ -57,31 +57,31 @@ void Menu::Initialize()
             global.ToggleDarkMode();
         },
         menubar.get(),
-        (sndAlign)(RIGHT | CENTER_VERTICAL),
+        (sxd::Align)(sxd::RIGHT | sxd::CENTER_VERTICAL),
         0);
 
     menubar->AddWrapper(darkMode);
 
-    auto jhconway = std::make_shared<sndText>(
+    auto jhconway = std::make_shared<sxd::Text>(
         "J. H. Conway",
         GuiGetStyle(DEFAULT, TEXT_SIZE),
         head.get(),
-        (sndAlign)(CENTER_HORIZONTAL | CENTER_VERTICAL),
+        (sxd::Align)(sxd::CENTER_HORIZONTAL | sxd::CENTER_VERTICAL),
         0);
 
     head->AddWrapper(jhconway);
 
-    auto gameoflife = std::make_shared<sndText>(
+    auto gameoflife = std::make_shared<sxd::Text>(
         "Game Of Life",
         2 * GuiGetStyle(DEFAULT, TEXT_SIZE),
         head.get(),
-        (sndAlign)(CENTER_HORIZONTAL | CENTER_VERTICAL),
+        (sxd::Align)(sxd::CENTER_HORIZONTAL | sxd::CENTER_VERTICAL),
         0);
 
     gameoflife->AttachToBottom(jhconway.get());
     head->AddWrapper(gameoflife);
 
-    auto start = std::make_shared<sndButton>(
+    auto start = std::make_shared<sxd::Button>(
         "Start",
         GuiGetStyle(DEFAULT, TEXT_SIZE),
         [](){return IsKeyPressed(KEY_ENTER) || IsKeyPressed(KEY_KP_ENTER);},
@@ -90,12 +90,12 @@ void Menu::Initialize()
             currentScene = GAME;
         },
         body.get(),
-        (sndAlign)(CENTER_HORIZONTAL | CENTER_VERTICAL),
+        (sxd::Align)(sxd::CENTER_HORIZONTAL | sxd::CENTER_VERTICAL),
         0);
 
     body->AddWrapper(start);
 
-    auto settings = std::make_shared<sndButton>(
+    auto settings = std::make_shared<sxd::Button>(
         "Settings",
         GuiGetStyle(DEFAULT, TEXT_SIZE),
         [](){return false;},
@@ -104,13 +104,13 @@ void Menu::Initialize()
             currentScene = SETTINGS;
         },
         body.get(),
-        (sndAlign)(CENTER_HORIZONTAL | CENTER_VERTICAL),
+        (sxd::Align)(sxd::CENTER_HORIZONTAL | sxd::CENTER_VERTICAL),
         0);
 
     start->AddWrapper(settings);
     settings->AttachToBottomAndAlign(start.get());
 
-    auto exit = std::make_shared<sndButton>(
+    auto exit = std::make_shared<sxd::Button>(
         "Exit",
         GuiGetStyle(DEFAULT, TEXT_SIZE),
         [](){return IsKeyPressed(KEY_ESCAPE);},
@@ -119,7 +119,7 @@ void Menu::Initialize()
             global.exitApp = true;
         },
         body.get(),
-        (sndAlign)(CENTER_HORIZONTAL | CENTER_VERTICAL),
+        (sxd::Align)(sxd::CENTER_HORIZONTAL | sxd::CENTER_VERTICAL),
         0);
 
     body->AddWrapper(exit);

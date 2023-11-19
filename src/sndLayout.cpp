@@ -17,9 +17,9 @@
 int controlWidth = 100;
 int controlGap = 20;
 
-// sndWrapper
+// sxd::Wrapper
 //-------------------------------------
-sndWrapper::sndWrapper(const char* label)
+sxd::Wrapper::Wrapper(const char* label)
 {
     label_ = label;
 
@@ -30,7 +30,7 @@ sndWrapper::sndWrapper(const char* label)
     UpdateFrame();
 }
 
-sndWrapper::sndWrapper(int left, int top, int right, int bottom)
+sxd::Wrapper::Wrapper(int left, int top, int right, int bottom)
 {
     ResizeOuterLeft(left);
     ResizeOuterTop(top);
@@ -40,7 +40,7 @@ sndWrapper::sndWrapper(int left, int top, int right, int bottom)
     UpdateFrame();
 }
 
-sndWrapper::sndWrapper(const char* label, int left, int top, int right, int bottom)
+sxd::Wrapper::Wrapper(const char* label, int left, int top, int right, int bottom)
 {
     label_ = label;
 
@@ -56,9 +56,9 @@ sndWrapper::sndWrapper(const char* label, int left, int top, int right, int bott
     UpdateFrame();
 }
 
-sndWrapper::~sndWrapper(){}
+sxd::Wrapper::~Wrapper(){}
 
-void sndWrapper::Render()
+void sxd::Wrapper::Render()
 {
     Rectangle frameRect{
         static_cast<float>(GetOuterLeft()),
@@ -74,17 +74,17 @@ void sndWrapper::Render()
     }
 }
 
-void sndWrapper::AddWrapper(std::shared_ptr<sndWrapper> wrapper)
+void sxd::Wrapper::AddWrapper(std::shared_ptr<sxd::Wrapper> wrapper)
 {
     wrappers_.push_back(wrapper);
 }
 
-void sndWrapper::ClearWrappers()
+void sxd::Wrapper::ClearWrappers()
 {
     wrappers_.clear();
 }
 
-void sndWrapper::UpdateFrame()
+void sxd::Wrapper::UpdateFrame()
 {
     for (auto wrapper : wrappers_)
     {
@@ -123,77 +123,77 @@ void sndWrapper::UpdateFrame()
     innerHeight_ = innerBottom_ - innerTop_;
 }
 
-int sndWrapper::GetOuterLeft() { return outerLeft_; }
-void sndWrapper::ResizeOuterLeft(int outerLeft)
+int sxd::Wrapper::GetOuterLeft() { return outerLeft_; }
+void sxd::Wrapper::ResizeOuterLeft(int outerLeft)
 {
     outerLeft_ = outerLeft;
     outerWidth_ = outerRight_ - outerLeft_;
     UpdateFrame();
 }
 
-void sndWrapper::MoveOuterLeft(int outerLeft)
+void sxd::Wrapper::MoveOuterLeft(int outerLeft)
 {
     outerLeft_ = outerLeft;
     outerRight_ = outerLeft_ + outerWidth_;
     UpdateFrame();
 }
 
-int sndWrapper::GetOuterTop() { return outerTop_; }
-void sndWrapper::ResizeOuterTop(int outerTop)
+int sxd::Wrapper::GetOuterTop() { return outerTop_; }
+void sxd::Wrapper::ResizeOuterTop(int outerTop)
 {
     outerTop_ = outerTop;
     outerHeight_ = outerBottom_ - outerTop_;
     UpdateFrame();
 }
 
-void sndWrapper::MoveOuterTop(int outerTop)
+void sxd::Wrapper::MoveOuterTop(int outerTop)
 {
     outerTop_ = outerTop;
     outerBottom_ = outerTop_ + outerHeight_;
     UpdateFrame();
 }
 
-int sndWrapper::GetOuterRight() { return outerRight_; }
-void sndWrapper::ResizeOuterRight(int outerRight)
+int sxd::Wrapper::GetOuterRight() { return outerRight_; }
+void sxd::Wrapper::ResizeOuterRight(int outerRight)
 {
     outerRight_ = outerRight;
     outerWidth_ = outerRight_ - outerLeft_;
     UpdateFrame();
 }
 
-void sndWrapper::MoveOuterRight(int outerRight)
+void sxd::Wrapper::MoveOuterRight(int outerRight)
 {
     outerRight_ = outerRight;
     outerLeft_ = outerRight_ - outerWidth_;
     UpdateFrame();
 }
 
-int sndWrapper::GetOuterBottom() { return outerBottom_; }
-void sndWrapper::ResizeOuterBottom(int outerBottom)
+int sxd::Wrapper::GetOuterBottom() { return outerBottom_; }
+void sxd::Wrapper::ResizeOuterBottom(int outerBottom)
 {
     outerBottom_ = outerBottom;
     outerHeight_ = outerBottom_ - outerTop_;
     UpdateFrame();
 }
 
-void sndWrapper::MoveOuterBottom(int outerBottom)
+void sxd::Wrapper::MoveOuterBottom(int outerBottom)
 {
     outerBottom_ = outerBottom;
     outerTop_ = outerBottom_ - outerHeight_;
     UpdateFrame();
 }
 
-int sndWrapper::GetOuterWidth() { return outerWidth_; }
-int sndWrapper::GetOuterHeight() { return outerHeight_; }
+int sxd::Wrapper::GetOuterWidth() { return outerWidth_; }
+int sxd::Wrapper::GetOuterHeight() { return outerHeight_; }
 
-int sndWrapper::GetMargin() { return margin_; }
-void sndWrapper::SetMargin(int marginWeight)
+int sxd::Wrapper::GetMargin() { return margin_; }
+void sxd::Wrapper::SetMargin(int marginWeight)
 {
     margin_ = marginWeight;
 
     if (marginWeight == 0) return;
 
-    auto margin = std::make_shared<sndWrapper>(
+    auto margin = std::make_shared<sxd::Wrapper>(
         this->GetOuterLeft(),
         this->GetOuterTop(),
         this->GetOuterRight(),
@@ -219,14 +219,14 @@ void sndWrapper::SetMargin(int marginWeight)
     UpdateFrame();
 }
 
-int sndWrapper::GetBorder() { return border_; }
-void sndWrapper::SetBorder(int borderWeight)
+int sxd::Wrapper::GetBorder() { return border_; }
+void sxd::Wrapper::SetBorder(int borderWeight)
 {
     border_ = borderWeight;
 
     if (borderWeight == 0) return;
 
-    auto border = std::make_shared<sndWrapper>(
+    auto border = std::make_shared<sxd::Wrapper>(
         this->GetOuterLeft() + this->GetMargin(),
         this->GetOuterTop() + this->GetMargin(),
         this->GetOuterRight() - this->GetMargin(),
@@ -251,14 +251,14 @@ void sndWrapper::SetBorder(int borderWeight)
     UpdateFrame();
 }
 
-int sndWrapper::GetPadding() { return padding_; }
-void sndWrapper::SetPadding(int paddingWeight)
+int sxd::Wrapper::GetPadding() { return padding_; }
+void sxd::Wrapper::SetPadding(int paddingWeight)
 {
     padding_ = paddingWeight;
 
     if (paddingWeight == 0) return;
 
-    auto padding = std::make_shared<sndWrapper>(
+    auto padding = std::make_shared<sxd::Wrapper>(
         this->GetOuterLeft() + this->GetMargin() + this->GetBorder(),
         this->GetOuterTop() + this->GetMargin() + this->GetBorder(),
         this->GetOuterRight() - this->GetMargin() - this->GetBorder(),
@@ -283,69 +283,69 @@ void sndWrapper::SetPadding(int paddingWeight)
     UpdateFrame();
 }
 
-int sndWrapper::GetFrameWeight() { return frameWeight_; }
-void sndWrapper::SetFrameWeight(int frameWeight) { frameWeight_ = frameWeight; }
-Color sndWrapper::GetFrameColor() { return frameColor_; }
-void sndWrapper::SetFrameColor(Color frameColor) { frameColor_ = frameColor; }
+int sxd::Wrapper::GetFrameWeight() { return frameWeight_; }
+void sxd::Wrapper::SetFrameWeight(int frameWeight) { frameWeight_ = frameWeight; }
+Color sxd::Wrapper::GetFrameColor() { return frameColor_; }
+void sxd::Wrapper::SetFrameColor(Color frameColor) { frameColor_ = frameColor; }
 
-int sndWrapper::GetInnerLeft() { return innerLeft_; }
-int sndWrapper::GetInnerTop() { return innerTop_; }
-int sndWrapper::GetInnerRight() { return innerRight_; }
-int sndWrapper::GetInnerBottom() { return innerBottom_; }
-int sndWrapper::GetInnerWidth() { return innerWidth_; }
-int sndWrapper::GetInnerHeight() { return innerHeight_; }
+int sxd::Wrapper::GetInnerLeft() { return innerLeft_; }
+int sxd::Wrapper::GetInnerTop() { return innerTop_; }
+int sxd::Wrapper::GetInnerRight() { return innerRight_; }
+int sxd::Wrapper::GetInnerBottom() { return innerBottom_; }
+int sxd::Wrapper::GetInnerWidth() { return innerWidth_; }
+int sxd::Wrapper::GetInnerHeight() { return innerHeight_; }
 //-------------------------------------
 
-// sndElement
+// sxd::Element
 //-------------------------------------
-sndElement::sndElement(const char* label)
-    : sndWrapper {label}
+sxd::Element::Element(const char* label)
+    : sxd::Wrapper {label}
 {
 }
 
-sndElement::sndElement(const char* label, int fontSize, int left, int top, int right, int bottom)
-    : sndWrapper {label, left, top, right, bottom}
+sxd::Element::Element(const char* label, int fontSize, int left, int top, int right, int bottom)
+    : sxd::Wrapper {label, left, top, right, bottom}
 {
     fontSize_ = fontSize;
 }
 
-sndElement::~sndElement(){}
+sxd::Element::~Element(){}
 
-void sndElement::AlignToParent(sndWrapper* parent, sndAlign flags, int offset)
+void sxd::Element::AlignToParent(sxd::Wrapper* parent, sxd::Align flags, int offset)
 {
     int positionLeft = 0;
     int positionTop = 0;
 
-    if (flags & LEFT)
+    if (flags & sxd::LEFT)
     {
-        positionLeft = AlignHorizontalLeft(parent, offset);
-        alignedHorizontal_ = LEFT;
+        positionLeft = sxd::AlignHorizontalLeft(parent, offset);
+        alignedHorizontal_ = sxd::LEFT;
     }
-    else if (flags & CENTER_HORIZONTAL)
+    else if (flags & sxd::CENTER_HORIZONTAL)
     {
-        positionLeft = AlignHorizontalCenter(parent, GetOuterWidth(), offset);
-        alignedHorizontal_ = CENTER_HORIZONTAL;
+        positionLeft = sxd::AlignHorizontalCenter(parent, GetOuterWidth(), offset);
+        alignedHorizontal_ = sxd::CENTER_HORIZONTAL;
     }
-    else if (flags & RIGHT)
+    else if (flags & sxd::RIGHT)
     {
-        positionLeft = AlignHorizontalRight(parent, GetOuterWidth(), offset);
-        alignedHorizontal_ = RIGHT;
+        positionLeft = sxd::AlignHorizontalRight(parent, GetOuterWidth(), offset);
+        alignedHorizontal_ = sxd::RIGHT;
     }
 
-    if (flags & TOP)
+    if (flags & sxd::TOP)
     {
-        positionTop = AlignVerticalTop(parent, offset);
-        alignedVertical_ = TOP;
+        positionTop = sxd::AlignVerticalTop(parent, offset);
+        alignedVertical_ = sxd::TOP;
     }
-    else if (flags & CENTER_VERTICAL)
+    else if (flags & sxd::CENTER_VERTICAL)
     {
-        positionTop = AlignVerticalCenter(parent, GetOuterHeight(), offset);
-        alignedVertical_ = CENTER_VERTICAL;
+        positionTop = sxd::AlignVerticalCenter(parent, GetOuterHeight(), offset);
+        alignedVertical_ = sxd::CENTER_VERTICAL;
     }
-    else if (flags & BOTTOM)
+    else if (flags & sxd::BOTTOM)
     {
-        positionTop = AlignVerticalBottom(parent, GetOuterHeight(), offset);
-        alignedVertical_ = BOTTOM;
+        positionTop = sxd::AlignVerticalBottom(parent, GetOuterHeight(), offset);
+        alignedVertical_ = sxd::BOTTOM;
     }
 
     if (positionLeft < 0 || positionTop < 0)
@@ -357,33 +357,33 @@ void sndElement::AlignToParent(sndWrapper* parent, sndAlign flags, int offset)
     MoveOuterTop(positionTop);
 }
 
-void sndElement::AttachToLeft(sndElement* parent)
+void sxd::Element::AttachToLeft(sxd::Element* parent)
 {
     MoveOuterRight(parent->GetOuterLeft());
 }
 
-void sndElement::AttachToTop(sndElement* parent)
+void sxd::Element::AttachToTop(sxd::Element* parent)
 {
     MoveOuterBottom(parent->GetOuterTop());
 }
 
-void sndElement::AttachToRight(sndElement* parent)
+void sxd::Element::AttachToRight(sxd::Element* parent)
 {
     MoveOuterLeft(parent->GetOuterRight());
 }
 
-void sndElement::AttachToBottom(sndElement* parent)
+void sxd::Element::AttachToBottom(sxd::Element* parent)
 {
     MoveOuterTop(parent->GetOuterBottom());
 }
 
-void sndElement::AttachToTopAndAlign(sndElement* parent)
+void sxd::Element::AttachToTopAndAlign(sxd::Element* parent)
 {
     parent_ = parent;
 
-    if (alignedVertical_ == CENTER_VERTICAL)
+    if (alignedVertical_ == sxd::CENTER_VERTICAL)
     {
-        sndElement* nextParent = parent;
+        sxd::Element* nextParent = parent;
 
         do
         {
@@ -392,7 +392,7 @@ void sndElement::AttachToTopAndAlign(sndElement* parent)
         } while (nextParent != nullptr);
     }
 
-    sndElement::AttachToTop(parent);
+    sxd::Element::AttachToTop(parent);
 
     if (parent->GetOuterWidth() < GetOuterWidth())
     {
@@ -406,13 +406,13 @@ void sndElement::AttachToTopAndAlign(sndElement* parent)
     }
 }
 
-void sndElement::AttachToBottomAndAlign(sndElement* parent)
+void sxd::Element::AttachToBottomAndAlign(sxd::Element* parent)
 {
     parent_ = parent;
 
-    if (alignedVertical_ == CENTER_VERTICAL)
+    if (alignedVertical_ == sxd::CENTER_VERTICAL)
     {
-        sndElement* nextParent = parent;
+        sxd::Element* nextParent = parent;
 
         do
         {
@@ -421,7 +421,7 @@ void sndElement::AttachToBottomAndAlign(sndElement* parent)
         } while (nextParent != nullptr);
     }
 
-    sndElement::AttachToBottom(parent);
+    sxd::Element::AttachToBottom(parent);
 
     if (parent->GetOuterWidth() < GetOuterWidth())
     {
@@ -436,22 +436,22 @@ void sndElement::AttachToBottomAndAlign(sndElement* parent)
 }
 //-------------------------------------
 
-// sndButton
+// sxd::Button
 //-------------------------------------
-sndButton::sndButton(const char* label)
-    : sndElement {label}
+sxd::Button::Button(const char* label)
+    : sxd::Element {label}
 {
 }
 
-sndButton::sndButton(const char* label, int fontSize, std::function<bool()> inputs, std::function<void()> action, int left, int top, int right, int bottom)
-    : sndElement {label, fontSize, left, top, right, bottom}
+sxd::Button::Button(const char* label, int fontSize, std::function<bool()> inputs, std::function<void()> action, int left, int top, int right, int bottom)
+    : sxd::Element {label, fontSize, left, top, right, bottom}
 {
     SetInputs(inputs);
     SetAction(action);
 }
 
-sndButton::sndButton(const char* label, int fontSize, std::function<bool()> inputs, std::function<void()> action, sndWrapper* parent, sndAlign flags, int offset)
-    : sndElement {label, fontSize, 0, 0, static_cast<int>(1.5 * MeasureText(label, fontSize)), 2 * fontSize}
+sxd::Button::Button(const char* label, int fontSize, std::function<bool()> inputs, std::function<void()> action, sxd::Wrapper* parent, sxd::Align flags, int offset)
+    : sxd::Element {label, fontSize, 0, 0, static_cast<int>(1.5 * MeasureText(label, fontSize)), 2 * fontSize}
 {
     if (label[0] == '#') 
     {
@@ -465,11 +465,11 @@ sndButton::sndButton(const char* label, int fontSize, std::function<bool()> inpu
     AlignToParent(parent, flags, offset);
 }
 
-sndButton::~sndButton(){}
+sxd::Button::~Button(){}
 
-void sndButton::Render()
+void sxd::Button::Render()
 {
-    sndWrapper::Render();
+    sxd::Wrapper::Render();
 
     if (GetInputs()() || GuiButton(
                              Rectangle{
@@ -483,40 +483,40 @@ void sndButton::Render()
     };
 }
 
-std::function<bool()> sndButton::GetInputs()
+std::function<bool()> sxd::Button::GetInputs()
 {
     return inputs_;
 }
 
-void sndButton::SetInputs(std::function<bool()> inputs)
+void sxd::Button::SetInputs(std::function<bool()> inputs)
 {
     inputs_ = inputs;
 }
 
-std::function<void()> sndButton::GetAction()
+std::function<void()> sxd::Button::GetAction()
 {
     return action_;
 }
 
-void sndButton::SetAction(std::function<void()> action)
+void sxd::Button::SetAction(std::function<void()> action)
 {
     action_ = action;
 }
 //-------------------------------------
 
-// sndSeparator
+// sxd::Separator
 //-------------------------------------
-sndSeparator::sndSeparator(const char* label, int left, int right, sndWrapper* parent, sndAlign flags, int offset)
-    : sndElement {label, 0, left, 0, right, 2 * GuiGetStyle(DEFAULT, TEXT_SIZE)}
+sxd::Separator::Separator(const char* label, int left, int right, sxd::Wrapper* parent, sxd::Align flags, int offset)
+    : sxd::Element {label, 0, left, 0, right, 2 * GuiGetStyle(DEFAULT, TEXT_SIZE)}
 {
     AlignToParent(parent, flags, offset);
 }
 
-sndSeparator::~sndSeparator(){}
+sxd::Separator::~Separator(){}
 
-void sndSeparator::Render()
+void sxd::Separator::Render()
 {
-    sndWrapper::Render();
+    sxd::Wrapper::Render();
 
     GuiLine(
         Rectangle{
@@ -528,35 +528,35 @@ void sndSeparator::Render()
 }
 //-------------------------------------
 
-// sndSpacer
+// sxd::Spacer
 //-------------------------------------
-sndSpacer::sndSpacer(const char* label, int vSpace, int hSpace, sndWrapper* parent, sndAlign flags, int offset)
-    : sndElement {label, 0, 0, 0, hSpace, vSpace}
+sxd::Spacer::Spacer(const char* label, int vSpace, int hSpace, sxd::Wrapper* parent, sxd::Align flags, int offset)
+    : sxd::Element {label, 0, 0, 0, hSpace, vSpace}
 {
     AlignToParent(parent, flags, offset);
 }
 
-sndSpacer::~sndSpacer(){}
+sxd::Spacer::~Spacer(){}
 
-void sndSpacer::Render()
+void sxd::Spacer::Render()
 {
-    sndWrapper::Render();
+    sxd::Wrapper::Render();
 }
 //-------------------------------------
 
-// sndLabel
+// sxd::Label
 //-------------------------------------
-sndLabel::sndLabel(const char* label, int fontSize, sndWrapper* parent, sndAlign flags, int offset)
-    : sndElement {label, fontSize, 0, 0, static_cast<int>(1.5 * MeasureText(label, fontSize)), 2 * fontSize}
+sxd::Label::Label(const char* label, int fontSize, sxd::Wrapper* parent, sxd::Align flags, int offset)
+    : sxd::Element {label, fontSize, 0, 0, static_cast<int>(1.5 * MeasureText(label, fontSize)), 2 * fontSize}
 {
     AlignToParent(parent, flags, offset);
 }
 
-sndLabel::~sndLabel(){}
+sxd::Label::~Label(){}
 
-void sndLabel::Render()
+void sxd::Label::Render()
 {
-    sndWrapper::Render();
+    sxd::Wrapper::Render();
 
     GuiLabel(
         Rectangle{
@@ -568,10 +568,10 @@ void sndLabel::Render()
 }
 //-------------------------------------
 
-// sndText
+// sxd::Text
 //-------------------------------------
-sndText::sndText(const char* label, int fontSize, sndWrapper* parent, sndAlign flags, int offset)
-    : sndElement {label, fontSize, 0, 0, MeasureText(label, fontSize), fontSize}
+sxd::Text::Text(const char* label, int fontSize, sxd::Wrapper* parent, sxd::Align flags, int offset)
+    : sxd::Element {label, fontSize, 0, 0, MeasureText(label, fontSize), fontSize}
 
 {
     fontSize_ = fontSize;
@@ -579,20 +579,20 @@ sndText::sndText(const char* label, int fontSize, sndWrapper* parent, sndAlign f
     AlignToParent(parent, flags, offset);
 }
 
-sndText::~sndText(){}
+sxd::Text::~Text(){}
 
-void sndText::Render()
+void sxd::Text::Render()
 {
-    sndWrapper::Render();
+    sxd::Wrapper::Render();
 
     DrawText(TextFormat(label_.c_str()), GetInnerLeft(), GetInnerTop(), fontSize_, global.GetForeground());
 }
 //-------------------------------------
 
-// sndCheckBox
+// sxd::CheckBox
 //-------------------------------------
-sndCheckBox::sndCheckBox(const char* label, int fontSize, bool* value, sndWrapper* parent, sndAlign flags, int offset)
-    : sndElement {label, fontSize, 0, 0, controlWidth + controlGap + MeasureText(label, fontSize), (2 * fontSize)}
+sxd::CheckBox::CheckBox(const char* label, int fontSize, bool* value, sxd::Wrapper* parent, sxd::Align flags, int offset)
+    : sxd::Element {label, fontSize, 0, 0, controlWidth + controlGap + MeasureText(label, fontSize), (2 * fontSize)}
 
 {
     fontSize_ = fontSize;
@@ -601,11 +601,11 @@ sndCheckBox::sndCheckBox(const char* label, int fontSize, bool* value, sndWrappe
     AlignToParent(parent, flags, offset);
 }
 
-sndCheckBox::~sndCheckBox() {}
+sxd::CheckBox::~CheckBox() {}
 
-void sndCheckBox::Render()
+void sxd::CheckBox::Render()
 {
-    sndWrapper::Render();
+    sxd::Wrapper::Render();
 
     GuiCheckBox(
         Rectangle{
@@ -626,10 +626,10 @@ void sndCheckBox::Render()
 }
 //-------------------------------------
 
-// sndSpinner
+// sxd::Spinner
 //-------------------------------------
-sndSpinner::sndSpinner(const char* label, int fontSize, int* value, int minValue, int maxValue, bool editMode, sndWrapper* parent, sndAlign flags, int offset)
-    : sndElement {label, fontSize, 0, 0, controlWidth + controlGap + MeasureText(label, fontSize), 2 * fontSize}
+sxd::Spinner::Spinner(const char* label, int fontSize, int* value, int minValue, int maxValue, bool editMode, sxd::Wrapper* parent, sxd::Align flags, int offset)
+    : sxd::Element {label, fontSize, 0, 0, controlWidth + controlGap + MeasureText(label, fontSize), 2 * fontSize}
 {
     value_ = value;
     minValue_ = minValue;
@@ -639,11 +639,11 @@ sndSpinner::sndSpinner(const char* label, int fontSize, int* value, int minValue
     AlignToParent(parent, flags, offset);
 }
 
-sndSpinner::~sndSpinner(){}
+sxd::Spinner::~Spinner(){}
 
-void sndSpinner::Render()
+void sxd::Spinner::Render()
 {
-    sndWrapper::Render();
+    sxd::Wrapper::Render();
 
     GuiSpinner(
         Rectangle{
@@ -667,32 +667,32 @@ void sndSpinner::Render()
 }
 //-------------------------------------
 
-int AlignHorizontalLeft(sndWrapper* parent, int offset)
+int sxd::AlignHorizontalLeft(sxd::Wrapper* parent, int offset)
 {
     return parent->GetInnerLeft() + offset;
 }
 
-int AlignHorizontalCenter(sndWrapper* parent, int objectWidth, int offset)
+int sxd::AlignHorizontalCenter(sxd::Wrapper* parent, int objectWidth, int offset)
 {
     return parent->GetInnerLeft() + ((parent->GetInnerWidth() - objectWidth) / 2) + offset;
 }
 
-int AlignHorizontalRight(sndWrapper* parent, int objectWidth, int offset)
+int sxd::AlignHorizontalRight(sxd::Wrapper* parent, int objectWidth, int offset)
 {
     return parent->GetInnerLeft() + parent->GetInnerWidth() - objectWidth - offset;
 }
 
-int AlignVerticalTop(sndWrapper* parent, int offset)
+int sxd::AlignVerticalTop(sxd::Wrapper* parent, int offset)
 {
     return parent->GetInnerTop() + offset;
 }
 
-int AlignVerticalCenter(sndWrapper* parent, int objectHeight, int offset)
+int sxd::AlignVerticalCenter(sxd::Wrapper* parent, int objectHeight, int offset)
 {
     return parent->GetInnerTop() + ((parent->GetInnerHeight() - objectHeight) / 2) + offset;
 }
 
-int AlignVerticalBottom(sndWrapper* parent, int objectHeight, int offset)
+int sxd::AlignVerticalBottom(sxd::Wrapper* parent, int objectHeight, int offset)
 {
     return parent->GetInnerTop() + (parent->GetInnerHeight() - objectHeight - offset);
 }

@@ -23,8 +23,8 @@ public:
     virtual void Update();
 
 protected:
-    std::shared_ptr<sndWrapper> main;
-    sndWrapper* currentWrapper;
+    std::shared_ptr<sxd::Wrapper> main;
+    sxd::Wrapper* currentWrapper;
 
     void ProcessInput();
     void UpdateState();
@@ -38,9 +38,9 @@ class Menu : public Scene
 public:
     Menu();
 
-    std::shared_ptr<sndWrapper> menubar;
-    std::shared_ptr<sndWrapper> head;
-    std::shared_ptr<sndWrapper> body;
+    std::shared_ptr<sxd::Wrapper> menubar;
+    std::shared_ptr<sxd::Wrapper> head;
+    std::shared_ptr<sxd::Wrapper> body;
 
     void Initialize();
     void Update() override;
@@ -56,8 +56,8 @@ class Settings : public Scene
 public:
     Settings();
 
-    std::shared_ptr<sndWrapper> menubar;
-    std::shared_ptr<sndWrapper> body;
+    std::shared_ptr<sxd::Wrapper> menubar;
+    std::shared_ptr<sxd::Wrapper> body;
 
     void Initialize();
     void Update() override;
@@ -73,10 +73,10 @@ class Game : public Scene
 public:
     Game();
 
-    std::shared_ptr<sndWrapper> menubar;
-    std::shared_ptr<sndWrapper> controlbar;
-    std::shared_ptr<sndWrapper> statusbar;
-    std::shared_ptr<sndWrapper> body;
+    std::shared_ptr<sxd::Wrapper> menubar;
+    std::shared_ptr<sxd::Wrapper> controlbar;
+    std::shared_ptr<sxd::Wrapper> statusbar;
+    std::shared_ptr<sxd::Wrapper> body;
 
     void Initialize();
     void Update() override;
