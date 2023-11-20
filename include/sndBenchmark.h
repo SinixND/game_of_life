@@ -67,10 +67,7 @@ void sxd::StopBenchmark(std::string id)
 {
     for (auto& benchmark : benchmarks)
     {
-        if (benchmark.id_ != id)
-        {
-            continue;
-        }
+        if (benchmark.id_ != id) { continue; }
 
         benchmark.stopTime_ = std::chrono::steady_clock::now();
         benchmark.latestTime_ = std::chrono::duration_cast<std::chrono::nanoseconds>(benchmark.stopTime_ - benchmark.startTime_);
@@ -85,10 +82,7 @@ void sxd::ShowBenchmarks()
 {
     for (auto& benchmark : benchmarks)
     {
-        if (benchmark.id_ == "NULL")
-        {
-            continue;
-        }
+        if (benchmark.id_ == "NULL") { continue; }
 
         std::cout << benchmark.id_ << " (Lst|Avg|Itr): " << benchmark.latestTime_.count() << " ns | " << benchmark.avgTime_.count() << " ns | " << benchmark.iterations_ << "\n";
     }

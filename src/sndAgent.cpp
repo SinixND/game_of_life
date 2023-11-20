@@ -37,10 +37,7 @@ void Agent::RefreshVitality()
 
 void Agent::DecreaseVitality()
 {
-    if (vitality_ > 0)
-    {
-        vitality_ -= 1;
-    }
+    if (vitality_ > 0) { vitality_ -= 1; }
 }
 
 void Agent::EreaseVitality()

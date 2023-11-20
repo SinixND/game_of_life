@@ -4,11 +4,11 @@
 #include "sndGlobals.h"
 #include "sndGrid.h"
 #include "sndLayout.h"
-#define RAYGUI_CUSTOM_ICONS     // Custom icons set required 
-#include "../resources/iconset.rgi.h"  
-#include <raygui.h>
+#define RAYGUI_CUSTOM_ICONS // Custom icons set required
+#include "../resources/iconset.rgi.h"
 #include <cmath>
 #include <iostream>
+#include <raygui.h>
 
 // GAME OF LIFE / GRID
 //---------------------------------
@@ -75,7 +75,8 @@ void Game::Initialize()
     auto darkMode = std::make_shared<sxd::Button>(
         GuiIconText(ICON_DARK_MODE, ""),
         GuiGetStyle(DEFAULT, TEXT_SIZE),
-        [](){return false;},
+        []()
+        { return false; },
         []()
         {
             global.ToggleDarkMode();
@@ -89,7 +90,8 @@ void Game::Initialize()
     auto back = std::make_shared<sxd::Button>(
         GuiIconText(ICON_RETURN, NULL),
         GuiGetStyle(DEFAULT, TEXT_SIZE),
-        [](){return IsKeyPressed(KEY_BACK) || IsKeyPressed(KEY_BACKSPACE);},
+        []()
+        { return IsKeyPressed(KEY_BACK) || IsKeyPressed(KEY_BACKSPACE); },
         []()
         {
             gameScreenInitialized = false;
@@ -104,7 +106,8 @@ void Game::Initialize()
     auto reset = std::make_shared<sxd::Button>(
         GuiIconText(ICON_RESTART, NULL),
         GuiGetStyle(DEFAULT, TEXT_SIZE),
-        [](){return false;},
+        []()
+        { return false; },
         []()
         {
             grid.Reset();
@@ -119,7 +122,8 @@ void Game::Initialize()
     auto clear = std::make_shared<sxd::Button>(
         GuiIconText(ICON_ZOOM_CENTER, NULL),
         GuiGetStyle(DEFAULT, TEXT_SIZE),
-        [](){return false;},
+        []()
+        { return false; },
         []()
         {
             grid.Clear();
@@ -134,7 +138,8 @@ void Game::Initialize()
     auto pause = std::make_shared<sxd::Button>(
         GuiIconText(ICON_TOGGLE_PAUSE, NULL),
         GuiGetStyle(DEFAULT, TEXT_SIZE),
-        [](){return IsKeyPressed(KEY_P);},
+        []()
+        { return IsKeyPressed(KEY_P); },
         []()
         {
             pauseState = !pauseState;
@@ -148,13 +153,14 @@ void Game::Initialize()
     auto increaseTicks = std::make_shared<sxd::Button>(
         GuiIconText(ICON_ARROW_UP_FILL, ""),
         GuiGetStyle(DEFAULT, TEXT_SIZE),
-        [](){return IsKeyPressed(KEY_UP);},
+        []()
+        { return IsKeyPressed(KEY_UP); },
         []()
         {
             config.tickTime /= 2;
-            if (config.tickTime < (static_cast<double>(1) / 1024))
+            if (config.tickTime < (1.0 / 1024))
             {
-                config.tickTime = (static_cast<double>(1) / 1024);
+                config.tickTime = (1.0 / 1024);
             }
         },
         controlbar.get(),
@@ -166,7 +172,8 @@ void Game::Initialize()
     auto decreaseTicks = std::make_shared<sxd::Button>(
         GuiIconText(ICON_ARROW_DOWN_FILL, ""),
         GuiGetStyle(DEFAULT, TEXT_SIZE),
-        [](){return IsKeyPressed(KEY_DOWN);},
+        []()
+        { return IsKeyPressed(KEY_DOWN); },
         []()
         {
             config.tickTime *= 2;
@@ -185,7 +192,8 @@ void Game::Initialize()
     auto undo = std::make_shared<sxd::Button>(
         GuiIconText(ICON_UNDO_FILL, ""),
         GuiGetStyle(DEFAULT, TEXT_SIZE),
-        [](){return ((IsKeyPressed(KEY_LEFT_CONTROL) || IsKeyPressed(KEY_RIGHT_CONTROL)) && IsKeyPressed(KEY_Z));},
+        []()
+        { return ((IsKeyPressed(KEY_LEFT_CONTROL) || IsKeyPressed(KEY_RIGHT_CONTROL)) && IsKeyPressed(KEY_Z)); },
         []()
         {
             if (pauseState == true)
@@ -204,7 +212,8 @@ void Game::Initialize()
     auto step = std::make_shared<sxd::Button>(
         GuiIconText(ICON_PLAYER_NEXT, ""),
         GuiGetStyle(DEFAULT, TEXT_SIZE),
-        [](){return IsKeyPressed(KEY_RIGHT);},
+        []()
+        { return IsKeyPressed(KEY_RIGHT); },
         []()
         {
             singleIteration = true;
@@ -249,11 +258,7 @@ void Game::ProcessInput()
         int targetRowY = floor((mousePosition.y - sxd::AlignVerticalCenter(body.get(), (rowsY * (config.agentHeight + config.agentGap) - config.agentGap), 0)) / (config.agentHeight + config.agentGap));
         int targetColX = floor((mousePosition.x - sxd::AlignHorizontalCenter(body.get(), (colsX * (config.agentWidth + config.agentGap) - config.agentGap), 0)) / (config.agentWidth + config.agentGap));
 
-        if ((targetRowY < 0 || targetRowY >= rowsY) || (targetColX < 0 || targetColX >= colsX))
-        {
-            // do nothing
-        }
-        else if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
+        if ((targetRowY >= 0 && targetRowY < rowsY) && (targetColX >= 0 && targetColX < colsX) && IsMouseButtonDown(MOUSE_BUTTON_LEFT))
         {
             Agent& agent = grid.GetGrid()[targetRowY][targetColX];
             agent.SetStatusCurrent(true);
@@ -316,15 +321,15 @@ void Game::RenderOutput()
 
 void Game::RenderScreenGameStatusbar()
 {
-    double FPS = (static_cast<double>(1) / config.tickTime);
+    double FPS = (1.0 / config.tickTime);
     const char* statusText;
     if (FPS < 1)
     {
-        statusText = TextFormat("FPS: %0.2f; Day: %i", FPS,  grid.GetDay());
+        statusText = TextFormat("FPS: %0.2f; Day: %i", FPS, grid.GetDay());
     }
     else
     {
-        statusText = TextFormat("FPS: %0.f; Day: %i", FPS,  grid.GetDay());
+        statusText = TextFormat("FPS: %0.f; Day: %i", FPS, grid.GetDay());
     }
 
     auto status = std::make_shared<sxd::Text>(
@@ -370,13 +375,13 @@ void Game::RenderScreenGameMainPanel()
             if (config.debugMode == true && CheckCollisionPointRec(GetMousePosition(), rectAgent))
             {
                 DrawText(TextFormat("X:%i Y:%i\nCurrent:%i\nNext:%i\nOutdated:%i\nVitality:%i",
-                    agent.GetColX(),
-                    agent.GetRowY(),
-                    agent.GetStatusCurrent(),
-                    agent.GetStatusNext(),
-                    agent.GetStatusOutdated(),
-                    agent.GetVitality()
-                ), anchorX + 5, anchorY, 10, RED);
+                                    agent.GetColX(),
+                                    agent.GetRowY(),
+                                    agent.GetStatusCurrent(),
+                                    agent.GetStatusNext(),
+                                    agent.GetStatusOutdated(),
+                                    agent.GetVitality()),
+                         anchorX + 5, anchorY, 10, RED);
             }
         }
     }
@@ -384,7 +389,7 @@ void Game::RenderScreenGameMainPanel()
 
 Color GetAgentColor(Agent agent)
 {
-    Color AgentColor = Fade(global.GetForeground(), (agent.GetVitality() * (1.0f / agent.GetMaxVitality())));
+    Color AgentColor = Fade(global.GetForeground(), (agent.GetVitality() * (1.0 / agent.GetMaxVitality())));
     return AgentColor;
 }
 
