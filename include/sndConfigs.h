@@ -1,7 +1,6 @@
-#ifndef CONFIGS_H
-#define CONFIGS_H
+#ifndef CONFIGS_H_202311201531
+#define CONFIGS_H_202311201531
 
-// external
 #include <raylib.h>
 
 // CUSTOMIZABLE BY USER

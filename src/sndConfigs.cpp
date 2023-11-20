@@ -1,4 +1,3 @@
-// paired
 #include "sndConfigs.h" // provide object "config" for configurable parameters
 
 Config config; // define extern object

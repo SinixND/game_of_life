@@ -1,14 +1,11 @@
 // sndBenchmark.h
 
-#ifndef SNDBENCHMARK_H
-#define SNDBENCHMARK_H
+#ifndef SNDBENCHMARK_H_202311201531
+#define SNDBENCHMARK_H_202311201531
 
-// std
 #include <chrono>
 #include <string>
 #include <vector>
-
-#define ACTIVATE_BENCHMARKING
 
 typedef std::chrono::steady_clock::time_point chrono_timePoint;
 typedef std::chrono::duration<double> chrono_timeDurationDouble;
@@ -36,74 +33,67 @@ namespace sxd
     void ShowBenchmarks();
 } // namespace sxd
 
-#endif // SNDBENCHMARK_H
+#endif // SNDBENCHMARK_H_202311201531
 
 // sndBenchmark.cpp
 #if defined(BENCHMARK_IMPLEMENTATION)
 
 #include <iostream>
 
-    std::vector<sxd::Benchmark> benchmarks = {Benchmark("NULL")};
+std::vector<sxd::Benchmark> sxd::benchmarks = {sxd::Benchmark("NULL")};
 
-    sxd::Benchmark::Benchmark(std::string id)
-        : id_{id}
-        , iterations_{0}
-    {
-    }
+sxd::Benchmark::Benchmark(std::string id)
+    : id_{id}
+    , iterations_{0}
+{
+}
 
-    void sxd::StartBenchmark(std::string id)
+void sxd::StartBenchmark(std::string id)
+{
+    for (auto& benchmark : benchmarks)
     {
-#ifdef ACTIVATE_BENCHMARKING
-        for (auto& benchmark : benchmarks)
+        if (benchmark.id_ == id)
         {
-            if (benchmark.id_ == id)
-            {
-                benchmark.startTime_ = std::chrono::steady_clock::now();
-                return;
-            }
-        }
-
-        benchmarks.push_back(Benchmark(id));
-        benchmarks.back().startTime_ = std::chrono::steady_clock::now();
-#endif
-    }
-
-    void sxd::StopBenchmark(std::string id)
-    {
-#ifdef ACTIVATE_BENCHMARKING
-        for (auto& benchmark : benchmarks)
-        {
-            if (benchmark.id_ != id)
-            {
-                continue;
-            }
-
-            benchmark.stopTime_ = std::chrono::steady_clock::now();
-            benchmark.latestTime_ = std::chrono::duration_cast<std::chrono::nanoseconds>(benchmark.stopTime_ - benchmark.startTime_);
-
-            benchmark.iterations_ += 1;
-            // new_average = (old_average * (n-1) + new_value) / n
-            benchmark.avgTime_ = (benchmark.avgTime_ * (benchmark.iterations_ - 1) + benchmark.latestTime_) / benchmark.iterations_;
+            benchmark.startTime_ = std::chrono::steady_clock::now();
             return;
         }
-#endif
     }
 
-    void sxd::ShowBenchmarks()
+    benchmarks.push_back(sxd::Benchmark(id));
+    benchmarks.back().startTime_ = std::chrono::steady_clock::now();
+}
+
+void sxd::StopBenchmark(std::string id)
+{
+    for (auto& benchmark : benchmarks)
     {
-#ifdef ACTIVATE_BENCHMARKING
-        for (auto& benchmark : benchmarks)
+        if (benchmark.id_ != id)
         {
-            if (benchmark.id_ == "NULL")
-            {
-                continue;
-            }
-
-            std::cout << benchmark.id_ << " (Lst|Avg|Itr): " << benchmark.latestTime_.count() << " ns | " << benchmark.avgTime_.count() << " ns | " << benchmark.iterations_ << "\n";
+            continue;
         }
-        if (benchmarks.size() > 1)
-            std::cout << "\n";
-#endif
+
+        benchmark.stopTime_ = std::chrono::steady_clock::now();
+        benchmark.latestTime_ = std::chrono::duration_cast<std::chrono::nanoseconds>(benchmark.stopTime_ - benchmark.startTime_);
+
+        benchmark.iterations_ += 1;
+        benchmark.avgTime_ = (benchmark.avgTime_ * (benchmark.iterations_ - 1) + benchmark.latestTime_) / benchmark.iterations_;
+        return;
     }
+}
+
+void sxd::ShowBenchmarks()
+{
+    for (auto& benchmark : benchmarks)
+    {
+        if (benchmark.id_ == "NULL")
+        {
+            continue;
+        }
+
+        std::cout << benchmark.id_ << " (Lst|Avg|Itr): " << benchmark.latestTime_.count() << " ns | " << benchmark.avgTime_.count() << " ns | " << benchmark.iterations_ << "\n";
+    }
+    if (benchmarks.size() > 1)
+        std::cout << "\n";
+}
 
 #endif

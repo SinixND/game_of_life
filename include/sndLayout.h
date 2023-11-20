@@ -1,10 +1,7 @@
-#ifndef LAYOUT_H
-#define LAYOUT_H
+#ifndef LAYOUT_H_202311201531
+#define LAYOUT_H_202311201531
 
-// external
 #include <raylib.h>
-
-// std
 #include <functional>
 #include <memory>
 #include <string>

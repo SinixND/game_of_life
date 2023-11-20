@@ -1,7 +1,5 @@
-// paired
 #include "sndAgent.h"
 
-// std
 #include <iostream>
 #include <vector>
 

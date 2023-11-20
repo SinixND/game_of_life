@@ -90,6 +90,8 @@
     "__verbose_abort": "cpp",
     "ios": "cpp",
     "locale": "cpp",
-    "queue": "cpp"
+    "queue": "cpp",
+    "__locale": "cpp",
+    "__mutex_base": "cpp"
   }
 }

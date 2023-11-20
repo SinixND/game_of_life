@@ -1,16 +1,11 @@
-// paired
 #include "sndLayout.h"
 
-// project specific
 #include "sndConfigs.h"
 #include "sndGlobals.h"
-
-// external
 #include <raygui.h>
 #include <raylib.h>
-
-// std
-#include <string>
+#include <string.h>
+#include <cstdlib>
 #include <functional>
 #include <iostream>
 #include <memory>

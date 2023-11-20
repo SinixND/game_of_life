@@ -1,20 +1,13 @@
-// paired
 #include "sndConfigs.h" // provide object "config" for configurable parameters
 #include "sndGlobals.h" // provide object "global" for not configurable application parameters
 #include "sndScenes.h"
-
-// project independent
 #define BENCHMARK_IMPLEMENTATION
 #include "sndBenchmark.h"
-
-// external
 #define RAYGUI_IMPLEMENTATION // only define once
 #define RAYGUI_CUSTOM_ICONS     // Custom icons set required 
 #include "../resources/iconset.rgi.h"  
 #include <raygui.h>
 #include <raylib.h>
-
-// std
 #include <iostream>
 
 int main()
@@ -66,13 +59,15 @@ int main()
             break;
 
         case SETTINGS:
+        sxd::StartBenchmark("SETTINGS");
             settings.Update();
+            sxd::StopBenchmark("SETTINGS");
             break;
 
         default:
             break;
         }
-        ShowBenchmarks();
+        sxd::ShowBenchmarks();
     }
     //---------------------------------
 

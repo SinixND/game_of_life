@@ -1,17 +1,11 @@
-// paired
 #include "sndScenes.h"
 
-// project specific
 #include "sndGlobals.h"
 #include "sndConfigs.h"
-
-// project independent
 #include "sndLayout.h"
-
-// external
 #include <raygui.h>
 
-scenes currentScene = MENU;
+Scenes currentScene = MENU;
 
 Scene::Scene()
     : main {std::make_shared<sxd::Wrapper>("main", 0, 0, GetRenderWidth(), GetRenderHeight())}

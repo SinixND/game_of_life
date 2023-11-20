@@ -1,20 +1,12 @@
-// paired
 #include "sndScenes.h"
 
-// project specific
 #include "sndConfigs.h"
 #include "sndGlobals.h"
 #include "sndGrid.h"
-
-// project independent
 #include "sndLayout.h"
-
-// external
 #define RAYGUI_CUSTOM_ICONS     // Custom icons set required 
 #include "../resources/iconset.rgi.h"  
 #include <raygui.h>
-
-// std
 #include <cmath>
 #include <iostream>
 

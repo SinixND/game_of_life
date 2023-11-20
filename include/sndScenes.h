@@ -1,23 +1,18 @@
-#ifndef SCENE_H
-#define SCENE_H
+#ifndef SCENE_H_202311201531
+#define SCENE_H_202311201531
 
-// project independent
 #include "sndLayout.h"
-
-// external
 #include <raylib.h>
-
-// std
 #include <vector>
 
-typedef enum scenes
+typedef enum
 {
     MENU,
     GAME,
     SETTINGS,
-} scenes;
+} Scenes;
 
-extern scenes currentScene;
+extern Scenes currentScene;
 
 class Scene
 {

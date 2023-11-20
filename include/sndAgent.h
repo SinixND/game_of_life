@@ -1,7 +1,6 @@
-#ifndef AGENT_H
-#define AGENT_H
+#ifndef AGENT_H_202311201531
+#define AGENT_H_202311201531
 
-// std
 #include <vector>
 
 class Agent
