@@ -16,7 +16,7 @@ bool pauseState = false;
 bool singleIteration = false;
 
 bool gameScreenInitialized = false;
-float timePassed = 0;
+double timePassed = 0;
 
 int rowsY;
 int colsX;
@@ -152,9 +152,9 @@ void Game::Initialize()
         []()
         {
             config.tickTime /= 2;
-            if (config.tickTime < (static_cast<float>(1) / 1024))
+            if (config.tickTime < (static_cast<double>(1) / 1024))
             {
-                config.tickTime = (static_cast<float>(1) / 1024);
+                config.tickTime = (static_cast<double>(1) / 1024);
             }
         },
         controlbar.get(),
@@ -316,7 +316,7 @@ void Game::RenderOutput()
 
 void Game::RenderScreenGameStatusbar()
 {
-    float FPS = (static_cast<float>(1) / config.tickTime);
+    double FPS = (static_cast<double>(1) / config.tickTime);
     const char* statusText;
     if (FPS < 1)
     {
@@ -349,10 +349,10 @@ void Game::RenderScreenGameMainPanel()
             int anchorY = sxd::AlignVerticalCenter(body.get(), (rowsY * (config.agentHeight + config.agentGap) - config.agentGap), 0) + (agent.GetRowY() * (config.agentHeight + config.agentGap));
 
             Rectangle rectAgent{
-                (float)anchorX,
-                (float)anchorY,
-                (float)config.agentWidth,
-                (float)config.agentHeight};
+                static_cast<float>(anchorX),
+                static_cast<float>(anchorY),
+                static_cast<float>(config.agentWidth),
+                static_cast<float>(config.agentHeight)};
 
             if (agent.GetStatusCurrent() == true) // alive cell
             {

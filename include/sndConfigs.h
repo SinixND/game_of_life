@@ -13,7 +13,7 @@ public:
     // APPLICATION
     bool debugMode;
     bool multiThread;
-    float tickTime; // in s
+    double tickTime; // in s
 
     // DISPLAY
     int targetFPS;
@@ -28,7 +28,7 @@ public:
     int agentWidth;
     int agentHeight; // independent height and width possible
     int agentGap;
-    float agentInnerBorderWeight;
+    double agentInnerBorderWeight;
 };
 extern Config config; // declare extern object
 #endif

@@ -94,7 +94,7 @@ void Grid::Reset()
                 Agent& agent = grid_[rowY][colX];
 
                 // randomize initial agent state
-                if (((rand() % 100) * 0.01) <= (config.initialLifeDensity / (float)100.0))
+                if (((rand() % 100) * 0.01) <= (config.initialLifeDensity / 100.0f))
                 {
                     agent.SetStatusCurrent(true);
                 }
