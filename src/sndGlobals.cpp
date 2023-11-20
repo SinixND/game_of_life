@@ -1,6 +1,10 @@
+// paired
 #include "sndGlobals.h" // provide object "global" for not configurable application parameters
 
+// external
 #include <raylib.h>
+
+// std
 #include <iostream>
 
 Global global; // define extern object

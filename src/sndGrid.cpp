@@ -1,14 +1,21 @@
+// paired
 #include "sndGrid.h"
 
+// project specific
 #include "sndConfigs.h" // provide object "config" for configurable parameters
 #include "sndAgent.h"
+
+// project independent
 #include "sndBenchmark.h"
+
+// std (C)
 #include <time.h>
+
+// std
 #include <cstdlib>
 #include <iostream>
 #include <vector>
 #include <thread>
-
 
 Grid::Grid(){};
 

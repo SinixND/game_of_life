@@ -1,15 +1,21 @@
+// paired
 #include "sndConfigs.h" // provide object "config" for configurable parameters
 #include "sndGlobals.h" // provide object "global" for not configurable application parameters
 #include "sndScenes.h"
+
+// project independent
 #define BENCHMARK_IMPLEMENTATION
 #include "sndBenchmark.h"
-#include <raylib.h>
+
+// external
 #define RAYGUI_IMPLEMENTATION // only define once
 #define RAYGUI_CUSTOM_ICONS     // Custom icons set required 
 #include "../resources/iconset.rgi.h"  
 #include <raygui.h>
-#include <iostream>
+#include <raylib.h>
 
+// std
+#include <iostream>
 
 int main()
 {

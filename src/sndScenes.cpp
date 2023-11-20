@@ -1,8 +1,14 @@
+// paired
 #include "sndScenes.h"
 
+// project specific
 #include "sndGlobals.h"
 #include "sndConfigs.h"
+
+// project independent
 #include "sndLayout.h"
+
+// external
 #include <raygui.h>
 
 scenes currentScene = MENU;

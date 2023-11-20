@@ -1,7 +1,10 @@
 #ifndef GRID_H
 #define GRID_H
 
+// project specific
 #include "sndAgent.h"
+
+// std
 #include <vector>
 
 class Grid

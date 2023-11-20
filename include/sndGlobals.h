@@ -1,6 +1,7 @@
 #ifndef GLOBALS_H
 #define GLOBALS_H
 
+// external
 #include <raylib.h>
 
 // NOT CUSTOMIZABLE BY USER

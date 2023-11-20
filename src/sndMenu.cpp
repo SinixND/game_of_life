@@ -1,12 +1,19 @@
+// paired
 #include "sndScenes.h"
 
+// project specific
 #include "sndGlobals.h"
+
+// project independent
 #include "sndLayout.h"
+
+// external
 #define RAYGUI_CUSTOM_ICONS     // Custom icons set required 
 #include "../resources/iconset.rgi.h"  
 #include <raygui.h>
-#include <iostream>
 
+// std
+#include <iostream>
 
 Menu::Menu()
 {

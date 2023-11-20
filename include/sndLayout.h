@@ -1,14 +1,16 @@
 #ifndef LAYOUT_H
 #define LAYOUT_H
 
+// external
 #include <raylib.h>
+
+// std
 #include <functional>
 #include <memory>
 #include <string>
 #include <vector>
 
 /* LAYOUT BOX STRUCTURE
-
 margin    m m m m m m m m m m   frame
 border    m B B B B B B B B m   frame
 padding   m B p p p p p p B m   frame
@@ -16,7 +18,6 @@ content   m B p CONTENT p B m
 padding   m B p p p p p p B m   frame
 border    m B B B B B B B B m   frame
 margin    m m m m m m m m m m   frame
-
 */
 namespace sxd
 {

@@ -1,8 +1,13 @@
 #ifndef SCENE_H
 #define SCENE_H
 
+// project independent
 #include "sndLayout.h"
+
+// external
 #include <raylib.h>
+
+// std
 #include <vector>
 
 typedef enum scenes
