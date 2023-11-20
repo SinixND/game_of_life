@@ -1,10 +1,9 @@
 #ifndef SCENE_H
 #define SCENE_H
 
-#include <vector>
-#include <raylib.h>
-
 #include "sndLayout.h"
+#include <raylib.h>
+#include <vector>
 
 typedef enum scenes
 {

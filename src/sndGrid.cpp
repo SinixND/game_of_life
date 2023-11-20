@@ -1,13 +1,14 @@
 #include "sndGrid.h"
+
+#include "sndConfigs.h" // provide object "config" for configurable parameters
+#include "sndAgent.h"
+#include "sndBenchmark.h"
+#include <time.h>
 #include <cstdlib>
 #include <iostream>
 #include <vector>
 #include <thread>
-#include <time.h>
 
-#include "sndAgent.h"
-#include "sndConfigs.h" // provide object "config" for configurable parameters
-#include "sndBenchmark.h"
 
 Grid::Grid(){};
 

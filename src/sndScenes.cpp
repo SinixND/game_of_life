@@ -1,8 +1,9 @@
-#include <raygui.h>
 #include "sndScenes.h"
+
 #include "sndGlobals.h"
-#include "sndLayout.h"
 #include "sndConfigs.h"
+#include "sndLayout.h"
+#include <raygui.h>
 
 scenes currentScene = MENU;
 

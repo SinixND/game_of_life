@@ -1,11 +1,11 @@
-#define RAYGUI_CUSTOM_ICONS // Custom icons set required
-#include "../resources/iconset.rgi.h"
-#include <raygui.h>
+#include "sndScenes.h"
 
 #include "sndConfigs.h"
 #include "sndGlobals.h"
 #include "sndLayout.h"
-#include "sndScenes.h"
+#define RAYGUI_CUSTOM_ICONS // Custom icons set required
+#include "../resources/iconset.rgi.h"
+#include <raygui.h>
 
 Settings::Settings()
 {

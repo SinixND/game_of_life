@@ -1,14 +1,15 @@
-#include <cmath>
-#define RAYGUI_CUSTOM_ICONS     // Custom icons set required 
-#include "../resources/iconset.rgi.h"  
-#include <raygui.h>
-#include <iostream>
+#include "sndScenes.h"
 
 #include "sndConfigs.h"
 #include "sndGlobals.h"
 #include "sndGrid.h"
 #include "sndLayout.h"
-#include "sndScenes.h"
+#define RAYGUI_CUSTOM_ICONS     // Custom icons set required 
+#include "../resources/iconset.rgi.h"  
+#include <raygui.h>
+#include <cmath>
+#include <iostream>
+
 
 // GAME OF LIFE / GRID
 //---------------------------------

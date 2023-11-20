@@ -1,9 +1,9 @@
 #ifndef LAYOUT_H
 #define LAYOUT_H
 
+#include <raylib.h>
 #include <functional>
 #include <memory>
-#include <raylib.h>
 #include <string>
 #include <vector>
 

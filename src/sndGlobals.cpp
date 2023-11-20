@@ -1,6 +1,7 @@
 #include "sndGlobals.h" // provide object "global" for not configurable application parameters
-#include <iostream>
+
 #include <raylib.h>
+#include <iostream>
 
 Global global; // define extern object
 Global::Global()

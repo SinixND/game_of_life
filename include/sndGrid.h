@@ -1,9 +1,8 @@
 #ifndef GRID_H
 #define GRID_H
 
-#include <vector>
-
 #include "sndAgent.h"
+#include <vector>
 
 class Grid
 {

@@ -3,13 +3,14 @@
 #ifndef SNDBENCHMARK_H
 #define SNDBENCHMARK_H
 
-#define ACTIVATE_BENCHMARKING
-
 #include <chrono>
-typedef std::chrono::steady_clock::time_point chrono_timePoint;
-typedef std::chrono::duration<double> chrono_timeDurationDouble;
 #include <string>
 #include <vector>
+
+#define ACTIVATE_BENCHMARKING
+
+typedef std::chrono::steady_clock::time_point chrono_timePoint;
+typedef std::chrono::duration<double> chrono_timeDurationDouble;
 
 namespace sxd
 {
@@ -32,6 +33,7 @@ namespace sxd
     void StartBenchmark(std::string id);
     void StopBenchmark(std::string id);
     void ShowBenchmarks();
+} // namespace sxd
 
 #endif // SNDBENCHMARK_H
 
@@ -40,15 +42,15 @@ namespace sxd
 
 #include <iostream>
 
-    std::vector<Benchmark> benchmarks = {Benchmark("NULL")};
+    std::vector<sxd::Benchmark> benchmarks = {Benchmark("NULL")};
 
-    Benchmark::Benchmark(std::string id)
+    sxd::Benchmark::Benchmark(std::string id)
         : id_{id}
         , iterations_{0}
     {
     }
 
-    void StartBenchmark(std::string id)
+    void sxd::StartBenchmark(std::string id)
     {
 #ifdef ACTIVATE_BENCHMARKING
         for (auto& benchmark : benchmarks)
@@ -65,7 +67,7 @@ namespace sxd
 #endif
     }
 
-    void StopBenchmark(std::string id)
+    void sxd::StopBenchmark(std::string id)
     {
 #ifdef ACTIVATE_BENCHMARKING
         for (auto& benchmark : benchmarks)
@@ -86,7 +88,7 @@ namespace sxd
 #endif
     }
 
-    void ShowBenchmarks()
+    void sxd::ShowBenchmarks()
     {
 #ifdef ACTIVATE_BENCHMARKING
         for (auto& benchmark : benchmarks)
@@ -102,6 +104,5 @@ namespace sxd
             std::cout << "\n";
 #endif
     }
-} // namespace sxd
 
 #endif
