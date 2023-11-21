@@ -5,7 +5,8 @@
 
 # TODOs
 # Current 
-[0] Check correct symbols
+[0] refactor list initialization
+[1] refactor conditional list initialisation (if necessary)
 
 # Shortterm
 
