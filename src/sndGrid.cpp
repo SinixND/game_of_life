@@ -1,48 +1,47 @@
 #include "sndGrid.h"
 
-#include "sndConfigs.h" // provide object "config" for configurable parameters
 #include "sndAgent.h"
 #include "sndBenchmark.h"
-#include <time.h>
+#include "sndConfigs.h" // provide object "config" for configurable parameters
 #include <cstdlib>
 #include <iostream>
-#include <vector>
 #include <thread>
+#include <time.h>
+#include <vector>
 
 Grid::Grid(){};
 
 Grid::Grid(int rowsY, int colsX)
-    : rowsY_ {rowsY}
-      , colsX_ {colsX}
+    : rowsY_{rowsY}
+    , colsX_{colsX}
 {
     Reset();
 }
 
-std::vector<std::vector<int>> debugGrid =
-{
-    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-    {0,0,1,0,0,0,0,0,0,0,0,0,1,1,0,0,0},
-    {0,0,1,0,0,0,0,1,1,1,0,0,1,1,0,0,0},
-    {0,0,1,0,0,0,1,1,1,0,0,0,0,0,1,1,0},
-    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0},
-    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-    {0,0,0,0,1,1,1,0,0,0,1,1,1,0,0,0,0},
-    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-    {0,0,1,0,0,0,0,1,0,1,0,0,0,0,1,0,0},
-    {0,0,1,0,0,0,0,1,0,1,0,0,0,0,1,0,0},
-    {0,0,1,0,0,0,0,1,0,1,0,0,0,0,1,0,0},
-    {0,0,0,0,1,1,1,0,0,0,1,1,1,0,0,0,0},
-    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-    {0,0,0,0,1,1,1,0,0,0,1,1,1,0,0,0,0},
-    {0,0,1,0,0,0,0,1,0,1,0,0,0,0,1,0,0},
-    {0,0,1,0,0,0,0,1,0,1,0,0,0,0,1,0,0},
-    {0,0,1,0,0,0,0,1,0,1,0,0,0,0,1,0,0},
-    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-    {0,0,0,0,1,1,1,0,0,0,1,1,1,0,0,0,0},
-    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+std::vector<std::vector<int>> debugGrid{
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0},
+    {0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 0, 0, 0},
+    {0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0},
+    {0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0},
+    {0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0},
+    {0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0},
+    {0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0},
+    {0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0},
+    {0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
 };
 
 void Grid::Reset()
@@ -59,12 +58,12 @@ void Grid::Reset()
         int debugRowsY = debugGrid.size();
         int debugColsX = debugGrid[0].size();
 
-        for (auto rowY = 0; rowY < rowsY_; ++rowY)
+        for (auto rowY{0}; rowY < rowsY_; ++rowY)
         {
             std::vector<Agent> newRow;
             grid_.push_back(newRow);
 
-            for (auto colX = 0; colX < colsX_; ++colX)
+            for (auto colX{0}; colX < colsX_; ++colX)
             {
                 // add new agent to grid
                 grid_[rowY].push_back(Agent(rowY, colX));
@@ -74,20 +73,21 @@ void Grid::Reset()
                 {
                     agent.SetStatusCurrent(debugGrid[rowY][colX]);
                 }
-                else{
+                else
+                {
                     agent.SetStatusCurrent(false);
-                }            
+                }
             }
         }
     }
     else
     {
-        for (auto rowY = 0; rowY < rowsY_; ++rowY)
+        for (auto rowY{0}; rowY < rowsY_; ++rowY)
         {
             std::vector<Agent> newRow;
             grid_.push_back(newRow);
 
-            for (auto colX = 0; colX < colsX_; ++colX)
+            for (auto colX{0}; colX < colsX_; ++colX)
             {
                 // add new agent to grid
                 grid_[rowY].push_back(Agent(rowY, colX));
@@ -113,16 +113,17 @@ void Grid::Evolve()
         std::vector<std::thread> threads;
         int gridRows = grid_.size();
 
-        int threadRange = gridRows / nThreads; // amount of rows processed by one thread
+        int threadRange = gridRows / nThreads;       // amount of rows processed by one thread
         int threadRangeExcess = gridRows % nThreads; // remaing rows
 
-        int i = 0;
-        int threadRangeBegin = 0; // including
+        int i{0};
+        int threadRangeBegin{0};          // including
         int threadRangeEnd = threadRange; // excluding
 
         while (i < nThreads)
         {
-            if (i < (threadRangeExcess + 1)) ++threadRangeEnd; // distribute excessive rows onto first threads
+            if (i < (threadRangeExcess + 1))
+                ++threadRangeEnd; // distribute excessive rows onto first threads
 
             threads.push_back(std::thread(&Grid::PrepareNextMT, this, threadRangeBegin, threadRangeEnd));
 
@@ -168,17 +169,17 @@ void Grid::PrepareNext()
 
             switch (CountAdjacentAgents(agent))
             {
-                case 2:
-                    agent.SetStatusNext(agent.GetStatusCurrent());
-                    break;
+            case 2:
+                agent.SetStatusNext(agent.GetStatusCurrent());
+                break;
 
-                case 3:
-                    agent.SetStatusNext(true);
-                    break;
+            case 3:
+                agent.SetStatusNext(true);
+                break;
 
-                default:
-                    agent.SetStatusNext(false);
-                    break;
+            default:
+                agent.SetStatusNext(false);
+                break;
             }
         }
     }
@@ -189,7 +190,7 @@ void Grid::PrepareNextMT(int threadRangeBegin, int threadRangeEnd)
     // DETERMINE NEXT AGENTS STATE
     //---------------------------------
     for (int i = threadRangeBegin; i < threadRangeEnd; ++i)
-        //for (auto& row : grid_)
+    // for (auto& row : grid_)
     {
         auto& row = grid_[i];
         for (auto& agent : row)
@@ -201,17 +202,17 @@ void Grid::PrepareNextMT(int threadRangeBegin, int threadRangeEnd)
 
             switch (CountAdjacentAgents(agent))
             {
-                case 2:
-                    agent.SetStatusNext(agent.GetStatusCurrent());
-                    break;
+            case 2:
+                agent.SetStatusNext(agent.GetStatusCurrent());
+                break;
 
-                case 3:
-                    agent.SetStatusNext(true);
-                    break;
+            case 3:
+                agent.SetStatusNext(true);
+                break;
 
-                default:
-                    agent.SetStatusNext(false);
-                    break;
+            default:
+                agent.SetStatusNext(false);
+                break;
             }
         }
     }
@@ -219,7 +220,7 @@ void Grid::PrepareNextMT(int threadRangeBegin, int threadRangeEnd)
 
 int Grid::CountAdjacentAgents(Agent& agent)
 {
-    int cnt = 0;
+    int cnt{0};
     for (auto dy : {-1, 0, 1})
     {
         for (auto dx : {-1, 0, 1})

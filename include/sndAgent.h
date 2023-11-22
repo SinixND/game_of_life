@@ -36,7 +36,7 @@ private:
     bool statusCurrent_;
     bool statusNext_;
     bool statusOutdated_;
-    int maxVitality_;
     int vitality_;
+    int maxVitality_;
 };
 #endif

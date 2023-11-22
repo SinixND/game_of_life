@@ -12,11 +12,11 @@
 
 // GAME OF LIFE / GRID
 //---------------------------------
-bool pauseState = false;
-bool singleIteration = false;
+bool pauseState{false};
+bool singleIteration{false};
 
-bool gameScreenInitialized = false;
-double timePassed = 0;
+bool gameScreenInitialized{false};
+double timePassed{0};
 
 int rowsY;
 int colsX;

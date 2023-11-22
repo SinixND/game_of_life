@@ -13,8 +13,8 @@
 
 //#define DEBUGGING
 
-int controlWidth = 100;
-int controlGap = 20;
+constexpr int controlWidth = 100;
+constexpr int controlGap = 20;
 
 // sxd::Wrapper
 //-------------------------------------
@@ -205,7 +205,7 @@ void sxd::Wrapper::SetMargin(int marginWeight)
     margin->SetFrameColor(RED);
 #endif
 
-    for (std::size_t i = 0; i < wrappers_.size(); ++i)
+    for (std::size_t i{0}; i < wrappers_.size(); ++i)
     {
         if (strcmp(wrappers_[i]->label_.c_str(), "Margin") == 0)
         {
@@ -238,7 +238,7 @@ void sxd::Wrapper::SetBorder(int borderWeight)
     border->SetFrameColor(GRAY);
 #endif
 
-    for (std::size_t i = 0; i < wrappers_.size(); ++i)
+    for (std::size_t i{0}; i < wrappers_.size(); ++i)
     {
         if (strcmp(wrappers_[i]->label_.c_str(), "Border") == 0)
         {
@@ -270,7 +270,7 @@ void sxd::Wrapper::SetPadding(int paddingWeight)
     padding->SetFrameColor(GREEN);
 #endif
 
-    for (std::size_t i = 0; i < wrappers_.size(); ++i)
+    for (std::size_t i{0}; i < wrappers_.size(); ++i)
     {
         if (strcmp(wrappers_[i]->label_.c_str(), "Padding") == 0)
         {
@@ -312,8 +312,8 @@ sxd::Element::~Element(){}
 
 void sxd::Element::AlignToParent(sxd::Wrapper* parent, sxd::Align flags, int offset)
 {
-    int positionLeft = 0;
-    int positionTop = 0;
+    int positionLeft{0};
+    int positionTop{0};
 
     if (flags & sxd::LEFT)
     {
@@ -608,8 +608,8 @@ void sxd::CheckBox::Render()
 
     GuiCheckBox(
         Rectangle{
-            static_cast<float>(GetInnerLeft() + ((controlWidth - fontSize_) / 2)),
-            static_cast<float>(GetInnerTop() + ((GetInnerHeight() - fontSize_) / 2)),
+            static_cast<float>(GetInnerLeft() + ((controlWidth - fontSize_) / 2.0f)),
+            static_cast<float>(GetInnerTop() + ((GetInnerHeight() - fontSize_) / 2.0f)),
             static_cast<float>(fontSize_),
             static_cast<float>(fontSize_)},
         NULL,

@@ -109,12 +109,14 @@ OBJS := $(patsubst %,$(OBJ_DIR)/%.$(OBJ_EXT),$(SRC_NAMES))
 DEPS := $(patsubst $(OBJ_DIR)/%.$(OBJ_EXT),$(OBJ_DIR)/%.$(DEP_EXT),$(OBJS))
 
 ### Non-file (.phony)targets (or rules)
-.PHONY: all debug release web test benchmark build rebuild run clean
+.PHONY: all bear debug release web test benchmark build rebuild run clean
 
 
 ### default rule by convention
-all: debug 
+all: bear debug 
 
+bear: 
+	bear -- make rebuild
 
 debug: CXX_FLAGS += -g -ggdb -Wall -Wextra -Werror -Wpedantic -pedantic-errors -MMD -O0 -fsanitize=address 
 debug: build

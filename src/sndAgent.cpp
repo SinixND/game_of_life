@@ -6,12 +6,12 @@
 Agent::Agent(int rowY, int colX)
     : rowY_ {rowY}
     , colX_ {colX}
+    , statusCurrent_{false}
+    , statusNext_{false}
+    , statusOutdated_{true}
+    , vitality_{0}
+    , maxVitality_{4}
 {
-    statusCurrent_ = false;
-    statusNext_ = false;
-    statusOutdated_ = true;
-    vitality_ = 0;
-    maxVitality_ = 4;
 }
 
 void Agent::SetRowY(int posY){ rowY_ = posY; }

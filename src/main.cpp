@@ -27,10 +27,6 @@ int main()
     GuiSetStyle(DEFAULT, TEXT_SIZE, 20);
     SetExitKey(0);
     GuiSetIconScale(2);
-
-    Image icon = LoadImage("resources/favicon.ico");
-    ImageFormat(&icon, PIXELFORMAT_UNCOMPRESSED_R8G8B8A8);
-    SetWindowIcon(icon);
     //---------------------------------
 
     Menu menu;
@@ -73,8 +69,6 @@ int main()
 
     // De-Initialization
     //---------------------------------
-    UnloadImage(icon);
-
     CloseWindow(); // Close window and OpenGL context
     //---------------------------------
 

@@ -76,12 +76,12 @@ namespace sxd
     protected:
         std::string label_{};
 
-        int outerLeft_ = 0;
-        int outerTop_ = 0;
-        int outerRight_ = 0;
-        int outerBottom_ = 0;
-        int outerWidth_ = 0;
-        int outerHeight_ = 0;
+        int outerLeft_{0};
+        int outerTop_{0};
+        int outerRight_{0};
+        int outerBottom_{0};
+        int outerWidth_{0};
+        int outerHeight_{0};
 
         int margin_{3};
         int border_{1};
