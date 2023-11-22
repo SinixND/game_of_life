@@ -113,17 +113,22 @@ DEPS := $(patsubst $(OBJ_DIR)/%.$(OBJ_EXT),$(OBJ_DIR)/%.$(DEP_EXT),$(OBJS))
 
 
 ### default rule by convention
-all: bear debug 
+all: debug test
+
 
 bear: 
 	bear -- make rebuild
+
 
 debug: CXX_FLAGS += -g -ggdb -Wall -Wextra -Werror -Wpedantic -pedantic-errors -MMD -O0 -fsanitize=address 
 debug: build
 
 
-test:
+test: $(TEST_DIR)/test.$(BINARY_EXT)
+	$(TEST_DIR)/test.$(BINARY_EXT)
+
 benchmark: CXX_FLAGS += -O3 -DNDEBUG
+
 
 ### rule for release build process with binary as prerequisite
 release: CXX_FLAGS += -O2
@@ -140,6 +145,11 @@ $(BIN_DIR)/$(BINARY).$(BINARY_EXT): $(OBJS)
 ### $@ (target, left of ":")
 ### $^ (all prerequesites, all right of ":")
 	$(CXX) -o $@ $^ $(LD_FLAGS) $(LIB_FLAGS) $(LD_LIBS) 
+### exclude main object file to avoid multiple definitions of main
+TEST_OBJS := $(patsubst ./build/$(TARGET).o,,$(OBJS))
+$(TEST_DIR)/test.$(TARGET_EXT): $(TEST_DIR)/test.$(OBJ_EXT) $(TEST_OBJS)
+	@mkdir -p $(BIN_DIR)
+	$(CXX) -o $@ $^ $(LIB_FLAGS) $(LD_LIBS)
 
 # === COMPILER COMMANDS ===
 ### MAKE object files FROM source files; "%" pattern-matches (need pair of)
@@ -149,6 +159,10 @@ $(OBJ_DIR)/%.$(OBJ_EXT): %.$(SRC_EXT)
 ### $< (first prerequesite, first right of ":")
 ### $@ (target, left of ":")
 	$(CXX) -o $@ -c $< $(CXX_FLAGS) $(INC_FLAGS)
+$(TEST_DIR)/test.$(OBJ_EXT): test.$(SRC_EXT)
+	@mkdir -p $(OBJ_DIR)
+	$(CXX) -o $@ -c $< $(CXX_FLAGS) $(INC_FLAGS)
+
 
 ### rule for web build process
 web:
