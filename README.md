@@ -7,6 +7,9 @@
 # Current 
 [0] refactor list initialization
 [1] refactor conditional list initialisation (if necessary)
+[2] include github.com/google/benchmark
+[3] refactor string_view where possible
+[4] refactor constexpr functions (compile time evaluation, header-only stuff)
 
 # Shortterm
 

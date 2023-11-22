@@ -73,7 +73,7 @@ MAKEFLAGS :=
 # -W(all/extra): 		enable warnings
 # -std=c++17:	force c++ standard
 # -MMD			provides dependency information (header files) for make in .d files
-CXX_FLAGS := -std=c++2b `pkg-config --cflags $(LIBRARIES)` -g -ggdb -Wall -Wextra -Werror -Wpedantic -pedantic-errors -MMD -pthread 
+CXX_FLAGS := -std=c++2b `pkg-config --cflags $(LIBRARIES)` -pthread 
 
 ### set linker flags
 LD_FLAGS := -fsanitize=address
@@ -109,16 +109,19 @@ OBJS := $(patsubst %,$(OBJ_DIR)/%.$(OBJ_EXT),$(SRC_NAMES))
 DEPS := $(patsubst $(OBJ_DIR)/%.$(OBJ_EXT),$(OBJ_DIR)/%.$(DEP_EXT),$(OBJS))
 
 ### Non-file (.phony)targets (or rules)
-.PHONY: all build web clean debug rebuild release run
+.PHONY: all debug release web test benchmark build rebuild run clean
 
 
 ### default rule by convention
 all: debug 
 
 
-debug: CXX_FLAGS += -O0 -fsanitize=address
+debug: CXX_FLAGS += -g -ggdb -Wall -Wextra -Werror -Wpedantic -pedantic-errors -MMD -O0 -fsanitize=address 
 debug: build
 
+
+test:
+benchmark: CXX_FLAGS += -O3 -DNDEBUG
 
 ### rule for release build process with binary as prerequisite
 release: CXX_FLAGS += -O2
