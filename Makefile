@@ -13,7 +13,7 @@ BINARY := main
 BINARY_EXT := exe
 
 ### label used libraries so the respective -l flags (eg. -lraylib)
-LIBRARIES := raylib
+LIBRARIES := gtest benchmark raylib
 ifdef TERMUX_VERSION
 	LIBRARIES += #log
 endif
@@ -103,8 +103,10 @@ SRC_NAMES := $(patsubst %.$(SRC_EXT),%,$(SRC_NAMES))
 
 ### make list of object files need for linker command by changing ending of all source files to .o;
 ### (patsubst pattern,replacement,target)
-### IMPORTANT for linker prerequesite, so they are found as compile rule
+### IMPORTANT for linker dependency, so they are found as compile rule
 OBJS := $(patsubst %,$(OBJ_DIR)/%.$(OBJ_EXT),$(SRC_NAMES))
+TEST_OBJS := $(TEST_DIR)/test.$(OBJ_EXT) $(patsubst ./build/$(BINARY).o,,$(OBJS))
+BM_OBJS := $(TEST_DIR)/benchmark.$(OBJ_EXT) $(patsubst ./build/$(BINARY).o,,$(OBJS))
 ### make list of dependency files
 DEPS := $(patsubst $(OBJ_DIR)/%.$(OBJ_EXT),$(OBJ_DIR)/%.$(DEP_EXT),$(OBJS))
 
@@ -113,21 +115,23 @@ DEPS := $(patsubst $(OBJ_DIR)/%.$(OBJ_EXT),$(OBJ_DIR)/%.$(DEP_EXT),$(OBJS))
 
 
 ### default rule by convention
-all: debug test
+all: debug test benchmark
 
 
 bear: 
-	bear -- make rebuild
+	bear -- make rebuild test
 
 
 debug: CXX_FLAGS += -g -ggdb -Wall -Wextra -Werror -Wpedantic -pedantic-errors -MMD -O0 -fsanitize=address 
 debug: build
 
 
+### exclude main object file to avoid multiple definitions of main
 test: $(TEST_DIR)/test.$(BINARY_EXT)
-	$(TEST_DIR)/test.$(BINARY_EXT)
+
 
 benchmark: CXX_FLAGS += -O3 -DNDEBUG
+benchmark: $(TEST_DIR)/benchmark.$(BINARY_EXT)
 
 
 ### rule for release build process with binary as prerequisite
@@ -143,30 +147,44 @@ $(BIN_DIR)/$(BINARY).$(BINARY_EXT): $(OBJS)
 ### make folder for binary file
 	@mkdir -p $(BIN_DIR)
 ### $@ (target, left of ":")
-### $^ (all prerequesites, all right of ":")
+### $^ (all dependencies, all right of ":")
 	$(CXX) -o $@ $^ $(LD_FLAGS) $(LIB_FLAGS) $(LD_LIBS) 
-### exclude main object file to avoid multiple definitions of main
-TEST_OBJS := $(patsubst ./build/$(TARGET).o,,$(OBJS))
-$(TEST_DIR)/test.$(TARGET_EXT): $(TEST_DIR)/test.$(OBJ_EXT) $(TEST_OBJS)
-	@mkdir -p $(BIN_DIR)
-	$(CXX) -o $@ $^ $(LIB_FLAGS) $(LD_LIBS)
+	@echo
+
+### LINK TEST
+$(TEST_DIR)/test.$(BINARY_EXT): $(TEST_OBJS)
+	$(CXX) -o $@ $^ $(LD_FLAGS) $(LIB_FLAGS) $(LD_LIBS)
+	@echo
+
+### LINK BENCHMARK
+$(TEST_DIR)/benchmark.$(BINARY_EXT): $(BM_OBJS)
+	$(CXX) -o $@ $^ $(LD_FLAGS) $(LIB_FLAGS) $(LD_LIBS)
+	@echo
+
 
 # === COMPILER COMMANDS ===
 ### MAKE object files FROM source files; "%" pattern-matches (need pair of)
 $(OBJ_DIR)/%.$(OBJ_EXT): %.$(SRC_EXT)
 ### copy source structure for object file directory
 	@mkdir -p $(OBJ_DIR)
-### $< (first prerequesite, first right of ":")
+### $< (first dependency, first right of ":")
 ### $@ (target, left of ":")
 	$(CXX) -o $@ -c $< $(CXX_FLAGS) $(INC_FLAGS)
+	@echo
+
+### COMPILE TEST 
 $(TEST_DIR)/test.$(OBJ_EXT): test.$(SRC_EXT)
-	@mkdir -p $(OBJ_DIR)
 	$(CXX) -o $@ -c $< $(CXX_FLAGS) $(INC_FLAGS)
+	@echo
+
+### COMPILE BENCHMARK 
+$(TEST_DIR)/benchmark.$(OBJ_EXT): benchmark.$(SRC_EXT)
+	$(CXX) -o $@ -c $< $(CXX_FLAGS) $(INC_FLAGS)
+	@echo
 
 
 ### rule for web build process
 web:
-	echo Buildig web...
 	emcc -o index.html $(SRCS) -Os -Wall $(RAYLIB_DIR)/libraylib.a $(LOC_INC_FLAGS) -I$(RAYLIB_DIR) -L$(RAYLIB_DIR) -s USE_GLFW=3 -s ASYNCIFY --shell-file $(RAYLIB_DIR)/minshell.html -DPLATFORM_WEB
 	@mkdir -p $(WEB_DIR)
 	emcc -o web/game.html $(SRCS) -Os -Wall $(RAYLIB_DIR)/libraylib.a $(LOC_INC_FLAGS) -I$(RAYLIB_DIR) -L$(RAYLIB_DIR) -s USE_GLFW=3 -s ASYNCIFY --shell-file $(RAYLIB_DIR)/minshell.html -DPLATFORM_WEB
@@ -174,11 +192,11 @@ web:
 
 ### clear dynamically created directories
 clean:
-	rm -rf $(OBJ_DIR) $(shell find . -type f -wholename "*.d") $(shell find . -type f -wholename "*.o") 
+	rm -rf $(OBJ_DIR) $(shell find . -type f -wholename "*.$(DEP_EXT)") $(shell find . -type f -wholename "*.$(OBJ_EXT)") $(shell find . -type f -wholename "*.$(BINARY_EXT)") 
 
 
 ### clean dynamically created directories before building fresh
-rebuild: clean debug
+rebuild: clean all
 
 
 ### run binary file after building

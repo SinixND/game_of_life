@@ -15,20 +15,6 @@
     },
     {
       "type": "shell",
-      "label": "make project lldb",
-      "command": "make",
-      "args": [],
-      "options": {
-        "cwd": "${workspaceFolder}"
-      },
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      },
-      "problemMatcher": []
-    },
-    {
-      "type": "shell",
       "label": "make test",
       "command": "make test",
       "args": [],

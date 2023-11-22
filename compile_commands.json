@@ -4,6 +4,7 @@
       "/usr/bin/clang++",
       "-c",
       "-std=c++2b",
+      "-DGTEST_HAS_PTHREAD=1",
       "-pthread",
       "-g",
       "-ggdb",
@@ -17,7 +18,6 @@
       "-I/usr/local/include",
       "-I/usr/include",
       "-I./include",
-      "-I./include/extern",
       "-o",
       "build/main.o",
       "./src/main.cpp"
@@ -31,6 +31,7 @@
       "/usr/bin/clang++",
       "-c",
       "-std=c++2b",
+      "-DGTEST_HAS_PTHREAD=1",
       "-pthread",
       "-g",
       "-ggdb",
@@ -44,20 +45,20 @@
       "-I/usr/local/include",
       "-I/usr/include",
       "-I./include",
-      "-I./include/extern",
       "-o",
-      "build/sndConfigs.o",
-      "./src/sndConfigs.cpp"
+      "build/sxdLayout.o",
+      "./src/sxdLayout.cpp"
     ],
     "directory": "/home/arch/coding/git_repos/game_of_life",
-    "file": "/home/arch/coding/git_repos/game_of_life/src/sndConfigs.cpp",
-    "output": "/home/arch/coding/git_repos/game_of_life/build/sndConfigs.o"
+    "file": "/home/arch/coding/git_repos/game_of_life/src/sxdLayout.cpp",
+    "output": "/home/arch/coding/git_repos/game_of_life/build/sxdLayout.o"
   },
   {
     "arguments": [
       "/usr/bin/clang++",
       "-c",
       "-std=c++2b",
+      "-DGTEST_HAS_PTHREAD=1",
       "-pthread",
       "-g",
       "-ggdb",
@@ -71,20 +72,20 @@
       "-I/usr/local/include",
       "-I/usr/include",
       "-I./include",
-      "-I./include/extern",
       "-o",
-      "build/sndGlobals.o",
-      "./src/sndGlobals.cpp"
+      "build/Agent.o",
+      "./src/Agent.cpp"
     ],
     "directory": "/home/arch/coding/git_repos/game_of_life",
-    "file": "/home/arch/coding/git_repos/game_of_life/src/sndGlobals.cpp",
-    "output": "/home/arch/coding/git_repos/game_of_life/build/sndGlobals.o"
+    "file": "/home/arch/coding/git_repos/game_of_life/src/Agent.cpp",
+    "output": "/home/arch/coding/git_repos/game_of_life/build/Agent.o"
   },
   {
     "arguments": [
       "/usr/bin/clang++",
       "-c",
       "-std=c++2b",
+      "-DGTEST_HAS_PTHREAD=1",
       "-pthread",
       "-g",
       "-ggdb",
@@ -98,20 +99,20 @@
       "-I/usr/local/include",
       "-I/usr/include",
       "-I./include",
-      "-I./include/extern",
       "-o",
-      "build/sndMenu.o",
-      "./src/sndMenu.cpp"
+      "build/Configs.o",
+      "./src/Configs.cpp"
     ],
     "directory": "/home/arch/coding/git_repos/game_of_life",
-    "file": "/home/arch/coding/git_repos/game_of_life/src/sndMenu.cpp",
-    "output": "/home/arch/coding/git_repos/game_of_life/build/sndMenu.o"
+    "file": "/home/arch/coding/git_repos/game_of_life/src/Configs.cpp",
+    "output": "/home/arch/coding/git_repos/game_of_life/build/Configs.o"
   },
   {
     "arguments": [
       "/usr/bin/clang++",
       "-c",
       "-std=c++2b",
+      "-DGTEST_HAS_PTHREAD=1",
       "-pthread",
       "-g",
       "-ggdb",
@@ -125,20 +126,20 @@
       "-I/usr/local/include",
       "-I/usr/include",
       "-I./include",
-      "-I./include/extern",
       "-o",
-      "build/sndScenes.o",
-      "./src/sndScenes.cpp"
+      "build/Game.o",
+      "./src/Game.cpp"
     ],
     "directory": "/home/arch/coding/git_repos/game_of_life",
-    "file": "/home/arch/coding/git_repos/game_of_life/src/sndScenes.cpp",
-    "output": "/home/arch/coding/git_repos/game_of_life/build/sndScenes.o"
+    "file": "/home/arch/coding/git_repos/game_of_life/src/Game.cpp",
+    "output": "/home/arch/coding/git_repos/game_of_life/build/Game.o"
   },
   {
     "arguments": [
       "/usr/bin/clang++",
       "-c",
       "-std=c++2b",
+      "-DGTEST_HAS_PTHREAD=1",
       "-pthread",
       "-g",
       "-ggdb",
@@ -152,20 +153,20 @@
       "-I/usr/local/include",
       "-I/usr/include",
       "-I./include",
-      "-I./include/extern",
       "-o",
-      "build/sndSettings.o",
-      "./src/sndSettings.cpp"
+      "build/Globals.o",
+      "./src/Globals.cpp"
     ],
     "directory": "/home/arch/coding/git_repos/game_of_life",
-    "file": "/home/arch/coding/git_repos/game_of_life/src/sndSettings.cpp",
-    "output": "/home/arch/coding/git_repos/game_of_life/build/sndSettings.o"
+    "file": "/home/arch/coding/git_repos/game_of_life/src/Globals.cpp",
+    "output": "/home/arch/coding/git_repos/game_of_life/build/Globals.o"
   },
   {
     "arguments": [
       "/usr/bin/clang++",
       "-c",
       "-std=c++2b",
+      "-DGTEST_HAS_PTHREAD=1",
       "-pthread",
       "-g",
       "-ggdb",
@@ -179,20 +180,20 @@
       "-I/usr/local/include",
       "-I/usr/include",
       "-I./include",
-      "-I./include/extern",
       "-o",
-      "build/sndAgent.o",
-      "./src/sndAgent.cpp"
+      "build/Grid.o",
+      "./src/Grid.cpp"
     ],
     "directory": "/home/arch/coding/git_repos/game_of_life",
-    "file": "/home/arch/coding/git_repos/game_of_life/src/sndAgent.cpp",
-    "output": "/home/arch/coding/git_repos/game_of_life/build/sndAgent.o"
+    "file": "/home/arch/coding/git_repos/game_of_life/src/Grid.cpp",
+    "output": "/home/arch/coding/git_repos/game_of_life/build/Grid.o"
   },
   {
     "arguments": [
       "/usr/bin/clang++",
       "-c",
       "-std=c++2b",
+      "-DGTEST_HAS_PTHREAD=1",
       "-pthread",
       "-g",
       "-ggdb",
@@ -206,20 +207,20 @@
       "-I/usr/local/include",
       "-I/usr/include",
       "-I./include",
-      "-I./include/extern",
       "-o",
-      "build/sndGame.o",
-      "./src/sndGame.cpp"
+      "build/Menu.o",
+      "./src/Menu.cpp"
     ],
     "directory": "/home/arch/coding/git_repos/game_of_life",
-    "file": "/home/arch/coding/git_repos/game_of_life/src/sndGame.cpp",
-    "output": "/home/arch/coding/git_repos/game_of_life/build/sndGame.o"
+    "file": "/home/arch/coding/git_repos/game_of_life/src/Menu.cpp",
+    "output": "/home/arch/coding/git_repos/game_of_life/build/Menu.o"
   },
   {
     "arguments": [
       "/usr/bin/clang++",
       "-c",
       "-std=c++2b",
+      "-DGTEST_HAS_PTHREAD=1",
       "-pthread",
       "-g",
       "-ggdb",
@@ -233,20 +234,20 @@
       "-I/usr/local/include",
       "-I/usr/include",
       "-I./include",
-      "-I./include/extern",
       "-o",
-      "build/sndGrid.o",
-      "./src/sndGrid.cpp"
+      "build/Scenes.o",
+      "./src/Scenes.cpp"
     ],
     "directory": "/home/arch/coding/git_repos/game_of_life",
-    "file": "/home/arch/coding/git_repos/game_of_life/src/sndGrid.cpp",
-    "output": "/home/arch/coding/git_repos/game_of_life/build/sndGrid.o"
+    "file": "/home/arch/coding/git_repos/game_of_life/src/Scenes.cpp",
+    "output": "/home/arch/coding/git_repos/game_of_life/build/Scenes.o"
   },
   {
     "arguments": [
       "/usr/bin/clang++",
       "-c",
       "-std=c++2b",
+      "-DGTEST_HAS_PTHREAD=1",
       "-pthread",
       "-g",
       "-ggdb",
@@ -260,13 +261,30 @@
       "-I/usr/local/include",
       "-I/usr/include",
       "-I./include",
-      "-I./include/extern",
       "-o",
-      "build/sndLayout.o",
-      "./src/sndLayout.cpp"
+      "build/Settings.o",
+      "./src/Settings.cpp"
     ],
     "directory": "/home/arch/coding/git_repos/game_of_life",
-    "file": "/home/arch/coding/git_repos/game_of_life/src/sndLayout.cpp",
-    "output": "/home/arch/coding/git_repos/game_of_life/build/sndLayout.o"
+    "file": "/home/arch/coding/git_repos/game_of_life/src/Settings.cpp",
+    "output": "/home/arch/coding/git_repos/game_of_life/build/Settings.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/clang++",
+      "-c",
+      "-std=c++2b",
+      "-DGTEST_HAS_PTHREAD=1",
+      "-pthread",
+      "-I/usr/local/include",
+      "-I/usr/include",
+      "-I./include",
+      "-o",
+      "test/test.o",
+      "./test/test.cpp"
+    ],
+    "directory": "/home/arch/coding/git_repos/game_of_life",
+    "file": "/home/arch/coding/git_repos/game_of_life/test/test.cpp",
+    "output": "/home/arch/coding/git_repos/game_of_life/test/test.o"
   }
 ]
