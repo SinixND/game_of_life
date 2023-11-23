@@ -6,16 +6,18 @@
 ### set the used compiler to g++ or clang++
 CXX := clang++ 
 
-### set the projects label, used for the binary (eg. main.exe)
+### set the projects label, used for the binary (eg. main.exe, root .cpp file needs same name)
 BINARY := main
 
 ### set the binary file extension
 BINARY_EXT := exe
 
 ### label used libraries so the respective -l flags (eg. -lraylib)
-LIBRARIES := gtest benchmark raylib
+LIBRARIES := raylib
 ifdef TERMUX_VERSION
-	LIBRARIES += #log
+LIBRARIES += #log
+else
+LIBRARIES += gtest benchmark 
 endif
 
 ### set the used file extension for c-files, usually either .c or .cpp
@@ -61,7 +63,7 @@ LOC_LIB_DIRS := $(shell find $(LOC_LIB_DIR) -type d)
 ### set raylib and emscripten directory as needed
 RAYLIB_DIR := /usr/lib/raylib
 ifdef TERMUX_VERSION
-	RAYLIB_DIR := $(PREFIX)/lib/raylib
+RAYLIB_DIR := $(PREFIX)/lib/raylib
 endif
 ### automatically added flags to make command
 MAKEFLAGS := 
@@ -111,11 +113,17 @@ BM_OBJS := $(TEST_DIR)/benchmark.$(OBJ_EXT) $(patsubst ./build/$(BINARY).o,,$(OB
 DEPS := $(patsubst $(OBJ_DIR)/%.$(OBJ_EXT),$(OBJ_DIR)/%.$(DEP_EXT),$(OBJS))
 
 ### Non-file (.phony)targets (or rules)
-.PHONY: all bear debug release web test benchmark build rebuild run clean
+.PHONY: all debug release web build rebuild run clean
+ifndef TERMUX_VERSION
+.PHONY: bear test benchmark
+endif
 
 
 ### default rule by convention
-all: debug test
+all: debug 
+ifndef TERMUX_VERSION
+all: test
+endif
 
 
 bear: 
@@ -141,7 +149,11 @@ release: CXX_FLAGS += -O2
 release: clean build web clean
 
 ### rule for native build process with binary as prerequisite
-build: $(BIN_DIR)/$(BINARY).$(BINARY_EXT) $(TEST_DIR)/test.$(BINARY_EXT) $(TEST_DIR)/benchmark.$(BINARY_EXT)
+build: $(BIN_DIR)/$(BINARY).$(BINARY_EXT) 
+
+ifndef TERMUX_VERSION
+build: $(TEST_DIR)/test.$(BINARY_EXT) $(TEST_DIR)/benchmark.$(BINARY_EXT)
+endif
 
 # === LINKER COMMANDS ===
 ### MAKE binary file FROM object files
