@@ -115,11 +115,11 @@ DEPS := $(patsubst $(OBJ_DIR)/%.$(OBJ_EXT),$(OBJ_DIR)/%.$(DEP_EXT),$(OBJS))
 
 
 ### default rule by convention
-all: debug test benchmark
+all: debug test
 
 
 bear: 
-	bear -- make rebuild test
+	bear -- make rebuild
 
 
 debug: CXX_FLAGS += -g -ggdb -Wall -Wextra -Werror -Wpedantic -pedantic-errors -MMD -O0 -fsanitize=address 
@@ -128,10 +128,12 @@ debug: build
 
 ### exclude main object file to avoid multiple definitions of main
 test: $(TEST_DIR)/test.$(BINARY_EXT)
+	$(TEST_DIR)/test.$(BINARY_EXT)
 
 
 benchmark: CXX_FLAGS += -O3 -DNDEBUG
 benchmark: $(TEST_DIR)/benchmark.$(BINARY_EXT)
+	$(TEST_DIR)/benchmark.$(BINARY_EXT)
 
 
 ### rule for release build process with binary as prerequisite
@@ -139,7 +141,7 @@ release: CXX_FLAGS += -O2
 release: clean build web clean
 
 ### rule for native build process with binary as prerequisite
-build: $(BIN_DIR)/$(BINARY).$(BINARY_EXT)
+build: $(BIN_DIR)/$(BINARY).$(BINARY_EXT) $(TEST_DIR)/test.$(BINARY_EXT) $(TEST_DIR)/benchmark.$(BINARY_EXT)
 
 # === LINKER COMMANDS ===
 ### MAKE binary file FROM object files
@@ -196,7 +198,7 @@ clean:
 
 
 ### clean dynamically created directories before building fresh
-rebuild: clean all
+rebuild: clean build
 
 
 ### run binary file after building

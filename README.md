@@ -5,7 +5,6 @@
 
 # TODOs
 # Current 
-[2] include github.com/google/benchmark
 [3] refactor string_view where possible
 [4] refactor constexpr functions (compile time evaluation, header-only stuff)
 
@@ -43,3 +42,4 @@
 [x] implement example (debug) grid
 [x] Mutlithreading (address sanitizer states error: leak if window size is reduced); Setting disabled, logic kept
 [x] refactor list initialization
+[x] include github.com/google/benchmark

@@ -3,6 +3,7 @@
 #include "Globals.h"
 #include "Configs.h"
 #include "sxdLayout.h"
+#define RAYGUI_IMPLEMENTATION // only define once
 #include <raygui.h>
 
 Scenes currentScene = MENU;
