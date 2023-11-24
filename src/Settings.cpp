@@ -88,16 +88,16 @@ void Settings::Initialize()
 
     body->AddWrapper(appSettings);
 
-    //auto multithreading = std::make_shared<sxd::CheckBox>(
-        //"Multithreading",
-        //GuiGetStyle(DEFAULT, TEXT_SIZE),
-        //&config.multiThread,
-        //body.get(),
-        //(sxd::Align)(sxd::LEFT | sxd::TOP),
-        //0);
+    auto multithreading = std::make_shared<sxd::CheckBox>(
+        "Multithreading",
+        GuiGetStyle(DEFAULT, TEXT_SIZE),
+        &config.multiThread,
+        body.get(),
+        (sxd::Align)(sxd::LEFT | sxd::TOP),
+        0);
 
-    //multithreading->AttachToBottom(appSettings.get());
-    //body->AddWrapper(multithreading);
+    multithreading->AttachToBottom(appSettings.get());
+    body->AddWrapper(multithreading);
 
     auto debugMode = std::make_shared<sxd::CheckBox>(
         "Example grid",
@@ -107,7 +107,7 @@ void Settings::Initialize()
         (sxd::Align)(sxd::LEFT | sxd::TOP),
         0);
 
-    debugMode->AttachToBottom(appSettings.get());
+    debugMode->AttachToBottom(multithreading.get());
     body->AddWrapper(debugMode);
 
     auto displaySettings = std::make_shared<sxd::Separator>(
