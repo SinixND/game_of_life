@@ -130,7 +130,7 @@ bear:
 	bear -- make rebuild
 
 
-debug: CXX_FLAGS += -g -ggdb -Wall -Wextra -Werror -Wpedantic -pedantic-errors -MMD -O0 -fsanitize=address 
+debug: CXX_FLAGS += -g -ggdb -Wall -Wextra -Wshadow -Werror -Wpedantic -pedantic-errors -MMD -O0 -fsanitize=address 
 debug: build
 
 

@@ -6,6 +6,8 @@
 #include "Grid.h"
 #include "Scenes.h"
 #include "sxdLayout.h"
+#define RAYGUI_IMPLEMENTATION // only define once
+#include <raygui.h>
 
 // BENCHMARKS
 static void BM_Evolve(benchmark::State& state)

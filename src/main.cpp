@@ -1,6 +1,7 @@
 #include "Configs.h" // provide object "config" for configurable parameters
 #include "Globals.h" // provide object "global" for not configurable application parameters
 #include "Scenes.h"
+#define RAYGUI_IMPLEMENTATION // only define once
 #define RAYGUI_CUSTOM_ICONS     // Custom icons set required 
 #include "../resources/iconset.rgi.h"  
 #include <raygui.h>
