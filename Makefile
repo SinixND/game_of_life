@@ -25,7 +25,7 @@ debug: CXX_FLAGS 	+= -g -ggdb -Wall -Wextra -Wshadow -Werror -Wpedantic -pedanti
 BINARY 				:= main
 
 ### automatically added flags to make command
-MAKEFLAGS 			:= -j
+MAKEFLAGS 			:= 
 
 #######################################
 ### set the used compiler to g++ or clang++

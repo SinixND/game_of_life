@@ -109,33 +109,30 @@ void Grid::Evolve()
     if (config.multiThread == true)
     {
         int nThreads = std::thread::hardware_concurrency();
-        std::vector<std::thread> threads;
+        std::vector<std::thread> threads(nThreads);
         int gridRows = grid_.size();
 
         int threadRange = gridRows / nThreads;       // amount of rows processed by one thread
         int threadRangeExcess = gridRows % nThreads; // remaing rows
 
-        int i{0};
         int threadRangeBegin{0};          // including
         int threadRangeEnd = threadRange; // excluding
 
-        while (i < nThreads)
+        //while (i < nThreads)
+        for (int i{0}; i < nThreads; ++i)
         {
-            if (i < (threadRangeExcess + 1))
-                ++threadRangeEnd; // distribute excessive rows onto first threads
+            if (i < (threadRangeExcess + 1)) ++threadRangeEnd; // distribute excessive rows onto first threads
 
-            threads.push_back(std::thread(&Grid::PrepareNextMT, this, threadRangeBegin, threadRangeEnd));
+            threads[i] = std::thread(&Grid::PrepareNextMT, this, threadRangeBegin, threadRangeEnd);
 
             threadRangeBegin = threadRangeEnd;
             threadRangeEnd += threadRange;
-            ++i;
         }
 
         for (auto& th : threads)
         {
             th.join();
         }
-        threads.clear();
     }
     else
     {
@@ -189,7 +186,6 @@ void Grid::PrepareNextMT(int threadRangeBegin, int threadRangeEnd)
     // DETERMINE NEXT AGENTS STATE
     //---------------------------------
     for (int i = threadRangeBegin; i < threadRangeEnd; ++i)
-    // for (auto& row : grid_)
     {
         auto& row = grid_[i];
         for (auto& agent : row)
