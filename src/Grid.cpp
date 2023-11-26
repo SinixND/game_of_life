@@ -115,13 +115,14 @@ void Grid::Evolve()
         int threadRange = gridRows / nThreads;       // amount of rows processed by one thread
         int threadRangeExcess = gridRows % nThreads; // remaing rows
 
-        int threadRangeBegin{0};          // including
-        int threadRangeEnd = threadRange; // excluding
+        int threadRangeBegin{0};                                      // including
+        int threadRangeEnd = (threadRange > 0) ? threadRange - 1 : 0; // excluding
 
-        //while (i < nThreads)
+        // while (i < nThreads)
         for (int i{0}; i < nThreads; ++i)
         {
-            if (i < (threadRangeExcess + 1)) ++threadRangeEnd; // distribute excessive rows onto first threads
+            if (i < (threadRangeExcess))
+                ++threadRangeEnd; // distribute excessive rows onto first threads
 
             threads[i] = std::thread(&Grid::PrepareNextMT, this, threadRangeBegin, threadRangeEnd);
 
@@ -187,13 +188,17 @@ void Grid::PrepareNextMT(int threadRangeBegin, int threadRangeEnd)
     //---------------------------------
     for (int i = threadRangeBegin; i < threadRangeEnd; ++i)
     {
-        auto& row = grid_[i];
-        for (auto& agent : row)
+        // auto& row = grid_[i];
+        auto rowSize{grid_[i].size()};
+        // for (auto& agent : row)
+        for (size_t j{0}; j < rowSize; ++j)
         {
             // Default ruleset:
             // Adjacent alive agents count = 2 -> remain.
             // Adjacent alive agent count = 3 -> alive.
             // All other die.
+
+            Agent& agent = grid_[i][j];
 
             switch (CountAdjacentAgents(agent))
             {

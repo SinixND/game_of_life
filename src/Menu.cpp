@@ -2,10 +2,10 @@
 
 #include "Globals.h"
 #include "sxdLayout.h"
-#define RAYGUI_CUSTOM_ICONS     // Custom icons set required 
-#include "../resources/iconset.rgi.h"  
-#include <raygui.h>
+#define RAYGUI_CUSTOM_ICONS // Custom icons set required
+#include "../resources/iconset.rgi.h"
 #include <iostream>
+#include <raygui.h>
 
 Menu::Menu()
 {
@@ -51,7 +51,8 @@ void Menu::Initialize()
     auto darkMode = std::make_shared<sxd::Button>(
         GuiIconText(ICON_DARK_MODE, ""),
         GuiGetStyle(DEFAULT, TEXT_SIZE),
-        [](){return false;},
+        []()
+        { return false; },
         []()
         {
             global.ToggleDarkMode();
@@ -84,7 +85,8 @@ void Menu::Initialize()
     auto start = std::make_shared<sxd::Button>(
         "Start",
         GuiGetStyle(DEFAULT, TEXT_SIZE),
-        [](){return IsKeyPressed(KEY_ENTER) || IsKeyPressed(KEY_KP_ENTER);},
+        []()
+        { return IsKeyPressed(KEY_ENTER) || IsKeyPressed(KEY_KP_ENTER); },
         []()
         {
             currentScene = GAME;
@@ -98,7 +100,8 @@ void Menu::Initialize()
     auto settings = std::make_shared<sxd::Button>(
         "Settings",
         GuiGetStyle(DEFAULT, TEXT_SIZE),
-        [](){return false;},
+        []()
+        { return false; },
         []()
         {
             currentScene = SETTINGS;
@@ -113,7 +116,8 @@ void Menu::Initialize()
     auto exit = std::make_shared<sxd::Button>(
         "Exit",
         GuiGetStyle(DEFAULT, TEXT_SIZE),
-        [](){return IsKeyPressed(KEY_ESCAPE);},
+        []()
+        { return IsKeyPressed(KEY_ESCAPE); },
         []()
         {
             global.exitApp = true;

@@ -2,16 +2,16 @@
 
 #include "Configs.h"
 #include "Globals.h"
-#include <raygui.h>
-#include <raylib.h>
-#include <string.h>
 #include <cstdlib>
 #include <functional>
 #include <iostream>
 #include <memory>
+#include <raygui.h>
+#include <raylib.h>
+#include <string.h>
 #include <vector>
 
-//#define DEBUGGING
+// #define DEBUGGING
 
 constexpr int controlWidth = 100;
 constexpr int controlGap = 20;
@@ -55,7 +55,7 @@ sxd::Wrapper::Wrapper(const char* label, int left, int top, int right, int botto
     UpdateFrame();
 }
 
-sxd::Wrapper::~Wrapper(){}
+sxd::Wrapper::~Wrapper() {}
 
 void sxd::Wrapper::Render()
 {
@@ -190,7 +190,8 @@ void sxd::Wrapper::SetMargin(int marginWeight)
 {
     margin_ = marginWeight;
 
-    if (marginWeight == 0) return;
+    if (marginWeight == 0)
+        return;
 
     auto margin = std::make_shared<sxd::Wrapper>(
         this->GetOuterLeft(),
@@ -223,7 +224,8 @@ void sxd::Wrapper::SetBorder(int borderWeight)
 {
     border_ = borderWeight;
 
-    if (borderWeight == 0) return;
+    if (borderWeight == 0)
+        return;
 
     auto border = std::make_shared<sxd::Wrapper>(
         this->GetOuterLeft() + this->GetMargin(),
@@ -255,7 +257,8 @@ void sxd::Wrapper::SetPadding(int paddingWeight)
 {
     padding_ = paddingWeight;
 
-    if (paddingWeight == 0) return;
+    if (paddingWeight == 0)
+        return;
 
     auto padding = std::make_shared<sxd::Wrapper>(
         this->GetOuterLeft() + this->GetMargin() + this->GetBorder(),
@@ -298,17 +301,17 @@ int sxd::Wrapper::GetInnerHeight() { return innerHeight_; }
 // sxd::Element
 //-------------------------------------
 sxd::Element::Element(const char* label)
-    : sxd::Wrapper {label}
+    : sxd::Wrapper{label}
 {
 }
 
 sxd::Element::Element(const char* label, int fontSize, int left, int top, int right, int bottom)
-    : sxd::Wrapper {label, left, top, right, bottom}
+    : sxd::Wrapper{label, left, top, right, bottom}
 {
     fontSize_ = fontSize;
 }
 
-sxd::Element::~Element(){}
+sxd::Element::~Element() {}
 
 void sxd::Element::AlignToParent(sxd::Wrapper* parent, sxd::Align flags, int offset)
 {
@@ -438,21 +441,21 @@ void sxd::Element::AttachToBottomAndAlign(sxd::Element* parent)
 // sxd::Button
 //-------------------------------------
 sxd::Button::Button(const char* label)
-    : sxd::Element {label}
+    : sxd::Element{label}
 {
 }
 
 sxd::Button::Button(const char* label, int fontSize, std::function<bool()> inputs, std::function<void()> action, int left, int top, int right, int bottom)
-    : sxd::Element {label, fontSize, left, top, right, bottom}
+    : sxd::Element{label, fontSize, left, top, right, bottom}
 {
     SetInputs(inputs);
     SetAction(action);
 }
 
 sxd::Button::Button(const char* label, int fontSize, std::function<bool()> inputs, std::function<void()> action, sxd::Wrapper* parent, sxd::Align flags, int offset)
-    : sxd::Element {label, fontSize, 0, 0, static_cast<int>(1.5 * MeasureText(label, fontSize)), 2 * fontSize}
+    : sxd::Element{label, fontSize, 0, 0, static_cast<int>(1.5 * MeasureText(label, fontSize)), 2 * fontSize}
 {
-    if (label[0] == '#') 
+    if (label[0] == '#')
     {
         ResizeOuterRight(3 * fontSize_);
         ResizeOuterBottom(3 * fontSize_);
@@ -464,7 +467,7 @@ sxd::Button::Button(const char* label, int fontSize, std::function<bool()> input
     AlignToParent(parent, flags, offset);
 }
 
-sxd::Button::~Button(){}
+sxd::Button::~Button() {}
 
 void sxd::Button::Render()
 {
@@ -506,12 +509,12 @@ void sxd::Button::SetAction(std::function<void()> action)
 // sxd::Separator
 //-------------------------------------
 sxd::Separator::Separator(const char* label, int left, int right, sxd::Wrapper* parent, sxd::Align flags, int offset)
-    : sxd::Element {label, 0, left, 0, right, 2 * GuiGetStyle(DEFAULT, TEXT_SIZE)}
+    : sxd::Element{label, 0, left, 0, right, 2 * GuiGetStyle(DEFAULT, TEXT_SIZE)}
 {
     AlignToParent(parent, flags, offset);
 }
 
-sxd::Separator::~Separator(){}
+sxd::Separator::~Separator() {}
 
 void sxd::Separator::Render()
 {
@@ -530,12 +533,12 @@ void sxd::Separator::Render()
 // sxd::Spacer
 //-------------------------------------
 sxd::Spacer::Spacer(const char* label, int vSpace, int hSpace, sxd::Wrapper* parent, sxd::Align flags, int offset)
-    : sxd::Element {label, 0, 0, 0, hSpace, vSpace}
+    : sxd::Element{label, 0, 0, 0, hSpace, vSpace}
 {
     AlignToParent(parent, flags, offset);
 }
 
-sxd::Spacer::~Spacer(){}
+sxd::Spacer::~Spacer() {}
 
 void sxd::Spacer::Render()
 {
@@ -546,12 +549,12 @@ void sxd::Spacer::Render()
 // sxd::Label
 //-------------------------------------
 sxd::Label::Label(const char* label, int fontSize, sxd::Wrapper* parent, sxd::Align flags, int offset)
-    : sxd::Element {label, fontSize, 0, 0, static_cast<int>(1.5 * MeasureText(label, fontSize)), 2 * fontSize}
+    : sxd::Element{label, fontSize, 0, 0, static_cast<int>(1.5 * MeasureText(label, fontSize)), 2 * fontSize}
 {
     AlignToParent(parent, flags, offset);
 }
 
-sxd::Label::~Label(){}
+sxd::Label::~Label() {}
 
 void sxd::Label::Render()
 {
@@ -570,7 +573,7 @@ void sxd::Label::Render()
 // sxd::Text
 //-------------------------------------
 sxd::Text::Text(const char* label, int fontSize, sxd::Wrapper* parent, sxd::Align flags, int offset)
-    : sxd::Element {label, fontSize, 0, 0, MeasureText(label, fontSize), fontSize}
+    : sxd::Element{label, fontSize, 0, 0, MeasureText(label, fontSize), fontSize}
 
 {
     fontSize_ = fontSize;
@@ -578,7 +581,7 @@ sxd::Text::Text(const char* label, int fontSize, sxd::Wrapper* parent, sxd::Alig
     AlignToParent(parent, flags, offset);
 }
 
-sxd::Text::~Text(){}
+sxd::Text::~Text() {}
 
 void sxd::Text::Render()
 {
@@ -591,7 +594,7 @@ void sxd::Text::Render()
 // sxd::CheckBox
 //-------------------------------------
 sxd::CheckBox::CheckBox(const char* label, int fontSize, bool* value, sxd::Wrapper* parent, sxd::Align flags, int offset)
-    : sxd::Element {label, fontSize, 0, 0, controlWidth + controlGap + MeasureText(label, fontSize), (2 * fontSize)}
+    : sxd::Element{label, fontSize, 0, 0, controlWidth + controlGap + MeasureText(label, fontSize), (2 * fontSize)}
 
 {
     fontSize_ = fontSize;
@@ -628,7 +631,7 @@ void sxd::CheckBox::Render()
 // sxd::Spinner
 //-------------------------------------
 sxd::Spinner::Spinner(const char* label, int fontSize, int* value, int minValue, int maxValue, bool editMode, sxd::Wrapper* parent, sxd::Align flags, int offset)
-    : sxd::Element {label, fontSize, 0, 0, controlWidth + controlGap + MeasureText(label, fontSize), 2 * fontSize}
+    : sxd::Element{label, fontSize, 0, 0, controlWidth + controlGap + MeasureText(label, fontSize), 2 * fontSize}
 {
     value_ = value;
     minValue_ = minValue;
@@ -638,7 +641,7 @@ sxd::Spinner::Spinner(const char* label, int fontSize, int* value, int minValue,
     AlignToParent(parent, flags, offset);
 }
 
-sxd::Spinner::~Spinner(){}
+sxd::Spinner::~Spinner() {}
 
 void sxd::Spinner::Render()
 {
@@ -650,10 +653,10 @@ void sxd::Spinner::Render()
             static_cast<float>(GetInnerTop()),
             static_cast<float>(controlWidth),
             static_cast<float>(GetInnerHeight())},
-        NULL, 
-        value_, 
-        minValue_, 
-        maxValue_, 
+        NULL,
+        value_,
+        minValue_,
+        maxValue_,
         editMode_);
 
     GuiLabel(

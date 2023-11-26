@@ -2,11 +2,11 @@
 #include "Globals.h" // provide object "global" for not configurable application parameters
 #include "Scenes.h"
 #define RAYGUI_IMPLEMENTATION // only define once
-#define RAYGUI_CUSTOM_ICONS     // Custom icons set required 
-#include "../resources/iconset.rgi.h"  
+#define RAYGUI_CUSTOM_ICONS   // Custom icons set required
+#include "../resources/iconset.rgi.h"
+#include <iostream>
 #include <raygui.h>
 #include <raylib.h>
-#include <iostream>
 
 int main(/* int argc, char **argv */)
 {
@@ -14,7 +14,6 @@ int main(/* int argc, char **argv */)
     //---------------------------------
     const int screenWidth = 450;
     const int screenHeight = 550;
-
 
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     SetConfigFlags(FLAG_WINDOW_TRANSPARENT);
@@ -35,13 +34,13 @@ int main(/* int argc, char **argv */)
     //---------------------------------
     while (!WindowShouldClose() && !global.exitApp) // Detect window close button or ESC key
     {
-        if(IsWindowResized())
+        if (IsWindowResized())
         {
             menu.Initialize();
             settings.Initialize();
             game.Initialize();
         }
-    
+
         switch (currentScene)
         {
         case MENU:
