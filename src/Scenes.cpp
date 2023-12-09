@@ -2,8 +2,8 @@
 
 #include "Configs.h"
 #include "Globals.h"
+#include "external/raygui.h"
 #include "sxdLayout.h"
-#include <raygui.h>
 
 Scenes currentScene = MENU;
 

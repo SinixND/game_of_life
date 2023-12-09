@@ -5,7 +5,7 @@
 
 ### label used libraries so the respective -l flags (eg. -lraylib)
 LIBRARIES 			:= raylib
-WIN_LIBRARIES 		:= $(LIBRARIES)
+WIN_LIBRARIES 		:= $(LIBRARIES) opengl32 gdi32 winmm
 ifdef TERMUX_VERSION
 LIBRARIES 			+= #log
 else
@@ -16,8 +16,7 @@ endif
 # -MMD			provides dependency information (header files) for make in .d files
 # -pg			ADD FOR gprof analysis TO BOTH COMPILE AND LINK COMMAND!!
 
-CXX_FLAGS 			:= -std=c++2b `pkg-config --cflags $(LIBRARIES)` -pthread 
-WIN_CXX_FLAGS 		:= -std=c++2b `pkg-config --cflags $(WIN_LIBRARIES)` -pthread 
+CXX_FLAGS 			:= -std=c++2a -pthread #`pkg-config --cflags $(LIBRARIES)`
 debug: CXX_FLAGS 	+= -g -ggdb -Wall -Wextra -Wshadow -Werror -Wpedantic -pedantic-errors -MMD -O0 #-fsanitize=address 
 
 ### set the projects label, used for the binary (eg. main.exe, root .cpp file needs same name)
@@ -84,6 +83,7 @@ LOC_LIB_DIRS 		:= $(shell find $(LOC_LIB_DIR) -type d)
 
 ### set raylib and emscripten directory as needed
 RAYLIB_DIR 			:= /usr/lib/raylib
+WIN_RAYLIB_DIR 		:= /usr/x86_64-w64-mingw32/lib/raylib/src
 ifdef TERMUX_VERSION
 RAYLIB_DIR 			:= $(PREFIX)/lib/raylib
 endif
@@ -96,8 +96,8 @@ LD_FLAGS 			:= #-fsanitize=address
 #######################
 
 ### make linker flags by prefixing every provided library with -l (should work for most libraries due to convention); probably pkg-config makes duplicates...
-LD_LIBS 			:= $(addprefix -l,$(LIBRARIES)) $(shell pkg-config --libs $(LIBRARIES))
-WIN_LD_LIBS 			:= $(addprefix -l,$(WIN_LIBRARIES)) $(shell pkg-config --libs $(WIN_LIBRARIES))
+LD_LIBS 			:= $(addprefix -l,$(LIBRARIES)) #$(shell pkg-config --libs $(LIBRARIES))
+WIN_LD_LIBS 			:= $(addprefix -l,$(WIN_LIBRARIES)) #$(shell pkg-config --libs $(WIN_LIBRARIES))
 
 ### make library flags by prefixing every provided path with -L; this might take a while for the first time, but will NOT be repeated every time
 SYS_LIB_FLAGS 		:= $(addprefix -L,$(SYS_LIB_DIR))
@@ -166,7 +166,7 @@ benchmark: $(TEST_DIR)/benchmark.$(BINARY_EXT)
 
 ### rule for release build process with binary as prerequisite
 release: CXX_FLAGS += -O2
-release: clean build web clean #windows 
+release: build web #windows 
 
 ### rule for native build process with binary as prerequisite
 build: $(BIN_DIR)/$(BINARY).$(BINARY_EXT) 
@@ -209,17 +209,17 @@ $(TEST_DIR)/benchmark.$(OBJ_EXT): benchmark.$(SRC_EXT)
 
 ### rule for web build process
 web:
-	emcc -o index.html $(SRCS) -Os -Wall $(RAYLIB_DIR)/libraylib.a $(LOC_INC_FLAGS) -I$(RAYLIB_DIR) -L$(RAYLIB_DIR) -s USE_GLFW=3 -s ASYNCIFY --shell-file $(RAYLIB_DIR)/minshell.html -DPLATFORM_WEB
-	emcc -o web/game.html $(SRCS) -Os -Wall $(RAYLIB_DIR)/libraylib.a $(LOC_INC_FLAGS) -I$(RAYLIB_DIR) -L$(RAYLIB_DIR) -s USE_GLFW=3 -s ASYNCIFY --shell-file $(RAYLIB_DIR)/minshell.html -DPLATFORM_WEB
+	emcc -o index.html $(SRCS) -Os -Wall $(RAYLIB_DIR)/src/libraylib.a $(LOC_INC_FLAGS) -I$(RAYLIB_DIR)/src -L$(RAYLIB_DIR) -s USE_GLFW=3 -s ASYNCIFY --shell-file $(RAYLIB_DIR)/src/minshell.html -DPLATFORM_WEB
+	emcc -o web/game.html $(SRCS) -Os -Wall $(RAYLIB_DIR)/src/libraylib.a $(LOC_INC_FLAGS) -I$(RAYLIB_DIR)/src -L$(RAYLIB_DIR) -s USE_GLFW=3 -s ASYNCIFY --shell-file $(RAYLIB_DIR)/src/minshell.html -DPLATFORM_WEB
 
 ### rule for windows build process
 windows: $(BIN_DIR)/$(BINARY).$(WIN_BINARY_EXT) 
 
 $(BIN_DIR)/$(BINARY).$(WIN_BINARY_EXT): $(WIN_OBJS)
-	$(WIN_CXX) -o $@ $^ $(WIN_LD_FLAGS) $(WIN_LIB_FLAGS) $(WIN_LD_LIBS) -L$(RAYLIB_DIR)
+	$(WIN_CXX) -o $@ $^ $(WIN_LD_FLAGS) $(WIN_LIB_FLAGS) -L$(WIN_RAYLIB_DIR) $(WIN_LD_LIBS) -static -static-libgcc -static-libstdc++
 
 $(OBJ_DIR)/%.$(WIN_OBJ_EXT): %.$(SRC_EXT)
-	$(WIN_CXX) -o $@ -c $< $(WIN_CXX_FLAGS) $(WIN_INC_FLAGS) -I$(RAYLIB_DIR)
+	$(WIN_CXX) -o $@ -c $< $(CXX_FLAGS) $(WIN_INC_FLAGS) -I$(RAYLIB_DIR)
 
 
 ### clear dynamically created directories

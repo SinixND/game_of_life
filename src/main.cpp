@@ -5,8 +5,8 @@
 #define RAYGUI_IMPLEMENTATION // only define once
 #define RAYGUI_CUSTOM_ICONS   // Custom icons set required
 #include "../resources/iconset.rgi.h"
+#include "external/raygui.h"
 #include <iostream>
-#include <raygui.h>
 #include <raylib.h>
 
 int main(/* int argc, char **argv */)

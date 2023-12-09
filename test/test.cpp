@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 #define RAYGUI_IMPLEMENTATION // only define once
-#include <raygui.h>
+#include "external/raygui.h"
 
 // SETUP
 unsigned int Factorial(unsigned int number)
@@ -16,7 +16,6 @@ TEST(Factorial, HandlesPositiveInput)
     EXPECT_EQ(Factorial(3), 6);
     EXPECT_EQ(Factorial(8), 40320);
 }
-
 
 int main(int argc, char** argv)
 {

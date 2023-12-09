@@ -4,8 +4,8 @@
 #include "sxdLayout.h"
 #define RAYGUI_CUSTOM_ICONS // Custom icons set required
 #include "../resources/iconset.rgi.h"
+#include "external/raygui.h"
 #include <iostream>
-#include <raygui.h>
 
 Menu::Menu()
 {
