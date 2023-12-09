@@ -109,7 +109,7 @@ void Grid::Evolve()
     if (config.multiThread == true)
     {
         int nThreads = std::thread::hardware_concurrency();
-        std::vector<std::thread> threads(nThreads);
+        static std::vector<std::thread> threads(nThreads);
         int gridRows = grid_.size();
 
         int threadRange = gridRows / nThreads;       // amount of rows processed by one thread
@@ -221,13 +221,18 @@ void Grid::PrepareNextMT(int threadRangeBegin, int threadRangeEnd)
 int Grid::CountAdjacentAgents(Agent& agent)
 {
     int cnt{0};
+    int agentRowY = agent.GetRowY();
+    int agentColX = agent.GetColX();
+    int gridRows = grid_.size();
+    int gridCols = grid_[0].size();
+
     for (auto dy : {-1, 0, 1})
     {
         for (auto dx : {-1, 0, 1})
         {
             // set adjacent position, wrapping around matrix
-            int posY = ((agent.GetRowY() + dy) + grid_.size()) % grid_.size();
-            int posX = ((agent.GetColX() + dx) + grid_[posY].size()) % grid_[posY].size();
+            int posY = ((agentRowY + dy) + gridRows) % gridRows;
+            int posX = ((agentColX + dx) + gridCols) % gridCols;
 
             Agent& adjacentAgent = grid_[posY][posX];
 

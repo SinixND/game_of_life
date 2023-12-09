@@ -1,3 +1,4 @@
+#define TRACY_ENABLE
 #include "Configs.h" // provide object "config" for configurable parameters
 #include "Globals.h" // provide object "global" for not configurable application parameters
 #include "Scenes.h"
@@ -12,11 +13,13 @@ int main(/* int argc, char **argv */)
 {
     // Initialization
     //---------------------------------
-    const int screenWidth = 450;
-    const int screenHeight = 550;
+    const int screenWidth = 0;  // 450;
+    const int screenHeight = 0; // 550;
 
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     SetConfigFlags(FLAG_WINDOW_TRANSPARENT);
+    SetConfigFlags(FLAG_WINDOW_MAXIMIZED);
+    SetConfigFlags(FLAG_WINDOW_HIGHDPI);
 
     InitWindow(screenWidth, screenHeight, "Conway's Game of Life");
 
