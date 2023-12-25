@@ -1,7 +1,7 @@
 #ifndef CONFIGS_H_202311201531
 #define CONFIGS_H_202311201531
 
-#include <raylib.h>
+#include "raylib.h"
 
 // CUSTOMIZABLE BY USER
 //---------------------------------

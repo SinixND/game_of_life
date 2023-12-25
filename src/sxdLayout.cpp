@@ -3,14 +3,13 @@
 #include "Configs.h"
 #include "Globals.h"
 #include "external/raygui.h"
+#include "raylib.h"
 #include <cstdlib>
 #include <functional>
 #include <iostream>
 #include <memory>
-#include <raylib.h>
 #include <string.h>
 #include <vector>
-
 
 // #define DEBUGGING
 

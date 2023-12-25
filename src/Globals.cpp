@@ -1,7 +1,7 @@
 #include "Globals.h" // provide object "global" for not configurable application parameters
 
+#include "raylib.h"
 #include <iostream>
-#include <raylib.h>
 
 Global global; // define extern object
 Global::Global()

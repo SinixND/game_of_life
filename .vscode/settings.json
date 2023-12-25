@@ -119,5 +119,6 @@
   "gtest-adapter.debugConfig": [
     "make project"
   ],
-  "gtest-adapter.supportLocation": false
+  "gtest-adapter.supportLocation": false,
+  "liveServer.settings.port": 5501
 }

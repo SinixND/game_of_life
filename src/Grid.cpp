@@ -4,7 +4,9 @@
 #include "Configs.h" // provide object "config" for configurable parameters
 #include <cstdlib>
 #include <iostream>
+#ifndef __EMSCRIPTEN__
 #include <thread>
+#endif
 #include <time.h>
 #include <vector>
 
@@ -106,6 +108,7 @@ void Grid::Evolve()
 {
     previousGrid_ = grid_;
 
+#ifndef __EMSCRIPTEN__
     if (config.multiThread == true)
     {
         int nThreads = std::thread::hardware_concurrency();
@@ -139,6 +142,9 @@ void Grid::Evolve()
     {
         PrepareNext();
     }
+#else
+    PrepareNext();
+#endif
 
     Update();
 }

@@ -1,7 +1,7 @@
 #ifndef GLOBALS_H_202311201531
 #define GLOBALS_H_202311201531
 
-#include <raylib.h>
+#include "raylib.h"
 
 // NOT CUSTOMIZABLE BY USER
 //---------------------------------
