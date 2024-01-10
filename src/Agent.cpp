@@ -4,13 +4,13 @@
 #include <vector>
 
 Agent::Agent(int rowY, int colX)
-    : rowY_{rowY}
-    , colX_{colX}
-    , statusCurrent_{false}
-    , statusNext_{false}
-    , statusOutdated_{true}
-    , vitality_{0}
-    , maxVitality_{4}
+    : rowY_(rowY)
+    , colX_(colX)
+    , statusCurrent_(false)
+    , statusNext_(false)
+    , statusOutdated_(true)
+    , vitality_(0)
+    , maxVitality_(4)
 {
 }
 

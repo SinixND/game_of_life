@@ -13,8 +13,8 @@
 Grid::Grid(){};
 
 Grid::Grid(int rowsY, int colsX)
-    : rowsY_{rowsY}
-    , colsX_{colsX}
+    : rowsY_(rowsY)
+    , colsX_(colsX)
 {
     Reset();
 }

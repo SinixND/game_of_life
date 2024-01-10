@@ -2,13 +2,13 @@
 
 #include "Configs.h"
 #include "Globals.h"
-#include "external/raygui.h"
+#include "raygui.h"
 #include "sxdLayout.h"
 
 Scenes currentScene = MENU;
 
 Scene::Scene()
-    : main{std::make_shared<sxd::Wrapper>("main", 0, 0, GetRenderWidth(), GetRenderHeight())}
+    : main(std::make_shared<sxd::Wrapper>("main", 0, 0, GetRenderWidth(), GetRenderHeight()))
 {
 }
 

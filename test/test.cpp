@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 #define RAYGUI_IMPLEMENTATION // only define once
-#include "external/raygui.h"
+#include "raygui.h"
 
 // SETUP
 unsigned int Factorial(unsigned int number)

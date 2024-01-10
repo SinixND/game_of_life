@@ -2,7 +2,7 @@
 
 #include "Configs.h"
 #include "Globals.h"
-#include "external/raygui.h"
+#include "raygui.h"
 #include "raylib.h"
 #include <cstdlib>
 #include <functional>

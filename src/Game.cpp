@@ -6,7 +6,7 @@
 #include "sxdLayout.h"
 #define RAYGUI_CUSTOM_ICONS // Custom icons set required
 #include "../resources/iconset.rgi.h"
-#include "external/raygui.h"
+#include "raygui.h"
 #include <cmath>
 #include <iostream>
 
