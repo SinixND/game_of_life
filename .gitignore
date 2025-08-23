@@ -1,4 +1,4 @@
-build
 .cache
-*.d
-*.o
+.git
+bin
+build
